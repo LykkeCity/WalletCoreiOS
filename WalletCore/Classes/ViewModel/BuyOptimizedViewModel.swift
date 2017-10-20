@@ -1,0 +1,320 @@
+//
+//  BuyOptimizedViewModel.swift
+//  WalletCore
+//
+//  Created by Georgi Stanev on 10/9/17.
+//  Copyright © 2017 Lykke. All rights reserved.
+//
+
+import Foundation
+import RxCocoa
+import RxSwift
+
+public class BuyOptimizedViewModel {
+    
+    public typealias Amount = (autoUpdated: Bool, value: String)
+    public typealias Asset = (autoUpdated: Bool, asset: LWAssetModel)
+    typealias ExchangeData = (from: LWAssetModel, to: LWAssetModel, amount: Decimal, bid: Bool)
+    
+    public let buyAmount       = Variable<Amount>(Amount(autoUpdated: false, value: ""))
+    public let payWithAmount   = Variable<Amount>(Amount(autoUpdated: false, value: ""))
+    public let buyAsset        = Variable<Asset?>(nil)
+    public let payWithAsset    = Variable<Asset?>(nil)
+    public let bid             = Variable<Bool?>(nil)
+    
+    public let baseAssetCode: Driver<String>
+    
+    public let buyAssetIconURL: Driver<URL?>
+    public let buyAssetName: Driver<String>
+    public let buyAssetCode: Driver<String>
+    public let buyAmountInBase: Driver<String>
+    
+    public let payWithAssetIconURL: Driver<URL?>
+    public let payWithAssetName: Driver<String>
+    public let payWithAssetCode: Driver<String>
+    public let payWithAmountInBase: Driver<String>
+    
+    public let spreadPercent: Driver<String>
+    public let spreadAmount: Driver<String>
+    
+    private let disposeBag = DisposeBag()
+    
+    public init(
+        trigger: Observable<Void>,
+        dependency: (
+            currencyExchanger: CurrencyExchanger,
+            authManager: LWRxAuthManager,
+            offchainManager: LWOffchainTransactionsManager,
+            ethereumManager: LWEthereumTransactionsManager
+        )
+    ) {
+        baseAssetCode = dependency.authManager.baseAsset.requestBaseAssetGet()
+            .filterSuccess()
+            .mapToIdentity()
+            .asDriver(onErrorJustReturn: "")
+            .startWith("")
+        
+        buyAssetIconURL = buyAsset.asObservable()
+            .mapToAsset()
+            .mapToIconUrl(withAuthManager: dependency.authManager)
+            .asDriver(onErrorJustReturn: nil)
+        
+        buyAssetName = buyAsset.asObservable()
+            .mapToAsset()
+            .mapToFullName()
+            .asDriver(onErrorJustReturn: "")
+            .startWith("")
+        
+        buyAssetCode = buyAsset.asObservable()
+            .mapToAsset()
+            .mapToIdentity()
+            .asDriver(onErrorJustReturn: "")
+            .startWith("")
+        
+        let buyAssetAmountObservable = Observable
+            .combineLatest(
+                buyAsset.asObservable().mapToAsset(),
+                buyAmount.asObservable().mapToValue().mapToDecimal(),
+                bid.asObservable().filterNil()
+            )
+            .map{(asset: $0, units: $1, bid: $2)}
+            .shareReplay(1)
+        
+        buyAmountInBase = buyAssetAmountObservable
+            .mapToUnitsInBase(currencyExchanger: dependency.currencyExchanger)
+            .asDriver(onErrorJustReturn: "")
+            .startWith("")
+        
+        payWithAssetIconURL = payWithAsset.asObservable()
+            .mapToAsset()
+            .mapToIconUrl(withAuthManager: dependency.authManager)
+            .asDriver(onErrorJustReturn: nil)
+        
+        payWithAssetName = payWithAsset.asObservable()
+            .mapToAsset()
+            .mapToFullName()
+            .asDriver(onErrorJustReturn: "")
+            .startWith("")
+        
+        payWithAssetCode = payWithAsset.asObservable()
+            .mapToAsset()
+            .mapToIdentity()
+            .asDriver(onErrorJustReturn: "")
+            .startWith("")
+        
+        let payWithAssetAmountObservable = Observable
+            .combineLatest(
+                payWithAsset.asObservable().mapToAsset(),
+                payWithAmount.asObservable().mapToValue().mapToDecimal(),
+                bid.asObservable().filterNil()
+            )
+            .map{(asset: $0, units: $1, bid: $2)}
+            .shareReplay(1)
+        
+        payWithAmountInBase = payWithAssetAmountObservable
+            .mapToUnitsInBase(currencyExchanger: dependency.currencyExchanger)
+            .asDriver(onErrorJustReturn: "")
+            .startWith("")
+        
+        let spreadObservable = Observable.combineLatest(
+            buyAssetAmountObservable
+                .flatMapLatest{ assetUnits in dependency.currencyExchanger.exchangeToBaseAsset(
+                    amaunt: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
+                )},
+            payWithAssetAmountObservable
+                .flatMapLatest{ assetUnits in dependency.currencyExchanger.exchangeToBaseAsset(
+                    amaunt: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
+                )}
+        )
+        .map{data -> (buyAmount: Decimal, payWithAmount: Decimal, asset: LWAssetModel)? in
+            guard let buyAmount = data.0?.amaunt else {return nil}
+            guard let payWith = data.1?.amaunt else {return nil}
+            guard let asset = data.0?.baseAsset else {return nil}
+            
+            return (buyAmount: buyAmount, payWithAmount: payWith, asset: asset)
+        }
+        .shareReplay(1)
+        
+        spreadAmount = spreadObservable
+            .map{data -> String? in
+                guard let data = data else {return nil}
+                let spread = data.buyAmount - data.payWithAmount
+                return spread.convertAsCurrency(asset: data.asset, withCode: false)
+            }
+            .replaceNilWith("")
+            .asDriver(onErrorJustReturn: "")
+        
+        spreadPercent = spreadObservable
+            .map{data -> String? in
+                guard let data = data, data.buyAmount != 0.0 else {return nil}
+                let spread = data.buyAmount - data.payWithAmount
+                let percent = (spread / data.buyAmount) * 100
+                
+                return NumberFormatter.percentInstancePerise.string(from: NSDecimalNumber(decimal: percent))
+            }
+            .replaceNilWith("")
+            .asDriver(onErrorJustReturn: "")
+
+        //MARK: two way amount bindings
+        payWithAsset.asObservable()
+            .filter(byAutoUpdated: false)
+            .bind(toBuy: buyAmount, withData: self, currencyExchanger: dependency.currencyExchanger)
+            .disposed(by: disposeBag)
+        
+        payWithAmount.asObservable()
+            .filter(byAutoUpdated: false)
+            .bind(toBuy: buyAmount, withData: self, currencyExchanger: dependency.currencyExchanger)
+            .disposed(by: disposeBag)
+        
+        payWithAsset.asObservable()
+            .filter(byAutoUpdated: true)
+            .bind(toPayWith: payWithAmount, withData: self, currencyExchanger: dependency.currencyExchanger)
+            .disposed(by: disposeBag)
+        
+        buyAmount.asObservable()
+            .filter(byAutoUpdated: false)
+            .bind(toPay: payWithAmount, withData: self, currencyExchanger: dependency.currencyExchanger)
+            .disposed(by: disposeBag)
+        
+        buyAsset.asObservable()
+            .filter(byAutoUpdated: false)
+            .bind(toPayWith: payWithAmount, withData: self, currencyExchanger: dependency.currencyExchanger)
+            .disposed(by: disposeBag)
+    }
+}
+
+extension ObservableType where Self.E == String {
+    func mapToDecimal() -> Observable<Decimal> {
+        return map{$0.decimalValue}.replaceNilWith(0.0)
+    }
+}
+
+fileprivate extension ObservableType where Self.E == BuyOptimizedViewModel.ExchangeData {
+    func exchangeAmount(currencyExchanger: CurrencyExchanger) -> Observable<BuyOptimizedViewModel.Amount> {
+        return flatMap{combinedData in
+            currencyExchanger.exchange(
+                amaunt: combinedData.amount,
+                from: combinedData.from,
+                to: combinedData.to,
+                bid: combinedData.bid
+            )
+            .filterNil()
+            .map{amount in
+                guard let accuracy = combinedData.to.accuracy?.intValue else {
+                    return String(amount.doubleValue)
+                }
+                
+                return String(format: "%.\(accuracy)f", amount.doubleValue).replaceDotWithDecimalSeparator()
+            }
+            .map{BuyOptimizedViewModel.Amount(autoUpdated: true, value: $0)}
+            .take(1)
+        }
+    }
+}
+
+public extension ObservableType where Self.E == BuyOptimizedViewModel.Amount {
+    func mapToValue() -> Observable<String> {
+        return map{$0.value}
+    }
+    
+    func filter(byAutoUpdated autoUpdated: Bool) -> Observable<String> {
+        return filter{$0.autoUpdated == autoUpdated}.mapToValue()
+    }
+}
+
+fileprivate extension ObservableType where Self.E == String {
+    func bind(
+        toBuy buyAmount: Variable<BuyOptimizedViewModel.Amount>,
+        withData viewModel: BuyOptimizedViewModel,
+        currencyExchanger: CurrencyExchanger
+    ) -> Disposable {
+        return
+            mapToDecimal()
+            .distinctUntilChanged()
+            .map{[weak viewModel] payWithAmount -> BuyOptimizedViewModel.ExchangeData? in
+                guard let payWithAsset = viewModel?.payWithAsset.value?.asset else {return nil}
+                guard let buyAsset = viewModel?.buyAsset.value?.asset else {return nil}
+                guard let bid = viewModel?.bid.value else {return nil}
+                
+                return BuyOptimizedViewModel.ExchangeData(from: payWithAsset, to: buyAsset, amount: payWithAmount, bid: bid)
+            }
+            .filterNil()
+            .exchangeAmount(currencyExchanger: currencyExchanger)
+            .bind(to: buyAmount)
+    }
+    
+    func bind(
+        toPay payWithAmount: Variable<BuyOptimizedViewModel.Amount>,
+        withData viewModel: BuyOptimizedViewModel,
+        currencyExchanger: CurrencyExchanger
+    ) -> Disposable {
+        return
+            mapToDecimal()
+            .distinctUntilChanged()
+            .map{[weak viewModel] buyAmount -> BuyOptimizedViewModel.ExchangeData? in
+                guard let buyAsset = viewModel?.buyAsset.value?.asset else {return nil}
+                guard let payWithAsset = viewModel?.payWithAsset.value?.asset else {return nil}
+                guard let bid = viewModel?.bid.value else {return nil}
+                
+                return (from: buyAsset, to: payWithAsset, amount: buyAmount, bid: bid)
+            }
+            .filterNil()
+            .exchangeAmount(currencyExchanger: currencyExchanger)
+            .bind(to: payWithAmount)
+    }
+}
+
+public extension ObservableType where Self.E == BuyOptimizedViewModel.Asset? {
+    func mapToAsset() -> Observable<LWAssetModel> {
+        return map{$0?.asset}.filterNil()
+    }
+    
+    func filter(byAutoUpdated autoUpdated: Bool) -> Observable<LWAssetModel> {
+        return filter{$0?.autoUpdated == autoUpdated}.mapToAsset()
+    }
+}
+
+fileprivate extension ObservableType where Self.E == LWAssetModel {
+    func distinctUntilChangedById() -> Observable<LWAssetModel> {
+        return distinctUntilChanged{new, old in new.identity == old.identity}
+    }
+    
+    func bind(
+        toBuy buyAmount: Variable<BuyOptimizedViewModel.Amount>,
+        withData viewModel: BuyOptimizedViewModel,
+        currencyExchanger: CurrencyExchanger
+    ) -> Disposable {
+        return
+            distinctUntilChangedById()
+            .map{[weak viewModel] payWithAsset -> BuyOptimizedViewModel.ExchangeData? in
+                guard let buyAsset = viewModel?.buyAsset.value?.asset else {return nil}
+                guard let payWithAmount = viewModel?.payWithAmount.value.value.decimalValue else{return nil}
+                guard let bid = viewModel?.bid.value else {return nil}
+                
+                return BuyOptimizedViewModel.ExchangeData(from: payWithAsset, to: buyAsset, amount: payWithAmount, bid: bid)
+            }
+            .filterNil()
+            .exchangeAmount(currencyExchanger: currencyExchanger)
+            .bind(to: buyAmount)
+    }
+    
+    func bind(
+        toPayWith payWithAmount: Variable<BuyOptimizedViewModel.Amount>,
+        withData viewModel: BuyOptimizedViewModel,
+        currencyExchanger: CurrencyExchanger
+    ) -> Disposable {
+        return
+            distinctUntilChangedById()
+            .map{[weak viewModel] _ -> (from: LWAssetModel, to: LWAssetModel, amount: Decimal, bid: Bool)? in
+                guard let buyAsset = viewModel?.buyAsset.value?.asset else {return nil}
+                guard let payWithAsset = viewModel?.payWithAsset.value?.asset else {return nil}
+                guard let amount = viewModel?.buyAmount.value.value.decimalValue else {return nil}
+                guard let bid = viewModel?.bid.value else {return nil}
+                
+                return (from: buyAsset, to: payWithAsset, amount: amount, bid: bid)
+            }
+            .filterNil()
+            .exchangeAmount(currencyExchanger: currencyExchanger)
+            .bind(to: payWithAmount)
+    }
+}
