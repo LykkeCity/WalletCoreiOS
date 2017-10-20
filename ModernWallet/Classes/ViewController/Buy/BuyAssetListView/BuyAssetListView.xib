@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geomanist-Book.otf">
+            <string>Geomanist</string>
+            <string>Geomanist-Book</string>
+        </array>
+        <array key="Geomanist-Light.otf">
+            <string>Geomanist-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BuyAssetListView" customModule="ModernWallet" customModuleProvider="target">
+            <connections>
+                <outlet property="amontInBase" destination="haY-ub-hFT" id="hd3-WZ-WbN"/>
+                <outlet property="amount" destination="yZn-Mq-xBA" id="m7Y-7j-xvA"/>
+                <outlet property="assetCode" destination="LD2-fz-8cR" id="Ef5-6x-lXg"/>
+                <outlet property="assetIcon" destination="pz1-GH-RAn" id="Pvg-I7-8Sb"/>
+                <outlet property="assetName" destination="NJd-Pa-pCz" id="smz-x8-3tD"/>
+                <outlet property="baseAssetCode" destination="3f0-9u-e9T" id="ZZV-lV-f7g"/>
+                <outlet property="label" destination="fAa-ZT-SjZ" id="aI0-Id-hog"/>
+                <outlet property="tapToSelectAsset" destination="ZrJ-5n-x44" id="Zvn-yf-8Qd"/>
+                <outlet property="view" destination="iN0-l3-epB" id="20R-Lr-R2J"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="315" height="104"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nV5-8P-wdt">
+                    <rect key="frame" x="0.0" y="0.0" width="315" height="104"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BUY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAa-ZT-SjZ">
+                            <rect key="frame" x="0.0" y="0.0" width="315" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="MLr-tC-jBw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GHx-a8-ChA">
+                            <rect key="frame" x="0.0" y="36" width="315" height="49"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LzF-6Y-QHv">
+                                    <rect key="frame" x="0.0" y="4.5" width="197" height="40"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow" translatesAutoresizingMaskIntoConstraints="NO" id="UWA-af-Qw1">
+                                            <rect key="frame" x="0.0" y="14.5" width="21" height="11"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="11" id="Dvx-uJ-pew"/>
+                                                <constraint firstAttribute="width" constant="21" id="dbi-ij-LkG"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bitcoinButton" translatesAutoresizingMaskIntoConstraints="NO" id="pz1-GH-RAn">
+                                            <rect key="frame" x="41" y="0.0" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="Dod-Rh-I9e"/>
+                                                <constraint firstAttribute="height" constant="40" id="VPC-Wg-ax5"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJd-Pa-pCz">
+                                            <rect key="frame" x="101" y="6" width="96" height="28"/>
+                                            <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="24"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="ZrJ-5n-x44" appends="YES" id="CGN-ma-AMf"/>
+                                    </connections>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="7.2999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="QbR-yM-6vq">
+                                    <rect key="frame" x="197" y="10.5" width="118" height="28"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" text="00.00" placeholder="00.00" textAlignment="right" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="yZn-Mq-xBA">
+                                            <rect key="frame" x="0.0" y="0.0" width="85.5" height="28"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="24"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="next"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD2-fz-8cR">
+                                            <rect key="frame" x="93" y="11.5" width="25" height="14"/>
+                                            <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="12"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="14.699999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="4Nx-tL-9dP">
+                            <rect key="frame" x="0.0" y="85" width="315" height="19"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haY-ub-hFT">
+                                    <rect key="frame" x="0.0" y="0.0" width="275.5" height="19"/>
+                                    <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3f0-9u-e9T">
+                                    <rect key="frame" x="290" y="0.0" width="25" height="19"/>
+                                    <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="10"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="3f0-9u-e9T" firstAttribute="centerX" secondItem="LD2-fz-8cR" secondAttribute="centerX" id="Edi-1f-kdc"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nV5-8P-wdt" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="CDk-N8-boO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nV5-8P-wdt" secondAttribute="trailing" id="LCX-ka-YGO"/>
+                <constraint firstItem="nV5-8P-wdt" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="UfX-b0-nXu"/>
+                <constraint firstItem="nV5-8P-wdt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="byX-WH-i1r"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+        <tapGestureRecognizer id="ZrJ-5n-x44"/>
+    </objects>
+    <resources>
+        <image name="bitcoinButton" width="12" height="23"/>
+        <image name="downArrow" width="15" height="8"/>
+    </resources>
+</document>

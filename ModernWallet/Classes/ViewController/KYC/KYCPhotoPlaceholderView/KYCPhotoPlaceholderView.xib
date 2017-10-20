@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geomanist Regular.otf">
+            <string>Geomanist-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KYCPhotoPlaceholderView" customModule="LykkeWallet" customModuleProvider="target">
+            <connections>
+                <outlet property="hintLabel" destination="Y6T-td-1Ss" id="mk2-lZ-lZg"/>
+                <outlet property="imageView" destination="Zd1-mt-3si" id="deP-6z-B2t"/>
+                <outlet property="photoImage" destination="nHA-ho-YXm" id="2xw-Ss-kkg"/>
+                <outlet property="view" destination="iN0-l3-epB" id="yzZ-gf-CA4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KYCCameraIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Zd1-mt-3si">
+                    <rect key="frame" x="155" y="307" width="65" height="52"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6T-td-1Ss">
+                    <rect key="frame" x="20" y="399" width="335" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="20"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nHA-ho-YXm" userLabel="Photo">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Y6T-td-1Ss" secondAttribute="trailing" constant="20" id="F2s-Oy-Cyy"/>
+                <constraint firstItem="Zd1-mt-3si" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="HWJ-MF-B7s"/>
+                <constraint firstItem="Y6T-td-1Ss" firstAttribute="centerX" secondItem="Zd1-mt-3si" secondAttribute="centerX" id="Pza-ad-Ylm"/>
+                <constraint firstItem="Zd1-mt-3si" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="alL-pq-uvY"/>
+                <constraint firstItem="Y6T-td-1Ss" firstAttribute="top" secondItem="Zd1-mt-3si" secondAttribute="bottom" constant="40" id="dCg-20-gjr"/>
+                <constraint firstItem="Y6T-td-1Ss" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="dIL-IP-GCI"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="KYCCameraIcon" width="65" height="52"/>
+    </resources>
+</document>

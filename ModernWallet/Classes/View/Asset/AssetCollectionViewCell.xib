@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geomanist-Book.otf">
+            <string>Geomanist</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AssetCollectionViewCell" customModule="LykkeWallet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2ve-5d-ce4">
+                        <rect key="frame" x="39" y="0.0" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="3o7-IP-eSN"/>
+                            <constraint firstAttribute="width" secondItem="2ve-5d-ce4" secondAttribute="height" multiplier="1:1" id="hqT-9P-oSG"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqY-I0-8zs">
+                        <rect key="frame" x="0.0" y="48" width="118" height="26"/>
+                        <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="22"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3q-yB-INY" customClass="AssetAmountView" customModule="LykkeWallet" customModuleProvider="target">
+                        <rect key="frame" x="2" y="74" width="114" height="20.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7b-NF-EKQ" customClass="AssetAmountView" customModule="LykkeWallet" customModuleProvider="target">
+                        <rect key="frame" x="2" y="94.5" width="114" height="20.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.38952726129999998" green="0.58538377289999999" blue="0.56159502269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="M7b-NF-EKQ" firstAttribute="top" secondItem="A3q-yB-INY" secondAttribute="bottom" id="0sw-5k-hqC"/>
+                <constraint firstItem="M7b-NF-EKQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="5Bg-zc-GsU"/>
+                <constraint firstAttribute="trailing" secondItem="dqY-I0-8zs" secondAttribute="trailing" id="8kp-9B-Dzb"/>
+                <constraint firstItem="2ve-5d-ce4" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="B8x-OT-OKQ"/>
+                <constraint firstItem="A3q-yB-INY" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="DHh-J0-aV4"/>
+                <constraint firstItem="A3q-yB-INY" firstAttribute="top" secondItem="dqY-I0-8zs" secondAttribute="bottom" id="EWI-gX-hPo"/>
+                <constraint firstItem="2ve-5d-ce4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="FKL-th-4lj"/>
+                <constraint firstItem="A3q-yB-INY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="JSb-TI-sdh"/>
+                <constraint firstItem="dqY-I0-8zs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Vvw-uc-29b"/>
+                <constraint firstItem="dqY-I0-8zs" firstAttribute="top" secondItem="2ve-5d-ce4" secondAttribute="bottom" constant="8" id="fET-jm-Pek"/>
+                <constraint firstItem="M7b-NF-EKQ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="rBV-1B-uFK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="baseAmountView" destination="A3q-yB-INY" id="lTd-aT-CDI"/>
+                <outlet property="cryptoAmountView" destination="M7b-NF-EKQ" id="eY9-sY-R1x"/>
+                <outlet property="cryptoNameLabel" destination="dqY-I0-8zs" id="g7j-Bg-dVt"/>
+                <outlet property="iconImageView" destination="2ve-5d-ce4" id="hRR-zX-hhB"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

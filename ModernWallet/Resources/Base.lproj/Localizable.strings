@@ -1,0 +1,924 @@
+/* 
+  Localizable.strings
+  LykkeWallet
+
+  Created by Георгий Малюков on 08.12.15.
+  Copyright © 2015 Lykkex. All rights reserved.
+*/
+
+"tab.wallets" = "WALLETS";
+"tab.trading" = "TRADING";
+"tab.transfer" = "TRANSFER";
+"tab.history" = "HISTORY";
+"tab.settings" = "SETTINGS";
+"tab.mylykke" = "MY LYKKE";
+"tab.trading.spot" = "SPOT";
+"tab.trading.cfd" = "CFD";
+"tab.wallets.trading" = "TRADING WALLET";
+"tab.wallets.margin" = "MARGIN WALLET";
+"tab.wallets.private" = "PRIVATE WALLET";
+
+
+"title.register" = "Register";
+"title.authentication" = "Log in";
+
+
+"auth.login" = "Sign In";
+"auth.signup" = "Sign Up";
+"auth.login_signup"="Sign In/Sign Up";
+"auth.email" = "Your email";
+"auth.password" = "Your password";
+"auth.validation.fingerpring" = "Please scan your fingerprint to validate your identity.";
+"auth.takeRefund" = "Take refund";
+"auth.emailHint" = "Email me the hint";
+"auth.resetPassword" = "Reset password using backup";
+
+
+"register.title" = "Register";
+"register.sms.title" = "We've sent the code to your email\naddress %@";
+"register.sms.code.placeholder" = "Code";
+"register.sms.confirm" = "CONFIRM";
+"register.sms.help.info" = "Haven't received the code?";
+"register.sms.codeSent" = "Code sent";
+"register.sms.error" = "Invalid code. Please try again.";
+
+"register.name.subtitle" = "Complete your profile";
+"register.firstName" = "First Name";
+"register.lastName" = "Last Name";
+"register.next" = "NEXT";
+"register.createPassword" = "Create a password (minimum 6 symbols)";
+"register.password1" = "Enter a password";
+"register.password2" = "Enter again";
+"register.phone.subtitle" = "Complete your phone";
+"register.phone.send" = "SUBMIT";
+"register.phone.bottomInfo" = "Please confirm your country code and enter your phone number.";
+
+"register.hint.placeholder" = "Enter a hint";
+"register.hint.subtitle" = "Create a hint for password recovery";
+"register.phone.cancel" = "CANCEL";
+"register.check.documents.label" = "Documents validation.\nPlease wait...";
+"register.validation.label" = "Connection to server.\nPlease wait...";
+"register.phone.country.placeholder" = "Search";
+"register.phone.country" = "COUNTRY";
+
+
+
+"register.phone.code.placeholder" = "Code";
+"register.phone.sent" = "Please enter the 4-digit code that just have been sent to your mobile phone\n%@";
+"register.phone.haventRecieve" = "Haven't received the code?";
+"register.phone.confirm.subtitle" = "Confirm your phone number";
+"register.phone.sms.sent" = "SMS sent";
+"register.phone.requestCall" = "Request voice call";
+
+"register.USA.question" = "Are you a citizen or resident of the USA?";
+"register.USA.answer.yes" = "YES";
+"register.USA.answer.no" = "NO";
+"register.USA.info.title" = "Important Information";
+"register.USA.info.text" = "We are in the process of obtaining the necessary regulatory approvals for our services under the jurisdiction of the USA. Unfortunately, we cannot allow US domiciled clients access to our site until we have the regulatory approvals in place.\n\nWe have your contact information in our database so we can email you updates as they become available.";
+"register.USA.info.gotit" = "OK, GOT IT";
+
+"register.generateKey.title" = "Generate a private key";
+"register.generateKey.text.iphone" = "Shake your iPhone to generate the private key to your Lykke Wallet";
+"register.generateKey.text.ipad" = "Shake your iPad to generate the private key to your Lykke Wallet";
+
+"privateWallets.coldstorage.generateKey.text.iphone" = "Shake your iPhone to generate the private key to your Cold Storage Wallet. This key will be immediately deleted after backup.";
+"privateWallets.coldstorage.generateKey.text.ipad" = "Shake your iPad to generate the private key to your Cold Storage Wallet. This key will be immediately deleted after backup.";
+
+"backup.intro.title" = "Make a backup";
+"backup.intro.text" = "You need to make a backup of your wallet. With your backup, you can easily restore your funds if your device is lost or damaged. Your backup is a series of 12 words. Just write them down and keep them in a safe place.";
+"backup.intro.skip" = "SKIP BACKUP";
+"backup.intro.backupNow" = "BACK UP NOW";
+
+"backup.getstarted.pageTitle" = "BACK UP";
+"backup.getstarted.title" = "Get ready to write";
+"backup.getstarted.text" = "You are about to back up your wallet. You will see a series of %d words for you to write down. Anyone who knows this sequence of words can access and spend all the funds in your wallet, so be sure to keep it in a safe place.";
+"backup.getstarted.button" = "GET STARTED!";
+
+"backup.singleword.wordof" = "%d of %d";
+"backup.singleword.next" = "NEXT";
+
+"backup.words.placeholder" = "Words";
+"backup.words.title" = "Nearly ready!";
+"backup.words.text" = "Please type all 12 words separated by spaces to verify your backup.";
+"backup.words.submit" = "SUBMIT";
+
+"backup.success.title" = "YOUR BACKUP IS COMPLETE";
+"backup.success.text" = "Keep your list of 12 words safe. Use it to restore your account when you install Lykke Wallet on another device (or reinstall Lykke Wallet on this device).";
+"backup.success.userAgreement" = "User agreement";
+"backup.success.getstarted" = "GET STARTED!";
+
+//----
+
+
+"migration.info.title" = "MAKE A BACKUP";
+"migration.info.text" = "To enhance the security and privacy of your wallet, you must regenerate and back up your private key. This will change the address of your wallet.";
+"migration.info.skip" = "SKIP BACKUP";
+"migration.info.confirm" = "CONFIRM";
+
+"backup.notification.alreadymade" = "I've already made a backup";
+"backup.notification.required.title" = "BACKUP REQUIRED!";
+"backup.notification.cancel" = "CANCEL";
+"backup.notification.title" = "DON’T FORGET TO BACK UP!";
+"backup.notification.text" = "Do you want to make a backup\nof the private key?";
+"backup.notification.moreoptions" = "More options";
+"backup.notificatiob.later" = "LATER";
+"backup.notification.backupnow" = "BACK UP NOW";
+
+"backup.template.cancel.title" = "Cancel backup";
+"backup.template.cancel.text" = "If you cancel your backup, the sequence of twelve words that you use to access your wallet will no longer be valid. Do you want to proceed?";
+"backup.template.cancel.yes" = "Yes";
+"backup.template.cancel.no" = "No";
+
+"restore.form.placeholder" = "Words";
+"restore.form.pageTitle.reset" = "RESET PASSWORD";
+"restore.form.pageTitle.cold" = "DEFROST COLD WALLET";
+"restore.form.wrongseed.title" = "ERROR";
+"restore.form.wrongseed.text" = "These seed words are not corresponding to your private key.";
+"restore.form.wrongseed.ok" = "OK";
+
+"restore.form.title" = "Enter the secret word";
+"restore.form.text" = "Type in your secret words from backup separated by spaces";
+"restore.form.next" = "NEXT";
+
+"restore.newpassword.title" = "Enter a new password";
+"restore.newpassword.text" = "Create a password (minimum 6 symbols)";
+
+"restore.hint.placeholder" = "Hint";
+
+"restore.success.title" = "SUCCESSFUL!";
+"restore.success.text" = "Great! Your password and the PIN changed. You can log in to the app.";
+"restore.success.button" = "GO TO LOGIN";
+
+"refund.transaction.placeholder" = "Hex encoded bitcoin transaction";
+"refund.transaction.password.placeholder" = "Your password";
+"refund.transaction.pageTitle" = "REFUND";
+"refund.transaction.proceed" = "PROCEED";
+
+"refund.broadcast.title" = "Entry transaction in blockchain";
+"refund.broadcast.text" = "Copy this code to the clipboard or broadcast\na transaction via the Safari browser";
+"refund.broadcast.button.broadcast" = "BROADCAST";
+"refund.broadcast.button.copy" = "COPY";
+"refund.broadcast.locktime.title" = "WARNING";
+"refund.broadcast.locktime.text" = "Please remember that you will not be able to broadcast this refund transaction to the blockchain before %@";
+"refund.broadcast.locktime.button" = "I GOT IT";
+
+"qrcode.pageTitle" = "SCAN QR CODE";
+"qrcode.button" = "Scan QR code";
+
+"kyc.process.titles.selfie" = "Take a selfie";
+"kyc.process.titles.passport" = "Take a photo of your passport or another ID";
+"kyc.process.titles.address" = "Take a photo of your proof of address, such as a utility bill";
+"kyc.process.pageTitle" = "REGISTER";
+"kyc.process.shoot" = "SHOOT";
+"kyc.process.reshoot" = "RESHOOT";
+"kyc.process.tabs.selfie" = "SELFIE";
+"kyc.process.tabs.passport" = "PASSPORT";
+"kyc.process.tabs.address" = "ADDRESS";
+"kyc.process.photoFailed" = "Photo failed!";
+"kyc.process.nextButton" = "NEXT";
+"kyc.later.title" = "YOUR UPLOADED PHOTOS\nHAVE BEEN SAVED";
+"kyc.later.text" = "You can continue KYC whenever you’re ready.";
+"kyc.later.button" = "GREAT!";
+
+"camera.message1.title" = "CAMERA DISCONNECTED";
+"camera.message1.text" = "Lykke Wallet requests access to your camera. Do the following:";
+"camera.message1.settings" = "Go to Settings";
+"camera.message1.lykkeApp" = "Tap the Lykke app";
+"camera.message1.slider" = "Set the Camera slider to On";
+"camera.message1.button" = "OKAY, I UNDERSTAND";
+
+"camera.message2.title" = "CAMERA DISCONNECTED";
+"camera.message2.text" = "Lykke Wallet requests access to your camera. Allow to do it?";
+"camera.message2.yes" = "YES";
+"camera.message2.no" = "NO";
+
+"kyc.pending.title" = "YOUR DOCUMENTS HAVE BEEN SUBMITTED";
+"kyc.pending.text" = "Dear %@, your information is being reviewed by our KYC team.\nAs soon as this process is complete, we'll inform you by email.";
+"kyc.pending.button" = "OKAY, I'M WAITING";
+
+"kyc.invalidDocuments.title" = "PHOTO FAILED";
+"kyc.invalidDocuments.text" = "We found an error with your registration data. Please review your photos:";
+"kyc.invalidDocuments.selfie" = "Selfie";
+"kyc.invalidDocuments.passport" = "Photo of your passport or another ID";
+"kyc.invalidDocuments.address" = "Photo of your proof of address";
+"kyc.invalidDocuments.button" = "GO BACK AND RESHOOT";
+
+"kyc.restricted.header" = "OOPS!";
+"kyc.restricted" = "Dear %@, we're terribly sorry, but Lykke Wallet can't be created based on the KYC information that you have provided.";
+
+"kyc.success.header" = "YOUR DOCUMENTS ARE IN ORDER";
+"kyc.success" = "Now you can trade FX along with bitcoins and colored coins";
+"kyc.success.okButton" = "Continue";
+
+"pin.create.title" = "Create a PIN to secure transactions";
+"pin.create.new.title" = "Create a new PIN to secure your transactions";
+"pin.verify.title" = "Verify your PIN";
+
+"pin.enter.title" = "Enter PIN";
+
+
+"wallets.swipe.sell" = "Sell";
+"wallets.swipe.withdraw" = "Withdraw";
+"wallets.swipe.deposit" = "Deposit";
+"wallets.swipe.buy" = "Buy";
+
+"exchange.spot.watchlist.untitled" = "Untitled";
+
+"wallets.button.trade" = "TRADE";
+
+"privatewallets.addnew"="ADD";
+"exchange.watchlist" = "Watch List";
+"exchange.watchlists.pageTitle" = "WATCH LISTS";
+"exchange.watchlists.new" = "NEW";
+"exchange.watchlist.delete" = "Delete";
+"exchange.watchlist.duplicate" = "Duplicate Watch List";
+"exchange.watchlist.edit" = "Edit";
+"exchange.watchlist.cancel" = "Cancel";
+
+
+
+"wallets.detailHeader.title" = "Total Capital";
+"wallets.detailHeader.used" = "USED";
+"wallets.detailHeader.free" = "FREE";
+"wallets.detailHeader.pnl" = "P&L";
+"wallets.detailHeader.accountSettings" = "Account Settings, Deposit, Withdraw";
+
+"exchange.assets.form.name" = "Asset name";
+"exchange.assets.form.assetclass" = "Asset class";
+"exchange.assets.form.popularity" = "Popularity index";
+"exchange.assets.form.description" = "Description";
+"exchange.assets.form.issuername" = "Issuer name";
+"exchange.assets.form.coinsnumber" = "Number of coins issued";
+"exchange.assets.form.capitalization" = "Market capitalization";
+"exchange.assets.form.description_url" = "Description URL";
+
+"exchange.spot.tabs.asset" = "ASSET";
+"exchange.spot.tabs.chart" = "CHART";
+"exchange.spot.tabs.orders" = "ORDERS";
+"exchange.spot.button.buy" = "BUY";
+"exchange.spot.button.sell" = "SELL";
+"exchange.spot.button.atprice" = "AT PRICE";
+
+"exchange.spot.orders.volume" = "Volume";
+"exchange.spot.orders.depth" = "Depth";
+"exchange.spot.orders.price" = "Price";
+
+"marginal.empty.title" = "Take next trade after selecting the desired\nasset from the list";
+
+"settings.cell.personal" = "View personal data";
+"settings.cell.baseAsset" = "Base asset";
+"settings.cell.refundAddress" = "Refund Address";
+"settings.cell.history" = "History";
+"settings.cell.termsofuse" = "Terms of use";
+"settings.cell.backup" = "Backup private key";
+"settings.cell.push.title" = "Push notifications";
+"settings.cell.logout.title" = "Log out";
+"settings.callbutton.title" = "Call support";
+"settings.mailbutton.title" = "Mail support";
+"settings.cell.pin.title" = "Sign orders with PIN/Touch ID";
+
+"settings.push.title" = "PUSH NOTIFICATIONS";
+"settings.cell.push.sendpush"="Send Push Notifications";
+
+
+"personal.data.title" = "PERSONAL DATA";
+"personal.data.fullname" = "Full Name";
+"personal.data.email" = "Email";
+"personal.data.phone" = "Contact Phone";
+"personal.data.country" = "Country";
+"personal.data.zip" = "Zip";
+"personal.data.city" = "City";
+"personal.data.address" = "Address";
+
+"settings.refund.pageTitle" = "REFUND ADDRESS";
+"settings.refund.information" = "Information";
+"settings.refund.apply" = "APPLY";
+"settings.refund.information.pageTitle" = "REFUND";
+"settings.refund.information.title" = "ABOUT REFUNDS";
+"settings.refund.information.text" = "Your refund transaction guarantees that you will be able to reclaim your Bitcoins in case of emergency. You may broadcast the refund transaction at any time after the specified waiting period.";
+"settings.refund.information.readmore" = "Read more";
+"settings.refund.address.placeholder" = "Bitcoin wallet";
+"settings.refund.selectWallet" = "Select wallet";
+
+"choosewallet.popup.title" = "WALLETS";
+"choosewallet.popup.cancel" = "CANCEL";
+
+"choosewallet.popup.mytradingwallet" = "MY TRADING WALLET";
+"choosewallet.popup.privatewallet" = "Private wallet";
+"choosewallet.popup.tradingwallet" = "Trading wallet";
+
+"transfer.confirm.title" = "SEND TRANSFER";
+"transfer.confirm.cancel" = "CANCEL";
+"transfer.confirm.wallet" = "Wallet";
+"transfer.confirm.address" = "Wallet address";
+"transfer.confirm.amount" = "Amount";
+"transfer.confirm.placeorder" = "PLACE AN ORDER";
+
+"common.search" = "Search";
+"margninal.button.trade" = "TRADE";
+
+"wallets.marginal.tabs.positions" = "POSITIONS";
+"wallets.marginal.tabs.orders" = "PENDING";
+"wallets.marginal.tabs.exposure" = "EXPOSURE";
+
+"marginal.cell.button.close" = "Close";
+"marginal.cell.button.cancel" = "Cancel";
+
+"deposit.swift.titles.bic" = "BIC (SWIFT)";
+"deposit.swift.titles.account.number" = "Account number";
+"deposit.swift.titles.account.name" = "Account name";
+"deposit.swift.titles.bank.address" = "Bank address";
+"deposit.swift.titles.company.address" = "Company address";
+"deposit.swift.titles.purpose" = "Purpose of payment";
+
+"deposit.swift.text" = "To deposit %@ to your trading wallet\nplease use the following bank account details";
+
+"wallets.currency.deposit" = "DEPOSIT WALLET";
+"wallets.currency.amount" = "Amount";
+
+"common.buttons.termsOfUse" = "Terms of Use";
+"common.buttons.informationBrochure" = "Information Brochure";
+"deposit.swift.emailbutton" = "EMAIL ME";
+"deposit.swift.amountzero.toast" = "The amount should be greater than zero.";
+
+"introduction.titles.deposit"="DEPOSIT SECURELY";
+"introduction.titles.trade"="TRADE FREELY";
+"introduction.titles.settle"="SETTLE IMMEDIATELY";
+"introduction.titles.withdraw"="WITHDRAW SAFELY";
+"introduction.titles.onboard"="ONBOARD EASILY";
+
+"introduction.texts.deposit"="Deposit bitcoins and digital assets to multisig wallets with an encrypted private key";
+"introduction.texts.trade"="Buy and sell bitcoins and digital assets with 0% commission";
+"introduction.texts.settle"="Receive the proof of each trade on the blockchain in half an hour instead of 3 days";
+"introduction.texts.withdraw"="Request immediate withdrawal to your bitcoin wallet";
+"introduction.texts.onboard"="Prepare your ID and proof of address and provide all the necessary personal details with your iPhone";
+
+"introduction.buttons.getstarted"="GET STARTED";
+"introduction.buttons.whydoineedit"="Why do I need it?";
+
+"errors.network.connection" = "Internet connection problem";
+"errors.server.problems"    = "Technical problems.";
+
+"watchlists.new.pageTitle" = "ADD WATCH LIST";
+"watchlists.edit.pageTitle" = "EDIT";
+"watchlists.edit.name.placeholder" = "Name of watch list";
+"watchlists.edit.selectall" = "Select All";
+
+"watchlists.selected.all" = "All assets";
+"watchlists.edit.tabs.allassets" = "ALL ASSETS";
+"watchlists.edit.tabs.selected" = "SELECTED";
+"watchlists.edit.numberofselected" = "Selected %d assets";
+
+
+
+
+
+
+"exchange.assets.selection" = "Select an asset";
+"exchange.assets.header.issuer" = "Issuer/Asset";
+"exchange.assets.header.price" = "Price";
+"exchange.assets.header.change" = "Change";
+"exchange.assets.form.button" = "BUY AT PRICE $ ";
+"exchange.assets.buy.title" = "BUY ";
+"exchange.assets.sell.title" = "SELL ";
+"exchange.assets.description.buy" = "I want to buy %@ %@ for %@ %@";
+"exchange.assets.description.sell" = "I want to sell %@ %@ for %@ %@";
+"exchange.assets.buy.sum" = "Buy";
+"exchange.assets.buy.placeholder" = "Input";
+"exchange.assets.result.placeholder" = "Input";
+"exchange.assets.buy.price" = "Price";
+"exchange.assets.buy.total" = "Sell";
+"exchange.assets.buy.checkout" = "SUBMIT";
+"exchange.assets.modal.title" = "ORDER SUMMARY";
+"exchange.assets.modal.button" = "PLACE AN ORDER";
+"exchange.assets.modal.cancel" = "CANCEL";
+"exchange.assets.modal.fingerpring" = "Please scan your fingerprint to validate your identity to complete request.";
+"exchange.assets.modal.validatepin" = "PIN validation ...";
+"exchange.assets.modal.waiting" = "Sending the order ...";
+"exchange.assets.modal.error" = "Message";
+"exchange.assets.modal.error.volume" = "Volume is invalid.";
+"exchange.assets.modal.error.ok" = "OK";
+"exchange.assets.result.title" = " PURCHASED!";
+"exchange.assets.result.assetname" = "Asset name";
+"exchange.assets.result.units" = "Buy";
+"exchange.assets.result.price" = "Execution price";
+"exchange.assets.result.commission" = "Commission paid";
+"exchange.assets.result.cost" = "Sell";
+"exchange.assets.result.blockchain" = "Blockchain settlement";
+"exchange.assets.result.blockchain.progress" = "In progress";
+"exchange.assets.result.position" = "Position";
+"exchange.assets.result.close" = "CLOSE";
+"exchange.assets.result.share" = "SHARE";
+"exchange.assets.result.boughtfor"="bought for";
+"exchange.assets.result.soldfor"="sold for";
+"exchange.popup.basecurrency"="BASE CURRENCY";
+
+
+"exchange.graph.askprice" = "Ask Price";
+"exchange.graph.bidprice" = "Bid Price";
+"exchange.graph.change" = "Change";
+
+"mathkeyboard.done" = "DONE";
+"exchange.confirm.pin.title" = "Confirm order with your PIN";
+
+"history.sections.titles.trading" = "Trading";
+"history.sections.titles.settle" = "Settle";
+"history.sections.titles.depositwithdraw" = "Deposit & Withdraw";
+"history.sections.titles.margin" = "Margin";
+"history.sections.titles.marginaldepositwithdraw" = "Marginal Deposit & Withdraw";
+"history.sections.titles.transfers" = "Transfers";
+
+"history.empty.title.makefirst" = "MAKE FIRST TRANSACTION";
+
+"wallets.trading.title" = "TRADING WALLET";
+"wallets.trading.withdraw" = "WITHDRAW";
+"wallets.trading.deposit" = "DEPOSIT";
+
+"actionspopup.popuptitle" = "PAYMENTS & TRANSFERS";
+"actionspopup.titles.deposit" = "DEPOSIT";
+"actionspopup.titles.blockchaintransfer" = "Blockchain Transfer";
+"actionspopup.titles.creditcard" = "Credit Card";
+"actionspopup.titles.withdraw" = "WITHDRAW";
+"actionspopup.titles.swift" = "SWIFT";
+"actionspopup.titles.trading" = "TRADING";
+"actionspopup.titles.sell" = "Sell";
+"actionspopup.titles.buy" = "Buy";
+"actionspopup.titles.forwardsettlement" = "FORWARD SETTLEMENT";
+"actionspopup.titles.settle" = "Settle";
+
+"tradingwallet.actionbutton" = "PAYMENTS & TRANSFERS";
+
+"history.cell.cashout" = "Cash Out";
+"history.cell.cashin" = "Cash In";
+"history.cell.buy" = "Buy";
+"history.cell.sell" = "Sell";
+"history.cell.incomingtransfer" = "Incoming Transfer";
+"history.cell.outgoingtransfer" = "Outgoing Transfer";
+"history.cell.settle" = "Settle";
+
+"exchange.blockchain.close" = "CLOSE";
+"exchange.blockchain.title" = "BLOCKCHAIN EXPLORER";
+"exchange.blockchain.hash" = "Hash";
+"exchange.blockchain.date" = "Date";
+"exchange.blockchain.confirm" = "Confirm";
+"exchange.blockchain.block" = "Block";
+"exchange.blockchain.height" = "Height";
+"exchange.blockchain.sender" = "Sender ID";
+"exchange.blockchain.asset" = "Asset ID";
+"exchange.blockchain.quantity" = "Quantity";
+"exchange.blockchain.url" = "URL";
+
+"history.title" = "HISTORY OF TRANSACTIONS";
+"history.market.buy" = "buy";
+"history.market.sell" = "sell";
+"history.cash.in" = "Wallet cash in";
+"history.cash.out" = "Wallet cash out";
+"history.cash.refund"="Refund";
+"history.cash.asset" = "Asset";
+"history.cash.amount" = "Amount";
+"history.cash.blockchain" = "Blockchain settlement";
+"history.cash.progress" = "In progress";
+"history.transfer.in" = "Incoming transfer";
+"history.transfer.out" = "Outcoming transfer";
+"history.transfer.volume" = "Volume";
+
+"wallets.bitcoin.copytoast" = "Copied.";
+"wallets.bitcoin.sendemail" = "Email sent.";
+
+
+"withdraw.wallet.button" = "Withdraw";
+"withdraw.funds.title" = "WITHDRAW FUNDS";
+"withdraw.funds.address" = "Enter the colored coin address";
+
+"withdraw.funds.wallet" = "Colored coin wallet";
+
+"withdraw.funds.paste" = "Paste";
+"withdraw.funds.scan" = "Scan QR code";
+"withdraw.funds.proceed" = "PROCEED";
+"withdraw.funds.info" = "Your wallet will not be charged until you authorize this transaction.";
+"withdraw.funds.amount" = "Amount";
+"withdraw.funds.placeholder" = "Input amount";
+"withdraw.funds.validatepin" = "PIN validation ...";
+"withdraw.funds.modal.error" = "Message";
+"withdraw.funds.modal.error.volume" = "Amount is invalid.";
+"withdraw.funds.modal.error.ok" = "OK";
+"withdraw.funds.modal.fingerpring" = "Please scan your fingerprint to validate your identity to complete request.";
+"withdraw.funds.modal.waiting" = "Sending the order ...";
+"withdraw.funds.modal.title" = "ORDER SUMMARY";
+"withdraw.funds.modal.button" = "PLACE AN ORDER";
+"withdraw.funds.modal.cancel" = "CANCEL";
+"withdraw.funds.modal.cell.address" = "Colored coin address";
+"withdraw.funds.modal.cell.amount" = "Amount";
+"withdraw.funds.confirm.title" = "Message";
+"withdraw.funds.confirm.desc" = "Withdraw completed";
+"withdraw.funds.confirm.ok" = "OK";
+"withdraw.funds.qr.title" = "SCAN CODE";
+"withdraw.funds.subtitle" = "Enter the recipient blockchain address";
+"withdraw.funds.address.placeholder" = "Address";
+
+"deposit.visa.pageTitle" = "DEPOSIT WALLET";
+
+"deposit.visa.countrydropdown.title" = "COUNTRY";
+
+"deposit.visa.success.title" = "SUCCESSFUL!";
+"deposit.visa.success.text" = "Your payment was successfully sent!\nYou may return to your wallet and proceed with the trade.";
+
+"deposit.visa.fail.title" = "OOPS!";
+"deposit.visa.fail.text" = "We’re sorry, but we were unable to make a payment according to the details that you provided. Please try again later.";
+
+"deposit.visa.message.fillfield" = "Please fill in the %@ field.";
+
+"deposit.visa.message.fillamount" = "Please fill in the Amount field.";
+
+"deposit.visa.placeholders.firstname" = "First Name";
+"deposit.visa.placeholders.lastname" = "Last Name";
+"deposit.visa.placeholders.country" = "Country";
+"deposit.visa.placeholders.city" = "City";
+"deposit.visa.placeholders.zip" = "Zip";
+"deposit.visa.placeholders.address" = "Address";
+"deposit.visa.placeholders.phone" = "Contact Phone";
+"deposit.visa.placeholders.email" = "Email";
+
+"deposit.visa.placeholders.amount" = "Amount";
+
+"deposit.visa.cashin" = "CASH IN";
+"deposit.visa.subtitle" = "Credit card";
+"deposit.visa.subtitle.text" = "To deposit %@ with your credit card,\nplease fill out the form below";
+
+"wallets.bitcoin.deposit" = "DEPOSIT %@";
+"wallets.bitcoin.deposit.addresstitle" = "Your wallet address";
+
+"wallets.bitcoin.deposit.copy" = "COPY";
+"wallets.bitcoin.deposit.sendemail" = "EMAIL ME";
+
+"wallets.buyscreen.chooseway" = "Choose a convenient way to purchase %@";
+"wallets.buyscreen.pageTitle" = "DEPOSIT %@";
+"wallets.buyscreen.emptymessage" = "Sorry, your wallet is empty and you cannot buy %@. To start working, deposit assets into the wallet.";
+
+"mylykke.tabs.equity" = "EQUITY";
+"mylykke.tabs.news" = "NEWS";
+"mylykke.button.buy" = "BUY LKK EQUITY";
+"mylykke.cells.equity" = "My equity in Lykke Corp";
+"mylykke.cells.number" = "Number of shares";
+"mylykke.cells.marketvalue" = "Market value";
+"mylykke.pagetitle" = "MY LYKKE";
+
+"mylykke.cells.assetclass" = "Asset class";
+"mylykke.cells.description" = "Description";
+"mylykke.cells.issuer" = "Issuer name";
+
+"mylykke.infopage.pagetitle" = "LYKKE EQUITY";
+"mylykke.infopage.buy" = "BUY LYKKE";
+
+"common.available" = "available";
+
+"settlement.success.message" = "settlement successfully triggered.";
+"settle.pageTitle" = "SETTLE %@";
+"commot.sorry" = "Sorry";
+
+"buysell.pair.notexist" = "Trade %@ for %@ is not available. Asset pair %@/%@ is not found";
+
+"utils.tip" = "WHAT I SHOULD KNOW";
+"utils.ok" = "OK";
+"utils.error" = "Error";
+
+
+"general.yes"="Yes";
+"general.no"="No";
+
+"wallets.currency.amount" = "Amount";
+"wallets.currency.copied" = "COPIED!";
+
+"wallets.currency.withdraw.success.title" = "SUCCESS!";
+"wallets.currency.withdraw.success.text" = "Your withdrawal request is now being\nprocessed by our team...";
+
+"marginal.availablemargin" = "available margin";
+"marginal.trade.title.available" = "Available ";
+"marginal.trade.amount" = "Amount";
+"marginal.trade.margin" = "Margin";
+"marginal.trade.notset" = "not set";
+"marginal.tabs.marketorder" = "MARKET ORDER";
+"marginal.tabs.pendingorder" = "PENDING ORDER";
+"marginal.warning.title" = "WARNING";
+"marginal.error.title" = "ERROR";
+"marginal.warning.fillexpectedprice" = "Please fill expected open price value";
+"marginal.warning.balance" = "Your available balance is not enough for creating this position!\nPlease deposit.";
+"marginal.stoploss" = "Stop Loss";
+"marginal.takeprofit" = "Take Profit";
+
+"marginal.targetPNL" = "Target P&L";
+"marginal.trade.button.close" = "CLOSE POSITION";
+"marginal.trade.button.cancel" = "CANCEL ORDER";
+
+"marginal.long" = "Long";
+"marginal.short" = "Short";
+"marginal.trade.done" = "DONE";
+
+"marginal.message.orderplaced" = "Order placed!";
+"marginal.message.positionclosed" = "Position closed!";
+
+"marginal.error.orbutton" = "OK, I UNDERSTAND";
+
+"marginal.trade.buttons.short" = "SHORT";
+"marginal.trade.buttons.long" = "LONG";
+"marginal.trade.price" = "Price";
+
+"marginal.error.limits" = "Limits set incorrectly.";
+"marginal.error.amount" = "Please fill amount";
+
+"wallets.private.pagetitle" = "PRIVATE WALLETS";
+
+"wallets.private.message.makebackup" = "Please make a backup of your private key to be able to create a new private wallet.";
+
+
+
+
+"wallets.private.cold.key.pagetitle" = "PRIVATE KEY";
+"wallets.private.address.pagetitle" = "WALLET ADDRESS";
+"wallets.private.address.bitcoin" = "Bitcoin wallet address";
+"wallets.private.address.colored" = "Colored wallet address";
+
+"wallets.private.create.pagetitle" = "ADD NEW WALLET";
+"wallets.private.create.nameplaceholder" = "Name of wallet";
+"wallets.private.create.keyplaceholder" = "Private key";
+"wallets.private.create.button.create" = "CREATE WALLET";
+"wallets.private.create.button.add" = "ADD WALLET";
+"wallets.private.create.button.proceed" = "PROCEED";
+
+"wallets.private.create.tabs.private" = "PRIVATE";
+"wallets.private.create.tabs.existing" = "EXISTING";
+"wallets.private.create.tabs.cold" = "COLD";
+"wallets.private.create.subtitle" = "Enter details of new wallet";
+
+"wallets.private.create.address.title" = "Wallet address";
+"wallets.private.create.address.titleNotDefined" = "Wallet address is not defined";
+"wallets.private.create.external.description" = "Already have a wallet? Great! To make transactions with the Lykke Wallet app, enter the wallet’s existing private key. We will create an encrypted, server-side backup of the key (as long as it’s encrypted with your master private key).";
+"wallets.private.create.internal.description" = "To create a new deterministic wallet whose private key derived from a twelve-word seed, please enter a name for the wallet.";
+
+"wallets.private.create.cold" = "Your private key for the cold storage wallet will not be saved. The wallet’s public address will be saved to be able to receive coins only. You can’t spend coins from the wallet address until you enter the correct 12-word seed. So please keep it safe.";
+
+"settings.assets.title" = "BASE ASSET";
+
+"wallets.private.create.error.testnetkey" = "This private key is for Testnet environment.\nIt can not be used with Lykke!";
+"wallets.private.create.error.invalidkey" = "Invalid private key";
+
+"wallets.private.create.success.title" = "SUCCESSFUL!";
+"wallets.private.create.success.text" = "Private wallet successfully added";
+"wallets.private.create.success.button" = "PROCEED";
+
+"wallets.private.edit.done" = "DONE";
+"wallets.private.edit.pagetitle" = "EDIT WALLET";
+"wallets.private.edit.wrongseed" = "Seed words you provided do not correspond to this cold wallet address!";
+"wallets.private.cold.restore.success" = "Your cold reserve can now be used for deposit and transfer.";
+"wallets.private.cold.restore.error.unknown" = "Something was wrong";
+
+"wallets.private.pin.title" = "Enter your PIN";
+
+"wallets.private.transfer.subtitle" = "Select wallet for transfer";
+"wallets.private.transfer.testnetaddress" = "This address is for Testnet environment.\nIt can not be used with Lykke!";
+"wallets.private.transfer.invalidaddress" = "Invalid address";
+
+"wallets.private.transfer.notColored" = "The address you entered is not colored coins address.";
+"wallets.private.transfer.address.placeholder" = "Enter address of wallet";
+"wallets.private.transfer.button.proceed" = "PROCEED";
+
+"wallets.private.transfer.selected.title" = "Select wallet for transfer";
+
+"wallets.private.transfer.pagetitle" = "TRANSFER";
+"wallets.private.transfer.input" = "CHECKOUT";
+"wallets.private.transfer.success.text" = "Your transfer transaction has been successfully broadcasted to Blockchain. We will notify you when it will be confirmed.";
+"wallets.private.transfer.fail.text" = "Something went wrong.\nYour transfer transaction was unsuccessful";
+"wallets.private.transfer.fail.title" = "Sorry!";
+
+
+
+
+
+
+"wallets.marginal.pnl.totalPNL" = "Total P&L";
+"wallets.marginal.pnl.swapPNL" = "Interest Rate swap P&L";
+"wallets.marginal.pnl.marketPNL" = "Mark to market P&L";
+"wallets.marginal.pnl.comission" = "Comission";
+
+
+"wallets.bitcoin.deposit.addresstitle" = "Your wallet address";
+"wallets.bitcoin.deposit.crosschain.addresstitle" = "Your deposit wallet address";
+
+"wallets.marginal.position.used" = "Used";
+
+
+
+
+"wallets.mainpage.totalbalance" = "TOTAL BALANCE";
+"wallets.mainpage.tradingwallet" = "Trading Wallet";
+"wallets.mainpage.privatewallets" = "Private Wallets";
+"wallets.mainpage.marginwallet" = "Margin Wallet";
+
+"wallets.mainpage.spotquotes" = "Spot Quotes";
+"wallets.mainpage.marginquotes" = "Margin Quotes";
+"wallets.mainpage.mylykke" = "My Lykke";
+
+"exchange.spot.title" = "SPOT";
+"exchange.cfd.title" = "QUOTES";
+
+"margin.wallet.demo.sign" = "DEMO";
+
+
+
+//"ABPadLockScreen.pin.enter" = "Enter PIN";
+//"ABPadLockScreen.pin.setup" = "Set up your PIN";
+//"ABPadLockScreen.pin.setup.confirm" = "Re-enter PIN";
+//"ABPadLockScreen.pin.matchError" = "Your PINs do not match!";
+//"ABPadLockScreen.pin.attempts.left.none" = "No attempts left. Application is locked.";
+//"ABPadLockScreen.pin.attempts.left.one" = "attempt left";
+//"ABPadLockScreen.pin.attempts.left.several" = "attempts left";
+//"ABPadLockScreen.cancel" = "Cancel";
+//"ABPadLockScreen.delete" = "Delete";
+//"ABPadLockScreen.ok" = "OK";
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+//"register.step1.prompt" = "Complete your profile";
+//"register.email" = "Email";
+//"register.phone" = "Phone";
+//"register.phone.placeholder" = "Your phone number";
+//"register.phone.country.title" = "COUNTRY CODE";
+
+//"register.phone.error" = "Invalid code. Please try again.";
+//"register.password" = "Password (min 6 symbols)";
+//"register.passwordConfirm" = "Confirm Password (min 6 symbols)";
+//"register.submit" = "Submit";
+//"register.camera.requestaccess"="Selfie photo should be provided to get access to the Lykke Wallet. Provide access to camera?";
+//"register.camera.title.selfie" = "Take a selfie";
+//"register.camera.title.idCard" = "Take a photo of your passport or other ID";
+//"register.camera.title.proofOfAddress" = "Take a photo of your utility bill or other proof of address";
+//"register.camera.photo.take" = "Take a picture";
+//"register.camera.photo.cancel" = "Not good, reshoot";
+//"register.camera.photo.ok" = "Nice, submit";
+//"register.camera.hud.title" = "Tap to cancel the upload operation";
+
+
+//"register.kyc.invalidDocuments.header" = "OOPS!";
+//"register.kyc.invalidDocuments" = "Dear %@, we're terribly sorry, but our compliance department have not accepted some of your documents. Please upload them one more time.";
+//"register.kyc.invalidDocuments.okButton" = "Okay, I understand";
+//"register.pin.setup.ok.title" = "Congratulations!";
+//"register.pin.setup.ok.okButton" = "OK";
+//"register.pin.setup.ok.text" = "We have generated your private key.\n";
+
+//"register.kyc.submit.title" = "Submit documents";
+//"register.kyc.submit.header" = "KYC PROCEDURE";
+//"register.kyc.submit" = "Dear %@, please submit your information for review.";
+//"register.kyc.submit.submitButton" = "Submit";
+
+
+
+//"wallets.general.sell" = "Sell";
+//"wallets.cardform.title" = "ADDED CARDS";
+//"wallets.cardform.card.number.placeholder" = "Card number";
+//"wallets.cardform.card.expire.placeholder" = "M/Y";
+//"wallets.cardform.card.owner.placeholder" = "Name on card";
+//"wallets.cardform.card.code.placeholder" = "CVC";
+//"wallets.cardform.card.submitButton" = "SUBMIT";
+//"wallets.cardform.card.description" = "Your wallet will not be charged until you authorize this transaction.";
+
+//"wallets.confirm.title" = "CARD SUCCESSFULLY LINKED";
+//"wallets.confirm.description" = "You can change your credit card information at any time";
+//"wallets.confirm.continue" = "CONTINUE";
+//"wallets.funds.title" = "Deposit %@ wallet";
+//"wallets.lykke.empty" = "Coins not added";
+//"wallets.cards.empty" = "Cards not added";
+//"wallets.swift.empty" = "No accounts";
+
+
+
+
+
+//"settings.cell.push.order.title" = "Order confirmation alert";
+//"settings.cell.push.asset.title" = "New asset alert";
+//"settings.cell.pin.change.title" = "Please scan your fingerprint to validate your identity to complete request.";
+//"settings.cell.kyc.title" = "View personal data";
+//"settings.cell.asset.title" = "Base asset";
+//"settings.cell.terms.title" = "Terms of use";
+
+
+//////////////////////////////////////////////////NEW DESIGN/////////////////////////////////////////////////////////////////////////
+"auth.newDesign.signin" = "SIGN IN";
+"auth.newDesign.signup" = "SIGN UP";
+"auth.newDesign.email" = "Type your email";
+"auth.newDesign.password" = "Type your password";
+"auth.newDesign.subtitle" = "Modern Money";
+"auth.newDesign.forgotPin" = "Forgot PIN?";
+"auth.newDesign.confirm" = "CONFIRM";
+"auth.newDesign.next" = "NEXT";
+
+"menu.newDesign.addMoney" = "ADD MONEY";
+"menu.newDesign.buy" = "BUY";
+"menu.newDesign.cashOut" = "CASH OUT";
+"menu.newDesign.checkPrices" = "CHECK PRICES";
+"menu.newDesign.internalTransfer" = "INTERNAL TRANSFER";
+"menu.newDesign.portfolio" = "PORTFOLIO";
+"menu.newDesign.receive" = "RECEIVE";
+"menu.newDesign.sell" = "SELL";
+"menu.newDesign.send" = "SEND";
+"menu.newDesign.settings" = "SETTINGS";
+"menu.newDesign.transactions" = "TRANSACTIONS";
+"menu.newDesign.withdraw" = "WITHDRAW";
+"menu.newDesign.logout" = "LOGOUT";
+
+"addMoney.newDesign.bankAccount" = "BANK ACCOUNT";
+"addMoney.newDesign.creditCard" = "CREDIT CARD";
+"addMoeny.newDesign.cryptoCurrency" = "CRYPTO CURRENCY";
+"addMoney.newDesign.addMoneyFrom" = "ADD MONEY FROM";
+"addMoney.newDesign.receiveCrypto" = "RECEIVE CRYPTOCURRENCY";
+
+"addMoney.newDesign.creditcard.amountToAdd" = "ENTER AMOUNT TO ADD";
+"addMoney.newDesign.creditcard.ccNumber" = "CARD NUMBER";
+"addMoney.newDesign.creditcard.ccHolderName" = "CARDHOLDER NAME";
+"addMoney.newDesign.creditcard.ccExpiry" = "EXPIRY";
+"addMoney.newDesign.creditcard.cvcNumber" = "CVC NUMBER";
+"addMoney.newDesign.creditcard.submit" = "SUBMIT";
+"addMoney.newDesign.creditcard.firstName" = "FIRST NAME";
+"addMoney.newDesign.creditcard.lastName" = "LAST NAME";
+"addMoney.newDesign.creditcard.address1" = "ADDRESS 1";
+"addMoney.newDesign.creditcard.address2" = "ADDRESS 2";
+"addMoney.newDesign.creditcard.zip" = "ZIP";
+"addMoney.newDesign.creditcard.country" = "COUNTRY";
+"addMoney.newDesign.creditcard.countryCode" = "COUNTRY CODE";
+"addMoney.newDesign.creditcard.telephone" = "TELEPHONE";
+"addMoney.newDesign.creditcard.billingAddress" = "BILLING ADDRESS";
+"addMoney.newDesign.creditcard.paymentComplete" = "PAYMENT COMPLETE";
+"addMoney.newDesign.creditcard.orderDetails" = "ORDER DETAILS";
+"addMoney.newDesign.creditcard.orderRef" = "ORDER REF:";
+"addMoney.newDesign.creditcard.orderDate" = "ORDER DATE:";
+"addMoney.newDesign.creditcard.amount" = "AMOUNT:";
+"addMoney.newDesign.creditcard.paymentMethod" = "PAYMENT METHOD:";
+"addMoney.newDesign.creditcard.cardHolderName" = "CARDHOLDER NAME:";
+"addMoney.newDesign.creditcard.address" = "ADDRESS:";
+"addMoney.newDesign.creditcard.country" = "COUNTRY:";
+"addMoney.newDesign.creditcard.zipPayment" = "ZIP:";
+
+
+"addMoney.newDesign.bankaccount.bic" = "BIC (SWIFT)";
+"addMoney.newDesign.bankaccount.accountNumber" = "ACCOUNT NUMBER";
+"addMoney.newDesign.bankaccount.accountName" = "ACCOUNT NAME";
+"addMoney.newDesign.bankaccount.bankAddress" = "BANK ADDRESS";
+"addMoney.newDesign.bankaccount.companyAddress" = "COMPANY ADDRESS";
+"addMoney.newDesign.bankaccount.purpose" = "PURPOSE OF PAYMENT";
+"addMoney.newDesign.bankaccount.emailMe" = "EMAIL ME";
+"addMoney.newDesign.bankaccount.next" = "NEXT";
+"addMoney.newDesign.bankaccount.returnToPortfolio" = "Return to Portfolio";
+
+
+"buy.newDesign.change" = "Change";
+"buy.newDesign.buy" = "BUY";
+"buy.newDesign.sell" = "SELL";
+"buy.newDesign.done" = "DONE";
+
+"buy.newDesign.selectCrypto" = "SELECT CRYPTO CURRENCY TO BUY";
+"buy.newDesign.selectCurrency" = "SELECT CURRENCY TO BUY";
+"buy.newDesign.selectFiat" = "SELECT FIAT CURRENCY TO BUY";
+
+"addMoney.newDesign.amountToAdd" = "ENTER AMOUNT TO ADD";
+"addMoney.newDesign.ccNumber" = "CARD NUMBER";
+"addMoney.newDesign.ccHolderName" = "CARDHOLDER NAME";
+"addMoney.newDesign.ccExpiry" = "EXPIRY";
+"addMoney.newDesign.cvcNumber" = "CVC NUMBER";
+"addMoney.newDesign.walletBalanceDescription" = "Trading wallet balance will be updated after transaction is confirmed in the blockchain";
+
+"transaction.newDesign.transactionTitle" = "TRANSACTIONS";
+"transaction.newDesign.findTransaction" = "Find Transaction";
+"transaction.newDesign.filterTransaction" = "Filter Transaction";
+"transaction.newDesign.downoloadCSV" = "Downlaod CSV";
+"transaction.newDesign.cashIn" = "Receive";
+"transaction.newDesign.cashOut" = "Send";
+"transaction.newDesign.transferIn" = "Debit Card";
+"transaction.newDesign.transferOut" = "Debit Card";
+"transaction.newDesign.tradeIn" = "Buy";
+"transaction.newDesign.tradeOut" = "Sell";
+
+"totalbalance.newDesign.totalValue" = "TOTAL VALUE";
+
+"newDesign.loading" = "Loading...";
+"newDesign.calculating" = "Calculating...";
+"newDesign.notAvailable" = "Not Available";
+
+"cashOut.newDesign.title" = "CASH OUT";
+"cashOut.newDesign.availableBalance" = "AVAILABLE BALANCE";
+"cashOut.newDesign.selectAsset" = "SELECT ASSET";

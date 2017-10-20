@@ -1,0 +1,712 @@
+/* 
+  Localizable.strings
+  LykkeWallet
+
+  Created by Георгий Малюков on 08.12.15.
+  Copyright © 2015 Lykkex. All rights reserved.
+*/
+
+"tab.wallets" = "КОШЕЛЬКИ";
+"tab.trading" = "ОБМЕН";
+"tab.transfer" = "ТРАНСФЕР";
+"tab.history" = "ИСТОРИЯ";
+"tab.settings" = "НАСТРОЙКИ";
+"tab.mylykke" = "МОЙ LYKKE";
+"tab.trading.spot" = "СПОТ";
+"tab.trading.cfd" = "CFD";
+"tab.wallets.trading" = "ТОРГОВЫЙ КОШЕЛЕК";
+"tab.wallets.margin" = "МАРЖИНАЛЬНЫЙ КОШЕЛЕК";
+"tab.wallets.private" = "ЛИЧНЫЙ КОШЕЛЕК";
+
+
+"title.register" = "РЕГИСТРАЦИЯ";
+"title.authentication" = "ВХОД";
+
+"auth.login" = "ВОЙТИ";
+"auth.signup" = "ЗАРЕГИСТРИРОВАТЬСЯ";
+"auth.login_signup"="ВОЙТИ/ЗАРЕГИСТРИРОВАТЬСЯ";
+"auth.email" = "Ваш email";
+"auth.password" = "Ваш пароль";
+"auth.validation.fingerpring" = "Пожалуйста отсканируйте отпечаток Вашего пальца для идентификации";
+"auth.takeRefund" = "Получить рефанд";
+"auth.emailHint" = "Отправить подсказку";
+"auth.resetPassword" = "Восстановить пароль из бэкапа";
+
+
+"register.title" = "РЕГИСТРАЦИЯ";
+"register.sms.title" = "Мы отправили код подтверждения на\nВаш email адрес %@";
+"register.sms.code.placeholder" = "Код";
+"register.sms.confirm" = "ПОДТВЕРДИТЬ";
+"register.sms.help.info" = "Не получили код?";
+"register.sms.codeSent" = "Код отправлен";
+"register.sms.error" = "Неверный код. Попробуйте еще раз.";
+
+"register.name.subtitle" = "Введите Ваше имя";
+"register.firstName" = "Имя";
+"register.lastName" = "Фамилия";
+"register.next" = "ДАЛЬШЕ";
+"register.createPassword" = "Создайте пароль (минимум 6 символов)";
+"register.password1" = "Пароль";
+"register.password2" = "Еще раз";
+"register.phone.subtitle" = "Введите Ваш телефон";
+"register.phone.send" = "ОТПРАВИТЬ";
+"register.phone.bottomInfo" = "Пожалуйста подтвердите код Вашей страны и введите Ваш номер телефона";
+
+"register.hint.placeholder" = "Введите подсказку";
+"register.hint.subtitle" = "Создайте подсказку для восстановления пароля";
+
+"register.phone.cancel" = "ОТМЕНА";
+"register.check.documents.label" = "Проверка документовn.\nПожалуйста, подождите...";
+"register.validation.label" = "Подключение к серверу.\nПожалуйста, подождите...";
+"register.phone.country.placeholder" = "Поиск";
+"register.phone.country" = "СТРАНА";
+
+"register.phone.code.placeholder" = "Код";
+"register.phone.sent" = "Введите 4-х значный цифровой код который был отправлен на Ваш номер\n%@";
+"register.phone.haventRecieve" = "Не получили код?";
+"register.phone.confirm.subtitle" = "Подтвердите Ваш телефон";
+"register.phone.sms.sent" = "SMS отправлено";
+"register.phone.requestCall" = "Заказать звонок";
+
+"register.USA.question" = "Вы являетесь гражданином или резидентом США?";
+"register.USA.answer.yes" = "ДА";
+"register.USA.answer.no" = "НЕТ";
+"register.USA.info.title" = "Важная информация";
+"register.USA.info.text" = "Мы находимся в процессе получения лицензионных разрешений, необходимых для предоставления услуг на территории Соединенных Штатов Америки. К сожалению, на данный момент мы не можем предоставить Вам доступ ко всем функциям приложения.\n\nУ нас есть Ваша контактная информация, и мы уведомим Вас о любых изменениях.";
+"register.USA.info.gotit" = "ХОРОШО, Я ПОНЯЛ";
+
+"register.generateKey.title" = "Сгенерируйте приватный ключ";
+"register.generateKey.text.iphone" = "Потрясите iPhone, чтобы сгенерировать приватный ключ к Вашему Lykke кошельку";
+"register.generateKey.text.ipad" = "Потрясите iPad, чтобы сгенерировать приватный ключ к Вашему Lykke кошельку";
+
+"privateWallets.coldstorage.generateKey.text.iphone" = "Потрясите iPhone, чтобы сгенерировать приватный ключ к Вашему Cold кошельку. Этот ключ будет удален сразу после процедуры бэкапа.";
+"privateWallets.coldstorage.generateKey.text.ipad" = "Потрясите iPad, чтобы сгенерировать приватный ключ к Вашему Cold кошельку. Этот ключ будет удален сразу после процедуры бэкапа.";
+
+"backup.intro.title" = "Сделайте бэкап";
+"backup.intro.text" = "Вам необходимо сделать бэкап Вашего приватного ключа. С его помощью Вы сможете восстановить доступ к Вашему кошельку в случае потери или поломки Вашего iPhone. Ваш бэкап это последовательность из 12 слов. Просто запишите их и положите в надежное место.";
+"backup.intro.skip" = "ПРОПУСТИТЬ БЭКАП";
+"backup.intro.backupNow" = "СДЕЛАТЬ СЕЙЧАС";
+
+"backup.getstarted.pageTitle" = "БЭКАП";
+"backup.getstarted.title" = "Приготовьтесь записывать";
+"backup.getstarted.text" = "Сейчас Вы сделаете бэкап Вашего ключа. Вы увидите последовательность их %d слов для записи. Любой, получивший доступ к этим словам, также получит доступ ко всем Вашим средствам. Будьте осторожны";
+"backup.getstarted.button" = "НАЧАТЬ!";
+
+"backup.singleword.wordof" = "%d из %d";
+"backup.singleword.next" = "ДАЛЬШЕ";
+
+"backup.words.placeholder" = "Слова";
+"backup.words.title" = "Почти готово!";
+"backup.words.text" = "Пожалуйста введите 12 слов, разделенных пробелом, чтобы проверить Ваш бэкап.";
+"backup.words.submit" = "ГОТОВО";
+
+"backup.success.title" = "ВАШ БЭКАП ЗАВЕРШЕН";
+"backup.success.text" = "Храните Вам список слов в безопасном месте. Они Вам понядобятся для установки Lykke кошелька на другое устройство (или переустановки на это устройство).";
+"backup.success.userAgreement" = "Пользовательское соглашение";
+"backup.success.getstarted" = "НАЧАТЬ!";
+
+"migration.info.title" = "СДЕЛАТЬ БЭКАП";
+"migration.info.text" = "Чтобы увеличить надежность Вашего кошелька Вам нужно перегенерировать приватный ключ. Адрес Вашего кошелька изменится.";
+"migration.info.skip" = "ПРОПУСТИТЬ";
+"migration.info.confirm" = "НАЧАТЬ";
+
+"backup.notification.alreadymade" = "Я уже сделал бэкап";
+"backup.notification.required.title" = "НЕОБХОДИМ БЭКАП!";
+"backup.notification.cancel" = "ОТМЕНА";
+"backup.notification.title" = "НЕ ЗАБУДЬТЕ СДЕЛАТЬ БЭКАП!";
+"backup.notification.text" = "Вы хотите сделать бэкап\nВашего приватного ключа?";
+"backup.notification.moreoptions" = "Еще опции";
+"backup.notificatiob.later" = "ПОЗЖЕ";
+"backup.notification.backupnow" = "СДЕЛАТЬ СЕЙЧАС";
+
+"backup.template.cancel.title" = "Отменить бэкап";
+"backup.template.cancel.text" = "Если Вы отмените бэкап, данная последовательность слов будет недействительна. Продолжить?";
+"backup.template.cancel.yes" = "Да";
+"backup.template.cancel.no" = "Нет";
+
+"restore.form.placeholder" = "Слова";
+"restore.form.pageTitle.reset" = "ВОССТАНОВЛЕНИЕ ПАРОЛЯ";
+"restore.form.pageTitle.cold" = "РАЗМОРОЗКА КОШЕЛЬКА";
+"restore.form.wrongseed.title" = "ОШИБКА";
+"restore.form.wrongseed.text" = "Этот набор слов не соответствует Вашему приватному ключу!";
+"restore.form.wrongseed.ok" = "OK";
+
+"restore.form.title" = "Введите секретные слова";
+"restore.form.text" = "Введите секретные слова из Вашего бэкапа, разделенные пробелом";
+"restore.form.next" = "ДАЛЬШЕ";
+
+"restore.newpassword.title" = "Введите новый пароль";
+"restore.newpassword.text" = "Создайте пароль (минимум 6 символов)";
+
+"restore.hint.placeholder" = "Подсказка";
+
+"restore.success.title" = "УСПЕШНО!";
+"restore.success.text" = "Прекрасно! Ваши пароль и PIN изменены. Вы можете войти в приложение.";
+"restore.success.button" = "ВОЙТИ";
+
+"refund.transaction.placeholder" = "Биткоин транзакция в виде HEX строки";
+"refund.transaction.password.placeholder" = "Ваш пароль";
+"refund.transaction.pageTitle" = "РЕФАНД";
+"refund.transaction.proceed" = "ПРОДОЛЖИТЬ";
+
+"refund.broadcast.title" = "Отправьте транзакцию в блокчейн";
+"refund.broadcast.text" = "Скопируйте этот код в буфер обмена или отправьте\nтранзакцию через браузер Safari";
+"refund.broadcast.button.broadcast" = "ОТПРАВИТЬ";
+"refund.broadcast.button.copy" = "СКОПИРОВАТЬ";
+"refund.broadcast.locktime.title" = "ПРЕДУПРЕЖДЕНИЕ";
+"refund.broadcast.locktime.text" = "Пожалуйста, имейте в виду, что Вы не сможете отправить эту транзакцию в блокчейн до %@";
+"refund.broadcast.locktime.button" = "Я ПОНЯЛ";
+
+"qrcode.pageTitle" = "СКАНИРОВАТЬ QR КОД";
+"qrcode.button" = "Сканировать код";
+
+
+
+"kyc.process.titles.selfie" = "Сделайте селфи";
+"kyc.process.titles.passport" = "Сфотографируйте Ваш паспорт или другое удостоверние личности";
+"kyc.process.titles.address" = "Сфотографируйте документ, подтверждающий Ваш адрес. Например счет за электроэнергию.";
+"kyc.process.pageTitle" = "РЕГИСТРАЦИЯ";
+"kyc.process.shoot" = "СФОТОГРАФИРОВАТЬ";
+"kyc.process.reshoot" = "ПЕРЕСНЯТЬ";
+"kyc.process.tabs.selfie" = "Селфи";
+"kyc.process.tabs.passport" = "Паспорт";
+"kyc.process.tabs.address" = "Адрес";
+"kyc.process.photoFailed" = "Фото не получилось!";
+"kyc.process.nextButton" = "ДАЛЬШЕ";
+"kyc.later.title" = "ВАШИ ФОТОГРАФИИ\nБЫЛИ СОХРАНЕНЫ";
+"kyc.later.text" = "Вы можете продолжить KYC позднее";
+"kyc.later.button" = "ХОРОШО!";
+
+"camera.message1.title" = "КАМЕРА ОТКЛЮЧЕНА";
+"camera.message1.text" = "Lykke необходим доступ к камере. Выполните следующее:";
+"camera.message1.settings" = "Откройте Настройки";
+"camera.message1.lykkeApp" = "Нажмите на Lykke";
+"camera.message1.slider" = "Включите камеру";
+"camera.message1.button" = "ХОРОШО, Я ПОНЯЛ";
+
+"camera.message2.title" = "КАМЕРА ОТКЛЮЧЕНА";
+"camera.message2.text" = "Lykke необходим доступ к камере. Разрешить?";
+"camera.message2.yes" = "ДА";
+"camera.message2.no" = "НЕТ";
+
+"kyc.pending.title" = "ВАШИ ДОКУМЕНТЫ ПРИНЯТЫ";
+"kyc.pending.text" = "Дорогой %@, Ваши документы находятся на рассмотрении.\nКогда этот процесс будет завершен, мы проинформируем Вас по электронной почте.";
+"kyc.pending.button" = "ХОРОШО, Я ЖДУ";
+
+"kyc.invalidDocuments.title" = "ФОТО ОТКЛОНЕНО";
+"kyc.invalidDocuments.text" = "Мы нашли ошибку в Ваших данных. Замените фото:";
+"kyc.invalidDocuments.selfie" = "Селфи";
+"kyc.invalidDocuments.passport" = "Удостоверение личности";
+"kyc.invalidDocuments.address" = "Адрес";
+"kyc.invalidDocuments.button" = "ВЕРНУТЬСЯ И ИСПРАВИТЬ";
+
+"kyc.restricted.header" = "ИЗВИНИТЕ";
+"kyc.restricted" = "Дорогой %@, нам очень жаль, но Lykke кошелек не может быть создан на основании предоставленных Вами документов.";
+
+"kyc.success.header" = "ВАШИ ДОКУМЕНТЫ В ПОРЯДКЕ";
+"kyc.success" = "Теперь Вы сможете совершать сделки";
+"kyc.success.okButton" = "Продолжить";
+
+"pin.create.title" = "Создайте PIN код";
+"pin.create.new.title" = "Создайте новый PIN код";
+"pin.verify.title" = "Проверьте PIN код";
+"pin.enter.title" = "Введите PIN код";
+
+
+"wallets.swipe.sell" = "Продать";
+"wallets.swipe.withdraw" = "Вывести";
+"wallets.swipe.deposit" = "Депозит";
+"wallets.swipe.buy" = "Купить";
+
+"exchange.spot.watchlist.untitled" = "Без названия";
+
+"wallets.button.trade" = "ТОРГОВЛЯ";
+"privatewallets.addnew"="НОВЫЙ";
+
+"exchange.watchlist" = "Вотч Лист";
+"exchange.watchlists.pageTitle" = "Вотч Листы";
+"exchange.watchlists.new" = "НОВЫЙ";
+"exchange.watchlist.delete" = "Удалить";
+"exchange.watchlist.duplicate" = "Дублировать";
+"exchange.watchlist.edit" = "Редактировать";
+"exchange.watchlist.cancel" = "Отмена";
+
+
+"wallets.detailHeader.title" = "Всего средств";
+"wallets.detailHeader.used" = "ИСПОЛЬЗУЕТСЯ";
+"wallets.detailHeader.free" = "ДОСТУПНО";
+"wallets.detailHeader.pnl" = "ПРИБЫЛЬ";
+"wallets.detailHeader.accountSettings" = "Настройки Аккаунта";
+
+"exchange.assets.form.name" = "Имя";
+"exchange.assets.form.assetclass" = "Класс";
+"exchange.assets.form.popularity" = "Индекс популярности";
+"exchange.assets.form.description" = "Описание";
+"exchange.assets.form.issuername" = "Эмитент";
+"exchange.assets.form.coinsnumber" = "Объем эмиссии";
+"exchange.assets.form.capitalization" = "Капитализация";
+"exchange.assets.form.description_url" = "Ссылка на описание";
+
+"exchange.spot.tabs.asset" = "АССЕТ";
+"exchange.spot.tabs.chart" = "ГРАФИК";
+"exchange.spot.tabs.orders" = "ОРДЕРА";
+"exchange.spot.button.buy" = "КУПИТЬ";
+"exchange.spot.button.sell" = "ПРОДАТЬ";
+"exchange.spot.button.atprice" = "ПО ЦЕНЕ";
+
+"exchange.spot.orders.volume" = "Объем";
+"exchange.spot.orders.depth" = "Глубина";
+"exchange.spot.orders.price" = "Цена";
+
+
+"marginal.empty.title" = "Начните торговлю с выбора\nассета из списка";
+
+"settings.cell.personal" = "Личные данные";
+"settings.cell.baseAsset" = "Базовый ассет";
+"settings.cell.refundAddress" = "Адрес рефанда";
+"settings.cell.history" = "История";
+"settings.cell.termsofuse" = "Условия использования";
+"settings.cell.backup" = "Бэкап приватного клча";
+"settings.cell.push.title" = "Уведомления";
+"settings.cell.logout.title" = "Выйти";
+"settings.callbutton.title" = "Позвонить в поддержку";
+"settings.mailbutton.title" = "Написать в поддержку";
+"settings.cell.pin.title" = "Подписывать ордера";
+
+"settings.push.title" = "УВЕДОМЛЕНИЯ";
+"settings.cell.push.sendpush"="Посылать уведомления";
+
+
+"personal.data.title" = "ЛИЧНЫЕ ДАННЫЕ";
+"personal.data.fullname" = "Полное имя";
+"personal.data.email" = "Почта";
+"personal.data.phone" = "Телефон";
+"personal.data.country" = "Страна";
+"personal.data.zip" = "Индекс";
+"personal.data.city" = "Город";
+"personal.data.address" = "Адрес";
+
+"settings.refund.pageTitle" = "АДРЕС РЕФАНДА";
+"settings.refund.information" = "Информация";
+"settings.refund.apply" = "СОХРАНИТЬ";
+"settings.refund.information.pageTitle" = "РЕФАНД";
+"settings.refund.information.title" = "О РЕФАНДАХ";
+"settings.refund.information.text" = "Ваша рефанд транзакция гарантирует, что Вы сможете вернуть Ваши биткоины в случае непредвиденных обстоятельств. Вы сможете отправить транзакцию в блокчейн, после периода ожидания.";
+"settings.refund.information.readmore" = "Узнать больше";
+"settings.refund.address.placeholder" = "Биткоин кошелек";
+"settings.refund.selectWallet" = "Выбрать кошелек";
+
+"choosewallet.popup.title" = "КОШЕЛЬКИ";
+"choosewallet.popup.cancel" = "ОТМЕНА";
+
+"choosewallet.popup.mytradingwallet" = "МОЙ ТОРГОВЫЙ КОШЕЛЕК";
+"choosewallet.popup.privatewallet" = "Личный кошелек";
+"choosewallet.popup.tradingwallet" = "Торговый кошелек";
+
+"transfer.confirm.title" = "ПОСЛАТЬ ТРАНСФЕР";
+"transfer.confirm.cancel" = "ОТМЕНА";
+"transfer.confirm.wallet" = "Кошелек";
+"transfer.confirm.address" = "Адрес";
+"transfer.confirm.amount" = "Сумма";
+"transfer.confirm.placeorder" = "ОТПРАВИТЬ ОРДЕР";
+
+"common.search" = "Найти";
+"margninal.button.trade" = "ТОРГОВЛЯ";
+
+"wallets.marginal.tabs.positions" = "ПОЗИЦИИ";
+"wallets.marginal.tabs.orders" = "ОРДЕРА";
+"wallets.marginal.tabs.exposure" = "ГРУППЫ";
+
+"marginal.cell.button.close" = "Закрыть";
+"marginal.cell.button.cancel" = "Отменить";
+
+"deposit.swift.titles.bic" = "БИК (SWIFT)";
+"deposit.swift.titles.account.number" = "Номер счета";
+"deposit.swift.titles.account.name" = "Имя получателя";
+"deposit.swift.titles.bank.address" = "Адрес банка";
+"deposit.swift.titles.company.address" = "Адрес компании";
+"deposit.swift.titles.purpose" = "Назначение платежа";
+
+"deposit.swift.text" = "Для депозита USD на Ваш торговый кошелек\nиспользуйте следующие реквизиты";
+
+"wallets.currency.deposit" = "ДЕПОЗИТ";
+"wallets.currency.amount" = "Сумма";
+
+"common.buttons.termsOfUse" = "Условия";
+"common.buttons.informationBrochure" = "Информация";
+"deposit.swift.emailbutton" = "ОТПРАВИТЬ НА ПОЧТУ";
+"deposit.swift.amountzero.toast" = "Сумма должна быть больше нуля";
+
+"introduction.titles.deposit"="БЕЗОПАСНЫЙ ДЕПОЗИТ";
+"introduction.titles.trade"="СВОБОДНАЯ ТОРГОВЛЯ";
+"introduction.titles.settle"="МГНОВЕННОЕ ПОДТВЕРЖДЕНИЕ";
+"introduction.titles.withdraw"="ВЫВОДИТЕ БЕЗОПАСНО";
+"introduction.titles.onboard"="ПРОСТАЯ РЕГИСТРАЦИЯ";
+
+"introduction.texts.deposit"="Deposit bitcoins and digital assets to multisig wallets with an encrypted private key";
+"introduction.texts.trade"="Buy and sell bitcoins and digital assets with 0% commission";
+"introduction.texts.settle"="Receive the proof of each trade on the blockchain in half an hour instead of 3 days";
+"introduction.texts.withdraw"="Request immediate withdrawal to your bitcoin wallet";
+"introduction.texts.onboard"="Prepare your ID and proof of address and provide all the necessary personal details with your iPhone";
+
+"introduction.buttons.getstarted"="НАЧАТЬ";
+"introduction.buttons.whydoineedit"="Зачем мне это?";
+
+"errors.network.connection" = "Интернет недоступен";
+"errors.server.problems"    = "Технические проблемы";
+
+"watchlists.new.pageTitle" = "НОВЫЙ ВОТЧ ЛИСТ";
+"watchlists.edit.pageTitle" = "РЕДАКТИРОВАНИЕ";
+"watchlists.edit.name.placeholder" = "Имя вотч листа";
+"watchlists.edit.selectall" = "Выбрать все";
+
+"watchlists.selected.all" = "Все ассеты";
+"watchlists.edit.tabs.allassets" = "ВСЕ АССЕТЫ";
+"watchlists.edit.tabs.selected" = "ВЫБРАННЫЕ";
+"watchlists.edit.numberofselected" = "Выбрано %d ассетов";
+
+
+"exchange.assets.selection" = "Продать ассет";
+"exchange.assets.header.issuer" = "Эмитент/Ассет";
+"exchange.assets.header.price" = "Цена";
+"exchange.assets.header.change" = "Изменение";
+"exchange.assets.form.button" = "КУПИТЬ ПО ЦЕНЕ $ ";
+"exchange.assets.buy.title" = "КУПИТЬ ";
+"exchange.assets.sell.title" = "ПРОДАТЬ ";
+"exchange.assets.description.buy" = "Я хочy купить %@ %@ за %@ %@";
+"exchange.assets.description.sell" = "Я хочу продать %@ %@ за %@ %@";
+"exchange.assets.buy.sum" = "Купить";
+"exchange.assets.buy.placeholder" = "Сумма";
+"exchange.assets.result.placeholder" = "Сумма";
+"exchange.assets.buy.price" = "Цена";
+"exchange.assets.buy.total" = "Продать";
+"exchange.assets.buy.checkout" = "ОТПРАВИТЬ";
+"exchange.assets.modal.title" = "ИТОГО";
+"exchange.assets.modal.button" = "ОТПРАВИТЬ ОРДЕР";
+"exchange.assets.modal.cancel" = "ОТМЕНА";
+"exchange.assets.modal.fingerpring" = "Приложите палец к сканеру отпечатков";
+"exchange.assets.modal.validatepin" = "Проверка ПИНА ...";
+"exchange.assets.modal.waiting" = "Отправка ордера ...";
+"exchange.assets.modal.error" = "Сообщение";
+"exchange.assets.modal.error.volume" = "Сумма неверна.";
+"exchange.assets.modal.error.ok" = "OK";
+"exchange.assets.result.title" = " КУПЛЕНО!";
+"exchange.assets.result.assetname" = "Имя ассета";
+"exchange.assets.result.units" = "Купить";
+"exchange.assets.result.price" = "Цена";
+"exchange.assets.result.commission" = "Оплаченная комиссия";
+"exchange.assets.result.cost" = "Продать";
+"exchange.assets.result.blockchain" = "Статус блокчейн";
+"exchange.assets.result.blockchain.progress" = "В процессе";
+"exchange.assets.result.position" = "Позиция";
+"exchange.assets.result.close" = "ЗАКРЫТЬ";
+"exchange.assets.result.share" = "ПОДЕЛИТЬСЯ";
+"exchange.assets.result.boughtfor"="куплено за";
+"exchange.assets.result.soldfor"="продано за";
+"exchange.popup.basecurrency"="БАЗОВАЯ ВАЛЮТА";
+
+"exchange.graph.askprice" = "Цена покупки";
+"exchange.graph.bidprice" = "Цена продажи";
+"exchange.graph.change" = "Изменение";
+
+"mathkeyboard.done" = "ГОТОВО";
+"exchange.confirm.pin.title" = "Подтвердите операцию";
+
+"history.sections.titles.trading" = "Торговля";
+"history.sections.titles.settle" = "Отложенные расчеты";
+"history.sections.titles.depositwithdraw" = "Депозиты и выводы";
+"history.sections.titles.margin" = "Маржинальная торговля";
+"history.sections.titles.marginaldepositwithdraw" = "Маржинальные депозиты и выводы";
+"history.sections.titles.transfers" = "Переводы";
+
+"history.empty.title.makefirst" = "СДЕЛАЙТЕ ПЕРВЫЙ ПЕРЕВОД";
+
+"wallets.trading.title" = "ТОРГОВЫЙ КОШЕЛЕК";
+"wallets.trading.withdraw" = "ВЫВОД";
+"wallets.trading.deposit" = "ДЕПОЗИТ";
+
+"actionspopup.popuptitle" = "ПЛАТЕЖИ И ПЕРЕВОДЫ";
+"actionspopup.titles.deposit" = "ДЕПОЗИТ";
+"actionspopup.titles.blockchaintransfer" = "Блокчейн перевод";
+"actionspopup.titles.creditcard" = "Кредитная карта";
+"actionspopup.titles.withdraw" = "ВЫВОД";
+"actionspopup.titles.swift" = "СВИФТ";
+"actionspopup.titles.trading" = "ТОРГОВЛЯ";
+"actionspopup.titles.sell" = "Продать";
+"actionspopup.titles.buy" = "Купить";
+"actionspopup.titles.forwardsettlement" = "ОТЛОЖЕННАЯ СДЕЛКА";
+"actionspopup.titles.settle" = "Заказать";
+
+"tradingwallet.actionbutton" = "ПЛАТЕЖИ И ПЕРЕВОДЫ";
+
+"history.cell.cashout" = "Вывод";
+"history.cell.cashin" = "Приход";
+"history.cell.buy" = "Покупка";
+"history.cell.sell" = "Продажа";
+"history.cell.incomingtransfer" = "Входящий перевод";
+"history.cell.outgoingtransfer" = "Исходящий перевод";
+"history.cell.settle" = "Заказ";
+
+"exchange.blockchain.close" = "ЗАКРЫТЬ";
+"exchange.blockchain.title" = "БЛОКЧЕЙН";
+"exchange.blockchain.hash" = "Хэш";
+"exchange.blockchain.date" = "Дата";
+"exchange.blockchain.confirm" = "Подтверждено";
+"exchange.blockchain.block" = "Блок";
+"exchange.blockchain.height" = "Высота";
+"exchange.blockchain.sender" = "Отправитель";
+"exchange.blockchain.asset" = "Получатель";
+"exchange.blockchain.quantity" = "Количество";
+"exchange.blockchain.url" = "Ссылка";
+
+
+"history.title" = "ИСТОРИЯ ТРАНЗАКЦИЙ";
+"history.market.buy" = "купить";
+"history.market.sell" = "продать";
+"history.cash.in" = "Пополнение кошелька";
+"history.cash.out" = "Вывод из кошелька";
+"history.cash.refund"="Рефанд";
+"history.cash.asset" = "Ассет";
+"history.cash.amount" = "Сумма";
+"history.cash.blockchain" = "Статус блокчейн";
+"history.cash.progress" = "В процессе";
+"history.transfer.in" = "Входящий перевод";
+"history.transfer.out" = "Исходящий перевод";
+"history.transfer.volume" = "Сумма";
+
+"wallets.bitcoin.copytoast" = "Скопировано.";
+"wallets.bitcoin.sendemail" = "Письмо отправлено.";
+
+"withdraw.wallet.button" = "Вывести";
+"withdraw.funds.title" = "ВЫВОД СРЕДСТВ";
+"withdraw.funds.address" = "Введите цветной адрес";
+
+"withdraw.funds.wallet" = "Цветной кошелек";
+
+"withdraw.funds.paste" = "Вставить";
+"withdraw.funds.scan" = "Сканировать код";
+"withdraw.funds.proceed" = "ПРОДОЛЖИТЬ";
+"withdraw.funds.info" = "С Вашего кошелька ничего не будет списано до подтверждения";
+"withdraw.funds.amount" = "Сумма";
+"withdraw.funds.placeholder" = "Сумма";
+"withdraw.funds.validatepin" = "Проверка PIN ...";
+"withdraw.funds.modal.error" = "Сообщение";
+"withdraw.funds.modal.error.volume" = "Сумма неверна";
+"withdraw.funds.modal.error.ok" = "OK";
+"withdraw.funds.modal.fingerpring" = "Приложите палец к сканеру отпечатков";
+"withdraw.funds.modal.waiting" = "Отправка ордера ...";
+"withdraw.funds.modal.title" = "ИТОГО";
+"withdraw.funds.modal.button" = "ОТПРАВИТЬ ОРДЕР";
+"withdraw.funds.modal.cancel" = "ОТМЕНА";
+"withdraw.funds.modal.cell.address" = "Цветной адрес";
+"withdraw.funds.modal.cell.amount" = "Сумма";
+"withdraw.funds.confirm.title" = "Сообщение";
+"withdraw.funds.confirm.desc" = "Вывод завершен";
+"withdraw.funds.confirm.ok" = "OK";
+"withdraw.funds.qr.title" = "СКАНИРОВАНИЕ КОДА";
+"withdraw.funds.subtitle" = "Введите адрес получателя";
+"withdraw.funds.address.placeholder" = "Адрес";
+
+"deposit.visa.pageTitle" = "ПОПОЛНЕНИЕ КОШЕЛЬКА";
+"deposit.visa.countrydropdown.title" = "СТРАНА";
+
+"deposit.visa.success.title" = "УСПЕШНО!";
+"deposit.visa.success.text" = "Ваш платеж был успешно отправлен!\nВы можете продолжить торговлю.";
+
+"deposit.visa.fail.title" = "ОШИБКА!";
+"deposit.visa.fail.text" = "К сожалению, мы не смогли провести платеж. Попробуйте позже.";
+
+"deposit.visa.message.fillfield" = "Заполните поле %@.";
+
+"deposit.visa.message.fillamount" = "Заполните поле суммы.";
+
+"deposit.visa.placeholders.firstname" = "Имя";
+"deposit.visa.placeholders.lastname" = "Фамилия";
+"deposit.visa.placeholders.country" = "Страна";
+"deposit.visa.placeholders.city" = "Город";
+"deposit.visa.placeholders.zip" = "Индекс";
+"deposit.visa.placeholders.address" = "Адрес";
+"deposit.visa.placeholders.phone" = "Телефон";
+"deposit.visa.placeholders.email" = "Почта";
+
+"deposit.visa.placeholders.amount" = "Сумма";
+
+"deposit.visa.cashin" = "ОПЛАТИТЬ";
+"deposit.visa.subtitle" = "Кредитная карта";
+"deposit.visa.subtitle.text" = "Чтобы сделать депозит с помощью\nкредитной карты, заполните форму";
+
+"wallets.bitcoin.deposit" = "ДЕПОЗИТ %@";
+
+"wallets.bitcoin.deposit.addresstitle" = "Адрес Вашего кошелька";
+
+"wallets.bitcoin.deposit.copy" = "СКОПИРОВАТЬ";
+"wallets.bitcoin.deposit.sendemail" = "НА ПОЧТУ";
+
+"wallets.buyscreen.chooseway" = "Выберите способ покупки %@";
+"wallets.buyscreen.pageTitle" = "ДЕПОЗИТ %@";
+"wallets.buyscreen.emptymessage" = "Извините, Ваш кошелек пуст и Вы не можете купить %@. Сперва пополните Ваш кошелек.";
+
+"mylykke.tabs.equity" = "АКЦИИ";
+"mylykke.tabs.news" = "НОВОСТИ";
+"mylykke.button.buy" = "КУПИТЬ АКЦИИ LYKKE";
+"mylykke.cells.equity" = "Моя доля в Lykke Corp";
+"mylykke.cells.number" = "Количество акций";
+"mylykke.cells.marketvalue" = "Рыночная стоимость";
+"mylykke.pagetitle" = "МОЙ LYKKE";
+
+"mylykke.cells.assetclass" = "Класс ассета";
+"mylykke.cells.description" = "Описание";
+"mylykke.cells.issuer" = "Эмитент";
+
+"mylykke.infopage.pagetitle" = "АКЦИИ LYKKE";
+"mylykke.infopage.buy" = "КУПИТЬ LYKKE";
+
+"common.available" = "доступно";
+
+"settlement.success.message" = "размещение было успешным";
+"settle.pageTitle" = "РАЗМЕСТИТЬ %@";
+
+"commot.sorry" = "Извините";
+
+"buysell.pair.notexist" = "Такой пары не существует";
+
+"utils.tip" = "ЧТО МНЕ НАДО ЗНАТЬ";
+"utils.ok" = "OK";
+"utils.error" = "Ошибка";
+
+"general.yes"="Да";
+"general.no"="Нет";
+
+"wallets.currency.amount" = "Сумма";
+"wallets.currency.copied" = "СКОПИРОВАНО!";
+
+"wallets.currency.withdraw.success.title" = "УСПЕШНО!";
+"wallets.currency.withdraw.success.text" = "Ваш запрос на вывод\nобрабатывается...";
+
+"marginal.availablemargin" = "доступная маржа";
+
+"marginal.trade.title.available" = "Доступно ";
+"marginal.trade.amount" = "Сумма";
+"marginal.trade.margin" = "Маржа";
+"marginal.trade.notset" = "нет";
+"marginal.tabs.marketorder" = "РЫНОЧНЫЙ ОРДЕР";
+"marginal.tabs.pendingorder" = "ЛИМИТНЫЙ ОРДЕР";
+"marginal.warning.title" = "ВНИМАНИЕ";
+"marginal.error.title" = "ОШИБКА";
+
+"marginal.warning.fillexpectedprice" = "Заполните ожидаемую цену открытия";
+"marginal.warning.balance" = "У Вас недостаточный баланс!\nСделайте депозит.";
+
+"marginal.stoploss" = "Хватит терять";
+"marginal.takeprofit" = "Забрать прибыль";
+
+"marginal.targetPNL" = "Будет P&L";
+"marginal.trade.button.close" = "CLOSE POSITION";
+"marginal.trade.button.cancel" = "CANCEL ORDER";
+"marginal.long" = "Длинная";
+"marginal.short" = "Короткая";
+"marginal.trade.done" = "ГОТОВО";
+"marginal.message.orderplaced" = "Ордер размещен!";
+"marginal.message.positionclosed" = "Позиция закрыта!";
+"marginal.error.orbutton" = "ХОРОШО, Я ПОНЯЛ";
+
+"marginal.trade.buttons.short" = "КОРОТКАЯ";
+"marginal.trade.buttons.long" = "ДЛИННАЯ";
+"marginal.trade.price" = "Цена";
+"marginal.error.limits" = "Неверные лимиты";
+"marginal.error.amount" = "Введите сумму";
+
+"wallets.private.pagetitle" = "ЛИЧНЫЕ КОШЕЛЬКИ";
+"wallets.private.message.makebackup" = "Сделайте бэкап приватного ключа, чтобы добавить приватный кошелек.";
+
+
+"wallets.private.cold.key.pagetitle" = "ЛИЧНЫЙ КЛЮЧ";
+"wallets.private.address.pagetitle" = "АДРЕС КОШЕЛЬКА";
+"wallets.private.address.bitcoin" = "Биткоин адрес";
+"wallets.private.address.colored" = "Цветной адрес";
+
+"wallets.private.create.pagetitle" = "ДОБАВИТЬ КОШЕЛЕК";
+"wallets.private.create.nameplaceholder" = "Имя кошелька";
+"wallets.private.create.keyplaceholder" = "Личный ключ";
+"wallets.private.create.button.create" = "СОЗДАТЬ КОШЕЛЕК";
+"wallets.private.create.button.add" = "ДОБАВИТЬ КОШЕЛЕК";
+"wallets.private.create.button.proceed" = "ПРОДОЛЖИТЬ";
+
+"wallets.private.create.tabs.private" = "ЛИЧНЫЙ";
+"wallets.private.create.tabs.existing" = "ВНЕШНИЙ";
+"wallets.private.create.tabs.cold" = "ХОЛОДНЫЙ";
+"wallets.private.create.subtitle" = "Введите подробности";
+
+"wallets.private.create.address.title" = "Адрес кошелька";
+"wallets.private.create.address.titleNotDefined" = "Адрес не определен";
+"wallets.private.create.external.description" = "Уже есть кошелек? Великолепно! To make transactions with the Lykke Wallet app, enter the wallet’s existing private key. We will create an encrypted, server-side backup of the key (as long as it’s encrypted with your master private key).";
+"wallets.private.create.internal.description" = "Чтобы создать новый кошелек whose private key derived from a twelve-word seed, please enter a name for the wallet.";
+
+"wallets.private.create.cold" = "Ключ к Вашему холодному кошельку не будет сохранен. The wallet’s public address will be saved to be able to receive coins only. You can’t spend coins from the wallet address until you enter the correct 12-word seed. So please keep it safe.";
+
+"settings.assets.title" = "БАЗОВЫЙ АССЕТ";
+
+"wallets.private.create.error.testnetkey" = "Этот ключ для Тестнет.\nIt can not be used with Lykke!";
+"wallets.private.create.error.invalidkey" = "Неверный личный ключ";
+
+"wallets.private.create.success.title" = "УСПЕШНО!";
+"wallets.private.create.success.text" = "Приватный кошелек успешно добавлен";
+"wallets.private.create.success.button" = "ПРОДОЛЖИТЬ";
+
+"wallets.private.edit.done" = "ГОТОВО";
+"wallets.private.edit.pagetitle" = "РЕДАКТИРОВАТЬ КОШЕЛЕК";
+"wallets.private.edit.wrongseed" = "Слова не соответствуют Вашему личному ключу";
+"wallets.private.cold.restore.success" = "Ваш холодный кошелек готов";
+"wallets.private.cold.restore.error.unknown" = "Что-то пошло не так";
+
+"wallets.private.pin.title" = "Введите PIN";
+
+"wallets.private.transfer.subtitle" = "Выберите кошелек для перевода";
+"wallets.private.transfer.testnetaddress" = "Этот адрес для Тестнет.\nIt can not be used with Lykke!";
+"wallets.private.transfer.invalidaddress" = "Неверный адрес";
+
+"wallets.private.transfer.notColored" = "Введенный адрес не является цветным";
+"wallets.private.transfer.address.placeholder" = "Введите адрес кошелька";
+"wallets.private.transfer.button.proceed" = "ПРОДОЛЖИТЬ";
+
+"wallets.private.transfer.selected.title" = "Выберите кошелек для перевода";
+
+"wallets.private.transfer.pagetitle" = "ПЕРЕВЕСТИ";
+"wallets.private.transfer.input" = "ГОТОВО";
+"wallets.private.transfer.success.text" = "Транзакция размещена в блокчейн. We will notify you when it will be confirmed.";
+"wallets.private.transfer.fail.text" = "Что-то пошло не так.\nYour transfer transaction was unsuccessful";
+"wallets.private.transfer.fail.title" = "Извините!";
+
+
+
+"wallets.marginal.pnl.totalPNL" = "Всего P&L";
+"wallets.marginal.pnl.swapPNL" = "Своповый P&L";
+"wallets.marginal.pnl.marketPNL" = "Рыночный P&L";
+"wallets.marginal.pnl.comission" = "Комиссия";
+
+
+"wallets.bitcoin.deposit.addresstitle" = "Адрес кошелька";
+"wallets.bitcoin.deposit.crosschain.addresstitle" = "Адрес кошелька для депозита";
+
+"wallets.marginal.position.used" = "Использовано";
+
+
+
+
+"wallets.mainpage.totalbalance" = "CУММАРНЫЙ БАЛАНС";
+"wallets.mainpage.tradingwallet" = "Торговый кошелек";
+"wallets.mainpage.privatewallets" = "Приватные кошельки";
+"wallets.mainpage.marginwallet" = "Маржинальный кошелек";
+
+"wallets.mainpage.spotquotes" = "Спот курсы";
+"wallets.mainpage.marginquotes" = "Марж. курсы";
+"wallets.mainpage.mylykke" = "Мой Lykke";
+
+"exchange.spot.title" = "СПОТ";
+"exchange.cfd.title" = "КУРСЫ";
+"margin.wallet.demo.sign" = "ДЕМО";
+
+
+
+
+

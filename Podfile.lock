@@ -1,0 +1,154 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - Alamofire (4.4.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - Charts (3.0.2):
+    - Charts/Core (= 3.0.2)
+  - Charts/Core (3.0.2)
+  - CocoaAsyncSocket (7.6.1)
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
+  - FirebaseAnalytics (3.7.0):
+    - FirebaseCore (~> 3.5)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.5.1):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.9)
+  - GHODictionary (1.1.0)
+  - Google/Analytics (3.0.3):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (3.0.3):
+    - FirebaseAnalytics (~> 3.2)
+  - GoogleAnalytics (3.17.0)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - KYDrawerController (2.0.1)
+  - MBProgressHUD (1.0.0)
+  - MDWamp (2.2.4):
+    - CocoaAsyncSocket
+    - MPMessagePack
+    - SocketRocket
+  - MPMessagePack (1.4.3):
+    - GHODictionary
+  - QRCodeReader.swift (7.4.3)
+  - RxCocoa (3.6.1):
+    - RxSwift (~> 3.6)
+  - RxDataSources (1.0.4):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
+  - RxKeyboard (0.6.2):
+    - RxCocoa (>= 3.4)
+    - RxSwift (>= 3.4)
+  - RxOptional (3.2.0):
+    - RxCocoa
+    - RxSwift
+  - RxSwift (3.6.1)
+  - RxSwiftExt (2.5.1):
+    - RxSwiftExt/Core (= 2.5.1)
+  - RxSwiftExt/Core (2.5.1):
+    - RxSwift (~> 3.4)
+  - SideMenu (2.3.2)
+  - SocketRocket (0.5.1)
+  - SwiftReorder (2.0.2)
+  - SwiftSpinner (1.3.0)
+  - SWTableViewCell (0.3.7)
+  - TextFieldEffects (1.3.3)
+  - Toast (3.1.0)
+  - UIDeviceIdentifier (1.1.1)
+  - Valet (2.4.1)
+  - WalletCore (0.0.1):
+    - AFNetworking
+    - MDWamp
+    - QRCodeReader.swift (~> 7.4.0)
+    - RxCocoa (~> 3.6.1)
+    - RxOptional (~> 3.1)
+    - RxSwift (~> 3.6.1)
+    - RxSwiftExt (~> 2.4)
+    - UIDeviceIdentifier
+    - Valet
+  - XLPagerTabStrip (7.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - AlamofireImage (~> 3.1)
+  - Charts (~> 3.0)
+  - Crashlytics
+  - Fabric
+  - Google/Analytics
+  - KYDrawerController
+  - MBProgressHUD
+  - RxDataSources (~> 1.0)
+  - RxKeyboard (~> 0.6.2)
+  - SideMenu
+  - SwiftReorder (~> 2.0)
+  - SwiftSpinner
+  - SWTableViewCell
+  - TextFieldEffects (~> 1.3)
+  - Toast
+  - WalletCore (from `../WalletCoreiOS`)
+  - XLPagerTabStrip (~> 7.0)
+
+EXTERNAL SOURCES:
+  WalletCore:
+    :path: ../WalletCoreiOS
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
+  CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
+  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  GHODictionary: 225e042596a4b3d5b66b2b24250086b2f95514af
+  Google: cd92fab98f800f509da88c1e0c570275713bc9d5
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  KYDrawerController: b716cfa5730dc2133a67efcfc28b3b5a2cff6101
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MDWamp: c41dd5e15ffb61f4f23d027c925173e8c2313c3b
+  MPMessagePack: 6dc3a4b93bfdc7cdafcb64de62e2adc50cd99880
+  QRCodeReader.swift: 4a1d46f3057b1b6fc555578b2dc9f2dc99c7ccda
+  RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
+  RxDataSources: b3389acc5fe2eefb8fcd81a2b76a876ad08bc82a
+  RxKeyboard: 09e6bd45070888cd9701e941b2324a49cc974a1b
+  RxOptional: d2d6a68064bc16b4801332c40663967f481b0234
+  RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
+  RxSwiftExt: ec25c6df68d15ad6fe326792d60452b52e83d606
+  SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  SwiftReorder: 92630efd492828601e837f1e3204d68708a2981c
+  SwiftSpinner: c249fffed3e74b5f3e6492dcc05d6bc1525a8220
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
+  TextFieldEffects: 8706f53525f1ce51c8921b7af32237caab50c467
+  Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
+  UIDeviceIdentifier: 9281343882e24460235f00a0d7d2fc04a65688c6
+  Valet: 6c148c9562e871f7f6b364eda80e78b377e5b908
+  WalletCore: faa1ac4d4b3e25ac294fc4df81974f185547a2c5
+  XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
+
+PODFILE CHECKSUM: ecfe1698dc7b919910f194d1b9661fd0105e5900
+
+COCOAPODS: 1.3.1
