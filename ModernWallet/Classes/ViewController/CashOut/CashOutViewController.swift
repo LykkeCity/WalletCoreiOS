@@ -24,10 +24,19 @@ class CashOutViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "EmbedNavConrtoller", let navController = segue.destination as? UINavigationController else {
+        guard segue.identifier == "EmbedNavController", let navController = segue.destination as? UINavigationController else {
             return
         }
         navController.delegate = self
+        cashOutNavigationController = navController
+    }
+    
+    // MARK: - Private
+    
+    private var cashOutNavigationController: UINavigationController!
+    
+    @IBAction private func backPressed() {
+        cashOutNavigationController.popViewController(animated: true)
     }
 
 }
