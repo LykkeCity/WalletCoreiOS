@@ -76,6 +76,7 @@
 		66529DD21F8E38F10059786B /* Geomanist-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCF1F8E38F10059786B /* Geomanist-Book.otf */; };
 		665988501F8E4E5000073703 /* AssetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659884E1F8E4E5000073703 /* AssetCollectionViewCell.swift */; };
 		665988511F8E4E5000073703 /* AssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6659884F1F8E4E5000073703 /* AssetCollectionViewCell.xib */; };
+		6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */; };
 		667D404B1F8C95EE00457698 /* CashOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 667D404A1F8C95EE00457698 /* CashOut.storyboard */; };
 		667D404D1F8D018C00457698 /* AssetAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667D404C1F8D018C00457698 /* AssetAmountView.swift */; };
 		A10A94F41D0D33AA00557C87 /* ThreeDots.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A94F31D0D33AA00557C87 /* ThreeDots.png */; };
@@ -218,6 +219,7 @@
 		66529DCF1F8E38F10059786B /* Geomanist-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Book.otf"; sourceTree = "<group>"; };
 		6659884E1F8E4E5000073703 /* AssetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewCell.swift; sourceTree = "<group>"; };
 		6659884F1F8E4E5000073703 /* AssetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetCollectionViewCell.xib; sourceTree = "<group>"; };
+		6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSlider.swift; sourceTree = "<group>"; };
 		667D404A1F8C95EE00457698 /* CashOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CashOut.storyboard; sourceTree = "<group>"; };
 		667D404C1F8D018C00457698 /* AssetAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetAmountView.swift; sourceTree = "<group>"; };
 		69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 				46B5836C1F94C1C500B475DB /* Portfolio */,
 				6140EA431F1CE4F700B05A97 /* SeparatorView.xib */,
 				6140EA461F1CE51C00B05A97 /* SeparatorView.swift */,
+				6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */,
 				462B342F1F00EC5000374038 /* Colors.swift */,
 			);
 			path = View;
@@ -1035,6 +1038,7 @@
 				CC5B6C0A1F5D988400723587 /* RegisterFillProfileViewController.swift in Sources */,
 				665988501F8E4E5000073703 /* AssetCollectionViewCell.swift in Sources */,
 				CC5B6C061F58610A00723587 /* RegisterCreatePasswordViewController.swift in Sources */,
+				6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */,
 				CCDB25701EEFCF05000D590F /* UtilsHelper.swift in Sources */,
 				615052AC1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift in Sources */,
 				61A3E3081F62E5E700666A56 /* ScrollView+Keyboard.swift in Sources */,
