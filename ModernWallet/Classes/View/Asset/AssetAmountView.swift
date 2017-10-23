@@ -30,6 +30,11 @@ class AssetAmountView: UIView {
         }
     }
     
+    @IBInspectable var spacing: CGFloat {
+        get { return stackView.spacing }
+        set { stackView.spacing = newValue }
+    }
+    
     var amount: String? {
         get { return amountLabel?.text }
         set { amountLabel?.text = newValue }
@@ -76,7 +81,7 @@ class AssetAmountView: UIView {
         if codeLabelIsEmpty {
             codeLabel.text = ""
         }
-        return CGSize(width: amountSize.width + codeSize.width,
+        return CGSize(width: amountSize.width + stackView.spacing + codeSize.width,
                       height: max(amountSize.height, codeSize.height))
     }
     
@@ -103,11 +108,13 @@ class AssetAmountView: UIView {
         codeLabel.text = " "
         codeLabel.font = UIFont(name: "Geomanist", size: 10.0)
         codeLabel.textColor = textColor ?? UIColor.white
+        codeLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
         codeLabel.translatesAutoresizingMaskIntoConstraints = false
         
         stackView = UIStackView(arrangedSubviews: [amountLabel, codeLabel])
         stackView.axis = .horizontal
         stackView.alignment = .firstBaseline
+        stackView.spacing = 0.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         
