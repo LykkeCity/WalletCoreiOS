@@ -174,6 +174,10 @@ extension CashOutEnterAmountViewController: TextFieldNextDelegate {
         performSegue(withIdentifier: "NextStep", sender: nil)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return goToNextField(withCurrentField: textField)
+    }
+
 }
 
 extension WalletViewModel {
@@ -190,10 +194,6 @@ extension WalletViewModel {
             inBaseAssetAmount.drive(view.rx.amount),
             baseAssetCode.drive(view.rx.code)
         ]
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return goToNextField(withCurrentField: textField)
     }
     
 }
