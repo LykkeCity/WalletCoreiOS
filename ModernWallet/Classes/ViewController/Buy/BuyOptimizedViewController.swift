@@ -254,8 +254,8 @@ fileprivate extension BuyOptimizedViewController {
         firstAssetList.amount.delegate = self
         secondAssetList.amount.delegate = self
         
-        firstAssetList.setupUX(withButtonTitle: Localize("Next"), disposedBy: disposeBag)
-        secondAssetList.setupUX(withButtonTitle: Localize("buy.newDesign.done"), disposedBy: disposeBag)
+        firstAssetList.setupUX(withButtonTitle: Localize("newDesign.next"), disposedBy: disposeBag)
+        secondAssetList.setupUX(withButtonTitle: Localize("newDesign.done"), disposedBy: disposeBag)
     }
 }
 

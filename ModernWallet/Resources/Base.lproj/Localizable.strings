@@ -889,7 +889,8 @@
 "buy.newDesign.change" = "Change";
 "buy.newDesign.buy" = "BUY";
 "buy.newDesign.sell" = "SELL";
-"buy.newDesign.done" = "DONE";
+"newDesign.next" = "NEXT";
+"newDesign.done" = "DONE";
 
 "buy.newDesign.selectCrypto" = "SELECT CRYPTO CURRENCY TO BUY";
 "buy.newDesign.selectCurrency" = "SELECT CURRENCY TO BUY";
