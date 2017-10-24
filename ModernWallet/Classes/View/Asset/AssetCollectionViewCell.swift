@@ -52,20 +52,10 @@ class AssetCollectionViewCell: UICollectionViewCell {
             .drive(cryptoNameLabel.rx.text)
             .disposed(by: disposeBag)
         
-        asset.realAmount
-            .drive(baseAmountView.rx.amount)
+        asset.driveAmountInBase(to: baseAmountView)
             .disposed(by: disposeBag)
         
-        asset.realCode
-            .drive(baseAmountView.rx.code)
-            .disposed(by: disposeBag)
-        
-        asset.cryptoAmount
-            .drive(cryptoAmountView.rx.amount)
-            .disposed(by: disposeBag)
-        
-        asset.cryptoCode
-            .drive(cryptoAmountView.rx.code)
+        asset.driveAmount(to: cryptoAmountView)
             .disposed(by: disposeBag)
         
         asset.imgURL
