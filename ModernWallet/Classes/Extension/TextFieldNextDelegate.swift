@@ -9,10 +9,14 @@
 import Foundation
 
 protocol TextFieldNextDelegate: UITextFieldDelegate {
+    
     var textFields: [UITextField]! {get}
     var submitButton: UIButton! {get}
     
     func goToNextField(withCurrentField textField: UITextField) -> Bool
+    
+    func performSubmit()
+    
 }
 
 extension TextFieldNextDelegate {
@@ -22,9 +26,14 @@ extension TextFieldNextDelegate {
             return false
         } else {
             textField.resignFirstResponder()
-            submitButton.sendActions(for: UIControlEvents.touchUpInside)
+            performSubmit()
         }
         
         return true
     }
+    
+    func performSubmit() {
+        submitButton.sendActions(for: UIControlEvents.touchUpInside)
+    }
+    
 }

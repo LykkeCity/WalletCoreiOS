@@ -63,7 +63,7 @@ class BuyAssetListView: UIView {
         itemPicker.field.inputView = itemPicker.picker
         view.addSubview(itemPicker.field)
         
-        addButton(forField: itemPicker.field, withTitle: Localize("buy.newDesign.done"))
+        addButton(forField: itemPicker.field, withTitle: Localize("newDesign.done"))
             .subscribe(onNext: {field in
                 field.resignFirstResponder()
             })

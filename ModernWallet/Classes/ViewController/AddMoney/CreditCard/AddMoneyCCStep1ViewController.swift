@@ -69,10 +69,10 @@ class AddMoneyCCStep1ViewController: UIViewController {
         //add buttons above of the keyboard for these type of keyboards that don't have return button, 
         //and call textFieldShouldReturn on button tap
         Observable.merge(
-            addButton(forField: amountTextField, withTitle: Localize("Next")),
-            addButton(forField: zipField, withTitle: Localize("Next")),
-            addButton(forField: codeField, withTitle: Localize("Next")),
-            addButton(forField: phoneField, withTitle: Localize("buy.newDesign.done"))
+            addButton(forField: amountTextField, withTitle: Localize("newDesign.next")),
+            addButton(forField: zipField, withTitle: Localize("newDesign.next")),
+            addButton(forField: codeField, withTitle: Localize("newDesign.next")),
+            addButton(forField: phoneField, withTitle: Localize("newDesign.done"))
         ).subscribe(onNext: {field in
             _ = field.delegate?.textFieldShouldReturn?(field)
         })
