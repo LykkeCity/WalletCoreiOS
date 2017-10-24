@@ -13,6 +13,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="Geomanist-Book.otf">
+            <string>Geomanist</string>
             <string>Geomanist-Book</string>
         </array>
         <array key="Geomanist-Light.otf">
@@ -52,7 +53,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CASH OUT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViG-KR-u0A">
-                                <rect key="frame" x="152" y="96.5" width="71.5" height="15"/>
+                                <rect key="frame" x="149.5" y="95.5" width="76.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -113,13 +114,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpG-TA-M8J">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="AVAILABLE BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-rR-0K7">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVAILABLE BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-rR-0K7">
                                         <rect key="frame" x="135.5" y="53" width="105.5" height="12"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hif-Ph-qRU" customClass="AssetAmountView" customModule="ModernWallet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hif-Ph-qRU" customClass="AssetAmountView" customModule="ModernWallet" customModuleProvider="target">
                                         <rect key="frame" x="128.5" y="69" width="118.5" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -181,11 +182,240 @@
                         <outlet property="availableBalanceLabel" destination="AVr-rR-0K7" id="xzS-2s-nfc"/>
                         <outlet property="collectionView" destination="26g-Gh-biv" id="Rc1-tG-bIV"/>
                         <outlet property="selectAssetLabel" destination="wB8-FE-4rs" id="lsg-V0-X9f"/>
+                        <segue destination="cPl-xt-UDV" kind="show" identifier="NextStep" id="KqW-Ha-2HL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azY-x0-vwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1748" y="202.84857571214394"/>
+        </scene>
+        <!--Cash Out Enter Amount View Controller-->
+        <scene sceneID="qcZ-w2-VSs">
+            <objects>
+                <viewController id="cPl-xt-UDV" customClass="CashOutEnterAmountViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yvf-yg-oYH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="rnQ-9E-hts">
+                                <rect key="frame" x="0.0" y="-128" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="667" id="Bmf-dy-rcW"/>
+                                </constraints>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="ezE-54-sIS">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRz-lE-6Ok" userLabel="ScrollView Content">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsC-Kx-PKC">
+                                                <rect key="frame" x="15" y="20" width="345" height="45"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lNi-Vn-knu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="PMR-St-Wb7"/>
+                                                            <constraint firstAttribute="width" constant="30" id="fVU-4W-SLr"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5am-s2-fp1">
+                                                        <rect key="frame" x="50" y="0.0" width="80" height="23.5"/>
+                                                        <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAj-7G-Rxr" customClass="AssetAmountView" customModule="ModernWallet" customModuleProvider="target">
+                                                        <rect key="frame" x="243" y="0.0" width="102" height="20.5"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qct-qV-B7t">
+                                                        <rect key="frame" x="50" y="27.5" width="34.5" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3WO-nz-kaD" customClass="AssetAmountView" customModule="ModernWallet" customModuleProvider="target">
+                                                        <rect key="frame" x="243" y="24.5" width="102" height="20.5"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="3WO-nz-kaD" firstAttribute="top" secondItem="wAj-7G-Rxr" secondAttribute="bottom" constant="4" id="1Ny-O0-e6N"/>
+                                                    <constraint firstItem="qct-qV-B7t" firstAttribute="top" secondItem="5am-s2-fp1" secondAttribute="bottom" constant="4" id="3i1-ZS-Y7Y"/>
+                                                    <constraint firstItem="wAj-7G-Rxr" firstAttribute="top" secondItem="GsC-Kx-PKC" secondAttribute="top" id="6Ti-7K-QuC"/>
+                                                    <constraint firstItem="qct-qV-B7t" firstAttribute="leading" secondItem="5am-s2-fp1" secondAttribute="leading" id="AJs-lx-wyA"/>
+                                                    <constraint firstItem="lNi-Vn-knu" firstAttribute="leading" secondItem="GsC-Kx-PKC" secondAttribute="leading" id="DzT-Jz-aHs"/>
+                                                    <constraint firstItem="5am-s2-fp1" firstAttribute="top" secondItem="GsC-Kx-PKC" secondAttribute="top" id="OpL-g6-9Wi"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3WO-nz-kaD" secondAttribute="bottom" id="SBW-YZ-kUU"/>
+                                                    <constraint firstItem="wAj-7G-Rxr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5am-s2-fp1" secondAttribute="trailing" constant="8" id="W2q-Rg-HN2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wAj-7G-Rxr" secondAttribute="trailing" id="YW4-ep-fxM"/>
+                                                    <constraint firstItem="5am-s2-fp1" firstAttribute="leading" secondItem="lNi-Vn-knu" secondAttribute="trailing" constant="20" id="daU-1L-vv9"/>
+                                                    <constraint firstItem="lNi-Vn-knu" firstAttribute="top" secondItem="GsC-Kx-PKC" secondAttribute="top" id="kQy-6S-kWw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="3WO-nz-kaD" secondAttribute="trailing" id="yH7-8g-afs"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER AMOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28y-Fm-EZx">
+                                                <rect key="frame" x="117.5" y="166" width="140.5" height="21"/>
+                                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wf8-Rs-F5Q">
+                                                <rect key="frame" x="127" y="197" width="123" height="35"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCg-yg-d4X">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="35"/>
+                                                        <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00" placeholder="0.00" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcv-ef-fB0">
+                                                        <rect key="frame" x="60" y="0.0" width="63" height="35"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zP2-tW-RNb">
+                                                <rect key="frame" x="126" y="242" width="124.5" height="35"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6c-Iy-XYJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="35"/>
+                                                        <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00" placeholder="0.00" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nH8-Xg-CRF">
+                                                        <rect key="frame" x="61.5" y="0.0" width="63" height="35"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="30"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLIDE TO RETRIEVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfU-am-kXR">
+                                                <rect key="frame" x="119" y="424.5" width="140" height="17.5"/>
+                                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <control contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w0l-aV-KzA" customClass="ConfirmSlider" customModule="ModernWallet" customModuleProvider="target">
+                                                <rect key="frame" x="101" y="450" width="175" height="69"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="confirmSliderChanged:" destination="cPl-xt-UDV" eventType="valueChanged" id="Ryo-uL-APE"/>
+                                                </connections>
+                                            </control>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="zP2-tW-RNb" firstAttribute="top" secondItem="wf8-Rs-F5Q" secondAttribute="bottom" constant="10" id="1RQ-B7-hK7"/>
+                                            <constraint firstItem="GsC-Kx-PKC" firstAttribute="top" secondItem="tRz-lE-6Ok" secondAttribute="top" constant="20" id="40z-Rn-QJc"/>
+                                            <constraint firstItem="wf8-Rs-F5Q" firstAttribute="centerY" secondItem="tRz-lE-6Ok" secondAttribute="centerY" constant="-55" id="6Dw-gn-wm5"/>
+                                            <constraint firstItem="ZfU-am-kXR" firstAttribute="centerX" secondItem="tRz-lE-6Ok" secondAttribute="centerX" constant="1.25" id="6P0-vx-Prb"/>
+                                            <constraint firstItem="w0l-aV-KzA" firstAttribute="centerX" secondItem="tRz-lE-6Ok" secondAttribute="centerX" constant="1" id="REv-Cv-F4V"/>
+                                            <constraint firstAttribute="trailing" secondItem="GsC-Kx-PKC" secondAttribute="trailing" constant="15" id="Sef-QC-733"/>
+                                            <constraint firstItem="GsC-Kx-PKC" firstAttribute="leading" secondItem="tRz-lE-6Ok" secondAttribute="leading" constant="15" id="SwU-tG-arz"/>
+                                            <constraint firstItem="wf8-Rs-F5Q" firstAttribute="top" secondItem="28y-Fm-EZx" secondAttribute="bottom" constant="10" id="Tjo-0e-lGH"/>
+                                            <constraint firstItem="w0l-aV-KzA" firstAttribute="top" secondItem="ZfU-am-kXR" secondAttribute="bottom" constant="8" id="aUN-Fy-kxp"/>
+                                            <constraint firstAttribute="bottom" secondItem="w0l-aV-KzA" secondAttribute="bottom" constant="20" id="ajE-wd-O6U"/>
+                                            <constraint firstItem="28y-Fm-EZx" firstAttribute="centerX" secondItem="tRz-lE-6Ok" secondAttribute="centerX" id="gat-23-NmP"/>
+                                            <constraint firstItem="zP2-tW-RNb" firstAttribute="centerX" secondItem="tRz-lE-6Ok" secondAttribute="centerX" id="oRw-Vm-MrG"/>
+                                            <constraint firstItem="wf8-Rs-F5Q" firstAttribute="centerX" secondItem="tRz-lE-6Ok" secondAttribute="centerX" id="q7T-e9-TRa"/>
+                                            <constraint firstItem="GsC-Kx-PKC" firstAttribute="centerX" secondItem="tRz-lE-6Ok" secondAttribute="centerX" id="qft-Uy-4AF"/>
+                                            <constraint firstItem="w0l-aV-KzA" firstAttribute="top" secondItem="ZfU-am-kXR" secondAttribute="bottom" constant="8" id="vQE-l8-Sxs"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tRz-lE-6Ok" firstAttribute="leading" secondItem="ezE-54-sIS" secondAttribute="leading" id="5PJ-hV-nDk"/>
+                                    <constraint firstItem="tRz-lE-6Ok" firstAttribute="height" secondItem="ezE-54-sIS" secondAttribute="height" id="Quy-Vy-Q1S"/>
+                                    <constraint firstAttribute="trailing" secondItem="tRz-lE-6Ok" secondAttribute="trailing" id="cmg-sQ-5dr"/>
+                                    <constraint firstItem="tRz-lE-6Ok" firstAttribute="top" secondItem="ezE-54-sIS" secondAttribute="top" id="gTu-RN-Gkd"/>
+                                    <constraint firstAttribute="bottom" secondItem="tRz-lE-6Ok" secondAttribute="bottom" id="l58-7d-88b"/>
+                                    <constraint firstItem="tRz-lE-6Ok" firstAttribute="width" secondItem="ezE-54-sIS" secondAttribute="width" id="nhO-Qx-fXs"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.38952726129999998" green="0.58538377289999999" blue="0.56159502269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ezE-54-sIS" secondAttribute="trailing" id="7mh-W4-dup"/>
+                            <constraint firstItem="ezE-54-sIS" firstAttribute="leading" secondItem="yvf-yg-oYH" secondAttribute="leading" id="BZr-gx-zlH"/>
+                            <constraint firstAttribute="bottom" secondItem="rnQ-9E-hts" secondAttribute="bottom" id="HL5-R3-bns"/>
+                            <constraint firstItem="ezE-54-sIS" firstAttribute="top" secondItem="yvf-yg-oYH" secondAttribute="top" id="QWw-SE-ljS"/>
+                            <constraint firstItem="rnQ-9E-hts" firstAttribute="leading" secondItem="mKD-Zx-zjV" secondAttribute="leading" id="UXG-VB-GSI"/>
+                            <constraint firstItem="rnQ-9E-hts" firstAttribute="trailing" secondItem="mKD-Zx-zjV" secondAttribute="trailing" id="iln-QX-yr4"/>
+                            <constraint firstAttribute="bottom" secondItem="ezE-54-sIS" secondAttribute="bottom" id="zHB-Jz-O0e"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mKD-Zx-zjV"/>
+                    </view>
+                    <connections>
+                        <outlet property="assetAmountTextField" destination="rcv-ef-fB0" id="S5x-4g-LTN"/>
+                        <outlet property="assetAmountView" destination="3WO-nz-kaD" id="dF4-Cz-vD9"/>
+                        <outlet property="assetCodeLabel" destination="NCg-yg-d4X" id="4b1-bE-mgC"/>
+                        <outlet property="assetImageView" destination="lNi-Vn-knu" id="qvj-HC-U7w"/>
+                        <outlet property="assetNameLabel" destination="5am-s2-fp1" id="Gmv-3P-fNK"/>
+                        <outlet property="backgroundHeightConstraint" destination="Bmf-dy-rcW" id="GkH-4I-pue"/>
+                        <outlet property="baseAmountTextField" destination="nH8-Xg-CRF" id="wke-w8-x46"/>
+                        <outlet property="baseAssetAmountView" destination="wAj-7G-Rxr" id="Yvy-3m-NOk"/>
+                        <outlet property="baseAssetCodeLabel" destination="a6c-Iy-XYJ" id="43Q-Uz-ZWj"/>
+                        <outlet property="confirmSlider" destination="w0l-aV-KzA" id="9zj-04-G08"/>
+                        <outlet property="enterAmountLabel" destination="28y-Fm-EZx" id="ocW-Sf-vRF"/>
+                        <outlet property="percentLabel" destination="qct-qV-B7t" id="o6k-pW-4vS"/>
+                        <outlet property="scrollView" destination="ezE-54-sIS" id="v83-a6-CPE"/>
+                        <outlet property="slideToRetrieveLabel" destination="ZfU-am-kXR" id="kVe-HU-dLO"/>
+                        <segue destination="rNT-Bo-S9N" kind="show" identifier="NextStep" id="eL5-gL-0EW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4PM-Xo-f3E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2597.5999999999999" y="202.84857571214394"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Lwz-9L-7dT">
+            <objects>
+                <viewController id="rNT-Bo-S9N" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sJk-nV-RjP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="vUv-IF-Dky"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hRo-8V-atB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3465" y="203"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YF8-9Z-mNv">

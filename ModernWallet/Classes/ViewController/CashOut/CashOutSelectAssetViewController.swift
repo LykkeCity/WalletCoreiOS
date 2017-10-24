@@ -31,7 +31,9 @@ class CashOutSelectAssetViewController: UIViewController {
         )
     }()
     
-    var assets = Variable<[Variable<Asset>]>([])
+    private var assets = Variable<[Variable<Asset>]>([])
+    
+    private var selectedAssetIdentity = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +56,17 @@ class CashOutSelectAssetViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let `self` = self else { return }
+                self.selectedAssetIdentity = self.assets.value[indexPath.row].value.cryptoCurrency.identity
+                self.performSegue(withIdentifier: "NextStep", sender: nil)
+            })
+            .disposed(by: disposeBag)
         
         walletsViewModel.wallets
             .filterOnlySwiftWithdraw()
+            .map { wallets in wallets.sorted { $0.0.value.percent > $0.1.value.percent } }
             .bind(to: assets)
             .disposed(by: disposeBag)
         
@@ -75,15 +85,17 @@ class CashOutSelectAssetViewController: UIViewController {
         layout.sectionInset = insets
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "NextStep" {
+            guard let enterAmountVC = segue.destination as? CashOutEnterAmountViewController else {
+                return
+            }
+            enterAmountVC.assetIdentity = selectedAssetIdentity
+        }
     }
-    */
 
 }
 

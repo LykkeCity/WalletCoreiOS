@@ -79,6 +79,7 @@
 		6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */; };
 		667D404B1F8C95EE00457698 /* CashOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 667D404A1F8C95EE00457698 /* CashOut.storyboard */; };
 		667D404D1F8D018C00457698 /* AssetAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667D404C1F8D018C00457698 /* AssetAmountView.swift */; };
+		66806B9F1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806B9E1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift */; };
 		66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA01F9E3BC8001E49E5 /* AssetAmountView+Rx.swift */; };
 		66806BA31F9F2C1A001E49E5 /* Array+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA21F9F2C1A001E49E5 /* Array+Rx.swift */; };
 		66806BA51F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */; };
@@ -225,6 +226,7 @@
 		6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSlider.swift; sourceTree = "<group>"; };
 		667D404A1F8C95EE00457698 /* CashOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CashOut.storyboard; sourceTree = "<group>"; };
 		667D404C1F8D018C00457698 /* AssetAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetAmountView.swift; sourceTree = "<group>"; };
+		66806B9E1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashOutEnterAmountViewController.swift; sourceTree = "<group>"; };
 		66806BA01F9E3BC8001E49E5 /* AssetAmountView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetAmountView+Rx.swift"; sourceTree = "<group>"; };
 		66806BA21F9F2C1A001E49E5 /* Array+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Rx.swift"; sourceTree = "<group>"; };
 		66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetCollectionCellViewModel+Rx.swift"; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 			children = (
 				66529DC91F8D198B0059786B /* CashOutViewController.swift */,
 				66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */,
+				66806B9E1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift */,
 			);
 			path = CashOut;
 			sourceTree = "<group>";
@@ -1020,6 +1023,7 @@
 				46E5D0E91F64A34B00D78692 /* TextFieldNextDelegate.swift in Sources */,
 				66529DCA1F8D198B0059786B /* CashOutViewController.swift in Sources */,
 				66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */,
+				66806B9F1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift in Sources */,
 				462878731F433A710006BE45 /* GraphProtocol.swift in Sources */,
 				CC8A99AA1EF7BAB80078E6B0 /* AddMoneyViewController.swift in Sources */,
 				CC84F2791F6195FB00FABEA3 /* RegisterConfrimPhoneViewController.swift in Sources */,

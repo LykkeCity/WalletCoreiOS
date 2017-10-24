@@ -923,3 +923,6 @@
 "cashOut.newDesign.title" = "CASH OUT";
 "cashOut.newDesign.availableBalance" = "AVAILABLE BALANCE";
 "cashOut.newDesign.selectAsset" = "SELECT ASSET";
+"cashOut.newDesign.enterAmount" = "ENTER AMOUNT";
+"cashOut.newDesign.slideToRetrieve" = "SLIDE TO RETRIEVE";
+
