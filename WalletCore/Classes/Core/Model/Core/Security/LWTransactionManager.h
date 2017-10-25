@@ -10,7 +10,13 @@
 @import UIKit;
 
 
-typedef enum {OFFCHAIN_TRANSACTION_TYPE_CREATE_CHANNEL,  OFFCHAIN_TRANSACTION_TYPE_TRANSFER, OFFCHAIN_TRANSACTION_TYPE_CASHIN} OFFCHAIN_TRANSACTION_TYPE;
+typedef NS_ENUM(NSInteger, OffchainTransactionType) {
+    OffchainTransactionTypeCreateChannel,
+    OffchainTransactionTypeTransfer,
+    OffchainTransactionTypeCashIn
+};
+
+//typedef enum {OFFCHAIN_TRANSACTION_TYPE_CREATE_CHANNEL,  OFFCHAIN_TRANSACTION_TYPE_TRANSFER, OFFCHAIN_TRANSACTION_TYPE_CASHIN} OFFCHAIN_TRANSACTION_TYPE;
 
 @class LWPrivateWalletModel;
 @class BTCTransaction;
@@ -21,7 +27,7 @@ typedef enum {OFFCHAIN_TRANSACTION_TYPE_CREATE_CHANNEL,  OFFCHAIN_TRANSACTION_TY
 +(NSString *) signTransactionRaw:(NSString *) rawString key:(NSString *) privateKey;
 
 
-+(NSString *) signOffchainTransaction:(NSString *)_transaction withKey:(NSString *)privateKey type:(OFFCHAIN_TRANSACTION_TYPE) type;
++(NSString *) signOffchainTransaction:(NSString *)_transaction withKey:(NSString *)privateKey type:(OffchainTransactionType) type;
 -(void) endAction;
 
 +(void) testSign:(NSString *) transaction;

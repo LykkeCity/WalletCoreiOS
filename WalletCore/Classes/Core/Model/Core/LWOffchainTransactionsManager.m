@@ -226,11 +226,11 @@
 -(void) processChannel:(NSString *) transaction transferId:(NSString *) transferId details:(NSDictionary *) details {
     NSString *signedTransaction;
     if(!details[@"FromWallet"]) {
-        signedTransaction = [LWTransactionManager signOffchainTransaction:transaction withKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke type:OFFCHAIN_TRANSACTION_TYPE_CREATE_CHANNEL];
+        signedTransaction = [LWTransactionManager signOffchainTransaction:transaction withKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke type:OffchainTransactionTypeCreateChannel];
     }
     else {
         LWPrivateWalletModel *wallet = details[@"FromWallet"];
-        signedTransaction = [LWTransactionManager signOffchainTransaction:transaction withKey:wallet.privateKey type:OFFCHAIN_TRANSACTION_TYPE_CASHIN];
+        signedTransaction = [LWTransactionManager signOffchainTransaction:transaction withKey:wallet.privateKey type:OffchainTransactionTypeCashIn];
         NSMutableDictionary *newDetails = [details mutableCopy];
         [newDetails removeObjectForKey:@"FromWallet"];
         details = newDetails;
@@ -274,11 +274,11 @@
 
     NSString *signedTransaction;
     if(!details[@"FromWallet"]) {
-        signedTransaction = [LWTransactionManager signOffchainTransaction:transaction withKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke type:OFFCHAIN_TRANSACTION_TYPE_TRANSFER];
+        signedTransaction = [LWTransactionManager signOffchainTransaction:transaction withKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke type:OffchainTransactionTypeTransfer];
     }
     else {
         LWPrivateWalletModel *wallet = details[@"FromWallet"];
-        signedTransaction = [LWTransactionManager signOffchainTransaction:transaction withKey:wallet.privateKey type:OFFCHAIN_TRANSACTION_TYPE_CASHIN];
+        signedTransaction = [LWTransactionManager signOffchainTransaction:transaction withKey:wallet.privateKey type:OffchainTransactionTypeCashIn];
         NSMutableDictionary *newDetails = [details mutableCopy];
         [newDetails removeObjectForKey:@"FromWallet"];
         details = newDetails;

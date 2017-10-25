@@ -31,8 +31,6 @@ typedef enum {BACKUP_MODE_PRIVATE_KEY, BACKUP_MODE_COLD_STORAGE} BACKUP_MODE;
 + (instancetype)shared;
 
 -(BOOL) isDevServer;
-
-//-(void) generatePrivateKey;
 -(void) decryptLykkePrivateKeyAndSave:(NSString *) encodedPrivateKey;
 
 -(NSString *) decryptPrivateKey:(NSString *)encryptedPrivateKeyData withPassword:(NSString *) password;
@@ -80,7 +78,8 @@ typedef enum {BACKUP_MODE_PRIVATE_KEY, BACKUP_MODE_COLD_STORAGE} BACKUP_MODE;
 -(void) logoutUser;
 
 -(BOOL) isPrivateKeyLykkeEmpty;
-
+-(NSString *) wifPrivateKeyLykke;
+-(NSDictionary*) generateKeyDict;
 -(BTCKey *) generateKey;
 -(NSData *) generateRandomKeyData32;
 -(NSData *) generateRandomKeyData16;

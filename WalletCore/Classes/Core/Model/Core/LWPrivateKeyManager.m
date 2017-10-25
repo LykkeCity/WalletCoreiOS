@@ -17,7 +17,7 @@
 #import "LWEthereumSignManager.h"
 #import "LWSignRequestModel.h"
 #import "LWAuthManager.h"
-
+#import "LWUtils.h"
 #import "LWPrivateWalletsManager.h"
 #import "LWPrivateWalletModel.h"
 
@@ -645,6 +645,8 @@
 
 -(NSString *) wifPrivateKeyLykke
 {
+    [self privateKeyLykke];
+    
     if(!privateKeyForLykke)
         return nil;
     NSString *wif;
@@ -1190,18 +1192,16 @@
 }
 
 
--(void) generatePrivateKey
+-(NSDictionary*) generateKeyDict
 {
-    NSData *privateKeyData=[self generateRandomKeyData32];
-    privateKeyForLykke=[[BTCKey alloc] initWithPrivateKey:privateKeyData];
-    privateKeyForLykke.publicKeyCompressed=YES;
+    BTCKey* btcKey = [self generateKey];
     NSString *wif;
     if([self isDevServer])
-        wif=privateKeyForLykke.WIFTestnet;
+        wif=btcKey.WIFTestnet;
     else
-        wif=privateKeyForLykke.WIF;
+        wif=btcKey.WIF;
     
-    NSLog(@"%@", wif);
+    return @{@"wif": wif, @"publicKey": [LWUtils hexStringFromData:btcKey.publicKey]};
     
     
 //    NSString *address=privateKeyForLykke.addressTestnet.string;;
