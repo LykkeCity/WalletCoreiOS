@@ -60,7 +60,8 @@ class BuyOptimizedViewController: UIViewController {
     let offchainService = OffchainService(
         authManager: LWRxAuthManager.instance,
         privateKeyManager: LWPrivateKeyManager.shared(),
-        keychainManager: LWKeychainManager.instance()
+        keychainManager: LWKeychainManager.instance(),
+        transactionManager: LWTransactionManager.shared()
     )
     
     fileprivate let disposeBag = DisposeBag()
@@ -129,26 +130,22 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         
+//        offchainService.processChannel(transaction: "0100000002843c3ebdf60e3b120833caaf47b1308f7379a396d2f1d74354c474f8efd1e8370100000000ffffffff82a83919bcf512352433840c874ce6b0dc744eed20b1306353012c7f253160015501000000ffffffff0400000000000000000f6a0d4f41010003d8fc3ca0f03000008c0a00000000000017a91441f8b7171a80e099472f139d51eecefe2c8ce83e87aa0a0000000000001976a91497a515ec03d9aada5e6f0d895f4aa10eb8f07e8d88ac10d50100000000001976a914ed75405f426601f5493117b5a22dc0082269e32288ac00000000", transferId: "54adb02c-db99-45b3-a90e-a17b4f6246ee", transactionType: .transfer).subscribe()
         
-        confirmTrading
-            .map{[weak self] _ -> String? in
-                guard let `self` = self else {return nil}
-                guard let buyAsset = self.buyOptimizedViewModel.buyAsset.value?.asset else{return nil}
-                guard let payWithAsset = self.buyOptimizedViewModel.payWithAsset.value?.asset else{return nil}
-                guard let volume = self.buyOptimizedViewModel.buyAmount.value.value.decimalValue else {return nil}
+        let trade = confirmTrading
+            .flatMapLatest{[weak self] _ -> Observable<ApiResult<LWModelOffchainResult>>  in
+                guard let `self` = self else {return Observable.never()}
+                guard let buyAsset = self.buyOptimizedViewModel.buyAsset.value?.asset else{return Observable.never()}
+                guard let payWithAsset = self.buyOptimizedViewModel.payWithAsset.value?.asset else{return Observable.never()}
+                guard let volume = self.buyOptimizedViewModel.buyAmount.value.value.decimalValue else {return Observable.never()}
                 
-                self.offchainService.trade(amount: volume, asset: buyAsset, forAsset: payWithAsset)
-                
-                return ""
+                return self.offchainService.trade(amount: volume, asset: buyAsset, forAsset: payWithAsset)
             }
-            .subscribe(onNext: {_ in
-                
-            })
-            .disposed(by: disposeBag)
-        
-        
-            
-//            .filterNil()
+            .shareReplay(1)
+        [
+            trade.isLoading().bind(to: self.rx.loading),
+            trade.filterError().bind(to: self.rx.error)
+        ].disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
