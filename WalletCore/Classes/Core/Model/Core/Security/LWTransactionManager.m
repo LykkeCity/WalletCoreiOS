@@ -215,9 +215,9 @@
 }
 
 
-+(NSString *) signOffchainTransaction:(NSString *)_transaction withKey:(NSString *)privateKey type:(OFFCHAIN_TRANSACTION_TYPE)type
++(NSString *) signOffchainTransaction:(NSString *)_transaction withKey:(NSString *)privateKey type:(OffchainTransactionType)type
 {
-    if(type == OFFCHAIN_TRANSACTION_TYPE_CASHIN) {
+    if(type == OffchainTransactionTypeCashIn) {
         _transaction = [LWTransactionManager signTransactionRaw:_transaction key:privateKey];
         privateKey = [LWPrivateKeyManager shared].wifPrivateKeyLykke;
         
@@ -236,7 +236,7 @@
         return nil;
     
     BTCSignatureHashType hashtype;
-    if(type == OFFCHAIN_TRANSACTION_TYPE_CREATE_CHANNEL || type == OFFCHAIN_TRANSACTION_TYPE_CASHIN) {
+    if(type == OffchainTransactionTypeCreateChannel || type == OffchainTransactionTypeCashIn) {
         hashtype = BTCSignatureHashTypeAll;
     }
     else {
