@@ -10,7 +10,6 @@
 		11DA99157D1096C1AE2DAB86 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA906845E44B9E56EC79B6 /* PortfolioViewController.swift */; };
 		461C6F8D1F8B4E9000C5E8B3 /* BuyAssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461C6F8C1F8B4E9000C5E8B3 /* BuyAssetListView.xib */; };
 		461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F8E1F8B4EB200C5E8B3 /* BuyAssetListView.swift */; };
-		461C6F921F8B56F600C5E8B3 /* TextFieldButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F911F8B56F600C5E8B3 /* TextFieldButton.swift */; };
 		462878731F433A710006BE45 /* GraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462878721F433A710006BE45 /* GraphProtocol.swift */; };
 		462878761F433B0F0006BE45 /* TradingLinearGraphViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 462878751F433B0F0006BE45 /* TradingLinearGraphViewTest.m */; };
 		462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */; };
@@ -38,7 +37,6 @@
 		469DA7251F6C1FBF000B904C /* KYCStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7241F6C1FBF000B904C /* KYCStep2ViewController.swift */; };
 		469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7261F6C1FC8000B904C /* KYCStep3ViewController.swift */; };
 		46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */; };
-		46E5D0E91F64A34B00D78692 /* TextFieldNextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5D0E81F64A34B00D78692 /* TextFieldNextDelegate.swift */; };
 		6100D8D81F1F327200EB40A5 /* LineChartDataSet+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */; };
 		6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */; };
 		6100D8DC1F1F334B00EB40A5 /* UIStackView+Hint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8DB1F1F334B00EB40A5 /* UIStackView+Hint.swift */; };
@@ -87,6 +85,7 @@
 		66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA01F9E3BC8001E49E5 /* AssetAmountView+Rx.swift */; };
 		66806BA31F9F2C1A001E49E5 /* Array+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA21F9F2C1A001E49E5 /* Array+Rx.swift */; };
 		66806BA51F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */; };
+		66E707F31FA220B800CF4B40 /* InputForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E707F21FA220B800CF4B40 /* InputForm.swift */; };
 		A10A94F41D0D33AA00557C87 /* ThreeDots.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A94F31D0D33AA00557C87 /* ThreeDots.png */; };
 		A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A95041D0E8F5F00557C87 /* SlashSign@2x.png */; };
 		A10A95071D0E8F5F00557C87 /* SlashSign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */; };
@@ -159,7 +158,6 @@
 		11DA906845E44B9E56EC79B6 /* PortfolioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		461C6F8C1F8B4E9000C5E8B3 /* BuyAssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyAssetListView.xib; sourceTree = "<group>"; };
 		461C6F8E1F8B4EB200C5E8B3 /* BuyAssetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyAssetListView.swift; sourceTree = "<group>"; };
-		461C6F911F8B56F600C5E8B3 /* TextFieldButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldButton.swift; sourceTree = "<group>"; };
 		462878721F433A710006BE45 /* GraphProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphProtocol.swift; sourceTree = "<group>"; };
 		462878741F433B0F0006BE45 /* TradingLinearGraphViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TradingLinearGraphViewTest.h; path = ModernWallet/Classes/View/Chart/TradingLinearGraphViewTest.h; sourceTree = SOURCE_ROOT; };
 		462878751F433B0F0006BE45 /* TradingLinearGraphViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TradingLinearGraphViewTest.m; path = ModernWallet/Classes/View/Chart/TradingLinearGraphViewTest.m; sourceTree = SOURCE_ROOT; };
@@ -189,7 +187,6 @@
 		469DA7261F6C1FC8000B904C /* KYCStep3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCStep3ViewController.swift; sourceTree = "<group>"; };
 		46B583741F94C6D600B475DB /* ModernWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModernWallet-Bridging-Header.h"; sourceTree = "<group>"; };
 		46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
-		46E5D0E81F64A34B00D78692 /* TextFieldNextDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldNextDelegate.swift; sourceTree = "<group>"; };
 		6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartDataSet+Setup.swift"; sourceTree = "<group>"; };
 		6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartView+Setup.swift"; sourceTree = "<group>"; };
 		6100D8DB1F1F334B00EB40A5 /* UIStackView+Hint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Hint.swift"; sourceTree = "<group>"; };
@@ -238,6 +235,7 @@
 		66806BA01F9E3BC8001E49E5 /* AssetAmountView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetAmountView+Rx.swift"; sourceTree = "<group>"; };
 		66806BA21F9F2C1A001E49E5 /* Array+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Rx.swift"; sourceTree = "<group>"; };
 		66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetCollectionCellViewModel+Rx.swift"; sourceTree = "<group>"; };
+		66E707F21FA220B800CF4B40 /* InputForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputForm.swift; sourceTree = "<group>"; };
 		69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModernWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F58CE1FC4A5FA6016BC92F9 /* Pods-ModernWallet.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.release.test.xcconfig"; sourceTree = "<group>"; };
@@ -424,6 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				615052AB1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift */,
+				66E707F21FA220B800CF4B40 /* InputForm.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -486,8 +485,6 @@
 				611AF5131F714FCF0064475C /* UIImagePickerController+RxCreate.swift */,
 				612E591F1F7A93EB0018476B /* KYCDocumentStatus+Extensions.swift */,
 				4671C9C41F7D17B3002C2F25 /* KYCDocumentType+Extensions.swift */,
-				46E5D0E81F64A34B00D78692 /* TextFieldNextDelegate.swift */,
-				461C6F911F8B56F600C5E8B3 /* TextFieldButton.swift */,
 				4671C9C21F7D10FA002C2F25 /* UIButton+Borders.swift */,
 				46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */,
 				61D4DD6A1F30A7CE002510C8 /* UIImageView+Rx.swift */,
@@ -1032,7 +1029,6 @@
 				66806BA31F9F2C1A001E49E5 /* Array+Rx.swift in Sources */,
 				CF6632461C175B54004353F5 /* AppDelegate.m in Sources */,
 				61FC79CF1F714016002A78CE /* KYCPhotoPlaceholderView.swift in Sources */,
-				46E5D0E91F64A34B00D78692 /* TextFieldNextDelegate.swift in Sources */,
 				66529DCA1F8D198B0059786B /* CashOutViewController.swift in Sources */,
 				66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */,
 				66806B9F1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift in Sources */,
@@ -1045,7 +1041,6 @@
 				614214191F78F9C400E2F524 /* KYCProtocols.swift in Sources */,
 				CC9458841F0400A000676249 /* AddMoneyCCStep1ViewController.swift in Sources */,
 				CC4B48C51F279B87003422D5 /* BuyStep4ViewController.swift in Sources */,
-				461C6F921F8B56F600C5E8B3 /* TextFieldButton.swift in Sources */,
 				615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */,
 				4671C9D51F828A5C002C2F25 /* KYCPendingViewController.swift in Sources */,
 				4651CFB81FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift in Sources */,
@@ -1076,6 +1071,7 @@
 				61A3E3081F62E5E700666A56 /* ScrollView+Keyboard.swift in Sources */,
 				6140EA471F1CE51C00B05A97 /* SeparatorView.swift in Sources */,
 				6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */,
+				66E707F31FA220B800CF4B40 /* InputForm.swift in Sources */,
 				6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */,
 				CC48AB671F0F83030081AF27 /* BuyStep3ViewController.swift in Sources */,
 				612E59201F7A93EB0018476B /* KYCDocumentStatus+Extensions.swift in Sources */,

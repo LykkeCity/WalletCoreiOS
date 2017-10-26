@@ -32,5 +32,3 @@ extension UIViewController {
     }
 
 }
-
-extension UIViewController: TextFieldButton {}

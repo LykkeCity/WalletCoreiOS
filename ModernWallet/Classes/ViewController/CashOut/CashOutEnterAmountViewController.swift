@@ -13,7 +13,7 @@ import WalletCore
 class CashOutEnterAmountViewController: UIViewController {
     
     @IBOutlet private weak var backgroundHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet internal weak var scrollView: UIScrollView!
     
     @IBOutlet private weak var assetImageView: UIImageView!
     @IBOutlet private weak var assetNameLabel: UILabel!
@@ -115,7 +115,7 @@ class CashOutEnterAmountViewController: UIViewController {
             .subscribe()
             .disposed(by: disposeBag)
         
-        setupUX()
+        setupFormUX(disposedBy: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +128,7 @@ class CashOutEnterAmountViewController: UIViewController {
 
     @IBAction private func confirmSliderChanged(_ slider: ConfirmSlider) {
         if slider.value {
-            performSubmit()
+            submitForm()
         }
     }
 
@@ -142,43 +142,25 @@ class CashOutEnterAmountViewController: UIViewController {
     }
     */
     
-    // MARK: - Private
-
-    private func setupUX() {
-        scrollView.subscribeKeyBoard(withDisposeBag: disposeBag)
-        
-        assetAmountTextField.delegate = self
-        baseAmountTextField.delegate = self
-        
-        addButton(forField: assetAmountTextField, withTitle: Localize("newDesign.next"))
-            .subscribe(onNext: { [weak self] textField in
-                _ = self?.goToNextField(withCurrentField: textField)
-            })
-            .disposed(by: disposeBag)
-        addDoneButton(baseAmountTextField, selector: #selector(CashOutEnterAmountViewController.performSubmit))
-    }
-    
 }
 
-extension CashOutEnterAmountViewController: TextFieldNextDelegate {
-
-    var submitButton: UIButton! {
-        return nil
+extension CashOutEnterAmountViewController: InputForm {
+    
+    var textFields: [UITextField] {
+        return [
+            assetAmountTextField,
+            baseAmountTextField
+        ]
     }
     
-    var textFields: [UITextField]! {
-        return [ assetAmountTextField, baseAmountTextField ]
-    }
-    
-    @objc func performSubmit() {
-        textFields.forEach { $0.resignFirstResponder() }
+    func submitForm() {
         performSegue(withIdentifier: "NextStep", sender: nil)
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return goToNextField(withCurrentField: textField)
-    }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return goToTextField(after: textField)
+    }
+    
 }
 
 extension WalletViewModel {

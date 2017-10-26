@@ -59,21 +59,11 @@ class BuyAssetListView: UIView {
         addSubview(view)
     }
     
-    func setupUX(withButtonTitle buttonTitle: String, disposedBy disposeBag: DisposeBag) {
+    func setupUX(width: CGFloat, disposedBy disposeBag: DisposeBag) {
         itemPicker.field.inputView = itemPicker.picker
         view.addSubview(itemPicker.field)
         
-        addButton(forField: itemPicker.field, withTitle: Localize("newDesign.done"))
-            .subscribe(onNext: {field in
-                field.resignFirstResponder()
-            })
-            .disposed(by: disposeBag)
-        
-        addButton(forField: amount, withTitle: buttonTitle)
-            .subscribe(onNext: {field in
-                _ = field.delegate?.textFieldShouldReturn?(field)
-            })
-            .disposed(by: disposeBag)
+        setupFormUX(forWidth: width, disposedBy: disposeBag)
         
         tapToSelectAsset.rx.event.asObservable()
             .subscribe(onNext: {[weak self] _ in
@@ -83,4 +73,14 @@ class BuyAssetListView: UIView {
     }
 }
 
-extension BuyAssetListView: TextFieldButton{}
+extension BuyAssetListView: InputForm {
+
+    var textFields: [UITextField] { return [itemPicker.field] }
+
+    func submitForm() {}
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return goToTextField(after: textField)
+    }
+
+}
