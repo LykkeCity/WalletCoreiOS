@@ -24,7 +24,7 @@ public class WalletViewModel {
     public let baseAssetObservable: Observable<LWAssetModel>
 
     public init(
-        assetIdentity: String,
+        wallet: Observable<LWSpotWallet>,
         dependency: (
             currencyExchanger: CurrencyExchanger,
             authManager: LWRxAuthManager
@@ -33,10 +33,6 @@ public class WalletViewModel {
         let baseAssetResponseObservable = dependency.authManager.baseAsset.requestBaseAssetGet()
             .shareReplay(1)
         
-        let wallet = dependency.authManager.lykkeWallets.requestNonEmptyWallets()
-            .map { wallets in wallets.first { $0.identity == assetIdentity } }
-            .filterNil()
-        
         let mainInfoObservable = Observable<Int>
             .interval(5, scheduler: MainScheduler.instance)
             .startWith(0)
@@ -44,10 +40,7 @@ public class WalletViewModel {
             .filterSuccess()
             .shareReplay(1)
         
-        assetObservable = dependency.authManager.allAssets.requestAsset(byId: assetIdentity)
-            .filterSuccess()
-            .filterNil()
-            .asObservable()
+        assetObservable = wallet.map{$0.asset}.filterNil()
         
         baseAssetObservable = baseAssetResponseObservable.filterSuccess()
         
