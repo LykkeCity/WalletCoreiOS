@@ -35,7 +35,7 @@ public class Asset {
             sign: baseAsset.symbol ?? ""
         )
         
-        self.percent = mainInfo.totalBalance == 0 ? 0.0 : (self.realCurrency.value / mainInfo.totalBalance).doubleValue
+        self.percent = mainInfo.totalBalance == 0 ? 0.0 : (self.realCurrency.value / mainInfo.totalBalance).doubleValue * 100
     }
     
     public init(cryptoCurrency: Currency, realCurrency: Currency, percent: Double) {
