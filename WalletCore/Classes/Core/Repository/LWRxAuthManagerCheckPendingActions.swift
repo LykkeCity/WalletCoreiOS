@@ -1,5 +1,5 @@
 //
-//  LWRxAuthManagerOffchainRequests.swift
+//  LWRxAuthManagerCheckPendingActions.swift
 //  WalletCore
 //
 //  Created by Georgi Stanev on 10/19/17.
@@ -9,11 +9,11 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerOffchainRequests : LWRxAuthManagerBase<LWPacketOffchainRequests> {
+public class LWRxAuthManagerCheckPendingActions : LWRxAuthManagerBase<LWPacketCheckPendingActions> {
     
-    public func request() -> Observable<ApiResultList<LWModelOffchainRequest>> {
+    public func request() -> Observable<ApiResult<LWPacketCheckPendingActions>> {
         return Observable.create{observer in
-            let packet = LWPacketOffchainRequests(observer: observer)
+            let packet = LWPacketCheckPendingActions(observer: observer)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,28 +22,28 @@ public class LWRxAuthManagerOffchainRequests : LWRxAuthManagerBase<LWPacketOffch
         .shareReplay(1)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketOffchainRequests) {
-        guard let observer = pack.observer as? AnyObserver<ApiResultList<LWModelOffchainRequest>> else {return}
+    override func onError(withData data: [AnyHashable : Any], pack: LWPacketCheckPendingActions) {
+        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketCheckPendingActions>> else {return}
         observer.onNext(.error(withData: data))
         observer.onCompleted()
     }
     
-    override func onSuccess(packet: LWPacketOffchainRequests) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWModelOffchainRequest>> else {return}
-        observer.onNext(.success(withData: packet.models))
-    
+    override func onSuccess(packet: LWPacketCheckPendingActions) {
+        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketCheckPendingActions>> else {return}
+        observer.onNext(.success(withData: packet))
+        
         observer.onCompleted()
     }
     
-    override func onForbidden(withPacket packet: LWPacketOffchainRequests) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWModelOffchainRequest>> else {return}
+    override func onForbidden(withPacket packet: LWPacketCheckPendingActions) {
+        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketCheckPendingActions>> else {return}
         observer.onNext(.forbidden)
         observer.onCompleted()
     }
 }
 
-public extension ObservableType where Self.E == ApiResultList<LWModelOffchainRequest> {
-    public func filterSuccess() -> Observable<[LWModelOffchainRequest]> {
+public extension ObservableType where Self.E == ApiResult<LWPacketCheckPendingActions> {
+    public func filterSuccess() -> Observable<LWPacketCheckPendingActions> {
         return map{$0.getSuccess()}.filterNil()
     }
     

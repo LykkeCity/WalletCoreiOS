@@ -44,6 +44,25 @@ public class LWRxAuthManagerOffchainTrade : LWRxAuthManagerBase<LWPacketOffchain
     }
 }
 
+public extension ObservableType where Self.E == [ApiResult<LWModelOffchainResult>] {
+    public func filterSuccess() -> Observable<[LWModelOffchainResult]> {
+        return filter{ $0.allSuccessful() }
+               .map{ $0.filterSuccess() }
+    }
+}
+
+extension Array where Element == ApiResult<LWModelOffchainResult> {
+    func allSuccessful() -> Bool {
+        return first{!$0.isSuccess} == nil
+    }
+    
+    func filterSuccess() -> [LWModelOffchainResult] {
+        return map{ $0.getSuccess() }
+               .filter{ $0 != nil }
+               .map{ $0! }
+    }
+}
+
 public extension ObservableType where Self.E == ApiResult<LWModelOffchainResult> {
     public func filterSuccess() -> Observable<LWModelOffchainResult> {
         return map{$0.getSuccess()}.filterNil()

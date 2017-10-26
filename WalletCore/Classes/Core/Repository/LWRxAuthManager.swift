@@ -54,9 +54,11 @@ public class LWRxAuthManager {
     public lazy var pubKeys             = {LWRxAuthManagerClientKeys()}()
     public lazy var kycForAsset         = {LWRxAuthManagerKYCForAsset()}()
     public lazy var kycDocuments        = {LWRxAuthManagerKYCDocuments()}()
+    public lazy var checkPendingActions      = {LWRxAuthManagerCheckPendingActions()}()
     public lazy var offchainTrade       = {LWRxAuthManagerOffchainTrade()}()
     public lazy var offchainFanilazeTransfer = {LWRxAuthManagerOffchainFinalizetransfer()}()
     public lazy var offchainProcessChannel   = {LWRxAuthManagerOffchainProcessChannel()}()
     public lazy var offchainChannelKey       = {LWRxAuthManagerOffchainChannelKey()}()
     public lazy var offchainRequests         = {LWRxAuthManagerOffchainRequests()}()
+    public lazy var offchainRequestTransfer  = {LWRxAuthManagerOffchainRequestTransfer()}()
 }
