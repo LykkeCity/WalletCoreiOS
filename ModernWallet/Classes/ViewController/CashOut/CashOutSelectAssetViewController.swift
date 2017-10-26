@@ -33,8 +33,6 @@ class CashOutSelectAssetViewController: UIViewController {
     
     private var assets = Variable<[Variable<Asset>]>([])
     
-    private var selectedAssetIdentity = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
@@ -50,7 +48,7 @@ class CashOutSelectAssetViewController: UIViewController {
         collectionView.register(UINib(nibName: "AssetCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AssetCell")
         
         assets.asObservable()
-            .map{$0.sorted{$0.0.value.percent > $0.1.value.percent}}
+            .map{ $0.sorted{ $0.0.value.percent > $0.1.value.percent } }
             .bind(to: collectionView.rx.items(cellIdentifier: "AssetCell", cellType: AssetCollectionViewCell.self)) { (row, element, cell) in
                 cell.bind(toAsset: AssetCollectionCellViewModel(element))
             }
@@ -59,8 +57,12 @@ class CashOutSelectAssetViewController: UIViewController {
         collectionView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 guard let `self` = self else { return }
-                self.selectedAssetIdentity = self.assets.value[indexPath.row].value.cryptoCurrency.identity
-                self.performSegue(withIdentifier: "NextStep", sender: nil)
+                
+                let selectedWallet = self.assets.asObservable()
+                    .map{ assets in assets[indexPath.row].value.wallet }
+                    .filterNil()
+                
+                self.performSegue(withIdentifier: "NextStep", sender: selectedWallet)
             })
             .disposed(by: disposeBag)
         
@@ -90,10 +92,15 @@ class CashOutSelectAssetViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NextStep" {
-            guard let enterAmountVC = segue.destination as? CashOutEnterAmountViewController else {
+            
+            guard
+                let enterAmountVC = segue.destination as? CashOutEnterAmountViewController,
+                let walletObservable = sender as? Observable<LWSpotWallet>
+            else {
                 return
             }
-            enterAmountVC.assetIdentity = selectedAssetIdentity
+            
+            enterAmountVC.walletObservable = walletObservable
         }
     }
 

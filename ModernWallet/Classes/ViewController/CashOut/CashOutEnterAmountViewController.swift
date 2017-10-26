@@ -30,11 +30,11 @@ class CashOutEnterAmountViewController: UIViewController {
     @IBOutlet private weak var slideToRetrieveLabel: UILabel!
     @IBOutlet private weak var confirmSlider: ConfirmSlider!
     
-    var assetIdentity: String!
+    var walletObservable: Observable<LWSpotWallet>!
     
     private lazy var walletViewModel: WalletViewModel = {
         return WalletViewModel(
-            assetIdentity: self.assetIdentity,
+            wallet: self.walletObservable,
             dependency: (
                 currencyExchanger: CurrencyExchanger(),
                 authManager: LWRxAuthManager.instance
