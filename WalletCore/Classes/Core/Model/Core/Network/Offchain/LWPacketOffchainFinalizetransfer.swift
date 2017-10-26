@@ -48,7 +48,7 @@ public class LWPacketOffchainFinalizetransfer: LWAuthorizePacket {
     }
     
     override public var urlRelative: String! {
-        return "offchain/processchannel"
+        return "offchain/finalizetransfer"
     }
     
     override public var type: GDXRESTPacketType {

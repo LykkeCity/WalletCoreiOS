@@ -520,6 +520,8 @@
 		46C9B0841F42D80900B83CCB /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0831F42D80900B83CCB /* DateFormatter+Extensions.swift */; };
 		46C9B0861F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0851F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift */; };
 		46C9B0881F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0871F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift */; };
+		46E3FF301FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */; };
+		46E3FF321FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */; };
 		46E5D0C91F5DD77F00D78692 /* LoadingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5D0C81F5DD77F00D78692 /* LoadingViewModelTests.swift */; };
 		46E5D0D91F5DD7ED00D78692 /* LWRxAuthManagerAllCurrencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5D0CA1F5DD7ED00D78692 /* LWRxAuthManagerAllCurrencies.swift */; };
 		46E5D0DA1F5DD7ED00D78692 /* LWRxAuthManagerAppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5D0CB1F5DD7ED00D78692 /* LWRxAuthManagerAppSettings.swift */; };
@@ -1098,6 +1100,8 @@
 		46C9B0831F42D80900B83CCB /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		46C9B0851F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWBaseHistoryItemType+Extensions.swift"; sourceTree = "<group>"; };
 		46C9B0871F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWPacketGetMainScreenInfo+Extension.swift"; sourceTree = "<group>"; };
+		46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCheckPendingActions.swift; sourceTree = "<group>"; };
+		46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainRequestTransfer.swift; sourceTree = "<group>"; };
 		46E5D0C81F5DD77F00D78692 /* LoadingViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewModelTests.swift; sourceTree = "<group>"; };
 		46E5D0CA1F5DD7ED00D78692 /* LWRxAuthManagerAllCurrencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerAllCurrencies.swift; sourceTree = "<group>"; };
 		46E5D0CB1F5DD7ED00D78692 /* LWRxAuthManagerAppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerAppSettings.swift; sourceTree = "<group>"; };
@@ -2120,6 +2124,8 @@
 				465805BC1F98DA0900FFFA0A /* LWRxAuthManagerOffchainProcessChannel.swift */,
 				465805BE1F98DA2200FFFA0A /* LWRxAuthManagerOffchainChannelKey.swift */,
 				465805C01F98DA3900FFFA0A /* LWRxAuthManagerOffchainRequests.swift */,
+				46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */,
+				46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2756,6 +2762,7 @@
 				C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */,
 				46C9B0491F42C83700B83CCB /* LWACurrencyMarketValueModel.swift in Sources */,
 				46E5D0E71F5DD7ED00D78692 /* LWRxAuthManagerRegistration.swift in Sources */,
+				46E3FF321FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift in Sources */,
 				46C9AEA01F417BD700B83CCB /* LWPacketBaseAssetGet.m in Sources */,
 				46E5D0DA1F5DD7ED00D78692 /* LWRxAuthManagerAppSettings.swift in Sources */,
 				46C9AFFF1F417BD800B83CCB /* GDXNet.m in Sources */,
@@ -2946,6 +2953,7 @@
 				46C9AEF81F417BD700B83CCB /* LWPacketKYCDocuments.m in Sources */,
 				46C9AEC41F417BD700B83CCB /* LWPacketCurrencyDeposit.m in Sources */,
 				46C9AEA21F417BD700B83CCB /* LWPacketBaseAssets.m in Sources */,
+				46E3FF301FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift in Sources */,
 				46C9AF501F417BD800B83CCB /* LWPacketSwiftCredentials.m in Sources */,
 				CC0DFAFD1F54493900EBB96E /* LWRxAuthManagerAccountExist.swift in Sources */,
 				46C9AE7A1F417BD700B83CCB /* LWJSONObject.m in Sources */,

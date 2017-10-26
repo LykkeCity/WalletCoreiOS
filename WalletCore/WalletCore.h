@@ -97,7 +97,7 @@ FOUNDATION_EXPORT const unsigned char WalletCoreVersionString[];
 #import <WalletCore/LWPacketKYCDocuments.h>
 #import <WalletCore/LWKYCDocumentsModel.h>
 #import <WalletCore/LWSendImageManager.h>
-
+#import <WalletCore/LWPacketCheckPendingActions.h>
 #import <WalletCore/LWActionsPopupElementModel.h>
 #import <WalletCore/LWImageDownloader.h>
 #import <WalletCore/LWActionsElementsGroupModel.h>

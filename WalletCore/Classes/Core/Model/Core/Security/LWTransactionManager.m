@@ -41,8 +41,8 @@
     self = [super init];
     numOfPerformigActions = 0;
     timeFromLastCheck = 0;
-    timer = [NSTimer timerWithTimeInterval:30 target:self selector:@selector(checkForPendingActions) userInfo:nil repeats:true];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+//    timer = [NSTimer timerWithTimeInterval:30 target:self selector:@selector(checkForPendingActions) userInfo:nil repeats:true];
+//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
     return self;
 }
