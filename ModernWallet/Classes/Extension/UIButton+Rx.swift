@@ -17,4 +17,11 @@ extension Reactive where Base: UIButton {
             button.setTitle(value, for: UIControlState.normal)
         }
     }
+    
+    var borderColor: UIBindingObserver<Base, UIColor> {
+        return UIBindingObserver(UIElement: self.base) { button, color in
+            button.borderColor = color
+        }
+    }
+    
 }

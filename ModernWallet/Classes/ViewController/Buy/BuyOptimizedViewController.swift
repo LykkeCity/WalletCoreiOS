@@ -21,13 +21,6 @@ class BuyOptimizedViewController: UIViewController {
     @IBOutlet weak var spreadPercent: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     
-    var textFields: [UITextField]! {
-        return [
-            self.firstAssetList.amount,
-            self.secondAssetList.amount
-        ]
-    }
-    
     //MARK:- Properties
     let assetModel = Variable<LWAssetModel?>(nil)
     var requirePinForTrading = true
@@ -246,13 +239,9 @@ extension BuyOptimizedViewModel {
 fileprivate extension BuyOptimizedViewController {
     
     func setupUX() {
-        scrollView.subscribeKeyBoard(withDisposeBag: disposeBag)
-        
-        firstAssetList.amount.delegate = self
-        secondAssetList.amount.delegate = self
-        
-        firstAssetList.setupUX(withButtonTitle: Localize("newDesign.next"), disposedBy: disposeBag)
-        secondAssetList.setupUX(withButtonTitle: Localize("newDesign.done"), disposedBy: disposeBag)
+        setupFormUX(disposedBy: disposeBag)
+        firstAssetList.setupUX(width: view.frame.width, disposedBy: disposeBag)
+        secondAssetList.setupUX(width: view.frame.width, disposedBy: disposeBag)
     }
 }
 
@@ -274,8 +263,17 @@ extension BuyOptimizedViewController: PinViewControllerDelegate {
 extension BuyOptimizedViewController: PinAwarePresenter{}
 
 // MARK: - Confort TextFieldNextDelegate Protocol
-extension BuyOptimizedViewController: TextFieldNextDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return goToNextField(withCurrentField: textField)
+extension BuyOptimizedViewController: InputForm {
+    
+    var textFields: [UITextField] {
+        return [
+            firstAssetList.amount,
+            secondAssetList.amount
+        ]
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return goToTextField(after: textField)
+    }
+    
 }

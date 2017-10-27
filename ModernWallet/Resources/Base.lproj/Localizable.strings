@@ -925,4 +925,13 @@
 "cashOut.newDesign.selectAsset" = "SELECT ASSET";
 "cashOut.newDesign.enterAmount" = "ENTER AMOUNT";
 "cashOut.newDesign.slideToRetrieve" = "SLIDE TO RETRIEVE";
-
+"cashOut.newDesign.personalDetails" = "INPUT PERSONAL DETAILS";
+"cashOut.newDesign.name" = "NAME";
+"cashOut.newDesign.transactionReason" = "TRANSACTION REASON";
+"cashOut.newDesign.additionalNotes" = "ADDITIONAL NOTES";
+"cashOut.newDesign.bankAccountDetails" = "INPUT BANK ACCOUNT DETAILS";
+"cashOut.newDesign.accountName" = "ACCOUNT NAME";
+"cashOut.newDesign.iban" = "IBAN";
+"cashOut.newDesign.bic" = "BIC";
+"cashOut.newDesign.accountHolder" = "ACCOUNT HOLDER";
+"cashOut.newDesign.selectCurrency" = "SELECT CURRENCY";

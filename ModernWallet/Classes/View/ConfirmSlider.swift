@@ -15,7 +15,9 @@ class ConfirmSlider: UIControl {
     
     override var isEnabled: Bool {
         didSet {
-            
+            let color: CGColor = isEnabled ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6)
+            handlerLayer.strokeColor = color
+            layer.borderColor = color
         }
     }
     

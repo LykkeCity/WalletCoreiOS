@@ -31,9 +31,7 @@ class AddMoneyCCStep1ViewController: UIViewController {
     @IBOutlet weak var phoneField: HoshiTextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBOutlet var textFields: [UITextField]!
-    
+        
     private lazy var creditCardViewModel:CreditCardBaseInfoViewModel = {
         return CreditCardBaseInfoViewModel(submit: self.submitButton.rx.tap.asObservable())
     }()
@@ -64,20 +62,9 @@ class AddMoneyCCStep1ViewController: UIViewController {
             .bind(to: submitButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        scrollView.subscribeKeyBoard(withDisposeBag: disposeBag)
-        
         //add buttons above of the keyboard for these type of keyboards that don't have return button, 
         //and call textFieldShouldReturn on button tap
-        Observable.merge(
-            addButton(forField: amountTextField, withTitle: Localize("newDesign.next")),
-            addButton(forField: zipField, withTitle: Localize("newDesign.next")),
-            addButton(forField: codeField, withTitle: Localize("newDesign.next")),
-            addButton(forField: phoneField, withTitle: Localize("newDesign.done"))
-        ).subscribe(onNext: {field in
-            _ = field.delegate?.textFieldShouldReturn?(field)
-        })
-        .disposed(by: disposeBag)
-        
+        setupFormUX(disposedBy: disposeBag)
     }
 
     
@@ -206,8 +193,24 @@ fileprivate extension CreditCardBaseInfoViewModel {
     }
 }
 
-extension AddMoneyCCStep1ViewController: TextFieldNextDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return goToNextField(withCurrentField: textField)
+extension AddMoneyCCStep1ViewController: InputForm {
+    
+    var textFields: [UITextField] {
+        return [
+            amountTextField,
+            firstNameField,
+            lastNameField,
+            addressField,
+            cityField,
+            zipField,
+            countryField,
+            codeField,
+            phoneField
+        ]
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return goToTextField(after: textField)
+    }
+
 }

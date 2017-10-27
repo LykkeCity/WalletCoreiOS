@@ -13,7 +13,7 @@ import WalletCore
 class CashOutEnterAmountViewController: UIViewController {
     
     @IBOutlet private weak var backgroundHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet internal weak var scrollView: UIScrollView!
     
     @IBOutlet private weak var assetImageView: UIImageView!
     @IBOutlet private weak var assetNameLabel: UILabel!
@@ -28,7 +28,7 @@ class CashOutEnterAmountViewController: UIViewController {
     @IBOutlet fileprivate weak var assetAmountTextField: UITextField!
     
     @IBOutlet private weak var slideToRetrieveLabel: UILabel!
-    @IBOutlet private weak var confirmSlider: ConfirmSlider!
+    @IBOutlet fileprivate weak var confirmSlider: ConfirmSlider!
     
     var walletObservable: Observable<LWSpotWallet>!
     
@@ -48,6 +48,13 @@ class CashOutEnterAmountViewController: UIViewController {
     }()
     
     private var disposeBag = DisposeBag()
+    
+    fileprivate lazy var cashOutViewModel = CashOutViewModel(
+        amountViewModel: CashOutAmountViewModel(walletObservable: self.walletObservable),
+        generalViewModel: CashOutGeneralViewModel(),
+        bankAccountViewModel: CashOutBankAccountViewModel(),
+        currencyExchanger: CurrencyExchanger(refresh: Observable<Void>.interval(10.0))
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +122,24 @@ class CashOutEnterAmountViewController: UIViewController {
             .subscribe()
             .disposed(by: disposeBag)
         
-        setupUX()
+        let amountViewModel = cashOutViewModel.amountViewModel
+        
+        Observable.combineLatest(walletObservable, assetAmountTextField.rx.text.filterNil())
+            .map { (data) -> Decimal in
+                let (wallet, amountString) = data
+                var amount = amountString.decimalValue ?? 0
+                var roundedAmount = Decimal()
+                NSDecimalRound(&roundedAmount, &amount, wallet.asset.accuracy.intValue, .bankers)
+                return roundedAmount
+            }
+            .bind(to: amountViewModel.amount)
+            .disposed(by: disposeBag)
+        
+        amountViewModel.isValid.asDriver(onErrorJustReturn: false)
+            .drive(confirmSlider.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        setupFormUX(disposedBy: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,57 +152,41 @@ class CashOutEnterAmountViewController: UIViewController {
 
     @IBAction private func confirmSliderChanged(_ slider: ConfirmSlider) {
         if slider.value {
-            performSubmit()
+            submitForm()
         }
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    // MARK: - Private
-
-    private func setupUX() {
-        scrollView.subscribeKeyBoard(withDisposeBag: disposeBag)
-        
-        assetAmountTextField.delegate = self
-        baseAmountTextField.delegate = self
-        
-        addButton(forField: assetAmountTextField, withTitle: Localize("newDesign.next"))
-            .subscribe(onNext: { [weak self] textField in
-                _ = self?.goToNextField(withCurrentField: textField)
-            })
-            .disposed(by: disposeBag)
-        addDoneButton(baseAmountTextField, selector: #selector(CashOutEnterAmountViewController.performSubmit))
+        if segue.identifier == "NextStep" {
+            guard let vc = segue.destination as? CashOutPersonalDetailsViewController else {
+                return
+            }
+            vc.cashOutViewModel = cashOutViewModel
+        }
     }
     
 }
 
-extension CashOutEnterAmountViewController: TextFieldNextDelegate {
-
-    var submitButton: UIButton! {
-        return nil
+extension CashOutEnterAmountViewController: InputForm {
+    
+    var textFields: [UITextField] {
+        return [
+            assetAmountTextField,
+            baseAmountTextField
+        ]
     }
     
-    var textFields: [UITextField]! {
-        return [ assetAmountTextField, baseAmountTextField ]
-    }
-    
-    @objc func performSubmit() {
-        textFields.forEach { $0.resignFirstResponder() }
+    func submitForm() {
+        guard confirmSlider.isEnabled else { return }
         performSegue(withIdentifier: "NextStep", sender: nil)
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return goToNextField(withCurrentField: textField)
-    }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return goToTextField(after: textField)
+    }
+    
 }
 
 extension WalletViewModel {

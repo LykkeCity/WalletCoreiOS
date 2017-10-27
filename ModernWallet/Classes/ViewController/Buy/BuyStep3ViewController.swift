@@ -66,8 +66,8 @@ class BuyStep3ViewController: UIViewController, UIPickerViewDelegate, UITextFiel
 
         txtField.inputView = dataPicker
         self.view.addSubview(txtField)
-        addDoneButton(txtField, selector: #selector(doneAction))
-        addDoneButton(unitsAmount, selector: #selector(doneUnitsAction))
+//        addDoneButton(txtField, selector: #selector(doneAction))
+//        addDoneButton(unitsAmount, selector: #selector(doneUnitsAction))
         
         unitsAmount.attributedPlaceholder = NSAttributedString(string: "0.0",
                                                                attributes: [NSForegroundColorAttributeName: UIColor.white])
