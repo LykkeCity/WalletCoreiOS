@@ -20,7 +20,10 @@ extension UIViewController {
     
     func show(error dictionary: [AnyHashable : Any]) {
         let errorMessage = dictionary[AnyHashable("Message")] as? String ?? Localize("errors.server.problems")
+        show(errorMessage: errorMessage)
+    }
         
+    func show(errorMessage: String?) {
         let alertController = UIAlertController(title: Localize("utils.error"), message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: Localize("utils.ok"), style: UIAlertActionStyle.default) {
             (result : UIAlertAction) -> Void in
