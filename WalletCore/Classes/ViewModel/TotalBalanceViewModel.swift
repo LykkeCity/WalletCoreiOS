@@ -26,12 +26,12 @@ open class TotalBalanceViewModel {
         mainInfo: Observable<ApiResult<(mainInfo: LWPacketGetMainScreenInfo, asset: LWAssetModel)>>
     )
     
-    public init(_ authManager:LWRxAuthManager = LWRxAuthManager.instance, keyChainManager: LWKeychainManager = LWKeychainManager.instance()) {
+    public init(refresh: Observable<Void>,
+                authManager:LWRxAuthManager = LWRxAuthManager.instance,
+                keyChainManager: LWKeychainManager = LWKeychainManager.instance()) {
+        
         let baseAssetObservable = authManager.baseAsset.requestBaseAssetGet()
-        let mainInfoObservable = Observable<Int>
-            .interval(5, scheduler: MainScheduler.instance)
-            .skipWhile{_ in !keyChainManager.isAuthenticated}
-            .startWith(0)
+        let mainInfoObservable = refresh
             .flatMap{_ in authManager.mainInfo.requestMainScreenInfo(withAssetObservable: baseAssetObservable)}
             .shareReplay(1)
         

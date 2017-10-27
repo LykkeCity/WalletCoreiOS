@@ -24,6 +24,7 @@ public class WalletViewModel {
     public let baseAssetObservable: Observable<LWAssetModel>
 
     public init(
+        refresh: Observable<Void>,
         wallet: Observable<LWSpotWallet>,
         dependency: (
             currencyExchanger: CurrencyExchanger,
@@ -33,9 +34,7 @@ public class WalletViewModel {
         let baseAssetResponseObservable = dependency.authManager.baseAsset.requestBaseAssetGet()
             .shareReplay(1)
         
-        let mainInfoObservable = Observable<Int>
-            .interval(5, scheduler: MainScheduler.instance)
-            .startWith(0)
+        let mainInfoObservable = refresh
             .flatMap{_ in dependency.authManager.mainInfo.requestMainScreenInfo(withAssetObservable: baseAssetResponseObservable)}
             .filterSuccess()
             .shareReplay(1)

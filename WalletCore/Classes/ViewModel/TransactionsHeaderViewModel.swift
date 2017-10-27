@@ -30,8 +30,8 @@ open class TransactionsHeaderViewModel {
     
     public init(
         asset: Variable<ApiResult<LWAssetModel>?>,
-        authManager: LWRxAuthManager = LWRxAuthManager.instance,
-        totalBalanceViewModel: TotalBalanceViewModel = TotalBalanceViewModel()
+        totalBalanceViewModel: TotalBalanceViewModel,
+        authManager: LWRxAuthManager = LWRxAuthManager.instance
     ) {
         let assetObservable = asset.asObservable().filterNil().shareReplay(1)
         

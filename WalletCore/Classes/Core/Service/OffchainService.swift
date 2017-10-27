@@ -89,12 +89,9 @@ public class OffchainService {
             .shareReplay(1)
     }
     
-    public func finalizePendingRequests() -> Disposable {
+    public func finalizePendingRequests(refresh: Observable<Void>) -> Disposable {
         //1. get pending actions
-        let pendingActions = Observable<Int>
-            .interval(60.0, scheduler: MainScheduler.instance)
-            .startWith(0)
-            .throttle(30.0, scheduler: MainScheduler.instance)
+        let pendingActions = refresh
             .flatMapLatest{ [weak self] _ -> Observable<ApiResult<LWPacketCheckPendingActions>> in
                 guard let `self` = self else { return Observable.never() }
                 return self.authManager.checkPendingActions.request()
@@ -118,7 +115,7 @@ public class OffchainService {
             }
             .filterSuccess()
             .subscribe(onNext: { [weak self] _ in
-                _ = self?.finalizePendingRequests()
+                self?.finalizePendingRequests(refresh: refresh)
             })
     }
     

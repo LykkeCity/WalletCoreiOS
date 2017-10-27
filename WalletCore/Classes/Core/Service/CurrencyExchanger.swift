@@ -14,14 +14,11 @@ public class CurrencyExchanger {
     public let pairRates: Variable<[LWAssetPairRateModel]> = Variable([])
     private let disposeBag = DisposeBag()
     
-    public init(authManager: LWRxAuthManager = LWRxAuthManager.instance, keyChainManager: LWKeychainManager = LWKeychainManager.instance()) {
+    public init(refresh: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
+        
         self.authManager = authManager
         
-//        LWKeychainManager.instance().isAuthenticated
-        Observable<Int>
-            .interval(5, scheduler: MainScheduler.instance)
-            .startWith(0)
-            .skipWhile{_ in !keyChainManager.isAuthenticated}
+        refresh
             .flatMap{_ in authManager.assetPairRates.requestAssetPairRates(ignoreBase: true).filterSuccess()}
             .bind(to: pairRates)
             .disposed(by: disposeBag)
