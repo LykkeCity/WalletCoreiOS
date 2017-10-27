@@ -63,21 +63,12 @@ public class OffchainService {
             }
             .shareReplay(1)
         
-        //3. request chanel processing if trading returns success
-        let offchainProcessChanel = offchainTrade
+        //3. create channel if needed and finalize transfer
+        let finalizedTransfer = offchainTrade
             .filterSuccess()
-            .flatMapLatest{ [weak self] (offchainResult: LWModelOffchainResult) -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let `self` = self else { return Observable.never() }
-                return self.processChannel(withOffchainResult: offchainResult, transactionType: .createChannel)
-            }
-            .shareReplay(1)
-        
-        //4. finalize transfer if chanel processing is sucessful
-        let offchainFinalizeTransfer = offchainProcessChanel
-            .filterSuccess()
-            .flatMapLatest{ [weak self] (offchainResult: LWModelOffchainResult) -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let `self` = self else { return Observable.never() }
-                return self.finalizeTransfer(withOffchainResult: offchainResult, channelAsset: channelAsset.identity)
+            .flatMap{ [weak self] offchainResult -> Observable<ApiResult<LWModelOffchainResult>> in
+                guard let `self` = self else {return Observable.never()}
+                return self.finalize(offchainResult: offchainResult, channelAssetId: channelAsset.identity)
             }
             .shareReplay(1)
         
@@ -85,11 +76,10 @@ public class OffchainService {
         let errors = Observable.merge(
             offchainChannelKey.filterError(),
             offchainTrade.filterError(),
-            offchainProcessChanel.filterError(),
-            offchainFinalizeTransfer.filterError()
+            finalizedTransfer.filterError()
         ).map{ ApiResult<LWModelOffchainResult>.error(withData: $0) }
         
-        let finalResult = offchainFinalizeTransfer
+        let finalResult = finalizedTransfer
             .filterSuccess()
             .map{ ApiResult<LWModelOffchainResult>.success(withData: $0) }
     
@@ -104,16 +94,19 @@ public class OffchainService {
         let pendingActions = Observable<Int>
             .interval(60.0, scheduler: MainScheduler.instance)
             .startWith(0)
+            .throttle(30.0, scheduler: MainScheduler.instance)
             .flatMapLatest{ [weak self] _ -> Observable<ApiResult<LWPacketCheckPendingActions>> in
                 guard let `self` = self else { return Observable.never() }
                 return self.authManager.checkPendingActions.request()
             }
+            .shareReplay(1)
         
         //2. get requests if there are pending offchain requests
         let requests = pendingActions
             .filterSuccess()
             .filter{ $0.hasOffchainRequests }
             .flatMapLatest{ [weak self] _ in self?.authManager.offchainRequests.request() ?? Observable.never() }
+            .shareReplay(1)
         
         // Filter first request and subscribe itself until all requests get finalized
         return requests.filterSuccess()
@@ -129,6 +122,37 @@ public class OffchainService {
             })
     }
     
+    private func finalize(offchainResult: LWModelOffchainResult, channelAssetId: String) -> Observable<ApiResult<LWModelOffchainResult>> {
+        
+        //If channel doesn't exist first create it (if oprerationResult == 1) otherwise just use given offchainResult
+        let processedChanel = offchainResult.operationResult == 1 ?
+            self.processChannel(withOffchainResult: offchainResult, transactionType: .createChannel) :
+            Observable.just(ApiResult.success(withData: offchainResult))
+        
+        //Merge request transfer with result 0 and processed channel and finalize transfer
+        let finalizedTransfer = processedChanel
+            .filterSuccess()
+            .flatMapLatest{ [weak self]  offchainResult -> Observable<ApiResult<LWModelOffchainResult>> in
+                guard let `self` = self else { return Observable.never() }
+                return self.finalizeTransfer(withOffchainResult: offchainResult, channelAsset: channelAssetId)
+            }
+            .shareReplay(1)
+        
+        let errors = Observable
+            .merge(processedChanel.filterError(), finalizedTransfer.filterError())
+            .map{ ApiResult<LWModelOffchainResult>.error(withData: $0) }
+        
+        let finalizedSuccess = finalizedTransfer
+            .filterSuccess()
+            .map{ ApiResult.success(withData: $0) }
+        
+        return Observable
+            .merge(finalizedSuccess, errors)
+            .startWith(ApiResult.loading)
+            .shareReplay(1)
+        
+    }
+    
     private func finalize(pendingRequest request: LWModelOffchainRequest) -> Observable<ApiResult<LWModelOffchainResult>> {
         
         //1. get channel key
@@ -141,39 +165,24 @@ public class OffchainService {
             .replaceNilWithLastPrivateKey(keyChainManager: keychainManager, forAssetId: request.assetId)
         
         //2. Sent request transfer
-        let offchainRequestTransfer = decryptedKey.flatMapLatest{ key in
+        let offchainRequestTransfer = decryptedKey
+            .flatMapLatest{ key in
                 self.authManager.offchainRequestTransfer.request(
                     withData: LWPacketRequestTransfer.Body(requestId: request.requestId, prevTempPrivateKey: key)
                 )
             }
             .shareReplay(1)
         
-        //3. Proccess chanel if opration result is 1
-        let processedChanel = offchainRequestTransfer
+        return offchainRequestTransfer
             .filterSuccess()
-            .filter{ $0.operationResult == 1 }
-            .flatMapLatest{ [weak self] offchainResult -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let `self` = self else { return Observable.never()}
-                return self.processChannel(withOffchainResult: offchainResult, transactionType: .createChannel)
+            .flatMap{ [weak self] offchainResult -> Observable<ApiResult<LWModelOffchainResult>> in
+                guard let `self` = self else{ return Observable.never() }
+                return self.finalize(offchainResult: offchainResult, channelAssetId: request.assetId)
             }
             .shareReplay(1)
-        
-        //Merge request transfer with result 0 and processed chane; and finalize transfer
-        let finalizedTransfer = Observable
-            .merge(
-                offchainRequestTransfer.filterSuccess().filter{ $0.operationResult == 0},
-                processedChanel.filterSuccess()
-            )
-            .flatMapLatest{ [weak self]  offchainResult -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let `self` = self else { return Observable.never() }
-                return self.finalizeTransfer(withOffchainResult: offchainResult, channelAsset: request.assetId)
-            }
-            .shareReplay(1)
-        
-        return finalizedTransfer
     }
     
-    public func processChannel(withOffchainResult offchainResult: LWModelOffchainResult,
+    private func processChannel(withOffchainResult offchainResult: LWModelOffchainResult,
                                transactionType: OffchainTransactionType) -> Observable<ApiResult<LWModelOffchainResult>> {
         
         return processChannel(
@@ -183,7 +192,7 @@ public class OffchainService {
         )
     }
     
-    public func processChannel(transaction: String, transferId: String,
+    private func processChannel(transaction: String, transferId: String,
                                transactionType: OffchainTransactionType) -> Observable<ApiResult<LWModelOffchainResult>> {
                 
         guard let signedChannelTransaction = LWTransactionManager.signOffchainTransaction(
@@ -202,7 +211,7 @@ public class OffchainService {
         )
     }
     
-    public func finalizeTransfer(withOffchainResult offchainResult: LWModelOffchainResult,
+    private func finalizeTransfer(withOffchainResult offchainResult: LWModelOffchainResult,
                                  channelAsset: String) -> Observable<ApiResult<LWModelOffchainResult>>  {
         
         return finalizeTransfer(
@@ -212,7 +221,7 @@ public class OffchainService {
         )
     }
     
-    public func finalizeTransfer(transaction: String, transferId: String,
+    private func finalizeTransfer(transaction: String, transferId: String,
                                  channelAsset: String) -> Observable<ApiResult<LWModelOffchainResult>>  {
         
         guard
