@@ -63,6 +63,7 @@ fileprivate extension ObservableType where Self.E == LWBaseHistoryItemType {
             map{$0.dateTime}
             .filterNil()
             .map{DateFormatter.mediumStyle.string(from: $0)}
+            .startWith("")
     }
     
     func mapToIcon() -> Observable<UIImage> {

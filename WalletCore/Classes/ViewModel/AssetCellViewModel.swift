@@ -28,7 +28,7 @@ open class AssetCellViewModel {
             .asDriver(onErrorJustReturn: "")
         
         self.cryptoValue = asset.asObservable()
-            .mapToCryptoName()
+            .mapToCryptoValue()
             .asDriver(onErrorJustReturn: "")
         
         self.realValue = asset.asObservable()
