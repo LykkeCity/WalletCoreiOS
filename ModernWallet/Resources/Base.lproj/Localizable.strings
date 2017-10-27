@@ -929,3 +929,9 @@
 "cashOut.newDesign.name" = "NAME";
 "cashOut.newDesign.transactionReason" = "TRANSACTION REASON";
 "cashOut.newDesign.additionalNotes" = "ADDITIONAL NOTES";
+"cashOut.newDesign.bankAccountDetails" = "INPUT BANK ACCOUNT DETAILS";
+"cashOut.newDesign.accountName" = "ACCOUNT NAME";
+"cashOut.newDesign.iban" = "IBAN";
+"cashOut.newDesign.bic" = "BIC";
+"cashOut.newDesign.accountHolder" = "ACCOUNT HOLDER";
+"cashOut.newDesign.selectCurrency" = "SELECT CURRENCY";

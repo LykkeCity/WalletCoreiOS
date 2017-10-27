@@ -87,6 +87,7 @@
 		66806BA51F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */; };
 		66E707F31FA220B800CF4B40 /* InputForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E707F21FA220B800CF4B40 /* InputForm.swift */; };
 		66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */; };
+		66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */; };
 		A10A94F41D0D33AA00557C87 /* ThreeDots.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A94F31D0D33AA00557C87 /* ThreeDots.png */; };
 		A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A95041D0E8F5F00557C87 /* SlashSign@2x.png */; };
 		A10A95071D0E8F5F00557C87 /* SlashSign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A10A95051D0E8F5F00557C87 /* SlashSign@3x.png */; };
@@ -238,6 +239,7 @@
 		66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetCollectionCellViewModel+Rx.swift"; sourceTree = "<group>"; };
 		66E707F21FA220B800CF4B40 /* InputForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputForm.swift; sourceTree = "<group>"; };
 		66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutPersonalDetailsViewController.swift; sourceTree = "<group>"; };
+		66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOurBankAccountDetailsViewController.swift; sourceTree = "<group>"; };
 		69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModernWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F58CE1FC4A5FA6016BC92F9 /* Pods-ModernWallet.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.release.test.xcconfig"; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */,
 				66806B9E1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift */,
 				66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */,
+				66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */,
 			);
 			path = CashOut;
 			sourceTree = "<group>";
@@ -1090,6 +1093,7 @@
 				4671C9BF1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift in Sources */,
 				CCDB25721EEFD9C2000D590F /* SignUpPasswordViewController.swift in Sources */,
 				469DA71F1F6C14C5000B904C /* KYCTabCollectionViewCell.swift in Sources */,
+				66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */,
 				4671C9C71F7E24DC002C2F25 /* UIView+Rx.swift in Sources */,
 				6140E3281F14E6AF00D8885B /* TransactionsViewController.swift in Sources */,
 				CC0DFB051F56D80B00EBB96E /* RegisterSendCodeEmailViewController.swift in Sources */,
