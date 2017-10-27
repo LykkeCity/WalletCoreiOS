@@ -13,6 +13,7 @@
 		461C6F921F8B56F600C5E8B3 /* TextFieldButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F911F8B56F600C5E8B3 /* TextFieldButton.swift */; };
 		462878731F433A710006BE45 /* GraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462878721F433A710006BE45 /* GraphProtocol.swift */; };
 		462878761F433B0F0006BE45 /* TradingLinearGraphViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 462878751F433B0F0006BE45 /* TradingLinearGraphViewTest.m */; };
+		462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */; };
 		462B34301F00EC5000374038 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462B342F1F00EC5000374038 /* Colors.swift */; };
 		463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A51F94DB17005930DD /* MenuTableViewController.swift */; };
 		463FC5A81F94DB17005930DD /* TopNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A61F94DB17005930DD /* TopNavViewController.swift */; };
@@ -33,6 +34,7 @@
 		469DA7231F6C1FB1000B904C /* KYCStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7221F6C1FB1000B904C /* KYCStep1ViewController.swift */; };
 		469DA7251F6C1FBF000B904C /* KYCStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7241F6C1FBF000B904C /* KYCStep2ViewController.swift */; };
 		469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7261F6C1FC8000B904C /* KYCStep3ViewController.swift */; };
+		46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */; };
 		46E5D0E91F64A34B00D78692 /* TextFieldNextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5D0E81F64A34B00D78692 /* TextFieldNextDelegate.swift */; };
 		6100D8D81F1F327200EB40A5 /* LineChartDataSet+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */; };
 		6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */; };
@@ -58,7 +60,6 @@
 		6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */; };
 		6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */; };
 		6197A3C41EEA9017008ECF5A /* PieChartCenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6197A3C31EEA9017008ECF5A /* PieChartCenter.xib */; };
-		61A3E2FE1F61547B00666A56 /* UIViewController+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A3E2FD1F61547B00666A56 /* UIViewController+Loading.swift */; };
 		61A3E3001F61548E00666A56 /* TextFieldEffects+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A3E2FF1F61548E00666A56 /* TextFieldEffects+Rx.swift */; };
 		61A3E3081F62E5E700666A56 /* ScrollView+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A3E3071F62E5E700666A56 /* ScrollView+Keyboard.swift */; };
 		61A3E30A1F62EAD100666A56 /* RegisterCreatePinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A3E3091F62EAD100666A56 /* RegisterCreatePinViewController.swift */; };
@@ -159,6 +160,7 @@
 		462878721F433A710006BE45 /* GraphProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphProtocol.swift; sourceTree = "<group>"; };
 		462878741F433B0F0006BE45 /* TradingLinearGraphViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TradingLinearGraphViewTest.h; path = ModernWallet/Classes/View/Chart/TradingLinearGraphViewTest.h; sourceTree = SOURCE_ROOT; };
 		462878751F433B0F0006BE45 /* TradingLinearGraphViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TradingLinearGraphViewTest.m; path = ModernWallet/Classes/View/Chart/TradingLinearGraphViewTest.m; sourceTree = SOURCE_ROOT; };
+		462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extensions.swift"; sourceTree = "<group>"; };
 		462B342F1F00EC5000374038 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		463FC5A51F94DB17005930DD /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		463FC5A61F94DB17005930DD /* TopNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		469DA7241F6C1FBF000B904C /* KYCStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCStep2ViewController.swift; sourceTree = "<group>"; };
 		469DA7261F6C1FC8000B904C /* KYCStep3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCStep3ViewController.swift; sourceTree = "<group>"; };
 		46B583741F94C6D600B475DB /* ModernWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModernWallet-Bridging-Header.h"; sourceTree = "<group>"; };
+		46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		46E5D0E81F64A34B00D78692 /* TextFieldNextDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldNextDelegate.swift; sourceTree = "<group>"; };
 		6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartDataSet+Setup.swift"; sourceTree = "<group>"; };
 		6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartView+Setup.swift"; sourceTree = "<group>"; };
@@ -205,7 +208,6 @@
 		6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieValueFormatter.swift; sourceTree = "<group>"; };
 		6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartCenter.swift; sourceTree = "<group>"; };
 		6197A3C31EEA9017008ECF5A /* PieChartCenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PieChartCenter.xib; sourceTree = "<group>"; };
-		61A3E2FD1F61547B00666A56 /* UIViewController+Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loading.swift"; sourceTree = "<group>"; };
 		61A3E2FF1F61548E00666A56 /* TextFieldEffects+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextFieldEffects+Rx.swift"; sourceTree = "<group>"; };
 		61A3E3071F62E5E700666A56 /* ScrollView+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScrollView+Keyboard.swift"; sourceTree = "<group>"; };
 		61A3E3091F62EAD100666A56 /* RegisterCreatePinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCreatePinViewController.swift; sourceTree = "<group>"; };
@@ -472,7 +474,7 @@
 				4671C9C61F7E24DC002C2F25 /* UIView+Rx.swift */,
 				4671C9C01F7CE840002C2F25 /* UIButton+Rx.swift */,
 				4671C9BE1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift */,
-				61A3E2FD1F61547B00666A56 /* UIViewController+Loading.swift */,
+				46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */,
 				615052AF1F29D06800AFB6FC /* UIViewController+Extensions.swift */,
 				6179434D1F0530690009597C /* Notification+Extensions.swift */,
 				611AF5131F714FCF0064475C /* UIImagePickerController+RxCreate.swift */,
@@ -708,6 +710,7 @@
 				CF66323D1C175B54004353F5 /* AppDelegate.h */,
 				CF66323E1C175B54004353F5 /* AppDelegate.m */,
 				46B583741F94C6D600B475DB /* ModernWallet-Bridging-Header.h */,
+				462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1052,6 +1055,7 @@
 				4671C9C31F7D10FA002C2F25 /* UIButton+Borders.swift in Sources */,
 				CC5B6C0A1F5D988400723587 /* RegisterFillProfileViewController.swift in Sources */,
 				665988501F8E4E5000073703 /* AssetCollectionViewCell.swift in Sources */,
+				46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */,
 				66806BA51F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift in Sources */,
 				CC5B6C061F58610A00723587 /* RegisterCreatePasswordViewController.swift in Sources */,
 				6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */,
@@ -1086,12 +1090,12 @@
 				611AF5141F714FCF0064475C /* UIImagePickerController+RxCreate.swift in Sources */,
 				61A3E3001F61548E00666A56 /* TextFieldEffects+Rx.swift in Sources */,
 				6100D8DC1F1F334B00EB40A5 /* UIStackView+Hint.swift in Sources */,
-				61A3E2FE1F61547B00666A56 /* UIViewController+Loading.swift in Sources */,
 				CC94587F1F03DB8E00676249 /* BankViewController.swift in Sources */,
 				CC9458811F03DC4F00676249 /* StartViewController.swift in Sources */,
 				462B34301F00EC5000374038 /* Colors.swift in Sources */,
 				469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */,
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
+				462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */,
 				463FC5A81F94DB17005930DD /* TopNavViewController.swift in Sources */,
 				6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */,
 				CC48AB661F0F83030081AF27 /* BuyStep2ViewController.swift in Sources */,
@@ -1225,7 +1229,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1245,6 +1249,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
+				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1266,7 +1271,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1286,6 +1291,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
+				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1359,7 +1365,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1379,6 +1385,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
+				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1445,7 +1452,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1465,6 +1472,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
+				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -1,8 +1,8 @@
 //
-//  UIViewController+Loading.swift
+//  UIViewController+Rx.swift
 //  ModernWallet
 //
-//  Created by Georgi Stanev on 9/7/17.
+//  Created by Georgi Stanev on 24.10.17.
 //  Copyright © 2017 Lykkex. All rights reserved.
 //
 
@@ -28,4 +28,11 @@ extension Reactive where Base: UIViewController {
             SwiftSpinner.show("Loading...")
         }
     }
+    
+    var error: UIBindingObserver<Base, [AnyHashable: Any]> {
+        return UIBindingObserver(UIElement: self.base) { vc, value in
+            vc.show(error: value)
+        }
+    }
 }
+
