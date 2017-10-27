@@ -28,7 +28,7 @@ class CashOutEnterAmountViewController: UIViewController {
     @IBOutlet fileprivate weak var assetAmountTextField: UITextField!
     
     @IBOutlet private weak var slideToRetrieveLabel: UILabel!
-    @IBOutlet private weak var confirmSlider: ConfirmSlider!
+    @IBOutlet fileprivate weak var confirmSlider: ConfirmSlider!
     
     var walletObservable: Observable<LWSpotWallet>!
     
@@ -48,6 +48,13 @@ class CashOutEnterAmountViewController: UIViewController {
     }()
     
     private var disposeBag = DisposeBag()
+    
+    fileprivate lazy var cashOutViewModel = CashOutViewModel(
+        amountViewModel: CashOutAmountViewModel(walletObservable: self.walletObservable),
+        generalViewModel: CashOutGeneralViewModel(),
+        bankAccountViewModel: CashOutBankAccountViewModel(),
+        currencyExchanger: CurrencyExchanger(refresh: Observable<Void>.interval(10.0))
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +122,23 @@ class CashOutEnterAmountViewController: UIViewController {
             .subscribe()
             .disposed(by: disposeBag)
         
+        let amountViewModel = cashOutViewModel.amountViewModel
+        
+        Observable.combineLatest(walletObservable, assetAmountTextField.rx.text.filterNil())
+            .map { (data) -> Decimal in
+                let (wallet, amountString) = data
+                var amount = amountString.decimalValue ?? 0
+                var roundedAmount = Decimal()
+                NSDecimalRound(&roundedAmount, &amount, wallet.asset.accuracy.intValue, .bankers)
+                return roundedAmount
+            }
+            .bind(to: amountViewModel.amount)
+            .disposed(by: disposeBag)
+        
+        amountViewModel.isValid.asDriver(onErrorJustReturn: false)
+            .drive(confirmSlider.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
         setupFormUX(disposedBy: disposeBag)
     }
     
@@ -154,6 +178,7 @@ extension CashOutEnterAmountViewController: InputForm {
     }
     
     func submitForm() {
+        guard confirmSlider.isEnabled else { return }
         performSegue(withIdentifier: "NextStep", sender: nil)
     }
 
