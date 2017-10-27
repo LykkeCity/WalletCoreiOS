@@ -925,4 +925,7 @@
 "cashOut.newDesign.selectAsset" = "SELECT ASSET";
 "cashOut.newDesign.enterAmount" = "ENTER AMOUNT";
 "cashOut.newDesign.slideToRetrieve" = "SLIDE TO RETRIEVE";
-
+"cashOut.newDesign.personalDetails" = "INPUT PERSONAL DETAILS";
+"cashOut.newDesign.name" = "NAME";
+"cashOut.newDesign.transactionReason" = "TRANSACTION REASON";
+"cashOut.newDesign.additionalNotes" = "ADDITIONAL NOTES";
