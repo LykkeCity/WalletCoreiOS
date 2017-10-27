@@ -13,6 +13,7 @@
 		461C6F921F8B56F600C5E8B3 /* TextFieldButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F911F8B56F600C5E8B3 /* TextFieldButton.swift */; };
 		462878731F433A710006BE45 /* GraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462878721F433A710006BE45 /* GraphProtocol.swift */; };
 		462878761F433B0F0006BE45 /* TradingLinearGraphViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 462878751F433B0F0006BE45 /* TradingLinearGraphViewTest.m */; };
+		462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */; };
 		462B34301F00EC5000374038 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462B342F1F00EC5000374038 /* Colors.swift */; };
 		463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A51F94DB17005930DD /* MenuTableViewController.swift */; };
 		463FC5A81F94DB17005930DD /* TopNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A61F94DB17005930DD /* TopNavViewController.swift */; };
@@ -159,6 +160,7 @@
 		462878721F433A710006BE45 /* GraphProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphProtocol.swift; sourceTree = "<group>"; };
 		462878741F433B0F0006BE45 /* TradingLinearGraphViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TradingLinearGraphViewTest.h; path = ModernWallet/Classes/View/Chart/TradingLinearGraphViewTest.h; sourceTree = SOURCE_ROOT; };
 		462878751F433B0F0006BE45 /* TradingLinearGraphViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TradingLinearGraphViewTest.m; path = ModernWallet/Classes/View/Chart/TradingLinearGraphViewTest.m; sourceTree = SOURCE_ROOT; };
+		462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extensions.swift"; sourceTree = "<group>"; };
 		462B342F1F00EC5000374038 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		463FC5A51F94DB17005930DD /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		463FC5A61F94DB17005930DD /* TopNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavViewController.swift; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				CF66323D1C175B54004353F5 /* AppDelegate.h */,
 				CF66323E1C175B54004353F5 /* AppDelegate.m */,
 				46B583741F94C6D600B475DB /* ModernWallet-Bridging-Header.h */,
+				462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1092,6 +1095,7 @@
 				462B34301F00EC5000374038 /* Colors.swift in Sources */,
 				469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */,
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
+				462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */,
 				463FC5A81F94DB17005930DD /* TopNavViewController.swift in Sources */,
 				6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */,
 				CC48AB661F0F83030081AF27 /* BuyStep2ViewController.swift in Sources */,
@@ -1225,7 +1229,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1245,6 +1249,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
+				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1266,7 +1271,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1286,6 +1291,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
+				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1359,7 +1365,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1379,6 +1385,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
+				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1445,7 +1452,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1465,6 +1472,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
+				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

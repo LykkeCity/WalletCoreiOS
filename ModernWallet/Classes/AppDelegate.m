@@ -26,7 +26,9 @@
 #import "LWOffchainTransactionsManager.h"
 #import "LWLocalizationManager.h"
 #import "LWMarginalWalletsDataManager.h"
+#import "ModernWallet-Swift.h"
 #import "AFNetworking.h"
+
 
 @import PushKit;
 
@@ -115,8 +117,9 @@
 
     NSDictionary *apnsBody = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (apnsBody) {
-        [[LWTransactionManager shared] checkForPendingActions];
+//        [[LWTransactionManager shared] checkForPendingActions];
     }
+    [self subscribeForPendingOffchainRequests];
     
     [[LWAuthManager instance] requestAPIVersion];
     [[LWAuthManager instance] requestSwiftCredentials];
@@ -204,7 +207,8 @@
         return;
     }
     if(type == 12) {
-        [[LWTransactionManager shared] checkForPendingActions];
+//        [self subscribeForPendingOffchainRequests];
+//        [[LWTransactionManager shared] checkForPendingActions];
         return;
     }
     
@@ -264,7 +268,6 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     
     if(type == 12) {
         [LWTransactionManager shared].backgroudFetchCompletionHandler = completionHandler;
-        [[LWTransactionManager shared] checkForPendingActions];
  
         return;
     }
