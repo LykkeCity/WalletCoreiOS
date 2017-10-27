@@ -11,6 +11,6 @@ import RxCocoa
 
 extension AppDelegate {
     func subscribeForPendingOffchainRequests() {
-        OffchainService.instance.finalizePendingRequests()
+        OffchainService.instance.finalizePendingRequests(refresh: Observable<Void>.interval(120.0))
     }
 }

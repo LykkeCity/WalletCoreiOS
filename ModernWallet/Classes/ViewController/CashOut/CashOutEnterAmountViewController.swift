@@ -34,6 +34,7 @@ class CashOutEnterAmountViewController: UIViewController {
     
     private lazy var walletViewModel: WalletViewModel = {
         return WalletViewModel(
+            refresh: Observable<Void>.interval(10.0),
             wallet: self.walletObservable,
             dependency: (
                 currencyExchanger: CurrencyExchanger(),

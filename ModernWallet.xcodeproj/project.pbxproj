@@ -18,6 +18,9 @@
 		463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A51F94DB17005930DD /* MenuTableViewController.swift */; };
 		463FC5A81F94DB17005930DD /* TopNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A61F94DB17005930DD /* TopNavViewController.swift */; };
 		46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */; };
+		4651CFB61FA32448009BFA45 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */; };
+		4651CFB81FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */; };
+		4651CFBA1FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */; };
 		466720071F864481004A4782 /* BuyOptimizedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466720061F864481004A4782 /* BuyOptimizedViewController.swift */; };
 		4671C9BF1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4671C9BE1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift */; };
 		4671C9C11F7CE840002C2F25 /* UIButton+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4671C9C01F7CE840002C2F25 /* UIButton+Rx.swift */; };
@@ -165,6 +168,9 @@
 		463FC5A51F94DB17005930DD /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		463FC5A61F94DB17005930DD /* TopNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavViewController.swift; sourceTree = "<group>"; };
 		46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+PlaceholderColor.swift"; sourceTree = "<group>"; };
+		4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
+		4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyExchanger+Extensions.swift"; sourceTree = "<group>"; };
+		4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TotalBalanceViewModel+Extensions.swift"; sourceTree = "<group>"; };
 		466720061F864481004A4782 /* BuyOptimizedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOptimizedViewController.swift; sourceTree = "<group>"; };
 		4671C9BE1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Rx.swift"; sourceTree = "<group>"; };
 		4671C9C01F7CE840002C2F25 /* UIButton+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Rx.swift"; sourceTree = "<group>"; };
@@ -490,6 +496,9 @@
 				66806BA01F9E3BC8001E49E5 /* AssetAmountView+Rx.swift */,
 				66806BA21F9F2C1A001E49E5 /* Array+Rx.swift */,
 				66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */,
+				4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */,
+				4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */,
+				4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1039,6 +1048,7 @@
 				461C6F921F8B56F600C5E8B3 /* TextFieldButton.swift in Sources */,
 				615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */,
 				4671C9D51F828A5C002C2F25 /* KYCPendingViewController.swift in Sources */,
+				4651CFB81FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift in Sources */,
 				CCED3BF11EE9811900535EE8 /* MenuTableViewCell.swift in Sources */,
 				6140E32A1F14E9C900D8885B /* TransactionsStep1ViewController.swift in Sources */,
 				6141FEB01EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift in Sources */,
@@ -1054,11 +1064,13 @@
 				463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */,
 				4671C9C31F7D10FA002C2F25 /* UIButton+Borders.swift in Sources */,
 				CC5B6C0A1F5D988400723587 /* RegisterFillProfileViewController.swift in Sources */,
+				4651CFB61FA32448009BFA45 /* Observable+Extensions.swift in Sources */,
 				665988501F8E4E5000073703 /* AssetCollectionViewCell.swift in Sources */,
 				46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */,
 				66806BA51F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift in Sources */,
 				CC5B6C061F58610A00723587 /* RegisterCreatePasswordViewController.swift in Sources */,
 				6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */,
+				4651CFBA1FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift in Sources */,
 				CCDB25701EEFCF05000D590F /* UtilsHelper.swift in Sources */,
 				615052AC1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift in Sources */,
 				61A3E3081F62E5E700666A56 /* ScrollView+Keyboard.swift in Sources */,

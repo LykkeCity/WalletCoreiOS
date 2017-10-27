@@ -134,7 +134,6 @@ class PortfolioViewController: UIViewController {
             .disposed(by: disposeBag)
         
         loadingViewModel.isLoading
-            .debug("print: Portfolio", trimOutput: false)
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
     }
