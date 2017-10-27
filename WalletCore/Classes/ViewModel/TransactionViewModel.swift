@@ -106,7 +106,7 @@ fileprivate extension ObservableType where Self.E == (volume: Decimal?, asset: L
                 accuracy: Int(data.asset?.accuracy ?? 2)
             )
             
-            return volume > 0 ? "+\(volumeString)" : "-\(volumeString)"
+            return volume > 0 ? "+\(volumeString)" : "\(volumeString)"
         }
     }
 }
