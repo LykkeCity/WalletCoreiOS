@@ -18,16 +18,17 @@ extension UIScrollView {
     /// - isHidden - Set contentInset.bottom = 0 once keyboard gets hidden
     /// - Parameter disposeBag: DisposedBag that disposes the two subscriptions
     func subscribeKeyBoard(withDisposeBag disposeBag: DisposeBag) {
-        RxKeyboard.instance.willShowVisibleHeight
-            .drive(onNext: { [weak self] keyboardVisibleHeight in
-                self?.contentInset.bottom = keyboardVisibleHeight
-            })
-            .disposed(by: disposeBag)
-        
-        RxKeyboard.instance.isHidden
-            .filter{$0}
-            .drive(onNext: {[weak self] _ in
-                self?.contentInset.bottom = 0
+        RxKeyboard.instance.frame
+            .drive(onNext: { [weak self] keyboardFrame in
+                guard
+                    let `self` = self,
+                    let rootView = self.window?.rootViewController?.view
+                else {
+                    return
+                }
+                let scrollViewFrame = rootView.convert(self.bounds, from: self)
+                let intersectionHeight = scrollViewFrame.intersection(keyboardFrame).height
+                self.contentInset.bottom = intersectionHeight
             })
             .disposed(by: disposeBag)
     }
