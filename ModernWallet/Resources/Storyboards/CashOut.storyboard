@@ -53,7 +53,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CASH OUT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ViG-KR-u0A">
-                                <rect key="frame" x="149.5" y="96" width="76.5" height="17.5"/>
+                                <rect key="frame" x="149.5" y="95.5" width="76.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -115,17 +115,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="AVAILABLE BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-rR-0K7">
-                                        <rect key="frame" x="135" y="53" width="105.5" height="12"/>
+                                        <rect key="frame" x="128.5" y="53.5" width="120" height="12"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hif-Ph-qRU" customClass="AssetAmountView" customModule="ModernWallet" customModuleProvider="target">
-                                        <rect key="frame" x="128.5" y="69" width="118.5" height="30"/>
+                                        <rect key="frame" x="129" y="69.5" width="118.5" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT ASSET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wB8-FE-4rs">
-                                        <rect key="frame" x="134" y="177.5" width="107" height="18"/>
+                                        <rect key="frame" x="124" y="174.5" width="128.5" height="21"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -279,7 +279,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wf8-Rs-F5Q">
-                                                <rect key="frame" x="126.5" y="197" width="123" height="35"/>
+                                                <rect key="frame" x="126" y="197" width="123" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCg-yg-d4X">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="35"/>
@@ -302,7 +302,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zP2-tW-RNb">
-                                                <rect key="frame" x="125.5" y="242" width="124.5" height="35"/>
+                                                <rect key="frame" x="126" y="242" width="124.5" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6c-Iy-XYJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="41.5" height="35"/>
@@ -325,7 +325,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="SLIDE TO RETRIEVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfU-am-kXR">
-                                                <rect key="frame" x="119.5" y="424.5" width="140" height="17.5"/>
+                                                <rect key="frame" x="119" y="424.5" width="140" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -632,7 +632,7 @@
                                                         </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="20"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                                 <color key="value" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -653,7 +653,7 @@
                                                         </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="20"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                                 <color key="value" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -734,7 +734,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="x2V-0P-aEw" kind="show" id="SVd-eJ-qcL"/>
+                                                    <segue destination="x2V-0P-aEw" kind="show" identifier="NextStep" id="SVd-eJ-qcL"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -808,7 +808,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="519"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="jwh-aY-QUQ">
-                                    <rect key="frame" x="0.0" y="169" width="375" height="105"/>
+                                    <rect key="frame" x="0.0" y="229" width="375" height="105"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Evc-d5-lWO">
@@ -848,8 +848,35 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionHeaderCell" rowHeight="60" id="idb-wa-cKw" customClass="CashOutSectionHeaderTableViewCell" customModule="ModernWallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="idb-wa-cKw" id="uvG-nD-riC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLg-eI-xoa">
+                                                    <rect key="frame" x="20" y="34" width="335" height="18"/>
+                                                    <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ZLg-eI-xoa" secondAttribute="trailing" constant="20" id="Lxe-H6-YYi"/>
+                                                <constraint firstItem="ZLg-eI-xoa" firstAttribute="leading" secondItem="uvG-nD-riC" secondAttribute="leading" constant="20" id="nFH-Hw-TvI"/>
+                                                <constraint firstItem="ZLg-eI-xoa" firstAttribute="top" secondItem="uvG-nD-riC" secondAttribute="top" constant="34" id="oHW-6L-1jO"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZLg-eI-xoa" secondAttribute="bottom" constant="8" id="zhj-n7-llf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="ZLg-eI-xoa" id="I8Z-fj-jqz"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssetCell" rowHeight="71" id="pjn-xU-sb1" customClass="CashOutAssetDetailsTableViewCell" customModule="ModernWallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="71"/>
+                                        <rect key="frame" x="0.0" y="88" width="375" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pjn-xU-sb1" id="quW-uX-wg0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
@@ -893,30 +920,30 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TotalCell" rowHeight="40" id="gVe-l5-VSN" customClass="CashOutTotalTableViewCell" customModule="ModernWallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="99" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="159" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gVe-l5-VSN" id="evb-SW-iUO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="30" translatesAutoresizingMaskIntoConstraints="NO" id="Fbn-XD-MoP">
-                                                    <rect key="frame" x="20" y="0.0" width="122" height="40"/>
+                                                    <rect key="frame" x="20" y="11.5" width="122" height="17.5"/>
                                                     <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIG-5V-Gwf" customClass="AssetAmountView" customModule="ModernWallet" customModuleProvider="target">
-                                                    <rect key="frame" x="158" y="10.5" width="100" height="20.5"/>
+                                                    <rect key="frame" x="158" y="5.5" width="118.5" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Fbn-XD-MoP" secondAttribute="bottom" id="8bT-hb-Kid"/>
-                                                <constraint firstItem="fIG-5V-Gwf" firstAttribute="centerY" secondItem="evb-SW-iUO" secondAttribute="centerY" id="HL9-HO-b93"/>
                                                 <constraint firstItem="Fbn-XD-MoP" firstAttribute="leading" secondItem="evb-SW-iUO" secondAttribute="leading" constant="20" id="KTx-7S-VWf"/>
                                                 <constraint firstItem="fIG-5V-Gwf" firstAttribute="leading" secondItem="Fbn-XD-MoP" secondAttribute="trailing" constant="16" id="PCe-RA-XVJ"/>
-                                                <constraint firstItem="Fbn-XD-MoP" firstAttribute="top" secondItem="evb-SW-iUO" secondAttribute="top" id="uXv-cu-xxT"/>
+                                                <constraint firstItem="fIG-5V-Gwf" firstAttribute="top" secondItem="evb-SW-iUO" secondAttribute="top" constant="5" id="hEh-N1-hJT"/>
+                                                <constraint firstItem="Fbn-XD-MoP" firstAttribute="centerY" secondItem="evb-SW-iUO" secondAttribute="centerY" id="smN-zS-Gnt"/>
+                                                <constraint firstAttribute="bottom" secondItem="fIG-5V-Gwf" secondAttribute="bottom" constant="5" id="uKu-KT-oaF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -929,7 +956,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" rowHeight="30" id="feY-2t-Ntj" customClass="CashOutConfirmationDetailTableViewCell" customModule="ModernWallet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="139" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="199" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="feY-2t-Ntj" id="q9p-3r-FrX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>

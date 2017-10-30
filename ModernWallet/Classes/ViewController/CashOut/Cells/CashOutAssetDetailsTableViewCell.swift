@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import RxSwift
+import WalletCore
 
 class CashOutAssetDetailsTableViewCell: UITableViewCell {
     
     @IBOutlet private(set) var assetNameLabel: UILabel!
     @IBOutlet private(set) var assetAmountView: AssetAmountView!
     @IBOutlet private(set) var exchangeRateAmountView: AssetAmountView!
+    
+    private var disposeBag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +25,16 @@ class CashOutAssetDetailsTableViewCell: UITableViewCell {
         assetAmountView.codeFont = UIFont(name: "Geomanist-Light", size: 10.0)
         exchangeRateAmountView.amountFont = UIFont(name: "Geomanist-Light", size: 12.0)
         exchangeRateAmountView.codeFont = UIFont(name: "Geomanist-Light", size: 8.0)
+    }
+    
+    func bind(to viewModel: CashOutViewModel) {
+        disposeBag = DisposeBag()
+        
+        assetAmountView.bind(to: viewModel.amountObservable)
+            .disposed(by: disposeBag)
+        
+        exchangeRateAmountView.bind(to: viewModel.exchangeCourceObservable)
+            .disposed(by: disposeBag)
     }
 
 }

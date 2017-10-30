@@ -35,7 +35,7 @@ class CashOurBankAccountDetailsViewController: UIViewController {
 
         backgroundHeightConstraint.constant = Display.height
         
-        subtitleLabel.text = Localize("cashOut.newDesign.bankAccountDetails")
+        subtitleLabel.text = Localize("cashOut.newDesign.inputBankAccountDetails")
         accountNameTextField.placeholder = Localize("cashOut.newDesign.accountName")
         ibanTextField.placeholder = Localize("cashOut.newDesign.iban")
         bicTextField.placeholder = Localize("cashOut.newDesign.bic")
@@ -57,6 +57,9 @@ class CashOurBankAccountDetailsViewController: UIViewController {
         (accountHolderTextField.rx.textInput <-> bankDetailsViewModel.accountHolder)
             .disposed(by: disposeBag)
         
+        (currencyTextField.rx.textInput <-> bankDetailsViewModel.currency)
+            .disposed(by: disposeBag)
+        
         let isFormValidDriver = bankDetailsViewModel.isValid.asDriver(onErrorJustReturn: false)
         
         isFormValidDriver
@@ -71,15 +74,14 @@ class CashOurBankAccountDetailsViewController: UIViewController {
         setupFormUX(disposedBy: disposeBag)
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "NextStep" {
+            guard let vc = segue.destination as? CashOutConfirmationViewController else { return }
+            vc.cashOutViewModel = cashOutViewModel
+        }
     }
-    */
 
 }
 

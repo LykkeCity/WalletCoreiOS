@@ -7,17 +7,28 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import WalletCore
 
 class CashOutTotalTableViewCell: UITableViewCell {
 
     @IBOutlet private(set) var totalLabel: UILabel!
     @IBOutlet private(set) var totalAmountView: AssetAmountView!
+    
+    private var disposeBag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         totalLabel.text = Localize("cashOut.newDesign.total")
+    }
+    
+    func bind(to totalObservable: Observable<AmountCodePair>) {
+        disposeBag = DisposeBag()
+        
+        totalAmountView.bind(to: totalObservable)
+            .disposed(by: disposeBag)
     }
 
 }

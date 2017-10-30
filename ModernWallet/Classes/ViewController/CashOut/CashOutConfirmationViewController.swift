@@ -36,15 +36,19 @@ class CashOutConfirmationViewController: UIViewController {
         let generalViewModel = self.cashOutViewModel.generalViewModel
         return [
             (title: Localize("cashOut.newDesign.name"), detail: generalViewModel.name.valueOrNil),
-            (title: Localize("cashOut.newDesign.reaseon"), detail: generalViewModel.transactionReason.valueOrNil),
-            (title: Localize("cashOut.newDesign.notes"), detail: generalViewModel.additionalNotes.valueOrNil)
+            (title: Localize("cashOut.newDesign.transactionReason"), detail: generalViewModel.transactionReason.valueOrNil),
+            (title: Localize("cashOut.newDesign.additionalNotes"), detail: generalViewModel.additionalNotes.valueOrNil)
         ].filter { $0.detail != nil }
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        backgroundHeightConstraint.constant = Display.height
 
         confirmButton.setTitle(Localize("newDesign.confirm"), for: .normal)
+        
+        tableView.reloadData()
     }
     
     // MARK: - IBActions
@@ -62,6 +66,19 @@ class CashOutConfirmationViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Private
+    
+    fileprivate func titleDetailPairForRow(at indexPath: IndexPath) -> TitleDetailPair? {
+        switch indexPath.section {
+        case 1:
+            return bankAccountDetails[indexPath.row - 1]
+        case 2:
+            return generalDetails[indexPath.row - 1]
+        default:
+            return nil
+        }
+    }
 
 }
 
@@ -75,18 +92,18 @@ extension CashOutConfirmationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            // Number of asset to cash out from + Total
-            return 2
+            // Header + Number of asset to cash out from + Total
+            return 1 + 2
         case 1:
-            return bankAccountDetails.count
+            return bankAccountDetails.count + 1
         case 2:
-            return generalDetails.count
+            return generalDetails.count + 1
         default:
             return 0
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func titleForHeaderInSection(_ section: Int) -> String? {
         switch section {
         case 0:
             return Localize("cashOut.newDesign.cashDetails")
@@ -100,33 +117,35 @@ extension CashOutConfirmationViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
+        if indexPath.row == 0 {
+            return self.tableView(tableView, sectionHeaderCellForRowAt: indexPath)
+        }
+        if indexPath.section == 0 {
+            return self.tableView(tableView, cashSectionCellForRowAt: indexPath)
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as! CashOutConfirmationDetailTableViewCell
+        if let pair = titleDetailPairForRow(at: indexPath) {
+            cell.nameLabel.text = pair.title
+            cell.detailsLabel.text = pair.detail
+        }
         return cell
     }
-
-}
-
-extension CashOutConfirmationViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard
-            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header"),
-            let label = headerView.contentView.subviews.last as? UILabel
-        else {
-            let headerView = UITableViewHeaderFooterView(reuseIdentifier: "Header")
-            let label = UILabel()
-            label.font = UIFont(name: "Geomanist-Light", size: 16.0)
-            label.textAlignment = .center
-            label.text = tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            headerView.contentView.addSubview(label)
-            let views = ["label": label]
-            headerView.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[label]-20-|", options: [], metrics: nil, views: views))
-            headerView.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[label]-8-|", options: [], metrics: nil, views: views))
-            return headerView
+    private func tableView(_ tableView: UITableView, sectionHeaderCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SectionHeaderCell", for: indexPath) as! CashOutSectionHeaderTableViewCell
+        cell.titleLabel.text = titleForHeaderInSection(indexPath.section)
+        return cell
+    }
+    
+    private func tableView(_ tableView: UITableView, cashSectionCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.row <= 1 else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TotalCell", for: indexPath) as! CashOutTotalTableViewCell
+            cell.bind(to: cashOutViewModel.totalObservable)
+            return cell
         }
-        label.text = tableView.dataSource?.tableView?(tableView, titleForHeaderInSection: section)
-        return headerView
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AssetCell", for: indexPath) as! CashOutAssetDetailsTableViewCell
+        cell.bind(to: cashOutViewModel)
+        return cell
     }
     
 }
