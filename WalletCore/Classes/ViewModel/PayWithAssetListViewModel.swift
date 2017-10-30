@@ -11,16 +11,21 @@ import RxCocoa
 import RxSwift
 
 public class PayWithAssetListViewModel {
-    public let payWithAssetList: Observable<[LWAssetModel]>
+    public let payWithWalletList: Observable<[LWSpotWallet]>
+    public let loadingViewModel: LoadingViewModel
     
     public init(buyAsset: Observable<LWAssetModel>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
-        payWithAssetList =
-            Observable.combineLatest(
-                authManager.lykkeWallets.requestNonEmptyWallets(),
-                buyAsset,
-                authManager.assetPairs.requestAssetPairs().filterSuccess()
-            )
+        let nonEmptyWallets = authManager.lykkeWallets.requestNonEmptyWallets()
+        let assetPairs = authManager.assetPairs.requestAssetPairs()
+        
+        loadingViewModel = LoadingViewModel([
+            nonEmptyWallets.map{ _ in false }.startWith(true),
+            assetPairs.isLoading()
+        ])
+        
+        payWithWalletList =
+            Observable.combineLatest(nonEmptyWallets, buyAsset, assetPairs.filterSuccess())
             .map{(wallets, buyAsset, assetPairs) in
                 return wallets.filter{(wallet: LWSpotWallet) in
                     guard let walletAssetId = wallet.asset.identity, let assetId = buyAsset.identity else {
@@ -31,6 +36,5 @@ public class PayWithAssetListViewModel {
                     return assetPairs.contains{$0.identity == assetPairId}
                 }
             }
-            .map{$0.map{$0.asset!}}
     }
 }

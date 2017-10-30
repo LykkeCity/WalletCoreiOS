@@ -21,6 +21,7 @@
 		465805BF1F98DA2200FFFA0A /* LWRxAuthManagerOffchainChannelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465805BE1F98DA2200FFFA0A /* LWRxAuthManagerOffchainChannelKey.swift */; };
 		465805C11F98DA3900FFFA0A /* LWRxAuthManagerOffchainRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465805C01F98DA3900FFFA0A /* LWRxAuthManagerOffchainRequests.swift */; };
 		465805C31F98E5D900FFFA0A /* OffchainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465805C21F98E5D900FFFA0A /* OffchainService.swift */; };
+		4668A38F1FA7150900D7CBD5 /* OffchainTradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A38E1FA7150900D7CBD5 /* OffchainTradeViewModel.swift */; };
 		468CB7421F95DDF30066272F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468CB7411F95DDF30066272F /* AVFoundation.framework */; };
 		4698D6C41F433064001ECB98 /* CoreBitcoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C9B07C1F42D3BF00B83CCB /* CoreBitcoin.framework */; };
 		469DA7161F6BFA91000B904C /* LWRxAuthManagerClientKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7141F6BFA91000B904C /* LWRxAuthManagerClientKeys.swift */; };
@@ -601,6 +602,7 @@
 		465805BE1F98DA2200FFFA0A /* LWRxAuthManagerOffchainChannelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainChannelKey.swift; sourceTree = "<group>"; };
 		465805C01F98DA3900FFFA0A /* LWRxAuthManagerOffchainRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainRequests.swift; sourceTree = "<group>"; };
 		465805C21F98E5D900FFFA0A /* OffchainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffchainService.swift; sourceTree = "<group>"; };
+		4668A38E1FA7150900D7CBD5 /* OffchainTradeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffchainTradeViewModel.swift; sourceTree = "<group>"; };
 		468CB7411F95DDF30066272F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4698D6C21F433045001ECB98 /* CoreBitcoin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBitcoin.framework; path = Pods/CoreBitcoin.framework; sourceTree = "<group>"; };
 		469DA7141F6BFA91000B904C /* LWRxAuthManagerClientKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerClientKeys.swift; sourceTree = "<group>"; };
@@ -2051,6 +2053,7 @@
 		46C9B0411F417C3100B83CCB /* Buy */ = {
 			isa = PBXGroup;
 			children = (
+				4668A38E1FA7150900D7CBD5 /* OffchainTradeViewModel.swift */,
 				46C9B00E1F417C1B00B83CCB /* BuyStep1CellViewModel.swift */,
 				46C9B00F1F417C1B00B83CCB /* BuyStep1ViewModel.swift */,
 				46C9B0101F417C1B00B83CCB /* BuyStep3ViewModel.swift */,
@@ -2838,6 +2841,7 @@
 				46E5D0DF1F5DD7ED00D78692 /* LWRxAuthManagerAuth.swift in Sources */,
 				46C9AFBA1F417BD800B83CCB /* LWMarginalPosition.m in Sources */,
 				CC83DDB11F4AF3FC008BA5C2 /* ClientCodesViewModel.swift in Sources */,
+				4668A38F1FA7150900D7CBD5 /* OffchainTradeViewModel.swift in Sources */,
 				46C9AF961F417BD800B83CCB /* LWAssetCategoryModel.m in Sources */,
 				46C9AEEA1F417BD700B83CCB /* LWPacketGetPaymentUrl.m in Sources */,
 				46C9AEB81F417BD700B83CCB /* LWPacketCheckDocumentsToUpload.m in Sources */,

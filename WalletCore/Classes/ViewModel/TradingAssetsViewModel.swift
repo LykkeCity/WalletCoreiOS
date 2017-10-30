@@ -12,12 +12,19 @@ import RxSwift
 public class TradingAssetsViewModel {
     public let availableToBuy: Observable<[LWAssetModel]>
     public let availableToSell: Observable<[LWAssetModel]>
+    public let loadingViewModel: LoadingViewModel
     
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
         let nonEmptyWallets =  authManager.lykkeWallets.requestNonEmptyWallets()
         let allAssets = authManager.allAssets.requestAllAssets()
         let assetPairs = authManager.assetPairs.requestAssetPairs()
+        
+        loadingViewModel = LoadingViewModel([
+            nonEmptyWallets.map{ _ in false }.startWith(true),
+            allAssets.isLoading(),
+            assetPairs.isLoading()
+        ])
         
         availableToSell =
             nonEmptyWallets.map{$0.map{$0.asset!}}

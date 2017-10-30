@@ -14,13 +14,16 @@ public class BuyOptimizedViewModel {
     
     public typealias Amount = (autoUpdated: Bool, value: String)
     public typealias Asset = (autoUpdated: Bool, asset: LWAssetModel)
+    public typealias Wallet = (autoUpdated: Bool, wallet: LWSpotWallet)
     typealias ExchangeData = (from: LWAssetModel, to: LWAssetModel, amount: Decimal, bid: Bool)
     
     public let buyAmount       = Variable<Amount>(Amount(autoUpdated: false, value: ""))
     public let payWithAmount   = Variable<Amount>(Amount(autoUpdated: false, value: ""))
     public let buyAsset        = Variable<Asset?>(nil)
-    public let payWithAsset    = Variable<Asset?>(nil)
+    public let payWithWallet   = Variable<Wallet?>(nil)
     public let bid             = Variable<Bool?>(nil)
+    
+    public let isValidPayWithAmount: Observable<Bool>
     
     public let baseAssetCode: Driver<String>
     
@@ -85,18 +88,18 @@ public class BuyOptimizedViewModel {
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
-        payWithAssetIconURL = payWithAsset.asObservable()
+        payWithAssetIconURL = payWithWallet.asObservable()
             .mapToAsset()
             .mapToIconUrl(withAuthManager: dependency.authManager)
             .asDriver(onErrorJustReturn: nil)
         
-        payWithAssetName = payWithAsset.asObservable()
+        payWithAssetName = payWithWallet.asObservable()
             .mapToAsset()
             .mapToFullName()
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
-        payWithAssetCode = payWithAsset.asObservable()
+        payWithAssetCode = payWithWallet.asObservable()
             .mapToAsset()
             .mapToIdentity()
             .asDriver(onErrorJustReturn: "")
@@ -104,7 +107,7 @@ public class BuyOptimizedViewModel {
         
         let payWithAssetAmountObservable = Observable
             .combineLatest(
-                payWithAsset.asObservable().mapToAsset(),
+                payWithWallet.asObservable().mapToAsset(),
                 payWithAmount.asObservable().mapToValue().mapToDecimal(),
                 bid.asObservable().filterNil()
             )
@@ -155,8 +158,18 @@ public class BuyOptimizedViewModel {
             .replaceNilWith("")
             .asDriver(onErrorJustReturn: "")
 
+        
+        
+        isValidPayWithAmount = Observable
+            .combineLatest(payWithAmount.asObservable(), payWithWallet.asObservable()){(amount: $0, wallet: $1)}
+            .map{
+                guard let amount = $0.amount.value.decimalValue, amount > 0 else { return false }
+                guard let walletAmount = $0.wallet?.wallet.balance.decimalValue else { return false }
+                return amount <= walletAmount
+            }
+        
         //MARK: two way amount bindings
-        payWithAsset.asObservable()
+        payWithWallet.asObservable()
             .filter(byAutoUpdated: false)
             .bind(toBuy: buyAmount, withData: self, currencyExchanger: dependency.currencyExchanger)
             .disposed(by: disposeBag)
@@ -166,7 +179,7 @@ public class BuyOptimizedViewModel {
             .bind(toBuy: buyAmount, withData: self, currencyExchanger: dependency.currencyExchanger)
             .disposed(by: disposeBag)
         
-        payWithAsset.asObservable()
+        payWithWallet.asObservable()
             .filter(byAutoUpdated: true)
             .bind(toPayWith: payWithAmount, withData: self, currencyExchanger: dependency.currencyExchanger)
             .disposed(by: disposeBag)
@@ -232,7 +245,7 @@ fileprivate extension ObservableType where Self.E == String {
             mapToDecimal()
             .distinctUntilChanged()
             .map{[weak viewModel] payWithAmount -> BuyOptimizedViewModel.ExchangeData? in
-                guard let payWithAsset = viewModel?.payWithAsset.value?.asset else {return nil}
+                guard let payWithAsset = viewModel?.payWithWallet.value?.wallet.asset else {return nil}
                 guard let buyAsset = viewModel?.buyAsset.value?.asset else {return nil}
                 guard let bid = viewModel?.bid.value else {return nil}
                 
@@ -253,7 +266,7 @@ fileprivate extension ObservableType where Self.E == String {
             .distinctUntilChanged()
             .map{[weak viewModel] buyAmount -> BuyOptimizedViewModel.ExchangeData? in
                 guard let buyAsset = viewModel?.buyAsset.value?.asset else {return nil}
-                guard let payWithAsset = viewModel?.payWithAsset.value?.asset else {return nil}
+                guard let payWithAsset = viewModel?.payWithWallet.value?.wallet.asset else {return nil}
                 guard let bid = viewModel?.bid.value else {return nil}
                 
                 return (from: buyAsset, to: payWithAsset, amount: buyAmount, bid: bid)
@@ -261,6 +274,16 @@ fileprivate extension ObservableType where Self.E == String {
             .filterNil()
             .exchangeAmount(currencyExchanger: currencyExchanger)
             .bind(to: payWithAmount)
+    }
+}
+
+public extension ObservableType where Self.E == BuyOptimizedViewModel.Wallet? {
+    func mapToAsset() -> Observable<LWAssetModel> {
+        return map{$0?.wallet.asset}.filterNil()
+    }
+    
+    func filter(byAutoUpdated autoUpdated: Bool) -> Observable<LWAssetModel> {
+        return filter{$0?.autoUpdated == autoUpdated}.mapToAsset()
     }
 }
 
@@ -307,7 +330,7 @@ fileprivate extension ObservableType where Self.E == LWAssetModel {
             distinctUntilChangedById()
             .map{[weak viewModel] _ -> (from: LWAssetModel, to: LWAssetModel, amount: Decimal, bid: Bool)? in
                 guard let buyAsset = viewModel?.buyAsset.value?.asset else {return nil}
-                guard let payWithAsset = viewModel?.payWithAsset.value?.asset else {return nil}
+                guard let payWithAsset = viewModel?.payWithWallet.value?.wallet.asset else {return nil}
                 guard let amount = viewModel?.buyAmount.value.value.decimalValue else {return nil}
                 guard let bid = viewModel?.bid.value else {return nil}
                 

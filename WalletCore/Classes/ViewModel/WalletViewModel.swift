@@ -20,7 +20,7 @@ public class WalletViewModel {
     public let inBaseAssetAmount: Driver<String>
     public let baseAssetCode: Driver<String>
     
-    public let assetObservable: Observable<LWAssetModel>
+    public let assetObservable: Observable<LWSpotWallet>
     public let baseAssetObservable: Observable<LWAssetModel>
 
     public init(
@@ -39,22 +39,24 @@ public class WalletViewModel {
             .filterSuccess()
             .shareReplay(1)
         
-        assetObservable = wallet.map{$0.asset}.filterNil()
+        assetObservable = wallet
         
         baseAssetObservable = baseAssetResponseObservable.filterSuccess()
         
         assetIconUrl = assetObservable
+            .mapToAsset()
             .map { $0.iconUrl }
             .asDriver(onErrorJustReturn: nil)
             .startWith(nil)
         
         assetName = assetObservable
+            .mapToAsset()
             .map { $0.displayFullName }
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
         assetAmount = Observable.combineLatest(wallet, assetObservable) { (wallet: $0, asset: $1) }
-            .map { $0.wallet.balance.decimalValue.convertAsCurrencyWithSymbol(asset: $0.asset) }
+            .map { $0.wallet.balance.decimalValue.convertAsCurrencyWithSymbol(asset: $0.asset.asset) }
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
@@ -65,6 +67,7 @@ public class WalletViewModel {
             .startWith("")
         
         assetCode = assetObservable
+            .mapToAsset()
             .map { $0.displayName }
             .asDriver(onErrorJustReturn: "")
             .startWith("")
@@ -79,6 +82,11 @@ public class WalletViewModel {
             .asDriver(onErrorJustReturn: "")
             .startWith("")
     }
-    
+}
+
+extension ObservableType where Self.E == LWSpotWallet {
+    func mapToAsset() -> Observable<LWAssetModel> {
+        return map{ $0.asset }.filterNil()
+    }
 }
 
