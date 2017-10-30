@@ -12,12 +12,34 @@ import WalletCore
 
 class CashOutConfirmationViewController: UIViewController {
     
+    typealias TitleDetailPair = (title: String?, detail: String?)
+    
     @IBOutlet private weak var backgroundHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var confirmButton: UIButton!
     
     var cashOutViewModel: CashOutViewModel!
+    
+    fileprivate lazy var bankAccountDetails: [TitleDetailPair] = {
+        let bankAccountViewModel = self.cashOutViewModel.bankAccountViewModel
+        return [
+            (title: Localize("cashOut.newDesign.accountName"), detail: bankAccountViewModel.accountName.valueOrNil),
+            (title: Localize("cashOut.newDesign.iban"), detail: bankAccountViewModel.iban.valueOrNil),
+            (title: Localize("cashOut.newDesign.bic"), detail: bankAccountViewModel.bic.valueOrNil),
+            (title: Localize("cashOut.newDesign.accountHolder"), detail: bankAccountViewModel.accountHolder.valueOrNil),
+            (title: Localize("cashOut.newDesign.currency"), detail: bankAccountViewModel.currency.valueOrNil)
+        ].filter { $0.detail != nil }
+    }()
+
+    fileprivate lazy var generalDetails: [TitleDetailPair] = {
+        let generalViewModel = self.cashOutViewModel.generalViewModel
+        return [
+            (title: Localize("cashOut.newDesign.name"), detail: generalViewModel.name.valueOrNil),
+            (title: Localize("cashOut.newDesign.reaseon"), detail: generalViewModel.transactionReason.valueOrNil),
+            (title: Localize("cashOut.newDesign.notes"), detail: generalViewModel.additionalNotes.valueOrNil)
+        ].filter { $0.detail != nil }
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +78,9 @@ extension CashOutConfirmationViewController: UITableViewDataSource {
             // Number of asset to cash out from + Total
             return 2
         case 1:
-            return 5
+            return bankAccountDetails.count
         case 2:
-            return 3
+            return generalDetails.count
         default:
             return 0
         }
