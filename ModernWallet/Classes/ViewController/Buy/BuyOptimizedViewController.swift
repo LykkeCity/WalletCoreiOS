@@ -145,6 +145,18 @@ class BuyOptimizedViewController: UIViewController {
             .bind(to: self.rx.error)
             .disposed(by: disposeBag)
         
+        offchainTradeViewModel.success
+            .drive(onNext: {[weak self] _ in
+                self?.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
+                self?.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
+            })
+            .disposed(by: disposeBag)
+
+        offchainTradeViewModel.success
+            .drive(onNext: {[weak self] _ in
+                self?.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
+            })
+            .disposed(by: disposeBag)
         
         loadingViewModel.isLoading
             .bind(to: rx.loading)
