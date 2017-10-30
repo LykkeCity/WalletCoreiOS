@@ -65,7 +65,7 @@ extension InputForm {
     }
     
     func submitForm() {
-        if let submitButton = submitButton {
+        if let submitButton = submitButton, submitButton.isEnabled {
             submitButton.sendActions(for: .touchUpInside)
         }
     }

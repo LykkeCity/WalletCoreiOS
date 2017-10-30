@@ -71,6 +71,11 @@ class BuyAssetListView: UIView {
             })
             .disposed(by: disposeBag)
     }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 315.0, height: 104.0)
+    }
+
 }
 
 extension BuyAssetListView: InputForm {

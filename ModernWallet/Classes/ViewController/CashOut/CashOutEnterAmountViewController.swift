@@ -87,8 +87,8 @@ class CashOutEnterAmountViewController: UIViewController {
             .disposed(by: disposeBag)
         
         walletViewModel.assetObservable
-            .map { BuyOptimizedViewModel.Asset(autoUpdated: false, asset: $0) }
-            .bind(to: buyOptimizedViewModel.payWithAsset)
+            .map { BuyOptimizedViewModel.Wallet(autoUpdated: false, wallet: $0) }
+            .bind(to: buyOptimizedViewModel.payWithWallet)
             .disposed(by: disposeBag)
         
         walletViewModel.baseAssetObservable

@@ -38,6 +38,18 @@ class BuyOptimizedViewController: UIViewController {
         return TradingAssetsViewModel()
     }()
     
+    lazy var loadingViewModel: LoadingViewModel = {
+        return LoadingViewModel([
+            self.tradingAssetsViewModel.loadingViewModel.isLoading,
+            self.payWithAssetListViewModel.loadingViewModel.isLoading,
+            self.offchainTradeViewModel.loadingViewModel.isLoading
+        ])
+    }()
+    
+    lazy var offchainTradeViewModel: OffchainTradeViewModel = {
+        return OffchainTradeViewModel(offchainService: OffchainService.instance)
+    }()
+    
     var confirmTrading: Observable<Void> {
         return Observable.merge(
             self.submitButton.rx.tap.asObservable()
@@ -50,13 +62,6 @@ class BuyOptimizedViewController: UIViewController {
     
     let bid = Variable<Bool?>(nil)
     
-    let offchainService = OffchainService(
-        authManager: LWRxAuthManager.instance,
-        privateKeyManager: LWPrivateKeyManager.shared(),
-        keychainManager: LWKeychainManager.instance(),
-        transactionManager: LWTransactionManager.shared()
-    )
-    
     fileprivate let disposeBag = DisposeBag()
     
     //MARK:- Lifecicle methods
@@ -68,12 +73,12 @@ class BuyOptimizedViewController: UIViewController {
         buyOptimizedViewModel.bid.value = false
         
         secondAssetList.itemPicker.picker.rx.itemSelected
-            .withLatestFrom(payWithAssetListViewModel.payWithAssetList) {selected, assets in
+            .withLatestFrom(payWithAssetListViewModel.payWithWalletList) {selected, assets in
                 assets.enumerated().first{$0.offset == selected.row}?.element
             }
             .filterNil()
-            .map{(autoUpdated: false, asset: $0)}
-            .bind(to: buyOptimizedViewModel.payWithAsset)
+            .map{(autoUpdated: false, wallet: $0)}
+            .bind(to: buyOptimizedViewModel.payWithWallet)
             .disposed(by: disposeBag)
         
         firstAssetList.itemPicker.picker.rx.itemSelected
@@ -88,11 +93,11 @@ class BuyOptimizedViewController: UIViewController {
         buyOptimizedViewModel.bindBuy(toView: firstAssetList, disposedBy: disposeBag)
         buyOptimizedViewModel.bindPayWith(toView: secondAssetList, disposedBy: disposeBag)
         
-        payWithAssetListViewModel.payWithAssetList
+        payWithAssetListViewModel.payWithWalletList
             .map{$0.first}
             .filterNil()
-            .map{(autoUpdated: true, asset: $0)}
-            .bind(to: buyOptimizedViewModel.payWithAsset)
+            .map{(autoUpdated: true, wallet: $0)}
+            .bind(to: buyOptimizedViewModel.payWithWallet)
             .disposed(by: disposeBag)
         
         tradingAssetsViewModel.availableToBuy
@@ -102,8 +107,8 @@ class BuyOptimizedViewController: UIViewController {
             .bind(to: buyOptimizedViewModel.buyAsset)
             .disposed(by: disposeBag)
         
-        payWithAssetListViewModel.payWithAssetList
-            .bind(to: secondAssetList.itemPicker.picker.rx.itemTitles) {$1.displayFullName}
+        payWithAssetListViewModel.payWithWalletList
+            .bind(to: secondAssetList.itemPicker.picker.rx.itemTitles) {$1.asset.displayFullName}
             .disposed(by: disposeBag)
         
         tradingAssetsViewModel.availableToBuy
@@ -121,24 +126,34 @@ class BuyOptimizedViewController: UIViewController {
         submitButton.rx.tap
             .subscribeToPresentPin(withViewController: self)
             .disposed(by: disposeBag)
-        
-        
-//        offchainService.processChannel(transaction: "0100000002843c3ebdf60e3b120833caaf47b1308f7379a396d2f1d74354c474f8efd1e8370100000000ffffffff82a83919bcf512352433840c874ce6b0dc744eed20b1306353012c7f253160015501000000ffffffff0400000000000000000f6a0d4f41010003d8fc3ca0f03000008c0a00000000000017a91441f8b7171a80e099472f139d51eecefe2c8ce83e87aa0a0000000000001976a91497a515ec03d9aada5e6f0d895f4aa10eb8f07e8d88ac10d50100000000001976a914ed75405f426601f5493117b5a22dc0082269e32288ac00000000", transferId: "54adb02c-db99-45b3-a90e-a17b4f6246ee", transactionType: .transfer).subscribe()
-        
-        let trade = confirmTrading
-            .flatMapLatest{[weak self] _ -> Observable<ApiResult<LWModelOffchainResult>>  in
-                guard let `self` = self else {return Observable.never()}
-                guard let buyAsset = self.buyOptimizedViewModel.buyAsset.value?.asset else{return Observable.never()}
-                guard let payWithAsset = self.buyOptimizedViewModel.payWithAsset.value?.asset else{return Observable.never()}
-                guard let volume = self.buyOptimizedViewModel.buyAmount.value.value.decimalValue else {return Observable.never()}
+
+        confirmTrading
+            .map{ [weak self]_ -> OffchainTradeViewModel.TradeParams? in
                 
-                return self.offchainService.trade(amount: volume, asset: buyAsset, forAsset: payWithAsset)
+                guard let `self` = self else {return nil}
+                guard let payWithWallet = self.buyOptimizedViewModel.payWithWallet.value?.wallet else{ return nil }
+                guard let buyAsset = self.buyOptimizedViewModel.buyAsset.value?.asset else{ return nil }
+                let amount = self.buyOptimizedViewModel.buyAmount.value.value.decimalValue
+                
+                return OffchainTradeViewModel.TradeParams(amount: amount, wallet: payWithWallet, forAsset: buyAsset)
             }
-            .shareReplay(1)
-        [
-            trade.isLoading().bind(to: self.rx.loading),
-            trade.filterError().bind(to: self.rx.error)
-        ].disposed(by: disposeBag)
+            .filterNil()
+            .bind(to: offchainTradeViewModel.tradeParams)
+            .disposed(by: disposeBag)
+        
+        offchainTradeViewModel.errors.asObservable()
+            .bind(to: self.rx.error)
+            .disposed(by: disposeBag)
+        
+        
+        loadingViewModel.isLoading
+            .bind(to: rx.loading)
+            .disposed(by: disposeBag)
+        
+        buyOptimizedViewModel.isValidPayWithAmount
+            .bind(to: submitButton.rx.isEanbledWithBorderColor)
+            .disposed(by: disposeBag)
+        
     }
 
     override func didReceiveMemoryWarning() {

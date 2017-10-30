@@ -24,4 +24,11 @@ extension Reactive where Base: UIButton {
         }
     }
     
+    var isEanbledWithBorderColor: UIBindingObserver<Base, Bool> {
+        return UIBindingObserver(UIElement: self.base) { button, value in
+            button.isEnabled = value
+            button.borderColor = value ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.3031407299)
+        }
+    }
 }
+

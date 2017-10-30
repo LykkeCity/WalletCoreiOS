@@ -53,14 +53,7 @@ class SignUpEmailViewController: UIViewController, UIGestureRecognizerDelegate {
             .map{LWValidator.validateEmail($0)}
             
         isValidEmail
-            .bind(to: signInButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        isValidEmail
-            .map{$0 ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.6)}
-            .subscribe(onNext: {[weak self] color in
-                self?.signInButton.borderColor = color
-            })
+            .bind(to: signInButton.rx.isEanbledWithBorderColor)
             .disposed(by: disposeBag)
         
         signInButton.rx.tap.asObservable()

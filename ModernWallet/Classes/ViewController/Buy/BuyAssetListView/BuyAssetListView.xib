@@ -50,10 +50,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GHx-a8-ChA">
-                            <rect key="frame" x="0.0" y="36" width="315" height="49"/>
+                            <rect key="frame" x="0.0" y="36" width="315" height="52"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LzF-6Y-QHv">
-                                    <rect key="frame" x="0.0" y="4.5" width="197" height="40"/>
+                                    <rect key="frame" x="0.0" y="6" width="197" height="40"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow" translatesAutoresizingMaskIntoConstraints="NO" id="UWA-af-Qw1">
                                             <rect key="frame" x="0.0" y="14.5" width="21" height="11"/>
@@ -82,7 +82,7 @@
                                     </connections>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="7.2999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="QbR-yM-6vq">
-                                    <rect key="frame" x="197" y="10.5" width="118" height="28"/>
+                                    <rect key="frame" x="197" y="12" width="118" height="28"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" text="00.00" placeholder="00.00" textAlignment="right" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="yZn-Mq-xBA">
                                             <rect key="frame" x="0.0" y="0.0" width="85.5" height="28"/>
@@ -106,23 +106,29 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="ih9-nS-Y15"/>
+                            </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="14.699999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="4Nx-tL-9dP">
-                            <rect key="frame" x="0.0" y="85" width="315" height="19"/>
+                            <rect key="frame" x="0.0" y="88" width="315" height="16"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haY-ub-hFT">
-                                    <rect key="frame" x="0.0" y="0.0" width="275.5" height="19"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="275.5" height="16"/>
                                     <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3f0-9u-e9T">
-                                    <rect key="frame" x="290" y="0.0" width="25" height="19"/>
+                                    <rect key="frame" x="290" y="0.0" width="25" height="16"/>
                                     <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="10"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="lfz-8M-5Zs"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <constraints>
