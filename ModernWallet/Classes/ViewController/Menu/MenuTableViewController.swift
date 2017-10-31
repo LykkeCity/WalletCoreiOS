@@ -14,39 +14,48 @@ class MenuTableViewController: UITableViewController {
 
     let selectedCellBGColor = UIColor.red
     let notSelectedCellBGColor = UIColor.clear
+    static let commingSoonColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.5)
     
     private struct MenuItem {
         
         let title: String
         let image: UIImage?
+        let color: UIColor?
         let storyboardName: String?
         let viewControllerIdentifier: String?
         let onSelect: (() -> ())?
         
-        init(title: String, image: UIImage? = nil, viewControllerIdentifier: String? = nil, storyboardName: String? = nil, onSelect: (() -> ())? = nil) {
+        init(title: String, image: UIImage? = nil, viewControllerIdentifier: String? = nil, storyboardName: String? = nil,
+             color: UIColor? = nil, onSelect: (() -> ())? = nil) {
             
             self.title = title
             self.image = image
             self.storyboardName = storyboardName
             self.viewControllerIdentifier = viewControllerIdentifier
+            self.color = color
             self.onSelect = onSelect
         }
-        
     }
     
     private var items : [MenuItem] = [
         MenuItem(title: Localize("menu.newDesign.addMoney"), image: #imageLiteral(resourceName: "ADD MONEY"), viewControllerIdentifier: "AddMoney"),
         MenuItem(title: Localize("menu.newDesign.buy"), image: #imageLiteral(resourceName: "BUY"), viewControllerIdentifier: "buyOptimizedVC"),
-        MenuItem(title: Localize("menu.newDesign.cashOut"), image: #imageLiteral(resourceName: "CASH OUT"), storyboardName: "CashOut"),
-        MenuItem(title: Localize("menu.newDesign.checkPrices"), image: #imageLiteral(resourceName: "CHECK PRICES")),
-        MenuItem(title: Localize("menu.newDesign.internalTransfer"), image: #imageLiteral(resourceName: "INTERNAL TRANSFER")),
+        MenuItem(title: Localize("menu.newDesign.cashOut"), image: #imageLiteral(resourceName: "CASH OUT"), viewControllerIdentifier: "CashOut"),
+        MenuItem(title: Localize("menu.newDesign.checkPrices"), image: #imageLiteral(resourceName: "CHECK PRICES"),
+                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
+        MenuItem(title: Localize("menu.newDesign.internalTransfer"), image: #imageLiteral(resourceName: "INTERNAL TRANSFER"),
+                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.portfolio"), image: #imageLiteral(resourceName: "PORTFOLIO"), viewControllerIdentifier: "Portfolio"),
-        MenuItem(title: Localize("menu.newDesign.receive"), image: #imageLiteral(resourceName: "RECEIVE")),
-        MenuItem(title: Localize("menu.newDesign.sell"), image: #imageLiteral(resourceName: "SELL")),
-        MenuItem(title: Localize("menu.newDesign.send"), image: #imageLiteral(resourceName: "SEND")),
-        MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS")),
+        MenuItem(title: Localize("menu.newDesign.receive"), image: #imageLiteral(resourceName: "RECEIVE"),
+                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
+        MenuItem(title: Localize("menu.newDesign.sell"), image: #imageLiteral(resourceName: "SELL"),
+                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
+        MenuItem(title: Localize("menu.newDesign.send"), image: #imageLiteral(resourceName: "SEND"),
+                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
+        MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"),
+                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), viewControllerIdentifier: "transactionVC"),
-        MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: "Portfolio", onSelect: MenuTableViewController.logout)
+        MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: "Portfolio", color: nil, onSelect: MenuTableViewController.logout)
     ]
     
     override func viewDidLoad() {
@@ -73,6 +82,10 @@ class MenuTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuTableViewCell
         
         let item = items[indexPath.row]
+        if let menuNameLabelColor = item.color {
+            cell.menuNameLabel.textColor = menuNameLabelColor
+        }
+        
         cell.menuNameLabel.text = item.title
         cell.menuImageView.image = item.image
 
