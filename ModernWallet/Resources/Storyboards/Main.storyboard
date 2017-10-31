@@ -13,6 +13,9 @@
         <array key="Geomanist Regular.otf">
             <string>Geomanist-Regular</string>
         </array>
+        <array key="Geomanist-Book.otf">
+            <string>Geomanist</string>
+        </array>
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
         </array>
@@ -126,7 +129,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="mainSegueIdentifier" value="main"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="drawerSegueIdentifier" value="drawer"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="drawerWidth">
-                            <real key="value" value="150"/>
+                            <real key="value" value="180"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -319,6 +322,55 @@
             </objects>
             <point key="canvasLocation" x="-527.20000000000005" y="1206.296851574213"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="zec-zB-bD6">
+            <objects>
+                <viewController storyboardIdentifier="commingSoonVC" id="Jdr-Bc-Kq4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9mg-hU-XVu"/>
+                        <viewControllerLayoutGuide type="bottom" id="4QU-b6-mV6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gTR-Il-fwe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="aCg-hP-ajy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayi-jC-Jb4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="bCG-wi-3aq"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="KAU-Mi-TR8" kind="embed" id="P8E-CZ-ES2"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
+                                <rect key="frame" x="74.5" y="317.5" width="227" height="32"/>
+                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yvC-CJ-cmE" firstAttribute="centerX" secondItem="gTR-Il-fwe" secondAttribute="centerX" id="AQJ-6g-jb9"/>
+                            <constraint firstAttribute="trailing" secondItem="ayi-jC-Jb4" secondAttribute="trailing" id="B6S-Ad-SxE"/>
+                            <constraint firstItem="4QU-b6-mV6" firstAttribute="top" secondItem="aCg-hP-ajy" secondAttribute="bottom" id="LdU-iN-jYM"/>
+                            <constraint firstItem="aCg-hP-ajy" firstAttribute="top" secondItem="gTR-Il-fwe" secondAttribute="top" id="XN8-UY-7Yt"/>
+                            <constraint firstItem="aCg-hP-ajy" firstAttribute="leading" secondItem="gTR-Il-fwe" secondAttribute="leading" id="aPO-is-isx"/>
+                            <constraint firstItem="yvC-CJ-cmE" firstAttribute="centerY" secondItem="gTR-Il-fwe" secondAttribute="centerY" id="pnc-ZC-fsW"/>
+                            <constraint firstAttribute="trailing" secondItem="aCg-hP-ajy" secondAttribute="trailing" id="uqN-hK-cky"/>
+                            <constraint firstItem="ayi-jC-Jb4" firstAttribute="top" secondItem="gTR-Il-fwe" secondAttribute="top" id="whF-1o-nmd"/>
+                            <constraint firstItem="ayi-jC-Jb4" firstAttribute="leading" secondItem="gTR-Il-fwe" secondAttribute="leading" id="zIq-uv-ppB"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kiM-O2-TYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1860" y="-242.42878560719643"/>
+        </scene>
         <!--buyOptimizedVC-->
         <scene sceneID="lGM-cv-a1z">
             <objects>
@@ -367,4 +419,7 @@
         <image name="chatIcon" width="66" height="54"/>
         <image name="menuIcon" width="36" height="23"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="P8E-CZ-ES2"/>
+    </inferredMetricsTieBreakers>
 </document>
