@@ -28,3 +28,16 @@ extension Reactive where Base: AssetAmountView {
     }
     
 }
+
+extension AssetAmountView {
+    
+    func bind(to pairObservable: Observable<AmountCodePair>) -> Disposable {
+        return pairObservable.asDriver(onErrorJustReturn: (amount: "", code: ""))
+            .drive(onNext: { [weak self] pair in
+                guard let `self` = self else { return }
+                self.amount = pair.amount
+                self.code = pair.code
+            })
+    }
+    
+}
