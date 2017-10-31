@@ -17,7 +17,9 @@ class KYCPendingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        message.text = String(format: Localize("kyc.pending.text"), LWKeychainManager.instance().fullName())
+        
+        let fullName = LWKeychainManager.instance()?.fullName() ?? ""
+        message.text = String(format: Localize("kyc.pending.text"), fullName)
         // Do any additional setup after loading the view.
     }
 
