@@ -47,6 +47,7 @@ public class OffchainTradeViewModel {
         errors = Observable
             .merge(
                 validatedParams.filterNil(),
+                tradeResult.filterError(),
                 success.filter{ !$0 }.map{ _ in ["Message": "Server Error! Please try again."] }
             )
             .asDriver(onErrorJustReturn: [:])
