@@ -21,6 +21,8 @@ class CashOutConfirmationViewController: UIViewController {
     
     var cashOutViewModel: CashOutViewModel!
     
+    fileprivate let pinPassed = Variable(false)
+    
     fileprivate lazy var bankAccountDetails: [TitleDetailPair] = {
         let bankAccountViewModel = self.cashOutViewModel.bankAccountViewModel
         return [
@@ -54,18 +56,25 @@ class CashOutConfirmationViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction private func confirmTapped() {
-        
+        performSegue(withIdentifier: "EnterPin", sender: nil)
     }
+    
+    @IBAction func unwindToConfirmationViewController(segue:UIStoryboardSegue) { }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "EnterPin" {
+            segue.destination.loadViewIfNeeded()
+            guard
+                let pinVC = segue.destination.childViewControllers.first as? PinViewController
+            else {
+                return
+            }
+            pinVC.delegate = self
+        }
     }
-    */
     
     // MARK: - Private
     
@@ -146,6 +155,22 @@ extension CashOutConfirmationViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AssetCell", for: indexPath) as! CashOutAssetDetailsTableViewCell
         cell.bind(to: cashOutViewModel)
         return cell
+    }
+    
+}
+
+extension CashOutConfirmationViewController: PinViewControllerDelegate {
+    
+    func isPinCorrect(_ success: Bool, pinController: PinViewController) {
+        guard success else { return }
+        pinPassed.value = success
+        presentedViewController?.dismiss(animated: true)
+    }
+    
+    func isTouchIdCorrect(_ success: Bool, pinController: PinViewController) {
+        guard success else { return }
+        pinPassed.value = success
+        presentedViewController?.dismiss(animated: true)
     }
     
 }
