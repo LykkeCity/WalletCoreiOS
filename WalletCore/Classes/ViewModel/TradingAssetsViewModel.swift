@@ -11,7 +11,7 @@ import RxSwift
 
 public class TradingAssetsViewModel {
     public let availableToBuy: Observable<[LWAssetModel]>
-    public let availableToSell: Observable<[LWAssetModel]>
+    public let availableToSell: Observable<[LWSpotWallet]>
     public let loadingViewModel: LoadingViewModel
     
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
@@ -26,8 +26,7 @@ public class TradingAssetsViewModel {
             assetPairs.isLoading()
         ])
         
-        availableToSell =
-            nonEmptyWallets.map{$0.map{$0.asset!}}
+        availableToSell = nonEmptyWallets
         
         availableToBuy =
             Observable.zip(nonEmptyWallets, allAssets.filterSuccess(), assetPairs.filterSuccess())
