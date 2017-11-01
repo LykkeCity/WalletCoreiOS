@@ -19,24 +19,37 @@ class PortfolioViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var pieChartCenterView: PieChartCenter!
-
-    private let disposeBag = DisposeBag()
-    private let pieChartValueFormatter = PieValueFormatter()
-    private lazy var totalBalanceViewModel: TotalBalanceViewModel = {
-        return TotalBalanceViewModel()
+    @IBOutlet weak var emptyPortfolioView: EmptyPortfolioView!
+    
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let pieChartValueFormatter = PieValueFormatter()
+    fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
+        
+        return TotalBalanceViewModel(refresh: Observable
+            .merge(
+                Observable<Void>.interval(10.0),
+                self.reloadTrigger.asObservable().filterNil()
+            )
+            .throttle(2.0, scheduler: MainScheduler.instance)
+        )
     }()
     
-    private lazy var walletsViewModel: WalletsViewModel = {
+    
+    /// A variable that it's used for reloading portfolio data.
+    /// When the value is changed it triggers an event that will reload all data needed for that screen.
+    private let reloadTrigger = Variable<Void?>(nil)
+    
+    fileprivate lazy var walletsViewModel: WalletsViewModel = {
         return WalletsViewModel(
-            withBaseAsset: self.totalBalanceViewModel.observables.baseAsset.filterSuccess(),
+            refreshWallets: self.reloadTrigger.asObservable().filterNil(),
             mainInfo: self.totalBalanceViewModel.observables.mainInfo.filterSuccess()
         )
     }()
     
-    private lazy var loadingViewModel: LoadingViewModel = {
+    fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
-            self.totalBalanceViewModel.loading.isLoading,
-            self.walletsViewModel.isLoading
+            self.totalBalanceViewModel.loading.isLoading.debug("GG: Loading Balance", trimOutput: false),
+            self.walletsViewModel.loadingViewModel.isLoading.debug("GG: Loading Wallets", trimOutput: false)
         ])
     }()
     
@@ -44,19 +57,17 @@ class PortfolioViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(PortfolioViewController.loadData), name: .loggedIn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PortfolioViewController.reloadData), name: .loggedIn, object: nil)
         
 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-//        let authmanager = LWAuthManager.instance()
-//        authmanager?.requestSwiftCredential("CHF")
         
         configurePieChart()
         configureTableView()
         
         tableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
+        //Bind table
         assets.asObservable()
             .map{$0.sorted{$0.0.value.percent > $0.1.value.percent}}
             .bind(to: tableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell", cellType: PortfolioCurrencyTableViewCell.self)) { (row, element, cell) in
@@ -64,22 +75,38 @@ class PortfolioViewController: UIViewController {
             }
             .disposed(by: disposeBag)
 
+        //Bind show/hide according to empty wallets
         assets.asDriver()
-            .map{$0.filter{$0.value.percent > 0}}
-            .map{$0.map{PieChartDataEntry(value: $0.value.percent, data: $0.value)}}
-            .map{PieChartDataSet(values: $0, label: nil)}
-            .drive(onNext: {[weak self] dataSet in
-                guard let this = self else {return}
+            .map{$0.isNotEmpty}
+            .drive(emptyPortfolioView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        assets.asDriver()
+            .map{$0.isEmpty}
+            .drive(pieChartCenterView.addMoneyButton.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        //Bind piechart
+        Driver
+            .merge(
+                assets.asDriver().mapToPieChartDataSet(),
+                assets.asDriver().mapToEmptyChart()
+            )
+            .drive(onNext: {[pieChartView, pieChartValueFormatter] dataSet in
                 
                 dataSet.colors = [UIColor.clear]
-                dataSet.valueFormatter = this.pieChartValueFormatter
-//                dataSet.selectionShift = 0
-                this.pieChartView.data = PieChartData(dataSet: dataSet)
-                this.pieChartView.data?.setValueFont(UIFont(name: "GEOMANIST", size: 16))
+                dataSet.valueFormatter = pieChartValueFormatter
+                pieChartView?.data = PieChartData(dataSet: dataSet)
+                pieChartView?.data?.setValueFont(UIFont(name: "GEOMANIST", size: 16))
             })
             .disposed(by: disposeBag)
     
-        pieChartCenterView.addMoneyButton.rx.tap.asObservable()
+        //Bind buttons that shows add money
+        Observable
+            .merge(
+                emptyPortfolioView.addMoneyButton.rx.tap.asObservable(),
+                pieChartCenterView.addMoneyButton.rx.tap.asObservable()
+            )
             .subscribe(onNext: {[weak self] _ in
                 guard let controller = self?.storyboard?.instantiateViewController(withIdentifier: "AddMoney") else{return}
                 guard let drawerController = self?.parent as? KYDrawerController else{return}
@@ -88,10 +115,18 @@ class PortfolioViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        bindViewModels()
+        
         //show signUp methods this should be test for auth
         if((UserDefaults.standard.value(forKey: "loggedIn")) != nil) {
-            loadData()
+            reloadData()
         }
+    }
+    
+    
+    /// Trigger an event that will trigger reloading data for wallets, base asset and total balance
+    func reloadData()  {
+        reloadTrigger.value = Void()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,40 +139,10 @@ class PortfolioViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func loadData() {
-        totalBalanceViewModel.observables.baseAsset
-            .filterSuccess()
-            .subscribe(onNext: {asset in
-                LWCache.instance().baseAssetId = asset.identity
-            })
-            .disposed(by: disposeBag)
-        
-        
-        totalBalanceViewModel.balance
-            .drive(pieChartCenterView.balanceLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        totalBalanceViewModel.currencyName
-            .drive(pieChartCenterView.currencyName.rx.text)
-            .disposed(by: disposeBag)
-        
-        walletsViewModel.wallets
-            .bind(to: assets)
-            .disposed(by: disposeBag)
-        
-        loadingViewModel.isLoading
-            .bind(to: rx.loading)
-            .disposed(by: disposeBag)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -155,5 +160,52 @@ class PortfolioViewController: UIViewController {
         pieChartView.chartDescription = nil
         pieChartView.legend.enabled = false
         pieChartView.drawCenterTextEnabled = false
+    }
+}
+
+fileprivate extension TotalBalanceViewModel {
+    func bind(toVieController viewController: PortfolioViewController) -> [Disposable] {
+        return [
+            observables.baseAsset.filterSuccess().subscribe(onNext: {asset in LWCache.instance().baseAssetId = asset.identity}),
+            balance.drive(viewController.pieChartCenterView.balanceLabel.rx.text),
+            currencyName.drive(viewController.pieChartCenterView.currencyName.rx.text)
+        ]
+    }
+}
+
+extension PortfolioViewController {
+    func bindViewModels() {
+        
+        totalBalanceViewModel
+            .bind(toVieController: self)
+            .disposed(by: disposeBag)
+        
+        walletsViewModel.wallets
+            .bind(to: assets)
+            .disposed(by: disposeBag)
+        
+        loadingViewModel.isLoading
+            .bind(to: rx.loading)
+            .disposed(by: disposeBag)
+    }
+}
+
+fileprivate extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, Self.E == [Variable<Asset>] {
+    func mapToPieChartDataSet() -> Driver<PieChartDataSet> {
+        return
+            filter{$0.isNotEmpty}
+            .map{$0.filter{$0.value.percent > 0}}
+            .map{$0.map{PieChartDataEntry(value: $0.value.percent, data: $0.value)}}
+            .map{PieChartDataSet(values: $0, label: nil)}
+    }
+    
+    func mapToEmptyChart() -> Driver<PieChartDataSet> {
+        return filter{$0.isEmpty}
+            .map{_ in [
+                PieChartDataEntry(value: 20.0, data: "0%" as AnyObject),
+                PieChartDataEntry(value: 30.0, data: "0%" as AnyObject),
+                PieChartDataEntry(value: 40.0, data: "0%" as AnyObject)
+            ]}
+            .map{PieChartDataSet(values: $0, label: nil)}
     }
 }

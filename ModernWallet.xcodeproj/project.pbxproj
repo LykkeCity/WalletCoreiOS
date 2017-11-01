@@ -36,6 +36,8 @@
 		469DA7231F6C1FB1000B904C /* KYCStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7221F6C1FB1000B904C /* KYCStep1ViewController.swift */; };
 		469DA7251F6C1FBF000B904C /* KYCStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7241F6C1FBF000B904C /* KYCStep2ViewController.swift */; };
 		469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7261F6C1FC8000B904C /* KYCStep3ViewController.swift */; };
+		46A48F811FA9B06B00843775 /* EmptyPortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A48F801FA9B06B00843775 /* EmptyPortfolioView.swift */; };
+		46A48F831FA9B07500843775 /* EmptyPortfolioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A48F821FA9B07500843775 /* EmptyPortfolioView.xib */; };
 		46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */; };
 		6100D8D81F1F327200EB40A5 /* LineChartDataSet+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */; };
 		6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */; };
@@ -192,6 +194,8 @@
 		469DA7221F6C1FB1000B904C /* KYCStep1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCStep1ViewController.swift; sourceTree = "<group>"; };
 		469DA7241F6C1FBF000B904C /* KYCStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCStep2ViewController.swift; sourceTree = "<group>"; };
 		469DA7261F6C1FC8000B904C /* KYCStep3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCStep3ViewController.swift; sourceTree = "<group>"; };
+		46A48F801FA9B06B00843775 /* EmptyPortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPortfolioView.swift; sourceTree = "<group>"; };
+		46A48F821FA9B07500843775 /* EmptyPortfolioView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyPortfolioView.xib; sourceTree = "<group>"; };
 		46B583741F94C6D600B475DB /* ModernWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModernWallet-Bridging-Header.h"; sourceTree = "<group>"; };
 		46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartDataSet+Setup.swift"; sourceTree = "<group>"; };
@@ -622,6 +626,8 @@
 			children = (
 				11DA906845E44B9E56EC79B6 /* PortfolioViewController.swift */,
 				6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */,
+				46A48F801FA9B06B00843775 /* EmptyPortfolioView.swift */,
+				46A48F821FA9B07500843775 /* EmptyPortfolioView.xib */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -893,6 +899,7 @@
 				66529DD11F8E38F10059786B /* Geomanist-Regular.otf in Resources */,
 				6141FEB11EE597D8004F50FF /* PortfolioCurrencyTableViewCell.xib in Resources */,
 				461C6F8D1F8B4E9000C5E8B3 /* BuyAssetListView.xib in Resources */,
+				46A48F831FA9B07500843775 /* EmptyPortfolioView.xib in Resources */,
 				CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */,
 				A12DB5501D741C2300319EA7 /* Proxima Nova Light.otf in Resources */,
 				61FC79D21F714033002A78CE /* KYCPhotoPlaceholderView.xib in Resources */,
@@ -1065,6 +1072,7 @@
 				CC8A99AA1EF7BAB80078E6B0 /* AddMoneyViewController.swift in Sources */,
 				CC84F2791F6195FB00FABEA3 /* RegisterConfrimPhoneViewController.swift in Sources */,
 				469DA71B1F6C1199000B904C /* KYCTabStripViewController.swift in Sources */,
+				46A48F811FA9B06B00843775 /* EmptyPortfolioView.swift in Sources */,
 				4671C9D01F824130002C2F25 /* KYCPhotoFailedViewController.swift in Sources */,
 				CC9458881F05310300676249 /* AddMoneyCCStep2ViewController.swift in Sources */,
 				614214191F78F9C400E2F524 /* KYCProtocols.swift in Sources */,
