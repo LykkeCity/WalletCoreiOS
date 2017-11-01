@@ -69,6 +69,11 @@
                                         <constraint firstItem="HPC-xR-bUp" firstAttribute="centerY" secondItem="HEp-CV-Ncx" secondAttribute="centerY" id="Tod-wM-o0J"/>
                                     </constraints>
                                 </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="0jK-FC-HsC" customClass="EmptyPortfolioView" customModule="ModernWallet" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="360" width="375" height="200"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEk-NQ-I77">
                                 <rect key="frame" x="152" y="629" width="71" height="26"/>
@@ -102,6 +107,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="emptyPortfolioView" destination="0jK-FC-HsC" id="cjR-UH-a0l"/>
                         <outlet property="pieChartCenterView" destination="HPC-xR-bUp" id="ZcE-5D-Hle"/>
                         <outlet property="pieChartView" destination="HEp-CV-Ncx" id="dIe-f0-nBm"/>
                         <outlet property="tableView" destination="ItN-nj-RpW" id="w7V-Uk-V73"/>
@@ -347,7 +353,7 @@
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
-                                <rect key="frame" x="74.5" y="317.5" width="227" height="32"/>
+                                <rect key="frame" x="74.5" y="315" width="227" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -420,6 +426,6 @@
         <image name="menuIcon" width="36" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P8E-CZ-ES2"/>
+        <segue reference="dZQ-oa-YSZ"/>
     </inferredMetricsTieBreakers>
 </document>

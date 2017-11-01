@@ -24,9 +24,11 @@ class CashOutSelectAssetViewController: UIViewController {
     private let totalBalanceViewModel = TotalBalanceViewModel()
     private let disposeBag = DisposeBag()
     
+    private let refreshWallets = Variable<Void>(Void())
+    
     private lazy var walletsViewModel: WalletsViewModel = {
         return WalletsViewModel(
-            withBaseAsset: self.totalBalanceViewModel.observables.baseAsset.filterSuccess(),
+            refreshWallets: self.refreshWallets.asObservable(),
             mainInfo: self.totalBalanceViewModel.observables.mainInfo.filterSuccess()
         )
     }()
