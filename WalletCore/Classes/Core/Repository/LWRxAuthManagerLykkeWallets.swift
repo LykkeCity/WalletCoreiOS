@@ -52,6 +52,16 @@ public class LWRxAuthManagerLykkeWallets: LWRxAuthManagerBase<LWPacketWallets> {
 }
 
 
+public extension ObservableType where Self.E == ApiResultList<LWSpotWallet> {
+    public func filterSuccess() -> Observable<[LWSpotWallet]> {
+        return map{$0.getSuccess()}.filterNil()
+    }
+    
+    public func isLoading() -> Observable<Bool> {
+        return map{$0.isLoading}
+    }
+}
+
 public extension ObservableType where Self.E == ApiResult<LWLykkeWalletsData> {
     public func filterSuccess() -> Observable<LWLykkeWalletsData> {
         return map{$0.getSuccess()}.filterNil()
