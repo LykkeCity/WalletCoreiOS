@@ -14,7 +14,7 @@ class MenuTableViewController: UITableViewController {
 
     let selectedCellBGColor = UIColor.red
     let notSelectedCellBGColor = UIColor.clear
-    static let commingSoonColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.5)
+    static let commingSoonColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.4)
     
     private struct MenuItem {
         

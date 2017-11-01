@@ -352,21 +352,29 @@
                                     <segue destination="KAU-Mi-TR8" kind="embed" id="P8E-CZ-ES2"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
-                                <rect key="frame" x="74.5" y="315" width="227" height="37.5"/>
-                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-gZ-usr">
+                                <rect key="frame" x="74.5" y="218" width="227" height="232"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="V18-eG-6Hb">
+                                        <rect key="frame" x="0.0" y="0.0" width="227" height="180"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
+                                        <rect key="frame" x="0.0" y="200" width="227" height="32"/>
+                                        <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="yvC-CJ-cmE" firstAttribute="centerX" secondItem="gTR-Il-fwe" secondAttribute="centerX" id="AQJ-6g-jb9"/>
                             <constraint firstAttribute="trailing" secondItem="ayi-jC-Jb4" secondAttribute="trailing" id="B6S-Ad-SxE"/>
+                            <constraint firstItem="ZiR-gZ-usr" firstAttribute="centerX" secondItem="gTR-Il-fwe" secondAttribute="centerX" id="Kwn-lW-T46"/>
                             <constraint firstItem="4QU-b6-mV6" firstAttribute="top" secondItem="aCg-hP-ajy" secondAttribute="bottom" id="LdU-iN-jYM"/>
                             <constraint firstItem="aCg-hP-ajy" firstAttribute="top" secondItem="gTR-Il-fwe" secondAttribute="top" id="XN8-UY-7Yt"/>
                             <constraint firstItem="aCg-hP-ajy" firstAttribute="leading" secondItem="gTR-Il-fwe" secondAttribute="leading" id="aPO-is-isx"/>
-                            <constraint firstItem="yvC-CJ-cmE" firstAttribute="centerY" secondItem="gTR-Il-fwe" secondAttribute="centerY" id="pnc-ZC-fsW"/>
+                            <constraint firstItem="ZiR-gZ-usr" firstAttribute="centerY" secondItem="gTR-Il-fwe" secondAttribute="centerY" id="pYc-cr-MBC"/>
                             <constraint firstAttribute="trailing" secondItem="aCg-hP-ajy" secondAttribute="trailing" id="uqN-hK-cky"/>
                             <constraint firstItem="ayi-jC-Jb4" firstAttribute="top" secondItem="gTR-Il-fwe" secondAttribute="top" id="whF-1o-nmd"/>
                             <constraint firstItem="ayi-jC-Jb4" firstAttribute="leading" secondItem="gTR-Il-fwe" secondAttribute="leading" id="zIq-uv-ppB"/>
@@ -423,9 +431,10 @@
         <image name="BlueBackground" width="687" height="1223"/>
         <image name="LykkeLogo" width="251" height="78"/>
         <image name="chatIcon" width="66" height="54"/>
+        <image name="comingSoonIcon" width="191" height="180"/>
         <image name="menuIcon" width="36" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dZQ-oa-YSZ"/>
+        <segue reference="P8E-CZ-ES2"/>
     </inferredMetricsTieBreakers>
 </document>
