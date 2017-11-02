@@ -26,11 +26,11 @@ class CashOutConfirmationViewController: UIViewController {
     fileprivate lazy var bankAccountDetails: [TitleDetailPair] = {
         let bankAccountViewModel = self.cashOutViewModel.bankAccountViewModel
         return [
-            (title: Localize("cashOut.newDesign.accountName"), detail: bankAccountViewModel.accountName.valueOrNil),
+            (title: Localize("cashOut.newDesign.bankName"), detail: bankAccountViewModel.bankName.valueOrNil),
             (title: Localize("cashOut.newDesign.iban"), detail: bankAccountViewModel.iban.valueOrNil),
             (title: Localize("cashOut.newDesign.bic"), detail: bankAccountViewModel.bic.valueOrNil),
             (title: Localize("cashOut.newDesign.accountHolder"), detail: bankAccountViewModel.accountHolder.valueOrNil),
-            (title: Localize("cashOut.newDesign.currency"), detail: bankAccountViewModel.currency.valueOrNil)
+            (title: Localize("cashOut.newDesign.accountHolderAddress"), detail: bankAccountViewModel.accountHolderAddress.valueOrNil)
         ].filter { $0.detail != nil }
     }()
 

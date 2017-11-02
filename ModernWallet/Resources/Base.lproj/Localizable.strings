@@ -931,14 +931,13 @@
 "cashOut.newDesign.transactionReason" = "TRANSACTION REASON";
 "cashOut.newDesign.additionalNotes" = "ADDITIONAL NOTES";
 "cashOut.newDesign.inputBankAccountDetails" = "INPUT BANK ACCOUNT DETAILS";
-"cashOut.newDesign.accountName" = "ACCOUNT NAME";
+"cashOut.newDesign.bankName" = "BANK NAME";
 "cashOut.newDesign.iban" = "IBAN";
 "cashOut.newDesign.bic" = "BIC";
 "cashOut.newDesign.accountHolder" = "ACCOUNT HOLDER";
-"cashOut.newDesign.selectCurrency" = "SELECT CURRENCY";
+"cashOut.newDesign.accountHolderAddress" = "ACCOUNT HOLDER ADDRESS";
 "cashOut.newDesign.cashDetails" = "CASH DETAILS";
 "cashOut.newDesign.total" = "TOTAL";
 "cashOut.newDesign.bankAccountDetails" = "BANK ACCOUNT DETAILS";
-"cashOut.newDesign.currency" = "CURRENCY";
 "cashOut.newDesign.general" = "GENERAL";
 

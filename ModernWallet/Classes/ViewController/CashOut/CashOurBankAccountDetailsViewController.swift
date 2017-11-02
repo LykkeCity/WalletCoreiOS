@@ -36,16 +36,16 @@ class CashOurBankAccountDetailsViewController: UIViewController {
         backgroundHeightConstraint.constant = Display.height
         
         subtitleLabel.text = Localize("cashOut.newDesign.inputBankAccountDetails")
-        accountNameTextField.placeholder = Localize("cashOut.newDesign.accountName")
+        accountNameTextField.placeholder = Localize("cashOut.newDesign.bankName")
         ibanTextField.placeholder = Localize("cashOut.newDesign.iban")
         bicTextField.placeholder = Localize("cashOut.newDesign.bic")
         accountHolderTextField.placeholder = Localize("cashOut.newDesign.accountHolder")
-        currencyTextField.placeholder = Localize("cashOut.newDesign.selectCurrency")
+        currencyTextField.placeholder = Localize("cashOut.newDesign.accountHolderAddress")
         nextButton.setTitle(Localize("newDesign.next"), for: .normal)
         
         let bankDetailsViewModel = cashOutViewModel.bankAccountViewModel
         
-        (accountNameTextField.rx.textInput <-> bankDetailsViewModel.accountName)
+        (accountNameTextField.rx.textInput <-> bankDetailsViewModel.bankName)
             .disposed(by: disposeBag)
         
         (ibanTextField.rx.textInput <-> bankDetailsViewModel.iban)
@@ -57,7 +57,7 @@ class CashOurBankAccountDetailsViewController: UIViewController {
         (accountHolderTextField.rx.textInput <-> bankDetailsViewModel.accountHolder)
             .disposed(by: disposeBag)
         
-        (currencyTextField.rx.textInput <-> bankDetailsViewModel.currency)
+        (currencyTextField.rx.textInput <-> bankDetailsViewModel.accountHolderAddress)
             .disposed(by: disposeBag)
         
         let isFormValidDriver = bankDetailsViewModel.isValid.asDriver(onErrorJustReturn: false)
