@@ -563,6 +563,7 @@
 		666ACF881FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */; };
 		66BD6AD61F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BD6AD51F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift */; };
 		66CE48791FAA244600AAB98F /* CashOutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE48781FAA244600AAB98F /* CashOutService.swift */; };
+		874FA6741FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FA6731FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
 		CC0A16AE1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = CC0A16AC1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC0A16AF1F4C2A0500CC40C3 /* LWPacketPostClientCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0A16AD1F4C2A0500CC40C3 /* LWPacketPostClientCodes.m */; };
@@ -1157,6 +1158,7 @@
 		66CE48781FAA244600AAB98F /* CashOutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutService.swift; sourceTree = "<group>"; };
 		6FE31B8E679DB485E0AC92E8 /* Pods_WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B6456DCD697D7701FB00BC /* Pods-WalletCoreTests.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.release.test.xcconfig"; sourceTree = "<group>"; };
+		874FA6731FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainCashOutSwift.swift; sourceTree = "<group>"; };
 		A365F33C6B54102FA54D32DE /* Pods-WalletCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6006A15181B6E664CEE7CEA /* Pods-WalletCore.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.debug.test.xcconfig"; sourceTree = "<group>"; };
 		B2D803A07289BA7B1909DDA3 /* Pods-WalletCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.xcconfig"; sourceTree = "<group>"; };
@@ -2163,6 +2165,7 @@
 				46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */,
 				46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */,
 				666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */,
+				874FA6731FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2892,6 +2895,7 @@
 				46C9B06B1F42C91B00B83CCB /* LWRxMarketManager.swift in Sources */,
 				CC59AB161F4D7F190063AEA4 /* LWRxAuthManagerEncodeMainKey.swift in Sources */,
 				46C9AF281F417BD800B83CCB /* LWPacketPushSettingsGet.m in Sources */,
+				874FA6741FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift in Sources */,
 				46C9AECA1F417BD700B83CCB /* LWPacketDicts.m in Sources */,
 				46C9B02A1F417C1B00B83CCB /* BuyStep3ViewModel.swift in Sources */,
 				46C9AF8C1F417BD800B83CCB /* LWTransactionTradeModel.m in Sources */,
