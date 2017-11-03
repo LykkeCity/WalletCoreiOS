@@ -559,6 +559,7 @@
 		665960581FA354CA00DB3D62 /* CashOutBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665960571FA354C900DB3D62 /* CashOutBankAccountViewModel.swift */; };
 		6664C6131F9E012600F6D1A6 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664C6121F9E012600F6D1A6 /* WalletViewModel.swift */; };
 		666ACF861FAB1C4D00E42384 /* LWPacketCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666ACF851FAB1C4D00E42384 /* LWPacketCashOutSwift.swift */; };
+		666ACF881FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */; };
 		66BD6AD61F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BD6AD51F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
 		CC0A16AE1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = CC0A16AC1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1148,6 +1149,7 @@
 		665960571FA354C900DB3D62 /* CashOutBankAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutBankAccountViewModel.swift; sourceTree = "<group>"; };
 		6664C6121F9E012600F6D1A6 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		666ACF851FAB1C4D00E42384 /* LWPacketCashOutSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketCashOutSwift.swift; sourceTree = "<group>"; };
+		666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCashOutSwift.swift; sourceTree = "<group>"; };
 		66BD6AD51F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		6FE31B8E679DB485E0AC92E8 /* Pods_WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B6456DCD697D7701FB00BC /* Pods-WalletCoreTests.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.release.test.xcconfig"; sourceTree = "<group>"; };
@@ -2154,6 +2156,7 @@
 				465805C01F98DA3900FFFA0A /* LWRxAuthManagerOffchainRequests.swift */,
 				46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */,
 				46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */,
+				666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -3013,6 +3016,7 @@
 				CC0DFAFD1F54493900EBB96E /* LWRxAuthManagerAccountExist.swift in Sources */,
 				46C9AE7A1F417BD700B83CCB /* LWJSONObject.m in Sources */,
 				46C9AFA21F417BD800B83CCB /* LWModel.m in Sources */,
+				666ACF881FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift in Sources */,
 				46C9AFC41F417BD800B83CCB /* LWMWHistoryPosition.m in Sources */,
 				4649C6321FACB2C500765579 /* RefreshTrigger.swift in Sources */,
 				46C9AE9C1F417BD700B83CCB /* LWPacketAuthentication.m in Sources */,
