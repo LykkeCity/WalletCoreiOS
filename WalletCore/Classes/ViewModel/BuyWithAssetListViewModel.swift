@@ -27,7 +27,7 @@ public class BuyWithAssetListViewModel {
                     return false
                 }
                 
-                let assetPairId = "\(walletAssetId)\(assetId)"
+                let assetPairId = "\(assetId)\(walletAssetId)"
                 return assetPairs.contains{$0.identity == assetPairId}
             }
         }

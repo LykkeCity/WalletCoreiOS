@@ -9,9 +9,9 @@
 import UIKit
 
 public struct LWModelOffchainChannelKey {
-    public let key: String
+    public let key: String?
     
     init(withJSON json: [AnyHashable: Any]) {
-        self.key = json["Key"] as? String ?? ""
+        self.key = json["Key"] as? String
     }
 }
