@@ -37,6 +37,7 @@ class SignUpEmailViewController: UIViewController, UIGestureRecognizerDelegate {
         signInButton.setTitle(Localize("auth.newDesign.signin"), for: UIControlState.normal)
         
         accountExistsViewModel.accountExistObservable
+            .do(onNext: { $0.saveValues() })
             .map{$0.isRegistered ? "auth.newDesign.signin" : "auth.newDesign.signup"}
             .subscribe(onNext: { [weak self] buttonTitle in
                 self?.signInButton.setTitle(Localize(buttonTitle), for: UIControlState.normal)
