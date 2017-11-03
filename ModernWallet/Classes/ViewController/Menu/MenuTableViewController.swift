@@ -23,10 +23,10 @@ class MenuTableViewController: UITableViewController {
         let color: UIColor?
         let storyboardName: String?
         let viewControllerIdentifier: String?
-        let onSelect: (() -> ())?
+        let onSelect: ((_ viewController: UIViewController) -> ())?
         
         init(title: String, image: UIImage? = nil, viewControllerIdentifier: String? = nil, storyboardName: String? = nil,
-             color: UIColor? = nil, onSelect: (() -> ())? = nil) {
+             color: UIColor? = nil, onSelect: ((_ viewController: UIViewController) -> ())? = nil) {
             
             self.title = title
             self.image = image
@@ -39,7 +39,14 @@ class MenuTableViewController: UITableViewController {
     
     private var items : [MenuItem] = [
         MenuItem(title: Localize("menu.newDesign.addMoney"), image: #imageLiteral(resourceName: "ADD MONEY"), viewControllerIdentifier: "AddMoney"),
-        MenuItem(title: Localize("menu.newDesign.buy"), image: #imageLiteral(resourceName: "BUY"), viewControllerIdentifier: "buyOptimizedVC"),
+        MenuItem(title: Localize("menu.newDesign.buy"), image: #imageLiteral(resourceName: "BUY"), viewControllerIdentifier: "buyOptimizedVC") {viewController in
+            guard let viewController = viewController as? BuyOptimizedViewController else { return }
+            viewController.tradeType = .buy
+        },
+        MenuItem(title: Localize("menu.newDesign.sell"), image: #imageLiteral(resourceName: "SELL"), viewControllerIdentifier: "buyOptimizedVC", storyboardName: "Main") {viewController in
+            guard let viewController = viewController as? BuyOptimizedViewController else { return }
+            viewController.tradeType = .sell
+        },
         MenuItem(title: Localize("menu.newDesign.cashOut"), image: #imageLiteral(resourceName: "CASH OUT"), viewControllerIdentifier: "CashOut"),
         MenuItem(title: Localize("menu.newDesign.checkPrices"), image: #imageLiteral(resourceName: "CHECK PRICES"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
@@ -48,14 +55,13 @@ class MenuTableViewController: UITableViewController {
         MenuItem(title: Localize("menu.newDesign.portfolio"), image: #imageLiteral(resourceName: "PORTFOLIO"), viewControllerIdentifier: "Portfolio"),
         MenuItem(title: Localize("menu.newDesign.receive"), image: #imageLiteral(resourceName: "RECEIVE"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
-        MenuItem(title: Localize("menu.newDesign.sell"), image: #imageLiteral(resourceName: "SELL"),
-                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.send"), image: #imageLiteral(resourceName: "SEND"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), viewControllerIdentifier: "transactionVC"),
-        MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: "Portfolio", color: nil, onSelect: MenuTableViewController.logout)
+        MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: "Portfolio", color: nil,
+                 onSelect: MenuTableViewController.logout)
     ]
     
     override func viewDidLoad() {
@@ -104,10 +110,10 @@ class MenuTableViewController: UITableViewController {
             return
         }
         
+        item.onSelect?(viewController)
+        
         drawerController.mainViewController = viewController
         drawerController.setDrawerState(.closed, animated: true)
-        
-        item.onSelect?()
     }
     
     // MARK: - Private
@@ -231,7 +237,7 @@ class MenuTableViewController: UITableViewController {
         return storyboard.instantiateViewController(withIdentifier: identifier)
     }
     
-    private static func logout() {
+    private static func logout(_ viewController: UIViewController) {
         
         UserDefaults.standard.setValue(nil, forKey: "loggedIn")
         
