@@ -40,6 +40,21 @@ public class BuyOptimizedViewModel {
     public let spreadPercent: Driver<String>
     public let spreadAmount: Driver<String>
     
+    // TODO: Refactor this messed up code
+    public var tradeAmount: Decimal? {
+        guard let bid = self.bid.value else { return nil }
+        
+        if bid {
+            if let payWithAmount = self.payWithAmount.value.value.decimalValue {
+               return -(payWithAmount)
+            } else {
+                return nil
+            }
+        }
+        
+        return  self.buyAmount.value.value.decimalValue
+    }
+    
     private let disposeBag = DisposeBag()
     
     public init(

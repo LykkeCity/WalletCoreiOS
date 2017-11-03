@@ -22,8 +22,8 @@ open class WalletsViewModel {
         let nonEmptyWallets = refreshWallets
             .flatMap{ _ in
                 authManager.lykkeWallets.requestNonEmptyWallets()
-                    .map{ApiResultList.success(withData: $0)}
-                    .startWith(ApiResultList.loading)
+                    .map{ ApiResultList.success(withData: $0) }
+                    .startWith( ApiResultList.loading )
             }
             .shareReplay(1)
         

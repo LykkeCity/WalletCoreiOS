@@ -36,6 +36,9 @@ public class OffchainService {
     public func trade(amount: Decimal, asset: LWAssetModel, forAsset: LWAssetModel) -> Observable<ApiResult<LWModelOffchainResult>> {
         let channelAsset = amount > 0 ? forAsset : asset
         
+        let pair = dependency.authManager.assetPairs
+            .requestAssetPair(baseAsset: asset, quotingAsset: forAsset)
+        
         //1. get channel key for asset
         let offchainChannelKey = dependency.authManager.offchainChannelKey.request(forAsset: channelAsset.identity)
         
@@ -46,10 +49,11 @@ public class OffchainService {
             .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: channelAsset.identity)
         
         //2. request offchain trading
-        let offchainTrade = decryptedKey
-            .map{ decryptedKey in LWPacketOffchainTrade.Body(
-                asset: asset.identity,
-                assetPair: asset.getPairId(withAsset: forAsset),
+        let offchainTrade = Observable
+            .zip(decryptedKey, pair.filterSuccess().filterNil())
+            .map{decryptedKey, pair in LWPacketOffchainTrade.Body(
+                asset: channelAsset.identity,
+                assetPair: pair.identity,
                 prevTempPrivateKey: decryptedKey,
                 volume: amount
             )}
@@ -68,7 +72,8 @@ public class OffchainService {
             .merge(
                 offchainChannelKey.filterError(),
                 offchainTrade.filterError(),
-                finalizedTrade.filterError()
+                finalizedTrade.filterError(),
+                pair.filterSuccess().filter{ $0 == nil }.map{ _ in ["Message": "There is no asset pair for your request."]}
             ).map{
                 ApiResult<LWModelOffchainResult>.error(withData: $0)
             }
@@ -104,7 +109,7 @@ fileprivate extension ObservableType where Self.E == Void {
         
         // Filter first request and subscribe itself until all requests get finalized
         return requests.filterSuccess()
-            .map{ $0.first }
+            .map{ $0.randomElement }
             .filterNil()
             .finalizePendingRequest(dependency)
             .filterSuccess()

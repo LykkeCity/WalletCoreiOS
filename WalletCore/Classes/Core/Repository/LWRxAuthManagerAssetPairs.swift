@@ -30,6 +30,22 @@ public class LWRxAuthManagerAssetPairs: LWRxAuthManagerBase<LWPacketAssetPairs> 
         .shareReplay(1)
     }
     
+    public func requestAssetPair(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>> {
+        let pairId = baseAsset.getPairId(withAsset: quotingAsset)
+        let reversedPairId = quotingAsset.getPairId(withAsset: baseAsset)
+        
+        return requestAssetPairs()
+            .filterSuccess()
+            .map{ pairs in
+                pairs.first{ model in
+                    model.identity == pairId || model.identity == reversedPairId
+                }
+            }
+            .map{ ApiResult.success(withData: $0) }
+            .startWith(.loading)
+            .shareReplay(1)
+    }
+    
     public func requestAssetPair(byId id: String) -> Observable<ApiResult<LWAssetPairModel?>> {
         return requestAssetPairs().map{ result -> ApiResult<LWAssetPairModel?> in
             switch result {
@@ -38,9 +54,6 @@ public class LWRxAuthManagerAssetPairs: LWRxAuthManagerBase<LWPacketAssetPairs> 
                 case .notAuthorized: return .notAuthorized
                 case .forbidden: return .forbidden
                 case .success(let data): return .success(withData: data.first{pairModel in
-                    print("Print: id: \(id)")
-                    print("Print: pairModel: \(pairModel.identity)")
-                    
                     return pairModel.identity == id
                 })
             }

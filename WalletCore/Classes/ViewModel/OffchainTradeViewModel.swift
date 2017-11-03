@@ -31,7 +31,7 @@ public class OffchainTradeViewModel {
             .filterNil()
             .flatMapLatest{ params -> Observable<ApiResult<LWModelOffchainResult>> in
                 guard let amount = params.amount else {return Observable.never()}
-                return offchainService.trade(amount: amount, asset: params.forAsset, forAsset: params.wallet.asset)
+                return offchainService.trade(amount: amount, asset: params.wallet.asset, forAsset: params.forAsset)
             }
             .shareReplay(1)
         
@@ -61,7 +61,7 @@ fileprivate extension ObservableType where Self.E == OffchainTradeViewModel.Trad
     func validate() -> Observable<[AnyHashable: Any]?> {
         return map{ data in
             
-            guard let amount = data.amount, amount > 0.00 else {
+            guard let amount = data.amount else {
                 return ["Message": "Amount field should be not empty"]
             }
             
@@ -69,9 +69,9 @@ fileprivate extension ObservableType where Self.E == OffchainTradeViewModel.Trad
                 return ["Message": String(format: "Your %@ balance is zero", data.wallet.asset.identity)]
             }
             
-            guard amount <= data.wallet.balance.decimalValue else {
-                return ["Message": String(format: "Your %@ balance is to low", data.wallet.asset.identity)]
-            }
+//            guard amount <= data.wallet.balance.decimalValue else {
+//                //return ["Message": String(format: "Your %@ balance is to low", data.wallet.asset.identity)]
+//            }
             
             return nil
         }
