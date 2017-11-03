@@ -68,6 +68,7 @@ class RegisterConfrimEmailViewController: UIViewController, UIGestureRecognizerD
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         emailTextField.text = emailConfirmString
         emailTextField.becomeFirstResponder()
 //        emailTextField.resignFirstResponder()
