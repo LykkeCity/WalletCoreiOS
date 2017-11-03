@@ -30,6 +30,12 @@ class CashOutAssetDetailsTableViewCell: UITableViewCell {
     func bind(to viewModel: CashOutViewModel) {
         disposeBag = DisposeBag()
         
+        viewModel.amountViewModel.walletObservable
+            .map { $0.name }
+            .asDriver(onErrorJustReturn: "")
+            .drive(assetNameLabel.rx.text)
+            .disposed(by: disposeBag)
+        
         assetAmountView.bind(to: viewModel.amountObservable)
             .disposed(by: disposeBag)
         
