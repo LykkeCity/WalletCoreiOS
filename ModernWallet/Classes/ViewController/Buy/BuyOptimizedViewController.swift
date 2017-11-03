@@ -190,9 +190,10 @@ class BuyOptimizedViewController: UIViewController {
 fileprivate extension ObservableType where Self.E == Void {
     func mapToTradeParams(withViewModel viewModel: BuyOptimizedViewModel) -> Observable<OffchainTradeViewModel.TradeParams> {
         return map{  _ -> OffchainTradeViewModel.TradeParams? in
+            
             guard let payWithWallet = viewModel.payWithWallet.value?.wallet else{ return nil }
             guard let buyAsset = viewModel.buyAsset.value?.asset else{ return nil }
-            let amount = viewModel.buyAmount.value.value.decimalValue
+            guard let amount = viewModel.tradeAmount else { return nil }
             
             return OffchainTradeViewModel.TradeParams(amount: amount, wallet: payWithWallet, forAsset: buyAsset)
         }
