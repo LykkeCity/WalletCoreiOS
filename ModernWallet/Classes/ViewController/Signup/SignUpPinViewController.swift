@@ -134,7 +134,7 @@ class SignUpPinViewController: UIViewController, PinViewControllerDelegate {
         let signInStoryBoard = UIStoryboard.init(name: "SignIn", bundle: nil)
         pinViewController = signInStoryBoard.instantiateViewController(withIdentifier: "PinViewController") as? PinViewController
         pinViewController?.twoVerifications = false
-        pinViewController?.isTouchIdHidden = false //LWKeychainManager.instance()?.pin()?.isEmpty ?? true // hide touch id if the pin is empty
+        pinViewController?.isTouchIdHidden = true //LWKeychainManager.instance()?.pin()?.isEmpty ?? true // hide touch id if the pin is empty
         pinViewController?.delegate = self
         pinViewController?.view.frame = pinCodeView.bounds
         pinCodeView.addSubview((pinViewController?.view)!)
