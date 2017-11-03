@@ -10,79 +10,71 @@ import Foundation
 import RxSwift
 
 public class OffchainService {
-    private let authManager: LWRxAuthManager
-    private let privateKeyManager: LWPrivateKeyManager
-    private let keychainManager: LWKeychainManager
-    private let transactionManager: LWTransactionManager
     
-    public static let instance: OffchainService = {
-        return OffchainService(
-            authManager: LWRxAuthManager.instance,
-            privateKeyManager: LWPrivateKeyManager.shared(),
-            keychainManager: LWKeychainManager.instance(),
-            transactionManager: LWTransactionManager.shared()
-        )
-    }()
-    
-    public init(
+    public typealias Dependency = (
         authManager: LWRxAuthManager,
         privateKeyManager: LWPrivateKeyManager,
         keychainManager: LWKeychainManager,
         transactionManager: LWTransactionManager
-    ) {
-        self.authManager = authManager
-        self.privateKeyManager = privateKeyManager
-        self.keychainManager = keychainManager
-        self.transactionManager = transactionManager
+    )
+    
+    public static let instance: OffchainService = {
+        return OffchainService(OffchainService.Dependency(
+            authManager: LWRxAuthManager.instance,
+            privateKeyManager: LWPrivateKeyManager.shared(),
+            keychainManager: LWKeychainManager.instance(),
+            transactionManager: LWTransactionManager.shared()
+        ))
+    }()
+    
+    private let dependency: Dependency
+    
+    public init(_ dependency: Dependency) {
+        self.dependency = dependency
     }
     
     public func trade(amount: Decimal, asset: LWAssetModel, forAsset: LWAssetModel) -> Observable<ApiResult<LWModelOffchainResult>> {
         let channelAsset = amount > 0 ? forAsset : asset
-    
+        
         //1. get channel key for asset
-        let offchainChannelKey = authManager.offchainChannelKey.request(forAsset: channelAsset.identity)
+        let offchainChannelKey = dependency.authManager.offchainChannelKey.request(forAsset: channelAsset.identity)
         
         //decrypt chanel key with user key
         let decryptedKey = offchainChannelKey
             .filterSuccess()
-            .decryptKey(withKeyManager: privateKeyManager)
-            .replaceNilWithLastPrivateKey(keyChainManager: keychainManager, forAssetId: channelAsset.identity)
+            .decryptKey(withKeyManager: dependency.privateKeyManager)
+            .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: channelAsset.identity)
         
         //2. request offchain trading
         let offchainTrade = decryptedKey
-            .map{ decryptedKey in
-                return LWPacketOffchainTrade.Body(
-                    asset: asset.identity,
-                    assetPair: asset.getPairId(withAsset: forAsset),
-                    prevTempPrivateKey: decryptedKey,
-                    volume: amount
-                )
-            }
-            .flatMapLatest{ [weak self] body in
-                return self?.authManager.offchainTrade.request(withData: body) ?? Observable.never()
+            .map{ decryptedKey in LWPacketOffchainTrade.Body(
+                asset: asset.identity,
+                assetPair: asset.getPairId(withAsset: forAsset),
+                prevTempPrivateKey: decryptedKey,
+                volume: amount
+            )}
+            .flatMapLatest{ [dependency] body in
+                return dependency.authManager.offchainTrade.request(withData: body)
             }
             .shareReplay(1)
         
         //3. create channel if needed and finalize transfer
-        let finalizedTransfer = offchainTrade
+        let finalizedTrade = offchainTrade
             .filterSuccess()
-            .flatMap{ [weak self] offchainResult -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let `self` = self else {return Observable.never()}
-                return self.finalize(offchainResult: offchainResult, channelAssetId: channelAsset.identity)
-            }
-            .shareReplay(1)
+            .finalize(withChannelAssetId: channelAsset.identity, dependency: dependency)
         
         //Merge all error streams into one
-        let errors = Observable.merge(
-            offchainChannelKey.filterError(),
-            offchainTrade.filterError(),
-            finalizedTransfer.filterError()
-        ).map{ ApiResult<LWModelOffchainResult>.error(withData: $0) }
+        let errors = Observable
+            .merge(
+                offchainChannelKey.filterError(),
+                offchainTrade.filterError(),
+                finalizedTrade.filterError()
+            ).map{
+                ApiResult<LWModelOffchainResult>.error(withData: $0)
+            }
         
-        let finalResult = finalizedTransfer
-            .filterSuccess()
-            .map{ ApiResult<LWModelOffchainResult>.success(withData: $0) }
-    
+        let finalResult = finalizedTrade.filter{ $0.isSuccess }
+        
         return Observable
             .merge(errors, finalResult)
             .startWith(ApiResult.loading)
@@ -90,168 +82,166 @@ public class OffchainService {
     }
     
     public func finalizePendingRequests(refresh: Observable<Void>) -> Disposable {
+        return refresh
+            .processPendingRequests(dependency)
+            .subscribe()
+    }
+}
+
+fileprivate extension ObservableType where Self.E == Void {
+    func processPendingRequests(_ dependency: OffchainService.Dependency) -> Observable<Void> {
         //1. get pending actions
-        let pendingActions = refresh
-            .flatMapLatest{ [weak self] _ -> Observable<ApiResult<LWPacketCheckPendingActions>> in
-                guard let `self` = self else { return Observable.never() }
-                return self.authManager.checkPendingActions.request()
-            }
+        let pendingActions =
+            flatMapLatest{ [dependency] _ in dependency.authManager.checkPendingActions.request() }
             .shareReplay(1)
         
         //2. get requests if there are pending offchain requests
         let requests = pendingActions
             .filterSuccess()
             .filter{ $0.hasOffchainRequests }
-            .flatMapLatest{ [weak self] _ in self?.authManager.offchainRequests.request() ?? Observable.never() }
+            .flatMapLatest{ [dependency] _ in dependency.authManager.offchainRequests.request() }
             .shareReplay(1)
         
         // Filter first request and subscribe itself until all requests get finalized
         return requests.filterSuccess()
             .map{ $0.first }
             .filterNil()
-            .flatMapLatest{ [weak self] request -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let `self` = self else { return Observable.never() }
-                return self.finalize(pendingRequest: request)
-            }
+            .finalizePendingRequest(dependency)
             .filterSuccess()
-            .subscribe(onNext: { [weak self] _ in
-                self?.finalizePendingRequests(refresh: refresh)
-            })
+            .map{_ in Void()}
+//            .processPendingRequests(dependency)
     }
-    
-    private func finalize(offchainResult: LWModelOffchainResult, channelAssetId: String) -> Observable<ApiResult<LWModelOffchainResult>> {
+}
+
+fileprivate extension ObservableType where Self.E == (request: LWModelOffchainRequest, result: LWModelOffchainResult) {
+    func finalize(_ dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
+        return flatMap{ data in
+            return Observable<LWModelOffchainResult>
+                .just(data.result)
+                .finalize(withChannelAssetId: data.request.assetId, dependency: dependency)
+        }
+    }
+}
+
+fileprivate extension ObservableType where Self.E == LWModelOffchainResult {
+    func finalize(withChannelAssetId channelAssetId: String, dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
         
         //If channel doesn't exist first create it (if oprerationResult == 1) otherwise just use given offchainResult
-        let processedChanel = offchainResult.operationResult == 1 ?
-            self.processChannel(withOffchainResult: offchainResult, transactionType: .createChannel) :
-            Observable.just(ApiResult.success(withData: offchainResult))
+        let createdChannel =
+            filter{ $0.operationResult == 1 }
+            .processChannel(withTransactionType: .createChannel, dependency: dependency)
         
-        //Merge request transfer with result 0 and processed channel and finalize transfer
-        let finalizedTransfer = processedChanel
-            .filterSuccess()
-            .flatMapLatest{ [weak self]  offchainResult -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let `self` = self else { return Observable.never() }
-                return self.finalizeTransfer(withOffchainResult: offchainResult, channelAsset: channelAssetId)
-            }
-            .shareReplay(1)
-        
-        let errors = Observable
-            .merge(processedChanel.filterError(), finalizedTransfer.filterError())
-            .map{ ApiResult<LWModelOffchainResult>.error(withData: $0) }
-        
-        let finalizedSuccess = finalizedTransfer
-            .filterSuccess()
+        let reuseChannel =
+            filter{ $0.operationResult == 0 }
             .map{ ApiResult.success(withData: $0) }
         
-        return Observable
-            .merge(finalizedSuccess, errors)
-            .startWith(ApiResult.loading)
-            .shareReplay(1)
+        let processedChannel = Observable.merge(createdChannel, reuseChannel)
         
-    }
-    
-    private func finalize(pendingRequest request: LWModelOffchainRequest) -> Observable<ApiResult<LWModelOffchainResult>> {
-        
-        //1. get channel key
-        let offchainChannelKey = self.authManager.offchainChannelKey.request(forAsset: request.assetId)
-        
-        //decrypt channel key
-        let decryptedKey = offchainChannelKey
+        //Merge request transfer with result 0 and processed channel and finalize transfer
+        let finalizedTransfer = processedChannel
             .filterSuccess()
-            .decryptKey(withKeyManager: privateKeyManager)
-            .replaceNilWithLastPrivateKey(keyChainManager: keychainManager, forAssetId: request.assetId)
+            .finalizeTransfer(withChannelAsset: channelAssetId, dependency: dependency)
         
-        //2. Sent request transfer
-        let offchainRequestTransfer = decryptedKey
-            .flatMapLatest{ key in
-                self.authManager.offchainRequestTransfer.request(
-                    withData: LWPacketRequestTransfer.Body(requestId: request.requestId, prevTempPrivateKey: key)
+        //merge errors from both requests
+        let errors = Observable
+            .merge(processedChannel.filterError(), finalizedTransfer.filterError())
+            .map{ ApiResult<LWModelOffchainResult>.error(withData: $0) }
+        
+        let finalizedSuccess = finalizedTransfer.filter{ $0.isSuccess }
+        
+        return Observable
+            .merge(errors, finalizedSuccess)
+            .startWith(.loading)
+            .shareReplay(1)
+    }
+}
+
+fileprivate extension ObservableType where Self.E == LWModelOffchainResult {
+    func processChannel(withTransactionType transactionType: OffchainTransactionType,
+                        dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
+        
+        return
+            flatMap{ result -> Observable<ApiResult<LWModelOffchainResult>> in
+                
+                guard let signedChannelTransaction = LWTransactionManager.signOffchainTransaction(
+                    result.transactionHex,
+                    withKey: dependency.privateKeyManager.wifPrivateKeyLykke,
+                    type: transactionType
+                ) else {
+                    return Observable.just(.error(withData: ["signedChannelTransaction": "Chanel transaction can not be signed."]))
+                }
+                
+                return dependency.authManager.offchainProcessChannel.request(
+                    withData: LWPacketOffchainProcessChannel.Body(
+                        transferId: result.transferId,
+                        signedChannelTransaction: signedChannelTransaction
+                    )
                 )
             }
             .shareReplay(1)
+    }
+    
+    func finalizeTransfer(withChannelAsset channelAsset: String, dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>>  {
         
-        return offchainRequestTransfer
-            .filterSuccess()
-            .flatMap{ [weak self] offchainResult -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let `self` = self else{ return Observable.never() }
-                return self.finalize(offchainResult: offchainResult, channelAssetId: request.assetId)
+        return
+            flatMap{ result -> Observable<ApiResult<LWModelOffchainResult>> in
+                guard
+                    let key = dependency.privateKeyManager.generateKeyDict(),
+                    let wif = key["wif"] as? String,
+                    let publicKey = key["publicKey"] as? String
+                else {
+                    return Observable.just(.error(withData: ["generateKey": "Can not generate key."]))
+                }
+                
+                guard
+                    let wifPrivateKeyLykke = dependency.privateKeyManager.wifPrivateKeyLykke,
+                    let signedTransaction = LWTransactionManager.signOffchainTransaction(result.transactionHex, withKey: wifPrivateKeyLykke, type: .transfer)
+                else {
+                    return Observable.just(.error(withData: ["signedTransaction": "Can not sign transaction."]))
+                }
+                
+                return dependency.authManager.offchainFanilazeTransfer.request(withData: LWPacketOffchainFinalizetransfer.Body(
+                    transferId: result.transferId,
+                    clientRevokePubKey: publicKey,
+                    clientRevokeEncryptedPrivateKey: dependency.privateKeyManager.encryptExternalWalletKey(wif),
+                    signedTransferTransaction: signedTransaction
+                ))
             }
             .shareReplay(1)
     }
-    
-    private func processChannel(withOffchainResult offchainResult: LWModelOffchainResult,
-                               transactionType: OffchainTransactionType) -> Observable<ApiResult<LWModelOffchainResult>> {
-        
-        return processChannel(
-            transaction: offchainResult.transactionHex,
-            transferId: offchainResult.transferId,
-            transactionType: transactionType
-        )
-    }
-    
-    private func processChannel(transaction: String, transferId: String,
-                               transactionType: OffchainTransactionType) -> Observable<ApiResult<LWModelOffchainResult>> {
-                
-        guard let signedChannelTransaction = LWTransactionManager.signOffchainTransaction(
-            transaction,
-            withKey: privateKeyManager.wifPrivateKeyLykke,
-            type: transactionType
-        ) else {
-            return Observable.just(.error(withData: ["signedChannelTransaction": "Chanel transaction can not be signed."]))
-        }
-        
-        return  authManager.offchainProcessChannel.request(
-            withData: LWPacketOffchainProcessChannel.Body(
-                transferId: transferId,
-                signedChannelTransaction: signedChannelTransaction
-            )
-        )
-    }
-    
-    private func finalizeTransfer(withOffchainResult offchainResult: LWModelOffchainResult,
-                                 channelAsset: String) -> Observable<ApiResult<LWModelOffchainResult>>  {
-        
-        return finalizeTransfer(
-            transaction: offchainResult.transactionHex,
-            transferId: offchainResult.transferId,
-            channelAsset: channelAsset
-        )
-    }
-    
-    private func finalizeTransfer(transaction: String, transferId: String,
-                                 channelAsset: String) -> Observable<ApiResult<LWModelOffchainResult>>  {
-        
-        guard
-            let key = privateKeyManager.generateKeyDict(),
-            let wif = key["wif"] as? String,
-            let publicKey = key["publicKey"] as? String
-        else {
-            return Observable.just(.error(withData: ["generateKey": "Can not generate key."]))
-        }
-        
-        guard
-            let wifPrivateKeyLykke = privateKeyManager.wifPrivateKeyLykke,
-            let signedTransaction = LWTransactionManager.signOffchainTransaction(transaction, withKey: wifPrivateKeyLykke, type: .transfer)
-        else {
-            return Observable.just(.error(withData: ["signedTransaction": "Can not sign transaction."]))
-        }
-        
-        return authManager.offchainFanilazeTransfer.request(withData: LWPacketOffchainFinalizetransfer.Body(
-            transferId: transferId,
-            clientRevokePubKey: publicKey,
-            clientRevokeEncryptedPrivateKey: privateKeyManager.encryptExternalWalletKey(wif),
-            signedTransferTransaction: signedTransaction
-        ))
+}
+
+fileprivate extension ObservableType where Self.E == LWModelOffchainRequest {
+    func finalizePendingRequest(_ dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
+        return
+            //1. get channel key and decrypt channel key
+            flatMapLatest{ request in
+                return dependency.authManager.offchainChannelKey
+                    .request(forAsset: request.assetId)
+                    .filterSuccess()
+                    .decryptKey(withKeyManager: dependency.privateKeyManager)
+                    .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: request.assetId)
+                    .map{(request: request, decryptedKey: $0)}
+            }
+            //2. Send request transfer
+            .flatMapLatest{ data in
+                dependency.authManager.offchainRequestTransfer
+                    .request(withData: LWPacketRequestTransfer.Body(requestId: data.request.requestId, prevTempPrivateKey: data.decryptedKey))
+                    .filterSuccess()
+                    .map{(request: data.request, result: $0)}
+            }
+            //3. Finalize request
+            .finalize(dependency)
+            .shareReplay(1)
     }
 }
 
 fileprivate extension ObservableType where Self.E == LWModelOffchainChannelKey {
     func decryptKey(withKeyManager keyManager: LWPrivateKeyManager) -> Observable<String?> {
-        return
-            map{ $0.key }
-            .map{ encryptedKey -> String? in
-                return keyManager.decryptExternalWalletKey(encryptedKey)
-            }
+        return map{ offchainKey -> String? in
+            guard let encryptedKey = offchainKey.key else { return nil }
+            return keyManager.decryptExternalWalletKey(encryptedKey)
+        }
     }
 }
 
@@ -266,3 +256,4 @@ fileprivate extension ObservableType where Self.E == String? {
         }
     }
 }
+
