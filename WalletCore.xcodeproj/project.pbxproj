@@ -553,6 +553,7 @@
 		6142141C1F79249600E2F524 /* KYCDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */; };
 		6142141E1F793D4500E2F524 /* LWRxKYCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */; };
 		614214201F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */; };
+		661FB6041FACCB9E0068063C /* LWPacketOffchainCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661FB6031FACCB9E0068063C /* LWPacketOffchainCashOutSwift.swift */; };
 		6625465C1FA3268900B6F33A /* CashOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625465B1FA3268900B6F33A /* CashOutViewModel.swift */; };
 		665960541FA3545D00DB3D62 /* CashOutAmountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665960531FA3545D00DB3D62 /* CashOutAmountViewModel.swift */; };
 		665960561FA354A600DB3D62 /* CashOutGeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665960551FA354A600DB3D62 /* CashOutGeneralViewModel.swift */; };
@@ -1144,6 +1145,7 @@
 		6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentsViewModel.swift; sourceTree = "<group>"; };
 		6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxKYCManager.swift; sourceTree = "<group>"; };
 		6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KycUploadDocumentsViewModel.swift; sourceTree = "<group>"; };
+		661FB6031FACCB9E0068063C /* LWPacketOffchainCashOutSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketOffchainCashOutSwift.swift; sourceTree = "<group>"; };
 		6625465B1FA3268900B6F33A /* CashOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutViewModel.swift; sourceTree = "<group>"; };
 		665960531FA3545D00DB3D62 /* CashOutAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutAmountViewModel.swift; sourceTree = "<group>"; };
 		665960551FA354A600DB3D62 /* CashOutGeneralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutGeneralViewModel.swift; sourceTree = "<group>"; };
@@ -1212,6 +1214,7 @@
 				46C08DBC1F98CD9E0059BDD3 /* LWPacketOffchainProcessChannel.swift */,
 				46C08DBE1F98CF2C0059BDD3 /* LWPacketOffchainFinalizetransfer.swift */,
 				46C08DC01F98CFA30059BDD3 /* LWModelOffchainOrder.swift */,
+				661FB6031FACCB9E0068063C /* LWPacketOffchainCashOutSwift.swift */,
 			);
 			path = Offchain;
 			sourceTree = "<group>";
@@ -2885,6 +2888,7 @@
 				46C9B0711F42C91B00B83CCB /* LWRxAuthManagerEmailWalletAddress.swift in Sources */,
 				46C9B0761F42C91B00B83CCB /* LWRxPrivateWalletsManager.swift in Sources */,
 				46C9AF0C1F417BD800B83CCB /* LWPacketMarginDepositWithdraw.m in Sources */,
+				661FB6041FACCB9E0068063C /* LWPacketOffchainCashOutSwift.swift in Sources */,
 				46C9B06B1F42C91B00B83CCB /* LWRxMarketManager.swift in Sources */,
 				CC59AB161F4D7F190063AEA4 /* LWRxAuthManagerEncodeMainKey.swift in Sources */,
 				46C9AF281F417BD800B83CCB /* LWPacketPushSettingsGet.m in Sources */,
