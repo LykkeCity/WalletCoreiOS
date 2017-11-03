@@ -108,8 +108,9 @@ fileprivate extension ObservableType where Self.E == Void {
             .filterNil()
             .finalizePendingRequest(dependency)
             .filterSuccess()
-            .map{_ in Void()}
-//            .processPendingRequests(dependency)
+            .flatMap{ _ in
+                Observable<Void>.just(Void()).processPendingRequests(dependency)
+            }
     }
 }
 
@@ -221,14 +222,14 @@ fileprivate extension ObservableType where Self.E == LWModelOffchainRequest {
                     .filterSuccess()
                     .decryptKey(withKeyManager: dependency.privateKeyManager)
                     .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: request.assetId)
-                    .map{(request: request, decryptedKey: $0)}
+                    .map{ (request: request, decryptedKey: $0) }
             }
             //2. Send request transfer
             .flatMapLatest{ data in
                 dependency.authManager.offchainRequestTransfer
                     .request(withData: LWPacketRequestTransfer.Body(requestId: data.request.requestId, prevTempPrivateKey: data.decryptedKey))
                     .filterSuccess()
-                    .map{(request: data.request, result: $0)}
+                    .map{ (request: data.request, result: $0) }
             }
             //3. Finalize request
             .finalize(dependency)

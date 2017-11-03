@@ -659,7 +659,7 @@
 
 -(BOOL) isPrivateKeyLykkeEmpty
 {
-    return self.privateKeyLykke == nil;
+    return privateKeyForLykke == nil;
 }
 
 -(BTCKey *) privateKeyLykke

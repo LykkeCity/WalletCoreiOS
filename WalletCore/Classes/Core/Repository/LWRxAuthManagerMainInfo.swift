@@ -64,6 +64,12 @@ public class LWRxAuthManagerMainInfo: LWRxAuthManagerBase<LWPacketGetMainScreenI
         observer.onNext(.success(withData: packet))
         observer.onCompleted()
     }
+    
+    override func onForbidden(withPacket packet: LWPacketGetMainScreenInfo) {
+        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetMainScreenInfo>> else {return}
+        observer.onNext(.forbidden)
+        observer.onCompleted()
+    }
 }
 
 public extension ObservableType where Self.E == ApiResult<LWPacketGetMainScreenInfo> {
