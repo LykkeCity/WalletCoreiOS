@@ -22,6 +22,7 @@ class PortfolioViewController: UIViewController {
     @IBOutlet weak var emptyPortfolioView: EmptyPortfolioView!
     
     fileprivate let disposeBag = DisposeBag()
+    fileprivate var loadingDisposeBag = DisposeBag()
     fileprivate let pieChartValueFormatter = PieValueFormatter()
     fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
         
@@ -48,8 +49,8 @@ class PortfolioViewController: UIViewController {
     
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
-            self.totalBalanceViewModel.loading.isLoading.debug("GG: Loading Balance", trimOutput: false),
-            self.walletsViewModel.loadingViewModel.isLoading.debug("GG: Loading Wallets", trimOutput: false)
+            self.totalBalanceViewModel.loading.isLoading,
+            self.walletsViewModel.loadingViewModel.isLoading
         ])
     }()
     
@@ -77,7 +78,7 @@ class PortfolioViewController: UIViewController {
 
         //Bind show/hide according to empty wallets
         assets.asDriver()
-            .map{$0.isNotEmpty}
+            .map{ $0.isNotEmpty }
             .drive(emptyPortfolioView.rx.isHidden)
             .disposed(by: disposeBag)
         
@@ -107,9 +108,9 @@ class PortfolioViewController: UIViewController {
                 emptyPortfolioView.addMoneyButton.rx.tap.asObservable(),
                 pieChartCenterView.addMoneyButton.rx.tap.asObservable()
             )
-            .subscribe(onNext: {[weak self] _ in
-                guard let controller = self?.storyboard?.instantiateViewController(withIdentifier: "AddMoney") else{return}
-                guard let drawerController = self?.parent as? KYDrawerController else{return}
+            .subscribe(onNext: {[storyboard, parent] _ in
+                guard let controller = storyboard?.instantiateViewController(withIdentifier: "AddMoney") else{ return }
+                guard let drawerController = parent as? KYDrawerController else{ return }
                 
                 drawerController.mainViewController = controller
             })
@@ -131,6 +132,12 @@ class PortfolioViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+     
+        loadingDisposeBag = DisposeBag()
+        
+        loadingViewModel.isLoading
+            .bind(to: rx.loading)
+            .disposed(by: disposeBag)
         
         if((UserDefaults.standard.value(forKey: "loggedIn")) == nil) {
             let signInStory = UIStoryboard.init(name: "SignIn", bundle: nil)
@@ -183,20 +190,16 @@ extension PortfolioViewController {
         walletsViewModel.wallets
             .bind(to: assets)
             .disposed(by: disposeBag)
-        
-        loadingViewModel.isLoading
-            .bind(to: rx.loading)
-            .disposed(by: disposeBag)
     }
 }
 
 fileprivate extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, Self.E == [Variable<Asset>] {
     func mapToPieChartDataSet() -> Driver<PieChartDataSet> {
         return
-            filter{$0.isNotEmpty}
-            .map{$0.filter{$0.value.percent > 0}}
-            .map{$0.map{PieChartDataEntry(value: $0.value.percent, data: $0.value)}}
-            .map{PieChartDataSet(values: $0, label: nil)}
+            filter{ $0.isNotEmpty }
+            .map{ $0.filter{$0.value.percent > 0} }
+            .map{ $0.map{ PieChartDataEntry(value: $0.value.percent, data: $0.value) } }
+            .map{ PieChartDataSet(values: $0, label: nil) }
     }
     
     func mapToEmptyChart() -> Driver<PieChartDataSet> {
