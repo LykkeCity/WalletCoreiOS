@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 public typealias AmountCodePair = (amount: String, code: String)
 
@@ -25,19 +26,30 @@ public class CashOutViewModel {
     
     public let totalObservable: Observable<AmountCodePair>
     
-    private let authManager: LWRxAuthManager
+    public let trigger = PublishSubject<Void>()
+    
+    public let errors: Driver<[AnyHashable: Any]>
+    
+    public let success: Driver<Void>
+    
+    public let loadingViewModel: LoadingViewModel
+    
+    private let cashOutService: CashOutService
+    
+    private let disposeBag = DisposeBag()
     
     public init(
         amountViewModel: CashOutAmountViewModel,
         generalViewModel: CashOutGeneralViewModel,
         bankAccountViewModel: CashOutBankAccountViewModel,
+        authManager: LWRxAuthManager,
         currencyExchanger: CurrencyExchanger,
-        authManager: LWRxAuthManager = LWRxAuthManager.instance
+        cashOutService: CashOutService
     ) {
         self.amountViewModel = amountViewModel
         self.generalViewModel = generalViewModel
         self.bankAccountViewModel = bankAccountViewModel
-        self.authManager = authManager
+        self.cashOutService = cashOutService
         
         let walletAndAmountObservable = Observable.combineLatest(
             amountViewModel.walletObservable,
@@ -52,6 +64,33 @@ public class CashOutViewModel {
         
         totalObservable = walletAndAmountObservable
             .mapToAmountCodePairInBase(currencyExchanger: currencyExchanger)
+        
+        let cashOutResultObservable = trigger.asObservable()
+            .withLatestFrom(walletAndAmountObservable)
+            .map { data in
+                let (wallet, amount) = data
+                return CashOutService.CashOutData(amount: amount,
+                                                  asset: wallet.asset,
+                                                  bankName: bankAccountViewModel.bankName.value,
+                                                  iban: bankAccountViewModel.iban.value,
+                                                  bic: bankAccountViewModel.bic.value,
+                                                  accountHolder: bankAccountViewModel.accountHolder.value,
+                                                  accountHolderAddress: bankAccountViewModel.accountHolderAddress.value,
+                                                  reason: generalViewModel.transactionReason.value,
+                                                  notes: generalViewModel.additionalNotes.value)
+            }
+            .flatMapLatest { cashOutService.swiftCashOut(withData: $0) }
+            .shareReplay(1)
+        
+        success = cashOutResultObservable
+            .filterSuccess()
+            .asDriver(onErrorJustReturn: Void())
+        
+        errors = cashOutResultObservable
+            .filterError()
+            .asDriver(onErrorJustReturn: [:])
+        
+        loadingViewModel = LoadingViewModel([cashOutResultObservable.isLoading()])
     }
     
 }
@@ -93,6 +132,14 @@ extension Observable where Element == LWSpotWallet {
                 let (baseAsset, amount) = $0
                 return (amount: amount.convertAsCurrencyWithSymbol(asset: baseAsset), code: baseAsset.displayName)
         }
+    }
+    
+}
+
+extension PublishSubject where Element == Void {
+    
+    public func toggle() {
+        self.onNext(Void())
     }
     
 }
