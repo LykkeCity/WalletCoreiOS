@@ -23,15 +23,38 @@ class BuyOptimizedViewController: UIViewController {
     
     //MARK:- Properties
     let assetModel = Variable<LWAssetModel?>(nil)
+    
     var requirePinForTrading = true
+    
     var pinPassed = Variable(false)
     
+    var confirmTrading: Observable<Void> {
+        return Observable.merge(
+            self.submitButton.rx.tap.asObservable()
+                .filter{ [weak self] in !(self?.requirePinForTrading ?? false)},
+            self.pinPassed.asObservable()
+                .filter{$0}
+                .map{_ in Void()}
+        )
+    }
+    
+    let bid = Variable<Bool?>(nil)
+    
+    public var tradeType: TradeType!
+    
+    fileprivate let disposeBag = DisposeBag()
+    
+    //MARK:- View Models
     lazy var buyOptimizedViewModel: BuyOptimizedViewModel = {
         return BuyOptimizedViewModel(withTrigger: self.confirmTrading)
     }()
     
     lazy var payWithAssetListViewModel: PayWithAssetListViewModel = {
         return PayWithAssetListViewModel(buyAsset: self.buyOptimizedViewModel.buyAsset.asObservable().mapToAsset())
+    }()
+    
+    lazy var buyWithAssetListViewModel: BuyWithAssetListViewModel = {
+        return BuyWithAssetListViewModel(sellAsset: self.buyOptimizedViewModel.payWithWallet.asObservable().mapToAsset())
     }()
     
     lazy var tradingAssetsViewModel: TradingAssetsViewModel = {
@@ -50,31 +73,21 @@ class BuyOptimizedViewController: UIViewController {
         return OffchainTradeViewModel(offchainService: OffchainService.instance)
     }()
     
-    var confirmTrading: Observable<Void> {
-        return Observable.merge(
-            self.submitButton.rx.tap.asObservable()
-                .filter{ [weak self] in !(self?.requirePinForTrading ?? false)},
-            self.pinPassed.asObservable()
-                .filter{$0}
-                .map{_ in Void()}
-        )
-    }
-    
-    let bid = Variable<Bool?>(nil)
-    fileprivate let disposeBag = DisposeBag()
-    
-    public var tradeType: TradeType!
-    
+    //MARK:- Computed properties
     var walletListView: BuyAssetListView {
-        return self.tradeType.isBuy ? self.secondAssetList : self.firstAssetList
+        return tradeType.isBuy ? secondAssetList : firstAssetList
     }
     
     var assetListView: BuyAssetListView {
-        return self.tradeType.isBuy ? self.firstAssetList : self.secondAssetList
+        return tradeType.isBuy ? firstAssetList : secondAssetList
     }
     
     var walletList: Observable<[LWSpotWallet]> {
-        return tradeType.isBuy ? self.payWithAssetListViewModel.payWithWalletList : tradingAssetsViewModel.availableToSell
+        return tradeType.isBuy ? payWithAssetListViewModel.payWithWalletList : tradingAssetsViewModel.availableToSell
+    }
+    
+    var assetList: Observable<[LWAssetModel]> {
+        return tradeType.isBuy ? tradingAssetsViewModel.availableToBuy : buyWithAssetListViewModel.buyWithAssetList
     }
     
     //MARK:- Lifecicle methods
@@ -116,7 +129,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         assetListView.itemPicker.picker.rx.itemSelected
-            .withLatestFrom(tradingAssetsViewModel.availableToBuy) { selected, assets in
+            .withLatestFrom(assetList) { selected, assets in
                 assets.enumerated().first{$0.offset == selected.row}?.element
             }
             .filterNil()
@@ -124,14 +137,14 @@ class BuyOptimizedViewController: UIViewController {
             .bind(to: buyOptimizedViewModel.buyAsset)
             .disposed(by: disposeBag)
         
-        tradingAssetsViewModel.availableToBuy
+        assetList
             .map{$0.first}
             .filterNil()
             .map{(autoUpdated: true, asset: $0)}
             .bind(to: buyOptimizedViewModel.buyAsset)
             .disposed(by: disposeBag)
         
-        tradingAssetsViewModel.availableToBuy
+        assetList
             .bind(to: assetListView.itemPicker.picker.rx.itemTitles) {$1.displayFullName}
             .disposed(by: disposeBag)
         
@@ -295,14 +308,16 @@ fileprivate extension BuyOptimizedViewController {
 extension BuyOptimizedViewController: PinViewControllerDelegate {
     func isPinCorrect(_ success: Bool, pinController: PinViewController) {
         guard success else {return}
-        self.pinPassed.value = success
-        pinController.dismiss(animated: true)
+        pinController.dismiss(animated: true) { [pinPassed] in
+            pinPassed.value = success
+        }
     }
     
     func isTouchIdCorrect(_ success: Bool, pinController: PinViewController) {
         guard success else {return}
-        self.pinPassed.value = success
-        pinController.dismiss(animated: true)
+        pinController.dismiss(animated: true) {[pinPassed] in
+            pinPassed.value = success
+        }
     }
 }
 
