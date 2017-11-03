@@ -15,18 +15,6 @@ public class LWPacketOffchainTrade: LWAuthorizePacket {
         let assetPair: String
         let prevTempPrivateKey: String
         let volume: Decimal
-    
-        public init(
-            asset: String,
-            assetPair: String,
-            prevTempPrivateKey: String,
-            volume: Decimal
-        ) {
-            self.asset = asset
-            self.assetPair = assetPair
-            self.prevTempPrivateKey = prevTempPrivateKey
-            self.volume = volume
-        }
     }
     
     public var body: Body
