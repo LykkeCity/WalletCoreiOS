@@ -23,6 +23,8 @@ class CashOutConfirmationViewController: UIViewController {
     
     fileprivate let pinPassed = Variable(false)
     
+    private let disposeBag = DisposeBag()
+    
     fileprivate lazy var bankAccountDetails: [TitleDetailPair] = {
         let bankAccountViewModel = self.cashOutViewModel.bankAccountViewModel
         return [
@@ -50,18 +52,43 @@ class CashOutConfirmationViewController: UIViewController {
 
         confirmButton.setTitle(Localize("newDesign.confirm"), for: .normal)
         
+        pinPassed.asObservable()
+            .filter { $0 }
+            .map { _ in Void() }
+            .subscribe(cashOutViewModel.trigger)
+            .disposed(by: disposeBag)
+        
+        cashOutViewModel.errors
+            .drive(rx.error)
+            .disposed(by: disposeBag)
+        
+        cashOutViewModel.success
+            .drive(onNext: { [weak self] in
+                self?.performSegue(withIdentifier: "ShowSummary", sender: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        cashOutViewModel.loadingViewModel.isLoading
+            .asDriver(onErrorJustReturn: false)
+            .drive(rx.loading)
+            .disposed(by: disposeBag)
+        
         tableView.reloadData()
     }
     
     // MARK: - IBActions
     
-    @IBAction private func confirmTapped() {
-        performSegue(withIdentifier: "EnterPin", sender: nil)
-    }
-    
     @IBAction func unwindToConfirmationViewController(segue:UIStoryboardSegue) { }
 
     // MARK: - Navigation
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "EnterPin" && pinPassed.value {
+            cashOutViewModel.trigger.toggle()
+            return false
+        }
+        return true
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,6 +113,13 @@ class CashOutConfirmationViewController: UIViewController {
             return generalDetails[indexPath.row - 1]
         default:
             return nil
+        }
+    }
+    
+    fileprivate func pinPassed(success: Bool) {
+        guard success else { return }
+        presentedViewController?.dismiss(animated: true) { [pinPassed] in
+            pinPassed.value = true
         }
     }
 
@@ -162,15 +196,11 @@ extension CashOutConfirmationViewController: UITableViewDataSource {
 extension CashOutConfirmationViewController: PinViewControllerDelegate {
     
     func isPinCorrect(_ success: Bool, pinController: PinViewController) {
-        guard success else { return }
-        pinPassed.value = success
-        presentedViewController?.dismiss(animated: true)
+        pinPassed(success: success)
     }
     
     func isTouchIdCorrect(_ success: Bool, pinController: PinViewController) {
-        guard success else { return }
-        pinPassed.value = success
-        presentedViewController?.dismiss(animated: true)
+        pinPassed(success: success)
     }
     
 }
