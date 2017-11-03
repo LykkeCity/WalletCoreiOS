@@ -558,6 +558,7 @@
 		665960561FA354A600DB3D62 /* CashOutGeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665960551FA354A600DB3D62 /* CashOutGeneralViewModel.swift */; };
 		665960581FA354CA00DB3D62 /* CashOutBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665960571FA354C900DB3D62 /* CashOutBankAccountViewModel.swift */; };
 		6664C6131F9E012600F6D1A6 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664C6121F9E012600F6D1A6 /* WalletViewModel.swift */; };
+		666ACF861FAB1C4D00E42384 /* LWPacketCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666ACF851FAB1C4D00E42384 /* LWPacketCashOutSwift.swift */; };
 		66BD6AD61F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BD6AD51F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
 		CC0A16AE1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = CC0A16AC1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1146,6 +1147,7 @@
 		665960551FA354A600DB3D62 /* CashOutGeneralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutGeneralViewModel.swift; sourceTree = "<group>"; };
 		665960571FA354C900DB3D62 /* CashOutBankAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutBankAccountViewModel.swift; sourceTree = "<group>"; };
 		6664C6121F9E012600F6D1A6 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		666ACF851FAB1C4D00E42384 /* LWPacketCashOutSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketCashOutSwift.swift; sourceTree = "<group>"; };
 		66BD6AD51F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		6FE31B8E679DB485E0AC92E8 /* Pods_WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B6456DCD697D7701FB00BC /* Pods-WalletCoreTests.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.release.test.xcconfig"; sourceTree = "<group>"; };
@@ -1441,6 +1443,7 @@
 		46C9ACAB1F417BD700B83CCB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				666ACF841FAB1B7B00E42384 /* CashOut */,
 				460E81361F97444600C60E72 /* Offchain */,
 				46C9ACAC1F417BD700B83CCB /* LWPacketAccountExist.h */,
 				46C9ACAD1F417BD700B83CCB /* LWPacketAccountExist.m */,
@@ -2206,6 +2209,14 @@
 			path = CashOut;
 			sourceTree = "<group>";
 		};
+		666ACF841FAB1B7B00E42384 /* CashOut */ = {
+			isa = PBXGroup;
+			children = (
+				666ACF851FAB1C4D00E42384 /* LWPacketCashOutSwift.swift */,
+			);
+			path = CashOut;
+			sourceTree = "<group>";
+		};
 		C7981DD6E84385EB785BB8E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2816,6 +2827,7 @@
 				46C9AFC01F417BD800B83CCB /* LWMarginalWalletsDataManager.m in Sources */,
 				46C9AE5A1F417BD700B83CCB /* LWAssetModel.m in Sources */,
 				46C9AF521F417BD800B83CCB /* LWPacketTransactions.m in Sources */,
+				666ACF861FAB1C4D00E42384 /* LWPacketCashOutSwift.swift in Sources */,
 				46C9AFE51F417BD800B83CCB /* LWPrivateWalletsManager.m in Sources */,
 				46C9AEFC1F417BD700B83CCB /* LWPacketKYCSendDocument.m in Sources */,
 				46C08DBF1F98CF2C0059BDD3 /* LWPacketOffchainFinalizetransfer.swift in Sources */,
