@@ -30,7 +30,7 @@ public class CashOutViewModel {
     
     public let errors: Driver<[AnyHashable: Any]>
     
-    public let success: Driver<Void>
+    public let success: Driver<LWModelCashOutSwiftResult>
     
     public let loadingViewModel: LoadingViewModel
     
@@ -84,7 +84,7 @@ public class CashOutViewModel {
         
         success = cashOutResultObservable
             .filterSuccess()
-            .asDriver(onErrorJustReturn: Void())
+            .asDriver(onErrorJustReturn: LWModelCashOutSwiftResult.empty)
         
         errors = cashOutResultObservable
             .filterError()
