@@ -44,7 +44,7 @@ class CashOutViewController: UIViewController {
 extension CashOutViewController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        backButton.isHidden = navigationController.viewControllers.count < 2
+        backButton.isHidden = navigationController.viewControllers.count < 2 || viewController is CashOutSummaryViewController
     }
     
 }

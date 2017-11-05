@@ -91,6 +91,7 @@
 		66E707F31FA220B800CF4B40 /* InputForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E707F21FA220B800CF4B40 /* InputForm.swift */; };
 		66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */; };
 		66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */; };
+		873537111FAF6AC50099EA50 /* CashOutSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873537101FAF6AC50099EA50 /* CashOutSummaryViewController.swift */; };
 		87C6CDF71FA5AB2F0069CC38 /* CashOutConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6CDF61FA5AB2F0069CC38 /* CashOutConfirmationViewController.swift */; };
 		87C6CDFA1FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6CDF91FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift */; };
 		87C6CDFC1FA5BBEC0069CC38 /* CashOutTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6CDFB1FA5BBEC0069CC38 /* CashOutTotalTableViewCell.swift */; };
@@ -252,6 +253,7 @@
 		66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOurBankAccountDetailsViewController.swift; sourceTree = "<group>"; };
 		69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModernWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		873537101FAF6AC50099EA50 /* CashOutSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSummaryViewController.swift; sourceTree = "<group>"; };
 		87C6CDF61FA5AB2F0069CC38 /* CashOutConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutConfirmationViewController.swift; sourceTree = "<group>"; };
 		87C6CDF91FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutAssetDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		87C6CDFB1FA5BBEC0069CC38 /* CashOutTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutTotalTableViewCell.swift; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 				66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */,
 				66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */,
 				87C6CDF61FA5AB2F0069CC38 /* CashOutConfirmationViewController.swift */,
+				873537101FAF6AC50099EA50 /* CashOutSummaryViewController.swift */,
 			);
 			path = CashOut;
 			sourceTree = "<group>";
@@ -1060,6 +1063,7 @@
 				CC6805A31F67F8180079CB05 /* RegisterShakeScreenViewController.swift in Sources */,
 				61D4DD6B1F30A7CE002510C8 /* UIImageView+Rx.swift in Sources */,
 				66529DCC1F8D1A670059786B /* CashOutSelectAssetViewController.swift in Sources */,
+				873537111FAF6AC50099EA50 /* CashOutSummaryViewController.swift in Sources */,
 				61FBCCC61F20C8FB004F7219 /* TotalBalanceViewController.swift in Sources */,
 				611248ED1F06856D005DE4E6 /* AddMoneyCryptocurrencyStep1ViewController.swift in Sources */,
 				66806BA31F9F2C1A001E49E5 /* Array+Rx.swift in Sources */,

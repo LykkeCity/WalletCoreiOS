@@ -63,8 +63,8 @@ class CashOutConfirmationViewController: UIViewController {
             .disposed(by: disposeBag)
         
         cashOutViewModel.success
-            .drive(onNext: { [weak self] in
-                self?.performSegue(withIdentifier: "ShowSummary", sender: nil)
+            .drive(onNext: { [weak self] result in
+                self?.performSegue(withIdentifier: "ShowSummary", sender: result)
             })
             .disposed(by: disposeBag)
         
@@ -100,6 +100,13 @@ class CashOutConfirmationViewController: UIViewController {
                 return
             }
             pinVC.delegate = self
+        }
+        else if segue.identifier == "ShowSummary" {
+            guard
+                let vc = segue.destination as? CashOutSummaryViewController,
+                let result = sender as? LWModelCashOutSwiftResult
+            else { return }
+            vc.result = result
         }
     }
     
