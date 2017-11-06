@@ -939,5 +939,11 @@
 "cashOut.newDesign.cashDetails" = "CASH DETAILS";
 "cashOut.newDesign.total" = "TOTAL";
 "cashOut.newDesign.bankAccountDetails" = "BANK ACCOUNT DETAILS";
+"cashOut.newDesign.accHolder" = "ACC. HOLDER";
+"cashOut.newDesign.accHolderAddress" = "ACC. HOLDER ADDRESS";
 "cashOut.newDesign.general" = "GENERAL";
+"cashOut.newDesign.success" = "TRANSACTION SUCCESSFUL";
+"cashOut.newDesign.transactionDetails" = "TRANSACTION DETAILS";
+"cashOut.newDesign.waitMessage" = "Please allow 3-5 business days for the transaction to be processed.";
+"cashOut.newDesign.backToPortfolio" = "BACK TO PORTFOLIO";
 

@@ -35,12 +35,12 @@ class CashOutSummaryViewController: UIViewController {
         backgroundHeightConstraint.constant = Display.height
         
         successLabel.text = Localize("cashOut.newDesign.success")
-        detailsLabel.text = Localize("cashOut.newDesign.success")
-        waitMessageLabel.text = Localize("cashOut.newDesign.success")
-        bankNameTitleLabel.text = Localize("cashOut.newDesign.success")
-        ibanTitleLabel.text = Localize("cashOut.newDesign.success")
-        bicTitleLabel.text = Localize("cashOut.newDesign.success")
-        accountHolderTitleLabel.text = Localize("cashOut.newDesign.success")
+        detailsLabel.text = Localize("cashOut.newDesign.transactionDetails")
+        waitMessageLabel.text = Localize("cashOut.newDesign.waitMessage")
+        bankNameTitleLabel.text = Localize("cashOut.newDesign.bankName")
+        ibanTitleLabel.text = Localize("cashOut.newDesign.iban")
+        bicTitleLabel.text = Localize("cashOut.newDesign.bic")
+        accountHolderTitleLabel.text = Localize("cashOut.newDesign.accHolder")
         button.setTitle(Localize("cashOut.newDesign.backToPortfolio"), for: .normal)
         
         amountView.amount = result.amount

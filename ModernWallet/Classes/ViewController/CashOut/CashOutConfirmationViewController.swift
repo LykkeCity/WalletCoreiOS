@@ -31,8 +31,8 @@ class CashOutConfirmationViewController: UIViewController {
             (title: Localize("cashOut.newDesign.bankName"), detail: bankAccountViewModel.bankName.valueOrNil),
             (title: Localize("cashOut.newDesign.iban"), detail: bankAccountViewModel.iban.valueOrNil),
             (title: Localize("cashOut.newDesign.bic"), detail: bankAccountViewModel.bic.valueOrNil),
-            (title: Localize("cashOut.newDesign.accountHolder"), detail: bankAccountViewModel.accountHolder.valueOrNil),
-            (title: Localize("cashOut.newDesign.accountHolderAddress"), detail: bankAccountViewModel.accountHolderAddress.valueOrNil)
+            (title: Localize("cashOut.newDesign.accHolder"), detail: bankAccountViewModel.accountHolder.valueOrNil),
+            (title: Localize("cashOut.newDesign.accHolderAddress"), detail: bankAccountViewModel.accountHolderAddress.valueOrNil)
         ].filter { $0.detail != nil }
     }()
 
