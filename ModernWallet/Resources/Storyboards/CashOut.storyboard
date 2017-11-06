@@ -1232,7 +1232,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="7Ir-ji-enA" kind="custom" customClass="KYEmbedMainControllerSegue" customModule="KYDrawerController" id="QI3-Gi-zC8"/>
+                                    <segue destination="7Ir-ji-enA" kind="custom" customClass="DrawerEmbedMainControllerSegue" customModule="ModernWallet" customModuleProvider="target" id="QI3-Gi-zC8"/>
                                 </connections>
                             </button>
                         </subviews>

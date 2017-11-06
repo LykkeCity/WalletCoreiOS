@@ -91,6 +91,8 @@
 		66E707F31FA220B800CF4B40 /* InputForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E707F21FA220B800CF4B40 /* InputForm.swift */; };
 		66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */; };
 		66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */; };
+		870D4DD11FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */; };
+		870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D4DD21FB1036000F23948 /* UIViewController+DrawerController.swift */; };
 		873537111FAF6AC50099EA50 /* CashOutSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873537101FAF6AC50099EA50 /* CashOutSummaryViewController.swift */; };
 		87C6CDF71FA5AB2F0069CC38 /* CashOutConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6CDF61FA5AB2F0069CC38 /* CashOutConfirmationViewController.swift */; };
 		87C6CDFA1FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C6CDF91FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift */; };
@@ -253,6 +255,8 @@
 		66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOurBankAccountDetailsViewController.swift; sourceTree = "<group>"; };
 		69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModernWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerEmbedMainControllerSegue.swift; sourceTree = "<group>"; };
+		870D4DD21FB1036000F23948 /* UIViewController+DrawerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DrawerController.swift"; sourceTree = "<group>"; };
 		873537101FAF6AC50099EA50 /* CashOutSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSummaryViewController.swift; sourceTree = "<group>"; };
 		87C6CDF61FA5AB2F0069CC38 /* CashOutConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutConfirmationViewController.swift; sourceTree = "<group>"; };
 		87C6CDF91FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutAssetDetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -451,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				CCDB256F1EEFCF05000D590F /* UtilsHelper.swift */,
+				870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 				4671C9BE1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift */,
 				46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */,
 				615052AF1F29D06800AFB6FC /* UIViewController+Extensions.swift */,
+				870D4DD21FB1036000F23948 /* UIViewController+DrawerController.swift */,
 				6179434D1F0530690009597C /* Notification+Extensions.swift */,
 				611AF5131F714FCF0064475C /* UIImagePickerController+RxCreate.swift */,
 				612E591F1F7A93EB0018476B /* KYCDocumentStatus+Extensions.swift */,
@@ -1117,6 +1123,7 @@
 				6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */,
 				66E707F31FA220B800CF4B40 /* InputForm.swift in Sources */,
 				6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */,
+				870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */,
 				CC48AB671F0F83030081AF27 /* BuyStep3ViewController.swift in Sources */,
 				612E59201F7A93EB0018476B /* KYCDocumentStatus+Extensions.swift in Sources */,
 				6197A3BB1EE99AB1008ECF5A /* StrokePieChartRenderer.swift in Sources */,
@@ -1137,6 +1144,7 @@
 				6140E3281F14E6AF00D8885B /* TransactionsViewController.swift in Sources */,
 				CC0DFB051F56D80B00EBB96E /* RegisterSendCodeEmailViewController.swift in Sources */,
 				CC0DFB031F559A1200EBB96E /* RegisterConfrimEmailViewController.swift in Sources */,
+				870D4DD11FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift in Sources */,
 				61BAB0E01F0F72F600212E16 /* FakeData.swift in Sources */,
 				CCDB25741EEFF513000D590F /* SignUpPinViewController.swift in Sources */,
 				612B7BCF1F69475B0085F692 /* BuyPinViewController.swift in Sources */,
