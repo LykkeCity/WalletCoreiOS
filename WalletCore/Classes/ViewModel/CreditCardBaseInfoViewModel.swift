@@ -41,7 +41,7 @@ open class CreditCardBaseInfoViewModel {
     
     public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         let personalData =  authManager.prevCardPayment.requestPersonalData()
-        let baseAsset    =  authManager.baseAsset.requestBaseAssetGet()
+        let baseAsset    =  authManager.baseAsset.request()
         let countryCodes =  authManager.countryCodes.requestCountryCodes()
         
         paymentUrlResult = submit

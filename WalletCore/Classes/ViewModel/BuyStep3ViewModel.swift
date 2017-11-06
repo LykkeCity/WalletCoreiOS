@@ -199,7 +199,7 @@ extension ObservableType where Self.E == LWSpotWallet {
         return
             flatMapLatest{wallet in
                 authManager.baseAsset
-                    .requestBaseAssetGet()
+                    .request()
                     .filterSuccess()
                     .map{(wallet: wallet, baseAsset: $0)}
             }

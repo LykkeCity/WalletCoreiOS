@@ -31,7 +31,7 @@ public class WalletViewModel {
             authManager: LWRxAuthManager
         )
     ) {
-        let baseAssetResponseObservable = dependency.authManager.baseAsset.requestBaseAssetGet()
+        let baseAssetResponseObservable = dependency.authManager.baseAsset.request()
             .shareReplay(1)
         
         let mainInfoObservable = refresh

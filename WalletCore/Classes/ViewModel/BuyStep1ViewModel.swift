@@ -202,7 +202,7 @@ fileprivate extension ObservableType where Self.E == ApiResultList<LWAssetPairMo
         dependency: BuyStep1ViewModel.Dependency
     ) -> Disposable {
             return filterSuccess()
-            .flatMap{assetPairs in dependency.authManager.baseAsset.requestBaseAssetGet().filterSuccess().map{(
+            .flatMap{assetPairs in dependency.authManager.baseAsset.request().filterSuccess().map{(
                 baseAsset: $0,
                 assetPairs: assetPairs
             )}}

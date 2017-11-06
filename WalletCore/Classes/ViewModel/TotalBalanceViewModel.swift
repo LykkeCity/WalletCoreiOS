@@ -30,7 +30,7 @@ open class TotalBalanceViewModel {
                 authManager:LWRxAuthManager = LWRxAuthManager.instance,
                 keyChainManager: LWKeychainManager = LWKeychainManager.instance()) {
         
-        let baseAssetObservable = authManager.baseAsset.requestBaseAssetGet()
+        let baseAssetObservable = authManager.baseAsset.request()
         let mainInfoObservable = refresh
             .throttle(2.0, scheduler: MainScheduler.instance)
             .flatMapLatest{_ in authManager.mainInfo.requestMainScreenInfo(withAssetObservable: baseAssetObservable)}
