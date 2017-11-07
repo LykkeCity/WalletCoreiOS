@@ -80,7 +80,7 @@ public class OffchainService {
                     return dependency.authManager.offchainCashOutSwift.request(withData: data)
                 }
                 .shareReplay(1)
-            let errorsObservable: Observable<[AnyHashable : Any]> = Observable.never()
+            let errorsObservable: Observable<[AnyHashable : Any]> = Observable.empty()
             return (operationObservable, errorsObservable)
         }
     }
