@@ -191,11 +191,10 @@ fileprivate extension ObservableType where Self.E == Void {
     func mapToTradeParams(withViewModel viewModel: BuyOptimizedViewModel) -> Observable<OffchainTradeViewModel.TradeParams> {
         return map{  _ -> OffchainTradeViewModel.TradeParams? in
             
-            guard let payWithWallet = viewModel.payWithWallet.value?.wallet else{ return nil }
-            guard let buyAsset = viewModel.buyAsset.value?.asset else{ return nil }
-            guard let amount = viewModel.tradeAmount else { return nil }
+            guard let asset = viewModel.mainAsset else { return nil }
+            guard let forAsset = viewModel.quotingAsset else { return nil }
             
-            return OffchainTradeViewModel.TradeParams(amount: amount, wallet: payWithWallet, forAsset: buyAsset)
+            return OffchainTradeViewModel.TradeParams(amount: viewModel.tradeAmount, asset: asset, forAsset: forAsset)
         }
         .filterNil()
     }
