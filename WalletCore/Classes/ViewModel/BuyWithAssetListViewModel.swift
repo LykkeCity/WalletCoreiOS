@@ -27,8 +27,8 @@ public class BuyWithAssetListViewModel {
                     return false
                 }
                 
-                let assetPairId = "\(assetId)\(walletAssetId)"
-                return assetPairs.contains{$0.identity == assetPairId}
+                let possiblePairs = ["\(assetId)\(walletAssetId)", "\(walletAssetId)\(assetId)"]
+                return assetPairs.contains{ possiblePairs.contains($0.identity) }
             }
         }
     }

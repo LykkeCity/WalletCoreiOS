@@ -43,7 +43,7 @@ public class OffchainService {
             let operationObservable = Observable
                 .zip(decryptedKeyObservable, pair.filterSuccess().filterNil())
                 .map{decryptedKey, pair in LWPacketOffchainTrade.Body(
-                    asset: channelAsset.identity,
+                    asset: asset.identity,
                     assetPair: pair.identity,
                     prevTempPrivateKey: decryptedKey,
                     volume: amount
@@ -97,8 +97,19 @@ public class OffchainService {
             .decryptKey(withKeyManager: dependency.privateKeyManager)
             .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: channelAsset.identity)
         
-        //2. request offchain operation
-        let (offchainOperation, operationErrorsObervable) = operationCreator(decryptedKey)
+        //2. request offchain trading
+        let offchainTrade = Observable
+            .zip(decryptedKey, pair.filterSuccess().filterNil())
+            .map{decryptedKey, pair in LWPacketOffchainTrade.Body(
+                asset: asset.identity,
+                assetPair: pair.identity,
+                prevTempPrivateKey: decryptedKey,
+                volume: amount
+            )}
+            .flatMapLatest{ [dependency] body in
+                return dependency.authManager.offchainTrade.request(withData: body)
+            }
+            .shareReplay(1)
         
         //3. create channel if needed and finalize transfer
         let finalizedTrade = offchainOperation
@@ -142,10 +153,14 @@ fileprivate extension ObservableType where Self.E == Void {
         
         // Filter first request and subscribe itself until all requests get finalized
         return requests.filterSuccess()
-            .map{ $0.randomElement }
-            .filterNil()
-            .finalizePendingRequest(dependency)
-            .filterSuccess()
+            .filterEmpty()
+            .flatMap{requests in
+                Observable.concat(
+                    requests
+                        .map{ Observable.just($0) }
+                        .flatMap{ $0.finalizePendingRequest(dependency) }
+                )
+            }
             .flatMap{ _ in
                 Observable<Void>.just(Void()).processPendingRequests(dependency)
             }

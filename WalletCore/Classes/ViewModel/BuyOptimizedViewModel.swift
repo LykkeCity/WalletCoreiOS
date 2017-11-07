@@ -40,6 +40,16 @@ public class BuyOptimizedViewModel {
     public let spreadPercent: Driver<String>
     public let spreadAmount: Driver<String>
     
+    public var mainAsset: LWAssetModel? {
+        guard let bid = self.bid.value else { return nil }
+        return bid ? payWithWallet.value?.wallet.asset : buyAsset.value?.asset
+    }
+    
+    public var quotingAsset: LWAssetModel? {
+        guard let bid = self.bid.value else { return nil }
+        return bid ? buyAsset.value?.asset : payWithWallet.value?.wallet.asset
+    }
+    
     // TODO: Refactor this messed up code
     public var tradeAmount: Decimal? {
         guard let bid = self.bid.value else { return nil }
