@@ -53,7 +53,9 @@ class CashOutEnterAmountViewController: UIViewController {
         amountViewModel: CashOutAmountViewModel(walletObservable: self.walletObservable),
         generalViewModel: CashOutGeneralViewModel(),
         bankAccountViewModel: CashOutBankAccountViewModel(),
-        currencyExchanger: CurrencyExchanger(refresh: Observable<Void>.interval(10.0))
+        authManager: LWRxAuthManager.instance,
+        currencyExchanger: CurrencyExchanger(refresh: Observable<Void>.interval(10.0)),
+        cashOutService: CashOutService.instance
     )
     
     override func viewDidLoad() {

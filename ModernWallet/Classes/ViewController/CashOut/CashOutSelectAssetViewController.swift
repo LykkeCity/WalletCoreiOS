@@ -33,13 +33,24 @@ class CashOutSelectAssetViewController: UIViewController {
         )
     }()
     
+    private lazy var loadingViewModel: LoadingViewModel = {
+        return LoadingViewModel([
+            self.walletsViewModel.loadingViewModel.isLoading.filter { !$0 }.startWith(true),
+            self.totalBalanceViewModel.loading.isLoading
+        ])
+    }()
+    
     private var assets = Variable<[Variable<Asset>]>([])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
         
+        availableBalanceLabel.text = Localize("cashOut.newDesign.availableBalance")
+        selectAssetLabel.text = Localize("cashOut.newDesign.selectAsset")
+
         totalBalanceViewModel.balance
+            .do(onNext: { [weak self] _ in self?.refreshWallets.value = () })
             .drive(assetAmountView.rx.amount)
             .disposed(by: disposeBag)
         
@@ -50,7 +61,6 @@ class CashOutSelectAssetViewController: UIViewController {
         collectionView.register(UINib(nibName: "AssetCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AssetCell")
         
         assets.asObservable()
-            .map{ $0.sorted{ $0.0.value.percent > $0.1.value.percent } }
             .bind(to: collectionView.rx.items(cellIdentifier: "AssetCell", cellType: AssetCollectionViewCell.self)) { (row, element, cell) in
                 cell.bind(toAsset: AssetCollectionCellViewModel(element))
             }
@@ -74,8 +84,9 @@ class CashOutSelectAssetViewController: UIViewController {
             .bind(to: assets)
             .disposed(by: disposeBag)
         
-        availableBalanceLabel.text = Localize("cashOut.newDesign.availableBalance")
-        selectAssetLabel.text = Localize("cashOut.newDesign.selectAsset")
+        loadingViewModel.isLoading
+            .bind(to: rx.loading)
+            .disposed(by: disposeBag)
     }
     
     override func viewWillLayoutSubviews() {
