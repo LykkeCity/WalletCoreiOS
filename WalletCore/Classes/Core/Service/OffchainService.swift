@@ -36,58 +36,9 @@ public class OffchainService {
     public func trade(amount: Decimal, asset: LWAssetModel, forAsset: LWAssetModel) -> Observable<ApiResult<LWModelOffchainResult>> {
         let channelAsset = amount > 0 ? forAsset : asset
         
-        return createOffchainOperationObervable(forChannelAsset: channelAsset) { [dependency] decryptedKeyObservable in
-            let pair = dependency.authManager.assetPairs
-                .requestAssetPair(baseAsset: asset, quotingAsset: forAsset)
-
-            let operationObservable = Observable
-                .zip(decryptedKeyObservable, pair.filterSuccess().filterNil())
-                .map{decryptedKey, pair in LWPacketOffchainTrade.Body(
-                    asset: asset.identity,
-                    assetPair: pair.identity,
-                    prevTempPrivateKey: decryptedKey,
-                    volume: amount
-                    )}
-                .flatMapLatest{ [dependency] body in
-                    return dependency.authManager.offchainTrade.request(withData: body)
-                }
-                .shareReplay(1)
-            let errorsObservable: Observable<[AnyHashable : Any]> = pair.filterSuccess().filter{ $0 == nil }.map{ _ in ["Message": "There is no asset pair for your request."]}
-            return (operationObservable, errorsObservable)
-        }
-    }
-    
-    public func finalizePendingRequests(refresh: Observable<Void>) -> Disposable {
-        return refresh
-            .processPendingRequests(dependency)
-            .subscribe()
-    }
-    
-    public func cashOutSwift(amount: Decimal, fromAsset asset: LWAssetModel, toBank bankName: String, iban: String, bic: String, accountHolder: String, accountHolderAddress: String) -> Observable<ApiResult<LWModelOffchainResult>> {
+        let pair = dependency.authManager.assetPairs
+            .requestAssetPair(baseAsset: asset, quotingAsset: forAsset)
         
-        return createOffchainOperationObervable(forChannelAsset: asset) { [dependency] decryptedKeyObservable in
-            let operationObservable = decryptedKeyObservable
-                .map { decryptedKey in LWPacketOffchainCashOutSwift.Body(
-                    amount: amount,
-                    asset: asset.identity,
-                    bankName: bankName,
-                    iban: iban,
-                    bic: bic,
-                    accountHolder: accountHolder,
-                    accountHolderAddress: accountHolderAddress,
-                    prevTempPrivateKey: decryptedKey)}
-                .flatMapLatest { [dependency] data in
-                    return dependency.authManager.offchainCashOutSwift.request(withData: data)
-                }
-                .shareReplay(1)
-            let errorsObservable: Observable<[AnyHashable : Any]> = Observable.empty()
-            return (operationObservable, errorsObservable)
-        }
-    }
-    
-    private typealias OffchainOperationCreator = (Observable<String>) -> (Observable<ApiResult<LWModelOffchainResult>>, Observable<[AnyHashable : Any]>)
-    
-    private func createOffchainOperationObervable(forChannelAsset channelAsset: LWAssetModel, operationCreator: OffchainOperationCreator) -> Observable<ApiResult<LWModelOffchainResult>> {
         //1. get channel key for asset
         let offchainChannelKey = dependency.authManager.offchainChannelKey.request(forAsset: channelAsset.identity)
         
@@ -112,7 +63,7 @@ public class OffchainService {
             .shareReplay(1)
         
         //3. create channel if needed and finalize transfer
-        let finalizedTrade = offchainOperation
+        let finalizedTrade = offchainTrade
             .filterSuccess()
             .finalize(withChannelAssetId: channelAsset.identity, dependency: dependency)
         
@@ -120,12 +71,12 @@ public class OffchainService {
         let errors = Observable
             .merge(
                 offchainChannelKey.filterError(),
-                offchainOperation.filterError(),
+                offchainTrade.filterError(),
                 finalizedTrade.filterError(),
-                operationErrorsObervable
+                pair.filterSuccess().filter{ $0 == nil }.map{ _ in ["Message": "There is no asset pair for your request."]}
             ).map{
                 ApiResult<LWModelOffchainResult>.error(withData: $0)
-        }
+            }
         
         let finalResult = finalizedTrade.filter{ $0.isSuccess }
         
@@ -135,6 +86,62 @@ public class OffchainService {
             .shareReplay(1)
     }
     
+    public func cashOutSwift(amount: Decimal, fromAsset asset: LWAssetModel, toBank bankName: String,
+                             iban: String, bic: String, accountHolder: String, accountHolderAddress: String) -> Observable<ApiResult<LWModelOffchainResult>> {
+        
+        //1. get channel key for asset
+        let offchainChannelKey = dependency.authManager.offchainChannelKey.request(forAsset: asset.identity)
+        
+        //decrypt chanel key with user key
+        let decryptedKey = offchainChannelKey
+            .filterSuccess()
+            .decryptKey(withKeyManager: dependency.privateKeyManager)
+            .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: asset.identity)
+        
+        //2. request offchain operation
+        let offchainCashOutSwift = decryptedKey
+            .map { decryptedKey in LWPacketOffchainCashOutSwift.Body(
+                amount: amount,
+                asset: asset.identity,
+                bankName: bankName,
+                iban: iban,
+                bic: bic,
+                accountHolder: accountHolder,
+                accountHolderAddress: accountHolderAddress,
+                prevTempPrivateKey: decryptedKey)}
+            .flatMapLatest { [dependency] data in
+                return dependency.authManager.offchainCashOutSwift.request(withData: data)
+            }
+            .shareReplay(1)
+        
+        //3. create channel if needed and finalize transfer
+        let finalizedTrade = offchainCashOutSwift
+            .filterSuccess()
+            .finalize(withChannelAssetId: asset.identity, dependency: dependency)
+        
+        //Merge all error streams into one
+        let errors = Observable
+            .merge(
+                offchainChannelKey.filterError(),
+                offchainCashOutSwift.filterError(),
+                finalizedTrade.filterError()
+            ).map{
+                ApiResult<LWModelOffchainResult>.error(withData: $0)
+            }
+        
+        let finalResult = finalizedTrade.filter{ $0.isSuccess }
+        
+        return Observable
+            .merge(errors, finalResult)
+            .startWith(ApiResult.loading)
+            .shareReplay(1)
+    }
+    
+    public func finalizePendingRequests(refresh: Observable<Void>) -> Disposable {
+        return refresh
+            .processPendingRequests(dependency)
+            .subscribe()
+    }
 }
 
 fileprivate extension ObservableType where Self.E == Void {
