@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 public class OffchainTradeViewModel {
-    public typealias TradeParams = (amount: Decimal?, wallet: LWSpotWallet, forAsset: LWAssetModel)
+    public typealias TradeParams = (amount: Decimal?, asset: LWAssetModel, forAsset: LWAssetModel)
     
     public let errors: Driver<[AnyHashable: Any]>
     public let success: Driver<Void>
@@ -20,18 +20,14 @@ public class OffchainTradeViewModel {
     
     public init(offchainService: OffchainService, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
-        let validatedParams = self.tradeParams.asObservable()
-            .filterNil()
-            .validate()
-            .shareReplay(1)
-        
-        let tradeResult = validatedParams
-            .filter{ $0 == nil } //proceed only if there are no errors
-            .withLatestFrom(self.tradeParams.asObservable())
+        let tradeResult = self.tradeParams.asObservable()
             .filterNil()
             .flatMapLatest{ params -> Observable<ApiResult<LWModelOffchainResult>> in
-                guard let amount = params.amount else {return Observable.never()}
-                return offchainService.trade(amount: amount, asset: params.wallet.asset, forAsset: params.forAsset)
+                guard let amount = params.amount else {
+                    return Observable.just(ApiResult.error(withData: ["Message": "Amount field should be not empty"]))
+                }
+                
+                return offchainService.trade(amount: amount, asset: params.asset, forAsset: params.forAsset)
             }
             .shareReplay(1)
         
@@ -46,34 +42,11 @@ public class OffchainTradeViewModel {
         
         errors = Observable
             .merge(
-                validatedParams.filterNil(),
                 tradeResult.filterError(),
                 success.filter{ !$0 }.map{ _ in ["Message": "Server Error! Please try again."] }
             )
             .asDriver(onErrorJustReturn: [:])
         
         loadingViewModel = LoadingViewModel([tradeResult.isLoading()])
-    }
-}
-
-fileprivate extension ObservableType where Self.E == OffchainTradeViewModel.TradeParams {
-    
-    func validate() -> Observable<[AnyHashable: Any]?> {
-        return map{ data in
-            
-            guard let amount = data.amount else {
-                return ["Message": "Amount field should be not empty"]
-            }
-            
-            guard data.wallet.balance.decimalValue != 0.0 else {
-                return ["Message": String(format: "Your %@ balance is zero", data.wallet.asset.identity)]
-            }
-            
-//            guard amount <= data.wallet.balance.decimalValue else {
-//                //return ["Message": String(format: "Your %@ balance is to low", data.wallet.asset.identity)]
-//            }
-            
-            return nil
-        }
     }
 }

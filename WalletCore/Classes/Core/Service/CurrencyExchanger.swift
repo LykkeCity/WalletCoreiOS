@@ -51,10 +51,10 @@ public class CurrencyExchanger {
                 return (pairModel: pairModel, reversed: false)
             }
             .map{
-                guard let rate = (bid ? $0.pairModel?.bid : $0.pairModel?.ask)?.decimalValue else {return nil}
+                guard let rate = (bid ? $0.pairModel?.bid : $0.pairModel?.ask)?.decimalValue else { return nil }
                 if !$0.reversed { return amaunt * rate}
                 
-                guard let reversedRate = (bid ? $0.pairModel?.ask : $0.pairModel?.bid)?.decimalValue else {return nil}
+                guard let reversedRate = (bid ? $0.pairModel?.ask : $0.pairModel?.bid)?.decimalValue else { return nil }
                 if reversedRate == 0.0 {return 0.0} //make sure to not divide by zero
                 return amaunt / reversedRate //if the pair is reversed divide by rate instead of multiply
             }

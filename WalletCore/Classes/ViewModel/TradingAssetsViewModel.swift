@@ -39,13 +39,13 @@ public class TradingAssetsViewModel {
     }
 }
 
-fileprivate extension Array where Element == LWSpotWallet {
+extension Array where Element == LWSpotWallet {
     func contains(withAssetId assetId: String, assetPairs: [LWAssetPairModel]) -> Bool {
         return contains{wallet in
             guard let walletId = wallet.asset.identity else {return false}
-            let pairId = "\(assetId)\(walletId)"
             
-            return assetPairs.contains{assetPair in assetPair.identity == pairId}
+            let possiblePairs = ["\(assetId)\(walletId)", "\(walletId)\(assetId)"]
+            return assetPairs.contains{assetPair in possiblePairs.contains(assetPair.identity)}
         }
     }
 }
