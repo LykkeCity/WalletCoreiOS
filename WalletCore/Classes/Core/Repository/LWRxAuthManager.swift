@@ -61,4 +61,7 @@ public class LWRxAuthManager {
     public lazy var offchainChannelKey       = {LWRxAuthManagerOffchainChannelKey()}()
     public lazy var offchainRequests         = {LWRxAuthManagerOffchainRequests()}()
     public lazy var offchainRequestTransfer  = {LWRxAuthManagerOffchainRequestTransfer()}()
+    public lazy var offchainCashOutSwift     = { LWRxAuthManagerOffchainCashOutSwift() }()
+    public lazy var cashOutSwift             = { LWRxAuthManagerCashOutSwift() }()
+    
 }

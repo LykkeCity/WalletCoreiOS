@@ -1,20 +1,23 @@
 //
-//  LWPacketOffchainTrade.swift
+//  LWPacketCashOutSwift.swift
 //  WalletCore
 //
-//  Created by Georgi Stanev on 10/18/17.
+//  Created by Nacho Nachev on 2.11.17.
 //  Copyright © 2017 Lykke. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-public class LWPacketOffchainTrade: LWAuthorizePacket {
+public class LWPacketCashOutSwift: LWAuthorizePacket {
     
     public struct Body {
+        let amount: Decimal
         let asset: String
-        let assetPair: String
-        let prevTempPrivateKey: String
-        let volume: Decimal
+        let bankName: String
+        let iban: String
+        let bic: String
+        let accountHolder: String
+        let accountHolderAddress: String
     }
     
     public var body: Body
@@ -32,27 +35,26 @@ public class LWPacketOffchainTrade: LWAuthorizePacket {
     
     override public func parseResponse(_ response: Any!, error: Error!) {
         super.parseResponse(response, error: error)
-        guard !isRejected else{return}
-        
-        if let result = self.getResut() {
-            model = LWModelOffchainResult(withJSON: result)
-        }
     }
     
     override public var params: [AnyHashable : Any]! {
         return [
-            "Asset": body.asset,
-            "AssetPair": body.assetPair,
-            "PrevTempPrivateKey": body.prevTempPrivateKey,
-            "Volume": body.volume
+            "Bic": body.bic,
+            "AssetId": body.asset,
+            "AccNumber": body.iban,
+            "AccName": body.accountHolder,
+            "Amount": body.amount,
+            "BankName": body.bankName,
+            "AccHolderAddress": body.accountHolderAddress
         ]
     }
     
     override public var urlRelative: String! {
-        return "offchain/trade"
+        return "CashOutSwiftRequest"
     }
     
     override public var type: GDXRESTPacketType {
         return .POST
     }
+
 }

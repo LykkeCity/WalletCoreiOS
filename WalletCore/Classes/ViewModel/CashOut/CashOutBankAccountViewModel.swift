@@ -11,7 +11,7 @@ import RxSwift
 
 public class CashOutBankAccountViewModel {
     
-    public let accountName = Variable("")
+    public let bankName = Variable("")
     
     public let iban = Variable("")
     
@@ -19,13 +19,13 @@ public class CashOutBankAccountViewModel {
     
     public let accountHolder = Variable("")
     
-    public let currency = Variable("")
+    public let accountHolderAddress = Variable("")
     
     public let isValid: Observable<Bool>
     
     public init() {
         isValid = Observable.combineLatest(
-            accountName.asObservable(),
+            bankName.asObservable(),
             iban.asObservable(),
             bic.asObservable(),
             accountHolder.asObservable()
