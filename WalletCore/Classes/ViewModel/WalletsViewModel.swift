@@ -20,19 +20,15 @@ open class WalletsViewModel {
         authManager:LWRxAuthManager = LWRxAuthManager.instance
     ) {
         let nonEmptyWallets = refreshWallets
-            .flatMap{ _ in
-                authManager.lykkeWallets.requestNonEmptyWallets()
-                    .map{ ApiResultList.success(withData: $0) }
-                    .startWith( ApiResultList.loading )
-            }
+            .flatMapLatest{ _ in authManager.lykkeWallets.requestNonEmptyWallets() }
             .shareReplay(1)
         
         let allAssets = authManager.allAssets.request()
         
         let walletsObservable = Observable
             .combineLatest(mainInfo, nonEmptyWallets.filterSuccess(), allAssets.filterSuccess())
-            .map{mainInfo, wallets, _ in
-                (asset: mainInfo.asset, wallets: wallets, mainInfo: mainInfo.mainInfo)
+            .map{ mainInfo, wallets, assets in
+                (asset: mainInfo.asset, wallets: wallets, mainInfo: mainInfo.mainInfo, assets: assets)
             }
             .shareReplay(1)
         
@@ -48,14 +44,20 @@ open class WalletsViewModel {
 fileprivate extension ObservableType where Self.E == (
     asset: LWAssetModel,
     wallets: [LWSpotWallet],
-    mainInfo: LWPacketGetMainScreenInfo
+    mainInfo: LWPacketGetMainScreenInfo,
+    assets: [LWAssetModel]
 ) {
     func mapToAssets() -> Observable<[Variable<Asset>]> {
-        return map{data in
-            data.wallets
-                .filter{$0.asset != nil}
-                .map{Asset(wallet: $0, baseAsset: data.asset, mainInfo: data.mainInfo)}
-                .map{Variable($0)}
+        return map{ data in
+            
+            data.wallets.forEach{ wallet in
+                wallet.asset = data.assets.first{ $0.identity == wallet.identity }
+            }
+            
+            return data.wallets
+                .filter{ $0.asset != nil }
+                .map{ Asset(wallet: $0, baseAsset: data.asset, mainInfo: data.mainInfo) }
+                .map{ Variable($0) }
             }
     }
 }

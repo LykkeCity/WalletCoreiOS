@@ -21,15 +21,15 @@ public class TradingAssetsViewModel {
         let assetPairs = authManager.assetPairs.request()
         
         loadingViewModel = LoadingViewModel([
-            nonEmptyWallets.map{ _ in false }.startWith(true),
+            nonEmptyWallets.isLoading(),
             allAssets.isLoading(),
             assetPairs.isLoading()
         ])
         
-        availableToSell = nonEmptyWallets
+        availableToSell = nonEmptyWallets.filterSuccess()
         
         availableToBuy =
-            Observable.zip(nonEmptyWallets, allAssets.filterSuccess(), assetPairs.filterSuccess())
+            Observable.zip(nonEmptyWallets.filterSuccess(), allAssets.filterSuccess(), assetPairs.filterSuccess())
             .map{wallets, assets, pairs in
                 assets.filter{asset in
                     guard let assetId = asset.identity else {return false}

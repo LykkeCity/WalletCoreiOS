@@ -48,13 +48,21 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
         .shareReplay(1)
     }
     
-    public func requestNonEmptyWallets() -> Observable<[LWSpotWallet]> {
-        return request(withParams: ())
-            .filterSuccess()
-            .map{$0.lykkeData.wallets}
-            .replaceNilWith([])
-            .map{$0 as! [LWSpotWallet]}
-            .map{$0.filter{$0.balance.doubleValue > 0.0}}
+    public func requestNonEmptyWallets() -> Observable<ApiResultList<LWSpotWallet>> {
+        return request()
+            .map{result in
+                switch result {
+                    case .error(let data): return .error(withData: data)
+                    case .loading: return .loading
+                    case .notAuthorized: return .notAuthorized
+                    case .forbidden: return .forbidden
+                    case .success(let data): return .success(withData:
+                        (data.lykkeData.wallets ?? [])
+                            .map{ $0 as! LWSpotWallet }
+                            .filter{ $0.balance.doubleValue > 0.0 }
+                    )
+                }
+            }
     }
     
     func getErrorResult(fromPacket packet: Packet) -> Result {

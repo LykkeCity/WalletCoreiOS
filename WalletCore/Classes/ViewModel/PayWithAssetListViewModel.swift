@@ -20,12 +20,12 @@ public class PayWithAssetListViewModel {
         let assetPairs = authManager.assetPairs.request()
         
         loadingViewModel = LoadingViewModel([
-            nonEmptyWallets.map{ _ in false }.startWith(true),
+            nonEmptyWallets.isLoading(),
             assetPairs.isLoading()
         ])
         
         payWithWalletList =
-            Observable.combineLatest(nonEmptyWallets, buyAsset, assetPairs.filterSuccess())
+            Observable.combineLatest(nonEmptyWallets.filterSuccess(), buyAsset, assetPairs.filterSuccess())
             .map{(wallets, buyAsset, assetPairs) in
                 return wallets.filter{(wallet: LWSpotWallet) in
                     guard let walletAssetId = wallet.asset.identity, let assetId = buyAsset.identity else {

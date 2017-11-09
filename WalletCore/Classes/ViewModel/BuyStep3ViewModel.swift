@@ -92,7 +92,7 @@ open class BuyStep3ViewModel {
             .asDriver(onErrorJustReturn: "")
         
         self.nonEmptyWallets = Observable.combineLatest(
-            dependency.authManager.lykkeWallets.requestNonEmptyWallets(),
+            dependency.authManager.lykkeWallets.requestNonEmptyWallets().filterSuccess(),
             input.asset,
             dependency.authManager.assetPairs.request().filterSuccess()
         )
