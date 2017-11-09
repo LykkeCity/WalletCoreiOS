@@ -28,11 +28,11 @@
 //        _ask=[NSNumber numberWithDouble:0.05085];//Testing
 //        _bid=[NSNumber numberWithDouble:0.05085];
 
-        if(_inverted)
-        {
-            [self invert];
-            _inverted=YES;
-        }
+//        if(_inverted)
+//        {
+//            [self invert];
+//            _inverted=YES;
+//        }
     }
     return self;
 }
