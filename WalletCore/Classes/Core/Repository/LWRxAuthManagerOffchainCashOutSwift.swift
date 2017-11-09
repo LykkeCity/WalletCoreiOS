@@ -9,39 +9,58 @@
 import UIKit
 import RxSwift
 
-public class LWRxAuthManagerOffchainCashOutSwift: LWRxAuthManagerBase<LWPacketOffchainCashOutSwift> {
+public class LWRxAuthManagerOffchainCashOutSwift: NSObject {
+    public typealias Packet = LWPacketOffchainCashOutSwift
+    public typealias Result = ApiResult<LWModelOffchainResult>
+    public typealias RequestParams = LWPacketOffchainCashOutSwift.Body
 
-    public func request(withData data: LWPacketOffchainCashOutSwift.Body) -> Observable<ApiResult<LWModelOffchainResult>> {
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerOffchainCashOutSwift: AuthManagerProtocol {
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
-            let packet = LWPacketOffchainCashOutSwift(body: data, observer: observer)
+            let packet = Packet(body: params, observer: observer)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
+        }
+        .startWith(.loading)
+        .shareReplay(1)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketOffchainCashOutSwift) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWModelOffchainResult>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: LWPacketOffchainCashOutSwift) -> ApiResult<LWModelOffchainResult> {
+        return ApiResult.error(withData: packet.errors)
     }
     
-    override func onSuccess(packet: LWPacketOffchainCashOutSwift) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWModelOffchainResult>> else {return}
-        
-        if let model = packet.model {
-            observer.onNext(.success(withData: model))
+    func getSuccessResult(fromPacket packet: LWPacketOffchainCashOutSwift) -> ApiResult<LWModelOffchainResult> {
+        guard let result = packet.model else {
+            return ApiResult.error(withData: ["Message": "Missing data."])
         }
         
-        observer.onCompleted()
+        return ApiResult.success(withData: result)
     }
     
-    override func onForbidden(withPacket packet: LWPacketOffchainCashOutSwift) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWModelOffchainResult>> else {return}
-        observer.onNext(.forbidden)
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: LWPacketOffchainCashOutSwift) -> ApiResult<LWModelOffchainResult> {
+        return ApiResult.forbidden
     }
-
+    
+    func getNotAuthrorizedResult(fromPacket packet: LWPacketOffchainCashOutSwift) -> ApiResult<LWModelOffchainResult> {
+        return ApiResult.notAuthorized
+    }
 }

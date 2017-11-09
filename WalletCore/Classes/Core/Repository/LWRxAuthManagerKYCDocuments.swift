@@ -8,11 +8,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerKYCDocuments : LWRxAuthManagerBase<LWPacketKYCDocuments> {
+public class LWRxAuthManagerKYCDocuments : NSObject{
     
-    public func request(assetId: String) -> Observable<ApiResult<LWKYCDocumentsModel>> {
+    public typealias Packet = LWPacketKYCDocuments
+    public typealias Result = ApiResult<LWKYCDocumentsModel>
+    public typealias RequestParams = (String)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerKYCDocuments: AuthManagerProtocol{
+    
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
-            let packet = LWPacketKYCDocuments(observer: observer)
+            let packet = Packet(observer: observer)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -21,22 +45,20 @@ public class LWRxAuthManagerKYCDocuments : LWRxAuthManagerBase<LWPacketKYCDocume
         .shareReplay(1)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketKYCDocuments) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWKYCDocumentsModel>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onSuccess(packet: LWPacketKYCDocuments) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWKYCDocumentsModel>> else {return}
-        observer.onNext(.success(withData: packet.documentsStatuses))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet.documentsStatuses)
     }
     
-    override func onForbidden(withPacket packet: LWPacketKYCDocuments) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketKYCDocuments>> else {return}
-        observer.onNext(.forbidden)
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

@@ -53,11 +53,11 @@ open class GraphDataViewModel {
         let intervalObservable = that.getIntervalObservable(keyChainManager: keyChainManager)
         
         self.assetPairData = intervalObservable
-            .flatMap{_ in authManager.assetPairRate.requestAssetPairRate(pairId: assetPairModel.identity)}
+            .flatMap{_ in authManager.assetPairRate.request(withParams: assetPairModel.identity)}
             .filterSuccess()
             .shareReplay(1)
         
-        let requestGraphPeriodsObservable = authManager.graphPeriods.requestGraphPeriods()
+        let requestGraphPeriodsObservable = authManager.graphPeriods.request()
         
         self.periodArray = requestGraphPeriodsObservable
             .filterSuccess()
@@ -178,13 +178,12 @@ fileprivate extension ObservableType where Self.E == (period: LWGraphPeriodModel
         authManager: LWRxAuthManager
     ) -> Observable<(apiResult: ApiResult<LWPacketGraphData>, interval: Bool)> {
         return flatMap{selectedPeriod in
-            return authManager.graphData
-                .requestGraphData(
-                    forPeriod: selectedPeriod.period,
-                    assetPairId: assetPair.identity,
-                    points: graphViewPoints
-                )
-                .map{(apiResult: $0, interval: selectedPeriod.interval)}
+            return authManager.graphData.request(withParams: (
+                period: selectedPeriod.period,
+                assetPairId: assetPair.identity,
+                points: graphViewPoints
+            ))
+            .map{(apiResult: $0, interval: selectedPeriod.interval)}
         }
     }
 }

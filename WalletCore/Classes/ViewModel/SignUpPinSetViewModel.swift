@@ -40,13 +40,12 @@ open class SignUpPinSetViewModel {
 fileprivate extension ObservableType where Self.E == Void {
     func mapToPack(
         pin: Variable<String>,
-        
         authManager: LWRxAuthManager
-        ) -> Observable<ApiResult<LWPacketPinSecuritySet>> {
+    ) -> Observable<ApiResult<LWPacketPinSecuritySet>> {
         
         return flatMapLatest{authData in
-            authManager.pinset.validatePin(withData: pin.value)
-            }
-            .shareReplay(1)
+            authManager.pinset.request(withParams: pin.value)
+        }
+        .shareReplay(1)
     }
 }

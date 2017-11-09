@@ -19,7 +19,7 @@ public class CurrencyExchanger {
         self.authManager = authManager
         
         refresh
-            .flatMap{_ in authManager.assetPairRates.requestAssetPairRates(ignoreBase: true).filterSuccess()}
+            .flatMap{_ in authManager.assetPairRates.request(withParams: true).filterSuccess()}
             .bind(to: pairRates)
             .disposed(by: disposeBag)
     }

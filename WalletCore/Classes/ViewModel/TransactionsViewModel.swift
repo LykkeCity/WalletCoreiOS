@@ -25,7 +25,7 @@ open class TransactionsViewModel {
         currencyExchanger: CurrencyExchanger,
         authManager: LWRxAuthManager = LWRxAuthManager.instance
     ) {
-        let transactionsObservable = authManager.history.requestGetHistory()
+        let transactionsObservable = authManager.history.request()
         
         let transactions = transactionsObservable
             .filterSuccess()

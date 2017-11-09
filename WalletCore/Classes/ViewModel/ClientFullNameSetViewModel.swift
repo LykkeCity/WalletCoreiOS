@@ -52,6 +52,6 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketClientFullNameSet>> {
         
         return flatMapLatest{_ in
-             authManager.setFullName.setFullName(withName:(firstName.value + lastName.value))}
+             authManager.setFullName.request(withParams: (firstName.value + lastName.value))}
             }
     }

@@ -16,9 +16,9 @@ public class BuyWithAssetListViewModel {
     public init(sellAsset: Observable<LWAssetModel>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
         buyWithAssetList = Observable.combineLatest(
-            authManager.allAssets.requestAllAssets().filterSuccess(),
+            authManager.allAssets.request().filterSuccess(),
             sellAsset,
-            authManager.assetPairs.requestAssetPairs().filterSuccess()
+            authManager.assetPairs.request().filterSuccess()
         )
         .map{(assets, sellAsset, assetPairs) in
             return assets.filter{(asset: LWAssetModel) in

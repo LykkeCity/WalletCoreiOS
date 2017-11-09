@@ -38,7 +38,7 @@ extension LWRxAuthManagerClientKeys: AuthManagerProtocol {
     public func request(withParams params: RequestParams) -> Observable<Result> {
         
         return Observable.create{observer in
-            let pack = LWPacketClientKeys(observer: observer, pubKey: params.pubKey, encodedPrivateKey: params.encodedPrivateKey)
+            let pack = Packet(observer: observer, pubKey: params.pubKey, encodedPrivateKey: params.encodedPrivateKey)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}

@@ -44,7 +44,7 @@ extension LWRxAuthManagerBaseAsset: AuthManagerProtocol {
         }
         
         return Observable.create{observer in
-            let packet = LWPacketBaseAssetGet(observer: observer)
+            let packet = Packet(observer: observer)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}

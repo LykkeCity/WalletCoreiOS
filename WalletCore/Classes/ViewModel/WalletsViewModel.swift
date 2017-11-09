@@ -27,7 +27,7 @@ open class WalletsViewModel {
             }
             .shareReplay(1)
         
-        let allAssets = authManager.allAssets.requestAllAssets()
+        let allAssets = authManager.allAssets.request()
         
         let walletsObservable = Observable
             .combineLatest(mainInfo, nonEmptyWallets.filterSuccess(), allAssets.filterSuccess())

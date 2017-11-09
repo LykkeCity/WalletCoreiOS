@@ -18,7 +18,7 @@ open class AccountExistViewModel {
     public init(email: Observable<String>, authManager:LWRxAuthManager = LWRxAuthManager.instance) {
         let observable = email
             .throttle(0.5, scheduler: MainScheduler.instance)
-            .flatMapLatest{email in authManager.accountExist.requestAccountExist(email: email)}
+            .flatMapLatest{email in authManager.accountExist.request(withParams: email)}
             .shareReplay(1)
         
         accountExistObservable = observable.filterSuccess()

@@ -38,7 +38,7 @@ open class TransactionsHeaderViewModel {
         self.asset = asset
         
         let assetMainInfoObservable =
-            authManager.mainInfo.requestMainScreenInfo(withAssetObservable: assetObservable)
+            authManager.mainInfo.request(withAssetObservable: assetObservable)
         
         self.loading = LoadingViewModel([
             totalBalanceViewModel.observables.mainInfo.isLoading(),

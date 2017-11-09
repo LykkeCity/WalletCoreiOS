@@ -56,9 +56,12 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketPhoneVerificationGet>> {
         
         return flatMapLatest{authData in
-            authManager.setPhoneNumberPin.validatePinCode(withData: phone.value, pin: pin.value)
-            }
-            .shareReplay(1)
+            authManager.setPhoneNumberPin.request(withParams: (
+                phone: phone.value,
+                pin: pin.value
+            ))
+        }
+        .shareReplay(1)
     }
     
     func mapResendPin(
@@ -67,8 +70,8 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketPhoneVerificationSet>> {
         
         return flatMapLatest{authData in
-            authManager.setPhoneNumber.setPhoneNumber(withPhone: phone.value)
-            }
-            .shareReplay(1)
+            authManager.setPhoneNumber.request(withParams: phone.value)
+        }
+        .shareReplay(1)
     }
 }

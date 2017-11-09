@@ -8,12 +8,35 @@
 import Foundation
 import RxSwift
 
-public class LWAuthManagerPacketGetPaymentUrl: LWRxAuthManagerBase<LWPacketGetPaymentUrl> {
+public class LWAuthManagerPacketGetPaymentUrl:  NSObject{
     
-    public func requestPaymentUrl(withParams params: LWPacketGetPaymentUrlParams) -> Observable<ApiResult<LWPacketGetPaymentUrl>> {
+    public typealias Packet = LWPacketGetPaymentUrl
+    public typealias Result = ApiResult<LWPacketGetPaymentUrl>
+    public typealias RequestParams = (LWPacketGetPaymentUrlParams)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWAuthManagerPacketGetPaymentUrl: AuthManagerProtocol{
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         
         return Observable.create{observer in
-            let packet = LWPacketGetPaymentUrl(observer: observer, params: params)
+            let packet = Packet(observer: observer, params: params)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,22 +45,20 @@ public class LWAuthManagerPacketGetPaymentUrl: LWRxAuthManagerBase<LWPacketGetPa
         .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketGetPaymentUrl) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetPaymentUrl>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketGetPaymentUrl) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketGetPaymentUrl>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet)
     }
     
-    override func onSuccess(packet: LWPacketGetPaymentUrl) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetPaymentUrl>> else {return}
-        observer.onNext(.success(withData: packet))
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

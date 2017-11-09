@@ -8,11 +8,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerKYCForAsset : LWRxAuthManagerBase<LWPacketKYCForAsset> {
+public class LWRxAuthManagerKYCForAsset : NSObject{
     
-    public func request(assetId: String) -> Observable<ApiResult<LWPacketKYCForAsset>> {
+    public typealias Packet = LWPacketKYCForAsset
+    public typealias Result = ApiResult<LWPacketKYCForAsset>
+    public typealias RequestParams = (String)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerKYCForAsset: AuthManagerProtocol{
+    
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
-            let packet = LWPacketKYCForAsset(observer: observer, assetId: assetId)
+            let packet = Packet(observer: observer, assetId: params)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -21,16 +45,20 @@ public class LWRxAuthManagerKYCForAsset : LWRxAuthManagerBase<LWPacketKYCForAsse
         .shareReplay(1)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketKYCForAsset) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketKYCForAsset>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onSuccess(packet: LWPacketKYCForAsset) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketKYCForAsset>> else {return}
-        observer.onNext(.success(withData: packet))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet)
+    }
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

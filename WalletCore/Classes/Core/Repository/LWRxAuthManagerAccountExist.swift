@@ -9,12 +9,36 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerAccountExist : LWRxAuthManagerBase<LWPacketAccountExist> {
+public class LWRxAuthManagerAccountExist : NSObject{
     
-    public func requestAccountExist(email: String) -> Observable<ApiResult<LWPacketAccountExist>> {
+    public typealias Packet = LWPacketAccountExist
+    public typealias Result = ApiResult<LWPacketAccountExist>
+    public typealias RequestParams = (String)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerAccountExist: AuthManagerProtocol{
+    
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
             
-            let packet = LWPacketAccountExist(observer: observer, email: email)
+            let packet = Packet(observer: observer, email: params)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -23,16 +47,20 @@ public class LWRxAuthManagerAccountExist : LWRxAuthManagerBase<LWPacketAccountEx
         .shareReplay(1)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketAccountExist) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketAccountExist>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onSuccess(packet: LWPacketAccountExist) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketAccountExist>> else {return}
-        observer.onNext(.success(withData: packet))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet)
+    }
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

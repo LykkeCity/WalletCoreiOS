@@ -10,36 +10,57 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerPhoneVerificationPin:  LWRxAuthManagerBase<LWPacketPhoneVerificationGet> {
+public class LWRxAuthManagerPhoneVerificationPin:  NSObject{
     
-    public func validatePinCode(withData phone: String, pin: String) -> Observable<ApiResult<LWPacketPhoneVerificationGet>> {
+    public typealias Packet = LWPacketPhoneVerificationGet
+    public typealias Result = ApiResult<LWPacketPhoneVerificationGet>
+    public typealias RequestParams = (phone: String, pin: String)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerPhoneVerificationPin: AuthManagerProtocol{
+
+    func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
-            let pack = LWPacketPhoneVerificationGet(observer: observer, phone: phone, pin: pin)
+            let pack = Packet(observer: observer, phone: params.phone, pin: params.pin)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
+        }
+        .startWith(.loading)
+        .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketPhoneVerificationGet) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketPhoneVerificationGet>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketPhoneVerificationGet) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketPhoneVerificationGet>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet)
     }
     
-    override func onSuccess(packet: LWPacketPhoneVerificationGet) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketPhoneVerificationGet>> else {return}
-        
-        observer.onNext(.success(withData: packet))
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

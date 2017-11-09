@@ -37,10 +37,10 @@ public class OffchainService {
         let channelAsset = amount > 0 ? forAsset : asset
         
         let pair = dependency.authManager.assetPairs
-            .requestAssetPair(baseAsset: asset, quotingAsset: forAsset)
+            .request(baseAsset: asset, quotingAsset: forAsset)
         
         //1. get channel key for asset
-        let offchainChannelKey = dependency.authManager.offchainChannelKey.request(forAsset: channelAsset.identity)
+        let offchainChannelKey = dependency.authManager.offchainChannelKey.request(withParams: channelAsset.identity)
         
         //decrypt chanel key with user key
         let decryptedKey = offchainChannelKey
@@ -58,7 +58,7 @@ public class OffchainService {
                 volume: amount
             )}
             .flatMapLatest{ [dependency] body in
-                return dependency.authManager.offchainTrade.request(withData: body)
+                return dependency.authManager.offchainTrade.request(withParams: body)
             }
             .shareReplay(1)
         
@@ -90,7 +90,7 @@ public class OffchainService {
                              iban: String, bic: String, accountHolder: String, accountHolderAddress: String) -> Observable<ApiResult<LWModelOffchainResult>> {
         
         //1. get channel key for asset
-        let offchainChannelKey = dependency.authManager.offchainChannelKey.request(forAsset: asset.identity)
+        let offchainChannelKey = dependency.authManager.offchainChannelKey.request(withParams: asset.identity)
         
         //decrypt chanel key with user key
         let decryptedKey = offchainChannelKey
@@ -110,7 +110,7 @@ public class OffchainService {
                 accountHolderAddress: accountHolderAddress,
                 prevTempPrivateKey: decryptedKey)}
             .flatMapLatest { [dependency] data in
-                return dependency.authManager.offchainCashOutSwift.request(withData: data)
+                return dependency.authManager.offchainCashOutSwift.request(withParams: data)
             }
             .shareReplay(1)
         
@@ -233,7 +233,7 @@ fileprivate extension ObservableType where Self.E == LWModelOffchainResult {
                 }
                 
                 return dependency.authManager.offchainProcessChannel.request(
-                    withData: LWPacketOffchainProcessChannel.Body(
+                    withParams: LWPacketOffchainProcessChannel.Body(
                         transferId: result.transferId,
                         signedChannelTransaction: signedChannelTransaction
                     )
@@ -261,7 +261,7 @@ fileprivate extension ObservableType where Self.E == LWModelOffchainResult {
                     return Observable.just(.error(withData: ["signedTransaction": "Can not sign transaction."]))
                 }
                 
-                return dependency.authManager.offchainFanilazeTransfer.request(withData: LWPacketOffchainFinalizetransfer.Body(
+                return dependency.authManager.offchainFanilazeTransfer.request(withParams: LWPacketOffchainFinalizetransfer.Body(
                     transferId: result.transferId,
                     clientRevokePubKey: publicKey,
                     clientRevokeEncryptedPrivateKey: dependency.privateKeyManager.encryptExternalWalletKey(wif),
@@ -278,7 +278,7 @@ fileprivate extension ObservableType where Self.E == LWModelOffchainRequest {
             //1. get channel key and decrypt channel key
             flatMapLatest{ request in
                 return dependency.authManager.offchainChannelKey
-                    .request(forAsset: request.assetId)
+                    .request(withParams: request.assetId)
                     .filterSuccess()
                     .decryptKey(withKeyManager: dependency.privateKeyManager)
                     .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: request.assetId)
@@ -287,7 +287,7 @@ fileprivate extension ObservableType where Self.E == LWModelOffchainRequest {
             //2. Send request transfer
             .flatMapLatest{ data in
                 dependency.authManager.offchainRequestTransfer
-                    .request(withData: LWPacketRequestTransfer.Body(requestId: data.request.requestId, prevTempPrivateKey: data.decryptedKey))
+                    .request(withParams: LWPacketRequestTransfer.Body(requestId: data.request.requestId, prevTempPrivateKey: data.decryptedKey))
                     .filterSuccess()
                     .map{ (request: data.request, result: $0) }
             }

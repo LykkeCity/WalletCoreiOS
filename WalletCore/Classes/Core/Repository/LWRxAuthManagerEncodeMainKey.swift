@@ -9,11 +9,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerEncodeMainKey : LWRxAuthManagerBase<LWPacketEncodedMainKey> {
+public class LWRxAuthManagerEncodeMainKey : NSObject{
     
-    public func requestEncodeMainKey(accessToken: String) -> Observable<ApiResult<LWPacketEncodedMainKey>> {
+    public typealias Packet = LWPacketEncodedMainKey
+    public typealias Result = ApiResult<LWPacketEncodedMainKey>
+    public typealias RequestParams = (String)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerEncodeMainKey: AuthManagerProtocol{
+    
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
-            let packet = LWPacketEncodedMainKey(observer: observer, accessToken: accessToken)
+            let packet = Packet(observer: observer, accessToken: params)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,28 +46,20 @@ public class LWRxAuthManagerEncodeMainKey : LWRxAuthManagerBase<LWPacketEncodedM
             .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketEncodedMainKey) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketEncodedMainKey>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketEncodedMainKey) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketEncodedMainKey>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet)
     }
     
-    override func onSuccess(packet: LWPacketEncodedMainKey) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketEncodedMainKey>> else {return}
-        observer.onNext(.success(withData: packet))
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
     }
     
-    override func onForbidden(withPacket packet: LWPacketEncodedMainKey) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketEncodedMainKey>> else {return}
-        observer.onNext(.forbidden)
-        observer.onCompleted()
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

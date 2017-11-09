@@ -40,9 +40,9 @@ open class CreditCardBaseInfoViewModel {
     private let countryCodes = Variable<[LWCountryModel]>([])
     
     public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
-        let personalData =  authManager.prevCardPayment.requestPersonalData()
+        let personalData =  authManager.prevCardPayment.request()
         let baseAsset    =  authManager.baseAsset.request()
-        let countryCodes =  authManager.countryCodes.requestCountryCodes()
+        let countryCodes =  authManager.countryCodes.request()
         
         paymentUrlResult = submit
             .throttle(1, scheduler: MainScheduler.instance)
@@ -238,9 +238,10 @@ fileprivate extension ObservableType where Self.E == Void {
                 )
             }
             .flatMapLatest{params in
-                authManager.paymentUrl.requestPaymentUrl(withParams: params)
+                authManager.paymentUrl.request(withParams: params)
             }
             .shareReplay(1)
+            
     }
 }
 

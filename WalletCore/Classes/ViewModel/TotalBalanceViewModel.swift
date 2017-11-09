@@ -33,7 +33,7 @@ open class TotalBalanceViewModel {
         let baseAssetObservable = authManager.baseAsset.request()
         let mainInfoObservable = refresh
             .throttle(2.0, scheduler: MainScheduler.instance)
-            .flatMapLatest{_ in authManager.mainInfo.requestMainScreenInfo(withAssetObservable: baseAssetObservable)}
+            .flatMapLatest{_ in authManager.mainInfo.request(withAssetObservable: baseAssetObservable)}
             .shareReplay(1)
         
         loading = LoadingViewModel([

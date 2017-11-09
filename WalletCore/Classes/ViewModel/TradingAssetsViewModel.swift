@@ -17,8 +17,8 @@ public class TradingAssetsViewModel {
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
         let nonEmptyWallets =  authManager.lykkeWallets.requestNonEmptyWallets()
-        let allAssets = authManager.allAssets.requestAllAssets()
-        let assetPairs = authManager.assetPairs.requestAssetPairs()
+        let allAssets = authManager.allAssets.request()
+        let assetPairs = authManager.assetPairs.request()
         
         loadingViewModel = LoadingViewModel([
             nonEmptyWallets.map{ _ in false }.startWith(true),
