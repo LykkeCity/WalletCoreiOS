@@ -23,6 +23,10 @@ class DrawerController: KYDrawerController {
         // Do any additional setup after loading the view.
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func showPortfolio() {
         mainViewController = storyboard?.instantiateViewController(withIdentifier: "Portfolio")
         self.setDrawerState(.closed, animated: false)
