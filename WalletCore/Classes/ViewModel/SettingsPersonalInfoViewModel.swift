@@ -24,8 +24,8 @@ open class SettingsPersonalInfoViewModel  {
     
     public init(saveSubmit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
-        result = authManager.settings.getPersonalData().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))//countryCodes
-        countryCodesResult = authManager.countryCodes.requestCountryCodes().asDriver(onErrorJustReturn: ApiResultList.error(withData: [:]))
+        result = authManager.settings.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))//countryCodes
+        countryCodesResult = authManager.countryCodes.request().asDriver(onErrorJustReturn: ApiResultList.error(withData: [:]))
         
         let m = Observable.merge([self.result.asObservable().isLoading(), self.countryCodesResult.asObservable().isLoading()])
         loading = m
@@ -58,7 +58,7 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketClientFullNameSet>> {
         
         return flatMapLatest{authData in
-                authManager.setFullName.setFullName(withName: firstName.value + " " + lastName.value)
+                authManager.setFullName.request(withParams: firstName.value + " " + lastName.value)
             }
             .shareReplay(1)
     }

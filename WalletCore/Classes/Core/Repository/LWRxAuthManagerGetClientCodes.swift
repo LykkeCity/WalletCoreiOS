@@ -9,11 +9,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerGetClientCodes:  LWRxAuthManagerBase<LWPacketGetClientCodes> {
+public class LWRxAuthManagerGetClientCodes:  NSObject{
+    
+    public typealias Packet = LWPacketGetClientCodes
+    public typealias Result = ApiResult<LWPacketGetClientCodes>
+    public typealias RequestParams = Void
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
 
-    public func requestGetClientCodes() -> Observable<ApiResult<LWPacketGetClientCodes>> {
+extension LWRxAuthManagerGetClientCodes: AuthManagerProtocol{
+    
+    public func request(withParams params:RequestParams = Void()) -> Observable<Result> {
         return Observable.create{observer in
-            let packet = LWPacketGetClientCodes(observer: observer)
+            let packet = Packet(observer: observer)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,28 +46,20 @@ public class LWRxAuthManagerGetClientCodes:  LWRxAuthManagerBase<LWPacketGetClie
             .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketGetClientCodes) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetClientCodes>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketGetClientCodes) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketGetClientCodes>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet)
     }
     
-    override func onSuccess(packet: LWPacketGetClientCodes) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetClientCodes>> else {return}
-        observer.onNext(.success(withData: packet))
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
     }
     
-    override func onForbidden(withPacket packet: LWPacketGetClientCodes) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetClientCodes>> else {return}
-        observer.onNext(.forbidden)
-        observer.onCompleted()
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

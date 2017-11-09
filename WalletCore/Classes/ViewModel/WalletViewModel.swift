@@ -31,11 +31,11 @@ public class WalletViewModel {
             authManager: LWRxAuthManager
         )
     ) {
-        let baseAssetResponseObservable = dependency.authManager.baseAsset.requestBaseAssetGet()
+        let baseAssetResponseObservable = dependency.authManager.baseAsset.request()
             .shareReplay(1)
         
         let mainInfoObservable = refresh
-            .flatMap{_ in dependency.authManager.mainInfo.requestMainScreenInfo(withAssetObservable: baseAssetResponseObservable)}
+            .flatMap{_ in dependency.authManager.mainInfo.request(withAssetObservable: baseAssetResponseObservable)}
             .filterSuccess()
             .shareReplay(1)
         

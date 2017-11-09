@@ -63,7 +63,7 @@ public class CashOutService {
                                                  bic: data.bic,
                                                  accountHolder: data.accountHolder,
                                                  accountHolderAddress: data.accountHolderAddress)
-            return authManager.cashOutSwift.request(withData: body)
+            return authManager.cashOutSwift.request(withParams: body)
                 .mapToCashOutSwiftResult(withData: data)
         }
     }

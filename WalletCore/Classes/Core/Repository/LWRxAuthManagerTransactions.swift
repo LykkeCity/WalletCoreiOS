@@ -9,12 +9,36 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerTransactions: LWRxAuthManagerBase<LWPacketTransactions> {
+public class LWRxAuthManagerTransactions: NSObject{
     
-    public func requestTransactions(forAssetId assetId: String? = nil) -> Observable<ApiResult<LWTransactionsModel>> {
+    public typealias Packet = LWPacketTransactions
+    public typealias Result = ApiResult<LWTransactionsModel>
+    public typealias RequestParams = (String?)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerTransactions: AuthManagerProtocol{
+    
+    public func request(withParams params: RequestParams = nil) -> Observable<Result> {
         return Observable.create{observer in
             
-            let pack = LWPacketTransactions(observer: observer, assetId: assetId)
+            let pack = Packet(observer: observer, assetId: params)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -23,22 +47,20 @@ public class LWRxAuthManagerTransactions: LWRxAuthManagerBase<LWPacketTransactio
         .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketTransactions) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWTransactionsModel>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketTransactions) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWTransactionsModel>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet.model)
     }
     
-    override func onSuccess(packet: LWPacketTransactions) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWTransactionsModel>> else {return}
-        observer.onNext(.success(withData: packet.model))
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

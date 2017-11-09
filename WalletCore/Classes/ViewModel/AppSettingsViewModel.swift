@@ -21,10 +21,10 @@ open class AppSettingsViewModel: NSObject {
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
         //LWKeychainManager.instance().login!
-        resultAppSettings = authManager.appSettings.getAppSettings().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        resultAllCurrencies = authManager.allAssets.requestAllAssets().asDriver(onErrorJustReturn: ApiResultList.error(withData: [:]))
-        resultPushNotifications = authManager.pushNotGet.getPushNotifications().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        resultAccount = authManager.accountExist.requestAccountExist(email: LWKeychainManager.instance().login).asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
+        resultAppSettings = authManager.appSettings.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
+        resultAllCurrencies = authManager.allAssets.request().asDriver(onErrorJustReturn: ApiResultList.error(withData: [:]))
+        resultPushNotifications = authManager.pushNotGet.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
+        resultAccount = authManager.accountExist.request(withParams: LWKeychainManager.instance().login).asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
         let m = Observable.merge([self.resultAppSettings.asObservable().isLoading(), self.resultAllCurrencies.asObservable().isLoading(),
                                   self.resultPushNotifications.asObservable().isLoading(), self.resultAccount.asObservable().isLoading()])

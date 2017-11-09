@@ -9,53 +9,68 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerBase<T: LWPacket>: NSObject {
-    override init() {
-        super.init()
-        
+protocol AuthManagerProtocol: NSObjectProtocol {
+    associatedtype Packet: LWPacket
+    associatedtype Result
+    associatedtype RequestParams
+    
+    func request(withParams params: RequestParams) -> Observable<Result>
+    
+    func subscribe(observer: NSObject, succcess: Selector, error: Selector)
+    func unsubscribe(observer: NSObject)
+    func getPacket(fromNotification notification: NSNotification) -> Packet?
+    
+    func onError(_ notification: NSNotification)
+    func onError(pack: Packet)
+    
+    func onSuccess(_ notification: NSNotification)
+    func onSuccess(packet: Packet)
+    
+    func onNotAuthorized(withPacket packet: Packet)
+    func onForbidden(withPacket packet: Packet)
+ 
+    func getErrorResult(fromPacket packet: Packet) -> Result
+    func getSuccessResult(fromPacket packet: Packet) -> Result
+    func getForbiddenResult(fromPacket packet: Packet) -> Result
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result
+}
+
+extension AuthManagerProtocol {
+    func subscribe(observer: NSObject, succcess: Selector, error: Selector) {
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.onSuccess(_:)),
+            observer,
+            selector: succcess,
             name: NSNotification.Name(rawValue: kNotificationGDXNetAdapterDidReceiveResponse),
             object: nil
         )
         
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.onError(_:)),
+            observer,
+            selector: error,
             name: NSNotification.Name(rawValue: kNotificationGDXNetAdapterDidFailRequest),
             object: nil
         )
     }
     
-    deinit { NotificationCenter.default.removeObserver(self) }
+    func unsubscribe(observer: NSObject) {
+        NotificationCenter.default.removeObserver(observer)
+    }
     
-    private func getPacket(fromNotification notification: NSNotification) -> T? {
-        guard let ctx = notification.userInfo?[kNotificationKeyGDXNetContext] as? GDXRESTContext,
-            let packet = ctx.packet as? T
-            else {
-                return nil
+    func getPacket(fromNotification notification: NSNotification) -> Packet? {
+        guard
+            let ctx = notification.userInfo?[kNotificationKeyGDXNetContext] as? GDXRESTContext,
+            let packet = ctx.packet as? Packet
+        else {
+            return nil
         }
         
         return packet
     }
     
-    @objc private func onSuccess(_ notification: NSNotification) {
-        guard let packet = getPacket(fromNotification: notification) else {
-            return
-        }
+    func onError(_ notification: NSNotification) {
+        guard let ctx = notification.userInfo?[kNotificationKeyGDXNetContext] as? GDXRESTContext else { return }
+        guard let pack = getPacket(fromNotification: notification) else { return }
         
-        packet.isRejected ? onError(notification) : onSuccess(packet: packet)
-    }
-    
-    func onSuccess(packet: T) {}
-    
-    @objc private func onError(_ notification: NSNotification) {
-        guard let ctx = notification.userInfo?[kNotificationKeyGDXNetContext] as? GDXRESTContext else {return}
-        guard let pack = getPacket(fromNotification: notification) else {return}
-        
-        
-//         check if user not authorized - kick them
         if LWAuthManager.isAuthneticationFailed(ctx.task?.response) {
             onNotAuthorized(withPacket: pack)
             return
@@ -66,19 +81,45 @@ public class LWRxAuthManagerBase<T: LWPacket>: NSObject {
             return
         }
         
-        let rejectData = pack.reject as? [AnyHashable : Any] ?? [:]
-        onError(withData: rejectData, pack: pack)
+        onError(pack: pack)
     }
     
-    func onNotAuthorized(withPacket packet: T) {
+    func onSuccess(_ notification: NSNotification) {
+        guard let packet = getPacket(fromNotification: notification) else {
+            return
+        }
         
+        packet.isRejected ? onError(notification) : onSuccess(packet: packet)
     }
     
-    func onError(withData data: [AnyHashable : Any], pack: T) {
-        
+    func onNotAuthorized(withPacket packet: Packet) {
+        guard let observer = packet.observer as? AnyObserver<Result> else { return }
+        observer.onNext(getNotAuthrorizedResult(fromPacket: packet))
+        observer.onCompleted()
     }
     
-    func onForbidden(withPacket packet: T) {
-        
+    func onError(pack: Packet) {
+        guard let observer = pack.observer as? AnyObserver<Result> else { return }
+        observer.onNext(getErrorResult(fromPacket: pack))
+        observer.onCompleted()
+    }
+    
+    func onSuccess(packet: Packet) {
+        guard let observer = packet.observer as? AnyObserver<Result> else { return }
+        observer.onNext(getSuccessResult(fromPacket: packet))
+        observer.onCompleted()
+    }
+    
+    func onForbidden(withPacket packet: Packet) {
+        guard let observer = packet.observer as? AnyObserver<Result> else { return }
+        observer.onNext(getForbiddenResult(fromPacket: packet))
+        observer.onCompleted()
     }
 }
+
+extension LWPacket {
+    var errors: [AnyHashable : Any] {
+        return reject as? [AnyHashable : Any] ?? [:]
+    }
+}
+

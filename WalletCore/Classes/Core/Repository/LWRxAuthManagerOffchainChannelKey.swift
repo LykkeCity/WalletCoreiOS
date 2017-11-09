@@ -9,11 +9,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerOffchainChannelKey : LWRxAuthManagerBase<LWPacketOffchainChannelKey> {
+public class LWRxAuthManagerOffchainChannelKey : NSObject{
     
-    public func request(forAsset assetId: String) -> Observable<ApiResult<LWModelOffchainChannelKey>> {
+    public typealias Packet = LWPacketOffchainChannelKey
+    public typealias Result = ApiResult<LWModelOffchainChannelKey>
+    public typealias RequestParams = (String)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerOffchainChannelKey: AuthManagerProtocol {
+    
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
-            let packet = LWPacketOffchainChannelKey(assetId: assetId, observer: observer)
+            let packet = Packet(assetId: params, observer: observer)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,26 +46,20 @@ public class LWRxAuthManagerOffchainChannelKey : LWRxAuthManagerBase<LWPacketOff
         .shareReplay(1)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketOffchainChannelKey) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWModelOffchainChannelKey>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onSuccess(packet: LWPacketOffchainChannelKey) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWModelOffchainChannelKey>> else {return}
-        
-        if let model = packet.model {
-            observer.onNext(.success(withData: model))
-        }
-        
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet.model!)
     }
     
-    override func onForbidden(withPacket packet: LWPacketOffchainChannelKey) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWModelOffchainChannelKey>> else {return}
-        observer.onNext(.forbidden)
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

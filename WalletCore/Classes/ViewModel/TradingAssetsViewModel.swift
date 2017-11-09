@@ -17,19 +17,19 @@ public class TradingAssetsViewModel {
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
         let nonEmptyWallets =  authManager.lykkeWallets.requestNonEmptyWallets()
-        let allAssets = authManager.allAssets.requestAllAssets()
-        let assetPairs = authManager.assetPairs.requestAssetPairs()
+        let allAssets = authManager.allAssets.request()
+        let assetPairs = authManager.assetPairs.request()
         
         loadingViewModel = LoadingViewModel([
-            nonEmptyWallets.map{ _ in false }.startWith(true),
+            nonEmptyWallets.isLoading(),
             allAssets.isLoading(),
             assetPairs.isLoading()
         ])
         
-        availableToSell = nonEmptyWallets
+        availableToSell = nonEmptyWallets.filterSuccess()
         
         availableToBuy =
-            Observable.zip(nonEmptyWallets, allAssets.filterSuccess(), assetPairs.filterSuccess())
+            Observable.zip(nonEmptyWallets.filterSuccess(), allAssets.filterSuccess(), assetPairs.filterSuccess())
             .map{wallets, assets, pairs in
                 assets.filter{asset in
                     guard let assetId = asset.identity else {return false}

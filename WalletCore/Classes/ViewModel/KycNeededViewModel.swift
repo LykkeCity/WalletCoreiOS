@@ -25,7 +25,7 @@ public class KycNeededViewModel {
         let kycForAsset = asset
             .filterSuccess()
             .flatMapLatest{asset in
-                return LWRxAuthManager.instance.kycForAsset.request(assetId: asset.identity)
+                return LWRxAuthManager.instance.kycForAsset.request(withParams: asset.identity)
             }
             .shareReplay(1)
         

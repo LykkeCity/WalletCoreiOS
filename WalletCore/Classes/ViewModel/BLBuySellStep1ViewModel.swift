@@ -82,7 +82,7 @@ open class BLBuySellStep1ViewModel {
             .mapToPriceInBase(currencyExchanger: currencyExchanger, amount: 1.0)
             .asDriver(onErrorJustReturn: "")
         
-        self.nonEmptyWallets = authManager.lykkeWallets.requestNonEmptyWallets()
+        self.nonEmptyWallets = authManager.lykkeWallets.requestNonEmptyWallets().filterSuccess()
         
         self.assetName = input.asset
             .mapToTheFullName()

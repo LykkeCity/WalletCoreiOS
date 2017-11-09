@@ -9,11 +9,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerAssetPairRates: LWRxAuthManagerBase<LWPacketAssetPairRates> {
+public class LWRxAuthManagerAssetPairRates: NSObject  {
     
-    public func requestAssetPairRates(ignoreBase: Bool = false) -> Observable<ApiResultList<LWAssetPairRateModel>> {
+    public typealias Packet = LWPacketAssetPairRates
+    public typealias Result = ApiResultList<LWAssetPairRateModel>
+    public typealias RequestParams = (Bool)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerAssetPairRates: AuthManagerProtocol {
+    
+    public func request(withParams params: RequestParams = false) -> Observable<Result> {
         return Observable.create{observer in
-            let packet = LWPacketAssetPairRates(observer: observer, ignoreBase: ignoreBase)
+            let packet = Packet(observer: observer, ignoreBase: params)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,30 +46,26 @@ public class LWRxAuthManagerAssetPairRates: LWRxAuthManagerBase<LWPacketAssetPai
         .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketAssetPairRates) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWAssetPairRateModel>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketAssetPairRates) {
-        guard let observer = pack.observer as? AnyObserver<ApiResultList<LWAssetPairRateModel>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
-    }
-    
-    override func onSuccess(packet: LWPacketAssetPairRates) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWAssetPairRateModel>> else {return}
-        
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
         guard let rates = packet.assetPairRates else {
-            observer.onNext(.success(withData: []))
-            observer.onCompleted()
-            return
+            return Result.success(withData: [])
         }
-        
-        observer.onNext(.success(withData: rates.map{$0 as! LWAssetPairRateModel}))
-        observer.onCompleted()
+        return Result.success(withData: rates.map{$0 as! LWAssetPairRateModel})
     }
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
+    }
+    
+    
 }
 
 public extension ObservableType where Self.E == ApiResultList<LWAssetPairRateModel> {

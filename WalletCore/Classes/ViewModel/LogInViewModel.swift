@@ -55,7 +55,7 @@ fileprivate extension ObservableType where Self.E == Void {
             return authData
         }
         .flatMapLatest{authData in
-            authManager.auth.requestLogin(withData: authData)
+            authManager.auth.request(withParams: authData)
         }
         .shareReplay(1)
     }

@@ -34,7 +34,7 @@ public class KYCDocumentsViewModel {
     ) {
         let kycDocumentsResult = Observable.combineLatest(trigger, asset.filterSuccess()) {$1}
             .flatMapLatest{asset -> Observable<ApiResult<LWKYCDocumentsModel>> in
-                return authManager.kycDocuments.request(assetId: asset.identity)
+                return authManager.kycDocuments.request(withParams: asset.identity)
             }
             .shareReplay(1)
         

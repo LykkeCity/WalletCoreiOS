@@ -20,7 +20,7 @@ open class SendEmailWithAddressViewModel {
                 .throttle(2, scheduler: MainScheduler.instance)
                 .map{wallet.value}
                 .filterNil()
-                .flatMap{wallet in authManager.emailWalletAddress.requestSendEmail(forWallet: wallet)}
+                .flatMap{wallet in authManager.emailWalletAddress.request(withParams: wallet)}
                 .asDriver(onErrorJustReturn: .error(withData: [:]))
     }
 }

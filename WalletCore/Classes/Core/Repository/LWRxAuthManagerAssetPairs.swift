@@ -9,9 +9,33 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerAssetPairs: LWRxAuthManagerBase<LWPacketAssetPairs> {
+public class LWRxAuthManagerAssetPairs: NSObject{
     
-    public func requestAssetPairs() -> Observable<ApiResultList<LWAssetPairModel>> {
+    public typealias Packet = LWPacketAssetPairs
+    public typealias Result = ApiResultList<LWAssetPairModel>
+    public typealias RequestParams = Void
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
+    
+    public func request(withParams params: RequestParams = Void()) -> Observable<Result> {
 
 // TODO: fix that, for some reason no asset pairs are shown on buy step 1, when called twice
 //        if let cachedAssetPairs = LWCache.instance().allAssetPairs?.map({$0 as! LWAssetPairModel}), cachedAssetPairs.isNotEmpty  {
@@ -21,7 +45,7 @@ public class LWRxAuthManagerAssetPairs: LWRxAuthManagerBase<LWPacketAssetPairs> 
 //        }
         
         return Observable.create{observer in
-            let packet = LWPacketAssetPairs(observer: observer)
+            let packet = Packet(observer: observer)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -30,11 +54,11 @@ public class LWRxAuthManagerAssetPairs: LWRxAuthManagerBase<LWPacketAssetPairs> 
         .shareReplay(1)
     }
     
-    public func requestAssetPair(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>> {
+    public func request(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>> {
         let pairId = baseAsset.getPairId(withAsset: quotingAsset)
         let reversedPairId = quotingAsset.getPairId(withAsset: baseAsset)
         
-        return requestAssetPairs()
+        return request(withParams: ())
             .filterSuccess()
             .map{ pairs in
                 pairs.first{ model in
@@ -46,8 +70,8 @@ public class LWRxAuthManagerAssetPairs: LWRxAuthManagerBase<LWPacketAssetPairs> 
             .shareReplay(1)
     }
     
-    public func requestAssetPair(byId id: String) -> Observable<ApiResult<LWAssetPairModel?>> {
-        return requestAssetPairs().map{ result -> ApiResult<LWAssetPairModel?> in
+    public func request(byId id: String) -> Observable<ApiResult<LWAssetPairModel?>> {
+        return request(withParams: ()).map{ result -> ApiResult<LWAssetPairModel?> in
             switch result {
                 case .error(let data): return .error(withData: data)
                 case .loading: return .loading
@@ -60,29 +84,23 @@ public class LWRxAuthManagerAssetPairs: LWRxAuthManagerBase<LWPacketAssetPairs> 
         }
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketAssetPairs) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWAssetPairModel>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketAssetPairs) {
-        guard let observer = pack.observer as? AnyObserver<ApiResultList<LWAssetPairModel>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
-    }
-    
-    override func onSuccess(packet: LWPacketAssetPairs) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWAssetPairModel>> else {return}
-        
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
         guard let rates = packet.assetPairs else {
-            observer.onNext(.success(withData: []))
-            observer.onCompleted()
-            return
+            return Result.success(withData: [])
         }
-        
-        observer.onNext(.success(withData: rates.map{$0 as! LWAssetPairModel}))
-        observer.onCompleted()
+        return Result.success(withData: rates.map{$0 as! LWAssetPairModel})
+    }
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

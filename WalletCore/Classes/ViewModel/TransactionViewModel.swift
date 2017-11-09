@@ -30,7 +30,7 @@ open class TransactionViewModel {
     public let icon: Driver<UIImage>
     
     public init(item: LWBaseHistoryItemType, currencyExcancher: CurrencyExchanger, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
-        let assetObservable = authManager.allAssets.requestAsset(byId: item.asset).filterSuccess()
+        let assetObservable = authManager.allAssets.request(byId: item.asset).filterSuccess()
         let volume = (item.volume ?? 0).decimalValue
         let itemObservable = Observable.just(item)
         let volumeObservable = Observable.just(Optional(volume))

@@ -9,12 +9,37 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerLykkeWallets: LWRxAuthManagerBase<LWPacketWallets> {
+public class LWRxAuthManagerLykkeWallets: NSObject{
     
-    public func requestLykkeWallets() -> Observable<ApiResult<LWLykkeWalletsData>> {
+    public typealias Packet = LWPacketWallets
+    public typealias Result = ApiResult<LWLykkeWalletsData>
+    public typealias RequestParams = Void
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
+    
+    //requestLykkeWallets()
+    public func request(withParams params:RequestParams = Void()) -> Observable<Result> {
         return Observable.create{observer in
            
-            let pack = LWPacketWallets(observer: observer)
+            let pack = Packet(observer: observer)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -23,31 +48,37 @@ public class LWRxAuthManagerLykkeWallets: LWRxAuthManagerBase<LWPacketWallets> {
         .shareReplay(1)
     }
     
-    public func requestNonEmptyWallets() -> Observable<[LWSpotWallet]> {
-        return requestLykkeWallets()
-            .filterSuccess()
-            .map{$0.lykkeData.wallets}
-            .replaceNilWith([])
-            .map{$0 as! [LWSpotWallet]}
-            .map{$0.filter{$0.balance.doubleValue > 0.0}}
+    public func requestNonEmptyWallets() -> Observable<ApiResultList<LWSpotWallet>> {
+        return request()
+            .map{result in
+                switch result {
+                    case .error(let data): return .error(withData: data)
+                    case .loading: return .loading
+                    case .notAuthorized: return .notAuthorized
+                    case .forbidden: return .forbidden
+                    case .success(let data): return .success(withData:
+                        (data.lykkeData.wallets ?? [])
+                            .map{ $0 as! LWSpotWallet }
+                            .filter{ $0.balance.doubleValue > 0.0 }
+                    )
+                }
+            }
     }
-
-    override func onNotAuthorized(withPacket packet: LWPacketWallets) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWLykkeWalletsData>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
-
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketWallets) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWLykkeWalletsData>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet.data)
     }
-
-    override func onSuccess(packet: LWPacketWallets) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWLykkeWalletsData>> else {return}
-        observer.onNext(.success(withData: packet.data))
-        observer.onCompleted()
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

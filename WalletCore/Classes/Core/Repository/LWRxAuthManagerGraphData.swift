@@ -9,11 +9,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerGraphData: LWRxAuthManagerBase<LWPacketGraphData> {
+public class LWRxAuthManagerGraphData: NSObject{
     
-    public func requestGraphData(forPeriod period: LWGraphPeriodModel, assetPairId: String, points: Int32) -> Observable<ApiResult<LWPacketGraphData>> {
+    public typealias Packet = LWPacketGraphData
+    public typealias Result = ApiResult<LWPacketGraphData>
+    public typealias RequestParams = (period: LWGraphPeriodModel, assetPairId: String, points: Int32)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerGraphData: AuthManagerProtocol{
+    
+    public func request(withParams params:RequestParams) -> Observable<ApiResult<LWPacketGraphData>> {
         return Observable.create{observer in
-            let pack = LWPacketGraphData(observer: observer, period: period, assetPairId: assetPairId, points: points)
+            let pack = Packet(observer: observer, period: params.period, assetPairId: params.assetPairId, points: params.points)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,23 +46,22 @@ public class LWRxAuthManagerGraphData: LWRxAuthManagerBase<LWPacketGraphData> {
         .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketGraphData) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGraphData>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketGraphData) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketGraphData>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet)
     }
     
-    override func onSuccess(packet: LWPacketGraphData) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGraphData>> else {return}
-        observer.onNext(.success(withData: packet))
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
     }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
+    }
+    
 }
 
 public extension ObservableType where Self.E == ApiResult<LWPacketGraphData> {

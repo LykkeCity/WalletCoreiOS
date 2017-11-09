@@ -27,6 +27,6 @@
 
 @property (readonly, nonatomic) NSNumber *amountInBase;
 
-@property (readonly, nonatomic) LWAssetModel *asset;
+@property (atomic, strong) LWAssetModel *asset;
 
 @end

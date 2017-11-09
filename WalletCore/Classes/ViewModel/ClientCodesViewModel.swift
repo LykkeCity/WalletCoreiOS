@@ -24,18 +24,18 @@ open class ClientCodesViewModel {
     
         
         let getClientCodeObservable = trigger
-            .flatMapLatest{_ in dependency.authManager.getClientCodes.requestGetClientCodes()}
+            .flatMapLatest{_ in dependency.authManager.getClientCodes.request()}
             .shareReplay(1)
 
         let postClientCodesObservable = getClientCodeObservable.filterSuccess()
             .flatMapLatest{result in
-                dependency.authManager.postClientCodes.requestPostClientCodes(codeSms: result.codeSms)
+                dependency.authManager.postClientCodes.request(withParams: result.codeSms)
             }
             .shareReplay(1)
         
         let encodeMainKeyObservable = postClientCodesObservable.filterSuccess()
             .flatMapLatest {result in
-                dependency.authManager.encodeMainKey.requestEncodeMainKey(accessToken:result.accessToken)
+                dependency.authManager.encodeMainKey.request(withParams: result.accessToken)
             }
             .shareReplay(1)
         
@@ -43,14 +43,14 @@ open class ClientCodesViewModel {
         let validatePin = encodeMainKeyObservable
             .filterForbidden()
             .flatMap{
-                dependency.authManager.pinget.validatePin(withData: dependency.keychainManager.pin() ?? "")
+                dependency.authManager.pinget.request(withParams: dependency.keychainManager.pin() ?? "")
             }
             .shareReplay(1)
         
         let retriedEncodeMainKey = validatePin.filterSuccess()
             .withLatestFrom(postClientCodesObservable.filterSuccess())
             .flatMap{result in
-                dependency.authManager.encodeMainKey.requestEncodeMainKey(accessToken:result.accessToken)
+                dependency.authManager.encodeMainKey.request(withParams: result.accessToken)
             }
             .shareReplay(1)
         

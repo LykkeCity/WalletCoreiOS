@@ -76,7 +76,7 @@ public extension ObservableType where Self.E == Asset {
     func mapToUrl(authManager: LWRxAuthManager) -> Observable<URL?> {
         return flatMapLatest{asset in
             return authManager.allAssets
-                .requestAsset(byId: asset.cryptoCurrency.identity)
+                .request(byId: asset.cryptoCurrency.identity)
                 .filterSuccess()
                 .filterNil()
                 .map{$0.iconUrl}

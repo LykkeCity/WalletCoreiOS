@@ -9,12 +9,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerMainInfo: LWRxAuthManagerBase<LWPacketGetMainScreenInfo> {
+public class LWRxAuthManagerMainInfo: NSObject  {
     
+    public typealias Packet = LWPacketGetMainScreenInfo
+    public typealias Result = ApiResult<LWPacketGetMainScreenInfo>
+    public typealias RequestParams = (String)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
 
-    public func requestMainScreenInfo(assetId: String) -> Observable<ApiResult<LWPacketGetMainScreenInfo>> {
+extension LWRxAuthManagerMainInfo: AuthManagerProtocol {
+
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
-            let pack = LWPacketGetMainScreenInfo(observer: observer, assetId: assetId)
+            let pack = Packet(observer: observer, assetId: params)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -30,7 +53,7 @@ public class LWRxAuthManagerMainInfo: LWRxAuthManagerBase<LWPacketGetMainScreenI
     ///   - assetObservable: <#assetObservable description#>
     ///   - authManager: <#authManager description#>
     /// - Returns: <#return value description#>
-    func requestMainScreenInfo(
+    func request(
         withAssetObservable assetObservable: Observable<ApiResult<LWAssetModel>>,
         authManager: LWRxAuthManager = LWRxAuthManager.instance
     )-> Observable<ApiResult<(mainInfo: LWPacketGetMainScreenInfo, asset: LWAssetModel)>> {
@@ -47,28 +70,21 @@ public class LWRxAuthManagerMainInfo: LWRxAuthManagerBase<LWPacketGetMainScreenI
         return Observable.merge(asset, mainScreen)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketGetMainScreenInfo) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetMainScreenInfo>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketGetMainScreenInfo) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<LWPacketGetMainScreenInfo>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet)
     }
     
-    override func onSuccess(packet: LWPacketGetMainScreenInfo) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetMainScreenInfo>> else {return}
-        observer.onNext(.success(withData: packet))
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
     }
     
-    override func onForbidden(withPacket packet: LWPacketGetMainScreenInfo) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketGetMainScreenInfo>> else {return}
-        observer.onNext(.forbidden)
-        observer.onCompleted()
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 
@@ -125,7 +141,7 @@ fileprivate extension ObservableType where Self.E == LWAssetModel {
         return flatMapLatest{asset -> Observable<ApiResult<(mainInfo: LWPacketGetMainScreenInfo, asset: LWAssetModel)>> in
             
             return authManager.mainInfo
-                .requestMainScreenInfo(assetId: asset.identity)
+                .request(withParams: (asset.identity))
                 .flatMap{mainInfoResult
                     -> Observable<ApiResult<(mainInfo: LWPacketGetMainScreenInfo, asset: LWAssetModel)>> in
                     

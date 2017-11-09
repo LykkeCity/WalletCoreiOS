@@ -17,8 +17,7 @@ open class SettingsViewModel {
     
     public init( authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
-         result = authManager.settings.getPersonalData().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        
+        result = authManager.settings.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         loading = result.asObservable().isLoading()
     }
 

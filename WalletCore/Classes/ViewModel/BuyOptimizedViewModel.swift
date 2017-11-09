@@ -76,7 +76,7 @@ public class BuyOptimizedViewModel {
             ethereumManager: LWEthereumTransactionsManager
         )
     ) {
-        baseAssetCode = dependency.authManager.baseAsset.requestBaseAssetGet()
+        baseAssetCode = dependency.authManager.baseAsset.request()
             .filterSuccess()
             .mapToIdentity()
             .asDriver(onErrorJustReturn: "")

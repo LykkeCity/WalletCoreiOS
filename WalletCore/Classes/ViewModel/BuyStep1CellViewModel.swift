@@ -34,7 +34,9 @@ open class BuyStep1CellViewModel {
         self.model = model
         self.mainAssetId = model.baseAssetId == baseAsset.identity ? model.quotingAssetId : model.baseAssetId
 
-        let assetObservable = dependency.authManager.allAssets.requestAsset(byId: mainAssetId).filterSuccess().filterNil()
+        let assetObservable = dependency.authManager.allAssets.request(byId: mainAssetId)
+            .filterSuccess()
+            .filterNil()
         
         assetPairCodes = assetObservable
             .map{$0.displayFullName}
@@ -55,7 +57,7 @@ open class BuyStep1CellViewModel {
             .asDriver(onErrorJustReturn: "")
         
         iconUrl = dependency.authManager.allAssets
-            .requestAsset(byId: mainAssetId)
+            .request(byId: mainAssetId)
             .filterSuccess()
             .map{$0?.iconUrl}
             .asDriver(onErrorJustReturn: nil)
@@ -115,7 +117,7 @@ fileprivate extension ObservableType where Self.E == LWMarketModel? {
             //map to volume24H and quotingAsset
             .flatMap{data -> Observable<(asset: LWAssetModel, volume24H: Decimal)> in
                 return dependency.authManager.allAssets
-                    .requestAsset(byId: data.pair.quotingAssetId)
+                    .request(byId: data.pair.quotingAssetId)
                     .filterSuccess()
                     .filterNil()
                     .map{(

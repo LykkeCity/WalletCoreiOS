@@ -9,11 +9,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxMarketManager: LWRxAuthManagerBase<LWPacketMarket> {
+public class LWRxMarketManager: NSObject  {
     
-    public func requestMarketPairs() -> Observable<ApiResultList<LWMarketModel>> {
+    public typealias Packet = LWPacketMarket
+    public typealias Result = ApiResultList<LWMarketModel>
+    public typealias RequestParams = Void
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxMarketManager: AuthManagerProtocol {
+    
+    public func request(withParams params: RequestParams = Void()) -> Observable<Result> {
         return Observable.create{observer in
-            let pack = LWPacketMarket(observer: observer)
+            let pack = Packet(observer: observer)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,23 +46,20 @@ public class LWRxMarketManager: LWRxAuthManagerBase<LWPacketMarket> {
         .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketMarket) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWMarketModel>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketMarket) {
-        guard let observer = pack.observer as? AnyObserver<ApiResultList<LWMarketModel>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: packet.marketAssetPairs.map{$0 as! LWMarketModel})
     }
     
-    override func onSuccess(packet: LWPacketMarket) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWMarketModel>> else {return}
-        
-        observer.onNext(.success(withData: packet.marketAssetPairs.map{$0 as! LWMarketModel}))
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

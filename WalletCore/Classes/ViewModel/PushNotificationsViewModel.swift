@@ -32,12 +32,12 @@ fileprivate extension ObservableType where Self.E == Void {
     func mapToPushNotification(
         on: Variable<Bool>,
         authManager: LWRxAuthManager
-        ) -> Observable<ApiResult<LWPacketPushSettingsSet>> {
+    ) -> Observable<ApiResult<LWPacketPushSettingsSet>> {
         
         return flatMapLatest{authData in
-            authManager.pushNotSet.setPushNotifications(isOn : on.value)
-            }
-            .shareReplay(1)
+            authManager.pushNotSet.request(withParams: on.value)
+        }
+        .shareReplay(1)
     }
 }
 

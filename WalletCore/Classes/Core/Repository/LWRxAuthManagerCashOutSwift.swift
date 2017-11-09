@@ -9,40 +9,57 @@
 import UIKit
 import RxSwift
 
-public class LWRxAuthManagerCashOutSwift: LWRxAuthManagerBase<LWPacketCashOutSwift> {
+public class LWRxAuthManagerCashOutSwift: NSObject {
+    public typealias Packet = LWPacketCashOutSwift
+    public typealias Result = ApiResult<Void>
+    public typealias RequestParams = LWPacketCashOutSwift.Body
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
 
-    public func request(withData data: LWPacketCashOutSwift.Body) -> Observable<ApiResult<Void>> {
+extension LWRxAuthManagerCashOutSwift: AuthManagerProtocol {
+    
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create { observer in
-            let packet = LWPacketCashOutSwift(body: data, observer: observer)
+            let packet = Packet(body: params, observer: observer)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)
             
             return Disposables.create {}
         }
-            .startWith(.loading)
-            .shareReplay(1)
+        .startWith(.loading)
+        .shareReplay(1)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketCashOutSwift) {
-        guard let observer = pack.observer as? AnyObserver<ApiResult<Void>> else {return}
-        
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
+        return ApiResult.error(withData: packet.errors)
     }
     
-    override func onSuccess(packet: LWPacketCashOutSwift) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<Void>> else {return}
-        
-        observer.onNext(.success(withData: Void()))
-        observer.onCompleted()
+    func getSuccessResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
+        return ApiResult.success(withData: Void())
     }
     
-    override func onForbidden(withPacket packet: LWPacketCashOutSwift) {
-        guard let observer = packet.observer as? AnyObserver<ApiResult<LWPacketCashOutSwift>> else {return}
-        
-        observer.onNext(.forbidden)
-        observer.onCompleted()
+    func getForbiddenResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
+        return ApiResult.forbidden
     }
     
+    func getNotAuthrorizedResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
+        return ApiResult.notAuthorized
+    }
 }
 
 public extension ObservableType where Self.E == ApiResult<Void> {

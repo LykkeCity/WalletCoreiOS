@@ -92,9 +92,9 @@ open class BuyStep3ViewModel {
             .asDriver(onErrorJustReturn: "")
         
         self.nonEmptyWallets = Observable.combineLatest(
-            dependency.authManager.lykkeWallets.requestNonEmptyWallets(),
+            dependency.authManager.lykkeWallets.requestNonEmptyWallets().filterSuccess(),
             input.asset,
-            dependency.authManager.assetPairs.requestAssetPairs().filterSuccess()
+            dependency.authManager.assetPairs.request().filterSuccess()
         )
         .map{(wallets, buyAsset, assetPairs) in
             return wallets.filter{(wallet: LWSpotWallet) in
@@ -157,7 +157,7 @@ extension ObservableType where Self.E == LWAssetModel {
     func mapToIconUrl(withAuthManager authManager: LWRxAuthManager) -> Observable<URL?> {
         return flatMapLatest{asset in
             return authManager.allAssets
-                .requestAsset(byId: asset.identity ?? "")
+                .request(byId: asset.identity ?? "")
                 .filterSuccess()
                 .filterNil()
                 .map{$0.iconUrl}
@@ -199,7 +199,7 @@ extension ObservableType where Self.E == LWSpotWallet {
         return
             flatMapLatest{wallet in
                 authManager.baseAsset
-                    .requestBaseAssetGet()
+                    .request()
                     .filterSuccess()
                     .map{(wallet: wallet, baseAsset: $0)}
             }
@@ -261,7 +261,7 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, w
         return
             flatMapLatest{data in
                 manager.assetPairs
-                    .requestAssetPair(byId: "\(data.asset.identity ?? "")\(data.wallet.asset.identity ?? "")")
+                    .request(byId: "\(data.asset.identity ?? "")\(data.wallet.asset.identity ?? "")")
                     .filterSuccess()
                     .map{(
                         baseAsset: data.asset,

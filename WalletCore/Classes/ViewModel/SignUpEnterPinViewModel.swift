@@ -62,19 +62,21 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketEmailVerificationGet>> {
         
         return flatMapLatest{authData in
-            authManager.pinvalidation.validatePinCode(withData: email.value, pin: pin1.value+pin2.value+pin3.value+pin4.value)
-            }
+            authManager.pinvalidation.request(withParams: (
+                email: email.value,
+                pin: pin1.value+pin2.value+pin3.value+pin4.value)
+            )}
             .shareReplay(1)
     }
     
     func mapResendPin(
         email: Variable<String>,
         authManager: LWRxAuthManager
-        ) -> Observable<ApiResult<LWPacketEmailVerificationSet>> {
+    ) -> Observable<ApiResult<LWPacketEmailVerificationSet>> {
         
         return flatMapLatest{authData in
-            authManager.emailverification.verifyEmail(withData: email.value)
-            }
-            .shareReplay(1)
+            authManager.emailverification.request(withParams: email.value)
+        }
+        .shareReplay(1)
     }
 }

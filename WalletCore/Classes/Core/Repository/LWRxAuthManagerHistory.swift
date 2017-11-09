@@ -9,11 +9,35 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerHistory: LWRxAuthManagerBase<LWPacketGetHistory> {
+public class LWRxAuthManagerHistory: NSObject{
     
-    public func requestGetHistory(forAssetId assetId: String? = nil) -> Observable<ApiResultList<LWBaseHistoryItemType>> {
+    public typealias Packet = LWPacketGetHistory
+    public typealias Result = ApiResultList<LWBaseHistoryItemType>
+    public typealias RequestParams = (String?)
+    
+    override init() {
+        super.init()
+        subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+    }
+    
+    deinit {
+        unsubscribe(observer: self)
+    }
+    
+    @objc func successSelector(_ notification: NSNotification) {
+        onSuccess(notification)
+    }
+    
+    @objc func errorSelector(_ notification: NSNotification) {
+        onError(notification)
+    }
+}
+
+extension LWRxAuthManagerHistory: AuthManagerProtocol {
+    
+    public func request(withParams params: RequestParams = nil) -> Observable<Result> {
         return Observable.create{observer in
-            let pack = LWPacketGetHistory(observer: observer, assetId: assetId)
+            let pack = Packet(observer: observer, assetId: params)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}
@@ -22,26 +46,24 @@ public class LWRxAuthManagerHistory: LWRxAuthManagerBase<LWPacketGetHistory> {
         .shareReplay(1)
     }
     
-    override func onNotAuthorized(withPacket packet: LWPacketGetHistory) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWBaseHistoryItemType>> else {return}
-        observer.onNext(.notAuthorized)
-        observer.onCompleted()
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
     
-    override func onError(withData data: [AnyHashable : Any], pack: LWPacketGetHistory) {
-        guard let observer = pack.observer as? AnyObserver<ApiResultList<LWBaseHistoryItemType>> else {return}
-        observer.onNext(.error(withData: data))
-        observer.onCompleted()
-    }
-    
-    override func onSuccess(packet: LWPacketGetHistory) {
-        guard let observer = packet.observer as? AnyObserver<ApiResultList<LWBaseHistoryItemType>> else {return}
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
         let data: [LWBaseHistoryItemType] = LWHistoryManager
             .prepareHistory(packet.historyArray, marginal: [])
             .flatMap{$0 as? [LWBaseHistoryItemType] ?? []}
         
-        observer.onNext(.success(withData: data))
-        observer.onCompleted()
+        return Result.success(withData: data)
+    }
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return Result.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return Result.notAuthorized
     }
 }
 

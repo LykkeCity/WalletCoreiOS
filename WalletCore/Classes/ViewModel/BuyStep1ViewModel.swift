@@ -28,9 +28,9 @@ open class BuyStep1ViewModel {
     private let disposeBag = DisposeBag()
     
     public init(filter inputFilter: Observable<CurrencyType>, dependency: Dependency) {
-        let pairsObservable = dependency.authManager.assetPairs.requestAssetPairs()
-        let assetPairRatesObservable = dependency.authManager.assetPairRates.requestAssetPairRates(ignoreBase: true)
-        let marketObservable = dependency.authManager.market.requestMarketPairs()
+        let pairsObservable = dependency.authManager.assetPairs.request()
+        let assetPairRatesObservable = dependency.authManager.assetPairRates.request(withParams: true)
+        let marketObservable = dependency.authManager.market.request()
         
         let viewModels = Variable<[BuyStep1CellViewModel]>([])
         
@@ -151,8 +151,7 @@ fileprivate extension ObservableType where Self.E == (type: BuyStep1ViewModel.Cu
             assets: [LWAssetModel]
         )> {
             return flatMapLatest{ data in
-                return dependency.authManager.allAssets
-                    .requestAllAssets()
+                return dependency.authManager.allAssets.request()
                     .filterSuccess()
                     .map{(
                         type: data.type,
@@ -202,7 +201,7 @@ fileprivate extension ObservableType where Self.E == ApiResultList<LWAssetPairMo
         dependency: BuyStep1ViewModel.Dependency
     ) -> Disposable {
             return filterSuccess()
-            .flatMap{assetPairs in dependency.authManager.baseAsset.requestBaseAssetGet().filterSuccess().map{(
+            .flatMap{assetPairs in dependency.authManager.baseAsset.request().filterSuccess().map{(
                 baseAsset: $0,
                 assetPairs: assetPairs
             )}}

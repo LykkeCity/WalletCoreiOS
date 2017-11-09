@@ -19,7 +19,7 @@ public class CurrencyExchanger {
         self.authManager = authManager
         
         refresh
-            .flatMap{_ in authManager.assetPairRates.requestAssetPairRates(ignoreBase: true).filterSuccess()}
+            .flatMap{_ in authManager.assetPairRates.request(withParams: true).filterSuccess()}
             .bind(to: pairRates)
             .disposed(by: disposeBag)
     }
@@ -69,7 +69,7 @@ public class CurrencyExchanger {
     ///   - bid: Bid or ask price
     /// - Returns: Observable of exchanged amaunt that will updates each 5 seconds according pair rates
     func exchangeToBaseAsset(amaunt: Decimal, from: LWAssetModel, bid: Bool) -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> {
-        return authManager.baseAsset.requestBaseAssetGet().filterSuccess()
+        return authManager.baseAsset.request().filterSuccess()
             .flatMap{[weak self] baseAsset -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> in
                 guard let this = self else {return Observable.just(nil)}
                 return this
