@@ -25,7 +25,7 @@ open class PhoneNumberViewModel {
     public init(saveSubmit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
         fake.value = "0"
-        countryCodesResult = authManager.getHomeCountry.requestMyCountry().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
+        countryCodesResult = authManager.getHomeCountry.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
     
         loading = self.countryCodesResult.asObservable().isLoading()
@@ -59,7 +59,7 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketPhoneVerificationSet>> {
         
         return flatMapLatest{authData in
-            authManager.setPhoneNumber.setPhoneNumber(withPhone: phone.value)
+            authManager.setPhoneNumber.request(withParams: phone.value)
             }
             .shareReplay(1)
     }

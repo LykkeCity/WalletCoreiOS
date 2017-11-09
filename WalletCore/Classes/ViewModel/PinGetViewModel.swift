@@ -23,25 +23,19 @@ open class PinGetViewModel{
             .mapToPack(pin:pin, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
-        
-        
-        
-        
         loading = self.result.asObservable().isLoading()
-        
     }
 }
 
 fileprivate extension ObservableType where Self.E == Void {
     func mapToPack(
         pin: Variable<String>,
-        
         authManager: LWRxAuthManager
-        ) -> Observable<ApiResult<LWPacketPinSecurityGet>> {
+    ) -> Observable<ApiResult<LWPacketPinSecurityGet>> {
         
         return flatMapLatest{authData in
-            authManager.pinget.validatePin(withData: pin.value)
-            }
-            .shareReplay(1)
+            authManager.pinget.request(withParams: pin.value)
+        }
+        .shareReplay(1)
     }
 }

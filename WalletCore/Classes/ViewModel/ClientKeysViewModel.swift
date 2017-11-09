@@ -40,9 +40,12 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketClientKeys>> {
         
         return flatMapLatest{authData in
-            authManager.pubKeys.setClientKeys(withPubKey: pubKey.value, encodedPrivateKey: encodedPrivateKey.value)
-            }
-            .shareReplay(1)
+            authManager.pubKeys.request(withParams: (
+                pubKey: pubKey.value,
+                encodedPrivateKey: encodedPrivateKey.value
+            ))
+        }
+        .shareReplay(1)
     }
 }
 

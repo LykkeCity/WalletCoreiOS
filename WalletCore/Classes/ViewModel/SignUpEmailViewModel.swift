@@ -40,7 +40,7 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketEmailVerificationSet>> {
         
         return flatMapLatest{authData in
-                authManager.emailverification.verifyEmail(withData: email.value)
+                authManager.emailverification.request(withParams: email.value)
             }
             .shareReplay(1)
     }

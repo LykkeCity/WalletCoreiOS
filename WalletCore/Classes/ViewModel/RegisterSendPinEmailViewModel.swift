@@ -53,9 +53,12 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketEmailVerificationGet>> {
         
         return flatMapLatest{authData in
-            authManager.pinvalidation.validatePinCode(withData: email.value, pin: pin.value)
-            }
-            .shareReplay(1)
+            authManager.pinvalidation.request(withParams: (
+                email: email.value,
+                pin: pin.value
+            ))
+        }
+        .shareReplay(1)
     }
     
     func mapResendPin(
@@ -64,9 +67,9 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWPacketEmailVerificationSet>> {
         
         return flatMapLatest{authData in
-            authManager.emailverification.verifyEmail(withData: email.value)
-            }
-            .shareReplay(1)
+            authManager.emailverification.request(withParams: email.value)
+        }
+        .shareReplay(1)
     }
 }
 

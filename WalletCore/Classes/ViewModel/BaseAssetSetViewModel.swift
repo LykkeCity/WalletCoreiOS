@@ -18,9 +18,6 @@ open class BaseAssetSetViewModel {
     
     public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
-        //result = authManager.baseAssetSet.setBaseAsset(withIdentity: self.identity.value).asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-
-        
         result = submit
             .throttle(1, scheduler: MainScheduler.instance)
             .mapIdentity(identity: self.identity, authManager: authManager)
@@ -28,22 +25,18 @@ open class BaseAssetSetViewModel {
         
         loading = result.asObservable().isLoading()
     }
-    
-
-
 }
 
 fileprivate extension ObservableType where Self.E == Void {
     
-    
     func mapIdentity(
         identity: Variable<String>,
         authManager: LWRxAuthManager
-        ) -> Observable<ApiResult<LWPacketBaseAssetSet>> {
+    ) -> Observable<ApiResult<LWPacketBaseAssetSet>> {
         
         return flatMapLatest{authData in
-            authManager.baseAssetSet.setBaseAsset(withIdentity: identity.value)
-            }
-            .shareReplay(1)
+            authManager.baseAssetSet.request(withParams: identity.value)
+        }
+        .shareReplay(1)
     }
 }

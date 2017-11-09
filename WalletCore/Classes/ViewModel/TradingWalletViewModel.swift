@@ -19,7 +19,7 @@ open class TradingWalletViewModel {
     
     public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
-        let pairsObservable = authManager.assetPairs.requestAssetPairs()
+        let pairsObservable = authManager.assetPairs.request()
         result = submit.throttle(1, scheduler: MainScheduler.instance).mapToPack(authManager: authManager).asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
       //  loading = result.asObservable().isLoading()
         
@@ -35,8 +35,8 @@ fileprivate extension ObservableType where Self.E == Void {
         ) -> Observable<ApiResult<LWLykkeWalletsData>> {
         
         return flatMapLatest{authData in
-            authManager.lykkeWallets.requestLykkeWallets()
-            }
-            .shareReplay(1)
+            authManager.lykkeWallets.request()
+        }
+        .shareReplay(1)
     }
 }
