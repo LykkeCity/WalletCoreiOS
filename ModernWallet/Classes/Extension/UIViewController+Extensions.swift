@@ -33,5 +33,11 @@ extension UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }
+    
+    func presentLoginController() {
+        let signInStory = UIStoryboard.init(name: "SignIn", bundle: nil)
+        let signUpNav = signInStory.instantiateViewController(withIdentifier: "SignUpNav")
+        present(signUpNav, animated: true, completion: nil)
+    }
 
 }

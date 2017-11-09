@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ecW-eI-HdK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ecW-eI-HdK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -120,7 +120,7 @@
         <!--Drawer Controller-->
         <scene sceneID="7tt-TQ-Oej">
             <objects>
-                <viewController id="ecW-eI-HdK" customClass="KYDrawerController" customModule="KYDrawerController" sceneMemberID="viewController">
+                <viewController id="ecW-eI-HdK" customClass="DrawerController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aUx-0V-5Rt"/>
                         <viewControllerLayoutGuide type="bottom" id="ItO-hX-gB9"/>
@@ -435,6 +435,6 @@
         <image name="menuIcon" width="36" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P8E-CZ-ES2"/>
+        <segue reference="dZQ-oa-YSZ"/>
     </inferredMetricsTieBreakers>
 </document>

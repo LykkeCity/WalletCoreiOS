@@ -24,25 +24,14 @@ class PortfolioViewController: UIViewController {
     fileprivate let disposeBag = DisposeBag()
     fileprivate var loadingDisposeBag = DisposeBag()
     fileprivate let pieChartValueFormatter = PieValueFormatter()
+    
     fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
-        
-        return TotalBalanceViewModel(refresh: Observable
-            .merge(
-                Observable<Void>.interval(10.0),
-                self.reloadTrigger.asObservable().filterNil()
-            )
-            .throttle(2.0, scheduler: MainScheduler.instance)
-        )
+        return TotalBalanceViewModel(refresh: Observable<Void>.interval(10.0))
     }()
-    
-    
-    /// A variable that it's used for reloading portfolio data.
-    /// When the value is changed it triggers an event that will reload all data needed for that screen.
-    private let reloadTrigger = Variable<Void?>(nil)
     
     fileprivate lazy var walletsViewModel: WalletsViewModel = {
         return WalletsViewModel(
-            refreshWallets: self.reloadTrigger.asObservable().filterNil(),
+            refreshWallets: Observable.just(Void()),
             mainInfo: self.totalBalanceViewModel.observables.mainInfo.filterSuccess()
         )
     }()
@@ -58,9 +47,7 @@ class PortfolioViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(PortfolioViewController.reloadData), name: .loggedIn, object: nil)
         
-
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         configurePieChart()
@@ -86,6 +73,10 @@ class PortfolioViewController: UIViewController {
             .map{$0.isEmpty}
             .drive(pieChartCenterView.addMoneyButton.rx.isHidden)
             .disposed(by: disposeBag)
+        
+        if UserDefaults.standard.value(forKey: "loggedIn") == nil {
+            return
+        }
         
         //Bind piechart
         Driver
@@ -117,17 +108,6 @@ class PortfolioViewController: UIViewController {
             .disposed(by: disposeBag)
         
         bindViewModels()
-        
-        //show signUp methods this should be test for auth
-        if((UserDefaults.standard.value(forKey: "loggedIn")) != nil) {
-            reloadData()
-        }
-    }
-    
-    
-    /// Trigger an event that will trigger reloading data for wallets, base asset and total balance
-    func reloadData()  {
-        reloadTrigger.value = Void()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -138,12 +118,6 @@ class PortfolioViewController: UIViewController {
         loadingViewModel.isLoading
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
-        
-        if((UserDefaults.standard.value(forKey: "loggedIn")) == nil) {
-            let signInStory = UIStoryboard.init(name: "SignIn", bundle: nil)
-            let signUpNav = signInStory.instantiateViewController(withIdentifier: "SignUpNav")
-            self.parent?.present(signUpNav, animated: false, completion: nil)
-        }
     }
     
     deinit {

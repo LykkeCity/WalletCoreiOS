@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -38,29 +42,29 @@
         <!--Sign Up Email View Controller-->
         <scene sceneID="2Xl-Or-4mL">
             <objects>
-                <viewController id="hpM-Uo-G1P" customClass="SignUpEmailViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hpM-Uo-G1P" customClass="SignUpEmailViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ygs-7e-Whc"/>
                         <viewControllerLayoutGuide type="bottom" id="pxW-gT-kFK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1j8-tp-ba0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="d3C-JF-uRU">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="rNK-ps-Ljf">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="yhb-84-nnf">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="VdW-T6-dq3"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFb-mr-ZHp">
-                                        <rect key="frame" x="120" y="156" width="460" height="15"/>
+                                        <rect key="frame" x="120" y="156" width="235" height="15"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -73,7 +77,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uRX-ZB-I2o" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="251" width="560" height="68"/>
+                                        <rect key="frame" x="20" y="251" width="335" height="68"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -96,7 +100,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYu-sg-J2p">
-                                        <rect key="frame" x="20" y="354" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="354" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="NaW-nr-3oB"/>
                                         </constraints>
@@ -115,7 +119,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXh-MY-cfR">
-                                        <rect key="frame" x="20" y="484" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="484" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Zrh-aS-VvK"/>
                                         </constraints>
@@ -126,7 +130,7 @@
                                         </state>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 3.1.170" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lY-Tz-8V4">
-                                        <rect key="frame" x="245" y="583" width="110.5" height="19"/>
+                                        <rect key="frame" x="132.5" y="583" width="110.5" height="19"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -192,29 +196,29 @@
         <!--Sign Up Password View Controller-->
         <scene sceneID="M6T-j4-x1S">
             <objects>
-                <viewController storyboardIdentifier="PasswordVC" id="RLQ-mo-Hsp" customClass="SignUpPasswordViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PasswordVC" id="RLQ-mo-Hsp" customClass="SignUpPasswordViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ok7-Pe-xcu"/>
                         <viewControllerLayoutGuide type="bottom" id="LeR-uV-Jo4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7eq-aT-5Qr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="QXn-cB-V7M">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="ZLT-G7-2rY">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="uPX-zW-G7t">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="QFl-iE-NuG"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6t-W7-3Zj">
-                                        <rect key="frame" x="120" y="156" width="460" height="14.5"/>
+                                        <rect key="frame" x="120" y="156" width="235" height="14.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -227,7 +231,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="f4q-w1-Bio" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="250.5" width="560" height="68"/>
+                                        <rect key="frame" x="20" y="250.5" width="335" height="68"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -250,7 +254,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPe-G9-QI5">
-                                        <rect key="frame" x="20" y="353.5" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="353.5" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="L7O-tf-5of"/>
                                         </constraints>
@@ -330,29 +334,29 @@
         <!--Register Confrim Email View Controller-->
         <scene sceneID="3A7-E5-FaR">
             <objects>
-                <viewController storyboardIdentifier="SignUpConfirmEmail" id="oXN-mv-snJ" customClass="RegisterConfrimEmailViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpConfirmEmail" id="oXN-mv-snJ" customClass="RegisterConfrimEmailViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hDi-ZH-DIa"/>
                         <viewControllerLayoutGuide type="bottom" id="bi6-BS-HXh"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yz8-Ah-uzn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Y8w-xt-dJe">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="eCL-g6-hoR">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="PrL-XG-32V">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="Ne4-s6-D4c"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-ZO-cdJ">
-                                        <rect key="frame" x="495" y="156" width="85" height="14.5"/>
+                                        <rect key="frame" x="270" y="156" width="85" height="14.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -365,7 +369,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yr-pM-9rc">
-                                        <rect key="frame" x="20" y="325" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="325" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UMD-cU-Rib"/>
                                         </constraints>
@@ -379,7 +383,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2WI-zH-QUB" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="256" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="256" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="RwH-rQ-pUN"/>
                                         </constraints>
@@ -399,7 +403,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pE9-AW-1qU">
-                                        <rect key="frame" x="239" y="205" width="123.5" height="24"/>
+                                        <rect key="frame" x="126.5" y="205" width="123.5" height="24"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -465,29 +469,29 @@
         <!--Register Send Code Email View Controller-->
         <scene sceneID="ljh-50-UlR">
             <objects>
-                <viewController storyboardIdentifier="SignUpSendCode" id="lrN-sH-DUh" customClass="RegisterSendCodeEmailViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpSendCode" id="lrN-sH-DUh" customClass="RegisterSendCodeEmailViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oYt-lX-8vw"/>
                         <viewControllerLayoutGuide type="bottom" id="m4q-OJ-Uc7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aLq-ca-SkO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="zWh-tu-Jkn">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="tXc-sY-Zh9">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="f85-ZB-HRs">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="7YW-QC-opn"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzp-dr-3ap">
-                                        <rect key="frame" x="495" y="156" width="85" height="14.5"/>
+                                        <rect key="frame" x="270" y="156" width="85" height="14.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -500,7 +504,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9w-ZC-Ogg">
-                                        <rect key="frame" x="20" y="351" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="351" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="spJ-0a-JWj"/>
                                         </constraints>
@@ -514,7 +518,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DKQ-i1-mF3" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="282" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="282" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7wj-Nr-FnX"/>
                                         </constraints>
@@ -534,7 +538,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've sent the code to your email address test@test.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9U-U2-9T0">
-                                        <rect key="frame" x="20" y="205" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="205" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="9BV-tu-lVP"/>
                                         </constraints>
@@ -543,7 +547,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhc-0V-w0v">
-                                        <rect key="frame" x="20" y="407" width="560" height="34"/>
+                                        <rect key="frame" x="20" y="407" width="335" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="6iF-iz-pjk"/>
                                         </constraints>
@@ -616,23 +620,23 @@
         <!--Register Create Password View Controller-->
         <scene sceneID="VcB-QB-YXw">
             <objects>
-                <viewController storyboardIdentifier="SignUpCreatePassword" id="KwI-co-BQY" customClass="RegisterCreatePasswordViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpCreatePassword" id="KwI-co-BQY" customClass="RegisterCreatePasswordViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sgC-5l-kLc"/>
                         <viewControllerLayoutGuide type="bottom" id="gBt-CV-NdC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xxa-LQ-aNJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="tsl-Ao-m8F">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="oGd-2F-9F9">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a passowrd" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FDv-zD-n4P" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="275" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="275" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="KFO-LJ-pxv"/>
                                         </constraints>
@@ -652,13 +656,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Hdz-uK-bLD">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="Jcl-Aq-aAi"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICI-K0-De6">
-                                        <rect key="frame" x="495" y="156" width="85" height="14.5"/>
+                                        <rect key="frame" x="270" y="156" width="85" height="14.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -671,7 +675,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a password (minimum 6 symbols)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rID-Y2-Ohx">
-                                        <rect key="frame" x="20" y="205" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="205" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="qhD-LD-ZPe"/>
                                         </constraints>
@@ -680,7 +684,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVA-lR-HsL">
-                                        <rect key="frame" x="20" y="444" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="444" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="dcI-JJ-0h7"/>
                                         </constraints>
@@ -695,7 +699,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter again" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Fw-Tm-91y" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="362" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="362" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="N5y-2N-a2F"/>
                                         </constraints>
@@ -778,29 +782,29 @@
         <!--Register Hint View Controller-->
         <scene sceneID="K1v-Df-7hF">
             <objects>
-                <viewController storyboardIdentifier="SignUpHint" id="22Y-qC-M40" customClass="RegisterHintViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpHint" id="22Y-qC-M40" customClass="RegisterHintViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EJf-gY-igv"/>
                         <viewControllerLayoutGuide type="bottom" id="xzD-KE-YJu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lQh-sD-msJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Un6-xA-GWs">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="CUh-NX-xac">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="TVz-CB-D5O">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="caS-8q-7On"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZM-Aq-4E3">
-                                        <rect key="frame" x="495" y="156" width="85" height="14.5"/>
+                                        <rect key="frame" x="270" y="156" width="85" height="14.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -813,7 +817,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a hint for password recovery" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZO-gy-sm7">
-                                        <rect key="frame" x="20" y="205" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="205" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Fj3-dz-tsK"/>
                                         </constraints>
@@ -822,7 +826,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a hint" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uxk-dd-2cA" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="280" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="280" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="3nr-uT-JWA"/>
                                         </constraints>
@@ -842,7 +846,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ac-Yk-anK">
-                                        <rect key="frame" x="20" y="362" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="362" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="EoR-0R-QYW"/>
                                         </constraints>
@@ -919,29 +923,29 @@
         <!--Register Fill Profile View Controller-->
         <scene sceneID="PHK-K8-bwo">
             <objects>
-                <viewController storyboardIdentifier="SignUpFillProfile" id="jiW-2S-ZfY" customClass="RegisterFillProfileViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpFillProfile" id="jiW-2S-ZfY" customClass="RegisterFillProfileViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yed-Ms-Cbh"/>
                         <viewControllerLayoutGuide type="bottom" id="PRn-1z-uRp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RYN-8M-tuR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="qb2-Nc-ZC7">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="w1R-wG-DLw">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2cm-sh-MVj">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="kRy-uu-Net"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjJ-4e-NYn">
-                                        <rect key="frame" x="495" y="156" width="85" height="14.5"/>
+                                        <rect key="frame" x="270" y="156" width="85" height="14.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -954,7 +958,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete your profile" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62e-jy-Y7u">
-                                        <rect key="frame" x="20" y="205" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="205" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7BA-Pt-GXT"/>
                                         </constraints>
@@ -963,7 +967,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ij-az-88W" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="263" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="263" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="arQ-TL-ofO"/>
                                         </constraints>
@@ -983,7 +987,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nta-jX-ro8" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="331" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="331" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="hlo-Ch-cT8"/>
                                         </constraints>
@@ -1003,7 +1007,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xP-dt-2ye">
-                                        <rect key="frame" x="20" y="413" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="413" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="MqK-na-mpe"/>
                                         </constraints>
@@ -1078,29 +1082,29 @@
         <!--Register Fill Phone View Controller-->
         <scene sceneID="E9m-Uq-kJM">
             <objects>
-                <viewController storyboardIdentifier="SignUpFillPhone" id="M90-Bc-Le8" customClass="RegisterFillPhoneViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpFillPhone" id="M90-Bc-Le8" customClass="RegisterFillPhoneViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wNo-f9-a1X"/>
                         <viewControllerLayoutGuide type="bottom" id="6yL-3u-8ti"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hrs-YQ-to0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Vph-WE-zNS">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="EwC-PO-gxV">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="b4b-uc-xBN">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="XRf-Ke-Oif"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNR-d0-giD">
-                                        <rect key="frame" x="495" y="156" width="85" height="14.5"/>
+                                        <rect key="frame" x="270" y="156" width="85" height="14.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -1113,7 +1117,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete your phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6n-JZ-I3w">
-                                        <rect key="frame" x="20" y="222" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="222" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="awX-7A-N2k"/>
                                         </constraints>
@@ -1122,7 +1126,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iwN-KN-a2n" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="280" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="280" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="3QX-JP-O1P"/>
                                         </constraints>
@@ -1142,7 +1146,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="onN-38-ipL">
-                                        <rect key="frame" x="20" y="362" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="362" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="y3t-rw-nlS"/>
                                         </constraints>
@@ -1210,29 +1214,29 @@
         <!--Register Confrim Phone View Controller-->
         <scene sceneID="989-1P-sha">
             <objects>
-                <viewController storyboardIdentifier="SignUpConfrimPhone" id="i37-KV-O9g" customClass="RegisterConfrimPhoneViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpConfrimPhone" id="i37-KV-O9g" customClass="RegisterConfrimPhoneViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qDq-3i-NHI"/>
                         <viewControllerLayoutGuide type="bottom" id="ZqI-Cu-WTl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yta-DF-yAF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="a1e-5m-j4h">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="UvR-sT-2Kd">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="FVX-I0-vHI">
-                                        <rect key="frame" x="20" y="80" width="560" height="95"/>
+                                        <rect key="frame" x="20" y="80" width="335" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="8qw-kl-hIY"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stX-Db-so3">
-                                        <rect key="frame" x="495" y="156" width="85" height="14.5"/>
+                                        <rect key="frame" x="270" y="156" width="85" height="14.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Modern Money">
                                                 <attributes>
@@ -1245,7 +1249,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm your phone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kk-jR-yJi">
-                                        <rect key="frame" x="20" y="222" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="222" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="3np-kc-zPa"/>
                                         </constraints>
@@ -1254,7 +1258,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UUv-H6-Ioa" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="280" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="280" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Ixc-qm-arL"/>
                                         </constraints>
@@ -1274,7 +1278,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joN-j8-iKp">
-                                        <rect key="frame" x="20" y="362" width="560" height="50"/>
+                                        <rect key="frame" x="20" y="362" width="335" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="icV-uB-RrC"/>
                                         </constraints>
@@ -1285,7 +1289,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOS-BR-B4N">
-                                        <rect key="frame" x="214" y="406" width="172" height="30"/>
+                                        <rect key="frame" x="101.5" y="406" width="172" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="uU5-bC-6l6"/>
                                         </constraints>
@@ -1356,29 +1360,29 @@
         <!--Register Create Pin View Controller-->
         <scene sceneID="Flg-aK-kGY">
             <objects>
-                <viewController storyboardIdentifier="SignUpCreatePin" id="BjO-bw-tob" customClass="RegisterCreatePinViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpCreatePin" id="BjO-bw-tob" customClass="RegisterCreatePinViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TpI-tv-Zai"/>
                         <viewControllerLayoutGuide type="bottom" id="NZN-xG-Ncv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QcQ-Zc-lip">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="iW2-gj-wRe">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKn-a8-XHx">
-                                <rect key="frame" x="20" y="254" width="560" height="301"/>
+                                <rect key="frame" x="20" y="254" width="335" height="368"/>
                             </containerView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="rqD-kL-YPR">
-                                <rect key="frame" x="174.5" y="100" width="251" height="95"/>
+                                <rect key="frame" x="62" y="100" width="251" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="mQI-cq-mPv"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrD-Ef-W9L">
-                                <rect key="frame" x="340.5" y="177" width="85" height="14"/>
+                                <rect key="frame" x="228" y="177" width="85" height="14"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Modern Money">
                                         <attributes>
@@ -1403,7 +1407,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new PIN to secure your transactions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIu-xa-zLB">
-                                <rect key="frame" x="20" y="210" width="560" height="17.5"/>
+                                <rect key="frame" x="20" y="210" width="335" height="17.5"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1443,26 +1447,26 @@
         <!--Register Shake Screen View Controller-->
         <scene sceneID="lSJ-KR-inK">
             <objects>
-                <viewController storyboardIdentifier="ShakeScreen" id="bah-dq-cM7" customClass="RegisterShakeScreenViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShakeScreen" id="bah-dq-cM7" customClass="RegisterShakeScreenViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="syd-Kk-ROS"/>
                         <viewControllerLayoutGuide type="bottom" id="sJK-H9-fgo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ja8-3K-RYy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="icS-32-WHf">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="oMb-fe-qch">
-                                <rect key="frame" x="62" y="100" width="476" height="95"/>
+                                <rect key="frame" x="62" y="100" width="251" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="sQM-N0-Q9R"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX4-H4-gej">
-                                <rect key="frame" x="453" y="177" width="85" height="14"/>
+                                <rect key="frame" x="228" y="177" width="85" height="14"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Modern Money">
                                         <attributes>
@@ -1475,25 +1479,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generate a private key" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ff-Sf-2bN">
-                                <rect key="frame" x="62" y="213" width="476" height="20"/>
+                                <rect key="frame" x="62" y="213" width="251" height="20"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Semibold" family="Proxima Nova" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shake your iPhone to generate the private key to your Lykke Wallet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVw-TU-aQX">
-                                <rect key="frame" x="62" y="241" width="476" height="15.5"/>
+                                <rect key="frame" x="62" y="241" width="251" height="30.5"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gda-lf-MKi">
-                                <rect key="frame" x="296" y="381.5" width="8.5" height="17.5"/>
+                                <rect key="frame" x="183.5" y="396.5" width="8.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It takes 3 times to shake the phone in order to create private key" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TT-iG-yFc">
-                                <rect key="frame" x="62" y="406.5" width="476" height="47"/>
+                                <rect key="frame" x="62" y="421.5" width="251" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="Bq7-Ns-Vnb"/>
                                 </constraints>
@@ -1538,26 +1542,26 @@
         <!--Sign Up Pin View Controller-->
         <scene sceneID="k9n-Lp-20C">
             <objects>
-                <viewController storyboardIdentifier="SignUpPinVC" id="4QO-6I-yvi" customClass="SignUpPinViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpPinVC" id="4QO-6I-yvi" customClass="SignUpPinViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kh6-BC-5JH"/>
                         <viewControllerLayoutGuide type="bottom" id="SBw-oo-cz5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="93u-3c-xC4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="U6u-MJ-0n9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="7IN-gm-wvB">
-                                <rect key="frame" x="60" y="100" width="480" height="95"/>
+                                <rect key="frame" x="60" y="100" width="255" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="VnL-VW-Ijt"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fE4-go-4xD">
-                                <rect key="frame" x="160" y="177" width="379.5" height="14"/>
+                                <rect key="frame" x="160" y="177" width="154.5" height="14"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Modern Money">
                                         <attributes>
@@ -1570,10 +1574,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opk-rJ-dKf">
-                                <rect key="frame" x="20" y="215" width="560" height="300"/>
+                                <rect key="frame" x="20" y="215" width="335" height="367"/>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iS2-u8-HnR">
-                                <rect key="frame" x="256.5" y="552" width="87" height="28"/>
+                                <rect key="frame" x="144" y="619" width="87" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="n1i-TF-Hyf"/>
                                 </constraints>
@@ -1629,7 +1633,7 @@
         <!--Pin View Controller-->
         <scene sceneID="znM-qQ-Tw9">
             <objects>
-                <viewController storyboardIdentifier="PinViewController" id="rer-9h-cBz" customClass="PinViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PinViewController" id="rer-9h-cBz" customClass="PinViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xwa-IU-BAO"/>
                         <viewControllerLayoutGuide type="bottom" id="RnU-br-EKH"/>

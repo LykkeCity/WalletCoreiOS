@@ -29,6 +29,7 @@
 		4671C9D01F824130002C2F25 /* KYCPhotoFailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4671C9CF1F824130002C2F25 /* KYCPhotoFailedViewController.swift */; };
 		4671C9D21F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4671C9D11F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift */; };
 		4671C9D51F828A5C002C2F25 /* KYCPendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4671C9D41F828A5C002C2F25 /* KYCPendingViewController.swift */; };
+		467C20741FB47BEC002A90AE /* DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C20731FB47BEC002A90AE /* DrawerController.swift */; };
 		469DA7191F6C0C69000B904C /* KYC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 469DA7181F6C0C69000B904C /* KYC.storyboard */; };
 		469DA71B1F6C1199000B904C /* KYCTabStripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA71A1F6C1199000B904C /* KYCTabStripViewController.swift */; };
 		469DA71F1F6C14C5000B904C /* KYCTabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA71D1F6C14C5000B904C /* KYCTabCollectionViewCell.swift */; };
@@ -190,6 +191,7 @@
 		4671C9CF1F824130002C2F25 /* KYCPhotoFailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCPhotoFailedViewController.swift; sourceTree = "<group>"; };
 		4671C9D11F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCPhotoFailedTableViewCell.swift; sourceTree = "<group>"; };
 		4671C9D41F828A5C002C2F25 /* KYCPendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCPendingViewController.swift; sourceTree = "<group>"; };
+		467C20731FB47BEC002A90AE /* DrawerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerController.swift; sourceTree = "<group>"; };
 		469DA7181F6C0C69000B904C /* KYC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KYC.storyboard; sourceTree = "<group>"; };
 		469DA71A1F6C1199000B904C /* KYCTabStripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTabStripViewController.swift; sourceTree = "<group>"; };
 		469DA71D1F6C14C5000B904C /* KYCTabCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCTabCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 			children = (
 				463FC5A51F94DB17005930DD /* MenuTableViewController.swift */,
 				463FC5A61F94DB17005930DD /* TopNavViewController.swift */,
+				467C20731FB47BEC002A90AE /* DrawerController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1132,6 +1135,7 @@
 				6100D8D81F1F327200EB40A5 /* LineChartDataSet+Setup.swift in Sources */,
 				CC6805A51F68121C0079CB05 /* PinViewController.swift in Sources */,
 				CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */,
+				467C20741FB47BEC002A90AE /* DrawerController.swift in Sources */,
 				CC84F2751F60411F00FABEA3 /* RegisterFillPhoneViewController.swift in Sources */,
 				4671C9D21F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift in Sources */,
 				61BAB0DE1F0F729300212E16 /* BuyStep1ViewController.swift in Sources */,

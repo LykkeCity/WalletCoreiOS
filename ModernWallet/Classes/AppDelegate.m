@@ -66,7 +66,7 @@
     
     
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    
+    [self subsctibeForNotAuthorized];
     
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPhone)
         application.statusBarOrientation = UIInterfaceOrientationPortrait;
