@@ -88,8 +88,7 @@ class StartViewController: UIViewController {
     }
     
     @IBAction func creditCardAction(_ sender: UIButton) {
-        LWRxAuthManager.instance.baseAsset
-            .requestBaseAssetGet()
+        LWRxAuthManager.instance.baseAsset.request()
             .bind(to: asset)
             .disposed(by: disposeBag)
     }

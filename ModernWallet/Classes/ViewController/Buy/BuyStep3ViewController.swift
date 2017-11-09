@@ -284,8 +284,7 @@ fileprivate extension BuyStep3ViewController {
             .disposed(by: disposeBag)
         
         //TODO: To be implemented
-        authManager.allAssets
-            .requestAsset(byId: self.assetPairModel.baseAssetId)
+        authManager.allAssets.request(byId: self.assetPairModel.baseAssetId)
             .filterSuccess()
             .filterNil()
             .bind(to: assetModel)

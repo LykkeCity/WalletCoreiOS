@@ -60,7 +60,7 @@ class MenuTableViewController: UITableViewController {
         MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), viewControllerIdentifier: "transactionVC"),
-        MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: "Portfolio", color: nil,
+        MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: nil, color: nil,
                  onSelect: MenuTableViewController.logout)
     ]
     
@@ -107,6 +107,7 @@ class MenuTableViewController: UITableViewController {
         guard let viewController = instantiateViewController(byMenuItem: item),
             let drawerController = self.parent as? KYDrawerController
         else {
+            item.onSelect?(self)
             return
         }
         
@@ -232,7 +233,7 @@ class MenuTableViewController: UITableViewController {
             storyboard = self.storyboard!
         }
         guard let identifier = menuItem.viewControllerIdentifier else {
-            return storyboard.instantiateInitialViewController()
+            return nil
         }
         return storyboard.instantiateViewController(withIdentifier: identifier)
     }
@@ -250,6 +251,8 @@ class MenuTableViewController: UITableViewController {
         LWKYCDocumentsModel.shared().logout()
         LWEthereumTransactionsManager.shared().logout()
         LWMarginalWalletsDataManager.stop()
+        
+        viewController.presentLoginController()
 //        LWPrivateWalletsManager.shared().logout()
     }
 

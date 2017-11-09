@@ -27,7 +27,7 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
                 .filterNil()
                 .map{_ in Void()}
                 .startWith(Void()),
-            forAsset: LWRxAuthManager.instance.baseAsset.requestBaseAssetGet()
+            forAsset: LWRxAuthManager.instance.baseAsset.request()
         )
     }()
     
