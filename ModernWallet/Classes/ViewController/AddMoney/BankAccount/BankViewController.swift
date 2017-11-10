@@ -8,6 +8,8 @@
 
 import UIKit
 import WalletCore
+import RxSwift
+import RxCocoa
 
 class BankViewController: UIViewController {
     
@@ -28,28 +30,11 @@ class BankViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
-    var fallbackAssetId = "USD"
+    lazy var swiftCredentialsViewModel: SwiftCredentialsViewModel = {
+        return SwiftCredentialsViewModel()
+    }()
     
-    
-    /// If base asset is missing or empty fallback to fallbackAssetId
-    var baseAssetId: String {
-        guard let baseAsset = LWCache.instance().baseAssetId else {
-            return self.fallbackAssetId
-        }
-        
-        return baseAsset.isNotEmpty ? baseAsset : self.fallbackAssetId
-    }
-    
-    /// Swift credentials accoring baseAssetId
-    var swiftCredentials: LWSwiftCredentialsModel? {
-        let cacheInstance = LWCache.instance()
-        
-        guard let swiftCredentials = cacheInstance?.swiftCredentialsDict[self.baseAssetId] as? LWSwiftCredentialsModel else {
-            return cacheInstance?.swiftCredentialsDict[self.fallbackAssetId] as? LWSwiftCredentialsModel
-        }
-        
-        return swiftCredentials
-    }
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +43,16 @@ class BankViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.clear
         
+        applyTranslations()
+        
+        swiftCredentialsViewModel
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
+        
+        imageHeight.constant =  Display.height
+    }
+    
+    func applyTranslations() {
         bicLbl.text = Localize("addMoney.newDesign.bankaccount.bic")
         accountNumberLbl.text = Localize("addMoney.newDesign.bankaccount.accountNumber")
         accountNameLbl.text = Localize("addMoney.newDesign.bankaccount.accountName")
@@ -67,20 +62,6 @@ class BankViewController: UIViewController {
         
         emailButton.setTitle(Localize("addMoney.newDesign.bankaccount.emailMe"), for: UIControlState.normal)
         nextButton.setTitle(Localize("addMoney.newDesign.bankaccount.next"), for: UIControlState.normal)
-        
-        let swiftCredentials = self.swiftCredentials
-        bicLabel.text = swiftCredentials?.bic
-        accountNumberLabel.text = swiftCredentials?.accountNumber
-        accountNameLabel.text = swiftCredentials?.accountName
-        purposeOfPaymentLabel.text = swiftCredentials?.purposeOfPayment.replacingOccurrences(of: "{1}", with: "")
-        purposeOfPaymentLabel.text = purposeOfPaymentLabel.text?.replacingOccurrences(of: "{0}", with: "")
-        bankAddressLabel.text = swiftCredentials?.bankAddress
-        companyAddressLabel.text = swiftCredentials?.companyAddress
-        imageHeight.constant =  Display.height
-        
-        let authManager = LWAuthManager.instance()
-//        authManager?.requestBaseAssets()
-        authManager?.requestSwiftCredential("CHF")
     }
 
     
@@ -106,4 +87,19 @@ class BankViewController: UIViewController {
     }
     */
 
+}
+
+fileprivate extension SwiftCredentialsViewModel {
+    func bind(toViewController vc: BankViewController) -> [Disposable] {
+        return [
+            bic.drive(vc.bicLabel.rx.text),
+            accountNumber.drive(vc.accountNumberLabel.rx.text),
+            accountName.drive(vc.accountNameLabel.rx.text),
+            purposeOfPayment.drive(vc.purposeOfPaymentLabel.rx.text),
+            bankAddress.drive(vc.bankAddressLabel.rx.text),
+            companyAddress.drive(vc.companyAddressLabel.rx.text),
+            loadingViewModel.isLoading.bind(to: vc.rx.loading),
+            errors.drive(vc.rx.error)
+        ]
+    }
 }
