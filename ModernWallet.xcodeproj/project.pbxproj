@@ -20,6 +20,7 @@
 		4651CFB61FA32448009BFA45 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */; };
 		4651CFB81FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */; };
 		4651CFBA1FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */; };
+		4655386C1FB5B5B7007CF395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4655386B1FB5B5B7007CF395 /* AppDelegate.swift */; };
 		466720071F864481004A4782 /* BuyOptimizedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466720061F864481004A4782 /* BuyOptimizedViewController.swift */; };
 		4671C9BF1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4671C9BE1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift */; };
 		4671C9C11F7CE840002C2F25 /* UIButton+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4671C9C01F7CE840002C2F25 /* UIButton+Rx.swift */; };
@@ -158,8 +159,6 @@
 		CCDE37E5854F72E8954DFF5C /* Pods_ModernWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */; };
 		CCED3BF11EE9811900535EE8 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */; };
 		CCED3BF21EE9811900535EE8 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCED3BF01EE9811900535EE8 /* MenuTableViewCell.xib */; };
-		CF6632461C175B54004353F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF66323E1C175B54004353F5 /* AppDelegate.m */; };
-		CF6632491C175B54004353F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6632451C175B54004353F5 /* main.m */; };
 		CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF66327D1C1768B0004353F5 /* Localizable.strings */; };
 		EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */; };
 		EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6632431C175B54004353F5 /* Assets.xcassets */; };
@@ -182,6 +181,7 @@
 		4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
 		4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyExchanger+Extensions.swift"; sourceTree = "<group>"; };
 		4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TotalBalanceViewModel+Extensions.swift"; sourceTree = "<group>"; };
+		4655386B1FB5B5B7007CF395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		466720061F864481004A4782 /* BuyOptimizedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOptimizedViewController.swift; sourceTree = "<group>"; };
 		4671C9BE1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Rx.swift"; sourceTree = "<group>"; };
 		4671C9C01F7CE840002C2F25 /* UIButton+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Rx.swift"; sourceTree = "<group>"; };
@@ -325,11 +325,8 @@
 		CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		CCED3BF01EE9811900535EE8 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		CF21DC7B1C17590E00D2399E /* ModernWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModernWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF66323D1C175B54004353F5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		CF66323E1C175B54004353F5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CF6632431C175B54004353F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF6632441C175B54004353F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF6632451C175B54004353F5 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CF66327C1C1768B0004353F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -760,10 +757,9 @@
 				463FC5AE1F95001C005930DD /* Protocol */,
 				46B5836D1F94C20300B475DB /* Extension */,
 				463FC5AF1F950059005930DD /* Util */,
-				CF66323D1C175B54004353F5 /* AppDelegate.h */,
-				CF66323E1C175B54004353F5 /* AppDelegate.m */,
 				46B583741F94C6D600B475DB /* ModernWallet-Bridging-Header.h */,
 				462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */,
+				4655386B1FB5B5B7007CF395 /* AppDelegate.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -796,7 +792,6 @@
 				CF6632431C175B54004353F5 /* Assets.xcassets */,
 				EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */,
 				CF6632441C175B54004353F5 /* Info.plist */,
-				CF6632451C175B54004353F5 /* main.m */,
 				A10B53121E4AF4BF00E5DCBE /* GoogleService-Info.plist */,
 			);
 			path = Resources;
@@ -1076,7 +1071,6 @@
 				61FBCCC61F20C8FB004F7219 /* TotalBalanceViewController.swift in Sources */,
 				611248ED1F06856D005DE4E6 /* AddMoneyCryptocurrencyStep1ViewController.swift in Sources */,
 				66806BA31F9F2C1A001E49E5 /* Array+Rx.swift in Sources */,
-				CF6632461C175B54004353F5 /* AppDelegate.m in Sources */,
 				61FC79CF1F714016002A78CE /* KYCPhotoPlaceholderView.swift in Sources */,
 				66529DCA1F8D198B0059786B /* CashOutViewController.swift in Sources */,
 				66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */,
@@ -1087,6 +1081,7 @@
 				469DA71B1F6C1199000B904C /* KYCTabStripViewController.swift in Sources */,
 				46A48F811FA9B06B00843775 /* EmptyPortfolioView.swift in Sources */,
 				4671C9D01F824130002C2F25 /* KYCPhotoFailedViewController.swift in Sources */,
+				4655386C1FB5B5B7007CF395 /* AppDelegate.swift in Sources */,
 				CC9458881F05310300676249 /* AddMoneyCCStep2ViewController.swift in Sources */,
 				614214191F78F9C400E2F524 /* KYCProtocols.swift in Sources */,
 				CC9458841F0400A000676249 /* AddMoneyCCStep1ViewController.swift in Sources */,
@@ -1107,7 +1102,6 @@
 				CCDB256D1EEE7E32000D590F /* SignUpEmailViewController.swift in Sources */,
 				46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */,
 				462878761F433B0F0006BE45 /* TradingLinearGraphViewTest.m in Sources */,
-				CF6632491C175B54004353F5 /* main.m in Sources */,
 				667D404D1F8D018C00457698 /* AssetAmountView.swift in Sources */,
 				463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */,
 				4671C9C31F7D10FA002C2F25 /* UIButton+Borders.swift in Sources */,
