@@ -18,6 +18,7 @@
 		463090601F908E7200F24A56 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630905F1F908E7200F24A56 /* Decimal+Extensions.swift */; };
 		4649C6321FACB2C500765579 /* RefreshTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649C6311FACB2C500765579 /* RefreshTrigger.swift */; };
 		4649C6341FACB8AC00765579 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649C6331FACB8AC00765579 /* Array+Extensions.swift */; };
+		465538AB1FB5C3A0007CF395 /* SwiftCredentialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465538AA1FB5C3A0007CF395 /* SwiftCredentialsViewModel.swift */; };
 		465805BB1F98D9EE00FFFA0A /* LWRxAuthManagerOffchainFinalizetransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465805BA1F98D9EE00FFFA0A /* LWRxAuthManagerOffchainFinalizetransfer.swift */; };
 		465805BD1F98DA0900FFFA0A /* LWRxAuthManagerOffchainProcessChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465805BC1F98DA0900FFFA0A /* LWRxAuthManagerOffchainProcessChannel.swift */; };
 		465805BF1F98DA2200FFFA0A /* LWRxAuthManagerOffchainChannelKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465805BE1F98DA2200FFFA0A /* LWRxAuthManagerOffchainChannelKey.swift */; };
@@ -624,6 +625,7 @@
 		4630905F1F908E7200F24A56 /* Decimal+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extensions.swift"; sourceTree = "<group>"; };
 		4649C6311FACB2C500765579 /* RefreshTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTrigger.swift; sourceTree = "<group>"; };
 		4649C6331FACB8AC00765579 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		465538AA1FB5C3A0007CF395 /* SwiftCredentialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCredentialsViewModel.swift; sourceTree = "<group>"; };
 		465805BA1F98D9EE00FFFA0A /* LWRxAuthManagerOffchainFinalizetransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainFinalizetransfer.swift; sourceTree = "<group>"; };
 		465805BC1F98DA0900FFFA0A /* LWRxAuthManagerOffchainProcessChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainProcessChannel.swift; sourceTree = "<group>"; };
 		465805BE1F98DA2200FFFA0A /* LWRxAuthManagerOffchainChannelKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainChannelKey.swift; sourceTree = "<group>"; };
@@ -2124,6 +2126,7 @@
 				6664C6121F9E012600F6D1A6 /* WalletViewModel.swift */,
 				CC83DDB01F4AF3FC008BA5C2 /* ClientCodesViewModel.swift */,
 				6142141A1F79247900E2F524 /* KYC */,
+				465538AA1FB5C3A0007CF395 /* SwiftCredentialsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2954,6 +2957,7 @@
 				46C9AFC61F417BD800B83CCB /* LWMWHistoryPositionElement.m in Sources */,
 				46C9B0711F42C91B00B83CCB /* LWRxAuthManagerEmailWalletAddress.swift in Sources */,
 				46C9B0761F42C91B00B83CCB /* LWRxPrivateWalletsManager.swift in Sources */,
+				465538AB1FB5C3A0007CF395 /* SwiftCredentialsViewModel.swift in Sources */,
 				46C9AF0C1F417BD800B83CCB /* LWPacketMarginDepositWithdraw.m in Sources */,
 				661FB6041FACCB9E0068063C /* LWPacketOffchainCashOutSwift.swift in Sources */,
 				46C9B06B1F42C91B00B83CCB /* LWRxMarketManager.swift in Sources */,
