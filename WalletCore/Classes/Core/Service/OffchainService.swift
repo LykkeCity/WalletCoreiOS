@@ -139,8 +139,8 @@ public class OffchainService {
             .shareReplay(1)
     }
     
-    public func finalizePendingRequests(refresh: Observable<Void>) -> Observable<PendingRequests> {
-        return refresh.processPendingRequests(dependency)
+    public func finalizePendingRequests(refresh: Observable<Void>, maxProcessingTime: RxTimeInterval) -> Observable<PendingRequests> {
+        return refresh.processPendingRequests(maxProcessingTime: maxProcessingTime, dependency: dependency)
     }
 }
 
@@ -150,7 +150,7 @@ fileprivate typealias RequestAndResult = (request: LWModelOffchainRequest, resul
 // MARK: Rx Void
 fileprivate extension ObservableType where Self.E == Void {
     
-    func processPendingRequests(_ dependency: OffchainService.Dependency)
+    func processPendingRequests(maxProcessingTime: RxTimeInterval, dependency: OffchainService.Dependency)
         -> Observable<OffchainService.PendingRequests> {
             
         //1. get pending actions
@@ -169,7 +169,7 @@ fileprivate extension ObservableType where Self.E == Void {
         return requests
             .filterSuccess()
             .filterEmpty()
-            .processPendingRequests(withDependency: dependency)
+            .processPendingRequests(withDependency: dependency, maxProcessingTime: maxProcessingTime)
             .reduceToPendingRequests()
             .shareReplay(1)
     }
@@ -203,11 +203,11 @@ fileprivate extension ObservableType where Self.E == ApiResult<LWModelOffchainRe
 // MAR: Rx [LWModelOffchainRequest]
 fileprivate extension ObservableType where Self.E == [LWModelOffchainRequest] {
     
-    /// Start processing pending requests in random order.Max time for running requests is 20 sec.
+    /// Start processing pending requests in random order.Max time for running requests is maxProcessingTime sec.
     ///
     /// - Parameter dependency: Dependency
     /// - Returns: Observable of finalized/failed pending requests
-    func processPendingRequests(withDependency dependency: OffchainService.Dependency)
+    func processPendingRequests(withDependency dependency: OffchainService.Dependency, maxProcessingTime: RxTimeInterval)
         -> Observable<ApiResult<LWModelOffchainResult>> {
             
         return flatMap{ requests -> Observable<ApiResult<LWModelOffchainResult>> in
@@ -222,7 +222,7 @@ fileprivate extension ObservableType where Self.E == [LWModelOffchainRequest] {
                 //stop making request if it takes more than 20 seconds
                 .takeUntil(
                     Observable<Int>
-                        .interval(20, scheduler: MainScheduler.instance)
+                        .interval(maxProcessingTime, scheduler: MainScheduler.instance)
                         .take(1)
                 )
         }
