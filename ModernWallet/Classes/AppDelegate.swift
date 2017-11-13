@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CSToastManager.setQueueEnabled(false)
         
         offcainService
-            .finalizePendingRequests(refresh: Observable<Void>.interval(UIApplicationBackgroundFetchIntervalMinimum))
+            .finalizePendingRequests(refresh: Observable<Void>.interval(600), maxProcessingTime: 600)
             .subscribe()
             .disposed(by: disposeBag)
         
@@ -102,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         offcainService
-            .finalizePendingRequests(refresh: Observable.just(Void()))
+            .finalizePendingRequests(refresh: Observable.just(Void()), maxProcessingTime: 20)
             .subscribe(onNext: { pendingRequests in
                 
                 guard pendingRequests.failed == 0 else {
