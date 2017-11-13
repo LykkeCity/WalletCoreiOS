@@ -11,9 +11,6 @@ import RxCocoa
 import KYDrawerController
 
 extension AppDelegate {
-    func subscribeForPendingOffchainRequests() {
-        OffchainService.instance.finalizePendingRequests(refresh: Observable<Void>.interval(120.0))
-    }
     
     func subsctibeForNotAuthorized() {
         NotificationCenter.default.addObserver(
@@ -40,7 +37,7 @@ extension AppDelegate {
     
     var visibleViewController: UIViewController? {
         
-        guard let rootViewController = window.rootViewController else {
+        guard let rootViewController = window?.rootViewController else {
             return nil
         }
         
@@ -66,5 +63,25 @@ extension AppDelegate {
         }
         
         return rootViewController
+    }
+    
+    func waitForImage(toUpload taskId: UIBackgroundTaskIdentifier) {
+        guard LWKYCDocumentsModel.shared().isUploadingImage() else {
+            UIApplication.shared.endBackgroundTask(taskId)
+            return
+        }
+        
+        let deadline = DispatchTime.now() + Double(Int64(5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: deadline) {[weak self] in
+            self?.waitForImage(toUpload: taskId)
+        }
+    }
+    
+    func customizeNavigationBar() {
+        UINavigationBar.appearance().barTintColor = UIColor(hexString: kNavigationTintColor)
+        UINavigationBar.appearance().tintColor = UIColor(hexString: kNavigationBarTintColor)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     }
 }
