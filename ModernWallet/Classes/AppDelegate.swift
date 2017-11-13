@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let userDefaults = UserDefaults.standard
     let disposeBag = DisposeBag()
+    let offcainService = OffchainService.instance
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -47,12 +48,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CSToastManager.setQueueEnabled(false)
         
-        OffchainService.instance
-            .finalizePendingRequests(refresh: Observable<Void>.interval(120.0))
+        offcainService
+            .finalizePendingRequests(refresh: Observable<Void>.interval(UIApplicationBackgroundFetchIntervalMinimum))
+            .subscribe()
             .disposed(by: disposeBag)
         
         LWAuthManager.instance().requestAPIVersion()
         
+        
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+
         return true
     }
     
@@ -90,30 +95,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.saveContext()
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
-        if LWKeychainManager.instance().isAuthenticated == false {
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard LWKeychainManager.instance().isAuthenticated else {
             completionHandler(.noData)
             return
         }
         
-        guard
-            let aps = userInfo["aps"] as? [AnyHashable : Any],
-            let type = aps["type"] as? Int
-        else { return }
-        
-        if type == 8 {
-            LWPrivateKeyManager.shared().backgroudFetchCompletionHandler = completionHandler
-            LWAuthManager.instance().requestPendingTransactions()
-            return
-        }
-        if type == 12 {
-            LWTransactionManager.shared().backgroudFetchCompletionHandler = completionHandler
-            return
-        }
-        
-        let state: UIApplicationState = application.applicationState
+        offcainService
+            .finalizePendingRequests(refresh: Observable.just(Void()))
+            .subscribe(onNext: { pendingRequests in
+                
+                guard pendingRequests.failed == 0 else {
+                    completionHandler(.failed)
+                    return
+                }
+                
+                guard pendingRequests.succeeded.isEmpty else {
+                    completionHandler(.newData)
+                    return
+                }
+                
+                completionHandler(.noData)
+            })
+            .disposed(by: disposeBag)
     }
 }
-
