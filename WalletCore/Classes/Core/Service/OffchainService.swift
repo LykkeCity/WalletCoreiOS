@@ -11,6 +11,8 @@ import RxSwift
 
 public class OffchainService {
     
+    public typealias PendingRequests = (succeeded: [LWModelOffchainResult], failed: Int)
+    
     public typealias Dependency = (
         authManager: LWRxAuthManager,
         privateKeyManager: LWPrivateKeyManager,
@@ -137,15 +139,20 @@ public class OffchainService {
             .shareReplay(1)
     }
     
-    public func finalizePendingRequests(refresh: Observable<Void>) -> Disposable {
-        return refresh
-            .processPendingRequests(dependency)
-            .subscribe()
+    public func finalizePendingRequests(refresh: Observable<Void>) -> Observable<PendingRequests> {
+        return refresh.processPendingRequests(dependency)
     }
 }
 
+fileprivate typealias ChanelKeyAndRequest = (channelKey: LWModelOffchainChannelKey, request: LWModelOffchainRequest)
+fileprivate typealias RequestAndResult = (request: LWModelOffchainRequest, result: LWModelOffchainResult)
+
+// MARK: Rx Void
 fileprivate extension ObservableType where Self.E == Void {
-    func processPendingRequests(_ dependency: OffchainService.Dependency) -> Observable<Void> {
+    
+    func processPendingRequests(_ dependency: OffchainService.Dependency)
+        -> Observable<OffchainService.PendingRequests> {
+            
         //1. get pending actions
         let pendingActions =
             flatMapLatest{ [dependency] _ in dependency.authManager.checkPendingActions.request() }
@@ -159,42 +166,94 @@ fileprivate extension ObservableType where Self.E == Void {
             .shareReplay(1)
         
         // Filter first request and subscribe itself until all requests get finalized
-        return requests.filterSuccess()
+        return requests
+            .filterSuccess()
             .filterEmpty()
-            .flatMap{requests in
-                Observable.concat(
-                    requests
-                        .map{ Observable.just($0) }
-                        .flatMap{ $0.finalizePendingRequest(dependency) }
-                )
-            }
-            .flatMap{ _ in
-                Observable<Void>.just(Void()).processPendingRequests(dependency)
-            }
+            .processPendingRequests(withDependency: dependency)
+            .reduceToPendingRequests()
+            .shareReplay(1)
     }
 }
 
-fileprivate extension ObservableType where Self.E == (request: LWModelOffchainRequest, result: LWModelOffchainResult) {
-    func finalize(_ dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
-        return flatMap{ data in
-            return Observable<LWModelOffchainResult>
-                .just(data.result)
-                .finalize(withChannelAssetId: data.request.assetId, dependency: dependency)
+// MARK: Rx  ApiResult<LWModelOffchainResult>
+fileprivate extension ObservableType where Self.E == ApiResult<LWModelOffchainResult> {
+    
+    /// Reduce processed requests into a OffchainService.PendingRequests
+    ///
+    /// - Returns: Observable of OffchainService.PendingRequests
+    func reduceToPendingRequests() -> Observable<OffchainService.PendingRequests> {
+        return reduce(OffchainService.PendingRequests(succeeded: [], failed: 0)) {acumulated, apiResult -> OffchainService.PendingRequests in
+            var acumulated = acumulated
+            
+            if apiResult.isLoading {
+                return acumulated
+            }
+            
+            if let offchainResult = apiResult.getSuccess() {
+                acumulated.succeeded.append(offchainResult)
+            } else {
+                acumulated.failed += 1
+            }
+            
+            return acumulated
         }
     }
 }
 
+// MAR: Rx [LWModelOffchainRequest]
+fileprivate extension ObservableType where Self.E == [LWModelOffchainRequest] {
+    
+    /// Start processing pending requests in random order.Max time for running requests is 20 sec.
+    ///
+    /// - Parameter dependency: Dependency
+    /// - Returns: Observable of finalized/failed pending requests
+    func processPendingRequests(withDependency dependency: OffchainService.Dependency)
+        -> Observable<ApiResult<LWModelOffchainResult>> {
+            
+        return flatMap{ requests -> Observable<ApiResult<LWModelOffchainResult>> in
+            Observable
+                //process pending request in a sequence
+                .concat(
+                    requests
+                        .shuffled() // randomize array so there is a better chance to process all of them
+                        .map{ Observable.just($0) }
+                        .flatMap{ $0.finalizePendingRequest(dependency) }
+                )
+                //stop making request if it takes more than 20 seconds
+                .takeUntil(
+                    Observable<Int>
+                        .interval(20, scheduler: MainScheduler.instance)
+                        .take(1)
+                )
+        }
+    }
+}
+
+// MARK: Rx RequestAndResult
+fileprivate extension ObservableType where Self.E == RequestAndResult {
+    func finalize(_ dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
+        return
+            flatMap{ data in
+                Observable<LWModelOffchainResult>
+                    .just(data.result)
+                    .finalize(withChannelAssetId: data.request.assetId, dependency: dependency)
+            }
+            .shareReplay(1)
+    }
+}
+
+// MARK: Rx LWModelOffchainResult
 fileprivate extension ObservableType where Self.E == LWModelOffchainResult {
     func finalize(withChannelAssetId channelAssetId: String, dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
         
         //If channel doesn't exist first create it (if oprerationResult == 1) otherwise just use given offchainResult
         let createdChannel =
             filter{ $0.operationResult == 1 }
-            .processChannel(withTransactionType: .createChannel, dependency: dependency)
+                .processChannel(withTransactionType: .createChannel, dependency: dependency)
         
         let reuseChannel =
             filter{ $0.operationResult == 0 }
-            .map{ ApiResult.success(withData: $0) }
+                .map{ ApiResult.success(withData: $0) }
         
         let processedChannel = Observable.merge(createdChannel, reuseChannel)
         
@@ -215,9 +274,7 @@ fileprivate extension ObservableType where Self.E == LWModelOffchainResult {
             .startWith(.loading)
             .shareReplay(1)
     }
-}
-
-fileprivate extension ObservableType where Self.E == LWModelOffchainResult {
+    
     func processChannel(withTransactionType transactionType: OffchainTransactionType,
                         dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
         
@@ -272,31 +329,68 @@ fileprivate extension ObservableType where Self.E == LWModelOffchainResult {
     }
 }
 
+// MARK: LWModelOffchainRequest
 fileprivate extension ObservableType where Self.E == LWModelOffchainRequest {
+    
     func finalizePendingRequest(_ dependency: OffchainService.Dependency) -> Observable<ApiResult<LWModelOffchainResult>> {
-        return
-            //1. get channel key and decrypt channel key
+        
+        //1. get channel key and decrypt channel key
+        let offchainChannelKey =
             flatMapLatest{ request in
-                return dependency.authManager.offchainChannelKey
+                dependency.authManager.offchainChannelKey
                     .request(withParams: request.assetId)
-                    .filterSuccess()
-                    .decryptKey(withKeyManager: dependency.privateKeyManager)
-                    .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: request.assetId)
-                    .map{ (request: request, decryptedKey: $0) }
+                    .map{ (chanelKey: $0, request: request) }
             }
-            //2. Send request transfer
+            .shareReplay(1)
+        
+        let decryptedKey = offchainChannelKey
+            .map{ data -> ChanelKeyAndRequest? in
+                guard let channelKey = data.chanelKey.getSuccess() else { return nil }
+                return (channelKey: channelKey, request: data.request)
+            }
+            .filterNil()
+            .flatMapLatest{ (data: ChanelKeyAndRequest) in
+                Observable
+                    .just(data.channelKey)
+                    .decryptKey(withKeyManager: dependency.privateKeyManager)
+                    .replaceNilWithLastPrivateKey(keyChainManager: dependency.keychainManager, forAssetId: data.request.assetId)
+                    .map{ (decryptedKey: $0, request: data.request) }
+            }
+            .shareReplay(1)
+
+        //2. Send request transfer
+        let offchainRequestTransfer = decryptedKey
             .flatMapLatest{ data in
                 dependency.authManager.offchainRequestTransfer
                     .request(withParams: LWPacketRequestTransfer.Body(requestId: data.request.requestId, prevTempPrivateKey: data.decryptedKey))
-                    .filterSuccess()
                     .map{ (request: data.request, result: $0) }
             }
-            //3. Finalize request
-            .finalize(dependency)
             .shareReplay(1)
+        
+        //3. Finalize transfer
+        let finalizeTransfer = offchainRequestTransfer
+            .map{ data -> RequestAndResult? in
+                guard let result = data.result.getSuccess() else { return nil }
+                return (request: data.request, result: result)
+            }
+            .filterNil()
+            .finalize(dependency)
+        
+        let errors = Observable
+            .merge(
+                offchainChannelKey.map{ $0.chanelKey }.filterError(),
+                offchainRequestTransfer.map{ $0.result }.filterError(),
+                finalizeTransfer.filterError()
+            )
+            .map{ ApiResult<LWModelOffchainResult>.error(withData: $0) }
+        
+        return Observable
+            .merge(errors, finalizeTransfer.filter{ $0.isSuccess })
+            .startWith(ApiResult.loading)
     }
 }
 
+// MARK: Rx LWModelOffchainChannelKey
 fileprivate extension ObservableType where Self.E == LWModelOffchainChannelKey {
     func decryptKey(withKeyManager keyManager: LWPrivateKeyManager) -> Observable<String?> {
         return map{ offchainKey -> String? in
@@ -306,6 +400,7 @@ fileprivate extension ObservableType where Self.E == LWModelOffchainChannelKey {
     }
 }
 
+// MARK: Rx String?
 fileprivate extension ObservableType where Self.E == String? {
     func replaceNilWithLastPrivateKey(keyChainManager keychainManager: LWKeychainManager, forAssetId assetId: String) -> Observable<String> {
         return map{key in
