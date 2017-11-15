@@ -49,7 +49,7 @@ class TransactionsViewController: UIViewController {
     @IBAction func onBackTap(_ sender: UIButton) {
         if let drawerController = self.parent as? KYDrawerController {
             let mainStory = UIStoryboard.init(name: "Main", bundle: nil)
-            drawerController.mainViewController = mainStory.instantiateViewController(withIdentifier: "Portfolio")
+            drawerController.mainViewController = mainStory.instantiateViewController(withIdentifier: "PortfolioContainer")
         }
     }
     

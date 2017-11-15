@@ -14,9 +14,11 @@
 		462878761F433B0F0006BE45 /* TradingLinearGraphViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 462878751F433B0F0006BE45 /* TradingLinearGraphViewTest.m */; };
 		462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */; };
 		462B34301F00EC5000374038 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462B342F1F00EC5000374038 /* Colors.swift */; };
+		463680DA1FBC880D002E3C6C /* ButtonWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463680D91FBC880D002E3C6C /* ButtonWithIconView.swift */; };
 		463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A51F94DB17005930DD /* MenuTableViewController.swift */; };
 		463FC5A81F94DB17005930DD /* TopNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A61F94DB17005930DD /* TopNavViewController.swift */; };
 		46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */; };
+		464BAA661FBC444000F473FA /* AssetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BAA651FBC444000F473FA /* AssetDetailViewController.swift */; };
 		4651CFB61FA32448009BFA45 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */; };
 		4651CFB81FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */; };
 		4651CFBA1FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */; };
@@ -40,6 +42,7 @@
 		469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469DA7261F6C1FC8000B904C /* KYCStep3ViewController.swift */; };
 		46A48F811FA9B06B00843775 /* EmptyPortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A48F801FA9B06B00843775 /* EmptyPortfolioView.swift */; };
 		46A48F831FA9B07500843775 /* EmptyPortfolioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A48F821FA9B07500843775 /* EmptyPortfolioView.xib */; };
+		46D16C311FBC84BD0046F67D /* ButtonWithIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46D16C301FBC84BD0046F67D /* ButtonWithIconView.xib */; };
 		46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */; };
 		6100D8D81F1F327200EB40A5 /* LineChartDataSet+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */; };
 		6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */; };
@@ -175,9 +178,11 @@
 		462878751F433B0F0006BE45 /* TradingLinearGraphViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TradingLinearGraphViewTest.m; path = ModernWallet/Classes/View/Chart/TradingLinearGraphViewTest.m; sourceTree = SOURCE_ROOT; };
 		462A2A0D1FA0BF48008D6807 /* AppDelegate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Extensions.swift"; sourceTree = "<group>"; };
 		462B342F1F00EC5000374038 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		463680D91FBC880D002E3C6C /* ButtonWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithIconView.swift; sourceTree = "<group>"; };
 		463FC5A51F94DB17005930DD /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		463FC5A61F94DB17005930DD /* TopNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavViewController.swift; sourceTree = "<group>"; };
 		46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+PlaceholderColor.swift"; sourceTree = "<group>"; };
+		464BAA651FBC444000F473FA /* AssetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailViewController.swift; sourceTree = "<group>"; };
 		4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
 		4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyExchanger+Extensions.swift"; sourceTree = "<group>"; };
 		4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TotalBalanceViewModel+Extensions.swift"; sourceTree = "<group>"; };
@@ -202,6 +207,7 @@
 		46A48F801FA9B06B00843775 /* EmptyPortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPortfolioView.swift; sourceTree = "<group>"; };
 		46A48F821FA9B07500843775 /* EmptyPortfolioView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyPortfolioView.xib; sourceTree = "<group>"; };
 		46B583741F94C6D600B475DB /* ModernWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModernWallet-Bridging-Header.h"; sourceTree = "<group>"; };
+		46D16C301FBC84BD0046F67D /* ButtonWithIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonWithIconView.xib; sourceTree = "<group>"; };
 		46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartDataSet+Setup.swift"; sourceTree = "<group>"; };
 		6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartView+Setup.swift"; sourceTree = "<group>"; };
@@ -635,6 +641,7 @@
 				6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */,
 				46A48F801FA9B06B00843775 /* EmptyPortfolioView.swift */,
 				46A48F821FA9B07500843775 /* EmptyPortfolioView.xib */,
+				464BAA651FBC444000F473FA /* AssetDetailViewController.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -775,6 +782,8 @@
 				6140EA461F1CE51C00B05A97 /* SeparatorView.swift */,
 				6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */,
 				462B342F1F00EC5000374038 /* Colors.swift */,
+				46D16C301FBC84BD0046F67D /* ButtonWithIconView.xib */,
+				463680D91FBC880D002E3C6C /* ButtonWithIconView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -891,6 +900,7 @@
 				66529DD21F8E38F10059786B /* Geomanist-Book.otf in Resources */,
 				CC48AB581F0E802A0081AF27 /* Buy.storyboard in Resources */,
 				EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */,
+				46D16C311FBC84BD0046F67D /* ButtonWithIconView.xib in Resources */,
 				A12DB5521D741C2300319EA7 /* Proxima Nova Semibold.otf in Resources */,
 				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
 				CCED3BF21EE9811900535EE8 /* MenuTableViewCell.xib in Resources */,
@@ -1132,6 +1142,7 @@
 				467C20741FB47BEC002A90AE /* DrawerController.swift in Sources */,
 				CC84F2751F60411F00FABEA3 /* RegisterFillPhoneViewController.swift in Sources */,
 				4671C9D21F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift in Sources */,
+				464BAA661FBC444000F473FA /* AssetDetailViewController.swift in Sources */,
 				61BAB0DE1F0F729300212E16 /* BuyStep1ViewController.swift in Sources */,
 				4671C9BF1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift in Sources */,
 				87C6CDFA1FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift in Sources */,
@@ -1154,6 +1165,7 @@
 				6100D8DC1F1F334B00EB40A5 /* UIStackView+Hint.swift in Sources */,
 				CC94587F1F03DB8E00676249 /* BankViewController.swift in Sources */,
 				CC9458811F03DC4F00676249 /* StartViewController.swift in Sources */,
+				463680DA1FBC880D002E3C6C /* ButtonWithIconView.swift in Sources */,
 				462B34301F00EC5000374038 /* Colors.swift in Sources */,
 				469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */,
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
