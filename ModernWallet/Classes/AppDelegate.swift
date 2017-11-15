@@ -105,13 +105,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .finalizePendingRequests(refresh: Observable.just(Void()), maxProcessingTime: 20)
             .subscribe(onNext: { pendingRequests in
                 
-                guard pendingRequests.failed == 0 else {
-                    completionHandler(.failed)
+                guard pendingRequests.succeeded.isEmpty else {
+                    completionHandler(.newData)
                     return
                 }
                 
-                guard pendingRequests.succeeded.isEmpty else {
-                    completionHandler(.newData)
+                guard pendingRequests.failed == 0 else {
+                    completionHandler(.failed)
                     return
                 }
                 
