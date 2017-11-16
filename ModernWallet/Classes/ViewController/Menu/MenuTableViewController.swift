@@ -57,8 +57,7 @@ class MenuTableViewController: UITableViewController {
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.send"), image: #imageLiteral(resourceName: "SEND"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
-        MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"),
-                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
+        MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"), storyboardName: "Settings"),
         MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), viewControllerIdentifier: "transactionVC"),
         MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: nil, color: nil,
                  onSelect: MenuTableViewController.logout)
@@ -232,10 +231,12 @@ class MenuTableViewController: UITableViewController {
         else {
             storyboard = self.storyboard!
         }
-        guard let identifier = menuItem.viewControllerIdentifier else {
-            return nil
+        if let identifier = menuItem.viewControllerIdentifier {
+            return storyboard.instantiateViewController(withIdentifier: identifier)
         }
-        return storyboard.instantiateViewController(withIdentifier: identifier)
+        else {
+            return storyboard.instantiateInitialViewController()
+        }
     }
     
     private static func logout(_ viewController: UIViewController) {
