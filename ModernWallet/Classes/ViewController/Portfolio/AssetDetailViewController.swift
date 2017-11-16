@@ -45,11 +45,7 @@ class AssetDetailViewController: UIViewController {
         transactionsTable.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
         transactionsViewModel.transactions.asObservable()
-            .map{[asset] transactions in
-                transactions.filter{transaction in
-                    transaction.transaction.asset == asset?.value.wallet?.asset.identity
-                }
-            }
+            .filter(byAsset: asset.value)
             .bind(
                 to: transactionsTable.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell",
                                                    cellType: PortfolioCurrencyTableViewCell.self)
@@ -98,6 +94,16 @@ class AssetDetailViewController: UIViewController {
     }
     */
 
+}
+
+extension ObservableType where Self.E == [TransactionViewModel] {
+    func filter(byAsset asset: Asset) -> Observable<[TransactionViewModel]> {
+        return map{ transactions in
+            transactions.filter{transaction in
+                transaction.transaction.asset == asset.wallet?.asset.identity
+            }
+        }
+    }
 }
 
 extension AssetBalanceViewModel {
