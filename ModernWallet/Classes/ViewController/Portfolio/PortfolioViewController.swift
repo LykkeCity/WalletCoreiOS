@@ -50,6 +50,7 @@ class PortfolioViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
+        view.backgroundColor = UIColor.clear
         configurePieChart()
         configureTableView()
         
@@ -77,6 +78,13 @@ class PortfolioViewController: UIViewController {
         if UserDefaults.standard.value(forKey: "loggedIn") == nil {
             return
         }
+        
+        tableView.rx
+            .modelSelected(Variable<Asset>.self)
+            .subscribe(onNext: { [weak self] model in
+                self?.performSegue(withIdentifier: "assetDetail", sender: model)
+            })
+            .disposed(by: disposeBag)
         
         //Bind piechart
         Driver
@@ -141,6 +149,14 @@ class PortfolioViewController: UIViewController {
         pieChartView.chartDescription = nil
         pieChartView.legend.enabled = false
         pieChartView.drawCenterTextEnabled = false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let assetViewController = segue.destination as? AssetDetailViewController,
+           let asset = sender as? Variable<Asset>
+        {
+            assetViewController.asset = asset
+        }
     }
 }
 

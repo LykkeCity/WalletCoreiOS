@@ -52,7 +52,7 @@ class MenuTableViewController: UITableViewController {
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.internalTransfer"), image: #imageLiteral(resourceName: "INTERNAL TRANSFER"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
-        MenuItem(title: Localize("menu.newDesign.portfolio"), image: #imageLiteral(resourceName: "PORTFOLIO"), viewControllerIdentifier: "Portfolio"),
+        MenuItem(title: Localize("menu.newDesign.portfolio"), image: #imageLiteral(resourceName: "PORTFOLIO"), viewControllerIdentifier: "PortfolioContainer"),
         MenuItem(title: Localize("menu.newDesign.receive"), image: #imageLiteral(resourceName: "RECEIVE"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.send"), image: #imageLiteral(resourceName: "SEND"),
