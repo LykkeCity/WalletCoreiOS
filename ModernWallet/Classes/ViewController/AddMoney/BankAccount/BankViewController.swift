@@ -60,11 +60,14 @@ class BankViewController: UIViewController {
         purposeOfPaymentLbl.text = Localize("addMoney.newDesign.bankaccount.purpose")
         companyAddressLbl.text = Localize("addMoney.newDesign.bankaccount.companyAddress")
         
-        emailButton.setTitle(Localize("addMoney.newDesign.bankaccount.emailMe"), for: UIControlState.normal)
-        nextButton.setTitle(Localize("addMoney.newDesign.bankaccount.next"), for: UIControlState.normal)
+//        emailButton.setTitle(Localize("addMoney.newDesign.bankaccount.emailMe"), for: UIControlState.normal)
+//        nextButton.setTitle(Localize("addMoney.newDesign.bankaccount.next"), for: UIControlState.normal)
     }
 
     
+    @IBAction func backAction(_ sender: UITapGestureRecognizer) {
+        navigationController?.popViewController(animated: true)
+    }
     @IBAction func nextAction(_ sender: UIButton) {
         
 //        let parentVC = self.parent as! LWAddMoneyViewController
