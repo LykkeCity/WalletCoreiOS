@@ -54,7 +54,7 @@
                                 <state key="normal" image="backArrow"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-4T-avN">
-                                <rect key="frame" x="151.5" y="96" width="72" height="17.5"/>
+                                <rect key="frame" x="155.5" y="96.5" width="64" height="15"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -125,7 +125,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UPDATE YOUR SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqd-p3-maV">
-                                    <rect key="frame" x="30" y="16" width="315" height="21"/>
+                                    <rect key="frame" x="30" y="16" width="315" height="18"/>
                                     <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -138,62 +138,6 @@
                                 <constraint firstAttribute="trailing" secondItem="zqd-p3-maV" secondAttribute="trailing" constant="30" id="wxL-UW-uI8"/>
                             </constraints>
                         </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="kMl-wT-Tvv" customClass="SettingsTableViewCell" customModule="ModernWallet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="60"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kMl-wT-Tvv" id="E2w-Rd-2gb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RoN-Su-R1N" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
-                                            <rect key="frame" x="30" y="0.0" width="315" height="2"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="2" id="Wh3-Lg-nx7"/>
-                                            </constraints>
-                                        </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PersonalDataIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SPG-eH-MiR">
-                                            <rect key="frame" x="65" y="19" width="19" height="22"/>
-                                        </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3de-FM-PYW">
-                                            <rect key="frame" x="110" y="10.5" width="235" height="39"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEU-pH-khs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="235" height="17.5"/>
-                                                    <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzv-9o-KZ0">
-                                                    <rect key="frame" x="0.0" y="21.5" width="235" height="17.5"/>
-                                                    <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="3de-FM-PYW" firstAttribute="centerY" secondItem="E2w-Rd-2gb" secondAttribute="centerY" id="52j-26-IbT"/>
-                                        <constraint firstItem="RoN-Su-R1N" firstAttribute="top" secondItem="E2w-Rd-2gb" secondAttribute="top" id="6cq-1E-maG"/>
-                                        <constraint firstItem="3de-FM-PYW" firstAttribute="leading" secondItem="SPG-eH-MiR" secondAttribute="trailing" constant="26" id="7MR-VW-n1A"/>
-                                        <constraint firstItem="SPG-eH-MiR" firstAttribute="centerY" secondItem="E2w-Rd-2gb" secondAttribute="centerY" id="Gs3-V0-iUo"/>
-                                        <constraint firstItem="SPG-eH-MiR" firstAttribute="centerX" secondItem="E2w-Rd-2gb" secondAttribute="centerX" constant="-113" id="P4p-fe-JVS"/>
-                                        <constraint firstItem="3de-FM-PYW" firstAttribute="trailing" secondItem="RoN-Su-R1N" secondAttribute="trailing" id="TeB-Dp-yZO"/>
-                                        <constraint firstAttribute="trailing" secondItem="RoN-Su-R1N" secondAttribute="trailing" constant="30" id="Z2T-Vk-LHM"/>
-                                        <constraint firstItem="RoN-Su-R1N" firstAttribute="leading" secondItem="E2w-Rd-2gb" secondAttribute="leading" constant="30" id="bOA-dM-eTM"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="iconView" destination="SPG-eH-MiR" id="onb-F9-Y9O"/>
-                                    <outlet property="subtitleLabel" destination="nzv-9o-KZ0" id="6Rh-s7-WyF"/>
-                                    <outlet property="titleLabel" destination="AEU-pH-khs" id="6mt-V7-BtQ"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="7LL-fE-0ge" id="uPp-Fb-bdo"/>
                             <outlet property="delegate" destination="7LL-fE-0ge" id="UAg-8a-i0S"/>
@@ -208,7 +152,6 @@
     </scenes>
     <resources>
         <image name="BlueBackground" width="687" height="1223"/>
-        <image name="PersonalDataIcon" width="19" height="22"/>
         <image name="backArrow" width="10" height="20"/>
     </resources>
 </document>

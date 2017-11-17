@@ -13,23 +13,15 @@ import WalletCore
 
 class SettingsTableViewController: UITableViewController {
     
-    struct RowData {
+    struct RowInfo {
         
-        let icon: Variable<UIImage>
+        let icon: UIImage
         let title: String?
-        let subtitle: Variable<String>?
+        let subtitle: String?
         let subtitleFont: UIFont?
         let segue: String
         
-        init(icon: UIImage, title: String?, subtitle: Variable<String>? = nil, subtitleFont: UIFont? = nil, segue: String) {
-            self.icon = Variable(icon)
-            self.title = title
-            self.subtitle = subtitle
-            self.subtitleFont = subtitleFont
-            self.segue = segue
-        }
-
-        init(icon: Variable<UIImage>, title: String?, subtitle: Variable<String>? = nil, subtitleFont: UIFont? = nil, segue: String) {
+        init(icon: UIImage, title: String?, subtitle: String? = nil, subtitleFont: UIFont? = nil, segue: String) {
             self.icon = icon
             self.title = title
             self.subtitle = subtitle
@@ -43,20 +35,7 @@ class SettingsTableViewController: UITableViewController {
     
     private let disposeBag = DisposeBag()
     
-    private lazy var rows: [RowData] = {
-        let shouldSignOrdersIcon = Variable(#imageLiteral(resourceName: "CheckboxUnchecked"))
-        self.viewModel.shouldSignOrders
-            .driveCheckboxImage(shouldSignOrdersIcon)
-            .disposed(by: self.disposeBag)
-        return [
-            RowData(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: ""),
-            RowData(icon: shouldSignOrdersIcon, title: Localize("settings.newDesign.confirmOrders"), segue: ""),
-            RowData(icon: #imageLiteral(resourceName: "BaseAssetIcon"), title: Localize("settings.newDesign.baseAsset"), subtitle: self.viewModel.baseAsset, subtitleFont: UIFont(name: "Geomanist", size: 15.0), segue: ""),
-            RowData(icon: #imageLiteral(resourceName: "RefundIcon"), title: Localize("settings.newDesign.refundAddress"), subtitle: self.viewModel.refundAddress, segue: ""),
-            RowData(icon: #imageLiteral(resourceName: "BackupPrivateKeyIcon"), title: Localize("settings.newDesign.backupPrivateKey"), segue: ""),
-            RowData(icon: #imageLiteral(resourceName: "TermsIcon"), title: Localize("settings.newDesign.termsOfUse"), segue: "")
-        ]
-    }()
+    private var rows = Variable([RowInfo]())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,41 +44,46 @@ class SettingsTableViewController: UITableViewController {
         
         navigationItem.title = Localize("settings.newDesign.title")
 
+        let cellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: "SettingsCell")
+        
         self.clearsSelectionOnViewWillAppear = false
+        
+        viewModel.appSettings.asObservable()
+            .mapToSettingsRowInfo()
+            .asDriver(onErrorJustReturn: [
+                RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: ""),
+                RowInfo(icon: #imageLiteral(resourceName: "CheckboxUnchecked"), title: Localize("settings.newDesign.confirmOrders"), segue: ""),
+                RowInfo(icon: #imageLiteral(resourceName: "BaseAssetIcon"), title: Localize("settings.newDesign.baseAsset"), subtitle: "", subtitleFont: UIFont(name: "Geomanist", size: 15.0), segue: ""),
+                RowInfo(icon: #imageLiteral(resourceName: "RefundIcon"), title: Localize("settings.newDesign.refundAddress"), subtitle: "", segue: ""),
+                RowInfo(icon: #imageLiteral(resourceName: "BackupPrivateKeyIcon"), title: Localize("settings.newDesign.backupPrivateKey"), segue: ""),
+                RowInfo(icon: #imageLiteral(resourceName: "TermsIcon"), title: Localize("settings.newDesign.termsOfUse"), segue: "")
+            ])
+            .drive(rows)
+            .disposed(by: disposeBag)
+        
+        rows.asObservable()
+            .bind(to: tableView.rx.items(cellIdentifier: "SettingsCell", cellType: SettingsTableViewCell.self)) { (row, element, cell) in
+                cell.setData(element)
+            }
+            .disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(RowInfo.self)
+            .subscribe(onNext: { [weak self] rowInfo in
+                guard let `self` = self else { return }
+                if rowInfo.segue != "" {
+                    self.performSegue(withIdentifier: rowInfo.segue, sender: nil)
+                }
+                else if let indexPath = self.tableView.indexPathForSelectedRow {
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
 
         viewModel.loadingViewModel.isLoading
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
-    }
-
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath) as! SettingsTableViewCell
-
-        let rowData = rows[indexPath.row]
-        cell.set(title: rowData.title, icon: rowData.icon, subtitle: rowData.subtitle)
-        if rowData.subtitle != nil {
-            cell.subtitleLabel.font = rowData.subtitleFont ?? UIFont(name: "Geomanist-Light", size: 15.0)
-        }
-
-        return cell
-    }
-    
-    // MARK: // MARK: - Table view delegate
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let rowData = rows[indexPath.row]
-        if rowData.segue != "" {
-            performSegue(withIdentifier: rowData.segue, sender: nil)
-        }
-        else {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
     }
 
     /*
@@ -114,13 +98,38 @@ class SettingsTableViewController: UITableViewController {
 
 }
 
-extension Variable where Element == Bool {
+extension Observable where Element == LWAppSettingsModel {
     
-    func driveCheckboxImage(_ variable: Variable<UIImage>) -> Disposable {
-        return self.asObservable()
-            .map { $0 ? #imageLiteral(resourceName: "CheckboxChecked") : #imageLiteral(resourceName: "CheckboxUnchecked") }
-            .asDriver(onErrorJustReturn: #imageLiteral(resourceName: "CheckboxUnchecked"))
-            .drive(variable)
+    func mapToSettingsRowInfo() -> Observable<[SettingsTableViewController.RowInfo]> {
+        return map { (appSettings) in
+            let confirmOrdersIcon = appSettings.shouldSignOrders ? #imageLiteral(resourceName: "CheckboxChecked") : #imageLiteral(resourceName: "CheckboxUnchecked")
+            return [
+                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: ""),
+                SettingsTableViewController.RowInfo(icon: confirmOrdersIcon, title: Localize("settings.newDesign.confirmOrders"), segue: ""),
+                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BaseAssetIcon"), title: Localize("settings.newDesign.baseAsset"), subtitle: appSettings.baseAsset?.identity, subtitleFont: UIFont(name: "Geomanist", size: 15.0), segue: ""),
+                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "RefundIcon"), title: Localize("settings.newDesign.refundAddress"), subtitle: appSettings.refundAddress, segue: ""),
+                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BackupPrivateKeyIcon"), title: Localize("settings.newDesign.backupPrivateKey"), segue: ""),
+                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "TermsIcon"), title: Localize("settings.newDesign.termsOfUse"), segue: "")
+            ]
+        }
     }
     
 }
+
+extension SettingsTableViewCell {
+    
+    func setData(_ rowInfo: SettingsTableViewController.RowInfo) {
+        iconView.image = rowInfo.icon
+        titleLabel.text = rowInfo.title
+        if let subtitle = rowInfo.subtitle {
+            subtitleLabel.text = subtitle
+            subtitleLabel.font = rowInfo.subtitleFont ?? UIFont(name: "Geomanist-Light", size: 15.0)
+            subtitleLabel.isHidden = false
+        }
+        else {
+            subtitleLabel.isHidden = true
+        }
+    }
+    
+}
+

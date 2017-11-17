@@ -85,6 +85,7 @@
 		66529DD21F8E38F10059786B /* Geomanist-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCF1F8E38F10059786B /* Geomanist-Book.otf */; };
 		665988501F8E4E5000073703 /* AssetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659884E1F8E4E5000073703 /* AssetCollectionViewCell.swift */; };
 		665988511F8E4E5000073703 /* AssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6659884F1F8E4E5000073703 /* AssetCollectionViewCell.xib */; };
+		665A7CC51FBEDDD5004F6CFA /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665A7CC41FBEDDD5004F6CFA /* SettingsTableViewCell.xib */; };
 		6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */; };
 		667D404B1F8C95EE00457698 /* CashOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 667D404A1F8C95EE00457698 /* CashOut.storyboard */; };
 		667D404D1F8D018C00457698 /* AssetAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667D404C1F8D018C00457698 /* AssetAmountView.swift */; };
@@ -254,6 +255,7 @@
 		66529DCF1F8E38F10059786B /* Geomanist-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Book.otf"; sourceTree = "<group>"; };
 		6659884E1F8E4E5000073703 /* AssetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewCell.swift; sourceTree = "<group>"; };
 		6659884F1F8E4E5000073703 /* AssetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetCollectionViewCell.xib; sourceTree = "<group>"; };
+		665A7CC41FBEDDD5004F6CFA /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSlider.swift; sourceTree = "<group>"; };
 		667D404A1F8C95EE00457698 /* CashOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CashOut.storyboard; sourceTree = "<group>"; };
 		667D404C1F8D018C00457698 /* AssetAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetAmountView.swift; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */,
+				665A7CC41FBEDDD5004F6CFA /* SettingsTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				A12DB5521D741C2300319EA7 /* Proxima Nova Semibold.otf in Resources */,
 				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
 				CCED3BF21EE9811900535EE8 /* MenuTableViewCell.xib in Resources */,
+				665A7CC51FBEDDD5004F6CFA /* SettingsTableViewCell.xib in Resources */,
 				6197A3C41EEA9017008ECF5A /* PieChartCenter.xib in Resources */,
 				66529DD01F8E38F10059786B /* Geomanist-Light.otf in Resources */,
 				A14515871D7EFA7000B4BED9 /* lykke_logo.png in Resources */,

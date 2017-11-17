@@ -28,21 +28,4 @@ class SettingsTableViewCell: UITableViewCell {
         selectedBackgroundView = backroundView
     }
     
-    func set(title: String?, icon: Variable<UIImage>, subtitle: Variable<String>? = nil) {
-        disposeBag = DisposeBag()
-        icon.asDriver()
-            .drive(iconView.rx.image)
-            .disposed(by: disposeBag)
-        titleLabel.text = title
-        if let subtitle = subtitle {
-            subtitle.asDriver()
-                .drive(subtitleLabel.rx.text)
-                .disposed(by: disposeBag)
-            subtitleLabel.isHidden = false
-        }
-        else {
-            subtitleLabel.isHidden = true
-        }
-    }
-    
 }
