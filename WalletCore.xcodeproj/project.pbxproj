@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		39A5BF2421369EE514EA22D3 /* Pods_WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE31B8E679DB485E0AC92E8 /* Pods_WalletCore.framework */; };
+		460843BF1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */; };
+		460843C21FBF1C2400F14A5A /* CurrencyDepositViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460843C11FBF1C2400F14A5A /* CurrencyDepositViewModel.swift */; };
 		460E81481F97637A00C60E72 /* LWPacketOffchainTrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E81471F97637A00C60E72 /* LWPacketOffchainTrade.swift */; };
 		460E814E1F98947100C60E72 /* LWModelOffchainResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E814D1F98947100C60E72 /* LWModelOffchainResult.swift */; };
 		461C6F941F8B5C9500C5E8B3 /* BuyOptimizedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F931F8B5C9500C5E8B3 /* BuyOptimizedViewModel.swift */; };
@@ -616,6 +618,8 @@
 		08A16B742600639B84A13EE5 /* Pods-WalletCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		15FF07B01F0658D96FF9CEC5 /* Pods-WalletCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.debug.xcconfig"; sourceTree = "<group>"; };
 		3EA74A9725DA6B8766C4E699 /* Pods_WalletCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCurrencyDeposit.swift; sourceTree = "<group>"; };
+		460843C11FBF1C2400F14A5A /* CurrencyDepositViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDepositViewModel.swift; sourceTree = "<group>"; };
 		460E81471F97637A00C60E72 /* LWPacketOffchainTrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketOffchainTrade.swift; sourceTree = "<group>"; };
 		460E814D1F98947100C60E72 /* LWModelOffchainResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWModelOffchainResult.swift; sourceTree = "<group>"; };
 		461C6F931F8B5C9500C5E8B3 /* BuyOptimizedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOptimizedViewModel.swift; sourceTree = "<group>"; };
@@ -1243,6 +1247,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		460843C01FBF1C1100F14A5A /* AddMoney */ = {
+			isa = PBXGroup;
+			children = (
+				460843C11FBF1C2400F14A5A /* CurrencyDepositViewModel.swift */,
+			);
+			path = AddMoney;
+			sourceTree = "<group>";
+		};
 		460E81361F97444600C60E72 /* Offchain */ = {
 			isa = PBXGroup;
 			children = (
@@ -2101,6 +2113,7 @@
 		46C9B00C1F417BF100B83CCB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				460843C01FBF1C1100F14A5A /* AddMoney */,
 				464BAA691FBC77A700F473FA /* Portfolio */,
 				467C205F1FB452F7002A90AE /* BaseAssetSetViewModel.swift */,
 				467C20601FB452F7002A90AE /* BLBuySellStep1ViewModel.swift */,
@@ -2233,6 +2246,7 @@
 				46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */,
 				666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */,
 				874FA6731FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift */,
+				460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -3029,6 +3043,7 @@
 				46C9AE641F417BD700B83CCB /* LWAuthSteps.m in Sources */,
 				46C9AF581F417BD800B83CCB /* LWPacketWalletMigration.m in Sources */,
 				46C9AF801F417BD800B83CCB /* LWBaseHistoryItemType.m in Sources */,
+				460843BF1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift in Sources */,
 				46C9AFAE1F417BD800B83CCB /* LWSettleHistoryItemType.m in Sources */,
 				46C9AEFE1F417BD700B83CCB /* LWPacketKYCSendDocumentBin.m in Sources */,
 				46C9B0821F42D7FB00B83CCB /* NumberFormatter+Extensions.swift in Sources */,
@@ -3133,6 +3148,7 @@
 				CC0DFB001F545B5E00EBB96E /* AccountExistViewModel.swift in Sources */,
 				46C9AFE91F417BD800B83CCB /* LWEthereumSignManager.m in Sources */,
 				46E5D0DC1F5DD7ED00D78692 /* LWRxAuthManagerPhoneVerificationPin.swift in Sources */,
+				460843C21FBF1C2400F14A5A /* CurrencyDepositViewModel.swift in Sources */,
 				46C9B0661F42C91B00B83CCB /* LWRxAuthManagerSwiftCredentials.swift in Sources */,
 				46E5D0DB1F5DD7ED00D78692 /* LWRxAuthManagerBaseAssetSet.swift in Sources */,
 				467C20641FB452F7002A90AE /* SettingsPersonalInfoViewModel.swift in Sources */,
