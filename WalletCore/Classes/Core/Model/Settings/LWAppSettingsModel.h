@@ -24,5 +24,6 @@
 @property (readonly, nonatomic) LWAssetModel *baseAsset;
 @property (readonly, nonatomic) BOOL          shouldSignOrders;
 @property (readonly, nonatomic) BOOL          debugMode;
+@property (readonly, nonatomic) NSString     *refundAddress;
 
 @end

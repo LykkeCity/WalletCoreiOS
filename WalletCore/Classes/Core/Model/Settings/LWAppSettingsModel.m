@@ -24,6 +24,7 @@
         _shouldSignOrders  = [[json objectForKey:@"SignOrder"] boolValue];
         _depositUrl        = [json objectForKey:@"DepositUrl"];
         _debugMode         = [[json objectForKey:@"DebugMode"] boolValue];
+        _refundAddress     = json[@"RefundSettings"][@"Address"];
         
         [LWCache instance].shouldSignOrder = _shouldSignOrders;
         [LWCache instance].depositUrl      = _depositUrl;
