@@ -954,3 +954,7 @@
 "settings.newDesign.refundAddress" = "REFUND";
 "settings.newDesign.backupPrivateKey" = "BACKUP PRIVATE KEY";
 "settings.newDesign.termsOfUse" = "TERMS OF USE";
+"personalData.newDesign.fullName" = "FULL NAME";
+"personalData.newDesign.email" = "EMAIL";
+"personalData.newDesign.phone" = "PHONE";
+"personalData.newDesign.countryAndCity" = "COUNTRY AND CITY";
