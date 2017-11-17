@@ -47,7 +47,7 @@ class SettingsTableViewController: UITableViewController {
         let cellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "SettingsCell")
         
-        self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = true
         
         viewModel.appSettings.asObservable()
             .mapToSettingsRowInfo()
@@ -86,15 +86,14 @@ class SettingsTableViewController: UITableViewController {
             .disposed(by: disposeBag)
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "PersonalData" {
+            let vc = segue.destination as! SettingsPersonalDataTableViewController
+            vc.viewModel = viewModel
+        }
     }
-    */
 
 }
 
@@ -104,7 +103,7 @@ extension Observable where Element == LWAppSettingsModel {
         return map { (appSettings) in
             let confirmOrdersIcon = appSettings.shouldSignOrders ? #imageLiteral(resourceName: "CheckboxChecked") : #imageLiteral(resourceName: "CheckboxUnchecked")
             return [
-                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: ""),
+                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: "PersonalData"),
                 SettingsTableViewController.RowInfo(icon: confirmOrdersIcon, title: Localize("settings.newDesign.confirmOrders"), segue: ""),
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BaseAssetIcon"), title: Localize("settings.newDesign.baseAsset"), subtitle: appSettings.baseAsset?.identity, subtitleFont: UIFont(name: "Geomanist", size: 15.0), segue: ""),
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "RefundIcon"), title: Localize("settings.newDesign.refundAddress"), subtitle: appSettings.refundAddress, segue: ""),

@@ -86,6 +86,7 @@
 		665988501F8E4E5000073703 /* AssetCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659884E1F8E4E5000073703 /* AssetCollectionViewCell.swift */; };
 		665988511F8E4E5000073703 /* AssetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6659884F1F8E4E5000073703 /* AssetCollectionViewCell.xib */; };
 		665A7CC51FBEDDD5004F6CFA /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665A7CC41FBEDDD5004F6CFA /* SettingsTableViewCell.xib */; };
+		665A7CC91FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665A7CC81FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift */; };
 		6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */; };
 		667D404B1F8C95EE00457698 /* CashOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 667D404A1F8C95EE00457698 /* CashOut.storyboard */; };
 		667D404D1F8D018C00457698 /* AssetAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667D404C1F8D018C00457698 /* AssetAmountView.swift */; };
@@ -256,6 +257,7 @@
 		6659884E1F8E4E5000073703 /* AssetCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCollectionViewCell.swift; sourceTree = "<group>"; };
 		6659884F1F8E4E5000073703 /* AssetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetCollectionViewCell.xib; sourceTree = "<group>"; };
 		665A7CC41FBEDDD5004F6CFA /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
+		665A7CC81FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPersonalDataTableViewController.swift; sourceTree = "<group>"; };
 		6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSlider.swift; sourceTree = "<group>"; };
 		667D404A1F8C95EE00457698 /* CashOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CashOut.storyboard; sourceTree = "<group>"; };
 		667D404C1F8D018C00457698 /* AssetAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetAmountView.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 				6689EE531FBB314D0006010F /* Cells */,
 				6689EE4F1FBB27B50006010F /* SettingsViewController.swift */,
 				6689EE511FBB291C0006010F /* SettingsTableViewController.swift */,
+				665A7CC81FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1189,6 +1192,7 @@
 				6140E3281F14E6AF00D8885B /* TransactionsViewController.swift in Sources */,
 				CC0DFB051F56D80B00EBB96E /* RegisterSendCodeEmailViewController.swift in Sources */,
 				CC0DFB031F559A1200EBB96E /* RegisterConfrimEmailViewController.swift in Sources */,
+				665A7CC91FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift in Sources */,
 				870D4DD11FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift in Sources */,
 				61BAB0E01F0F72F600212E16 /* FakeData.swift in Sources */,
 				CCDB25741EEFF513000D590F /* SignUpPinViewController.swift in Sources */,
