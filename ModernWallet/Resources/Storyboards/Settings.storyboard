@@ -19,10 +19,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="9JF-UN-Gk3">
             <objects>
-                <viewController id="2G0-Vx-Oas" sceneMemberID="viewController">
+                <viewController id="2G0-Vx-Oas" customClass="SettingsViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7UT-Cx-qEZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,6 +52,9 @@
                                     <constraint firstAttribute="width" secondItem="Iac-25-agh" secondAttribute="height" multiplier="1:0.8" id="j9a-3y-4m3"/>
                                 </constraints>
                                 <state key="normal" image="backArrow"/>
+                                <connections>
+                                    <action selector="backPressed" destination="2G0-Vx-Oas" eventType="touchUpInside" id="D8h-H2-QP4"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-4T-avN">
                                 <rect key="frame" x="155.5" y="96.5" width="64" height="15"/>
@@ -82,6 +85,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lU6-0F-byN"/>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="Iac-25-agh" id="EdQ-NS-iVM"/>
+                        <outlet property="titleLabel" destination="ozs-4T-avN" id="3Ys-7y-ILq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tU0-AY-JPQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
