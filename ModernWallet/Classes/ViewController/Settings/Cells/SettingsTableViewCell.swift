@@ -18,6 +18,8 @@ class SettingsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var subtitleLabel: UILabel!
     
+    @IBOutlet weak var separator: SeparatorView!
+    
     private var disposeBag = DisposeBag()
 
     override func awakeFromNib() {
