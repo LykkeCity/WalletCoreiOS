@@ -947,6 +947,7 @@
 "cashOut.newDesign.waitMessage" = "Please allow 3-5 business days for the transaction to be processed.";
 "cashOut.newDesign.backToPortfolio" = "BACK TO PORTFOLIO";
 
+"settings.newDesign.title" = "SETTINGS";
 "settings.newDesign.personalData" = "PERSONAL DATA";
 "settings.newDesign.confirmOrders" = "CONFIRM ORDER WITH PIN";
 "settings.newDesign.baseAsset" = "BASE ASSET";
