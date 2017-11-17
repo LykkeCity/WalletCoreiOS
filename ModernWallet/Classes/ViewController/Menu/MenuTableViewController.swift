@@ -224,6 +224,9 @@ class MenuTableViewController: UITableViewController {
 
     
     private func instantiateViewController(byMenuItem menuItem: MenuItem) -> UIViewController? {
+        if menuItem.storyboardName == nil, menuItem.viewControllerIdentifier == nil {
+            return nil
+        }
         let storyboard: UIStoryboard
         if let storyboardName = menuItem.storyboardName {
             storyboard = UIStoryboard(name: storyboardName, bundle: nil)
