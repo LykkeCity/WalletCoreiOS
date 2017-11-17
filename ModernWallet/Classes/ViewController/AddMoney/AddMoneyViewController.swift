@@ -96,8 +96,12 @@ extension AddMoneyViewController: NavigationWizzardProtocol, UINavigationControl
             return baseLabelString.appending(Localize("addMoney.newDesign.creditCard"))
         }
         
-        if (navigationController.childViewControllers.filter{$0 is BankViewController}).isNotEmpty {
-            return baseLabelString.appending(Localize("addMoney.newDesign.bankAccount"))
+        if navigationController.childViewControllers.last is BankViewController {
+            return Localize("addMoney.newDesign.lykkeBankDetails")
+        }
+        
+        if (navigationController.childViewControllers.enumerated().contains{ (offset, element) in offset == 1 && element is BankInfoViewController}) {
+            return Localize("addMoney.newDesign.wireMoneyFromBank")
         }
         
         if (navigationController.childViewControllers.filter{$0 is AddMoneyCryptocurrencyStep1ViewController}).isNotEmpty {

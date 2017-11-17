@@ -842,6 +842,9 @@
 "menu.newDesign.withdraw" = "WITHDRAW";
 "menu.newDesign.logout" = "LOGOUT";
 
+
+"addMoney.newDesign.wireMoneyFromBank" = "WIRE MONEY FROM BANK ACCOUNT";
+"addMoney.newDesign.lykkeBankDetails" = "LYKKE BANK ACCOUNT DETAILS";
 "addMoney.newDesign.bankAccount" = "BANK ACCOUNT";
 "addMoney.newDesign.creditCard" = "CREDIT CARD";
 "addMoeny.newDesign.cryptoCurrency" = "CRYPTO CURRENCY";
