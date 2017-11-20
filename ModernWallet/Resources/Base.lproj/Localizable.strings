@@ -961,3 +961,6 @@
 "personalData.newDesign.email" = "EMAIL";
 "personalData.newDesign.phone" = "PHONE";
 "personalData.newDesign.countryAndCity" = "COUNTRY AND CITY";
+"backup.newDesign.makeBackup" = "MAKE A BACKUP";
+"backup.newDesign.backupInfo" = "You need to make a backup of your wallet. With your backup, you can easily restore your funds if your defice is lost or damaged. Your backup is a series of 12 words. Just write them down and keep them in a safe place. Anyone who knows this sequence of words can access and spend all the funds in your wallet, so be sure to keep it in a safe place.";
+"backup.newDesign.readyToWrite" = "I'M READY TO WRITE";
