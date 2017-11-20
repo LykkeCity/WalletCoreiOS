@@ -11,7 +11,7 @@ import UIKit
 import RxKeyboard
 import RxSwift
 
-extension UIScrollView {
+public extension UIScrollView {
     
     /// Subscribe for following keyboard events
     /// - willShowVisibleHeight - Autoscroll to the focused field so that it's not hidden by the keyboard

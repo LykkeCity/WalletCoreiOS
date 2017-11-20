@@ -13,7 +13,7 @@ import WalletCore
 
 fileprivate let keyboardTypesForAccessoryInput: Set<UIKeyboardType> = Set([.numberPad, .decimalPad, .phonePad])
 
-protocol InputForm: UITextFieldDelegate {
+public protocol InputForm: UITextFieldDelegate {
     
     var scrollView: UIScrollView! {get}
     
@@ -33,13 +33,13 @@ protocol InputForm: UITextFieldDelegate {
     
 }
 
-extension InputForm {
+public extension InputForm {
     
-    var scrollView: UIScrollView! {
+    public var scrollView: UIScrollView! {
         return nil
     }
     
-    var submitButton: UIButton! {
+    public var submitButton: UIButton! {
         return nil
     }
     
@@ -124,7 +124,7 @@ extension InputForm {
 }
 
 
-extension InputForm where Self: UIViewController {
+public extension InputForm where Self: UIViewController {
     
     func setupFormUX(disposedBy disposeBag: DisposeBag) {
         setupFormUX(forWidth: self.view.bounds.width, disposedBy: disposeBag)
