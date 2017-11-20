@@ -24,18 +24,6 @@ class SettingsPersonalDataTableViewController: UITableViewController {
     private let rows = Variable([RowInfo]())
     
     private let disposeBag = DisposeBag()
-    
-    private lazy var backgroundView: UIView = {
-        let view = UIView()
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "BlueBackground"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageView)
-        let views = ["imageView": imageView]
-        let metrics = ["height": Display.height]
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[imageView(height)]|", options: [], metrics: metrics, views: views))
-        return view
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +32,7 @@ class SettingsPersonalDataTableViewController: UITableViewController {
         
         let cellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "SettingsCell")
-        tableView.backgroundView = backgroundView
+        tableView.backgroundView = BackgroundView(frame: tableView.bounds)
         
         viewModel.personalData.asObservable()
             .mapToSettingsRowInfo()

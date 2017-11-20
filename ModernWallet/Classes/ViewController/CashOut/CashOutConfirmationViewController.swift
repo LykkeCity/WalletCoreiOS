@@ -14,8 +14,6 @@ class CashOutConfirmationViewController: UIViewController {
     
     typealias TitleDetailPair = (title: String?, detail: String?)
     
-    @IBOutlet private weak var backgroundHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var confirmButton: UIButton!
     
@@ -48,8 +46,6 @@ class CashOutConfirmationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundHeightConstraint.constant = Display.height
-
         confirmButton.setTitle(Localize("newDesign.confirm"), for: .normal)
         
         pinPassed.asObservable()

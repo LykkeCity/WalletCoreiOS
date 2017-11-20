@@ -23,13 +23,10 @@
         <scene sceneID="9JF-UN-Gk3">
             <objects>
                 <viewController id="2G0-Vx-Oas" customClass="SettingsViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7UT-Cx-qEZ">
+                    <view key="view" contentMode="scaleToFill" id="7UT-Cx-qEZ" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="1YR-rr-e6e">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wX-PT-eBd">
                                 <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                                 <constraints>
@@ -57,7 +54,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-4T-avN">
-                                <rect key="frame" x="151.5" y="96" width="72" height="17.5"/>
+                                <rect key="frame" x="155.5" y="97" width="64" height="15"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -68,18 +65,14 @@
                             <constraint firstItem="4wX-PT-eBd" firstAttribute="leading" secondItem="lU6-0F-byN" secondAttribute="leading" id="18Y-OB-YnV"/>
                             <constraint firstItem="ozs-4T-avN" firstAttribute="centerX" secondItem="7UT-Cx-qEZ" secondAttribute="centerX" id="3XG-UO-ked"/>
                             <constraint firstItem="4wX-PT-eBd" firstAttribute="top" secondItem="lU6-0F-byN" secondAttribute="top" id="77C-pU-QJ4"/>
-                            <constraint firstItem="lU6-0F-byN" firstAttribute="trailing" secondItem="1YR-rr-e6e" secondAttribute="trailing" id="7Cs-th-M7N"/>
                             <constraint firstItem="Iac-25-agh" firstAttribute="width" secondItem="Iac-25-agh" secondAttribute="height" multiplier="1:0.8" id="9aa-BT-fEl"/>
                             <constraint firstItem="lU6-0F-byN" firstAttribute="trailing" secondItem="pi3-Tu-UKA" secondAttribute="trailing" id="Hj2-be-onV"/>
                             <constraint firstItem="lU6-0F-byN" firstAttribute="bottom" secondItem="pi3-Tu-UKA" secondAttribute="bottom" id="Nzn-7C-E9M"/>
                             <constraint firstItem="pi3-Tu-UKA" firstAttribute="leading" secondItem="lU6-0F-byN" secondAttribute="leading" id="O5B-fj-BSx"/>
-                            <constraint firstItem="lU6-0F-byN" firstAttribute="bottom" secondItem="1YR-rr-e6e" secondAttribute="bottom" id="VbJ-hk-CyT"/>
-                            <constraint firstItem="1YR-rr-e6e" firstAttribute="leading" secondItem="lU6-0F-byN" secondAttribute="leading" id="WQH-sB-mGZ"/>
                             <constraint firstItem="4wX-PT-eBd" firstAttribute="trailing" secondItem="lU6-0F-byN" secondAttribute="trailing" id="ZTM-62-jkN"/>
                             <constraint firstItem="Iac-25-agh" firstAttribute="top" secondItem="4wX-PT-eBd" secondAttribute="bottom" id="djj-kb-dr1"/>
                             <constraint firstItem="Iac-25-agh" firstAttribute="leading" secondItem="lU6-0F-byN" secondAttribute="leading" id="ejb-l3-NXi"/>
                             <constraint firstItem="ozs-4T-avN" firstAttribute="centerY" secondItem="Iac-25-agh" secondAttribute="centerY" id="mhH-d7-I5M"/>
-                            <constraint firstItem="1YR-rr-e6e" firstAttribute="top" secondItem="7UT-Cx-qEZ" secondAttribute="top" id="n1x-1d-YVn"/>
                             <constraint firstItem="Iac-25-agh" firstAttribute="width" secondItem="Iac-25-agh" secondAttribute="height" multiplier="1:0.8" id="oYn-e0-eCv"/>
                             <constraint firstItem="pi3-Tu-UKA" firstAttribute="top" secondItem="Iac-25-agh" secondAttribute="bottom" id="xrD-tP-aoI"/>
                         </constraints>
@@ -175,11 +168,10 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LJ2-E3-o24" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2566" y="-13"/>
+            <point key="canvasLocation" x="2594" y="-753"/>
         </scene>
     </scenes>
     <resources>
-        <image name="BlueBackground" width="687" height="1223"/>
         <image name="backArrow" width="10" height="20"/>
     </resources>
 </document>

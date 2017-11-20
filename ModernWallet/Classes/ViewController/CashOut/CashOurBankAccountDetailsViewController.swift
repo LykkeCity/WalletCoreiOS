@@ -13,8 +13,6 @@ import WalletCore
 
 class CashOurBankAccountDetailsViewController: UIViewController {
 
-    @IBOutlet private weak var backgroundHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet internal weak var scrollView: UIScrollView!
     
     @IBOutlet private weak var subtitleLabel: UILabel!
@@ -33,8 +31,6 @@ class CashOurBankAccountDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        backgroundHeightConstraint.constant = Display.height
-        
         subtitleLabel.text = Localize("cashOut.newDesign.inputBankAccountDetails")
         accountNameTextField.placeholder = Localize("cashOut.newDesign.bankName")
         ibanTextField.placeholder = Localize("cashOut.newDesign.iban")
@@ -64,11 +60,6 @@ class CashOurBankAccountDetailsViewController: UIViewController {
         
         isFormValidDriver
             .drive(nextButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        isFormValidDriver
-            .map { $0 ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5970840669) }
-            .drive(nextButton.rx.borderColor)
             .disposed(by: disposeBag)
         
         setupFormUX(disposedBy: disposeBag)

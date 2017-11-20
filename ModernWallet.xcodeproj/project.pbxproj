@@ -96,6 +96,8 @@
 		6689EE501FBB27B50006010F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE4F1FBB27B50006010F /* SettingsViewController.swift */; };
 		6689EE521FBB291C0006010F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE511FBB291C0006010F /* SettingsTableViewController.swift */; };
 		6689EE551FBB316A0006010F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */; };
+		66A2293A1FC31E2500C4D38A /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A229391FC31E2500C4D38A /* BackgroundView.swift */; };
+		66C83D411FC2DC1600428527 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C83D401FC2DC1600428527 /* SubmitButton.swift */; };
 		66D68FC41FBB22A000C437D9 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66D68FC31FBB22A000C437D9 /* Settings.storyboard */; };
 		66DA84CD1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DA84CC1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift */; };
 		66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */; };
@@ -265,6 +267,8 @@
 		6689EE4F1FBB27B50006010F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6689EE511FBB291C0006010F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		66A229391FC31E2500C4D38A /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		66C83D401FC2DC1600428527 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		66D68FC31FBB22A000C437D9 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		66DA84CC1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSectionHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutPersonalDetailsViewController.swift; sourceTree = "<group>"; };
@@ -812,6 +816,8 @@
 				462B342F1F00EC5000374038 /* Colors.swift */,
 				46D16C301FBC84BD0046F67D /* ButtonWithIconView.xib */,
 				463680D91FBC880D002E3C6C /* ButtonWithIconView.swift */,
+				66C83D401FC2DC1600428527 /* SubmitButton.swift */,
+				66A229391FC31E2500C4D38A /* BackgroundView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1153,6 +1159,7 @@
 				46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */,
 				66806BA51F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift in Sources */,
 				CC5B6C061F58610A00723587 /* RegisterCreatePasswordViewController.swift in Sources */,
+				66A2293A1FC31E2500C4D38A /* BackgroundView.swift in Sources */,
 				6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */,
 				4651CFBA1FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift in Sources */,
 				CCDB25701EEFCF05000D590F /* UtilsHelper.swift in Sources */,
@@ -1209,6 +1216,7 @@
 				4671C9C11F7CE840002C2F25 /* UIButton+Rx.swift in Sources */,
 				61BE16351F1CEBE20034D27A /* TransactionsGraphViewController.swift in Sources */,
 				611248F01F069392005DE4E6 /* AddMoneyCryptocurrencyStep2ViewController.swift in Sources */,
+				66C83D411FC2DC1600428527 /* SubmitButton.swift in Sources */,
 				11DA99157D1096C1AE2DAB86 /* PortfolioViewController.swift in Sources */,
 				469DA7231F6C1FB1000B904C /* KYCStep1ViewController.swift in Sources */,
 			);
