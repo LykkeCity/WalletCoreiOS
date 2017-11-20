@@ -11,8 +11,6 @@ import WalletCore
 
 class CashOutSummaryViewController: UIViewController {
     
-    @IBOutlet private weak var backgroundHeightConstraint: NSLayoutConstraint!
-
     @IBOutlet private weak var successLabel: UILabel!
     @IBOutlet private weak var detailsLabel: UILabel!
     @IBOutlet private weak var waitMessageLabel: UILabel!
@@ -32,8 +30,6 @@ class CashOutSummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        backgroundHeightConstraint.constant = Display.height
-        
         successLabel.text = Localize("cashOut.newDesign.success")
         detailsLabel.text = Localize("cashOut.newDesign.transactionDetails")
         waitMessageLabel.text = Localize("cashOut.newDesign.waitMessage")

@@ -12,7 +12,6 @@ import WalletCore
 
 class CashOutEnterAmountViewController: UIViewController {
     
-    @IBOutlet private weak var backgroundHeightConstraint: NSLayoutConstraint!
     @IBOutlet internal weak var scrollView: UIScrollView!
     
     @IBOutlet private weak var assetImageView: UIImageView!
@@ -60,8 +59,6 @@ class CashOutEnterAmountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        backgroundHeightConstraint.constant = Display.height
         
         enterAmountLabel.text = Localize("cashOut.newDesign.enterAmount")
         slideToRetrieveLabel.text = Localize("cashOut.newDesign.slideToRetrieve")
