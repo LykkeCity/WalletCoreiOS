@@ -15,6 +15,7 @@ target 'WalletCore' do
   pod 'MDWamp'
   pod 'UIDeviceIdentifier'
   pod 'Valet'
+  pod 'RxKeyboard', '~> 0.6.2'
 
   target 'WalletCoreTests' do
     inherit! :search_paths

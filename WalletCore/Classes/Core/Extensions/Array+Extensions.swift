@@ -7,6 +7,14 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+
+extension Array where Element == Disposable {
+    func disposed(by disposeBag: DisposeBag) {
+        self.forEach { $0.disposed(by: disposeBag) }
+    }
+}
 
 extension Array {
     var randomElement: Element?  {

@@ -101,4 +101,8 @@ public extension ObservableType where Self.E == ApiResult<LWLykkeWalletsData> {
     public func isLoading() -> Observable<Bool> {
         return map{$0.isLoading}
     }
+    
+    public func filterError() -> Observable<[AnyHashable : Any]>{
+        return map{$0.getError()}.filterNil()
+    }
 }

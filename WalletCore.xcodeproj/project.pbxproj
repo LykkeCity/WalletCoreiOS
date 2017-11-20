@@ -16,6 +16,8 @@
 		461C6F981F8BAC3700C5E8B3 /* PayWithAssetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F971F8BAC3700C5E8B3 /* PayWithAssetListViewModel.swift */; };
 		461C6F9A1F8BAC4500C5E8B3 /* BuyWithAssetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F991F8BAC4500C5E8B3 /* BuyWithAssetListViewModel.swift */; };
 		461C6F9C1F8BB54D00C5E8B3 /* TradingAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F9B1F8BB54D00C5E8B3 /* TradingAssetsViewModel.swift */; };
+		46286F661FC304D2002CAF8D /* InputForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46286F651FC304D2002CAF8D /* InputForm.swift */; };
+		46286F681FC304F7002CAF8D /* ScrollView+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46286F671FC304F7002CAF8D /* ScrollView+Keyboard.swift */; };
 		462878781F433F9A0006BE45 /* LWHistoryGraphModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462878771F433F9A0006BE45 /* LWHistoryGraphModel.swift */; };
 		463090601F908E7200F24A56 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630905F1F908E7200F24A56 /* Decimal+Extensions.swift */; };
 		4649C6321FACB2C500765579 /* RefreshTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649C6311FACB2C500765579 /* RefreshTrigger.swift */; };
@@ -626,6 +628,8 @@
 		461C6F971F8BAC3700C5E8B3 /* PayWithAssetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWithAssetListViewModel.swift; sourceTree = "<group>"; };
 		461C6F991F8BAC4500C5E8B3 /* BuyWithAssetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyWithAssetListViewModel.swift; sourceTree = "<group>"; };
 		461C6F9B1F8BB54D00C5E8B3 /* TradingAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingAssetsViewModel.swift; sourceTree = "<group>"; };
+		46286F651FC304D2002CAF8D /* InputForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputForm.swift; sourceTree = "<group>"; };
+		46286F671FC304F7002CAF8D /* ScrollView+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+Keyboard.swift"; sourceTree = "<group>"; };
 		462878771F433F9A0006BE45 /* LWHistoryGraphModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWHistoryGraphModel.swift; sourceTree = "<group>"; };
 		4630905F1F908E7200F24A56 /* Decimal+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extensions.swift"; sourceTree = "<group>"; };
 		4649C6311FACB2C500765579 /* RefreshTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTrigger.swift; sourceTree = "<group>"; };
@@ -1273,6 +1277,15 @@
 			path = Offchain;
 			sourceTree = "<group>";
 		};
+		46286F641FC304C5002CAF8D /* UX */ = {
+			isa = PBXGroup;
+			children = (
+				46286F651FC304D2002CAF8D /* InputForm.swift */,
+				46286F671FC304F7002CAF8D /* ScrollView+Keyboard.swift */,
+			);
+			path = UX;
+			sourceTree = "<group>";
+		};
 		4649C6301FACB2B100765579 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1334,6 +1347,7 @@
 		46C9A8CE1F417B1B00B83CCB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				46286F641FC304C5002CAF8D /* UX */,
 				46C9B00C1F417BF100B83CCB /* ViewModel */,
 				46C9A8D31F417B7500B83CCB /* Core */,
 			);
@@ -2703,6 +2717,7 @@
 				"${BUILT_PRODUCTS_DIR}/MPMessagePack/MPMessagePack.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework",
@@ -2721,6 +2736,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MPMessagePack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketRocket.framework",
@@ -2891,6 +2907,7 @@
 				469DA7171F6BFA91000B904C /* LWRxAuthManagerPinSecurityGet.swift in Sources */,
 				46C08DAD1F989CCC0059BDD3 /* LWRxAuthManagerOffchainTrade.swift in Sources */,
 				46C08DBD1F98CD9E0059BDD3 /* LWPacketOffchainProcessChannel.swift in Sources */,
+				46286F661FC304D2002CAF8D /* InputForm.swift in Sources */,
 				46C9B0271F417C1B00B83CCB /* AssetCellViewModel.swift in Sources */,
 				665960581FA354CA00DB3D62 /* CashOutBankAccountViewModel.swift in Sources */,
 				66BD6AD61F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift in Sources */,
@@ -3101,6 +3118,7 @@
 				46C9B04B1F42C84500B83CCB /* LWAssetModel+Extensions.swift in Sources */,
 				6664C6131F9E012600F6D1A6 /* WalletViewModel.swift in Sources */,
 				463090601F908E7200F24A56 /* Decimal+Extensions.swift in Sources */,
+				46286F681FC304F7002CAF8D /* ScrollView+Keyboard.swift in Sources */,
 				46C9AF0A1F417BD800B83CCB /* LWPacketLykkeSettings.m in Sources */,
 				46C9AF081F417BD800B83CCB /* LWPacketLogout.m in Sources */,
 				46C9AE741F417BD700B83CCB /* NSString+Date.m in Sources */,
