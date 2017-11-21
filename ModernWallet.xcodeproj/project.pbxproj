@@ -102,6 +102,7 @@
 		66C83D411FC2DC1600428527 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C83D401FC2DC1600428527 /* SubmitButton.swift */; };
 		66C83D441FC3089600428527 /* BackupPrivateKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C83D431FC3089600428527 /* BackupPrivateKeyViewController.swift */; };
 		66D68FC41FBB22A000C437D9 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66D68FC31FBB22A000C437D9 /* Settings.storyboard */; };
+		66D83A281FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D83A271FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift */; };
 		66DA84CD1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DA84CC1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift */; };
 		66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */; };
 		66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */; };
@@ -276,6 +277,7 @@
 		66C83D401FC2DC1600428527 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		66C83D431FC3089600428527 /* BackupPrivateKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyViewController.swift; sourceTree = "<group>"; };
 		66D68FC31FBB22A000C437D9 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		66D83A271FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyWordsViewController.swift; sourceTree = "<group>"; };
 		66DA84CC1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSectionHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutPersonalDetailsViewController.swift; sourceTree = "<group>"; };
 		66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOurBankAccountDetailsViewController.swift; sourceTree = "<group>"; };
@@ -726,6 +728,7 @@
 				66C83D431FC3089600428527 /* BackupPrivateKeyViewController.swift */,
 				66C83D3E1FC2D18400428527 /* BackupPrivateKeyStartViewController.swift */,
 				668216A01FC32EF900D9BD59 /* BackupPrivateKeyPinViewController.swift */,
+				66D83A271FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift */,
 			);
 			path = BackupPrivateKey;
 			sourceTree = "<group>";
@@ -1197,6 +1200,7 @@
 				CC6805A51F68121C0079CB05 /* PinViewController.swift in Sources */,
 				CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */,
 				467C20741FB47BEC002A90AE /* DrawerController.swift in Sources */,
+				66D83A281FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift in Sources */,
 				CC84F2751F60411F00FABEA3 /* RegisterFillPhoneViewController.swift in Sources */,
 				66C83D3F1FC2D18400428527 /* BackupPrivateKeyStartViewController.swift in Sources */,
 				4671C9D21F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift in Sources */,

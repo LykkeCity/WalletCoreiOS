@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,7 +31,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TQR-TQ-LIU" secondAttribute="trailing" id="atu-ed-qhf"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="TQR-TQ-LIU" secondAttribute="bottom" id="daG-Tf-S2f"/>
+                            <constraint firstAttribute="bottom" secondItem="TQR-TQ-LIU" secondAttribute="bottom" id="daG-Tf-S2f"/>
                             <constraint firstItem="TQR-TQ-LIU" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="lRs-A6-m5F"/>
                             <constraint firstItem="0rq-pk-cDK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nUL-qh-9j7"/>
                             <constraint firstItem="TQR-TQ-LIU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="sD9-rz-NNh"/>
