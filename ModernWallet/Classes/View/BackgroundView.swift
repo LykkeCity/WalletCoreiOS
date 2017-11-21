@@ -11,6 +11,8 @@ import UIKit
 @IBDesignable
 class BackgroundView: UIView {
     
+    private let backgroundImageName = "BlueBackground"
+    
     private weak var imageView: UIImageView!
 
     override init(frame: CGRect) {
@@ -24,7 +26,8 @@ class BackgroundView: UIView {
     }
     
     override func prepareForInterfaceBuilder() {
-        imageView.image = UIImage(named: "BlueBackground", in: Bundle(for: BackgroundView.self), compatibleWith: nil)
+        imageView.image = UIImage(named: backgroundImageName, in: Bundle(for: BackgroundView.self), compatibleWith: nil)
+        imageView.frame = bounds
     }
     
     override func layoutSubviews() {
@@ -35,7 +38,7 @@ class BackgroundView: UIView {
     }
 
     private func setupBackground() {
-        let imageView = UIImageView(image: UIImage(named: "BlueBackground"))
+        let imageView = UIImageView(image: UIImage(named: backgroundImageName))
         imageView.frame = bounds
         self.imageView = imageView
         if subviews.count == 0 {
