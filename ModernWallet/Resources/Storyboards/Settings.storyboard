@@ -12,6 +12,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="Geomanist-Book.otf">
+            <string>Geomanist</string>
             <string>Geomanist-Book</string>
         </array>
         <array key="Geomanist-Light.otf">
@@ -54,7 +55,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-4T-avN">
-                                <rect key="frame" x="155.5" y="97" width="64" height="15"/>
+                                <rect key="frame" x="151.5" y="96" width="72" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -199,13 +200,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BACKUP PRIVATE KEY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3SP-Yf-tm3">
-                                <rect key="frame" x="32" y="75" width="311" height="15"/>
+                                <rect key="frame" x="32" y="75" width="311" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMj-Ix-TdS">
-                                <rect key="frame" x="0.0" y="98" width="375" height="441"/>
+                                <rect key="frame" x="0.0" y="100.5" width="375" height="438.5"/>
                                 <connections>
                                     <segue destination="hYX-dA-Tl5" kind="embed" identifier="EmbedNavController" id="qck-G5-p6Q"/>
                                 </connections>
@@ -244,7 +245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTd-DM-2WZ">
-                                <rect key="frame" x="32" y="148.5" width="311" height="144"/>
+                                <rect key="frame" x="32" y="136.5" width="311" height="168"/>
                                 <string key="text">You need to make a backup of your wallet. With your backup, you can easily restore your funds if your defice is lost or damaged. Your backup is a series of 12 words. Just write them down and keep them in a safe place. Anyone who knows this sequence of words can access and spend all the funds in your wallet, so be sure to keep it in a safe place.</string>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -259,9 +260,12 @@
                                 <state key="normal" title="I'M READY TO WRITE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="jaG-9K-zIP" kind="show" id="31K-PJ-TNk"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAKE A BACKUP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBa-fY-RDm">
-                                <rect key="frame" x="32" y="90.5" width="311" height="18"/>
+                                <rect key="frame" x="32" y="75.5" width="311" height="21"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -308,6 +312,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKy-fI-TER" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3482" y="-118"/>
+        </scene>
+        <!--PinViewController-->
+        <scene sceneID="0Wv-2r-c2v">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignIn" referencedIdentifier="PinViewController" id="HxP-YY-i6z" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qQR-iS-OA2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5113" y="-524"/>
+        </scene>
+        <!--Backup Private Key Pin View Controller-->
+        <scene sceneID="V0S-qs-Czq">
+            <objects>
+                <viewController id="jaG-9K-zIP" customClass="BackupPrivateKeyPinViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4O0-Xc-cUZ" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="441"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4s-cf-gZE">
+                                <rect key="frame" x="0.0" y="125" width="375" height="390"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="390" id="iPr-IS-mBa"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="HxP-YY-i6z" kind="embed" identifier="EmbedPin" id="hcC-hv-kQB"/>
+                                </connections>
+                            </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOR ADDITIONAL SECURITY ENTER YOUR PIN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9D-Bp-Rba">
+                                <rect key="frame" x="67.5" y="69" width="240" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="DOG-Mv-XSP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="q4s-cf-gZE" firstAttribute="leading" secondItem="RG3-rK-vtI" secondAttribute="leading" id="Eki-rJ-cYu"/>
+                            <constraint firstItem="RG3-rK-vtI" firstAttribute="trailing" secondItem="q4s-cf-gZE" secondAttribute="trailing" id="WKk-Oh-8qA"/>
+                            <constraint firstItem="q4s-cf-gZE" firstAttribute="centerY" secondItem="4O0-Xc-cUZ" secondAttribute="centerY" priority="250" id="b6Z-8N-EHE"/>
+                            <constraint firstItem="F9D-Bp-Rba" firstAttribute="centerX" secondItem="4O0-Xc-cUZ" secondAttribute="centerX" id="kWr-oD-WDb"/>
+                            <constraint firstItem="F9D-Bp-Rba" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4O0-Xc-cUZ" secondAttribute="top" constant="69" id="x4r-dU-kHI"/>
+                            <constraint firstItem="q4s-cf-gZE" firstAttribute="top" secondItem="F9D-Bp-Rba" secondAttribute="bottom" constant="16" id="xdh-ea-9th"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RG3-rK-vtI"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="F9D-Bp-Rba" id="Prn-KY-mqn"/>
+                        <segue destination="CRK-gB-9j7" kind="show" identifier="ShowWords" id="Fvy-yy-6Ql"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pkj-8b-1RG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5194" y="-118"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="LgO-vQ-jtx">
+            <objects>
+                <viewController id="CRK-gB-9j7" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LOT-JT-xvL" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="441"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="wF7-f1-Fu9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mCe-g7-Zg9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6076" y="-118"/>
         </scene>
     </scenes>
     <resources>
