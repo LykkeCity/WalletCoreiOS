@@ -23,9 +23,10 @@ public extension UIScrollView {
                 guard
                     let `self` = self,
                     let rootView = self.window?.rootViewController?.view
-                    else {
+                else {
                         return
                 }
+                
                 let scrollViewFrame = rootView.convert(self.bounds, from: self)
                 let intersectionHeight = scrollViewFrame.intersection(keyboardFrame).height
                 self.contentInset.bottom = intersectionHeight

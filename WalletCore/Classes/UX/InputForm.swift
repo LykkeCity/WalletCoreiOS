@@ -82,6 +82,7 @@ public extension InputForm {
     
     func setupFormUX(forWidth width: CGFloat, disposedBy disposeBag: DisposeBag) {
         scrollView?.subscribeKeyBoard(withDisposeBag: disposeBag)
+        scrollView?.keyboardDismissMode = .onDrag
         
         guard let lastField = textFields.last else {
             return

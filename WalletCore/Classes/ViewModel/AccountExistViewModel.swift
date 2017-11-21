@@ -18,6 +18,8 @@ open class AccountExistViewModel {
     public init(email: Observable<String>, authManager:LWRxAuthManager = LWRxAuthManager.instance) {
         let observable = email
             .throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .filter{ LWValidator.validateEmail($0) }
             .flatMapLatest{email in authManager.accountExist.request(withParams: email)}
             .shareReplay(1)
         
