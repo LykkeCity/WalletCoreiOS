@@ -61,7 +61,7 @@ class BackupPrivateKeyWordsViewController: UIViewController {
     @IBAction private func nextButtonTapped() {
         let nextWordIndex = selectedWordIndex + 1
         guard nextWordIndex < words.count else {
-//            performSegue(withIdentifier: "WriteWords", sender: nil)
+            performSegue(withIdentifier: "WriteWords", sender: nil)
             return
         }
         prevButton.isEnabled = true
