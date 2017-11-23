@@ -98,6 +98,7 @@
 		6689EE521FBB291C0006010F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE511FBB291C0006010F /* SettingsTableViewController.swift */; };
 		6689EE551FBB316A0006010F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */; };
 		66A2293A1FC31E2500C4D38A /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A229391FC31E2500C4D38A /* BackgroundView.swift */; };
+		66B4E6FA1FC72F2D001649B8 /* BackupPrivateKeyCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B4E6F91FC72F2D001649B8 /* BackupPrivateKeyCompleteViewController.swift */; };
 		66C83D3F1FC2D18400428527 /* BackupPrivateKeyStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C83D3E1FC2D18400428527 /* BackupPrivateKeyStartViewController.swift */; };
 		66C83D411FC2DC1600428527 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C83D401FC2DC1600428527 /* SubmitButton.swift */; };
 		66C83D441FC3089600428527 /* BackupPrivateKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C83D431FC3089600428527 /* BackupPrivateKeyViewController.swift */; };
@@ -274,6 +275,7 @@
 		6689EE511FBB291C0006010F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		66A229391FC31E2500C4D38A /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		66B4E6F91FC72F2D001649B8 /* BackupPrivateKeyCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyCompleteViewController.swift; sourceTree = "<group>"; };
 		66C83D3E1FC2D18400428527 /* BackupPrivateKeyStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyStartViewController.swift; sourceTree = "<group>"; };
 		66C83D401FC2DC1600428527 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		66C83D431FC3089600428527 /* BackupPrivateKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyViewController.swift; sourceTree = "<group>"; };
@@ -732,6 +734,7 @@
 				668216A01FC32EF900D9BD59 /* BackupPrivateKeyPinViewController.swift */,
 				66D83A271FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift */,
 				66D83A291FC5614D0071D705 /* BackupPrivateKeyCheckWordsViewController.swift */,
+				66B4E6F91FC72F2D001649B8 /* BackupPrivateKeyCompleteViewController.swift */,
 			);
 			path = BackupPrivateKey;
 			sourceTree = "<group>";
@@ -1233,6 +1236,7 @@
 				CC94587F1F03DB8E00676249 /* BankViewController.swift in Sources */,
 				CC9458811F03DC4F00676249 /* StartViewController.swift in Sources */,
 				463680DA1FBC880D002E3C6C /* ButtonWithIconView.swift in Sources */,
+				66B4E6FA1FC72F2D001649B8 /* BackupPrivateKeyCompleteViewController.swift in Sources */,
 				462B34301F00EC5000374038 /* Colors.swift in Sources */,
 				469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */,
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
