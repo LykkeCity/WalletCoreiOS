@@ -30,4 +30,41 @@ class SettingsTableViewCell: UITableViewCell {
         selectedBackgroundView = backroundView
     }
     
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        updateBackground(animated: animated)
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        updateBackground(animated: animated)
+    }
+    
+    private func updateBackground(animated: Bool) {
+        let selectionVisible = isSelected || isHighlighted
+        let alphaSettingClosure: () -> () = {
+            self.selectedBackgroundView?.alpha = selectionVisible ? 1.0 : 0.0
+        }
+        let completionClosure: (Bool) -> () = { (success) in
+            if !selectionVisible {
+                self.selectedBackgroundView?.removeFromSuperview()
+            }
+        }
+        if let selectedBackgroundView = selectedBackgroundView, selectionVisible, selectedBackgroundView.superview == nil {
+            contentView.insertSubview(selectedBackgroundView, at: 0)
+            selectedBackgroundView.alpha = 0.0
+            var backgroundFrame = contentView.bounds
+            backgroundFrame.origin.y = 2.0
+            backgroundFrame.size.height -= 2.0
+            selectedBackgroundView.frame = backgroundFrame
+        }
+        if animated {
+            UIView.animate(withDuration: 0.3, animations: alphaSettingClosure, completion: completionClosure)
+        }
+        else {
+            alphaSettingClosure()
+            completionClosure(true)
+        }
+    }
+    
 }

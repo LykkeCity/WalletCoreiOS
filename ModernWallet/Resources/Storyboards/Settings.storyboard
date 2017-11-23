@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2G0-Vx-Oas">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -26,11 +22,11 @@
             <objects>
                 <viewController id="2G0-Vx-Oas" customClass="SettingsViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7UT-Cx-qEZ" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wX-PT-eBd">
-                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="JgP-qH-fEW"/>
                                 </constraints>
@@ -39,7 +35,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pi3-Tu-UKA">
-                                <rect key="frame" x="0.0" y="128" width="375" height="539"/>
+                                <rect key="frame" x="0.0" y="128" width="600" height="472"/>
                                 <connections>
                                     <segue destination="5SP-wQ-BZJ" kind="embed" identifier="EmbedNavController" id="Y7K-rZ-ssh"/>
                                 </connections>
@@ -56,7 +52,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozs-4T-avN">
-                                <rect key="frame" x="155.5" y="97.5" width="64" height="15"/>
+                                <rect key="frame" x="264" y="96" width="72" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -103,6 +99,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="5SP-wQ-BZJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="At5-ig-Ym2">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -127,7 +124,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UPDATE YOUR SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqd-p3-maV">
-                                    <rect key="frame" x="30" y="16" width="315" height="18"/>
+                                    <rect key="frame" x="30" y="16" width="315" height="21"/>
                                     <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -194,20 +191,20 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6B8-1h-uUk">
-                                <rect key="frame" x="124.5" y="28" width="125" height="39"/>
+                                <rect key="frame" x="125" y="28" width="125" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="NMi-um-mcP"/>
                                     <constraint firstAttribute="height" constant="39" id="wEx-X1-rdj"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BACKUP PRIVATE KEY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3SP-Yf-tm3">
-                                <rect key="frame" x="32" y="75" width="311" height="15"/>
+                                <rect key="frame" x="32" y="75" width="311" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMj-Ix-TdS">
-                                <rect key="frame" x="0.0" y="98" width="375" height="441"/>
+                                <rect key="frame" x="0.0" y="100.5" width="375" height="438.5"/>
                                 <connections>
                                     <segue destination="hYX-dA-Tl5" kind="embed" identifier="EmbedNavController" id="qck-G5-p6Q"/>
                                 </connections>
@@ -242,18 +239,18 @@
             <objects>
                 <viewController id="DWG-f6-AYY" customClass="BackupPrivateKeyStartViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0fH-QK-hAk" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="441"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="438.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTd-DM-2WZ">
-                                <rect key="frame" x="32" y="148.5" width="311" height="144"/>
+                                <rect key="frame" x="32" y="135.5" width="311" height="168"/>
                                 <string key="text">You need to make a backup of your wallet. With your backup, you can easily restore your funds if your defice is lost or damaged. Your backup is a series of 12 words. Just write them down and keep them in a safe place. Anyone who knows this sequence of words can access and spend all the funds in your wallet, so be sure to keep it in a safe place.</string>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZ6-id-G5B" customClass="SubmitButton" customModule="ModernWallet" customModuleProvider="target">
-                                <rect key="frame" x="32" y="331" width="311" height="69"/>
+                                <rect key="frame" x="32" y="328.5" width="311" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="A4t-4s-ne2"/>
                                 </constraints>
@@ -266,7 +263,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAKE A BACKUP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBa-fY-RDm">
-                                <rect key="frame" x="32" y="90.5" width="311" height="18"/>
+                                <rect key="frame" x="32" y="74.5" width="311" height="21"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -303,6 +300,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="hYX-dA-Tl5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CnI-UY-B61">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -327,11 +325,11 @@
             <objects>
                 <viewController id="jaG-9K-zIP" customClass="BackupPrivateKeyPinViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4O0-Xc-cUZ" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="441"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="438.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q4s-cf-gZE">
-                                <rect key="frame" x="0.0" y="119" width="375" height="390"/>
+                                <rect key="frame" x="0.0" y="125" width="375" height="390"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="390" id="iPr-IS-mBa"/>
                                 </constraints>
@@ -340,7 +338,7 @@
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOR ADDITIONAL SECURITY ENTER YOUR PIN" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9D-Bp-Rba">
-                                <rect key="frame" x="67.5" y="69" width="240" height="34"/>
+                                <rect key="frame" x="67.5" y="69" width="240" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="DOG-Mv-XSP"/>
                                 </constraints>
@@ -374,11 +372,11 @@
             <objects>
                 <viewController id="CRK-gB-9j7" customClass="BackupPrivateKeyWordsViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LOT-JT-xvL" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="441"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="438.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WRITE DOWN THE FOLLOWING WORDS AND KEEP THEM IN A SAFE PLACE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQ6-fa-jWq">
-                                <rect key="frame" x="30" y="69" width="315.5" height="36"/>
+                                <rect key="frame" x="33" y="69" width="309.5" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="250" constant="320" id="CcB-JG-348"/>
                                 </constraints>
@@ -386,10 +384,10 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ETA-Dy-PkR">
-                                <rect key="frame" x="0.0" y="113" width="375" height="250"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETA-Dy-PkR">
+                                <rect key="frame" x="0.0" y="140" width="375" height="220.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wek-0R-HhM">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="wek-0R-HhM">
                                     <size key="itemSize" width="364" height="198"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -397,7 +395,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordCell" id="WKM-UJ-zgJ">
-                                        <rect key="frame" x="0.0" y="26" width="364" height="198"/>
+                                        <rect key="frame" x="0.0" y="12.5" width="364" height="198"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="364" height="198"/>
@@ -425,7 +423,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YI-yy-meF">
-                                <rect key="frame" x="30" y="371" width="64" height="40"/>
+                                <rect key="frame" x="33" y="368.5" width="71" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="oWi-7U-PGU"/>
                                 </constraints>
@@ -439,13 +437,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 OF 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eF7-jH-Ket">
-                                <rect key="frame" x="165.5" y="383.5" width="44.5" height="15"/>
+                                <rect key="frame" x="161" y="380.5" width="53.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qv-JH-RvF">
-                                <rect key="frame" x="279.5" y="371" width="66" height="40"/>
+                                <rect key="frame" x="272.5" y="368.5" width="70" height="40"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -481,11 +479,138 @@
                         <outlet property="nextButton" destination="8Qv-JH-RvF" id="i1H-n3-0aE"/>
                         <outlet property="pageLabel" destination="eF7-jH-Ket" id="vKk-R9-d1n"/>
                         <outlet property="prevButton" destination="3YI-yy-meF" id="fzc-BQ-vHS"/>
+                        <segue destination="QbK-u5-AJq" kind="show" identifier="WriteWords" id="Dr8-CK-2gX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCe-g7-Zg9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6076" y="-118.29085457271366"/>
+        </scene>
+        <!--Backup Private Key Check Words View Controller-->
+        <scene sceneID="Ggn-zT-KW1">
+            <objects>
+                <viewController id="QbK-u5-AJq" customClass="BackupPrivateKeyCheckWordsViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BU7-XZ-EJv" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="438.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="PKp-8k-7Po">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="438.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDK-MA-wOD">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="438.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TYPE ALL 12 WORDS SEPARATED BY SPACE TO VERIFY YOUR BACKUP" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bug-6H-6Qd">
+                                                <rect key="frame" x="27.5" y="69" width="320" height="42"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="320" id="PFN-Qb-1Ge"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="pYg-Xb-OcF">
+                                                <rect key="frame" x="32" y="201.5" width="311" height="36"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="6k1-o1-kEw"/>
+                                                </constraints>
+                                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                            </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mS6-ja-jGo">
+                                                <rect key="frame" x="32" y="237.5" width="311" height="1"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="Ox8-cC-tA3"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3z-bf-aOV" customClass="SubmitButton" customModule="ModernWallet" customModuleProvider="target">
+                                                <rect key="frame" x="32" y="349.5" width="311" height="69"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="69" id="kpw-0T-iob"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="CONFIRM"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="pYg-Xb-OcF" firstAttribute="leading" secondItem="YDK-MA-wOD" secondAttribute="leading" constant="32" id="5iV-Zf-4sP"/>
+                                            <constraint firstItem="mS6-ja-jGo" firstAttribute="leading" secondItem="pYg-Xb-OcF" secondAttribute="leading" id="7dC-jO-N9o"/>
+                                            <constraint firstItem="Bug-6H-6Qd" firstAttribute="centerX" secondItem="YDK-MA-wOD" secondAttribute="centerX" id="9sx-C3-hJQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="pYg-Xb-OcF" secondAttribute="trailing" constant="32" id="DP6-e9-fU4"/>
+                                            <constraint firstItem="Bug-6H-6Qd" firstAttribute="top" secondItem="YDK-MA-wOD" secondAttribute="top" constant="69" id="JRa-CD-BLt"/>
+                                            <constraint firstItem="mS6-ja-jGo" firstAttribute="top" secondItem="pYg-Xb-OcF" secondAttribute="bottom" id="Lex-gN-GTA"/>
+                                            <constraint firstAttribute="bottom" secondItem="N3z-bf-aOV" secondAttribute="bottom" constant="20" id="Y50-mh-Jz9"/>
+                                            <constraint firstItem="N3z-bf-aOV" firstAttribute="leading" secondItem="pYg-Xb-OcF" secondAttribute="leading" id="gQk-NA-Uyt"/>
+                                            <constraint firstItem="pYg-Xb-OcF" firstAttribute="centerY" secondItem="YDK-MA-wOD" secondAttribute="centerY" id="ha9-hl-nb8"/>
+                                            <constraint firstItem="mS6-ja-jGo" firstAttribute="trailing" secondItem="pYg-Xb-OcF" secondAttribute="trailing" id="mcK-Bo-l5t"/>
+                                            <constraint firstItem="Bug-6H-6Qd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YDK-MA-wOD" secondAttribute="leading" constant="20" id="z83-uT-n1p"/>
+                                            <constraint firstItem="N3z-bf-aOV" firstAttribute="trailing" secondItem="pYg-Xb-OcF" secondAttribute="trailing" id="zpC-C9-UY7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="YDK-MA-wOD" firstAttribute="leading" secondItem="PKp-8k-7Po" secondAttribute="leading" id="Gga-vk-sml"/>
+                                    <constraint firstAttribute="bottom" secondItem="YDK-MA-wOD" secondAttribute="bottom" id="VYz-u8-UTs"/>
+                                    <constraint firstItem="YDK-MA-wOD" firstAttribute="height" secondItem="PKp-8k-7Po" secondAttribute="height" id="ceE-RZ-JkR"/>
+                                    <constraint firstAttribute="trailing" secondItem="YDK-MA-wOD" secondAttribute="trailing" id="etr-07-arp"/>
+                                    <constraint firstItem="YDK-MA-wOD" firstAttribute="top" secondItem="PKp-8k-7Po" secondAttribute="top" id="lEa-re-jYr"/>
+                                    <constraint firstItem="YDK-MA-wOD" firstAttribute="width" secondItem="PKp-8k-7Po" secondAttribute="width" id="ubx-z7-OLR"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1bR-Tb-zR6" firstAttribute="bottom" secondItem="PKp-8k-7Po" secondAttribute="bottom" id="1Yv-xp-uuX"/>
+                            <constraint firstItem="PKp-8k-7Po" firstAttribute="leading" secondItem="BU7-XZ-EJv" secondAttribute="leading" id="gvM-Wx-Jna"/>
+                            <constraint firstItem="PKp-8k-7Po" firstAttribute="top" secondItem="1bR-Tb-zR6" secondAttribute="top" id="kPt-Lh-VHw"/>
+                            <constraint firstAttribute="trailing" secondItem="PKp-8k-7Po" secondAttribute="trailing" id="q99-DF-qDG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1bR-Tb-zR6"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmButton" destination="N3z-bf-aOV" id="Mta-wy-c6F"/>
+                        <outlet property="messageLabel" destination="Bug-6H-6Qd" id="pQl-Ua-tYW"/>
+                        <outlet property="scrollView" destination="PKp-8k-7Po" id="Xcw-op-gSQ"/>
+                        <outlet property="typingTextField" destination="pYg-Xb-OcF" id="gGF-Ck-YXY"/>
+                        <segue destination="6Ke-km-crr" kind="show" identifier="ShowComplete" id="fI4-wN-wwF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aWj-g0-cQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6976.8000000000002" y="-118.29085457271366"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2Gc-zX-NPa">
+            <objects>
+                <viewController id="6Ke-km-crr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hlj-4E-U4z" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="438.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BRAVO PATRONE!!!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOc-vH-rxk">
+                                <rect key="frame" x="20" y="209" width="334" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YOc-vH-rxk" firstAttribute="leading" secondItem="D25-VE-p6P" secondAttribute="leading" constant="20" id="bsV-Ta-GIA"/>
+                            <constraint firstItem="YOc-vH-rxk" firstAttribute="centerY" secondItem="hlj-4E-U4z" secondAttribute="centerY" id="ol5-AS-gbg"/>
+                            <constraint firstItem="YOc-vH-rxk" firstAttribute="centerX" secondItem="hlj-4E-U4z" secondAttribute="centerX" id="x1J-Cm-vUo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="D25-VE-p6P"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m1K-E7-rQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7826" y="-118"/>
         </scene>
     </scenes>
     <resources>
