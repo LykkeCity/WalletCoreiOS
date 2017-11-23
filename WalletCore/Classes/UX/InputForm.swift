@@ -131,5 +131,9 @@ public extension InputForm where Self: UIViewController {
         setupFormUX(forWidth: self.view.bounds.width, disposedBy: disposeBag)
     }
     
+    func endEditing() {
+        textFields.forEach{ $0.resignFirstResponder() }
+        view.endEditing(true)
+    }
 }
 
