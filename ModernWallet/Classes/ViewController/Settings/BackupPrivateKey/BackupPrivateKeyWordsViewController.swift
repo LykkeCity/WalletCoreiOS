@@ -13,7 +13,7 @@ class BackupPrivateKeyWordsViewController: UIViewController {
     
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var prevButton: UIButton!
+    @IBOutlet fileprivate weak var prevButton: UIButton!
     @IBOutlet private weak var pageLabel: UILabel!
     @IBOutlet private weak var nextButton: UIButton!
 
@@ -24,7 +24,11 @@ class BackupPrivateKeyWordsViewController: UIViewController {
         return LWPrivateKeyManager.generateSeedWords12() as! [String]
     }()
     
-    private var selectedWordIndex = 0
+    fileprivate var selectedWordIndex = 0 {
+        didSet {
+            prevButton.isEnabled = selectedWordIndex > 0
+        }
+    }
     fileprivate var currentWordIndex = 0
 
     override func viewDidLoad() {
@@ -55,16 +59,16 @@ class BackupPrivateKeyWordsViewController: UIViewController {
         selectedWordIndex = max(selectedWordIndex - 1, 0)
         let indexPath = IndexPath(row: selectedWordIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        prevButton.isEnabled = selectedWordIndex > 0
     }
     
     @IBAction private func nextButtonTapped() {
+        if selectedWordIndex == words.count { return }
         let nextWordIndex = selectedWordIndex + 1
         guard nextWordIndex < words.count else {
+            nextButton.isEnabled = false
             performSegue(withIdentifier: "WriteWords", sender: nil)
             return
         }
-        prevButton.isEnabled = true
         selectedWordIndex = nextWordIndex
         let indexPath = IndexPath(row: nextWordIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -110,6 +114,9 @@ extension BackupPrivateKeyWordsViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let wordIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width + 0.5)
         if wordIndex != currentWordIndex {
+            if scrollView.isDecelerating {
+                selectedWordIndex = wordIndex
+            }
             currentWordIndex = wordIndex
             updatePageLabel()
         }
