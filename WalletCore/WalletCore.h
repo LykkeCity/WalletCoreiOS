@@ -103,6 +103,9 @@ FOUNDATION_EXPORT const unsigned char WalletCoreVersionString[];
 #import <WalletCore/LWImageDownloader.h>
 #import <WalletCore/LWActionsElementsGroupModel.h>
 #import <WalletCore/LWPacketCurrencyDeposit.h>
+#import <WalletCore/LWPacketWalletMigration.h>
+#import <WalletCore/LWWalletMigrationModel.h>
+#import <WalletCore/LWPacketSaveBackupState.h>
 
 #import <WalletCore/Macro.h>
 #import <WalletCore/LWUtils.h>

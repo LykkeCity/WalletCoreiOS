@@ -64,4 +64,6 @@ public class LWRxAuthManager {
     public lazy var offchainCashOutSwift     = { LWRxAuthManagerOffchainCashOutSwift() }()
     public lazy var cashOutSwift             = { LWRxAuthManagerCashOutSwift() }()
     public lazy var currencyDeposit          = { LWRxAuthManagerCurrencyDeposit() }()
+    public lazy var walletMigration          = { LWRxAuthManagerWalletMigration() }()
+    public lazy var walletBackupComplete     = { LWRxAuthManagerWalletBackupComplete() }()
 }
