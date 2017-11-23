@@ -581,6 +581,8 @@
 		665960541FA3545D00DB3D62 /* CashOutAmountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665960531FA3545D00DB3D62 /* CashOutAmountViewModel.swift */; };
 		665960561FA354A600DB3D62 /* CashOutGeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665960551FA354A600DB3D62 /* CashOutGeneralViewModel.swift */; };
 		665960581FA354CA00DB3D62 /* CashOutBankAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665960571FA354C900DB3D62 /* CashOutBankAccountViewModel.swift */; };
+		665E15481FC6BEEB000973DA /* LWRxAuthManagerWalletMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E15471FC6BEEB000973DA /* LWRxAuthManagerWalletMigration.swift */; };
+		665E154A1FC6CD20000973DA /* LWRxAuthManagerWalletBackupComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665E15491FC6CD20000973DA /* LWRxAuthManagerWalletBackupComplete.swift */; };
 		6664C6131F9E012600F6D1A6 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664C6121F9E012600F6D1A6 /* WalletViewModel.swift */; };
 		666ACF861FAB1C4D00E42384 /* LWPacketCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666ACF851FAB1C4D00E42384 /* LWPacketCashOutSwift.swift */; };
 		666ACF881FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */; };
@@ -1198,6 +1200,8 @@
 		665960531FA3545D00DB3D62 /* CashOutAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutAmountViewModel.swift; sourceTree = "<group>"; };
 		665960551FA354A600DB3D62 /* CashOutGeneralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutGeneralViewModel.swift; sourceTree = "<group>"; };
 		665960571FA354C900DB3D62 /* CashOutBankAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutBankAccountViewModel.swift; sourceTree = "<group>"; };
+		665E15471FC6BEEB000973DA /* LWRxAuthManagerWalletMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerWalletMigration.swift; sourceTree = "<group>"; };
+		665E15491FC6CD20000973DA /* LWRxAuthManagerWalletBackupComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerWalletBackupComplete.swift; sourceTree = "<group>"; };
 		6664C6121F9E012600F6D1A6 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		666ACF851FAB1C4D00E42384 /* LWPacketCashOutSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketCashOutSwift.swift; sourceTree = "<group>"; };
 		666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCashOutSwift.swift; sourceTree = "<group>"; };
@@ -2261,6 +2265,8 @@
 				666ACF871FAB265100E42384 /* LWRxAuthManagerCashOutSwift.swift */,
 				874FA6731FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift */,
 				460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */,
+				665E15471FC6BEEB000973DA /* LWRxAuthManagerWalletMigration.swift */,
+				665E15491FC6CD20000973DA /* LWRxAuthManagerWalletBackupComplete.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2859,6 +2865,7 @@
 				46C9AF6E1F417BD800B83CCB /* LWColorizer.m in Sources */,
 				467C20681FB452F7002A90AE /* PushNotificationsViewModel.swift in Sources */,
 				46C9AFFA1F417BD800B83CCB /* GDXRESTContext.m in Sources */,
+				665E154A1FC6CD20000973DA /* LWRxAuthManagerWalletBackupComplete.swift in Sources */,
 				46C9AFE11F417BD800B83CCB /* LWPrivateWalletHistoryCellModel.m in Sources */,
 				46C9AF661F417BD800B83CCB /* LWKeychainManager.m in Sources */,
 				614214201F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift in Sources */,
@@ -2871,6 +2878,7 @@
 				46C9AFD71F417BD800B83CCB /* LWLykkeData.m in Sources */,
 				46C9AFF21F417BD800B83CCB /* ABPadLockScreenView.m in Sources */,
 				46C9AFDB1F417BD800B83CCB /* LWPKBackupModel.m in Sources */,
+				665E15481FC6BEEB000973DA /* LWRxAuthManagerWalletMigration.swift in Sources */,
 				46C9AF4A1F417BD800B83CCB /* LWPacketSetUSAUser.m in Sources */,
 				46C9AF341F417BD800B83CCB /* LWPacketRestrictedCountries.m in Sources */,
 				46C9AEF41F417BD700B83CCB /* LWPacketGraphData.m in Sources */,
