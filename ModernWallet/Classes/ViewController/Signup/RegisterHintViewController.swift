@@ -26,6 +26,10 @@ class RegisterHintViewController: UIViewController {
     }()
     
     var disposeBag = DisposeBag()
+    
+#if TEST
+    var loadingViewModel: LoadingViewModel!
+#endif
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,10 +51,6 @@ class RegisterHintViewController: UIViewController {
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        viewModel.loading.subscribe(onNext: {isLoading in
-            self.nextButton.isEnabled = !isLoading
-        }).disposed(by: disposeBag)
-        
         viewModel.result.asObservable()
             .filterError()
             .subscribe(onNext: {[weak self] errorData in
@@ -58,6 +58,36 @@ class RegisterHintViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        #if TEST
+            
+        let allAssetRequest = viewModel.result.asObservable()
+            .filterSuccess()
+            .flatMap { _ in
+                return LWRxAuthManager.instance.allAssets.request()
+            }
+            
+        let setBaseAssetRequest = allAssetRequest
+            .filterSuccess()
+            .map { (assets) in
+                return assets.filter { $0.displayId == "USD" }.first?.identity ?? "USD"
+            }
+            .flatMap { assetId in
+                LWRxAuthManager.instance.baseAssetSet.request(withParams: assetId)
+            }
+            
+        allAssetRequest
+            .subscribe(onNext: {[weak self] pack in
+                //gonext
+                print("Success registration")
+                self?.goToNextScreen()
+            })
+            .disposed(by: disposeBag)
+            
+        loadingViewModel = LoadingViewModel([viewModel.loading, allAssetRequest.isLoading(), setBaseAssetRequest.isLoading()])
+        let loading = loadingViewModel.isLoading
+            
+        #else
+
         viewModel.result.asObservable()
             .filterSuccess()
             .subscribe(onNext: {[weak self] pack in
@@ -66,6 +96,14 @@ class RegisterHintViewController: UIViewController {
                 self?.goToNextScreen()
             })
             .disposed(by: disposeBag)
+            
+        let loading = viewModel.loading
+            
+        #endif
+
+        loading.subscribe(onNext: {isLoading in
+            self.nextButton.isEnabled = !isLoading
+        }).disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

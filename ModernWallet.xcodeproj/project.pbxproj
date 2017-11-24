@@ -1530,6 +1530,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"TEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
 				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
@@ -1617,6 +1618,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"TEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.PrimeHolding.Lykke-Wallet";
 				PRODUCT_MODULE_NAME = ModernWallet;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
