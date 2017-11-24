@@ -13,7 +13,6 @@ import WalletCore
 
 class AssetDetailViewController: UIViewController {
 
-    @IBOutlet weak var backgroundHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var assetName: UILabel!
     @IBOutlet weak var baseAssetAmount: AssetAmountView!
     @IBOutlet weak var assetAmount: AssetAmountView!
@@ -40,7 +39,6 @@ class AssetDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundHeightConstraint.constant = Display.height
         
         transactionsTable.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
