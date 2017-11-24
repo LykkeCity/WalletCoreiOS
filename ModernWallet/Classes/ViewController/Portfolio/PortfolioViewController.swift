@@ -107,11 +107,8 @@ class PortfolioViewController: UIViewController {
                 emptyPortfolioView.addMoneyButton.rx.tap.asObservable(),
                 pieChartCenterView.addMoneyButton.rx.tap.asObservable()
             )
-            .subscribe(onNext: {[storyboard, parent] _ in
-                guard let controller = storyboard?.instantiateViewController(withIdentifier: "AddMoney") else{ return }
-                guard let drawerController = parent as? KYDrawerController else{ return }
-                
-                drawerController.mainViewController = controller
+            .subscribe(onNext: {[weak self] _ in
+                self?.performSegue(withIdentifier: "AddMoney", sender: nil)
             })
             .disposed(by: disposeBag)
         

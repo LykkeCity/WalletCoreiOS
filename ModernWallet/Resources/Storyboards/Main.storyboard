@@ -34,7 +34,7 @@
                         <viewControllerLayoutGuide type="top" id="dwJ-BB-CGE"/>
                         <viewControllerLayoutGuide type="bottom" id="ANu-8k-2LF"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="b4f-Uy-zLS">
+                    <view key="view" contentMode="scaleToFill" id="b4f-Uy-zLS" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -98,6 +98,7 @@
                         <outlet property="pieChartView" destination="HEp-CV-Ncx" id="dIe-f0-nBm"/>
                         <outlet property="tableView" destination="ItN-nj-RpW" id="w7V-Uk-V73"/>
                         <segue destination="AsQ-c2-Ie9" kind="show" identifier="assetDetail" id="hH7-az-XO1"/>
+                        <segue destination="uHE-v2-Y1d" kind="custom" identifier="AddMoney" customClass="DrawerEmbedMainControllerSegue" customModule="ModernWallet" customModuleProvider="target" id="aIe-LY-Euj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I2T-gC-FhK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -196,7 +197,7 @@
                         <viewControllerLayoutGuide type="top" id="rGH-9X-kHu"/>
                         <viewControllerLayoutGuide type="bottom" id="7mf-Jo-B2a"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Mjn-Jc-t39">
+                    <view key="view" contentMode="scaleToFill" id="Mjn-Jc-t39" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -323,16 +324,10 @@
                         <viewControllerLayoutGuide type="top" id="CKh-oE-uRs"/>
                         <viewControllerLayoutGuide type="bottom" id="iaq-hj-whl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="48L-8c-5Ss">
+                    <view key="view" contentMode="scaleToFill" id="48L-8c-5Ss" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="WN9-20-mex">
-                                <rect key="frame" x="0.0" y="-60" width="375" height="667"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="667" id="ATB-N3-qYQ"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIU-xL-bms" userLabel="Header Container">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="273"/>
                                 <subviews>
@@ -348,19 +343,19 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rot-qG-J4U">
-                                        <rect key="frame" x="158" y="21.5" width="60" height="17.5"/>
+                                        <rect key="frame" x="158" y="22" width="60" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdX-4x-Q2r" userLabel="Balance Container">
-                                        <rect key="frame" x="0.0" y="39" width="375" height="165.5"/>
+                                        <rect key="frame" x="0.0" y="39.5" width="375" height="165"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-p9-w07" userLabel="Asset Balance">
-                                                <rect key="frame" x="138" y="51" width="100" height="64"/>
+                                                <rect key="frame" x="138" y="50" width="100" height="64"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
-                                                        <rect key="frame" x="15" y="0.0" width="70.5" height="13"/>
+                                                        <rect key="frame" x="14.5" y="0.0" width="70.5" height="13"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="11"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -506,7 +501,7 @@
                                             <rect key="frame" x="89" y="0.0" width="197" height="59"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-D9-gM2" userLabel="Transactions Stack View">
-                                                    <rect key="frame" x="28" y="22.5" width="141.5" height="14"/>
+                                                    <rect key="frame" x="28.5" y="22.5" width="141.5" height="14"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bvp-5i-wvn">
                                                             <rect key="frame" x="0.0" y="0.0" width="21" height="14"/>
@@ -557,20 +552,16 @@
                             <constraint firstItem="xy7-RG-klk" firstAttribute="leading" secondItem="48L-8c-5Ss" secondAttribute="leading" id="Anc-Jk-Asr"/>
                             <constraint firstAttribute="trailing" secondItem="vIU-xL-bms" secondAttribute="trailing" id="C7c-K5-lNO"/>
                             <constraint firstAttribute="trailing" secondItem="xy7-RG-klk" secondAttribute="trailing" id="Ded-xg-acQ"/>
-                            <constraint firstAttribute="trailing" secondItem="WN9-20-mex" secondAttribute="trailing" id="Ghq-ZH-qeF"/>
                             <constraint firstItem="vIU-xL-bms" firstAttribute="top" secondItem="48L-8c-5Ss" secondAttribute="top" id="IfO-Jk-6eY"/>
                             <constraint firstItem="xy7-RG-klk" firstAttribute="top" secondItem="vIU-xL-bms" secondAttribute="bottom" id="Q30-S9-qWw"/>
                             <constraint firstItem="iaq-hj-whl" firstAttribute="top" secondItem="xy7-RG-klk" secondAttribute="bottom" id="R7L-JW-LUq"/>
-                            <constraint firstItem="iaq-hj-whl" firstAttribute="top" secondItem="WN9-20-mex" secondAttribute="bottom" id="ToN-f5-DR7"/>
                             <constraint firstItem="vIU-xL-bms" firstAttribute="height" secondItem="48L-8c-5Ss" secondAttribute="height" multiplier="0.45" id="gkP-0b-JzE"/>
                             <constraint firstItem="vIU-xL-bms" firstAttribute="leading" secondItem="48L-8c-5Ss" secondAttribute="leading" id="smu-Gq-fmv"/>
-                            <constraint firstItem="WN9-20-mex" firstAttribute="leading" secondItem="48L-8c-5Ss" secondAttribute="leading" id="uqx-Bg-mGn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="assetAmount" destination="1MM-5Y-eOM" id="BF0-eg-qNT"/>
                         <outlet property="assetName" destination="Rot-qG-J4U" id="ZRE-gS-hMw"/>
-                        <outlet property="backgroundHeightConstraint" destination="ATB-N3-qYQ" id="yNV-X6-tsI"/>
                         <outlet property="baseAssetAmount" destination="tF3-il-4Jb" id="dNX-d3-fsc"/>
                         <outlet property="filterButton" destination="U2F-vb-jJp" id="do4-e9-u5E"/>
                         <outlet property="messageButton" destination="Um3-ti-Wjx" id="ij3-Wy-x9y"/>
@@ -608,13 +599,13 @@
                                 </connections>
                             </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-gZ-usr">
-                                <rect key="frame" x="74.5" y="218" width="227" height="232"/>
+                                <rect key="frame" x="74.5" y="215.5" width="227.5" height="237.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="V18-eG-6Hb">
-                                        <rect key="frame" x="0.0" y="0.0" width="227" height="180"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="227.5" height="180"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
-                                        <rect key="frame" x="0.0" y="200" width="227" height="32"/>
+                                        <rect key="frame" x="0.0" y="200" width="227.5" height="37.5"/>
                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -654,7 +645,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="AddMoney" storyboardName="AddMoney" referencedIdentifier="AddMoney" id="uHE-v2-Y1d" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DH1-1e-s2v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-410" y="-374"/>
+            <point key="canvasLocation" x="3190" y="61"/>
         </scene>
         <!--transactionVC-->
         <scene sceneID="DaH-k6-WnU">
@@ -692,9 +683,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="UR3-Ng-hbf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clm-Un-qpf">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -714,14 +702,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="UR3-Ng-hbf" firstAttribute="leading" secondItem="p6E-Pg-ImJ" secondAttribute="leading" id="6N7-94-eEy"/>
-                            <constraint firstItem="tkP-00-PCL" firstAttribute="top" secondItem="UR3-Ng-hbf" secondAttribute="bottom" id="F29-1M-Yd1"/>
                             <constraint firstItem="E6a-Td-ESy" firstAttribute="top" secondItem="clm-Un-qpf" secondAttribute="bottom" id="FqN-cO-THu"/>
                             <constraint firstItem="clm-Un-qpf" firstAttribute="top" secondItem="p6E-Pg-ImJ" secondAttribute="top" id="GEh-9X-D0o"/>
                             <constraint firstItem="tkP-00-PCL" firstAttribute="top" secondItem="E6a-Td-ESy" secondAttribute="bottom" id="JKY-dj-lD1"/>
                             <constraint firstItem="E6a-Td-ESy" firstAttribute="leading" secondItem="p6E-Pg-ImJ" secondAttribute="leading" id="QS9-NQ-cIy"/>
-                            <constraint firstAttribute="trailing" secondItem="UR3-Ng-hbf" secondAttribute="trailing" id="QpT-gG-KFG"/>
-                            <constraint firstItem="UR3-Ng-hbf" firstAttribute="top" secondItem="p6E-Pg-ImJ" secondAttribute="top" id="cJY-Ja-A1a"/>
                             <constraint firstAttribute="trailing" secondItem="E6a-Td-ESy" secondAttribute="trailing" id="ex7-PU-NFE"/>
                             <constraint firstItem="clm-Un-qpf" firstAttribute="leading" secondItem="p6E-Pg-ImJ" secondAttribute="leading" id="r5g-m1-1IO"/>
                             <constraint firstAttribute="trailing" secondItem="clm-Un-qpf" secondAttribute="trailing" id="zQP-Af-YWh"/>
