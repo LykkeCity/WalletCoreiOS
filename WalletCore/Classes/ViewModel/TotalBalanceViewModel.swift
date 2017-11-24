@@ -21,6 +21,8 @@ open class TotalBalanceViewModel {
     /// User balance based on base asset and main info.It includes trading, private balances
     public let balance: Driver<String>
     
+    public let isEmpty: Driver<Bool>
+    
     public let observables: (
         baseAsset: Observable<ApiResult<LWAssetModel>>,
         mainInfo: Observable<ApiResult<(mainInfo: LWPacketGetMainScreenInfo, asset: LWAssetModel)>>
@@ -53,6 +55,11 @@ open class TotalBalanceViewModel {
         balance = mainInfoObservable
             .mapToCurrency()
             .asDriver(onErrorJustReturn: "")
+        
+        isEmpty = mainInfoObservable
+            .filterSuccess()
+            .map { $0.mainInfo.totalBalance == Decimal(0) }
+            .asDriver(onErrorJustReturn: false)
     }
 }
 
