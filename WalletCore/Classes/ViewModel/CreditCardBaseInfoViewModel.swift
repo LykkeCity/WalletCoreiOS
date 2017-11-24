@@ -61,7 +61,7 @@ open class CreditCardBaseInfoViewModel {
         
         assetCode = input.asset.asObservable()
             .filterNil()
-            .mapToIdentity()
+            .mapToDisplayId()
             .asDriver(onErrorJustReturn: "")
      
         baseAsset.filterSuccess()
@@ -212,6 +212,12 @@ extension ObservableType where Self.E == LWAssetModel {
     
     func mapToIdentity() -> Observable<String> {
         return map{$0.identity}
+            .replaceNilWith("")
+            .startWith("")
+    }
+    
+    func mapToDisplayId() -> Observable<String> {
+        return map { $0.displayId }
             .replaceNilWith("")
             .startWith("")
     }
