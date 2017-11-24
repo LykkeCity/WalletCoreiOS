@@ -105,7 +105,7 @@ extension Observable where Element == LWAppSettingsModel {
             return [
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: "PersonalData"),
                 SettingsTableViewController.RowInfo(icon: confirmOrdersIcon, title: Localize("settings.newDesign.confirmOrders"), segue: ""),
-                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BaseAssetIcon"), title: Localize("settings.newDesign.baseAsset"), subtitle: appSettings.baseAsset?.identity, subtitleFont: UIFont(name: "Geomanist", size: 15.0), segue: ""),
+                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BaseAssetIcon"), title: Localize("settings.newDesign.baseAsset"), subtitle: appSettings.baseAsset?.displayId, subtitleFont: UIFont(name: "Geomanist", size: 15.0), segue: ""),
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "RefundIcon"), title: Localize("settings.newDesign.refundAddress"), subtitle: appSettings.refundAddress, segue: ""),
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BackupPrivateKeyIcon"), title: Localize("settings.newDesign.backupPrivateKey"), segue: "BackupKey"),
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "TermsIcon"), title: Localize("settings.newDesign.termsOfUse"), segue: "")
