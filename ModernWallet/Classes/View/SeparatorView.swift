@@ -11,39 +11,39 @@ import UIKit
 @IBDesignable
 class SeparatorView: UIView {
 
-    @IBOutlet var view: UIView!
-    
     override init(frame: CGRect) {
-        // 1. setup any properties here
-        
-        // 2. call super.init(frame:)
         super.init(frame: frame)
-        
-        // 3. Setup view from .xib file
-        xibSetup()
+        buildView()
     }
     
     required init(coder aDecoder: NSCoder) {
-        // 1. setup any properties here
-        
-        // 2. call super.init(coder:)
         super.init(coder: aDecoder)!
-        
-        // 3. Setup view from .xib file
-        xibSetup()
+        buildView()
     }
     
-    func xibSetup() {
-        view = loadViewFromNib("SeparatorView")
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 100.0, height: 2.0)
+    }
+    
+    // MARK: - Private
+    
+    private func buildView() {
+        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         
-        // use bounds not frame or it'll be offset
-        view.frame = bounds
+        let blackView = UIView()
+        blackView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3)
+        blackView.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        var viewFrame = bounds
+        viewFrame.size.height = 1.0 / UIScreen.main.scale
+        blackView.frame = viewFrame
+        addSubview(blackView)
         
-        // Make the view stretch with containing view
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        // Adding custom subview on top of our view (over any custom drawing > see note below)
-        addSubview(view)
+        let whiteView = UIView()
+        whiteView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3)
+        whiteView.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        viewFrame.origin.y = bounds.height - viewFrame.height
+        whiteView.frame = viewFrame
+        addSubview(whiteView)
     }
 
 }

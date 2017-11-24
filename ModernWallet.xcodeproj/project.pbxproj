@@ -56,7 +56,6 @@
 		6140E3241F14D9C100D8885B /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6140E3231F14D9C100D8885B /* Transactions.storyboard */; };
 		6140E3281F14E6AF00D8885B /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6140E3271F14E6AF00D8885B /* TransactionsViewController.swift */; };
 		6140E32A1F14E9C900D8885B /* TransactionsStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6140E3291F14E9C900D8885B /* TransactionsStep1ViewController.swift */; };
-		6140EA441F1CE4F700B05A97 /* SeparatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6140EA431F1CE4F700B05A97 /* SeparatorView.xib */; };
 		6140EA471F1CE51C00B05A97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6140EA461F1CE51C00B05A97 /* SeparatorView.swift */; };
 		6141FEA51EE585F9004F50FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6141FEA41EE585F9004F50FF /* Main.storyboard */; };
 		6141FEB01EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6141FEAE1EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift */; };
@@ -233,7 +232,6 @@
 		6140E3231F14D9C100D8885B /* Transactions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
 		6140E3271F14E6AF00D8885B /* TransactionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		6140E3291F14E9C900D8885B /* TransactionsStep1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsStep1ViewController.swift; sourceTree = "<group>"; };
-		6140EA431F1CE4F700B05A97 /* SeparatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeparatorView.xib; sourceTree = "<group>"; };
 		6140EA461F1CE51C00B05A97 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		6141FEA41EE585F9004F50FF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6141FEAE1EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioCurrencyTableViewCell.swift; sourceTree = "<group>"; };
@@ -836,7 +834,6 @@
 				46B583731F94C51500B475DB /* Asset */,
 				46B583721F94C4C700B475DB /* Chart */,
 				46B5836C1F94C1C500B475DB /* Portfolio */,
-				6140EA431F1CE4F700B05A97 /* SeparatorView.xib */,
 				6140EA461F1CE51C00B05A97 /* SeparatorView.swift */,
 				6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */,
 				462B342F1F00EC5000374038 /* Colors.swift */,
@@ -988,7 +985,6 @@
 				A12BEEA11D2BBC7900045916 /* tabbara-line.png in Resources */,
 				A12DB54F1D741C2300319EA7 /* Proxima Nova Bold.otf in Resources */,
 				A10FBA431ED54EC300341F09 /* EnglishLocale.txt in Resources */,
-				6140EA441F1CE4F700B05A97 /* SeparatorView.xib in Resources */,
 				CCDB25791EF42B2E000D590F /* SignIn.storyboard in Resources */,
 				469DA7191F6C0C69000B904C /* KYC.storyboard in Resources */,
 				469DA7201F6C14C5000B904C /* KYCTabCollectionViewCell.xib in Resources */,
