@@ -105,6 +105,7 @@
 		66D83A281FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D83A271FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift */; };
 		66D83A2A1FC5614D0071D705 /* BackupPrivateKeyCheckWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D83A291FC5614D0071D705 /* BackupPrivateKeyCheckWordsViewController.swift */; };
 		66DA84CD1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DA84CC1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift */; };
+		66EE6F6D1FC879D600F56E4D /* EmptyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE6F6C1FC879D600F56E4D /* EmptyWalletViewController.swift */; };
 		66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */; };
 		66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */; };
 		870D4DD11FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */; };
@@ -281,6 +282,7 @@
 		66D83A271FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyWordsViewController.swift; sourceTree = "<group>"; };
 		66D83A291FC5614D0071D705 /* BackupPrivateKeyCheckWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyCheckWordsViewController.swift; sourceTree = "<group>"; };
 		66DA84CC1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSectionHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		66EE6F6C1FC879D600F56E4D /* EmptyWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletViewController.swift; sourceTree = "<group>"; };
 		66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutPersonalDetailsViewController.swift; sourceTree = "<group>"; };
 		66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOurBankAccountDetailsViewController.swift; sourceTree = "<group>"; };
 		69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 				463FC5AA1F94DB7F005930DD /* CryptoCurrency */,
 				CC9458801F03DC4F00676249 /* StartViewController.swift */,
 				CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */,
+				66EE6F6C1FC879D600F56E4D /* EmptyWalletViewController.swift */,
 			);
 			path = AddMoney;
 			sourceTree = "<group>";
@@ -1233,6 +1236,7 @@
 				CC9458811F03DC4F00676249 /* StartViewController.swift in Sources */,
 				463680DA1FBC880D002E3C6C /* ButtonWithIconView.swift in Sources */,
 				66B4E6FA1FC72F2D001649B8 /* BackupPrivateKeyCompleteViewController.swift in Sources */,
+				66EE6F6D1FC879D600F56E4D /* EmptyWalletViewController.swift in Sources */,
 				462B34301F00EC5000374038 /* Colors.swift in Sources */,
 				469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */,
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
