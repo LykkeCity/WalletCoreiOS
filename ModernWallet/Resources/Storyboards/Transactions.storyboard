@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0f2-8i-tq3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -19,38 +23,26 @@
         <!--Transactions View Controller-->
         <scene sceneID="seR-Dl-Uj1">
             <objects>
-                <viewController storyboardIdentifier="transactionVC" id="0f2-8i-tq3" customClass="TransactionsViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="transactionVC" id="0f2-8i-tq3" customClass="TransactionsViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t1y-iZ-7tm"/>
                         <viewControllerLayoutGuide type="bottom" id="YjU-Ow-xqp"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WhS-CT-Cpv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="WhS-CT-Cpv" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="grp-tt-m0e">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GuQ-01-G3f" userLabel="Header">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="LGo-CN-hzp"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="4iP-zC-gps" kind="embed" id="7pC-y3-tKj"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLs-e5-8Q1" userLabel="Graph View Controller">
-                                <rect key="frame" x="0.0" y="60" width="600" height="210"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="280"/>
                                 <connections>
                                     <segue destination="BYX-Ur-PFz" kind="embed" id="TrH-3h-lMA"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1T-1W-A2a" userLabel="Total Balance Container">
-                                <rect key="frame" x="0.0" y="60" width="600" height="210"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="280"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0n-iS-8Vz" userLabel="Total Balance">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="210"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                         <connections>
                                             <segue destination="ZWH-O4-0hz" kind="embed" id="PiS-Xj-6iM"/>
                                         </connections>
@@ -79,19 +71,19 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pK-Zx-6V0" userLabel="History Records">
-                                <rect key="frame" x="0.0" y="270" width="600" height="330"/>
+                                <rect key="frame" x="0.0" y="300" width="375" height="367"/>
                                 <connections>
                                     <segue destination="2Zw-wx-Jhf" kind="embed" id="ucX-LS-9l7"/>
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRANSACTIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbs-DS-BBD">
-                                <rect key="frame" x="242" y="243" width="116.5" height="18"/>
+                                <rect key="frame" x="129.5" y="273" width="116.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="15.300000190734863"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQb-C4-OH7">
-                                <rect key="frame" x="520" y="227" width="50" height="50"/>
+                                <rect key="frame" x="295" y="257" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="529-Nw-Aoa"/>
                                     <constraint firstAttribute="width" constant="50" id="9Jh-YM-Zb2"/>
@@ -102,28 +94,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xQb-C4-OH7" firstAttribute="centerY" secondItem="xbs-DS-BBD" secondAttribute="centerY" id="1On-bZ-423"/>
-                            <constraint firstAttribute="trailing" secondItem="grp-tt-m0e" secondAttribute="trailing" id="21k-Hm-Fsb"/>
                             <constraint firstAttribute="trailing" secondItem="fLs-e5-8Q1" secondAttribute="trailing" id="5x5-gy-jAp"/>
-                            <constraint firstItem="grp-tt-m0e" firstAttribute="leading" secondItem="WhS-CT-Cpv" secondAttribute="leading" id="AeR-QE-izp"/>
-                            <constraint firstItem="i1T-1W-A2a" firstAttribute="top" secondItem="GuQ-01-G3f" secondAttribute="bottom" id="Afr-bF-WBd"/>
+                            <constraint firstItem="fLs-e5-8Q1" firstAttribute="top" secondItem="t1y-iZ-7tm" secondAttribute="bottom" id="ELx-kD-bij"/>
                             <constraint firstAttribute="trailing" secondItem="xQb-C4-OH7" secondAttribute="trailing" constant="30" id="G3F-0N-aZv"/>
-                            <constraint firstItem="grp-tt-m0e" firstAttribute="top" secondItem="WhS-CT-Cpv" secondAttribute="top" id="G9w-fI-ckD"/>
                             <constraint firstItem="1pK-Zx-6V0" firstAttribute="top" secondItem="i1T-1W-A2a" secondAttribute="bottom" id="Hzf-0L-YE0"/>
                             <constraint firstItem="1pK-Zx-6V0" firstAttribute="top" secondItem="fLs-e5-8Q1" secondAttribute="bottom" id="Ks3-gA-Zzc"/>
                             <constraint firstItem="YjU-Ow-xqp" firstAttribute="top" secondItem="1pK-Zx-6V0" secondAttribute="bottom" id="Nn6-2D-4mW"/>
+                            <constraint firstItem="i1T-1W-A2a" firstAttribute="top" secondItem="t1y-iZ-7tm" secondAttribute="bottom" id="P72-4a-3EU"/>
                             <constraint firstAttribute="trailing" secondItem="i1T-1W-A2a" secondAttribute="trailing" id="Pv1-9H-OOf"/>
                             <constraint firstItem="i1T-1W-A2a" firstAttribute="leading" secondItem="WhS-CT-Cpv" secondAttribute="leading" id="Qxq-00-GUZ"/>
-                            <constraint firstItem="fLs-e5-8Q1" firstAttribute="top" secondItem="GuQ-01-G3f" secondAttribute="bottom" id="Ymc-oX-Yri"/>
                             <constraint firstItem="1pK-Zx-6V0" firstAttribute="leading" secondItem="WhS-CT-Cpv" secondAttribute="leading" id="a0h-ph-fyH"/>
                             <constraint firstItem="1pK-Zx-6V0" firstAttribute="top" secondItem="xbs-DS-BBD" secondAttribute="bottom" constant="9" id="b2V-6e-ZMs"/>
-                            <constraint firstItem="YjU-Ow-xqp" firstAttribute="top" secondItem="grp-tt-m0e" secondAttribute="bottom" id="deJ-iW-4Uk"/>
                             <constraint firstItem="fLs-e5-8Q1" firstAttribute="leading" secondItem="WhS-CT-Cpv" secondAttribute="leading" id="ePH-fT-5fQ"/>
-                            <constraint firstItem="GuQ-01-G3f" firstAttribute="top" secondItem="WhS-CT-Cpv" secondAttribute="top" id="nkn-Do-2M7"/>
-                            <constraint firstAttribute="trailing" secondItem="GuQ-01-G3f" secondAttribute="trailing" id="oZO-2Z-92f"/>
                             <constraint firstAttribute="trailing" secondItem="1pK-Zx-6V0" secondAttribute="trailing" id="oxO-Yx-Nx7"/>
                             <constraint firstItem="1pK-Zx-6V0" firstAttribute="height" secondItem="WhS-CT-Cpv" secondAttribute="height" multiplier="0.55" id="rM9-rn-LHy"/>
                             <constraint firstItem="xbs-DS-BBD" firstAttribute="centerX" secondItem="WhS-CT-Cpv" secondAttribute="centerX" id="uJ7-GY-Yqz"/>
-                            <constraint firstItem="GuQ-01-G3f" firstAttribute="leading" secondItem="WhS-CT-Cpv" secondAttribute="leading" id="zXN-PA-GDA"/>
                         </constraints>
                     </view>
                     <connections>
@@ -140,17 +125,17 @@
         <!--Transactions Step1 View Controller-->
         <scene sceneID="ejX-Dk-JgT">
             <objects>
-                <viewController id="2Zw-wx-Jhf" customClass="TransactionsStep1ViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2Zw-wx-Jhf" customClass="TransactionsStep1ViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xdh-k0-8DG"/>
                         <viewControllerLayoutGuide type="bottom" id="p0f-RW-SDw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wfA-CU-gRt">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="330"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LfR-vK-4aX">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="330"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="gv0-zQ-GPk">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
@@ -390,18 +375,10 @@
             </objects>
             <point key="canvasLocation" x="841" y="132"/>
         </scene>
-        <!--UIViewController-KAU-Mi-TR8-->
-        <scene sceneID="aoc-ex-jlU">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-KAU-Mi-TR8" id="4iP-zC-gps" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F25-BZ-fRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="840" y="77"/>
-        </scene>
         <!--Transactions Graph View Controller-->
         <scene sceneID="y06-n3-f7C">
             <objects>
-                <viewController id="BYX-Ur-PFz" customClass="TransactionsGraphViewController" customModule="LykkeWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYX-Ur-PFz" customClass="TransactionsGraphViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="StP-dw-1U0"/>
                         <viewControllerLayoutGuide type="bottom" id="lXE-sG-3aB"/>
@@ -410,7 +387,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="271"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-Go-6RY" customClass="SeparatorView" customModule="LykkeWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-Go-6RY" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
                                 <rect key="frame" x="28" y="0.0" width="358" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -526,7 +503,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BlueBackground" width="687" height="1223"/>
         <image name="backArrow" width="10" height="20"/>
         <image name="downloadIcon" width="10" height="16"/>
         <image name="filterIcon" width="23" height="16"/>

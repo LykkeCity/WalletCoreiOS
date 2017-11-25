@@ -11,7 +11,6 @@ import WalletCore
 
 class AddMoneyCCStep3ViewController: UIViewController {
 
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     @IBOutlet weak var paymentCompleteLabel: UILabel!
     @IBOutlet weak var orderDetailsLabel: UILabel!
     @IBOutlet weak var orderRefLabel: UILabel!
@@ -40,8 +39,7 @@ class AddMoneyCCStep3ViewController: UIViewController {
         addressLabel.text = Localize("addMoney.newDesign.creditcard.address")
         countryLabel.text = Localize("addMoney.newDesign.creditcard.country")
         zipLabel.text = Localize("addMoney.newDesign.creditcard.zipPayment")
-        returnToPortfolioButton.setTitle(Localize("addMoney.newDesign.bankaccount.returnToPortfolio"), for: UIControlState.normal)
-        imageHeight.constant =  Display.height
+    returnToPortfolioButton.setTitle(Localize("addMoney.newDesign.bankaccount.returnToPortfolio"), for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {

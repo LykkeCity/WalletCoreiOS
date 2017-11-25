@@ -73,6 +73,8 @@ class BuyOptimizedViewController: UIViewController {
         return OffchainTradeViewModel(offchainService: OffchainService.instance)
     }()
     
+    private let totalBalanceViewModel = TotalBalanceViewModel()
+    
     //MARK:- Computed properties
     var walletListView: BuyAssetListView {
         return tradeType.isBuy ? secondAssetList : firstAssetList
@@ -163,6 +165,18 @@ class BuyOptimizedViewController: UIViewController {
         
         loadingViewModel.isLoading
             .bind(to: rx.loading)
+            .disposed(by: disposeBag)
+        
+        totalBalanceViewModel.isEmpty
+            .drive(onNext: { [weak self] isEmpty in
+                guard isEmpty, let `self` = self else { return }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let emptyWalletVC = storyboard.instantiateViewController(withIdentifier: "EmptyWallet") as! EmptyWalletViewController
+                let messageKey = self.tradeType == .buy ? "emptyWallet.newDesign.buyMessage" : "emptyWallet.newDesign.sellMessage"
+                emptyWalletVC.message = Localize(messageKey)
+                self.rx.loading.onNext(false)
+                self.navigationController?.setViewControllers([emptyWalletVC], animated: false)
+            })
             .disposed(by: disposeBag)
     }
 

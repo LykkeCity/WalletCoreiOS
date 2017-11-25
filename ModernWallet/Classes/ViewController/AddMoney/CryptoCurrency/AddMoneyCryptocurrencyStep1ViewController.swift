@@ -15,7 +15,6 @@ import WalletCore
 class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
 
     @IBOutlet weak var currenciesTableView: UITableView!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     let disposeBag = DisposeBag()
     let currencies = FakeData.cryptoCyrrency
@@ -39,8 +38,6 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
                 cell.bind(toCurrency: CryptoCurrencyCellViewModel(element))
             }
             .disposed(by: disposeBag)
-        
-        imageHeight.constant =  Display.height
     }
 
     override func didReceiveMemoryWarning() {

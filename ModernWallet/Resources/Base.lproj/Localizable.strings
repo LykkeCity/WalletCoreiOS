@@ -923,6 +923,12 @@
 "newDesign.loading" = "Loading...";
 "newDesign.calculating" = "Calculating...";
 "newDesign.notAvailable" = "Not Available";
+"newDesign.chatNow" = "Chat Now";
+
+"emptyWallet.newDesign.title" = "YOU DON'T HAVE ANY ASSETS";
+"emptyWallet.newDesign.buyMessage" = "Your wallet is empty. In order to buy some assets, please add some money first.";
+"emptyWallet.newDesign.sellMessage" = "Your wallet is empty. In order to sell some assets, please add some money first.";
+"emptyWallet.newDesign.cashOutMessage" = "Your wallet is empty. In order to cash out some assets, please add some money first.";
 
 "cashOut.newDesign.title" = "CASH OUT";
 "cashOut.newDesign.availableBalance" = "AVAILABLE BALANCE";

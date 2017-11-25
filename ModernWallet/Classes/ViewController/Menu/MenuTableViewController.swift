@@ -38,12 +38,12 @@ class MenuTableViewController: UITableViewController {
     }
     
     private var items : [MenuItem] = [
-        MenuItem(title: Localize("menu.newDesign.addMoney"), image: #imageLiteral(resourceName: "ADD MONEY"), viewControllerIdentifier: "AddMoney"),
-        MenuItem(title: Localize("menu.newDesign.buy"), image: #imageLiteral(resourceName: "BUY"), viewControllerIdentifier: "buyOptimizedVC") {viewController in
+        MenuItem(title: Localize("menu.newDesign.addMoney"), image: #imageLiteral(resourceName: "ADD MONEY"), storyboardName: "AddMoney"),
+        MenuItem(title: Localize("menu.newDesign.buy"), image: #imageLiteral(resourceName: "BUY"), storyboardName: "Buy") {viewController in
             guard let viewController = viewController as? BuyOptimizedViewController else { return }
             viewController.tradeType = .buy
         },
-        MenuItem(title: Localize("menu.newDesign.sell"), image: #imageLiteral(resourceName: "SELL"), viewControllerIdentifier: "buyOptimizedVC", storyboardName: "Main") {viewController in
+        MenuItem(title: Localize("menu.newDesign.sell"), image: #imageLiteral(resourceName: "SELL"), storyboardName: "Buy") {viewController in
             guard let viewController = viewController as? BuyOptimizedViewController else { return }
             viewController.tradeType = .sell
         },
@@ -52,13 +52,13 @@ class MenuTableViewController: UITableViewController {
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.internalTransfer"), image: #imageLiteral(resourceName: "INTERNAL TRANSFER"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
-        MenuItem(title: Localize("menu.newDesign.portfolio"), image: #imageLiteral(resourceName: "PORTFOLIO"), viewControllerIdentifier: "PortfolioContainer"),
+        MenuItem(title: Localize("menu.newDesign.portfolio"), image: #imageLiteral(resourceName: "PORTFOLIO"), viewControllerIdentifier: "Portfolio"),
         MenuItem(title: Localize("menu.newDesign.receive"), image: #imageLiteral(resourceName: "RECEIVE"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.send"), image: #imageLiteral(resourceName: "SEND"),
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"), storyboardName: "Settings"),
-        MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), viewControllerIdentifier: "transactionVC"),
+        MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), storyboardName: "Transactions"),
         MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: nil, color: nil,
                  onSelect: MenuTableViewController.logout)
     ]
@@ -104,7 +104,8 @@ class MenuTableViewController: UITableViewController {
         
         let item = items[indexPath.row]
         guard let viewController = instantiateViewController(byMenuItem: item),
-            let drawerController = self.parent as? KYDrawerController
+            let drawerController = self.drawerController,
+            let rootViewController = drawerController.mainViewController as? RootViewController
         else {
             item.onSelect?(self)
             return
@@ -112,7 +113,7 @@ class MenuTableViewController: UITableViewController {
         
         item.onSelect?(viewController)
         
-        drawerController.mainViewController = viewController
+        rootViewController.embed(viewController: viewController, animated: true)
         drawerController.setDrawerState(.closed, animated: true)
     }
     

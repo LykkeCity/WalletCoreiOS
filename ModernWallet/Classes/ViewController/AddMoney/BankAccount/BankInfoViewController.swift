@@ -13,7 +13,6 @@ import WalletCore
 
 class BankInfoViewController: UIViewController {
 
-    @IBOutlet weak var backgroundHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var emailButton: UIButton!
     
     private let disposeBag = DisposeBag()
@@ -24,8 +23,6 @@ class BankInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        backgroundHeightConstraint.constant = Display.height
         
         //get user's base asset and assign it to the view model
         LWRxAuthManager.instance.baseAsset.request()

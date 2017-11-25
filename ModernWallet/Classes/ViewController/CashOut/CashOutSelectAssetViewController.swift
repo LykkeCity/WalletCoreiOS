@@ -46,12 +46,24 @@ class CashOutSelectAssetViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
         
+        navigationItem.title = Localize("cashOut.newDesign.title")
+        
         availableBalanceLabel.text = Localize("cashOut.newDesign.availableBalance")
         selectAssetLabel.text = Localize("cashOut.newDesign.selectAsset")
 
         totalBalanceViewModel.balance
-//            .do(onNext: { [weak self] _ in self?.refreshWallets.value = () }) //this line causes not hiding loader
             .drive(assetAmountView.rx.amount)
+            .disposed(by: disposeBag)
+        
+        totalBalanceViewModel.isEmpty
+            .drive(onNext: { [weak self] isEmpty in
+                guard isEmpty, let `self` = self else { return }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let emptyWalletVC = storyboard.instantiateViewController(withIdentifier: "EmptyWallet") as! EmptyWalletViewController
+                emptyWalletVC.message = Localize("emptyWallet.newDesign.cashOutMessage")
+                self.rx.loading.onNext(false)
+                self.navigationController?.setViewControllers([emptyWalletVC], animated: false)
+            })
             .disposed(by: disposeBag)
         
         totalBalanceViewModel.currencyName

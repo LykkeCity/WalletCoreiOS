@@ -17,7 +17,6 @@ class AddMoneyCCStep1ViewController: UIViewController {
     
     @IBOutlet weak var assetCode: UILabel!
     @IBOutlet weak var assetSymbol: UILabel!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var ccContainerView: UIView!
     @IBOutlet weak var amauntField: UITextField!
@@ -43,7 +42,6 @@ class AddMoneyCCStep1ViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.clear
-        imageHeight.constant =  Display.height
         
         ccContainerView.layer.borderWidth = 1.0
         ccContainerView.layer.borderColor = UIColor.white.cgColor

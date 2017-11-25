@@ -20,7 +20,6 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
     @IBOutlet weak var emailMeButton: UIButton!
     @IBOutlet weak var walletDescription: UILabel!
     @IBOutlet weak var copyLabel: UILabel!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     //MARK:- Services
     let walletsManager = LWRxPrivateWalletsManager.instance
@@ -61,7 +60,6 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
         observeEmailMeWalletAddress()
         handleQRCode()
         localize()
-        imageHeight.constant =  Display.height
         // Do any additional setup after loading the view from its nib.
     }
     
