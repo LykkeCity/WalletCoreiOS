@@ -16,7 +16,6 @@
 		462B34301F00EC5000374038 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462B342F1F00EC5000374038 /* Colors.swift */; };
 		463680DA1FBC880D002E3C6C /* ButtonWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463680D91FBC880D002E3C6C /* ButtonWithIconView.swift */; };
 		463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A51F94DB17005930DD /* MenuTableViewController.swift */; };
-		463FC5A81F94DB17005930DD /* TopNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A61F94DB17005930DD /* TopNavViewController.swift */; };
 		46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */; };
 		464BAA661FBC444000F473FA /* AssetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BAA651FBC444000F473FA /* AssetDetailViewController.swift */; };
 		4651CFB61FA32448009BFA45 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */; };
@@ -77,7 +76,6 @@
 		61FBCCC61F20C8FB004F7219 /* TotalBalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FBCCC51F20C8FB004F7219 /* TotalBalanceViewController.swift */; };
 		61FC79CF1F714016002A78CE /* KYCPhotoPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC79CE1F714016002A78CE /* KYCPhotoPlaceholderView.swift */; };
 		61FC79D21F714033002A78CE /* KYCPhotoPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FC79D11F714033002A78CE /* KYCPhotoPlaceholderView.xib */; };
-		66529DCA1F8D198B0059786B /* CashOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66529DC91F8D198B0059786B /* CashOutViewController.swift */; };
 		66529DCC1F8D1A670059786B /* CashOutSelectAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */; };
 		66529DD01F8E38F10059786B /* Geomanist-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCD1F8E38F00059786B /* Geomanist-Light.otf */; };
 		66529DD11F8E38F10059786B /* Geomanist-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCE1F8E38F00059786B /* Geomanist-Regular.otf */; };
@@ -93,7 +91,6 @@
 		66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA01F9E3BC8001E49E5 /* AssetAmountView+Rx.swift */; };
 		66806BA51F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */; };
 		668216A11FC32EF900D9BD59 /* BackupPrivateKeyPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668216A01FC32EF900D9BD59 /* BackupPrivateKeyPinViewController.swift */; };
-		6689EE501FBB27B50006010F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE4F1FBB27B50006010F /* SettingsViewController.swift */; };
 		6689EE521FBB291C0006010F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE511FBB291C0006010F /* SettingsTableViewController.swift */; };
 		6689EE551FBB316A0006010F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */; };
 		66A2293A1FC31E2500C4D38A /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A229391FC31E2500C4D38A /* BackgroundView.swift */; };
@@ -108,6 +105,7 @@
 		66EE6F6D1FC879D600F56E4D /* EmptyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE6F6C1FC879D600F56E4D /* EmptyWalletViewController.swift */; };
 		66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */; };
 		66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */; };
+		8705FF371FC8BF1D00E0F2B9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FF361FC8BF1D00E0F2B9 /* RootViewController.swift */; };
 		870D4DD11FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */; };
 		870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D4DD21FB1036000F23948 /* UIViewController+DrawerController.swift */; };
 		873537111FAF6AC50099EA50 /* CashOutSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873537101FAF6AC50099EA50 /* CashOutSummaryViewController.swift */; };
@@ -192,7 +190,6 @@
 		462B342F1F00EC5000374038 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		463680D91FBC880D002E3C6C /* ButtonWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithIconView.swift; sourceTree = "<group>"; };
 		463FC5A51F94DB17005930DD /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
-		463FC5A61F94DB17005930DD /* TopNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavViewController.swift; sourceTree = "<group>"; };
 		46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+PlaceholderColor.swift"; sourceTree = "<group>"; };
 		464BAA651FBC444000F473FA /* AssetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailViewController.swift; sourceTree = "<group>"; };
 		4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
@@ -254,7 +251,6 @@
 		61FBCCC51F20C8FB004F7219 /* TotalBalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalBalanceViewController.swift; sourceTree = "<group>"; };
 		61FC79CE1F714016002A78CE /* KYCPhotoPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPhotoPlaceholderView.swift; sourceTree = "<group>"; };
 		61FC79D11F714033002A78CE /* KYCPhotoPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCPhotoPlaceholderView.xib; sourceTree = "<group>"; };
-		66529DC91F8D198B0059786B /* CashOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutViewController.swift; sourceTree = "<group>"; };
 		66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSelectAssetViewController.swift; sourceTree = "<group>"; };
 		66529DCD1F8E38F00059786B /* Geomanist-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Light.otf"; sourceTree = "<group>"; };
 		66529DCE1F8E38F00059786B /* Geomanist-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Regular.otf"; sourceTree = "<group>"; };
@@ -270,7 +266,6 @@
 		66806BA01F9E3BC8001E49E5 /* AssetAmountView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetAmountView+Rx.swift"; sourceTree = "<group>"; };
 		66806BA41F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetCollectionCellViewModel+Rx.swift"; sourceTree = "<group>"; };
 		668216A01FC32EF900D9BD59 /* BackupPrivateKeyPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupPrivateKeyPinViewController.swift; sourceTree = "<group>"; };
-		6689EE4F1FBB27B50006010F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6689EE511FBB291C0006010F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		66A229391FC31E2500C4D38A /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
@@ -287,6 +282,7 @@
 		66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOurBankAccountDetailsViewController.swift; sourceTree = "<group>"; };
 		69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModernWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8705FF361FC8BF1D00E0F2B9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerEmbedMainControllerSegue.swift; sourceTree = "<group>"; };
 		870D4DD21FB1036000F23948 /* UIViewController+DrawerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DrawerController.swift"; sourceTree = "<group>"; };
 		873537101FAF6AC50099EA50 /* CashOutSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSummaryViewController.swift; sourceTree = "<group>"; };
@@ -675,8 +671,8 @@
 			isa = PBXGroup;
 			children = (
 				463FC5A51F94DB17005930DD /* MenuTableViewController.swift */,
-				463FC5A61F94DB17005930DD /* TopNavViewController.swift */,
 				467C20731FB47BEC002A90AE /* DrawerController.swift */,
+				8705FF361FC8BF1D00E0F2B9 /* RootViewController.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -695,7 +691,6 @@
 			isa = PBXGroup;
 			children = (
 				87C6CDF81FA5BA340069CC38 /* Cells */,
-				66529DC91F8D198B0059786B /* CashOutViewController.swift */,
 				66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */,
 				66806B9E1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift */,
 				66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */,
@@ -710,7 +705,6 @@
 			isa = PBXGroup;
 			children = (
 				6689EE531FBB314D0006010F /* Cells */,
-				6689EE4F1FBB27B50006010F /* SettingsViewController.swift */,
 				6689EE511FBB291C0006010F /* SettingsTableViewController.swift */,
 				665A7CC81FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift */,
 				66C83D421FC3086E00428527 /* BackupPrivateKey */,
@@ -1144,7 +1138,6 @@
 				61FBCCC61F20C8FB004F7219 /* TotalBalanceViewController.swift in Sources */,
 				611248ED1F06856D005DE4E6 /* AddMoneyCryptocurrencyStep1ViewController.swift in Sources */,
 				61FC79CF1F714016002A78CE /* KYCPhotoPlaceholderView.swift in Sources */,
-				66529DCA1F8D198B0059786B /* CashOutViewController.swift in Sources */,
 				66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */,
 				66806B9F1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift in Sources */,
 				462878731F433A710006BE45 /* GraphProtocol.swift in Sources */,
@@ -1159,7 +1152,6 @@
 				CC9458841F0400A000676249 /* AddMoneyCCStep1ViewController.swift in Sources */,
 				CC4B48C51F279B87003422D5 /* BuyStep4ViewController.swift in Sources */,
 				615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */,
-				6689EE501FBB27B50006010F /* SettingsViewController.swift in Sources */,
 				4671C9D51F828A5C002C2F25 /* KYCPendingViewController.swift in Sources */,
 				4651CFB81FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift in Sources */,
 				CCED3BF11EE9811900535EE8 /* MenuTableViewCell.swift in Sources */,
@@ -1191,6 +1183,7 @@
 				CCDB25701EEFCF05000D590F /* UtilsHelper.swift in Sources */,
 				615052AC1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift in Sources */,
 				6140EA471F1CE51C00B05A97 /* SeparatorView.swift in Sources */,
+				8705FF371FC8BF1D00E0F2B9 /* RootViewController.swift in Sources */,
 				6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */,
 				6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */,
 				870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */,
@@ -1241,7 +1234,6 @@
 				469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */,
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
 				462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */,
-				463FC5A81F94DB17005930DD /* TopNavViewController.swift in Sources */,
 				6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */,
 				CC48AB661F0F83030081AF27 /* BuyStep2ViewController.swift in Sources */,
 				CC5B6C081F5D6F4500723587 /* RegisterHintViewController.swift in Sources */,

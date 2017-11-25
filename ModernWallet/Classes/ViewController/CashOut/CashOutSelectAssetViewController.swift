@@ -46,6 +46,8 @@ class CashOutSelectAssetViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
         
+        navigationItem.title = Localize("cashOut.newDesign.title")
+        
         availableBalanceLabel.text = Localize("cashOut.newDesign.availableBalance")
         selectAssetLabel.text = Localize("cashOut.newDesign.selectAsset")
 
@@ -55,11 +57,12 @@ class CashOutSelectAssetViewController: UIViewController {
         
         totalBalanceViewModel.isEmpty
             .drive(onNext: { [weak self] isEmpty in
-                guard isEmpty else { return }
+                guard isEmpty, let `self` = self else { return }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let emptyWalletVC = storyboard.instantiateViewController(withIdentifier: "EmptyWallet")
-                self?.rx.loading.onNext(false)
-                self?.navigationController?.setViewControllers([emptyWalletVC], animated: false)
+                let emptyWalletVC = storyboard.instantiateViewController(withIdentifier: "EmptyWallet") as! EmptyWalletViewController
+                emptyWalletVC.message = Localize("emptyWallet.newDesign.cashOutMessage")
+                self.rx.loading.onNext(false)
+                self.navigationController?.setViewControllers([emptyWalletVC], animated: false)
             })
             .disposed(by: disposeBag)
         

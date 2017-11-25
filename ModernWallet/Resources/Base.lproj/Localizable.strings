@@ -923,6 +923,7 @@
 "newDesign.loading" = "Loading...";
 "newDesign.calculating" = "Calculating...";
 "newDesign.notAvailable" = "Not Available";
+"newDesign.chatNow" = "Chat Now";
 
 "cashOut.newDesign.title" = "CASH OUT";
 "cashOut.newDesign.availableBalance" = "AVAILABLE BALANCE";

@@ -28,7 +28,6 @@ class BankViewController: UIViewController {
     @IBOutlet weak var companyAddressLbl: UILabel!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     lazy var swiftCredentialsViewModel: SwiftCredentialsViewModel = {
         return SwiftCredentialsViewModel()
@@ -48,8 +47,6 @@ class BankViewController: UIViewController {
         swiftCredentialsViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
-        
-        imageHeight.constant =  Display.height
     }
     
     func applyTranslations() {

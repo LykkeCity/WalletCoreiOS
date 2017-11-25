@@ -28,7 +28,8 @@ class DrawerController: KYDrawerController {
     }
     
     func showPortfolio() {
-        mainViewController = storyboard?.instantiateViewController(withIdentifier: "PortfolioContainer")
+        let portfolioVC = storyboard!.instantiateViewController(withIdentifier: "Portfolio")
+        (mainViewController as? RootViewController)?.embed(viewController: portfolioVC, animated: false)
         self.setDrawerState(.closed, animated: false)
     }
 

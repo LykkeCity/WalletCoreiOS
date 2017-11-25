@@ -23,7 +23,6 @@ class BuyStep4ViewController: UIViewController {
     @IBOutlet weak var totalAmount: UILabel!
     @IBOutlet weak var priceValue: UILabel!
     @IBOutlet weak var priceAmount: UILabel!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     var dict: [String:String]? = nil
 
     override func viewDidLoad() {
@@ -31,8 +30,6 @@ class BuyStep4ViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.clear
-        
-        imageHeight.constant =  Display.height
     }
 
     override func viewWillAppear(_ animated: Bool) {

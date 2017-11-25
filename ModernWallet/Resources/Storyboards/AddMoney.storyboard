@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JNW-9u-JrF">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,21 +31,18 @@
                         <viewControllerLayoutGuide type="top" id="6PT-V0-2PV"/>
                         <viewControllerLayoutGuide type="bottom" id="YRM-zR-LBK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="m4s-bH-D6z">
+                    <view key="view" contentMode="scaleToFill" id="m4s-bH-D6z" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-3U-lVq">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFP-x2-PRp" userLabel="Total Balance">
-                                <rect key="frame" x="0.0" y="80.000000000000014" width="414" height="214.33333333333337"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="274.33333333333331"/>
                                 <connections>
                                     <segue destination="CBF-9f-bxA" kind="embed" id="Zvq-8b-KdN"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQw-ge-W3y">
-                                <rect key="frame" x="0.0" y="80" width="60" height="48"/>
+                                <rect key="frame" x="0.0" y="20" width="60" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="KG8-gH-bV2"/>
                                     <constraint firstAttribute="width" secondItem="FQw-ge-W3y" secondAttribute="height" multiplier="1:0.8" id="gQs-JX-6hT"/>
@@ -55,15 +52,6 @@
                                     <action selector="backAction:" destination="JNW-9u-JrF" eventType="touchUpInside" id="p2K-hv-RVJ"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lva-cP-Wn0">
-                                <rect key="frame" x="0.0" y="20" width="414" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="MGC-6Z-aQH"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="XJ1-Jw-LPT" kind="embed" id="QCP-Dn-6og"/>
-                                </connections>
-                            </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD MONEY FROM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzr-PJ-lmk">
                                 <rect key="frame" x="147.66666666666666" y="234" width="118.99999999999997" height="15.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="13"/>
@@ -107,28 +95,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yI8-fa-J6c" firstAttribute="top" secondItem="Bzr-PJ-lmk" secondAttribute="bottom" constant="8" id="0pG-5f-qOH"/>
+                            <constraint firstItem="FQw-ge-W3y" firstAttribute="top" secondItem="6PT-V0-2PV" secondAttribute="bottom" id="5tj-HU-SQo"/>
                             <constraint firstItem="YRM-zR-LBK" firstAttribute="top" secondItem="BuS-gy-3mq" secondAttribute="bottom" id="8OF-rU-wCQ"/>
-                            <constraint firstItem="fPl-3U-lVq" firstAttribute="leading" secondItem="m4s-bH-D6z" secondAttribute="leading" id="AGE-7T-fsp"/>
-                            <constraint firstItem="lva-cP-Wn0" firstAttribute="leading" secondItem="m4s-bH-D6z" secondAttribute="leading" id="BNY-Iz-aUI"/>
                             <constraint firstItem="BuS-gy-3mq" firstAttribute="centerX" secondItem="m4s-bH-D6z" secondAttribute="centerX" id="Ba1-Rt-2wb"/>
-                            <constraint firstAttribute="trailing" secondItem="lva-cP-Wn0" secondAttribute="trailing" id="BkD-Lt-USg"/>
                             <constraint firstItem="YRM-zR-LBK" firstAttribute="top" secondItem="BuS-gy-3mq" secondAttribute="bottom" id="CVB-Zk-VzH"/>
-                            <constraint firstItem="YRM-zR-LBK" firstAttribute="top" secondItem="fPl-3U-lVq" secondAttribute="bottom" id="DYd-kG-iSm"/>
                             <constraint firstItem="yI8-fa-J6c" firstAttribute="centerX" secondItem="m4s-bH-D6z" secondAttribute="centerX" id="HD1-cg-Guw"/>
                             <constraint firstItem="em3-dq-0PP" firstAttribute="leading" secondItem="yI8-fa-J6c" secondAttribute="trailing" constant="8.5" id="IQn-gg-bI1"/>
                             <constraint firstItem="yI8-fa-J6c" firstAttribute="leading" secondItem="aaY-8G-jPl" secondAttribute="trailing" constant="8.5" id="Mqf-bG-UID"/>
                             <constraint firstItem="Bzr-PJ-lmk" firstAttribute="centerX" secondItem="m4s-bH-D6z" secondAttribute="centerX" id="NAh-dX-aXn"/>
-                            <constraint firstItem="FQw-ge-W3y" firstAttribute="top" secondItem="lva-cP-Wn0" secondAttribute="bottom" id="OAX-kR-rAe"/>
+                            <constraint firstItem="NFP-x2-PRp" firstAttribute="top" secondItem="6PT-V0-2PV" secondAttribute="bottom" id="TiW-4n-naG"/>
                             <constraint firstItem="BuS-gy-3mq" firstAttribute="top" secondItem="NFP-x2-PRp" secondAttribute="bottom" id="XZZ-jP-aRq"/>
                             <constraint firstItem="BuS-gy-3mq" firstAttribute="top" secondItem="aaY-8G-jPl" secondAttribute="bottom" constant="22" id="aLA-JZ-Ih8"/>
                             <constraint firstItem="NFP-x2-PRp" firstAttribute="leading" secondItem="m4s-bH-D6z" secondAttribute="leading" id="jx2-41-Z8q"/>
                             <constraint firstItem="em3-dq-0PP" firstAttribute="centerY" secondItem="aaY-8G-jPl" secondAttribute="centerY" id="lTJ-43-9dE"/>
                             <constraint firstItem="BuS-gy-3mq" firstAttribute="height" secondItem="m4s-bH-D6z" secondAttribute="height" multiplier="0.6" id="niP-h7-VMx"/>
                             <constraint firstItem="BuS-gy-3mq" firstAttribute="leading" secondItem="m4s-bH-D6z" secondAttribute="leading" id="qLA-9V-iy2"/>
-                            <constraint firstItem="NFP-x2-PRp" firstAttribute="top" secondItem="lva-cP-Wn0" secondAttribute="bottom" id="sRw-Yf-XBm"/>
-                            <constraint firstItem="lva-cP-Wn0" firstAttribute="top" secondItem="6PT-V0-2PV" secondAttribute="bottom" id="t1n-0X-p4g"/>
-                            <constraint firstItem="fPl-3U-lVq" firstAttribute="top" secondItem="m4s-bH-D6z" secondAttribute="top" id="uja-TO-TxF"/>
-                            <constraint firstAttribute="trailing" secondItem="fPl-3U-lVq" secondAttribute="trailing" id="wIs-F5-dNb"/>
                             <constraint firstAttribute="trailing" secondItem="NFP-x2-PRp" secondAttribute="trailing" id="wgz-qA-i4C"/>
                             <constraint firstItem="FQw-ge-W3y" firstAttribute="leading" secondItem="m4s-bH-D6z" secondAttribute="leading" id="xKB-d6-abY"/>
                             <constraint firstItem="yI8-fa-J6c" firstAttribute="centerY" secondItem="aaY-8G-jPl" secondAttribute="centerY" id="y4q-sd-gt8"/>
@@ -167,16 +148,10 @@
                         <viewControllerLayoutGuide type="top" id="iem-ud-Hml"/>
                         <viewControllerLayoutGuide type="bottom" id="L7I-Fa-Lvg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KnU-gi-dzX">
+                    <view key="view" contentMode="scaleToFill" id="KnU-gi-dzX" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Hnh-3v-bLB">
-                                <rect key="frame" x="0.0" y="74.666666666666686" width="414" height="367"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="367" id="koh-Sf-aRX"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axe-bV-ehz" userLabel="End Bank View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666669"/>
                                 <subviews>
@@ -312,17 +287,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1137254902" green="0.63137254899999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Hnh-3v-bLB" secondAttribute="trailing" id="1W4-XO-h7q"/>
                             <constraint firstAttribute="trailing" secondItem="axe-bV-ehz" secondAttribute="trailing" id="3GE-jw-L2Q"/>
-                            <constraint firstItem="L7I-Fa-Lvg" firstAttribute="top" secondItem="Hnh-3v-bLB" secondAttribute="bottom" id="4Qp-c9-uy0"/>
                             <constraint firstItem="axe-bV-ehz" firstAttribute="leading" secondItem="KnU-gi-dzX" secondAttribute="leading" id="VSg-Xh-Gey"/>
-                            <constraint firstItem="Hnh-3v-bLB" firstAttribute="leading" secondItem="KnU-gi-dzX" secondAttribute="leading" id="WwP-uA-Sas"/>
                             <constraint firstAttribute="bottom" secondItem="axe-bV-ehz" secondAttribute="bottom" id="Yyw-JD-eoX"/>
                             <constraint firstItem="axe-bV-ehz" firstAttribute="top" secondItem="KnU-gi-dzX" secondAttribute="top" id="dbf-hg-BGc"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageHeight" destination="koh-Sf-aRX" id="QCX-uz-9ZZ"/>
                         <outlet property="returnToPortfolioButton" destination="iFb-EL-sFI" id="0uV-cA-nhw"/>
                     </connections>
                 </viewController>
@@ -335,10 +306,10 @@
             </objects>
             <point key="canvasLocation" x="2765.5999999999999" y="1248.5757121439281"/>
         </scene>
-        <!--PortfolioContainer-->
+        <!--Portfolio-->
         <scene sceneID="grK-Re-ozu">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="PortfolioContainer" storyboardName="Main" referencedIdentifier="PortfolioContainer" id="pr1-1c-hal" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Portfolio" storyboardName="Main" referencedIdentifier="Portfolio" id="pr1-1c-hal" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sSk-wQ-Y8z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3350" y="1185"/>
@@ -351,16 +322,10 @@
                         <viewControllerLayoutGuide type="top" id="biE-i3-zl3"/>
                         <viewControllerLayoutGuide type="bottom" id="EWT-uS-ftb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BFo-vf-cs4">
+                    <view key="view" contentMode="scaleToFill" id="BFo-vf-cs4" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="c8K-ke-dD4">
-                                <rect key="frame" x="0.0" y="41.666666666666657" width="414" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="qed-3z-5LB"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvH-Z2-P0t" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -372,10 +337,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="340.66666666666669"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E98-bY-Zh9">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="142"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
                                         <subviews>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="YA3-Bl-zYH">
-                                                <rect key="frame" x="36" y="26" width="342" height="54"/>
+                                                <rect key="frame" x="36" y="26" width="342" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To deposit funds from your personal bank account to your Lykke Wallet please follow the steps below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5r-dG-b1T">
                                                         <rect key="frame" x="-36" y="0.0" width="0.0" height="0.0"/>
@@ -384,13 +349,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Click “Email me the Lykke Bank Details” below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHJ-er-SbG">
-                                                        <rect key="frame" x="-36" y="18" width="0.0" height="0.0"/>
+                                                        <rect key="frame" x="-36" y="18" width="0.0" height="16"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI7-6e-pW3">
-                                                        <rect key="frame" x="-36" y="36" width="0.0" height="0.0"/>
+                                                        <rect key="frame" x="-36" y="52" width="0.0" height="0.0"/>
                                                         <string key="text">2. Once you recieve the email with the Lykke bank details forward them on to your bank.
 </string>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
@@ -398,7 +363,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Instruct your bank to send the specified amount you require via a wire transfer to the Lykke bank account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU9-98-vZc">
-                                                        <rect key="frame" x="-36" y="54" width="0.0" height="0.0"/>
+                                                        <rect key="frame" x="-36" y="70" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -406,7 +371,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJZ-QT-U2k">
-                                                <rect key="frame" x="94.666666666666686" y="112" width="225" height="30"/>
+                                                <rect key="frame" x="94.666666666666686" y="128" width="225" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sV0-vB-roI"/>
                                                 </constraints>
@@ -459,16 +424,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="c8K-ke-dD4" firstAttribute="leading" secondItem="BFo-vf-cs4" secondAttribute="leading" id="2Ie-SB-tZA"/>
                             <constraint firstAttribute="trailing" secondItem="Gbj-dF-GmO" secondAttribute="trailing" constant="32" id="8fo-UV-vTH"/>
                             <constraint firstItem="GvH-Z2-P0t" firstAttribute="top" secondItem="biE-i3-zl3" secondAttribute="bottom" id="9L0-du-tJV"/>
-                            <constraint firstAttribute="trailing" secondItem="c8K-ke-dD4" secondAttribute="trailing" id="E6y-XZ-Z0C"/>
                             <constraint firstAttribute="trailing" secondItem="GvH-Z2-P0t" secondAttribute="trailing" constant="20" id="GRN-WL-QK9"/>
                             <constraint firstItem="Gbj-dF-GmO" firstAttribute="leading" secondItem="BFo-vf-cs4" secondAttribute="leading" constant="32" id="L8C-QB-cGw"/>
                             <constraint firstItem="Gbj-dF-GmO" firstAttribute="top" secondItem="Hgb-LJ-FQ2" secondAttribute="bottom" id="WzF-Fy-hs4"/>
                             <constraint firstItem="Hgb-LJ-FQ2" firstAttribute="leading" secondItem="BFo-vf-cs4" secondAttribute="leading" id="ZSY-ma-ALp"/>
                             <constraint firstItem="Hgb-LJ-FQ2" firstAttribute="top" secondItem="BFo-vf-cs4" secondAttribute="top" id="c0T-nv-PLV"/>
-                            <constraint firstItem="EWT-uS-ftb" firstAttribute="top" secondItem="c8K-ke-dD4" secondAttribute="bottom" id="q8z-CY-haN"/>
                             <constraint firstItem="EWT-uS-ftb" firstAttribute="top" secondItem="Gbj-dF-GmO" secondAttribute="bottom" constant="32" id="vP8-9i-Fy6"/>
                             <constraint firstItem="GvH-Z2-P0t" firstAttribute="leading" secondItem="BFo-vf-cs4" secondAttribute="leading" constant="20" id="yB0-5g-a2O"/>
                             <constraint firstAttribute="trailing" secondItem="Hgb-LJ-FQ2" secondAttribute="trailing" id="z32-M2-xcI"/>
@@ -478,7 +440,6 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="backgroundHeightConstraint" destination="qed-3z-5LB" id="aIQ-5j-fdY"/>
                         <outlet property="emailButton" destination="Gbj-dF-GmO" id="Q3B-03-HEv"/>
                         <segue destination="DBL-f3-YPi" kind="show" identifier="showWireBankEmailSent" id="7oe-27-bfo"/>
                     </connections>
@@ -500,16 +461,10 @@
                         <viewControllerLayoutGuide type="top" id="9V8-vA-6SS"/>
                         <viewControllerLayoutGuide type="bottom" id="2kw-TV-KXl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MG1-Yc-LgM">
+                    <view key="view" contentMode="scaleToFill" id="MG1-Yc-LgM" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="mgO-n3-IYF">
-                                <rect key="frame" x="0.0" y="74.666666666666686" width="414" height="367"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="367" id="a0D-3W-Zmr"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFp-03-QR5" userLabel="Bank View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
                                 <subviews>
@@ -742,12 +697,9 @@
                         <color key="backgroundColor" red="0.1137254902" green="0.63137254899999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ZFp-03-QR5" secondAttribute="trailing" id="3sc-cz-VyK"/>
-                            <constraint firstAttribute="trailing" secondItem="mgO-n3-IYF" secondAttribute="trailing" id="Ik5-J9-HUq"/>
                             <constraint firstItem="ZFp-03-QR5" firstAttribute="top" secondItem="MG1-Yc-LgM" secondAttribute="top" id="Rhg-Ud-4nR"/>
-                            <constraint firstItem="mgO-n3-IYF" firstAttribute="leading" secondItem="MG1-Yc-LgM" secondAttribute="leading" id="ltO-ph-om1"/>
                             <constraint firstAttribute="bottom" secondItem="ZFp-03-QR5" secondAttribute="bottom" id="prJ-Kf-808"/>
                             <constraint firstItem="ZFp-03-QR5" firstAttribute="leading" secondItem="MG1-Yc-LgM" secondAttribute="leading" id="xw7-BC-ASz"/>
-                            <constraint firstItem="2kw-TV-KXl" firstAttribute="top" secondItem="mgO-n3-IYF" secondAttribute="bottom" id="zHh-w5-IaH"/>
                         </constraints>
                     </view>
                     <connections>
@@ -761,7 +713,6 @@
                         <outlet property="bicLbl" destination="YYH-XM-sk2" id="Jnv-sb-Pmi"/>
                         <outlet property="companyAddressLabel" destination="c5I-JC-Nk5" id="bLi-4V-ZER"/>
                         <outlet property="companyAddressLbl" destination="XXj-kS-FHB" id="N4q-IS-iMI"/>
-                        <outlet property="imageHeight" destination="a0D-3W-Zmr" id="4BQ-az-op8"/>
                         <outlet property="purposeOfPaymentLabel" destination="rxv-kZ-EBY" id="h7D-FC-kxm"/>
                         <outlet property="purposeOfPaymentLbl" destination="e5p-el-Knr" id="f11-0Z-sIP"/>
                     </connections>
@@ -788,16 +739,10 @@
                         <viewControllerLayoutGuide type="top" id="PeL-VC-eKw"/>
                         <viewControllerLayoutGuide type="bottom" id="1lO-ft-mgd"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kOa-k9-xBy">
+                    <view key="view" contentMode="scaleToFill" id="kOa-k9-xBy" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="3wP-Mk-R1b">
-                                <rect key="frame" x="0.0" y="74.666666666666686" width="414" height="367"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="367" id="eY5-cc-dac"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZpU-FK-uPd">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666669"/>
                                 <subviews>
@@ -948,20 +893,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1137254902" green="0.63137254899999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3wP-Mk-R1b" secondAttribute="trailing" id="26G-eb-Odb"/>
-                            <constraint firstItem="1lO-ft-mgd" firstAttribute="top" secondItem="3wP-Mk-R1b" secondAttribute="bottom" id="2JA-sy-Icf"/>
                             <constraint firstItem="ZpU-FK-uPd" firstAttribute="leading" secondItem="kOa-k9-xBy" secondAttribute="leading" id="CRz-8X-eLy"/>
                             <constraint firstAttribute="bottom" secondItem="ZpU-FK-uPd" secondAttribute="bottom" id="KNV-bD-yrY"/>
                             <constraint firstAttribute="trailing" secondItem="ZpU-FK-uPd" secondAttribute="trailing" id="LwT-tO-6gF"/>
                             <constraint firstItem="ZpU-FK-uPd" firstAttribute="top" secondItem="kOa-k9-xBy" secondAttribute="top" id="ZXA-Zk-X1Z"/>
-                            <constraint firstItem="3wP-Mk-R1b" firstAttribute="leading" secondItem="kOa-k9-xBy" secondAttribute="leading" id="txz-Sa-9ac"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0S7-PC-LYd"/>
                     <connections>
                         <outlet property="bankAccountLabel" destination="2zL-p7-k4f" id="lKN-Xj-az9"/>
                         <outlet property="creditCardLabel" destination="YIe-Ge-MPi" id="Ivp-Tf-03m"/>
-                        <outlet property="imageHeight" destination="eY5-cc-dac" id="LWK-dJ-9S9"/>
                         <outlet property="receiveCryptoLabel" destination="SBq-Kg-VXt" id="GrD-Wi-FPd"/>
                         <segue destination="DWh-4p-WB8" kind="show" id="RIQ-NM-Wy5"/>
                     </connections>
@@ -978,16 +919,10 @@
                         <viewControllerLayoutGuide type="top" id="zvf-pp-Wvy"/>
                         <viewControllerLayoutGuide type="bottom" id="yfE-NE-Hub"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hFl-2z-3Ww">
+                    <view key="view" contentMode="scaleToFill" id="hFl-2z-3Ww" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="2Wf-2d-5MC">
-                                <rect key="frame" x="0.0" y="74.666666666666686" width="414" height="367"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="367" id="Yc3-5Q-jvm"/>
-                                </constraints>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="py1-qC-0XN">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="369.66666666666669"/>
                                 <subviews>
@@ -1320,14 +1255,11 @@
                             <constraint firstItem="py1-qC-0XN" firstAttribute="leading" secondItem="hFl-2z-3Ww" secondAttribute="leading" id="FEl-fx-kHT"/>
                             <constraint firstItem="6kK-zt-GNC" firstAttribute="leading" secondItem="T4a-mS-dnz" secondAttribute="leading" id="FM0-dj-EbV"/>
                             <constraint firstAttribute="trailing" secondItem="py1-qC-0XN" secondAttribute="trailing" id="Flr-Rf-Zdv"/>
-                            <constraint firstItem="yfE-NE-Hub" firstAttribute="top" secondItem="2Wf-2d-5MC" secondAttribute="bottom" id="IyD-k7-Gg4"/>
                             <constraint firstItem="T4a-mS-dnz" firstAttribute="leading" secondItem="hFl-2z-3Ww" secondAttribute="leading" constant="28" id="Twu-8A-VvU"/>
                             <constraint firstItem="6kK-zt-GNC" firstAttribute="top" secondItem="T4a-mS-dnz" secondAttribute="bottom" id="WEy-du-mlG"/>
                             <constraint firstItem="py1-qC-0XN" firstAttribute="top" secondItem="hFl-2z-3Ww" secondAttribute="top" id="ehs-L8-XqS"/>
-                            <constraint firstAttribute="trailing" secondItem="2Wf-2d-5MC" secondAttribute="trailing" id="ifd-rb-rCN"/>
                             <constraint firstItem="yfE-NE-Hub" firstAttribute="top" secondItem="6kK-zt-GNC" secondAttribute="bottom" id="lgL-jx-xfk"/>
                             <constraint firstItem="6kK-zt-GNC" firstAttribute="trailing" secondItem="T4a-mS-dnz" secondAttribute="trailing" id="mSc-Qa-VNP"/>
-                            <constraint firstItem="2Wf-2d-5MC" firstAttribute="leading" secondItem="hFl-2z-3Ww" secondAttribute="leading" id="oVu-jw-5tq"/>
                             <constraint firstItem="T4a-mS-dnz" firstAttribute="top" secondItem="py1-qC-0XN" secondAttribute="bottom" id="sPf-Ym-OTp"/>
                             <constraint firstAttribute="trailing" secondItem="T4a-mS-dnz" secondAttribute="trailing" constant="28" id="vAi-GR-Kct"/>
                             <constraint firstItem="py1-qC-0XN" firstAttribute="centerX" secondItem="hFl-2z-3Ww" secondAttribute="centerX" id="vl1-LB-PfT"/>
@@ -1347,7 +1279,6 @@
                         <outlet property="codeField" destination="8ub-nM-XMB" id="F4a-3Y-uEs"/>
                         <outlet property="countryField" destination="3bv-Xf-ikR" id="aZg-4t-8os"/>
                         <outlet property="firstNameField" destination="jip-Il-jSZ" id="QHE-3V-AgH"/>
-                        <outlet property="imageHeight" destination="Yc3-5Q-jvm" id="scg-WO-sFk"/>
                         <outlet property="lastNameField" destination="erd-Ox-0e6" id="eS2-i9-bLZ"/>
                         <outlet property="phoneField" destination="aUu-ao-n07" id="qKG-YQ-bYj"/>
                         <outlet property="scrollView" destination="py1-qC-0XN" id="Vzl-96-si0"/>
@@ -1399,14 +1330,6 @@
             </objects>
             <point key="canvasLocation" x="3606" y="1697"/>
         </scene>
-        <!--UIViewController-KAU-Mi-TR8-->
-        <scene sceneID="iwD-FH-kTk">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UIViewController-KAU-Mi-TR8" id="XJ1-Jw-LPT" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eLP-Cq-vhu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1764" y="302"/>
-        </scene>
         <!--Add Money Cryptocurrency Step1 View Controller-->
         <scene sceneID="D3w-Hi-t0l">
             <objects>
@@ -1415,16 +1338,10 @@
                         <viewControllerLayoutGuide type="top" id="pcx-R9-EqM"/>
                         <viewControllerLayoutGuide type="bottom" id="rox-aT-z79"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jco-oU-ELi">
+                    <view key="view" contentMode="scaleToFill" id="jco-oU-ELi" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="9UM-5m-cPu">
-                                <rect key="frame" x="0.0" y="74.666666666666686" width="414" height="367"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="367" id="wDc-dI-U7i"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3A-Rq-n61" userLabel="Divider" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                 <color key="backgroundColor" red="0.29411764709999999" green="0.54117647059999996" blue="0.69803921570000005" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1444,13 +1361,10 @@
                             <constraint firstAttribute="trailing" secondItem="tBn-3Q-UPo" secondAttribute="trailing" id="0oq-bR-cxT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="m3A-Rq-n61" secondAttribute="trailing" id="5UT-1B-7r3"/>
                             <constraint firstItem="m3A-Rq-n61" firstAttribute="leading" secondItem="jco-oU-ELi" secondAttribute="leadingMargin" id="GkW-D9-1eI"/>
-                            <constraint firstItem="rox-aT-z79" firstAttribute="top" secondItem="9UM-5m-cPu" secondAttribute="bottom" id="HAc-NX-fJ8"/>
                             <constraint firstItem="tBn-3Q-UPo" firstAttribute="top" secondItem="m3A-Rq-n61" secondAttribute="bottom" id="MwD-Ak-KrK"/>
                             <constraint firstAttribute="bottom" secondItem="tBn-3Q-UPo" secondAttribute="bottom" id="PUh-45-XU1"/>
-                            <constraint firstAttribute="trailing" secondItem="9UM-5m-cPu" secondAttribute="trailing" id="pcx-XO-ghq"/>
                             <constraint firstItem="tBn-3Q-UPo" firstAttribute="leading" secondItem="jco-oU-ELi" secondAttribute="leading" id="qGC-3l-3S5"/>
                             <constraint firstItem="m3A-Rq-n61" firstAttribute="top" secondItem="pcx-R9-EqM" secondAttribute="bottom" id="qWw-cR-Ydz"/>
-                            <constraint firstItem="9UM-5m-cPu" firstAttribute="leading" secondItem="jco-oU-ELi" secondAttribute="leading" id="upU-SI-nRu"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="LDc-nC-Qmd" appends="YES" id="jez-46-3q8"/>
@@ -1458,7 +1372,6 @@
                     </view>
                     <connections>
                         <outlet property="currenciesTableView" destination="tBn-3Q-UPo" id="JIl-q5-j7T"/>
-                        <outlet property="imageHeight" destination="wDc-dI-U7i" id="tHd-zr-xrd"/>
                         <segue destination="S2r-im-EpT" kind="show" identifier="cc2Segue" id="dex-EQ-hoU"/>
                     </connections>
                 </viewController>
@@ -1479,16 +1392,10 @@
                         <viewControllerLayoutGuide type="top" id="pKc-K4-18M"/>
                         <viewControllerLayoutGuide type="bottom" id="YD8-Qy-GNY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dkB-MO-deB">
+                    <view key="view" contentMode="scaleToFill" id="dkB-MO-deB" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="DKq-5h-ual">
-                                <rect key="frame" x="0.0" y="74.666666666666686" width="414" height="367"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="367" id="05Z-Ea-LVf"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ft-Ja-nlS" userLabel="Divider" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                 <color key="backgroundColor" red="0.29411764709999999" green="0.54117647059999996" blue="0.69803921570000005" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1562,17 +1469,14 @@ transaction is confirmed in the blockchain</string>
                         <constraints>
                             <constraint firstItem="YZD-8U-zKw" firstAttribute="top" secondItem="sGx-4E-9JI" secondAttribute="bottom" constant="20" id="403-3H-hYZ"/>
                             <constraint firstItem="sGx-4E-9JI" firstAttribute="top" secondItem="dkB-MO-deB" secondAttribute="topMargin" constant="20" id="BIM-pS-Jv9"/>
-                            <constraint firstAttribute="trailing" secondItem="DKq-5h-ual" secondAttribute="trailing" id="BLi-Ha-KXo"/>
                             <constraint firstItem="7ft-Ja-nlS" firstAttribute="leading" secondItem="dkB-MO-deB" secondAttribute="leadingMargin" id="Ch9-x4-5Fk"/>
                             <constraint firstItem="7ft-Ja-nlS" firstAttribute="top" secondItem="pKc-K4-18M" secondAttribute="bottom" id="Cic-ih-EXM"/>
                             <constraint firstItem="pTs-Ke-3sJ" firstAttribute="width" secondItem="dkB-MO-deB" secondAttribute="width" multiplier="0.4" id="PXk-7u-kbK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YZD-8U-zKw" secondAttribute="trailing" id="RR8-4o-aSK"/>
                             <constraint firstItem="YZD-8U-zKw" firstAttribute="leading" secondItem="dkB-MO-deB" secondAttribute="leadingMargin" id="Ucw-3t-IyQ"/>
                             <constraint firstItem="dsS-Fy-wTZ" firstAttribute="top" secondItem="YZD-8U-zKw" secondAttribute="bottom" constant="4" id="cJv-7d-ogb"/>
-                            <constraint firstItem="DKq-5h-ual" firstAttribute="leading" secondItem="dkB-MO-deB" secondAttribute="leading" id="cmJ-tK-D7m"/>
                             <constraint firstItem="kpt-8F-lwH" firstAttribute="width" relation="lessThanOrEqual" secondItem="dkB-MO-deB" secondAttribute="width" multiplier="0.6" id="f2P-aC-8eq"/>
                             <constraint firstItem="dsS-Fy-wTZ" firstAttribute="trailing" secondItem="YZD-8U-zKw" secondAttribute="trailing" id="hIz-UU-0in"/>
-                            <constraint firstItem="YD8-Qy-GNY" firstAttribute="top" secondItem="DKq-5h-ual" secondAttribute="bottom" id="op8-iX-JdF"/>
                             <constraint firstAttribute="bottom" secondItem="dsS-Fy-wTZ" secondAttribute="bottom" constant="4" id="rxH-xP-JdX"/>
                             <constraint firstItem="7ft-Ja-nlS" firstAttribute="trailing" secondItem="dkB-MO-deB" secondAttribute="trailingMargin" id="xeK-5N-FQS"/>
                             <constraint firstItem="dsS-Fy-wTZ" firstAttribute="leading" secondItem="YZD-8U-zKw" secondAttribute="leading" id="z0u-Dh-vvA"/>
@@ -1586,7 +1490,6 @@ transaction is confirmed in the blockchain</string>
                         <outlet property="copyButton" destination="Cja-1S-Rpd" id="wIS-a8-shf"/>
                         <outlet property="copyLabel" destination="gVQ-bi-xfd" id="Hsk-lJ-Gxd"/>
                         <outlet property="emailMeButton" destination="dsS-Fy-wTZ" id="j47-7S-TDh"/>
-                        <outlet property="imageHeight" destination="05Z-Ea-LVf" id="x2o-W0-ABY"/>
                         <outlet property="qrCodeImageView" destination="pTs-Ke-3sJ" id="JaF-H3-F5d"/>
                         <outlet property="walletDescription" destination="kpt-8F-lwH" id="Hei-NI-QhF"/>
                     </connections>
@@ -1638,7 +1541,6 @@ transaction is confirmed in the blockchain</string>
         </scene>
     </scenes>
     <resources>
-        <image name="BlueBackground" width="687" height="1222"/>
         <image name="CloseCross" width="17" height="17"/>
         <image name="PORTFOLIO" width="44" height="44"/>
         <image name="backArrow" width="10" height="20"/>

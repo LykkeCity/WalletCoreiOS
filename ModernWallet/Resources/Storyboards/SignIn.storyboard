@@ -47,13 +47,10 @@
                         <viewControllerLayoutGuide type="top" id="Ygs-7e-Whc"/>
                         <viewControllerLayoutGuide type="bottom" id="pxW-gT-kFK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1j8-tp-ba0">
+                    <view key="view" contentMode="scaleToFill" id="1j8-tp-ba0" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="d3C-JF-uRU">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="rNK-ps-Ljf">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -163,14 +160,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pxW-gT-kFK" firstAttribute="top" secondItem="d3C-JF-uRU" secondAttribute="bottom" id="EN1-eW-D88"/>
                             <constraint firstItem="pxW-gT-kFK" firstAttribute="top" secondItem="rNK-ps-Ljf" secondAttribute="bottom" id="McA-71-cjy"/>
-                            <constraint firstItem="d3C-JF-uRU" firstAttribute="leading" secondItem="1j8-tp-ba0" secondAttribute="leading" id="Ndr-Ih-Fdx"/>
-                            <constraint firstItem="d3C-JF-uRU" firstAttribute="top" secondItem="Ygs-7e-Whc" secondAttribute="bottom" id="aLt-HH-Hdk"/>
                             <constraint firstItem="rNK-ps-Ljf" firstAttribute="top" secondItem="Ygs-7e-Whc" secondAttribute="bottom" id="b3n-R6-FpL"/>
                             <constraint firstAttribute="trailing" secondItem="rNK-ps-Ljf" secondAttribute="trailing" id="j8v-ek-EdD"/>
                             <constraint firstItem="rNK-ps-Ljf" firstAttribute="leading" secondItem="1j8-tp-ba0" secondAttribute="leading" id="kEi-h4-HA4"/>
-                            <constraint firstAttribute="trailing" secondItem="d3C-JF-uRU" secondAttribute="trailing" id="oeA-RI-7Uy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="a3g-8O-M6x"/>
@@ -201,13 +194,10 @@
                         <viewControllerLayoutGuide type="top" id="Ok7-Pe-xcu"/>
                         <viewControllerLayoutGuide type="bottom" id="LeR-uV-Jo4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7eq-aT-5Qr">
+                    <view key="view" contentMode="scaleToFill" id="7eq-aT-5Qr" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="QXn-cB-V7M">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="ZLT-G7-2rY">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -306,14 +296,10 @@
                         <constraints>
                             <constraint firstItem="ahI-wm-fvj" firstAttribute="top" secondItem="Ok7-Pe-xcu" secondAttribute="bottom" constant="20" id="1oh-zF-AoC"/>
                             <constraint firstItem="LeR-uV-Jo4" firstAttribute="top" secondItem="ZLT-G7-2rY" secondAttribute="bottom" id="65I-oA-N6f"/>
-                            <constraint firstItem="QXn-cB-V7M" firstAttribute="leading" secondItem="7eq-aT-5Qr" secondAttribute="leading" id="QfP-h1-JN7"/>
-                            <constraint firstItem="LeR-uV-Jo4" firstAttribute="top" secondItem="QXn-cB-V7M" secondAttribute="bottom" id="V6F-BD-i6w"/>
                             <constraint firstItem="ZLT-G7-2rY" firstAttribute="leading" secondItem="7eq-aT-5Qr" secondAttribute="leading" id="bJ7-uG-swq"/>
                             <constraint firstItem="ZLT-G7-2rY" firstAttribute="top" secondItem="Ok7-Pe-xcu" secondAttribute="bottom" id="beS-rN-1b8"/>
-                            <constraint firstAttribute="trailing" secondItem="QXn-cB-V7M" secondAttribute="trailing" id="mVB-Gw-vxa"/>
                             <constraint firstAttribute="trailing" secondItem="ZLT-G7-2rY" secondAttribute="trailing" id="oeE-91-FcT"/>
                             <constraint firstItem="ahI-wm-fvj" firstAttribute="leading" secondItem="7eq-aT-5Qr" secondAttribute="leading" constant="20" id="rJE-oV-e7r"/>
-                            <constraint firstItem="QXn-cB-V7M" firstAttribute="top" secondItem="7eq-aT-5Qr" secondAttribute="top" id="u4a-Zh-BML"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -339,13 +325,10 @@
                         <viewControllerLayoutGuide type="top" id="hDi-ZH-DIa"/>
                         <viewControllerLayoutGuide type="bottom" id="bi6-BS-HXh"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yz8-Ah-uzn">
+                    <view key="view" contentMode="scaleToFill" id="yz8-Ah-uzn" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Y8w-xt-dJe">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="eCL-g6-hoR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -403,7 +386,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pE9-AW-1qU">
-                                        <rect key="frame" x="126.5" y="205" width="123.5" height="24"/>
+                                        <rect key="frame" x="126" y="205" width="123.5" height="24"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -442,15 +425,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Y8w-xt-dJe" secondAttribute="trailing" id="63g-fd-K37"/>
                             <constraint firstAttribute="trailing" secondItem="eCL-g6-hoR" secondAttribute="trailing" id="7Uc-AP-Upg"/>
                             <constraint firstItem="eCL-g6-hoR" firstAttribute="centerX" secondItem="yz8-Ah-uzn" secondAttribute="centerX" id="CXW-tk-dh3"/>
-                            <constraint firstItem="bi6-BS-HXh" firstAttribute="top" secondItem="Y8w-xt-dJe" secondAttribute="bottom" id="KsZ-eS-YbT"/>
                             <constraint firstItem="y12-NS-hxx" firstAttribute="top" secondItem="hDi-ZH-DIa" secondAttribute="bottom" constant="20" id="ZUc-8g-d8L"/>
                             <constraint firstItem="bi6-BS-HXh" firstAttribute="top" secondItem="eCL-g6-hoR" secondAttribute="bottom" id="beF-2h-YvL"/>
-                            <constraint firstItem="Y8w-xt-dJe" firstAttribute="top" secondItem="yz8-Ah-uzn" secondAttribute="top" id="fw8-K7-zvF"/>
                             <constraint firstItem="eCL-g6-hoR" firstAttribute="leading" secondItem="yz8-Ah-uzn" secondAttribute="leading" id="oue-gO-NDg"/>
-                            <constraint firstItem="Y8w-xt-dJe" firstAttribute="leading" secondItem="yz8-Ah-uzn" secondAttribute="leading" id="rm3-5e-kaK"/>
                             <constraint firstItem="y12-NS-hxx" firstAttribute="leading" secondItem="yz8-Ah-uzn" secondAttribute="leading" constant="20" id="t5g-r3-8OV"/>
                             <constraint firstItem="eCL-g6-hoR" firstAttribute="top" secondItem="hDi-ZH-DIa" secondAttribute="bottom" id="v5x-1e-RSq"/>
                         </constraints>
@@ -474,13 +453,10 @@
                         <viewControllerLayoutGuide type="top" id="oYt-lX-8vw"/>
                         <viewControllerLayoutGuide type="bottom" id="m4q-OJ-Uc7"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="aLq-ca-SkO">
+                    <view key="view" contentMode="scaleToFill" id="aLq-ca-SkO" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="zWh-tu-Jkn">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="tXc-sY-Zh9">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -592,14 +568,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wcM-Dg-hEr" firstAttribute="top" secondItem="oYt-lX-8vw" secondAttribute="bottom" constant="20" id="7x6-k3-q3o"/>
-                            <constraint firstAttribute="trailing" secondItem="zWh-tu-Jkn" secondAttribute="trailing" id="8D3-d9-Ztc"/>
                             <constraint firstItem="tXc-sY-Zh9" firstAttribute="centerX" secondItem="aLq-ca-SkO" secondAttribute="centerX" id="8eh-3A-XID"/>
                             <constraint firstItem="m4q-OJ-Uc7" firstAttribute="top" secondItem="tXc-sY-Zh9" secondAttribute="bottom" id="Irb-rN-a8z"/>
-                            <constraint firstItem="zWh-tu-Jkn" firstAttribute="top" secondItem="aLq-ca-SkO" secondAttribute="top" id="Jry-4r-NlG"/>
                             <constraint firstItem="tXc-sY-Zh9" firstAttribute="top" secondItem="oYt-lX-8vw" secondAttribute="bottom" id="cPf-uu-xi7"/>
-                            <constraint firstItem="m4q-OJ-Uc7" firstAttribute="top" secondItem="zWh-tu-Jkn" secondAttribute="bottom" id="d6R-tS-aST"/>
                             <constraint firstAttribute="trailing" secondItem="tXc-sY-Zh9" secondAttribute="trailing" id="eJw-oz-Z7g"/>
-                            <constraint firstItem="zWh-tu-Jkn" firstAttribute="leading" secondItem="aLq-ca-SkO" secondAttribute="leading" id="hmY-bC-I60"/>
                             <constraint firstItem="tXc-sY-Zh9" firstAttribute="leading" secondItem="aLq-ca-SkO" secondAttribute="leading" id="qpv-vy-exO"/>
                             <constraint firstItem="wcM-Dg-hEr" firstAttribute="leading" secondItem="aLq-ca-SkO" secondAttribute="leading" constant="20" id="vOb-LO-OJ5"/>
                         </constraints>
@@ -625,13 +597,10 @@
                         <viewControllerLayoutGuide type="top" id="sgC-5l-kLc"/>
                         <viewControllerLayoutGuide type="bottom" id="gBt-CV-NdC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xxa-LQ-aNJ">
+                    <view key="view" contentMode="scaleToFill" id="xxa-LQ-aNJ" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="tsl-Ao-m8F">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="oGd-2F-9F9">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -756,14 +725,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wwx-wU-ZaS" firstAttribute="leading" secondItem="xxa-LQ-aNJ" secondAttribute="leading" constant="20" id="3vl-h9-9Ju"/>
-                            <constraint firstItem="tsl-Ao-m8F" firstAttribute="leading" secondItem="xxa-LQ-aNJ" secondAttribute="leading" id="4NN-F4-DpC"/>
                             <constraint firstItem="wwx-wU-ZaS" firstAttribute="top" secondItem="sgC-5l-kLc" secondAttribute="bottom" constant="20" id="L5m-cL-d3l"/>
-                            <constraint firstAttribute="trailing" secondItem="tsl-Ao-m8F" secondAttribute="trailing" id="QDZ-9V-8AT"/>
                             <constraint firstItem="oGd-2F-9F9" firstAttribute="top" secondItem="sgC-5l-kLc" secondAttribute="bottom" id="Sgb-bi-6yR"/>
                             <constraint firstItem="gBt-CV-NdC" firstAttribute="top" secondItem="oGd-2F-9F9" secondAttribute="bottom" id="XsW-Fq-NBr"/>
                             <constraint firstAttribute="trailing" secondItem="oGd-2F-9F9" secondAttribute="trailing" id="aVT-vW-m01"/>
-                            <constraint firstItem="tsl-Ao-m8F" firstAttribute="top" secondItem="xxa-LQ-aNJ" secondAttribute="top" id="jt4-rg-ZPq"/>
-                            <constraint firstItem="gBt-CV-NdC" firstAttribute="top" secondItem="tsl-Ao-m8F" secondAttribute="bottom" id="miG-Ca-8bK"/>
                             <constraint firstItem="oGd-2F-9F9" firstAttribute="leading" secondItem="xxa-LQ-aNJ" secondAttribute="leading" id="uBr-Fn-gRz"/>
                         </constraints>
                     </view>
@@ -787,13 +752,10 @@
                         <viewControllerLayoutGuide type="top" id="EJf-gY-igv"/>
                         <viewControllerLayoutGuide type="bottom" id="xzD-KE-YJu"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lQh-sD-msJ">
+                    <view key="view" contentMode="scaleToFill" id="lQh-sD-msJ" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Un6-xA-GWs">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="CUh-NX-xac">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -893,19 +855,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xzD-KE-YJu" firstAttribute="top" secondItem="Un6-xA-GWs" secondAttribute="bottom" id="1jb-Ky-coS"/>
                             <constraint firstItem="CUh-NX-xac" firstAttribute="top" secondItem="EJf-gY-igv" secondAttribute="bottom" id="3sc-PG-V99"/>
-                            <constraint firstAttribute="trailing" secondItem="Un6-xA-GWs" secondAttribute="trailing" id="7Vb-gW-n1d"/>
                             <constraint firstAttribute="trailing" secondItem="CUh-NX-xac" secondAttribute="trailing" id="9yq-5i-uIG"/>
-                            <constraint firstItem="xzD-KE-YJu" firstAttribute="top" secondItem="Un6-xA-GWs" secondAttribute="bottom" id="Ko6-K1-gJi"/>
-                            <constraint firstItem="Un6-xA-GWs" firstAttribute="top" secondItem="EJf-gY-igv" secondAttribute="bottom" id="Uyx-MM-8YV"/>
                             <constraint firstItem="CUh-NX-xac" firstAttribute="leading" secondItem="lQh-sD-msJ" secondAttribute="leading" id="Ztl-UM-ZbU"/>
                             <constraint firstItem="GDh-O2-Rc7" firstAttribute="top" secondItem="EJf-gY-igv" secondAttribute="bottom" constant="20" id="bim-EP-8Tg"/>
                             <constraint firstItem="xzD-KE-YJu" firstAttribute="top" secondItem="CUh-NX-xac" secondAttribute="bottom" id="kCb-q5-bEl"/>
-                            <constraint firstItem="Un6-xA-GWs" firstAttribute="top" secondItem="EJf-gY-igv" secondAttribute="bottom" id="kdE-aE-pMa"/>
-                            <constraint firstItem="Un6-xA-GWs" firstAttribute="leading" secondItem="lQh-sD-msJ" secondAttribute="leading" id="ozK-UP-ED8"/>
-                            <constraint firstAttribute="trailing" secondItem="Un6-xA-GWs" secondAttribute="trailing" id="pyD-xO-ykb"/>
-                            <constraint firstItem="Un6-xA-GWs" firstAttribute="leading" secondItem="lQh-sD-msJ" secondAttribute="leading" id="soH-BH-vik"/>
                             <constraint firstItem="GDh-O2-Rc7" firstAttribute="leading" secondItem="lQh-sD-msJ" secondAttribute="leading" constant="20" id="wg3-Xp-7hY"/>
                         </constraints>
                     </view>
@@ -928,13 +882,10 @@
                         <viewControllerLayoutGuide type="top" id="Yed-Ms-Cbh"/>
                         <viewControllerLayoutGuide type="bottom" id="PRn-1z-uRp"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RYN-8M-tuR">
+                    <view key="view" contentMode="scaleToFill" id="RYN-8M-tuR" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="qb2-Nc-ZC7">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="w1R-wG-DLw">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -1055,15 +1006,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="w1R-wG-DLw" firstAttribute="top" secondItem="Yed-Ms-Cbh" secondAttribute="bottom" id="8sn-UP-40W"/>
-                            <constraint firstItem="qb2-Nc-ZC7" firstAttribute="top" secondItem="Yed-Ms-Cbh" secondAttribute="bottom" id="B3b-xE-mVp"/>
-                            <constraint firstItem="qb2-Nc-ZC7" firstAttribute="leading" secondItem="RYN-8M-tuR" secondAttribute="leading" id="HGA-Ul-Y1y"/>
-                            <constraint firstAttribute="trailing" secondItem="qb2-Nc-ZC7" secondAttribute="trailing" id="TA3-kt-qFn"/>
                             <constraint firstAttribute="trailing" secondItem="w1R-wG-DLw" secondAttribute="trailing" id="WQF-QI-GTQ"/>
                             <constraint firstItem="w1R-wG-DLw" firstAttribute="leading" secondItem="RYN-8M-tuR" secondAttribute="leading" id="YRa-1e-eFh"/>
                             <constraint firstItem="PRn-1z-uRp" firstAttribute="top" secondItem="w1R-wG-DLw" secondAttribute="bottom" id="e3x-7T-RXj"/>
                             <constraint firstItem="w1R-wG-DLw" firstAttribute="centerX" secondItem="RYN-8M-tuR" secondAttribute="centerX" id="grv-WG-WvI"/>
                             <constraint firstItem="kHq-Dy-WtD" firstAttribute="top" secondItem="Yed-Ms-Cbh" secondAttribute="bottom" constant="20" id="h9v-Pd-NeW"/>
-                            <constraint firstItem="PRn-1z-uRp" firstAttribute="top" secondItem="qb2-Nc-ZC7" secondAttribute="bottom" id="htJ-kB-06C"/>
                             <constraint firstItem="kHq-Dy-WtD" firstAttribute="leading" secondItem="RYN-8M-tuR" secondAttribute="leading" constant="20" id="lpF-fN-lPS"/>
                         </constraints>
                     </view>
@@ -1087,13 +1034,10 @@
                         <viewControllerLayoutGuide type="top" id="wNo-f9-a1X"/>
                         <viewControllerLayoutGuide type="bottom" id="6yL-3u-8ti"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hrs-YQ-to0">
+                    <view key="view" contentMode="scaleToFill" id="hrs-YQ-to0" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Vph-WE-zNS">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="EwC-PO-gxV">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -1187,14 +1131,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Vph-WE-zNS" secondAttribute="trailing" id="3MW-Og-ofD"/>
                             <constraint firstAttribute="trailing" secondItem="EwC-PO-gxV" secondAttribute="trailing" id="5VD-L2-qcw"/>
                             <constraint firstItem="EwC-PO-gxV" firstAttribute="leading" secondItem="hrs-YQ-to0" secondAttribute="leading" id="InA-CQ-sCf"/>
-                            <constraint firstItem="Vph-WE-zNS" firstAttribute="leading" secondItem="hrs-YQ-to0" secondAttribute="leading" id="MtZ-Da-K2E"/>
                             <constraint firstItem="mwZ-dB-3rg" firstAttribute="top" secondItem="wNo-f9-a1X" secondAttribute="bottom" constant="20" id="O0e-oM-hJJ"/>
                             <constraint firstItem="6yL-3u-8ti" firstAttribute="top" secondItem="EwC-PO-gxV" secondAttribute="bottom" id="ZBw-ym-vHV"/>
-                            <constraint firstItem="6yL-3u-8ti" firstAttribute="top" secondItem="Vph-WE-zNS" secondAttribute="bottom" id="bLS-r5-fCm"/>
-                            <constraint firstItem="Vph-WE-zNS" firstAttribute="top" secondItem="wNo-f9-a1X" secondAttribute="bottom" id="cZt-xc-sDM"/>
                             <constraint firstItem="mwZ-dB-3rg" firstAttribute="leading" secondItem="hrs-YQ-to0" secondAttribute="leading" constant="20" id="g0w-8x-7cB"/>
                             <constraint firstItem="EwC-PO-gxV" firstAttribute="top" secondItem="wNo-f9-a1X" secondAttribute="bottom" id="nKP-TC-bcp"/>
                             <constraint firstItem="EwC-PO-gxV" firstAttribute="centerX" secondItem="hrs-YQ-to0" secondAttribute="centerX" id="yG9-RW-peT"/>
@@ -1219,13 +1159,10 @@
                         <viewControllerLayoutGuide type="top" id="qDq-3i-NHI"/>
                         <viewControllerLayoutGuide type="bottom" id="ZqI-Cu-WTl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yta-DF-yAF">
+                    <view key="view" contentMode="scaleToFill" id="yta-DF-yAF" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="a1e-5m-j4h">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="UvR-sT-2Kd">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
@@ -1333,12 +1270,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UvR-sT-2Kd" firstAttribute="leading" secondItem="yta-DF-yAF" secondAttribute="leading" id="88w-5b-cza"/>
-                            <constraint firstItem="a1e-5m-j4h" firstAttribute="top" secondItem="qDq-3i-NHI" secondAttribute="bottom" id="9b5-hd-eQM"/>
-                            <constraint firstItem="ZqI-Cu-WTl" firstAttribute="top" secondItem="a1e-5m-j4h" secondAttribute="bottom" id="A3g-AE-Oni"/>
                             <constraint firstItem="eBs-oP-RDO" firstAttribute="top" secondItem="qDq-3i-NHI" secondAttribute="bottom" constant="20" id="Hhr-WM-Bbh"/>
-                            <constraint firstAttribute="trailing" secondItem="a1e-5m-j4h" secondAttribute="trailing" id="JMf-Hg-9MQ"/>
                             <constraint firstItem="ZqI-Cu-WTl" firstAttribute="top" secondItem="UvR-sT-2Kd" secondAttribute="bottom" id="eOy-uT-dZN"/>
-                            <constraint firstItem="a1e-5m-j4h" firstAttribute="leading" secondItem="yta-DF-yAF" secondAttribute="leading" id="evg-Jy-cyD"/>
                             <constraint firstItem="eBs-oP-RDO" firstAttribute="leading" secondItem="yta-DF-yAF" secondAttribute="leading" constant="20" id="hnO-Rb-i2h"/>
                             <constraint firstItem="UvR-sT-2Kd" firstAttribute="top" secondItem="qDq-3i-NHI" secondAttribute="bottom" id="xaE-aH-bUs"/>
                             <constraint firstAttribute="trailing" secondItem="UvR-sT-2Kd" secondAttribute="trailing" id="zze-5C-FW4"/>
@@ -1365,13 +1298,10 @@
                         <viewControllerLayoutGuide type="top" id="TpI-tv-Zai"/>
                         <viewControllerLayoutGuide type="bottom" id="NZN-xG-Ncv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QcQ-Zc-lip">
+                    <view key="view" contentMode="scaleToFill" id="QcQ-Zc-lip" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="iW2-gj-wRe">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKn-a8-XHx">
                                 <rect key="frame" x="20" y="254" width="335" height="368"/>
                             </containerView>
@@ -1417,16 +1347,12 @@
                         <constraints>
                             <constraint firstItem="Sdj-y7-TQe" firstAttribute="top" secondItem="QcQ-Zc-lip" secondAttribute="top" constant="20" id="0b6-Fn-4jr"/>
                             <constraint firstItem="Sdj-y7-TQe" firstAttribute="leading" secondItem="QcQ-Zc-lip" secondAttribute="leading" constant="20" id="3g9-bm-fLb"/>
-                            <constraint firstItem="iW2-gj-wRe" firstAttribute="top" secondItem="QcQ-Zc-lip" secondAttribute="top" id="3sE-X0-3Ku"/>
                             <constraint firstItem="nKn-a8-XHx" firstAttribute="top" secondItem="oIu-xa-zLB" secondAttribute="bottom" constant="26.5" id="4Wi-8b-eLB"/>
-                            <constraint firstItem="iW2-gj-wRe" firstAttribute="leading" secondItem="QcQ-Zc-lip" secondAttribute="leading" id="5QN-lx-rCw"/>
-                            <constraint firstItem="NZN-xG-Ncv" firstAttribute="top" secondItem="iW2-gj-wRe" secondAttribute="bottom" id="Dl5-Wh-h1X"/>
                             <constraint firstItem="NZN-xG-Ncv" firstAttribute="top" secondItem="nKn-a8-XHx" secondAttribute="bottom" constant="45" id="NgH-aw-E7S"/>
                             <constraint firstItem="QrD-Ef-W9L" firstAttribute="bottom" secondItem="rqD-kL-YPR" secondAttribute="bottom" constant="-4" id="R78-wC-dHk"/>
                             <constraint firstItem="nKn-a8-XHx" firstAttribute="leading" secondItem="QcQ-Zc-lip" secondAttribute="leading" constant="20" id="U6R-z3-VtA"/>
                             <constraint firstItem="rqD-kL-YPR" firstAttribute="centerX" secondItem="QcQ-Zc-lip" secondAttribute="centerX" id="Z3q-bx-IyS"/>
                             <constraint firstAttribute="trailing" secondItem="nKn-a8-XHx" secondAttribute="trailing" constant="20" id="dg4-Ti-uP0"/>
-                            <constraint firstAttribute="trailing" secondItem="iW2-gj-wRe" secondAttribute="trailing" id="dpb-Un-IlH"/>
                             <constraint firstItem="rqD-kL-YPR" firstAttribute="top" secondItem="TpI-tv-Zai" secondAttribute="bottom" constant="80" id="haP-59-fsL"/>
                             <constraint firstItem="oIu-xa-zLB" firstAttribute="leading" secondItem="QcQ-Zc-lip" secondAttribute="leading" constant="20" id="o5Z-Qd-acy"/>
                             <constraint firstItem="QrD-Ef-W9L" firstAttribute="trailing" secondItem="rqD-kL-YPR" secondAttribute="trailing" id="uNV-Hr-WX2"/>
@@ -1452,13 +1378,10 @@
                         <viewControllerLayoutGuide type="top" id="syd-Kk-ROS"/>
                         <viewControllerLayoutGuide type="bottom" id="sJK-H9-fgo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ja8-3K-RYy">
+                    <view key="view" contentMode="scaleToFill" id="ja8-3K-RYy" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="icS-32-WHf">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="oMb-fe-qch">
                                 <rect key="frame" x="62" y="100" width="251" height="95"/>
                                 <constraints>
@@ -1508,12 +1431,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="icS-32-WHf" secondAttribute="trailing" id="2hO-sU-1ol"/>
                             <constraint firstItem="cX4-H4-gej" firstAttribute="trailing" secondItem="oMb-fe-qch" secondAttribute="trailing" id="5Gz-4c-b2K"/>
                             <constraint firstItem="gVw-TU-aQX" firstAttribute="top" secondItem="7ff-Sf-2bN" secondAttribute="bottom" constant="8" id="8OC-cm-Wo8"/>
                             <constraint firstItem="7ff-Sf-2bN" firstAttribute="top" secondItem="oMb-fe-qch" secondAttribute="bottom" constant="18" id="DzR-Vh-oc2"/>
                             <constraint firstItem="7ff-Sf-2bN" firstAttribute="leading" secondItem="oMb-fe-qch" secondAttribute="leading" id="JGi-Oe-83b"/>
-                            <constraint firstItem="icS-32-WHf" firstAttribute="leading" secondItem="ja8-3K-RYy" secondAttribute="leading" id="Jej-z5-NtW"/>
                             <constraint firstItem="8TT-iG-yFc" firstAttribute="leading" secondItem="gVw-TU-aQX" secondAttribute="leading" id="KAB-Mk-SaI"/>
                             <constraint firstItem="cX4-H4-gej" firstAttribute="bottom" secondItem="oMb-fe-qch" secondAttribute="bottom" constant="-4" id="Ngk-k6-Vrh"/>
                             <constraint firstItem="oMb-fe-qch" firstAttribute="top" secondItem="syd-Kk-ROS" secondAttribute="bottom" constant="80" id="Vov-Q6-afm"/>
@@ -1525,8 +1446,6 @@
                             <constraint firstItem="Gda-lf-MKi" firstAttribute="centerX" secondItem="ja8-3K-RYy" secondAttribute="centerX" id="ri4-i1-Meh"/>
                             <constraint firstItem="Gda-lf-MKi" firstAttribute="top" secondItem="gVw-TU-aQX" secondAttribute="bottom" constant="125" id="wJc-Sf-XGe"/>
                             <constraint firstItem="7ff-Sf-2bN" firstAttribute="trailing" secondItem="oMb-fe-qch" secondAttribute="trailing" id="wrC-WV-Fq9"/>
-                            <constraint firstItem="sJK-H9-fgo" firstAttribute="top" secondItem="icS-32-WHf" secondAttribute="bottom" id="xjy-o4-a0C"/>
-                            <constraint firstItem="icS-32-WHf" firstAttribute="top" secondItem="syd-Kk-ROS" secondAttribute="bottom" id="yRt-Bo-fVC"/>
                             <constraint firstItem="8TT-iG-yFc" firstAttribute="top" secondItem="Gda-lf-MKi" secondAttribute="bottom" constant="7.5" id="zBW-XL-O31"/>
                         </constraints>
                     </view>
@@ -1547,13 +1466,10 @@
                         <viewControllerLayoutGuide type="top" id="kh6-BC-5JH"/>
                         <viewControllerLayoutGuide type="bottom" id="SBw-oo-cz5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="93u-3c-xC4">
+                    <view key="view" contentMode="scaleToFill" id="93u-3c-xC4" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="U6u-MJ-0n9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="7IN-gm-wvB">
                                 <rect key="frame" x="60" y="100" width="255" height="95"/>
                                 <constraints>
@@ -1600,10 +1516,7 @@
                         <constraints>
                             <constraint firstItem="fE4-go-4xD" firstAttribute="leading" secondItem="93u-3c-xC4" secondAttribute="leading" constant="160" id="15d-K1-s4A"/>
                             <constraint firstItem="fE4-go-4xD" firstAttribute="trailing" secondItem="7IN-gm-wvB" secondAttribute="trailing" id="2pY-pP-SeQ"/>
-                            <constraint firstItem="SBw-oo-cz5" firstAttribute="top" secondItem="U6u-MJ-0n9" secondAttribute="bottom" id="48x-rF-IlC"/>
                             <constraint firstItem="fE4-go-4xD" firstAttribute="bottom" secondItem="7IN-gm-wvB" secondAttribute="bottom" constant="-4" id="6jF-RO-Pkd"/>
-                            <constraint firstAttribute="trailing" secondItem="U6u-MJ-0n9" secondAttribute="trailing" id="DPT-Q4-XMm"/>
-                            <constraint firstItem="U6u-MJ-0n9" firstAttribute="top" secondItem="93u-3c-xC4" secondAttribute="top" id="E2b-tE-j0n"/>
                             <constraint firstItem="opk-rJ-dKf" firstAttribute="leading" secondItem="93u-3c-xC4" secondAttribute="leading" constant="20" id="Eqp-7I-BGf"/>
                             <constraint firstAttribute="trailing" secondItem="opk-rJ-dKf" secondAttribute="trailing" constant="20" id="H0a-rY-vbd"/>
                             <constraint firstAttribute="trailing" secondItem="7IN-gm-wvB" secondAttribute="trailing" constant="60" id="MSk-Rl-Ch5"/>
@@ -1612,7 +1525,6 @@
                             <constraint firstItem="opk-rJ-dKf" firstAttribute="top" secondItem="7IN-gm-wvB" secondAttribute="bottom" constant="20" id="iO8-0E-LjT"/>
                             <constraint firstItem="7IN-gm-wvB" firstAttribute="top" secondItem="kh6-BC-5JH" secondAttribute="bottom" constant="80" id="mHd-Ez-A0l"/>
                             <constraint firstItem="bSt-T8-Kfo" firstAttribute="top" secondItem="kh6-BC-5JH" secondAttribute="bottom" constant="20" id="mHi-Mn-0p5"/>
-                            <constraint firstItem="U6u-MJ-0n9" firstAttribute="leading" secondItem="93u-3c-xC4" secondAttribute="leading" id="nd0-J0-nuG"/>
                             <constraint firstItem="SBw-oo-cz5" firstAttribute="top" secondItem="iS2-u8-HnR" secondAttribute="bottom" constant="20" id="ofp-y1-hoe"/>
                             <constraint firstItem="iS2-u8-HnR" firstAttribute="centerX" secondItem="93u-3c-xC4" secondAttribute="centerX" id="pTb-ui-yrd"/>
                             <constraint firstItem="bSt-T8-Kfo" firstAttribute="leading" secondItem="93u-3c-xC4" secondAttribute="leading" constant="20" id="smi-0u-lf7"/>
@@ -1885,7 +1797,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BlueBackground" width="687" height="1223"/>
         <image name="LykkeLogo" width="251" height="78"/>
         <image name="backArrow" width="10" height="20"/>
         <image name="deleteIcon" width="46" height="33"/>

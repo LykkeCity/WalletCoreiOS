@@ -26,7 +26,6 @@ class BuyStep2ViewController: UIViewController, GraphProtocol {
     @IBOutlet weak var sellLbl: UILabel!
     @IBOutlet weak var buyBtn: UILabel!
     @IBOutlet weak var sellBtn: UILabel!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
     var periodButtons: [UIView]? = nil
@@ -104,8 +103,6 @@ class BuyStep2ViewController: UIViewController, GraphProtocol {
         graphViewModel.loading
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
-        
-        imageHeight.constant =  Display.height
     }
     
     @IBAction func buyAction(_ sender: UIButton) {

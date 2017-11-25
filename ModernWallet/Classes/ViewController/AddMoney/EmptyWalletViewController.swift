@@ -15,7 +15,7 @@ class EmptyWalletViewController: UIViewController {
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var button: UIButton!
     
-    var message: String!
+    var message: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()

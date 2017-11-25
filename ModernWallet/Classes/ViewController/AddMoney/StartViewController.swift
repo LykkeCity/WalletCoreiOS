@@ -15,7 +15,6 @@ class StartViewController: UIViewController {
     @IBOutlet weak var bankAccountLabel: UILabel!
     @IBOutlet weak var creditCardLabel: UILabel!
     @IBOutlet weak var receiveCryptoLabel: UILabel!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
     
@@ -44,7 +43,6 @@ class StartViewController: UIViewController {
         creditCardLabel.text = Localize("addMoney.newDesign.creditCard")
         receiveCryptoLabel.text = Localize("addMoney.newDesign.receiveCrypto")
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        imageHeight.constant =  Display.height
         
         kycNeededViewModel.loadingViewModel.isLoading
             .bind(to: self.rx.loading)

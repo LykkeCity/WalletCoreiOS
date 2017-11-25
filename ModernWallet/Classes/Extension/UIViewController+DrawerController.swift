@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import KYDrawerController
 
 extension UIViewController {
 
-    var drawerController: KYDrawerController? {
+    var drawerController: DrawerController? {
         var viewController: UIViewController? = self
         while viewController != nil {
-            if let drawerController = viewController as? KYDrawerController {
+            if let drawerController = viewController as? DrawerController {
                 return drawerController
             }
             viewController = viewController?.parent

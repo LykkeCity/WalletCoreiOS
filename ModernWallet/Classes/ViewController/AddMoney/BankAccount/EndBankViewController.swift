@@ -13,15 +13,13 @@ import WalletCore
 class EndBankViewController: UIViewController {
     
     @IBOutlet weak var returnToPortfolioButton: UIButton!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.clear
-        returnToPortfolioButton.setTitle(Localize("addMoney.newDesign.bankaccount.returnToPortfolio"), for: UIControlState.normal)
-        imageHeight.constant =  Display.height
+    returnToPortfolioButton.setTitle(Localize("addMoney.newDesign.bankaccount.returnToPortfolio"), for: UIControlState.normal)
     }
 
     override func didReceiveMemoryWarning() {

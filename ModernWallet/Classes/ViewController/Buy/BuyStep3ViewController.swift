@@ -29,7 +29,6 @@ class BuyStep3ViewController: UIViewController, UIPickerViewDelegate, UITextFiel
     @IBOutlet weak var totalAmount: UILabel!
     @IBOutlet weak var priceValue: UILabel!
     @IBOutlet weak var priceAmount: UILabel!
-    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     
     // MARK: - Properties
@@ -72,7 +71,6 @@ class BuyStep3ViewController: UIViewController, UIPickerViewDelegate, UITextFiel
         unitsAmount.attributedPlaceholder = NSAttributedString(string: "0.0",
                                                                attributes: [NSForegroundColorAttributeName: UIColor.white])
         
-        imageHeight.constant =  Display.height
         fillViewModelInput()
         addBindings()
         

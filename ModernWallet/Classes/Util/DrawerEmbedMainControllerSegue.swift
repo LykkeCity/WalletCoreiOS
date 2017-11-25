@@ -11,8 +11,11 @@ import UIKit
 class DrawerEmbedMainControllerSegue: UIStoryboardSegue {
     
     final override func perform() {
-        guard let drawerController = source.drawerController else { return }
-        drawerController.mainViewController = destination
+        guard
+            let drawerController = source.drawerController,
+            let rootViewController = drawerController.mainViewController as? RootViewController
+        else { return }
+        rootViewController.embed(viewController: destination, animated: true)
         drawerController.setDrawerState(.closed, animated: false)
 //        drawerController.endAppearanceTransition()
         
