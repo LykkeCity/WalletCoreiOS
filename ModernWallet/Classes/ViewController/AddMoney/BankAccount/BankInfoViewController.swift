@@ -24,6 +24,12 @@ class BankInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        #if TEST
+            emailButton.isEnabled = false
+        #endif
+        
+        emailButton.setTitle(Localize("addMoney.newDesign.bankaccount.emailMe"), for: UIControlState.normal)
+        
         //get user's base asset and assign it to the view model
         LWRxAuthManager.instance.baseAsset.request()
             .filterSuccess()
@@ -36,8 +42,6 @@ class BankInfoViewController: UIViewController {
         currencyDepositViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

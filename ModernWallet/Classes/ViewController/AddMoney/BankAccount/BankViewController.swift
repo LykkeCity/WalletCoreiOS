@@ -91,15 +91,28 @@ class BankViewController: UIViewController {
 
 fileprivate extension SwiftCredentialsViewModel {
     func bind(toViewController vc: BankViewController) -> [Disposable] {
-        return [
-            bic.drive(vc.bicLabel.rx.text),
-            accountNumber.drive(vc.accountNumberLabel.rx.text),
-            accountName.drive(vc.accountNameLabel.rx.text),
-            purposeOfPayment.drive(vc.purposeOfPaymentLabel.rx.text),
-            bankAddress.drive(vc.bankAddressLabel.rx.text),
-            companyAddress.drive(vc.companyAddressLabel.rx.text),
-            loadingViewModel.isLoading.bind(to: vc.rx.loading),
-            errors.drive(vc.rx.error)
-        ]
+        #if TEST
+            return [
+                bic.drive(vc.bicLabel.rx.text),
+                Driver.just("XXXX XXXX XXXX").drive(vc.accountNumberLabel.rx.text),
+                accountName.drive(vc.accountNameLabel.rx.text),
+                purposeOfPayment.drive(vc.purposeOfPaymentLabel.rx.text),
+                bankAddress.drive(vc.bankAddressLabel.rx.text),
+                companyAddress.drive(vc.companyAddressLabel.rx.text),
+                loadingViewModel.isLoading.bind(to: vc.rx.loading),
+                errors.drive(vc.rx.error)
+            ]
+        #else
+            return [
+                bic.drive(vc.bicLabel.rx.text),
+                accountNumber.drive(vc.accountNumberLabel.rx.text),
+                accountName.drive(vc.accountNameLabel.rx.text),
+                purposeOfPayment.drive(vc.purposeOfPaymentLabel.rx.text),
+                bankAddress.drive(vc.bankAddressLabel.rx.text),
+                companyAddress.drive(vc.companyAddressLabel.rx.text),
+                loadingViewModel.isLoading.bind(to: vc.rx.loading),
+                errors.drive(vc.rx.error)
+            ]
+        #endif
     }
 }
