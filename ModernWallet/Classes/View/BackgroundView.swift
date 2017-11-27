@@ -34,7 +34,9 @@ class BackgroundView: UIView {
         guard let rootView = UIApplication.shared.delegate?.window??.rootViewController?.view else {
             return
         }
-        imageView.frame = rootView.convert(rootView.bounds, to: self)
+        var imageFrame = rootView.convert(rootView.bounds, to: self)
+        imageFrame.origin.x = 0
+        imageView.frame = imageFrame
     }
 
     private func setupBackground() {
