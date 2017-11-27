@@ -65,6 +65,7 @@ class RegisterHintViewController: UIViewController {
             .flatMap { _ in
                 return LWRxAuthManager.instance.allAssets.request()
             }
+            .shareReplay(1)
             
         let setBaseAssetRequest = allAssetRequest
             .filterSuccess()
@@ -74,6 +75,7 @@ class RegisterHintViewController: UIViewController {
             .flatMap { assetId in
                 LWRxAuthManager.instance.baseAssetSet.request(withParams: assetId)
             }
+            .shareReplay(1)
             
         allAssetRequest
             .subscribe(onNext: {[weak self] pack in
