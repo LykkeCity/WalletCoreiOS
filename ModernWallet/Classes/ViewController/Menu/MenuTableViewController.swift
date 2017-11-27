@@ -59,7 +59,7 @@ class MenuTableViewController: UITableViewController {
                  viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
         MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"), storyboardName: "Settings"),
         MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), storyboardName: "Transactions"),
-        MenuItem(title: Localize("menu.newDesign.logout"), image: nil, viewControllerIdentifier: nil, color: nil,
+        MenuItem(title: Localize("menu.newDesign.logout"), image: #imageLiteral(resourceName: "LogoutIcon"), viewControllerIdentifier: nil, color: nil,
                  onSelect: MenuTableViewController.logout)
     ]
     
