@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "LykkeLogoSplash.png",
+      "filename" : "modernMoneyLogo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "LykkeLogoSplash@2x.png",
+      "filename" : "modernMoneyLogo@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "LykkeLogoSplash@3x.png",
+      "filename" : "modernMoneyLogo@3x.png",
       "scale" : "3x"
     }
   ],
