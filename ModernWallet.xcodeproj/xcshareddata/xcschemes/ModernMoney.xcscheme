@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CF21DC7A1C17590E00D2399E"
-               BuildableName = "ModernWallet.app"
-               BlueprintName = "ModernWallet"
+               BuildableName = "ModernMoney.app"
+               BlueprintName = "ModernMoney"
                ReferencedContainer = "container:ModernWallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,8 +34,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF21DC7A1C17590E00D2399E"
-            BuildableName = "ModernWallet.app"
-            BlueprintName = "ModernWallet"
+            BuildableName = "ModernMoney.app"
+            BlueprintName = "ModernMoney"
             ReferencedContainer = "container:ModernWallet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -58,8 +58,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF21DC7A1C17590E00D2399E"
-            BuildableName = "ModernWallet.app"
-            BlueprintName = "ModernWallet"
+            BuildableName = "ModernMoney.app"
+            BlueprintName = "ModernMoney"
             ReferencedContainer = "container:ModernWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -77,8 +77,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF21DC7A1C17590E00D2399E"
-            BuildableName = "ModernWallet.app"
-            BlueprintName = "ModernWallet"
+            BuildableName = "ModernMoney.app"
+            BlueprintName = "ModernMoney"
             ReferencedContainer = "container:ModernWallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
