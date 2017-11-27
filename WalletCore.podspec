@@ -143,6 +143,8 @@ Pod::Spec.new do |s|
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
 
+  s.xcconfig = { "ENABLE_BITCODE" => "NO" }
+
   s.dependency 'RxSwift', '~> 3.6.1'
   s.dependency 'RxCocoa', '~> 3.6.1'
   s.dependency 'RxOptional', '~> 3.1'
