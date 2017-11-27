@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,9 +21,6 @@
         </array>
         <array key="Geomanist-Light.otf">
             <string>Geomanist-Light</string>
-        </array>
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
         </array>
     </customFonts>
     <scenes>
@@ -142,38 +140,43 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y7n-cV-35u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.37082901600000001" blue="0.73230081800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.16388943889999999" green="0.65729378989999998" blue="0.44459913820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="menuCell" id="00e-lW-Msm">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="menuCell" id="00e-lW-Msm" customClass="MenuTableViewCell" customModule="ModernWallet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="00e-lW-Msm" id="WWf-JG-Tpy">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ADD MONEY" translatesAutoresizingMaskIntoConstraints="NO" id="YLG-oe-HRC">
-                                            <rect key="frame" x="17" y="16" width="22" height="22"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ADD MONEY" translatesAutoresizingMaskIntoConstraints="NO" id="YLG-oe-HRC">
+                                            <rect key="frame" x="24" y="16" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="5rD-sr-CKo"/>
                                                 <constraint firstAttribute="width" constant="22" id="b5h-U2-lTK"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD MONEY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlH-ia-xii">
-                                            <rect key="frame" x="63" y="21" width="60" height="12"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                            <rect key="frame" x="56" y="21.5" width="62" height="11"/>
+                                            <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.0" green="0.37082901600000001" blue="0.73230081800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.16388943889999999" green="0.65729378989999998" blue="0.44459913820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="XlH-ia-xii" firstAttribute="centerY" secondItem="WWf-JG-Tpy" secondAttribute="centerY" id="Ber-xE-0bS"/>
-                                        <constraint firstItem="XlH-ia-xii" firstAttribute="leading" secondItem="YLG-oe-HRC" secondAttribute="trailing" constant="24" id="GG5-bq-DUs"/>
+                                        <constraint firstItem="XlH-ia-xii" firstAttribute="leading" secondItem="YLG-oe-HRC" secondAttribute="trailing" constant="10" id="GG5-bq-DUs"/>
                                         <constraint firstItem="YLG-oe-HRC" firstAttribute="centerY" secondItem="WWf-JG-Tpy" secondAttribute="centerY" id="TnA-Gg-ACt"/>
-                                        <constraint firstItem="YLG-oe-HRC" firstAttribute="leading" secondItem="WWf-JG-Tpy" secondAttribute="leading" constant="17" id="yG6-81-Zyb"/>
+                                        <constraint firstItem="YLG-oe-HRC" firstAttribute="leading" secondItem="WWf-JG-Tpy" secondAttribute="leadingMargin" constant="8" id="yG6-81-Zyb"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.16388943889999999" green="0.65729378989999998" blue="0.44459913820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="menuImageView" destination="YLG-oe-HRC" id="Int-su-bqK"/>
+                                    <outlet property="menuNameLabel" destination="XlH-ia-xii" id="oTo-bt-BvR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -220,7 +223,7 @@
                                         <rect key="frame" x="133" y="6" width="108" height="34"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLj-NN-jgj">
-                                        <rect key="frame" x="322" y="1" width="45" height="44"/>
+                                        <rect key="frame" x="323" y="1" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="9N1-LK-uVA"/>
                                         </constraints>
@@ -261,7 +264,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezg-3T-fv3">
-                                        <rect key="frame" x="68" y="14" width="239" height="17.5"/>
+                                        <rect key="frame" x="68" y="14.5" width="239" height="15"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -408,25 +411,25 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rot-qG-J4U">
-                                        <rect key="frame" x="158" y="21.5" width="60" height="17.5"/>
+                                        <rect key="frame" x="160" y="23" width="56" height="15"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdX-4x-Q2r" userLabel="Balance Container">
-                                        <rect key="frame" x="0.0" y="39" width="375" height="143"/>
+                                        <rect key="frame" x="0.0" y="38" width="375" height="144"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-p9-w07" userLabel="Asset Balance">
-                                                <rect key="frame" x="138" y="39" width="100" height="64"/>
+                                                <rect key="frame" x="138" y="40.5" width="100" height="62"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
-                                                        <rect key="frame" x="14.5" y="0.0" width="70.5" height="13"/>
+                                                        <rect key="frame" x="18.5" y="0.0" width="63.5" height="11"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="11"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1MM-5Y-eOM" customClass="AssetAmountView" customModule="ModernWallet" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="13" width="100" height="37"/>
+                                                        <rect key="frame" x="0.0" y="11" width="100" height="37"/>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="36.299999999999997" id="ZGk-5r-fHz"/>
@@ -438,7 +441,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tF3-il-4Jb" customClass="AssetAmountView" customModule="ModernWallet" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="50" width="100" height="14"/>
+                                                        <rect key="frame" x="0.0" y="48" width="100" height="14"/>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="14" id="v2Q-Gw-yRi"/>
@@ -566,7 +569,7 @@
                                             <rect key="frame" x="89" y="0.0" width="197" height="59"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-D9-gM2" userLabel="Transactions Stack View">
-                                                    <rect key="frame" x="28" y="22.5" width="141.5" height="14"/>
+                                                    <rect key="frame" x="34" y="22.5" width="130" height="14"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bvp-5i-wvn">
                                                             <rect key="frame" x="0.0" y="0.0" width="21" height="14"/>
@@ -576,7 +579,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRANSACTIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wR4-KT-fCz">
-                                                            <rect key="frame" x="27" y="0.0" width="114.5" height="14"/>
+                                                            <rect key="frame" x="27" y="0.0" width="103" height="14"/>
                                                             <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -652,13 +655,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-gZ-usr">
-                                <rect key="frame" x="74" y="215" width="227.5" height="237.5"/>
+                                <rect key="frame" x="74.5" y="218" width="227" height="232"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="V18-eG-6Hb">
-                                        <rect key="frame" x="0.0" y="0.0" width="227.5" height="180"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="227" height="180"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
-                                        <rect key="frame" x="0.0" y="200" width="227.5" height="37.5"/>
+                                        <rect key="frame" x="0.0" y="200" width="227" height="32"/>
                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -690,22 +693,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="rqi-49-MLO">
-                                <rect key="frame" x="60" y="179.5" width="255" height="238"/>
+                                <rect key="frame" x="60" y="182.5" width="255" height="232"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyWallet" translatesAutoresizingMaskIntoConstraints="NO" id="ybI-Oz-tnN">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="159"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Cr-Kz-xaI">
-                                        <rect key="frame" x="0.0" y="189" width="255" height="49"/>
+                                        <rect key="frame" x="0.0" y="189" width="255" height="43"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63w-QJ-kLi">
-                                                <rect key="frame" x="0.0" y="0.0" width="255" height="23.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="255" height="20"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoM-de-7jv">
-                                                <rect key="frame" x="0.0" y="31.5" width="255" height="17.5"/>
+                                                <rect key="frame" x="0.0" y="28" width="255" height="15"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>

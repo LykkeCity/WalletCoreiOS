@@ -65,8 +65,6 @@ class MenuTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.register(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "menuCell")
         
         self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         

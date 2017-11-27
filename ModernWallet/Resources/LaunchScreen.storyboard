@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBackground" translatesAutoresizingMaskIntoConstraints="NO" id="TQR-TQ-LIU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="TQR-TQ-LIU">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LykkeLogoSplash" translatesAutoresizingMaskIntoConstraints="NO" id="0rq-pk-cDK">
@@ -45,7 +45,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BlueBackground" width="687" height="1223"/>
+        <image name="Background" width="414" height="736"/>
         <image name="LykkeLogoSplash" width="280" height="88"/>
     </resources>
 </document>

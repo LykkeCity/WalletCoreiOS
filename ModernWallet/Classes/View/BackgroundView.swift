@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class BackgroundView: UIView {
     
-    private let backgroundImageName = "BlueBackground"
+    private let backgroundImageName = "Background"
     
     private weak var imageView: UIImageView!
 

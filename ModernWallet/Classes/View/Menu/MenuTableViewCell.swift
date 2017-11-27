@@ -17,7 +17,7 @@ class MenuTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         let customSelectionView = UIView()
-        customSelectionView.backgroundColor = Colors.darkBlue
+        customSelectionView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.113869863)
         selectedBackgroundView = customSelectionView
     }
     

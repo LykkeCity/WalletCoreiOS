@@ -172,7 +172,6 @@
 		CCDB25791EF42B2E000D590F /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCDB25781EF42B2D000D590F /* SignIn.storyboard */; };
 		CCDE37E5854F72E8954DFF5C /* Pods_ModernWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */; };
 		CCED3BF11EE9811900535EE8 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */; };
-		CCED3BF21EE9811900535EE8 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCED3BF01EE9811900535EE8 /* MenuTableViewCell.xib */; };
 		CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF66327D1C1768B0004353F5 /* Localizable.strings */; };
 		EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */; };
 		EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6632431C175B54004353F5 /* Assets.xcassets */; };
@@ -355,7 +354,6 @@
 		CCDB25731EEFF513000D590F /* SignUpPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPinViewController.swift; sourceTree = "<group>"; };
 		CCDB25781EF42B2D000D590F /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		CCED3BF01EE9811900535EE8 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		CF21DC7B1C17590E00D2399E /* ModernWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModernWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6632431C175B54004353F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF6632441C175B54004353F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -592,7 +590,6 @@
 			isa = PBXGroup;
 			children = (
 				CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */,
-				CCED3BF01EE9811900535EE8 /* MenuTableViewCell.xib */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -969,7 +966,6 @@
 				46D16C311FBC84BD0046F67D /* ButtonWithIconView.xib in Resources */,
 				A12DB5521D741C2300319EA7 /* Proxima Nova Semibold.otf in Resources */,
 				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
-				CCED3BF21EE9811900535EE8 /* MenuTableViewCell.xib in Resources */,
 				665A7CC51FBEDDD5004F6CFA /* SettingsTableViewCell.xib in Resources */,
 				6197A3C41EEA9017008ECF5A /* PieChartCenter.xib in Resources */,
 				66529DD01F8E38F10059786B /* Geomanist-Light.otf in Resources */,
