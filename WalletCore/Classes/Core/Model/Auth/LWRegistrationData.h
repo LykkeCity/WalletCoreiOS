@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nonatomic) NSString *passwordHint;
 
+@property (copy, nonatomic, nullable) NSString *partnerIdentifier;
+
 @end
 
 NS_ASSUME_NONNULL_END

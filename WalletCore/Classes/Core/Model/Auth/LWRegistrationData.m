@@ -20,6 +20,7 @@
     data.password = [self.password copy];
     data.clientInfo = [self.clientInfo copy];
     data.passwordHint=[self.passwordHint copy];
+    data.partnerIdentifier=[self.partnerIdentifier copy];
     return data;
 }
 

@@ -50,10 +50,14 @@
 }
 
 - (NSDictionary *)params {
-    return @{@"Email" : self.registrationData.email,
-             @"Password" : [LWPrivateKeyManager hashForString:self.registrationData.password],
-             @"ClientInfo" : self.registrationData.clientInfo,
-             @"Hint":self.registrationData.passwordHint};
+    NSMutableDictionary *params = [@{@"Email" : self.registrationData.email,
+                                     @"Password" : [LWPrivateKeyManager hashForString:self.registrationData.password],
+                                     @"ClientInfo" : self.registrationData.clientInfo,
+                                     @"Hint":self.registrationData.passwordHint} mutableCopy];
+    if (self.registrationData.partnerIdentifier != nil) {
+        params[@"PartnerId"] = self.registrationData.partnerIdentifier;
+    }
+    return [params copy];
 }
 
 @end

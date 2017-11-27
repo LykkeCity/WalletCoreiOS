@@ -16,35 +16,37 @@ open class SignUpRegistrationViewModel {
     public let reenterPassword = Variable<String>("")
     public let clientInfo = Variable<String>("")
     public let hint = Variable<String>("")
+    public let partnerIdentifier: String?
     let fake = Variable<String>("")
     
     public let loading: Observable<Bool>
     public let result: Driver<ApiResult<LWPacketRegistration>>
     
-    public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
+    public init(submit: Observable<Void>, partnerIdentifier: String? = nil, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
+        self.partnerIdentifier = partnerIdentifier
         result = submit
             .throttle(1, scheduler: MainScheduler.instance)
-            .mapToPack(email: email, password: password, clientInfo: clientInfo, hint: hint, authManager: authManager)
+            .mapToPack(email: email, password: password, clientInfo: clientInfo, hint: hint, partnerIdentifier: self.partnerIdentifier, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
         loading = result.asObservable().isLoading()
     }
     
-    public var isValid : Observable<Bool>{
+    public lazy var isValid : Observable<Bool> = {
         return Observable.combineLatest( self.password.asObservable(), self.reenterPassword.asObservable(), resultSelector:
             {(password, reenterpass) -> Bool in
                 return password.characters.count > 5
                     && reenterpass.characters.count > 5 && self.password.value == self.reenterPassword.value
         })
-    }
+    }()
     
-    public var isValidHint : Observable<Bool>{
+    public lazy var isValidHint : Observable<Bool> = {
         return Observable.combineLatest( self.hint.asObservable(), self.fake.asObservable(), resultSelector:
             {(hint, fake) -> Bool in
                 return hint.characters.count > 2
         })
-    }
+    }()
 }
 
 fileprivate extension ObservableType where Self.E == Void {
@@ -53,6 +55,7 @@ fileprivate extension ObservableType where Self.E == Void {
         password: Variable<String>,
         clientInfo: Variable<String>,
         hint: Variable<String>,
+        partnerIdentifier: String?,
         authManager: LWRxAuthManager
         ) -> Observable<ApiResult<LWPacketRegistration>> {
         
@@ -62,6 +65,7 @@ fileprivate extension ObservableType where Self.E == Void {
             authData.password = password.value
             authData.clientInfo = clientInfo.value
             authData.passwordHint = hint.value
+            authData.partnerIdentifier = partnerIdentifier
             
             return authData
             }
