@@ -22,7 +22,7 @@ class RegisterCreatePasswordViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     
     lazy var viewModel : SignUpRegistrationViewModel={
-        return SignUpRegistrationViewModel(submit: self.nextButton.rx.tap.asObservable() )
+        return SignUpRegistrationViewModel(submit: Observable.never() )
     }()
     
     var disposeBag = DisposeBag()
