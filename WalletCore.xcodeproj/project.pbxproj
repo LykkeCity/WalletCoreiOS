@@ -61,6 +61,9 @@
 		46C08DBD1F98CD9E0059BDD3 /* LWPacketOffchainProcessChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C08DBC1F98CD9E0059BDD3 /* LWPacketOffchainProcessChannel.swift */; };
 		46C08DBF1F98CF2C0059BDD3 /* LWPacketOffchainFinalizetransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C08DBE1F98CF2C0059BDD3 /* LWPacketOffchainFinalizetransfer.swift */; };
 		46C08DC11F98CFA30059BDD3 /* LWModelOffchainOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C08DC01F98CFA30059BDD3 /* LWModelOffchainOrder.swift */; };
+		46C25EB71FCDA2EE002BCEA9 /* TwitterTimeLineJsonPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C25EB61FCDA2EE002BCEA9 /* TwitterTimeLineJsonPacket.swift */; };
+		46C25EB91FCDA3AD002BCEA9 /* LWRxAuthManagerTwitterTimeLineJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C25EB81FCDA3AD002BCEA9 /* LWRxAuthManagerTwitterTimeLineJson.swift */; };
+		46C25EBB1FCDA719002BCEA9 /* LWRxBlueAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C25EBA1FCDA719002BCEA9 /* LWRxBlueAuthManager.swift */; };
 		46C9A8BC1F417AC300B83CCB /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C9A8B21F417AC300B83CCB /* WalletCore.framework */; };
 		46C9A8C11F417AC300B83CCB /* WalletCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9A8C01F417AC300B83CCB /* WalletCoreTests.swift */; };
 		46C9A8C31F417AC300B83CCB /* WalletCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 46C9A8B51F417AC300B83CCB /* WalletCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -677,6 +680,9 @@
 		46C08DBC1F98CD9E0059BDD3 /* LWPacketOffchainProcessChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketOffchainProcessChannel.swift; sourceTree = "<group>"; };
 		46C08DBE1F98CF2C0059BDD3 /* LWPacketOffchainFinalizetransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketOffchainFinalizetransfer.swift; sourceTree = "<group>"; };
 		46C08DC01F98CFA30059BDD3 /* LWModelOffchainOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWModelOffchainOrder.swift; sourceTree = "<group>"; };
+		46C25EB61FCDA2EE002BCEA9 /* TwitterTimeLineJsonPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimeLineJsonPacket.swift; sourceTree = "<group>"; };
+		46C25EB81FCDA3AD002BCEA9 /* LWRxAuthManagerTwitterTimeLineJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerTwitterTimeLineJson.swift; sourceTree = "<group>"; };
+		46C25EBA1FCDA719002BCEA9 /* LWRxBlueAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxBlueAuthManager.swift; sourceTree = "<group>"; };
 		46C9A8B21F417AC300B83CCB /* WalletCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46C9A8B51F417AC300B83CCB /* WalletCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletCore.h; sourceTree = "<group>"; };
 		46C9A8B61F417AC300B83CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1310,6 +1316,23 @@
 			path = Portfolio;
 			sourceTree = "<group>";
 		};
+		46C25EB41FCDA2BF002BCEA9 /* Blue */ = {
+			isa = PBXGroup;
+			children = (
+				46C25EB81FCDA3AD002BCEA9 /* LWRxAuthManagerTwitterTimeLineJson.swift */,
+				46C25EBA1FCDA719002BCEA9 /* LWRxBlueAuthManager.swift */,
+			);
+			path = Blue;
+			sourceTree = "<group>";
+		};
+		46C25EB51FCDA2E6002BCEA9 /* Blue */ = {
+			isa = PBXGroup;
+			children = (
+				46C25EB61FCDA2EE002BCEA9 /* TwitterTimeLineJsonPacket.swift */,
+			);
+			path = Blue;
+			sourceTree = "<group>";
+		};
 		46C9A8A81F417AC300B83CCB = {
 			isa = PBXGroup;
 			children = (
@@ -1379,6 +1402,7 @@
 		46C9AC701F417BD700B83CCB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				46C25EB51FCDA2E6002BCEA9 /* Blue */,
 				46C9B0481F42C83700B83CCB /* LWACurrencyMarketValueModel.swift */,
 				46C9AC711F417BD700B83CCB /* Assets */,
 				46C9AC7E1F417BD700B83CCB /* Auth */,
@@ -2217,6 +2241,7 @@
 		46C9B0501F42C8E700B83CCB /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				46C25EB41FCDA2BF002BCEA9 /* Blue */,
 				469DA7141F6BFA91000B904C /* LWRxAuthManagerClientKeys.swift */,
 				469DA7151F6BFA91000B904C /* LWRxAuthManagerPinSecurityGet.swift */,
 				46E5D0CA1F5DD7ED00D78692 /* LWRxAuthManagerAllCurrencies.swift */,
@@ -2947,6 +2972,7 @@
 				46E3FF321FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift in Sources */,
 				46C9AEA01F417BD700B83CCB /* LWPacketBaseAssetGet.m in Sources */,
 				46E5D0DA1F5DD7ED00D78692 /* LWRxAuthManagerAppSettings.swift in Sources */,
+				46C25EBB1FCDA719002BCEA9 /* LWRxBlueAuthManager.swift in Sources */,
 				46C9AFFF1F417BD800B83CCB /* GDXNet.m in Sources */,
 				46C08DB51F98C3FA0059BDD3 /* LWPacketOffchainRequests.swift in Sources */,
 				46C9AE8C1F417BD700B83CCB /* LWPacketAllAssets.m in Sources */,
@@ -3024,6 +3050,7 @@
 				46C9B02A1F417C1B00B83CCB /* BuyStep3ViewModel.swift in Sources */,
 				46C9AF8C1F417BD800B83CCB /* LWTransactionTradeModel.m in Sources */,
 				46C9AE941F417BD700B83CCB /* LWPacketAssetPairRate.m in Sources */,
+				46C25EB91FCDA3AD002BCEA9 /* LWRxAuthManagerTwitterTimeLineJson.swift in Sources */,
 				46C9AFC21F417BD800B83CCB /* LWMWHistoryElement.m in Sources */,
 				46C9AE821F417BD700B83CCB /* LWPrivateKeyManager.m in Sources */,
 				46C9AF9E1F417BD800B83CCB /* LWKYCDocumentsModel.m in Sources */,
@@ -3061,6 +3088,7 @@
 				46C9AEC81F417BD700B83CCB /* LWPacketDeleteWatchList.m in Sources */,
 				46C9AEC01F417BD700B83CCB /* LWPacketClientKeys.m in Sources */,
 				46C9AF301F417BD800B83CCB /* LWPacketRegistrationGet.m in Sources */,
+				46C25EB71FCDA2EE002BCEA9 /* TwitterTimeLineJsonPacket.swift in Sources */,
 				46C08DB91F98C6290059BDD3 /* LWPacketRequestTransfer.swift in Sources */,
 				46C9AF321F417BD800B83CCB /* LWPacketResetDemoMarginAccount.m in Sources */,
 				46C9AF481F417BD800B83CCB /* LWPacketSettleForwardWithdraw.m in Sources */,
