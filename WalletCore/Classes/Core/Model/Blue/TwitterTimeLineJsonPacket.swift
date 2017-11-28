@@ -13,11 +13,11 @@ public class TwitterTimeLineJsonPacket: LWAuthorizePacket {
     public struct Body {
         public let accountEmail: String
         public let searchQuery: String
-        public let isExtendedSearch: Bool? = nil
-        public let maxResult: Int? = nil
-        public let untilDate: String? = nil
-        public let pageSize: Int? = nil
-        public let pageNumber: Int? = nil
+        public var isExtendedSearch: Bool? = nil
+        public var maxResult: Int? = nil
+        public var untilDate: String? = nil
+        public var pageSize: Int? = nil
+        public var pageNumber: Int? = nil
         
         public init(accountEmail: String, searchQuery: String) {
             self.accountEmail = accountEmail
