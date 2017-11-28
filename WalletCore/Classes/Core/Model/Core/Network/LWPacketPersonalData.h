@@ -16,6 +16,6 @@
     
 }
 // out
-@property (copy, nonatomic) LWPersonalDataModel *data;
+@property (strong, nonatomic) LWPersonalDataModel *data;
 
 @end

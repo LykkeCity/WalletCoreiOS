@@ -36,6 +36,16 @@ public class LWRxAuthManagerPersonalData: NSObject{
 extension LWRxAuthManagerPersonalData: AuthManagerProtocol{
     
     public func request(withParams params:RequestParams = Void()) -> Observable<Result> {
+        
+        if let personalData = LWKeychainManager.instance().personalData() {
+            let packet = Packet()
+            packet.data = personalData
+            
+            return Observable
+                .just(ApiResult.success(withData: packet))
+                .startWith(ApiResult.loading)
+        }
+        
         return Observable.create{observer in
             let pack = Packet(observer: observer)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
