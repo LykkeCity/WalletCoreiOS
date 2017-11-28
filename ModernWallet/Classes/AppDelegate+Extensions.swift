@@ -26,8 +26,9 @@ extension AppDelegate {
         guard LWAuthManager.isAuthneticationFailed(ctx.task?.response)  else { return }
         
         let visibleViewController = self.visibleViewController
-        let loginViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SignUpNav")
-        
+//        let loginViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "SignUpNav")
+        let loginViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateInitialViewController()!
+
         if visibleViewController is SignUpEmailViewController {
             return
         }

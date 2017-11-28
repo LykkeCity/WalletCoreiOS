@@ -36,7 +36,7 @@ extension UIViewController {
     
     func presentLoginController() {
         let signInStory = UIStoryboard.init(name: "SignIn", bundle: nil)
-        let signUpNav = signInStory.instantiateViewController(withIdentifier: "SignUpNav")
+        let signUpNav = signInStory.instantiateInitialViewController()!// instantiateViewController(withIdentifier: "SignUpNav")
         present(signUpNav, animated: true, completion: nil)
     }
 

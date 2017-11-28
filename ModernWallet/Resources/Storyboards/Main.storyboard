@@ -140,7 +140,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y7n-cV-35u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.16388943889999999" green="0.65729378989999998" blue="0.44459913820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="menuCell" id="00e-lW-Msm" customClass="MenuTableViewCell" customModule="ModernWallet" customModuleProvider="target">
@@ -164,7 +164,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.16388943889999999" green="0.65729378989999998" blue="0.44459913820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="XlH-ia-xii" firstAttribute="centerY" secondItem="WWf-JG-Tpy" secondAttribute="centerY" id="Ber-xE-0bS"/>
                                         <constraint firstItem="XlH-ia-xii" firstAttribute="leading" secondItem="YLG-oe-HRC" secondAttribute="trailing" constant="10" id="GG5-bq-DUs"/>
@@ -172,7 +172,7 @@
                                         <constraint firstItem="YLG-oe-HRC" firstAttribute="leading" secondItem="WWf-JG-Tpy" secondAttribute="leadingMargin" constant="8" id="yG6-81-Zyb"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.16388943889999999" green="0.65729378989999998" blue="0.44459913820000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="menuImageView" destination="YLG-oe-HRC" id="Int-su-bqK"/>
                                     <outlet property="menuNameLabel" destination="XlH-ia-xii" id="oTo-bt-BvR"/>
@@ -220,7 +220,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ModernMoneyLogoTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WLS-UQ-0CT">
-                                        <rect key="frame" x="69.5" y="4" width="235" height="38"/>
+                                        <rect key="frame" x="109.5" y="11" width="155" height="24"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLj-NN-jgj">
                                         <rect key="frame" x="322" y="1" width="45" height="44"/>
@@ -264,7 +264,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezg-3T-fv3">
-                                        <rect key="frame" x="68" y="13.5" width="239" height="17.5"/>
+                                        <rect key="frame" x="68" y="14" width="239" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -411,19 +411,19 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rot-qG-J4U">
-                                        <rect key="frame" x="158" y="22" width="60" height="17.5"/>
+                                        <rect key="frame" x="158" y="21.5" width="60" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdX-4x-Q2r" userLabel="Balance Container">
-                                        <rect key="frame" x="0.0" y="39.5" width="375" height="142.5"/>
+                                        <rect key="frame" x="0.0" y="39" width="375" height="143"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-p9-w07" userLabel="Asset Balance">
-                                                <rect key="frame" x="138" y="38.5" width="100" height="64"/>
+                                                <rect key="frame" x="138.5" y="38.5" width="100" height="64"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
-                                                        <rect key="frame" x="15" y="0.0" width="70.5" height="13"/>
+                                                        <rect key="frame" x="14.5" y="0.0" width="70.5" height="13"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="11"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -569,7 +569,7 @@
                                             <rect key="frame" x="89" y="0.0" width="197" height="59"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-D9-gM2" userLabel="Transactions Stack View">
-                                                    <rect key="frame" x="28.5" y="22.5" width="141.5" height="14"/>
+                                                    <rect key="frame" x="28" y="22.5" width="141.5" height="14"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bvp-5i-wvn">
                                                             <rect key="frame" x="0.0" y="0.0" width="21" height="14"/>
@@ -655,7 +655,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-gZ-usr">
-                                <rect key="frame" x="74.5" y="215.5" width="227.5" height="237.5"/>
+                                <rect key="frame" x="74" y="215" width="227.5" height="237.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="V18-eG-6Hb">
                                         <rect key="frame" x="0.0" y="0.0" width="227.5" height="180"/>
@@ -764,7 +764,7 @@
         <image name="ChatIcon" width="29" height="24"/>
         <image name="EmptyWallet" width="123" height="159"/>
         <image name="MenuIcon" width="28" height="20"/>
-        <image name="ModernMoneyLogoTitle" width="235" height="38"/>
+        <image name="ModernMoneyLogoTitle" width="155" height="24"/>
         <image name="backArrow" width="10" height="20"/>
         <image name="buyIcon" width="15" height="15"/>
         <image name="comingSoonIcon" width="191" height="180"/>
