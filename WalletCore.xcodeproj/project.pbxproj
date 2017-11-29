@@ -571,6 +571,8 @@
 		46FB360F1F4A25B000D327D6 /* CreditCardBaseInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB360E1F4A25B000D327D6 /* CreditCardBaseInfoViewModel.swift */; };
 		46FB36131F4ABFD700D327D6 /* LWRxAuthManagerCountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB36121F4ABFD700D327D6 /* LWRxAuthManagerCountryCodes.swift */; };
 		5D35EEBE70B8D28827A34C71 /* Pods_WalletCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA74A9725DA6B8766C4E699 /* Pods_WalletCoreTests.framework */; };
+		61226E181FCEF2D90033FA39 /* ProfilePledgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61226E171FCEF2D90033FA39 /* ProfilePledgeViewModel.swift */; };
+		61226E1A1FCF00380033FA39 /* PledgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61226E191FCF00380033FA39 /* PledgeService.swift */; };
 		612B7BCB1F69048D0085F692 /* LWEthereumTransactionsManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612B7BCA1F69048D0085F692 /* LWEthereumTransactionsManager+Rx.swift */; };
 		612B7BCD1F6904930085F692 /* LWOffchainTransactionsManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612B7BCC1F6904930085F692 /* LWOffchainTransactionsManager+Rx.swift */; };
 		614214131F7262C000E2F524 /* LWRxAuthManagerKYCForAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614214121F7262C000E2F524 /* LWRxAuthManagerKYCForAsset.swift */; };
@@ -1200,6 +1202,8 @@
 		46FB36121F4ABFD700D327D6 /* LWRxAuthManagerCountryCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCountryCodes.swift; sourceTree = "<group>"; };
 		4FF64AADF4D947387E06CDA3 /* Pods-WalletCore.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.test.xcconfig"; sourceTree = "<group>"; };
 		5B75A707CAB0D989329019ED /* Pods-WalletCoreTests.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.debug.test.xcconfig"; sourceTree = "<group>"; };
+		61226E171FCEF2D90033FA39 /* ProfilePledgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePledgeViewModel.swift; sourceTree = "<group>"; };
+		61226E191FCF00380033FA39 /* PledgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PledgeService.swift; sourceTree = "<group>"; };
 		612B7BCA1F69048D0085F692 /* LWEthereumTransactionsManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWEthereumTransactionsManager+Rx.swift"; sourceTree = "<group>"; };
 		612B7BCC1F6904930085F692 /* LWOffchainTransactionsManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWOffchainTransactionsManager+Rx.swift"; sourceTree = "<group>"; };
 		614214121F7262C000E2F524 /* LWRxAuthManagerKYCForAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerKYCForAsset.swift; sourceTree = "<group>"; };
@@ -2174,6 +2178,7 @@
 		46C9B00C1F417BF100B83CCB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				61226E161FCEF26A0033FA39 /* Blue */,
 				460843C01FBF1C1100F14A5A /* AddMoney */,
 				464BAA691FBC77A700F473FA /* Portfolio */,
 				467C205F1FB452F7002A90AE /* BaseAssetSetViewModel.swift */,
@@ -2249,6 +2254,7 @@
 				46C9B0461F42C82300B83CCB /* CurrencyExchanger.swift */,
 				465805C21F98E5D900FFFA0A /* OffchainService.swift */,
 				66CE48781FAA244600AAB98F /* CashOutService.swift */,
+				61226E191FCF00380033FA39 /* PledgeService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2345,6 +2351,14 @@
 				46E5D0C81F5DD77F00D78692 /* LoadingViewModelTests.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		61226E161FCEF26A0033FA39 /* Blue */ = {
+			isa = PBXGroup;
+			children = (
+				61226E171FCEF2D90033FA39 /* ProfilePledgeViewModel.swift */,
+			);
+			path = Blue;
 			sourceTree = "<group>";
 		};
 		6142141A1F79247900E2F524 /* KYC */ = {
@@ -2986,6 +3000,7 @@
 				467C20691FB452F7002A90AE /* PinGetViewModel.swift in Sources */,
 				C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */,
 				46C9B0491F42C83700B83CCB /* LWACurrencyMarketValueModel.swift in Sources */,
+				61226E1A1FCF00380033FA39 /* PledgeService.swift in Sources */,
 				467C206F1FB452F7002A90AE /* BaseAssetSetViewModel.swift in Sources */,
 				46E5D0E71F5DD7ED00D78692 /* LWRxAuthManagerRegistration.swift in Sources */,
 				46E3FF321FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift in Sources */,
@@ -3048,6 +3063,7 @@
 				467C206E1FB452F7002A90AE /* RegisterSendPinEmailViewModel.swift in Sources */,
 				CC83DDB11F4AF3FC008BA5C2 /* ClientCodesViewModel.swift in Sources */,
 				4668A38F1FA7150900D7CBD5 /* OffchainTradeViewModel.swift in Sources */,
+				61226E181FCEF2D90033FA39 /* ProfilePledgeViewModel.swift in Sources */,
 				46C9AF961F417BD800B83CCB /* LWAssetCategoryModel.m in Sources */,
 				46C9AEEA1F417BD700B83CCB /* LWPacketGetPaymentUrl.m in Sources */,
 				66CE48791FAA244600AAB98F /* CashOutService.swift in Sources */,

@@ -66,3 +66,13 @@ extension LWRxBlueAuthManagerPledgeGet: AuthManagerProtocol {
         return Result.notAuthorized
     }
 }
+
+public extension ObservableType where Self.E == ApiResult<PledgeModel> {
+    public func filterSuccess() -> Observable<PledgeModel> {
+        return map{$0.getSuccess()}.filterNil()
+    }
+    
+    public func isLoading() -> Observable<Bool> {
+        return map{$0.isLoading}
+    }
+}
