@@ -9,6 +9,7 @@
 import UIKit
 import KYDrawerController
 import WalletCore
+import FirebaseAnalytics
 
 class MenuTableViewController: UITableViewController {
 
@@ -101,6 +102,9 @@ class MenuTableViewController: UITableViewController {
         }
         
         let item = items[indexPath.row]
+        Analytics.logEvent("select_menu_item", parameters: [
+                "name" : item.title
+            ])
         guard let viewController = instantiateViewController(byMenuItem: item),
             let drawerController = self.drawerController,
             let rootViewController = drawerController.mainViewController as? RootViewController
