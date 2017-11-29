@@ -4,12 +4,10 @@ inhibit_all_warnings!
 target 'ModernMoney' do
 use_frameworks!
 
-pod 'Fabric'
-pod 'Crashlytics'
 pod 'MBProgressHUD'
 pod 'Toast'
 pod 'SWTableViewCell'
-pod 'Google/Analytics'
+pod 'Firebase/Core'
 pod 'Alamofire', '~> 4.4'
 pod 'AlamofireImage', '~> 3.1'
 pod 'Charts', '~> 3.0'
