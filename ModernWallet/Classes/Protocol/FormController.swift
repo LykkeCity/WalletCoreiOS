@@ -23,7 +23,7 @@ protocol FormController {
     
     var segueIdentifier: String? { get }
     
-    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>)
+    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<Pin1ViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>)
     
     func unbind()
 

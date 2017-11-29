@@ -26,7 +26,7 @@ class SingInEmailFormController: FormController {
             return SignInPasswordFormController(email: emailTextField.text!)
         }
         else {
-            return nil
+            return SignUpEmailFormController(email: emailTextField.text!)
         }
     }
     
@@ -58,7 +58,7 @@ class SingInEmailFormController: FormController {
     
     private var disposeBag = DisposeBag()
     
-    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>) {
+    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<Pin1ViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>) {
         disposeBag = DisposeBag()
         accountExistsViewModel.accountExistObservable
             .do(onNext: { $0.saveValues() })
@@ -84,11 +84,12 @@ class SingInEmailFormController: FormController {
             .disposed(by: disposeBag)
 
         emailTextField.rx.returnTap
-            .subscribe(nextTrigger)
+            .map { _ in return button.isEnabled }
+            .filterTrueAndBind(toTrigger: nextTrigger)
             .disposed(by: disposeBag)
         
         button.rx.tap
-            .subscribe(nextTrigger)
+            .bind(to: nextTrigger)
             .disposed(by: disposeBag)
     }
     

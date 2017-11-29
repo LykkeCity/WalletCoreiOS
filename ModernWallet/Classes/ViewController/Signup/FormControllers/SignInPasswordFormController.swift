@@ -26,7 +26,7 @@ class SignInPasswordFormController: FormController {
         ]
     }()
     
-    lazy var passwordTextField: UITextField = {
+    private lazy var passwordTextField: UITextField = {
         let textField = self.textField(placeholder: Localize("auth.newDesign.password"))
         textField.isSecureTextEntry = true
         textField.returnKeyType = .next
@@ -42,11 +42,21 @@ class SignInPasswordFormController: FormController {
     }
     
     var next: FormController? {
-        return nil
+        guard
+            let privateKeyManager = LWPrivateKeyManager.shared(),
+            privateKeyManager.isPrivateKeyLykkeEmpty()
+        else {
+            return nil
+        }
+        return SignInConfirmPhoneFormController(signIn: true, phone: sendSmsViewModel.phonenumber.value)
     }
     
     var segueIdentifier: String? {
         return nil
+    }
+    
+    private var pinViewController: Pin1ViewController {
+        return Pin1ViewController.enterPinViewController(title: Localize("auth.newDesign.enterPin"))
     }
     
     private var loginTrigger = PublishSubject<Void>()
@@ -57,10 +67,20 @@ class SignInPasswordFormController: FormController {
         return viewModel
     }()
     
+    private var sendSmsTrigger = PublishSubject<Void>()
+    
+    lazy var sendSmsViewModel : PhoneNumberViewModel = {
+        return PhoneNumberViewModel(saveSubmit: self.sendSmsTrigger.asObservable() )
+    }()
+    
     private var disposeBag = DisposeBag()
     
-    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>) {
+    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<Pin1ViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>) {
         disposeBag = DisposeBag()
+        
+        passwordTextField.rx.returnTap
+            .bind(to: loginTrigger)
+            .disposed(by: disposeBag)
         
         button.rx.tap
             .bind(to: loginTrigger)
@@ -83,8 +103,48 @@ class SignInPasswordFormController: FormController {
             .bind(to: error)
             .disposed(by: disposeBag)
         
-        loginViewModel.result.asObservable().filterSuccess()
-            .map { _ in return Void() }
+        let pinViewControllerObservable = loginViewModel.result.asObservable().filterSuccess()
+            .map { _ in return self.pinViewController }
+            .shareReplay(1)
+        
+        let pinResult = pinViewControllerObservable
+            .flatMap { $0.complete }
+            .shareReplay(1)
+            
+        pinViewControllerObservable
+            .bind(to: pinTrigger)
+            .disposed(by: disposeBag)
+        
+        let shouldSendSms = pinResult.filter { $0 }
+            .map { _ in
+                return LWPrivateKeyManager.shared()?.isPrivateKeyLykkeEmpty() ?? false
+            }
+            .shareReplay(1)
+        
+        shouldSendSms
+            .filterFalseAndBind(toTrigger: nextTrigger)
+            .disposed(by: disposeBag)
+        
+        shouldSendSms.filter { $0 }
+            .map { [sendSmsViewModel] _ in
+                sendSmsViewModel.phonenumber.value = LWKeychainManager.instance()?.personalData()?.phone ?? ""
+                return ()
+            }
+            .bind(to: sendSmsTrigger)
+            .disposed(by: disposeBag)
+        
+        sendSmsViewModel.loadingSaveChanges
+            .bind(to: loading)
+            .disposed(by: disposeBag)
+        
+        sendSmsViewModel.saveSettingsResult.asObservable()
+            .filterError()
+            .bind(to: error)
+            .disposed(by: disposeBag)
+
+        sendSmsViewModel.saveSettingsResult.asObservable()
+            .filterSuccess()
+            .map { _ in return () }
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
         

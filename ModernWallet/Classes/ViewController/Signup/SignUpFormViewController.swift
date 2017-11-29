@@ -26,6 +26,8 @@ class SignUpFormViewController: UIViewController {
     
     private var nextTrigger = PublishSubject<Void>()
     
+    private var pinTrigger = PublishSubject<Pin1ViewController?>()
+    
     private var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -40,6 +42,13 @@ class SignUpFormViewController: UIViewController {
                 self?.gotoNext()
             })
             .disposed(by: disposeBag)
+        
+        pinTrigger.asDriver(onErrorJustReturn: nil)
+            .filterNil()
+            .drive(onNext: { [weak self] pinViewController in
+                self?.present(pinViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - IBActions
@@ -47,16 +56,6 @@ class SignUpFormViewController: UIViewController {
     @IBAction private func backTapped() {
         popFormController(animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     // MARK: - Private
     
@@ -69,6 +68,9 @@ class SignUpFormViewController: UIViewController {
         }
         else if let segueIdentifier = formController.segueIdentifier {
             performSegue(withIdentifier: segueIdentifier, sender: nil)
+        }
+        else {
+            navigationController?.dismiss(animated: true)
         }
     }
     
@@ -101,7 +103,8 @@ class SignUpFormViewController: UIViewController {
         if let previuosFormController = forms.last {
             previuosFormController.unbind()
         }
-        formController.bind(button: submitButton, nextTrigger: nextTrigger, loading: rx.loading, error: rx.error)
+        formController.bind(button: submitButton, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
+        submitButton.setTitle(formController.buttonTitle, for: .normal)
         forms.append(formController)
     }
     
@@ -139,7 +142,8 @@ class SignUpFormViewController: UIViewController {
             })
         }
         currentFormContrller.unbind()
-        previousFormController.bind(button: submitButton, nextTrigger: nextTrigger, loading: rx.loading, error: rx.error)
+        previousFormController.bind(button: submitButton, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
+        submitButton.setTitle(previousFormController.buttonTitle, for: .normal)
     }
     
     private func setBackVisible(_ visible: Bool) {

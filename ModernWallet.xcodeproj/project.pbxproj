@@ -69,7 +69,6 @@
 		6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */; };
 		6197A3C41EEA9017008ECF5A /* PieChartCenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6197A3C31EEA9017008ECF5A /* PieChartCenter.xib */; };
 		61A3E3001F61548E00666A56 /* TextFieldEffects+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A3E2FF1F61548E00666A56 /* TextFieldEffects+Rx.swift */; };
-		61A3E30A1F62EAD100666A56 /* RegisterCreatePinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A3E3091F62EAD100666A56 /* RegisterCreatePinViewController.swift */; };
 		61BAB0DE1F0F729300212E16 /* BuyStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BAB0DD1F0F729300212E16 /* BuyStep1ViewController.swift */; };
 		61BAB0E01F0F72F600212E16 /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BAB0DF1F0F72F600212E16 /* FakeData.swift */; };
 		61BE16351F1CEBE20034D27A /* TransactionsGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE16341F1CEBE20034D27A /* TransactionsGraphViewController.swift */; };
@@ -77,6 +76,14 @@
 		61FBCCC61F20C8FB004F7219 /* TotalBalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FBCCC51F20C8FB004F7219 /* TotalBalanceViewController.swift */; };
 		61FC79CF1F714016002A78CE /* KYCPhotoPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC79CE1F714016002A78CE /* KYCPhotoPlaceholderView.swift */; };
 		61FC79D21F714033002A78CE /* KYCPhotoPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FC79D11F714033002A78CE /* KYCPhotoPlaceholderView.xib */; };
+		66385DE21FCEDE42002DC70B /* SignUpEmailFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66385DE11FCEDE42002DC70B /* SignUpEmailFormController.swift */; };
+		66385DE41FCEDE71002DC70B /* SignUpEmailCodeFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66385DE31FCEDE71002DC70B /* SignUpEmailCodeFormController.swift */; };
+		66385DE61FCEDE88002DC70B /* SignUpSetPasswordFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66385DE51FCEDE88002DC70B /* SignUpSetPasswordFormController.swift */; };
+		66385DE81FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66385DE71FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift */; };
+		66448AFD1FCEB59200978535 /* SignInConfirmPhoneFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66448AFC1FCEB59200978535 /* SignInConfirmPhoneFormController.swift */; };
+		664676D21FCEF238006FC340 /* SignUpFillProfileFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D11FCEF238006FC340 /* SignUpFillProfileFormController.swift */; };
+		664676D41FCEF260006FC340 /* SignUpFillPhoneFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D31FCEF260006FC340 /* SignUpFillPhoneFormController.swift */; };
+		664676D61FCEFD5C006FC340 /* SignUpShakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D51FCEFD5C006FC340 /* SignUpShakeViewController.swift */; };
 		66529DCC1F8D1A670059786B /* CashOutSelectAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */; };
 		66529DD01F8E38F10059786B /* Geomanist-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCD1F8E38F00059786B /* Geomanist-Light.otf */; };
 		66529DD11F8E38F10059786B /* Geomanist-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCE1F8E38F00059786B /* Geomanist-Regular.otf */; };
@@ -149,20 +156,12 @@
 		A1BCD2DF1D01651D00CF42E4 /* tips_about.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BCD2DE1D01651D00CF42E4 /* tips_about.png */; };
 		A1D65DD21D602B0100828783 /* english_words_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD11D602B0100828783 /* english_words_list.txt */; };
 		A1F4D4A71DCAFF50002EF855 /* lykke-ethereum.html in Resources */ = {isa = PBXBuildFile; fileRef = A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */; };
-		CC0DFB031F559A1200EBB96E /* RegisterConfrimEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0DFB021F559A1200EBB96E /* RegisterConfrimEmailViewController.swift */; };
-		CC0DFB051F56D80B00EBB96E /* RegisterSendCodeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0DFB041F56D80B00EBB96E /* RegisterSendCodeEmailViewController.swift */; };
 		CC48AB581F0E802A0081AF27 /* Buy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC48AB571F0E802A0081AF27 /* Buy.storyboard */; };
 		CC48AB5D1F0E80830081AF27 /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48AB5C1F0E80830081AF27 /* BuyViewController.swift */; };
 		CC48AB661F0F83030081AF27 /* BuyStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48AB641F0F83030081AF27 /* BuyStep2ViewController.swift */; };
 		CC48AB671F0F83030081AF27 /* BuyStep3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC48AB651F0F83030081AF27 /* BuyStep3ViewController.swift */; };
 		CC4B48C51F279B87003422D5 /* BuyStep4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4B48C41F279B87003422D5 /* BuyStep4ViewController.swift */; };
-		CC5B6C061F58610A00723587 /* RegisterCreatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B6C051F58610A00723587 /* RegisterCreatePasswordViewController.swift */; };
-		CC5B6C081F5D6F4500723587 /* RegisterHintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B6C071F5D6F4500723587 /* RegisterHintViewController.swift */; };
-		CC5B6C0A1F5D988400723587 /* RegisterFillProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B6C091F5D988400723587 /* RegisterFillProfileViewController.swift */; };
-		CC6805A31F67F8180079CB05 /* RegisterShakeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6805A21F67F8170079CB05 /* RegisterShakeScreenViewController.swift */; };
 		CC6805A51F68121C0079CB05 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6805A41F68121C0079CB05 /* PinViewController.swift */; };
-		CC84F2751F60411F00FABEA3 /* RegisterFillPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC84F2741F60411F00FABEA3 /* RegisterFillPhoneViewController.swift */; };
-		CC84F2791F6195FB00FABEA3 /* RegisterConfrimPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC84F2781F6195FB00FABEA3 /* RegisterConfrimPhoneViewController.swift */; };
 		CC8A99AA1EF7BAB80078E6B0 /* AddMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */; };
 		CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94587C1F03D44E00676249 /* EndBankViewController.swift */; };
 		CC94587F1F03DB8E00676249 /* BankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94587E1F03DB8E00676249 /* BankViewController.swift */; };
@@ -171,12 +170,8 @@
 		CC9458861F04067200676249 /* AddMoney.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC9458851F04067200676249 /* AddMoney.storyboard */; };
 		CC9458881F05310300676249 /* AddMoneyCCStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9458871F05310300676249 /* AddMoneyCCStep2ViewController.swift */; };
 		CC94588A1F06630900676249 /* AddMoneyCCStep3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9458891F06630900676249 /* AddMoneyCCStep3ViewController.swift */; };
-		CCDB256D1EEE7E32000D590F /* SignUpEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDB256C1EEE7E32000D590F /* SignUpEmailViewController.swift */; };
 		CCDB25701EEFCF05000D590F /* UtilsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDB256F1EEFCF05000D590F /* UtilsHelper.swift */; };
-		CCDB25721EEFD9C2000D590F /* SignUpPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDB25711EEFD9C2000D590F /* SignUpPasswordViewController.swift */; };
-		CCDB25741EEFF513000D590F /* SignUpPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDB25731EEFF513000D590F /* SignUpPinViewController.swift */; };
 		CCDB25791EF42B2E000D590F /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCDB25781EF42B2D000D590F /* SignIn.storyboard */; };
-		CCDE37E5854F72E8954DFF5C /* Pods_ModernWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */; };
 		CCED3BF11EE9811900535EE8 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */; };
 		CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF66327D1C1768B0004353F5 /* Localizable.strings */; };
 		EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */; };
@@ -251,7 +246,6 @@
 		6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartCenter.swift; sourceTree = "<group>"; };
 		6197A3C31EEA9017008ECF5A /* PieChartCenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PieChartCenter.xib; sourceTree = "<group>"; };
 		61A3E2FF1F61548E00666A56 /* TextFieldEffects+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextFieldEffects+Rx.swift"; sourceTree = "<group>"; };
-		61A3E3091F62EAD100666A56 /* RegisterCreatePinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCreatePinViewController.swift; sourceTree = "<group>"; };
 		61BAB0DD1F0F729300212E16 /* BuyStep1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyStep1ViewController.swift; sourceTree = "<group>"; };
 		61BAB0DF1F0F72F600212E16 /* FakeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		61BE16341F1CEBE20034D27A /* TransactionsGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsGraphViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +253,14 @@
 		61FBCCC51F20C8FB004F7219 /* TotalBalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalBalanceViewController.swift; sourceTree = "<group>"; };
 		61FC79CE1F714016002A78CE /* KYCPhotoPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPhotoPlaceholderView.swift; sourceTree = "<group>"; };
 		61FC79D11F714033002A78CE /* KYCPhotoPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCPhotoPlaceholderView.xib; sourceTree = "<group>"; };
+		66385DE11FCEDE42002DC70B /* SignUpEmailFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailFormController.swift; sourceTree = "<group>"; };
+		66385DE31FCEDE71002DC70B /* SignUpEmailCodeFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailCodeFormController.swift; sourceTree = "<group>"; };
+		66385DE51FCEDE88002DC70B /* SignUpSetPasswordFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSetPasswordFormController.swift; sourceTree = "<group>"; };
+		66385DE71FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPasswordHintFormController.swift; sourceTree = "<group>"; };
+		66448AFC1FCEB59200978535 /* SignInConfirmPhoneFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInConfirmPhoneFormController.swift; sourceTree = "<group>"; };
+		664676D11FCEF238006FC340 /* SignUpFillProfileFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFillProfileFormController.swift; sourceTree = "<group>"; };
+		664676D31FCEF260006FC340 /* SignUpFillPhoneFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFillPhoneFormController.swift; sourceTree = "<group>"; };
+		664676D51FCEFD5C006FC340 /* SignUpShakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpShakeViewController.swift; sourceTree = "<group>"; };
 		66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSelectAssetViewController.swift; sourceTree = "<group>"; };
 		66529DCD1F8E38F00059786B /* Geomanist-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Light.otf"; sourceTree = "<group>"; };
 		66529DCE1F8E38F00059786B /* Geomanist-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Regular.otf"; sourceTree = "<group>"; };
@@ -338,20 +340,12 @@
 		A1D65DD11D602B0100828783 /* english_words_list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = english_words_list.txt; sourceTree = "<group>"; };
 		A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "lykke-ethereum.html"; sourceTree = "<group>"; };
 		A57C827D33CFD609CABF906F /* Pods-ModernMoney.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.debug.test.xcconfig"; sourceTree = "<group>"; };
-		CC0DFB021F559A1200EBB96E /* RegisterConfrimEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterConfrimEmailViewController.swift; sourceTree = "<group>"; };
-		CC0DFB041F56D80B00EBB96E /* RegisterSendCodeEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterSendCodeEmailViewController.swift; sourceTree = "<group>"; };
 		CC48AB571F0E802A0081AF27 /* Buy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Buy.storyboard; sourceTree = "<group>"; };
 		CC48AB5C1F0E80830081AF27 /* BuyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
 		CC48AB641F0F83030081AF27 /* BuyStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyStep2ViewController.swift; sourceTree = "<group>"; };
 		CC48AB651F0F83030081AF27 /* BuyStep3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyStep3ViewController.swift; sourceTree = "<group>"; };
 		CC4B48C41F279B87003422D5 /* BuyStep4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyStep4ViewController.swift; sourceTree = "<group>"; };
-		CC5B6C051F58610A00723587 /* RegisterCreatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCreatePasswordViewController.swift; sourceTree = "<group>"; };
-		CC5B6C071F5D6F4500723587 /* RegisterHintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterHintViewController.swift; sourceTree = "<group>"; };
-		CC5B6C091F5D988400723587 /* RegisterFillProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterFillProfileViewController.swift; sourceTree = "<group>"; };
-		CC6805A21F67F8170079CB05 /* RegisterShakeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterShakeScreenViewController.swift; sourceTree = "<group>"; };
 		CC6805A41F68121C0079CB05 /* PinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
-		CC84F2741F60411F00FABEA3 /* RegisterFillPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterFillPhoneViewController.swift; sourceTree = "<group>"; };
-		CC84F2781F6195FB00FABEA3 /* RegisterConfrimPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterConfrimPhoneViewController.swift; sourceTree = "<group>"; };
 		CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMoneyViewController.swift; sourceTree = "<group>"; };
 		CC94587C1F03D44E00676249 /* EndBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndBankViewController.swift; sourceTree = "<group>"; };
 		CC94587E1F03DB8E00676249 /* BankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankViewController.swift; sourceTree = "<group>"; };
@@ -360,10 +354,7 @@
 		CC9458851F04067200676249 /* AddMoney.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddMoney.storyboard; sourceTree = "<group>"; };
 		CC9458871F05310300676249 /* AddMoneyCCStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMoneyCCStep2ViewController.swift; sourceTree = "<group>"; };
 		CC9458891F06630900676249 /* AddMoneyCCStep3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMoneyCCStep3ViewController.swift; sourceTree = "<group>"; };
-		CCDB256C1EEE7E32000D590F /* SignUpEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpEmailViewController.swift; sourceTree = "<group>"; };
 		CCDB256F1EEFCF05000D590F /* UtilsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsHelper.swift; sourceTree = "<group>"; };
-		CCDB25711EEFD9C2000D590F /* SignUpPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPasswordViewController.swift; sourceTree = "<group>"; };
-		CCDB25731EEFF513000D590F /* SignUpPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPinViewController.swift; sourceTree = "<group>"; };
 		CCDB25781EF42B2D000D590F /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		CF21DC7B1C17590E00D2399E /* ModernWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModernWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -388,7 +379,6 @@
 				A15B3F071D13AAFE00A6B506 /* libiconv.tbd in Frameworks */,
 				A15B3EE21D13A4A500A6B506 /* AVFoundation.framework in Frameworks */,
 				EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */,
-				CCDE37E5854F72E8954DFF5C /* Pods_ModernWallet.framework in Frameworks */,
 				48E63CCB26A3592E77C997FF /* Pods_ModernMoney.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,20 +466,9 @@
 		463FC5AD1F94DBE9005930DD /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				61A3E3091F62EAD100666A56 /* RegisterCreatePinViewController.swift */,
-				CCDB256C1EEE7E32000D590F /* SignUpEmailViewController.swift */,
-				CCDB25711EEFD9C2000D590F /* SignUpPasswordViewController.swift */,
-				CCDB25731EEFF513000D590F /* SignUpPinViewController.swift */,
-				CC0DFB021F559A1200EBB96E /* RegisterConfrimEmailViewController.swift */,
-				CC0DFB041F56D80B00EBB96E /* RegisterSendCodeEmailViewController.swift */,
-				CC5B6C051F58610A00723587 /* RegisterCreatePasswordViewController.swift */,
-				CC5B6C071F5D6F4500723587 /* RegisterHintViewController.swift */,
-				CC5B6C091F5D988400723587 /* RegisterFillProfileViewController.swift */,
-				CC84F2741F60411F00FABEA3 /* RegisterFillPhoneViewController.swift */,
-				CC84F2781F6195FB00FABEA3 /* RegisterConfrimPhoneViewController.swift */,
-				CC6805A21F67F8170079CB05 /* RegisterShakeScreenViewController.swift */,
 				CC6805A41F68121C0079CB05 /* PinViewController.swift */,
 				669B6A501FCD6AE5003227AF /* SignUpFormViewController.swift */,
+				664676D51FCEFD5C006FC340 /* SignUpShakeViewController.swift */,
 				669B6A541FCD8489003227AF /* FormControllers */,
 			);
 			path = Signup;
@@ -751,6 +730,13 @@
 			children = (
 				669B6A551FCD84B5003227AF /* SingInEmailFormController.swift */,
 				668E68021FCD9AFD004552BD /* SignInPasswordFormController.swift */,
+				66448AFC1FCEB59200978535 /* SignInConfirmPhoneFormController.swift */,
+				66385DE11FCEDE42002DC70B /* SignUpEmailFormController.swift */,
+				66385DE31FCEDE71002DC70B /* SignUpEmailCodeFormController.swift */,
+				66385DE51FCEDE88002DC70B /* SignUpSetPasswordFormController.swift */,
+				66385DE71FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift */,
+				664676D11FCEF238006FC340 /* SignUpFillProfileFormController.swift */,
+				664676D31FCEF260006FC340 /* SignUpFillPhoneFormController.swift */,
 			);
 			path = FormControllers;
 			sourceTree = "<group>";
@@ -1167,8 +1153,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D83A2A1FC5614D0071D705 /* BackupPrivateKeyCheckWordsViewController.swift in Sources */,
-				CC6805A31F67F8180079CB05 /* RegisterShakeScreenViewController.swift in Sources */,
 				61D4DD6B1F30A7CE002510C8 /* UIImageView+Rx.swift in Sources */,
+				66385DE41FCEDE71002DC70B /* SignUpEmailCodeFormController.swift in Sources */,
 				66529DCC1F8D1A670059786B /* CashOutSelectAssetViewController.swift in Sources */,
 				873537111FAF6AC50099EA50 /* CashOutSummaryViewController.swift in Sources */,
 				6689EE551FBB316A0006010F /* SettingsTableViewCell.swift in Sources */,
@@ -1179,7 +1165,6 @@
 				66806B9F1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift in Sources */,
 				462878731F433A710006BE45 /* GraphProtocol.swift in Sources */,
 				CC8A99AA1EF7BAB80078E6B0 /* AddMoneyViewController.swift in Sources */,
-				CC84F2791F6195FB00FABEA3 /* RegisterConfrimPhoneViewController.swift in Sources */,
 				469DA71B1F6C1199000B904C /* KYCTabStripViewController.swift in Sources */,
 				46A48F811FA9B06B00843775 /* EmptyPortfolioView.swift in Sources */,
 				4671C9D01F824130002C2F25 /* KYCPhotoFailedViewController.swift in Sources */,
@@ -1201,7 +1186,7 @@
 				87C6CDFC1FA5BBEC0069CC38 /* CashOutTotalTableViewCell.swift in Sources */,
 				66DA84CD1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift in Sources */,
 				CC94588A1F06630900676249 /* AddMoneyCCStep3ViewController.swift in Sources */,
-				CCDB256D1EEE7E32000D590F /* SignUpEmailViewController.swift in Sources */,
+				66385DE81FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift in Sources */,
 				46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */,
 				462878761F433B0F0006BE45 /* TradingLinearGraphViewTest.m in Sources */,
 				667D404D1F8D018C00457698 /* AssetAmountView.swift in Sources */,
@@ -1209,12 +1194,11 @@
 				463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */,
 				6689EE521FBB291C0006010F /* SettingsTableViewController.swift in Sources */,
 				4671C9C31F7D10FA002C2F25 /* UIButton+Borders.swift in Sources */,
-				CC5B6C0A1F5D988400723587 /* RegisterFillProfileViewController.swift in Sources */,
+				66385DE21FCEDE42002DC70B /* SignUpEmailFormController.swift in Sources */,
 				4651CFB61FA32448009BFA45 /* Observable+Extensions.swift in Sources */,
 				665988501F8E4E5000073703 /* AssetCollectionViewCell.swift in Sources */,
 				46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */,
 				66806BA51F9F2C51001E49E5 /* AssetCollectionCellViewModel+Rx.swift in Sources */,
-				CC5B6C061F58610A00723587 /* RegisterCreatePasswordViewController.swift in Sources */,
 				66A2293A1FC31E2500C4D38A /* BackgroundView.swift in Sources */,
 				6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */,
 				4651CFBA1FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift in Sources */,
@@ -1223,13 +1207,13 @@
 				6140EA471F1CE51C00B05A97 /* SeparatorView.swift in Sources */,
 				8705FF371FC8BF1D00E0F2B9 /* RootViewController.swift in Sources */,
 				6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */,
+				66448AFD1FCEB59200978535 /* SignInConfirmPhoneFormController.swift in Sources */,
 				6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */,
 				870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */,
 				66C83D441FC3089600428527 /* BackupPrivateKeyViewController.swift in Sources */,
 				CC48AB671F0F83030081AF27 /* BuyStep3ViewController.swift in Sources */,
 				612E59201F7A93EB0018476B /* KYCDocumentStatus+Extensions.swift in Sources */,
 				6197A3BB1EE99AB1008ECF5A /* StrokePieChartRenderer.swift in Sources */,
-				61A3E30A1F62EAD100666A56 /* RegisterCreatePinViewController.swift in Sources */,
 				668E68031FCD9AFD004552BD /* SignInPasswordFormController.swift in Sources */,
 				468679731FBDD04100C10397 /* BankInfoViewController.swift in Sources */,
 				4671C9C51F7D17B3002C2F25 /* KYCDocumentType+Extensions.swift in Sources */,
@@ -1238,27 +1222,25 @@
 				669B6A531FCD6B36003227AF /* FormController.swift in Sources */,
 				668216A11FC32EF900D9BD59 /* BackupPrivateKeyPinViewController.swift in Sources */,
 				CC6805A51F68121C0079CB05 /* PinViewController.swift in Sources */,
+				664676D61FCEFD5C006FC340 /* SignUpShakeViewController.swift in Sources */,
 				CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */,
 				467C20741FB47BEC002A90AE /* DrawerController.swift in Sources */,
 				66D83A281FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift in Sources */,
-				CC84F2751F60411F00FABEA3 /* RegisterFillPhoneViewController.swift in Sources */,
 				66C83D3F1FC2D18400428527 /* BackupPrivateKeyStartViewController.swift in Sources */,
 				4671C9D21F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift in Sources */,
+				66385DE61FCEDE88002DC70B /* SignUpSetPasswordFormController.swift in Sources */,
 				464BAA661FBC444000F473FA /* AssetDetailViewController.swift in Sources */,
 				61BAB0DE1F0F729300212E16 /* BuyStep1ViewController.swift in Sources */,
 				4671C9BF1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift in Sources */,
 				87C6CDFA1FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift in Sources */,
-				CCDB25721EEFD9C2000D590F /* SignUpPasswordViewController.swift in Sources */,
 				469DA71F1F6C14C5000B904C /* KYCTabCollectionViewCell.swift in Sources */,
 				66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */,
 				4671C9C71F7E24DC002C2F25 /* UIView+Rx.swift in Sources */,
 				6140E3281F14E6AF00D8885B /* TransactionsViewController.swift in Sources */,
-				CC0DFB051F56D80B00EBB96E /* RegisterSendCodeEmailViewController.swift in Sources */,
-				CC0DFB031F559A1200EBB96E /* RegisterConfrimEmailViewController.swift in Sources */,
 				665A7CC91FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift in Sources */,
 				870D4DD11FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift in Sources */,
 				61BAB0E01F0F72F600212E16 /* FakeData.swift in Sources */,
-				CCDB25741EEFF513000D590F /* SignUpPinViewController.swift in Sources */,
+				664676D41FCEF260006FC340 /* SignUpFillPhoneFormController.swift in Sources */,
 				668E68081FCDC449004552BD /* Pin1ViewController.swift in Sources */,
 				612B7BCF1F69475B0085F692 /* BuyPinViewController.swift in Sources */,
 				469DA7251F6C1FBF000B904C /* KYCStep2ViewController.swift in Sources */,
@@ -1278,7 +1260,7 @@
 				462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */,
 				6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */,
 				CC48AB661F0F83030081AF27 /* BuyStep2ViewController.swift in Sources */,
-				CC5B6C081F5D6F4500723587 /* RegisterHintViewController.swift in Sources */,
+				664676D21FCEF238006FC340 /* SignUpFillProfileFormController.swift in Sources */,
 				4671C9C11F7CE840002C2F25 /* UIButton+Rx.swift in Sources */,
 				61BE16351F1CEBE20034D27A /* TransactionsGraphViewController.swift in Sources */,
 				611248F01F069392005DE4E6 /* AddMoneyCryptocurrencyStep2ViewController.swift in Sources */,
@@ -1429,7 +1411,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lykke.modernmoney;
-				PRODUCT_MODULE_NAME = ModernWallet;
+				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1471,7 +1453,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lykke.modernmoney;
-				PRODUCT_MODULE_NAME = ModernWallet;
+				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1566,7 +1548,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"TEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lykke.modernmoney;
-				PRODUCT_MODULE_NAME = ModernWallet;
+				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1654,7 +1636,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"TEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lykke.modernmoney;
-				PRODUCT_MODULE_NAME = ModernWallet;
+				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

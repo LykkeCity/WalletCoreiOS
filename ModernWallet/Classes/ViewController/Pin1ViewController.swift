@@ -40,7 +40,7 @@ class Pin1ViewController: UIViewController {
 
     var permitedTriesCount = 3
     
-    var completion: ((Bool) -> ())?
+    let complete = PublishSubject<Bool>()
 
     private enum Mode {
         case enterPin
@@ -75,7 +75,11 @@ class Pin1ViewController: UIViewController {
             .subscribe(self.rx.error)
             .disposed(by: self.disposeBag)
         result.result.asObservable().filterSuccess()
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [weak self] result in
+                guard result.isPassed else {
+                    self?.shakeAndReset()
+                    return
+                }
                 self?.dismiss(success: true, animated: true)
             })
             .disposed(by: self.disposeBag)
@@ -119,6 +123,10 @@ class Pin1ViewController: UIViewController {
             titleLabel.text = title
             touchIdButton.alpha = LWFingerprintHelper.isFingerprintAvailable() ? 1.0 : 0.0
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         reset()
     }
@@ -184,8 +192,7 @@ class Pin1ViewController: UIViewController {
             dismiss(success: true, animated: true)
         }
         else {
-            shakeKeyboard()
-            reset()
+            shakeAndReset()
         }
     }
     
@@ -195,12 +202,21 @@ class Pin1ViewController: UIViewController {
             return
         }
         guard pins[0] == pins[1] else {
-            shakeKeyboard()
-            reset()
+            shakeAndReset()
             return
         }
         setPinViewModel.pin.value = pins[0]
         setPinTrigger.onNext(Void())
+    }
+    
+    private func shakeAndReset() {
+        shakeKeyboard()
+        triesLeftCount -= 1
+        if triesLeftCount == 0 {
+            dismiss(success: false, animated: true)
+            return
+        }
+        reset()
     }
     
     private func shakeKeyboard() {
@@ -214,16 +230,12 @@ class Pin1ViewController: UIViewController {
     }
 
     private func reset() {
-        triesLeftCount -= 1
-        if triesLeftCount == 0 {
-            dismiss(success: false, animated: true)
-        }
         digits = []
         pins = []
     }
     
     private func dismiss(success: Bool, animated: Bool) {
-        completion?(success)
+        complete.onNext(success)
         dismiss(animated: animated)
     }
     
