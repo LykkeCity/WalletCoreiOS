@@ -13,4 +13,5 @@ public class LWRxBlueAuthManager {
     private init() {}
     
     public lazy var twitterJson = { LWRxAuthManagerTwitterTimeLineJson() }()
+    public lazy var pledgePost = { LWRxBlueAuthManagerPledge() }()
 }
