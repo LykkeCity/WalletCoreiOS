@@ -21,26 +21,22 @@ PODS:
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
   - CocoaAsyncSocket (7.6.1)
-  - Crashlytics (3.8.4):
-    - Fabric (~> 1.6.3)
-  - Fabric (1.6.11)
-  - FirebaseAnalytics (3.7.0):
-    - FirebaseCore (~> 3.5)
-    - FirebaseInstanceID (~> 1.0)
+  - Firebase/Core (4.3.0):
+    - FirebaseAnalytics (= 4.0.4)
+    - FirebaseCore (= 4.0.8)
+  - FirebaseAnalytics (4.0.4):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (3.5.1):
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.8):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (1.0.9)
+    - nanopb (~> 0.3)
+  - FirebaseInstanceID (2.0.4)
   - GHODictionary (1.1.0)
-  - Google/Analytics (3.0.3):
-    - Google/Core
-    - GoogleAnalytics (~> 3.12)
-  - Google/Core (3.0.3):
-    - FirebaseAnalytics (~> 3.2)
-  - GoogleAnalytics (3.17.0)
-  - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
   - KYDrawerController (2.0.1)
   - MBProgressHUD (1.0.0)
   - MDWamp (2.2.4):
@@ -49,6 +45,11 @@ PODS:
     - SocketRocket
   - MPMessagePack (1.4.3):
     - GHODictionary
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
   - QRCodeReader.swift (7.4.3)
   - RxCocoa (3.6.1):
     - RxSwift (~> 3.6)
@@ -92,9 +93,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.1)
   - Charts (~> 3.0)
-  - Crashlytics
-  - Fabric
-  - Google/Analytics
+  - Firebase/Core
   - KYDrawerController
   - MBProgressHUD
   - RxDataSources (~> 1.0)
@@ -117,19 +116,17 @@ SPEC CHECKSUMS:
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
-  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
-  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  Firebase: 83283761a1ef6dc9846e03d08059f51421afbd65
+  FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
+  FirebaseCore: 69b1a5ac5f857ba6d5fd9d5fe794f4786dd5e579
+  FirebaseInstanceID: 70c2b877e9338971b2429ea5a4293df6961aa44e
   GHODictionary: 225e042596a4b3d5b66b2b24250086b2f95514af
-  Google: cd92fab98f800f509da88c1e0c570275713bc9d5
-  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   KYDrawerController: b716cfa5730dc2133a67efcfc28b3b5a2cff6101
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MDWamp: c41dd5e15ffb61f4f23d027c925173e8c2313c3b
   MPMessagePack: 6dc3a4b93bfdc7cdafcb64de62e2adc50cd99880
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   QRCodeReader.swift: 4a1d46f3057b1b6fc555578b2dc9f2dc99c7ccda
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxDataSources: b3389acc5fe2eefb8fcd81a2b76a876ad08bc82a
@@ -149,6 +146,6 @@ SPEC CHECKSUMS:
   WalletCore: c976f55f5b38cbb24f3d02fc05ab255c406eac69
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
-PODFILE CHECKSUM: 946a3ee384d36276f1986103db15cbedcbdd0664
+PODFILE CHECKSUM: 62c53063cb6284f97122afdbcd6e17e9d658fa05
 
 COCOAPODS: 1.3.1

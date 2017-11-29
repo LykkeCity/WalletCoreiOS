@@ -357,7 +357,7 @@
 		CCDB256F1EEFCF05000D590F /* UtilsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsHelper.swift; sourceTree = "<group>"; };
 		CCDB25781EF42B2D000D590F /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		CF21DC7B1C17590E00D2399E /* ModernWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModernWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF21DC7B1C17590E00D2399E /* ModernWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ModernWallet.app; path = ModernMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6632431C175B54004353F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF6632441C175B54004353F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF66327C1C1768B0004353F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };

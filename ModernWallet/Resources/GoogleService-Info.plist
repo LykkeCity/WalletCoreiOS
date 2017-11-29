@@ -2,25 +2,39 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>TRACKING_ID</key>
-	<string>UA-91621716-1</string>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>803857614687-g5a5c5po1c9rmhu6q326l5odjnqfbdai.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.803857614687-g5a5c5po1c9rmhu6q326l5odjnqfbdai</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAgPopLdJz2K1uT5oThNpDWLs8WQ6FWZxE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>803857614687</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.lykkex.Lykke-Wallet</string>
+	<string>com.lykke.modernmoney</string>
 	<key>PROJECT_ID</key>
-	<string>lykkewalletprod</string>
+	<string>modern-money</string>
+	<key>STORAGE_BUCKET</key>
+	<string>modern-money.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<true/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<false/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<false/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:661874284686:ios:a35f4c1ddaa059d1</string>
+	<string>1:803857614687:ios:5c2746285d704f3d</string>
+	<key>DATABASE_URL</key>
+	<string>https://modern-money.firebaseio.com</string>
 </dict>
 </plist>

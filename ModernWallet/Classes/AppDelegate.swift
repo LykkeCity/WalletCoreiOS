@@ -13,6 +13,7 @@ import WalletCore
 import Toast
 import PushKit
 import RxSwift
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -57,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
+        FirebaseApp.configure()
 
         return true
     }
