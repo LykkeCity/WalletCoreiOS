@@ -22,32 +22,32 @@ public class PledgePostPacket: LWAuthorizePacket {
     
     public var body: Body
     
-    public init(body: Body, observer: Any) {
-        self.body = body
-        super.init()
-        self.observer = observer
-    }
-    
-    required public init!(json: Any!) {
-        fatalError("init(json:) has not been implemented")
-    }
-    
-    //TODO: check according TEST flag
-    override public var urlBase: String {
-        return "https://blue-api-dev.lykkex.net/api"
-    }
-    
-    override public var urlRelative: String! {
-        return "pledges"
-    }
-    
-    override public var type: GDXRESTPacketType {
-        return .POST
-    }
-    
-    override public var params: [AnyHashable : Any] {
-        return body.asDictionary()
-    }
+        public init(body: Body, observer: Any) {
+            self.body = body
+            super.init()
+            self.observer = observer
+        }
+        
+        required public init!(json: Any!) {
+            fatalError("init(json:) has not been implemented")
+        }
+        
+        //TODO: check according TEST flag
+        override public var urlBase: String {
+            return "https://blue-api-dev.lykkex.net/api"
+        }
+        
+        override public var urlRelative: String! {
+            return "pledges"
+        }
+        
+        override public var type: GDXRESTPacketType {
+            return .POST
+        }
+        
+        override public var params: [AnyHashable : Any] {
+            return body.asDictionary()
+        }
 }
 
 extension PledgePostPacket.Body {

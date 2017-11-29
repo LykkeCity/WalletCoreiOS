@@ -595,8 +595,11 @@
 		874FA6741FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FA6731FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift */; };
 		874FA6761FAD880E004E233F /* LWModelCashOutSwiftResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FA6751FAD880E004E233F /* LWModelCashOutSwiftResult.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
-		C14A6A6F1FCDBF1000EC078A /* LWRxBlueAuthManagerPledge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledge.swift */; };
+		C14A6A6F1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift */; };
 		C14A6A711FCDBF4F00EC078A /* PledgePostPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A6A701FCDBF4F00EC078A /* PledgePostPacket.swift */; };
+		C196EB171FCEE078000FD730 /* PledgeGetPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196EB161FCEE078000FD730 /* PledgeGetPacket.swift */; };
+		C196EB1A1FCEEC22000FD730 /* PledgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196EB191FCEEC22000FD730 /* PledgeModel.swift */; };
+		C196EB1C1FCEEE73000FD730 /* LWRxBlueAuthManagerPledgeGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196EB1B1FCEEE73000FD730 /* LWRxBlueAuthManagerPledgeGet.swift */; };
 		C1985A5C1FCC602B00CCD0D7 /* PersonalDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1985A5B1FCC602B00CCD0D7 /* PersonalDataViewModel.swift */; };
 		CC0A16AE1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = CC0A16AC1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC0A16AF1F4C2A0500CC40C3 /* LWPacketPostClientCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0A16AD1F4C2A0500CC40C3 /* LWPacketPostClientCodes.m */; };
@@ -1226,8 +1229,11 @@
 		A6006A15181B6E664CEE7CEA /* Pods-WalletCore.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.debug.test.xcconfig"; sourceTree = "<group>"; };
 		B2D803A07289BA7B1909DDA3 /* Pods-WalletCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.xcconfig"; sourceTree = "<group>"; };
 		C12CC0391F91106900904A8C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxBlueAuthManagerPledge.swift; sourceTree = "<group>"; };
+		C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxBlueAuthManagerPledgePost.swift; sourceTree = "<group>"; };
 		C14A6A701FCDBF4F00EC078A /* PledgePostPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PledgePostPacket.swift; sourceTree = "<group>"; };
+		C196EB161FCEE078000FD730 /* PledgeGetPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PledgeGetPacket.swift; sourceTree = "<group>"; };
+		C196EB191FCEEC22000FD730 /* PledgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PledgeModel.swift; sourceTree = "<group>"; };
+		C196EB1B1FCEEE73000FD730 /* LWRxBlueAuthManagerPledgeGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxBlueAuthManagerPledgeGet.swift; sourceTree = "<group>"; };
 		C1985A5B1FCC602B00CCD0D7 /* PersonalDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewModel.swift; sourceTree = "<group>"; };
 		CC0A16AC1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketPostClientCodes.h; sourceTree = "<group>"; };
 		CC0A16AD1F4C2A0500CC40C3 /* LWPacketPostClientCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketPostClientCodes.m; sourceTree = "<group>"; };
@@ -1325,7 +1331,8 @@
 			children = (
 				46C25EB81FCDA3AD002BCEA9 /* LWRxAuthManagerTwitterTimeLineJson.swift */,
 				46C25EBA1FCDA719002BCEA9 /* LWRxBlueAuthManager.swift */,
-				C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledge.swift */,
+				C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift */,
+				C196EB1B1FCEEE73000FD730 /* LWRxBlueAuthManagerPledgeGet.swift */,
 			);
 			path = Blue;
 			sourceTree = "<group>";
@@ -1335,6 +1342,8 @@
 			children = (
 				46C25EB61FCDA2EE002BCEA9 /* TwitterTimeLineJsonPacket.swift */,
 				C14A6A701FCDBF4F00EC078A /* PledgePostPacket.swift */,
+				C196EB161FCEE078000FD730 /* PledgeGetPacket.swift */,
+				C196EB191FCEEC22000FD730 /* PledgeModel.swift */,
 			);
 			path = Blue;
 			sourceTree = "<group>";
@@ -2935,19 +2944,21 @@
 				46C9AF2A1F417BD800B83CCB /* LWPacketPushSettingsSet.m in Sources */,
 				46C9AE5E1F417BD700B83CCB /* LWAssetPairRateModel.m in Sources */,
 				46C9AF881F417BD800B83CCB /* LWTransactionCashInOutModel.m in Sources */,
-				C14A6A6F1FCDBF1000EC078A /* LWRxBlueAuthManagerPledge.swift in Sources */,
+				C14A6A6F1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift in Sources */,
 				46C9AFA81F417BD800B83CCB /* LWNetworkTemplate.m in Sources */,
 				46FB36131F4ABFD700D327D6 /* LWRxAuthManagerCountryCodes.swift in Sources */,
 				46C9B0681F42C91B00B83CCB /* LWRxAuthManagerProtocol.swift in Sources */,
 				46C9AFDF1F417BD800B83CCB /* LWPrivateWalletAssetModel.m in Sources */,
 				46C9AFF01F417BD800B83CCB /* ABPadLockScreenSetupViewController.m in Sources */,
 				46C9AF041F417BD700B83CCB /* LWPacketLastBaseAssets.m in Sources */,
+				C196EB1A1FCEEC22000FD730 /* PledgeModel.swift in Sources */,
 				C14A6A711FCDBF4F00EC078A /* PledgePostPacket.swift in Sources */,
 				614214151F72659B00E2F524 /* LWRxAuthManagerKYCDocuments.swift in Sources */,
 				46C9AEE61F417BD700B83CCB /* LWPacketGetMarginTermsStatus.m in Sources */,
 				46C08DB71F98C4090059BDD3 /* LWModelOffchainRequest.swift in Sources */,
 				46C9AECE1F417BD700B83CCB /* LWPacketEmailPrivateWalletAddress.m in Sources */,
 				46C9AE621F417BD700B83CCB /* LWAuthManager.m in Sources */,
+				C196EB1C1FCEEE73000FD730 /* LWRxBlueAuthManagerPledgeGet.swift in Sources */,
 				46C9AE881F417BD700B83CCB /* LWPacketAllAssetPairs.m in Sources */,
 				46C9B0671F42C91B00B83CCB /* LWAuthManagerPacketPrevCardPayment.swift in Sources */,
 				46C9B04E1F42C85200B83CCB /* LWAssetPairModel+Extensions.swift in Sources */,
@@ -3048,6 +3059,7 @@
 				46C9B0711F42C91B00B83CCB /* LWRxAuthManagerEmailWalletAddress.swift in Sources */,
 				46C9B0761F42C91B00B83CCB /* LWRxPrivateWalletsManager.swift in Sources */,
 				465538AB1FB5C3A0007CF395 /* SwiftCredentialsViewModel.swift in Sources */,
+				C196EB171FCEE078000FD730 /* PledgeGetPacket.swift in Sources */,
 				46C9AF0C1F417BD800B83CCB /* LWPacketMarginDepositWithdraw.m in Sources */,
 				661FB6041FACCB9E0068063C /* LWPacketOffchainCashOutSwift.swift in Sources */,
 				46C9B06B1F42C91B00B83CCB /* LWRxMarketManager.swift in Sources */,

@@ -1,19 +1,19 @@
 //
-//  LWRxBlueAuthManagerPledge.swift
+//  LWRxBlueAuthManagerPledgeGet.swift
 //  WalletCore
 //
-//  Created by Vasil Garov on 11/28/17.
+//  Created by Vasil Garov on 11/29/17.
 //  Copyright © 2017 Lykke. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 
-public class LWRxBlueAuthManagerPledge: NSObject {
+public class LWRxBlueAuthManagerPledgeGet: NSObject {
     
-    public typealias Packet = PledgePostPacket
-    public typealias Result = ApiResult<Void>
-    public typealias RequestParams = PledgePostPacket.Body
+    public typealias Packet = PledgeGetPacket
+    public typealias Result = ApiResult<PledgeModel>
+    public typealias RequestParams = Void
     
     override init() {
         super.init()
@@ -34,16 +34,16 @@ public class LWRxBlueAuthManagerPledge: NSObject {
 }
 
 
-extension LWRxBlueAuthManagerPledge: AuthManagerProtocol {
-    public func request(withParams params: PledgePostPacket.Body) -> Observable<Result> {
+extension LWRxBlueAuthManagerPledgeGet: AuthManagerProtocol {
+    public func request(withParams params: Void = Void()) -> Observable<Result> {
         return Observable.create{observer in
-            let pack = Packet(body: params, observer: observer)
+            let pack = Packet(observer: observer)
             GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
             return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+            }
+            .startWith(.loading)
+            .shareReplay(1)
     }
     
     func getErrorResult(fromPacket packet: Packet) -> Result {
@@ -51,7 +51,11 @@ extension LWRxBlueAuthManagerPledge: AuthManagerProtocol {
     }
     
     func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: Void())
+        guard let model = packet.model else {
+            return Result.error(withData: ["Message":"Couldn't retreive pledges."])
+        }
+        
+        return Result.success(withData: model)
     }
     
     func getForbiddenResult(fromPacket packet: Packet) -> Result {
