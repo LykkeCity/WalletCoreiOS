@@ -15,24 +15,35 @@ extension AppDelegate {
     func subsctibeForNotAuthorized() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(self.showLoginScreenOnUnauthorized(_:)),
+            selector: #selector(self.processRequestFailure(_:)),
             name: NSNotification.Name(rawValue: kNotificationGDXNetAdapterDidFailRequest),
             object: nil
         )
     }
     
-    func showLoginScreenOnUnauthorized(_ notification: NSNotification) {
+    func processRequestFailure(_ notification: NSNotification) {
         guard let ctx = notification.userInfo?[kNotificationKeyGDXNetContext] as? GDXRESTContext else { return }
-        guard LWAuthManager.isAuthneticationFailed(ctx.task?.response)  else { return }
-        
-        let visibleViewController = self.visibleViewController
-        let loginViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateInitialViewController()!
 
-        if visibleViewController is SignUpFormViewController {
-            return
+        let visibleViewController = self.visibleViewController
+
+        if LWAuthManager.isAuthneticationFailed(ctx.task?.response) {
+            guard !(visibleViewController is SignUpFormViewController) else { return }
+            let loginViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateInitialViewController()!
+            visibleViewController?.present(loginViewController, animated: true)
         }
-        
-        visibleViewController?.present(loginViewController, animated: true)
+        else {
+            guard
+                let error = ctx.error as NSError?,
+                error.domain == NSURLErrorDomain,
+                error.code == NSURLErrorNotConnectedToInternet,
+                !(visibleViewController is NoConnectionViewController)
+            else {
+                return
+            }
+            let noConnectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoConnection")
+            noConnectionViewController.modalTransitionStyle = .crossDissolve
+            visibleViewController?.present(noConnectionViewController, animated: true)
+        }
     }
     
     var visibleViewController: UIViewController? {

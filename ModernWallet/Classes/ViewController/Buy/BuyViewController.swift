@@ -46,7 +46,7 @@ class BuyViewController: UIViewController, GraphProtocol {
     private let disposeBag = DisposeBag()
     
     var assets = Variable<[Variable<Asset>]>([])
-    let balanceViewModel = TotalBalanceViewModel()
+    let balanceViewModel = TotalBalanceViewModel(refresh: ReloadTrigger.instance.trigger(interval: 10))
     
     var periodButtons: [UIView]? = nil
     var periodButtonsArray: [PeriodButton] = []

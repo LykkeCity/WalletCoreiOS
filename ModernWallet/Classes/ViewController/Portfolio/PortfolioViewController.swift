@@ -26,7 +26,7 @@ class PortfolioViewController: UIViewController {
     fileprivate let pieChartValueFormatter = PieValueFormatter()
     
     fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
-        return TotalBalanceViewModel(refresh: Observable<Void>.interval(10.0))
+        return TotalBalanceViewModel(refresh: ReloadTrigger.instance.trigger(interval: 10))
     }()
     
     fileprivate lazy var walletsViewModel: WalletsViewModel = {

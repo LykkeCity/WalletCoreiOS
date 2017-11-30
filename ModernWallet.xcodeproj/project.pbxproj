@@ -104,6 +104,8 @@
 		668E68031FCD9AFD004552BD /* SignInPasswordFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668E68021FCD9AFD004552BD /* SignInPasswordFormController.swift */; };
 		668E68081FCDC449004552BD /* Pin1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668E68061FCDC449004552BD /* Pin1ViewController.swift */; };
 		668E68091FCDC449004552BD /* Pin1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 668E68071FCDC449004552BD /* Pin1ViewController.xib */; };
+		66907BA31FD010CF00FAD801 /* ReloadTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907BA21FD010CF00FAD801 /* ReloadTrigger.swift */; };
+		66907BA51FD0130900FAD801 /* NoConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907BA41FD0130900FAD801 /* NoConnectionViewController.swift */; };
 		669B6A511FCD6AE5003227AF /* SignUpFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669B6A501FCD6AE5003227AF /* SignUpFormViewController.swift */; };
 		669B6A531FCD6B36003227AF /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669B6A521FCD6B36003227AF /* FormController.swift */; };
 		669B6A561FCD84B5003227AF /* SingInEmailFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669B6A551FCD84B5003227AF /* SingInEmailFormController.swift */; };
@@ -281,6 +283,8 @@
 		668E68021FCD9AFD004552BD /* SignInPasswordFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPasswordFormController.swift; sourceTree = "<group>"; };
 		668E68061FCDC449004552BD /* Pin1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin1ViewController.swift; sourceTree = "<group>"; };
 		668E68071FCDC449004552BD /* Pin1ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Pin1ViewController.xib; sourceTree = "<group>"; };
+		66907BA21FD010CF00FAD801 /* ReloadTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadTrigger.swift; sourceTree = "<group>"; };
+		66907BA41FD0130900FAD801 /* NoConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionViewController.swift; sourceTree = "<group>"; };
 		669B6A501FCD6AE5003227AF /* SignUpFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormViewController.swift; sourceTree = "<group>"; };
 		669B6A521FCD6B36003227AF /* FormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
 		669B6A551FCD84B5003227AF /* SingInEmailFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInEmailFormController.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 				46B583791F94CAE100B475DB /* Transactions */,
 				6689EE4E1FBB27160006010F /* Settings */,
 				61BAB0DF1F0F72F600212E16 /* FakeData.swift */,
+				66907BA41FD0130900FAD801 /* NoConnectionViewController.swift */,
 				61FBCCC51F20C8FB004F7219 /* TotalBalanceViewController.swift */,
 				668E68061FCDC449004552BD /* Pin1ViewController.swift */,
 				668E68071FCDC449004552BD /* Pin1ViewController.xib */,
@@ -488,6 +493,7 @@
 			children = (
 				CCDB256F1EEFCF05000D590F /* UtilsHelper.swift */,
 				870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */,
+				66907BA21FD010CF00FAD801 /* ReloadTrigger.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1185,6 +1191,7 @@
 				6179434E1F0530690009597C /* Notification+Extensions.swift in Sources */,
 				87C6CDFC1FA5BBEC0069CC38 /* CashOutTotalTableViewCell.swift in Sources */,
 				66DA84CD1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift in Sources */,
+				66907BA31FD010CF00FAD801 /* ReloadTrigger.swift in Sources */,
 				CC94588A1F06630900676249 /* AddMoneyCCStep3ViewController.swift in Sources */,
 				66385DE81FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift in Sources */,
 				46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */,
@@ -1251,6 +1258,7 @@
 				6100D8DC1F1F334B00EB40A5 /* UIStackView+Hint.swift in Sources */,
 				CC94587F1F03DB8E00676249 /* BankViewController.swift in Sources */,
 				CC9458811F03DC4F00676249 /* StartViewController.swift in Sources */,
+				66907BA51FD0130900FAD801 /* NoConnectionViewController.swift in Sources */,
 				463680DA1FBC880D002E3C6C /* ButtonWithIconView.swift in Sources */,
 				66B4E6FA1FC72F2D001649B8 /* BackupPrivateKeyCompleteViewController.swift in Sources */,
 				66EE6F6D1FC879D600F56E4D /* EmptyWalletViewController.swift in Sources */,

@@ -21,7 +21,7 @@ class CashOutSelectAssetViewController: UIViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
     
-    private let totalBalanceViewModel = TotalBalanceViewModel()
+    private let totalBalanceViewModel = TotalBalanceViewModel(refresh: ReloadTrigger.instance.trigger(interval: 10))
     private let disposeBag = DisposeBag()
     
     private let refreshWallets = Variable<Void>(Void())
