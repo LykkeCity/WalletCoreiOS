@@ -17,7 +17,7 @@ class TotalBalanceViewController: UIViewController {
     @IBOutlet weak var totalBalanceAmaunt: UILabel!
     @IBOutlet weak var totalBalanceLabel: UILabel!
     
-    private let viewModel = TotalBalanceViewModel()
+    private let viewModel = TotalBalanceViewModel(refresh: ReloadTrigger.instance.trigger(interval: 10))
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

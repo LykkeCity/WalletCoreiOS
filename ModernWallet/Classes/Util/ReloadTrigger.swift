@@ -23,6 +23,10 @@ class ReloadTrigger {
         return Observable.merge([trigger.asObservable(), Observable.just(Void())])
     }
     
+    func trigger(observable: Observable<Void>) -> Observable<Void> {
+        return Observable.merge([trigger.asObservable(), observable])
+    }
+    
     func reload() {
         trigger.onNext(Void())
     }
