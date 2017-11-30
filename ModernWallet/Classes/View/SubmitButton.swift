@@ -11,6 +11,14 @@ import UIKit
 @IBDesignable
 class SubmitButton: UIButton {
     
+    private var normalColor: UIColor {
+        return #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    }
+    
+    private var disabledColor: UIColor {
+        return normalColor.withAlphaComponent(0.6)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupBorder()
@@ -21,11 +29,14 @@ class SubmitButton: UIButton {
         setupBorder()
     }
     
+    override func prepareForInterfaceBuilder() {
+        titleLabel?.font = UIFont(name: "Geomanist-Book", size: 20.0)
+    }
+    
     private func setupBorder() {
-        borderColor = buttonBorderColor
+        titleLabel?.font = UIFont(name: "Geomanist-Book", size: 20.0)
         borderWidth = 1.0
-        setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
-        setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5995023545), for: .disabled)
+        updateColors()
     }
 
     override var isEnabled: Bool {
@@ -35,7 +46,13 @@ class SubmitButton: UIButton {
     }
     
     private var buttonBorderColor: UIColor {
-        return isEnabled ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5995023545)
+        return isEnabled ? normalColor : disabledColor
+    }
+    
+    private func updateColors() {
+        borderColor = buttonBorderColor
+        setTitleColor(normalColor, for: .normal)
+        setTitleColor(disabledColor, for: .disabled)
     }
 
 }
