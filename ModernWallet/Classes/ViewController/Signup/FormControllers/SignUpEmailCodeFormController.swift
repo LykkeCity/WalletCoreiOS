@@ -106,6 +106,10 @@ class SignUpEmailCodeFormController: FormController {
             .bind(to: error)
             .disposed(by: disposeBag)
         
+        checkCodeTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
         button.rx.tap
             .bind(to: checkCodeTrigger)
             .disposed(by: disposeBag)

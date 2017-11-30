@@ -56,7 +56,7 @@ class SignInPasswordFormController: FormController {
     }
     
     private var pinViewController: Pin1ViewController {
-        return Pin1ViewController.enterPinViewController(title: Localize("auth.newDesign.enterPin"))
+        return Pin1ViewController.enterPinViewController(title: Localize("auth.newDesign.enterPin"), isTouchIdEnabled: false)
     }
     
     private var loginTrigger = PublishSubject<Void>()
@@ -80,6 +80,10 @@ class SignInPasswordFormController: FormController {
         
         passwordTextField.rx.returnTap
             .bind(to: loginTrigger)
+            .disposed(by: disposeBag)
+        
+        loginTrigger
+            .bindToResignFirstResponder(views: formViews)
             .disposed(by: disposeBag)
         
         button.rx.tap
@@ -155,6 +159,18 @@ class SignInPasswordFormController: FormController {
     
     func unbind() {
         disposeBag = DisposeBag()
+    }
+    
+}
+
+extension Observable where Element == Void {
+    
+    func bindToResignFirstResponder(views: [UIView]) -> Disposable {
+        return bind(onNext: {
+            for view in views {
+                view.resignFirstResponder()
+            }
+        })
     }
     
 }

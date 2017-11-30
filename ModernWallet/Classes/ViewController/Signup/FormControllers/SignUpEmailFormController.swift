@@ -74,6 +74,10 @@ class SignUpEmailFormController: FormController {
             .filterTrueAndBind(toTrigger: signUpTrigger)
             .disposed(by: disposeBag)
         
+        signUpTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
         button.rx.tap
             .bind(to: signUpTrigger)
             .disposed(by: disposeBag)

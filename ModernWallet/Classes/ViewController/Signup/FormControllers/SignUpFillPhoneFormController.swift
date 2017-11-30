@@ -59,6 +59,10 @@ class SignUpFillPhoneFormController: FormController {
             .bind(to: viewModel.phonenumber)
             .disposed(by: disposeBag)
         
+        sendPhoneTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
         button.rx.tap
             .bind(to: sendPhoneTrigger)
             .disposed(by: disposeBag)

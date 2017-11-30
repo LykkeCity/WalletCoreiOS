@@ -85,6 +85,10 @@ class SignUpFillProfileFormController: FormController {
             .filterTrueAndBind(toTrigger: sendFullnameTrigger)
             .disposed(by: disposeBag)
         
+        sendFullnameTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
         button.rx.tap
             .bind(to: sendFullnameTrigger)
             .disposed(by: disposeBag)

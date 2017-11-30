@@ -112,6 +112,10 @@ class SignInConfirmPhoneFormController: FormController {
             .filterTrueAndBind(toTrigger: checkPinTrigger)
             .disposed(by: disposeBag)
         
+        checkPinTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
         button.rx.tap
             .bind(to: checkPinTrigger)
             .disposed(by: disposeBag)
