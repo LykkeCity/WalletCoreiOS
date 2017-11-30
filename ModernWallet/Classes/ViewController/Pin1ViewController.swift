@@ -21,9 +21,9 @@ class Pin1ViewController: UIViewController {
         return viewController
     }
     
-    static func enterPinViewController(title: String?) -> Pin1ViewController {
+    static func enterPinViewController(title: String?, isTouchIdEnabled: Bool) -> Pin1ViewController {
         let viewController = Pin1ViewController(nibName: "Pin1ViewController", bundle: nil)
-        viewController.mode = .enterPin
+        viewController.mode = .enterPin(isTouchIdEnabled: isTouchIdEnabled)
         viewController.title = title
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = viewController
@@ -43,11 +43,11 @@ class Pin1ViewController: UIViewController {
     let complete = PublishSubject<Bool>()
 
     private enum Mode {
-        case enterPin
+        case enterPin(isTouchIdEnabled: Bool)
         case createPin
     }
     
-    private var mode: Mode = .enterPin
+    private var mode: Mode = .enterPin(isTouchIdEnabled: false)
     
     private var triesLeftCount = 3
     
@@ -119,9 +119,13 @@ class Pin1ViewController: UIViewController {
             forgotPinButton.isHidden = true
             titleLabel.text = Localize("pin.create.new.title")
             touchIdButton.alpha = 0.0
-        case .enterPin:
+        case .enterPin(var isTouchIdEnabled):
             titleLabel.text = title
-            touchIdButton.alpha = LWFingerprintHelper.isFingerprintAvailable() ? 1.0 : 0.0
+            isTouchIdEnabled = isTouchIdEnabled && LWFingerprintHelper.isFingerprintAvailable()
+            touchIdButton.alpha = isTouchIdEnabled ? 1.0 : 0.0
+            if isTouchIdEnabled {
+                touchIdTapped()
+            }
         }
     }
     
@@ -150,7 +154,13 @@ class Pin1ViewController: UIViewController {
     }
 
     @IBAction private func touchIdTapped() {
-        dismiss(animated: true)
+        LWFingerprintHelper.validateFingerprintTitle(Localize("auth.validation.fingerpring"), ok: {
+            self.dismiss(success: true, animated: true)
+        }, bad: {
+            print("Something went wrong")
+        }) {
+            print("Something went wrong")
+        }
     }
     
     @IBAction private func deleteTapped() {

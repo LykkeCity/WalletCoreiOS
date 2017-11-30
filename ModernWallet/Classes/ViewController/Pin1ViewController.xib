@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,7 +19,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Pin1ViewController" customModule="ModernWallet" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Pin1ViewController" customModule="ModernMoney" customModuleProvider="target">
             <connections>
                 <outlet property="closeButton" destination="NYd-jc-qbw" id="opp-vO-ogB"/>
                 <outlet property="dotsView" destination="IkV-7f-Jfy" id="3Vw-4J-5EH"/>
@@ -44,11 +44,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KoS-tA-g7N">
-                    <rect key="frame" x="0.0" y="-159" width="375" height="340"/>
+                    <rect key="frame" x="0.0" y="-108" width="375" height="340"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="340" id="K60-rV-Mtj"/>
@@ -57,8 +57,8 @@
                         <action selector="closeTapped" destination="-1" eventType="touchUpInside" id="f95-R9-FTu"/>
                     </connections>
                 </button>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXP-kQ-nwC" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="181" width="375" height="486"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXP-kQ-nwC" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="232" width="375" height="580"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ModernMoneyLogoTitle" translatesAutoresizingMaskIntoConstraints="NO" id="ae8-qt-5mG">
                             <rect key="frame" x="110" y="8" width="155" height="24"/>
@@ -81,30 +81,30 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="IkV-7f-Jfy">
-                            <rect key="frame" x="108" y="93" width="158" height="17"/>
+                            <rect key="frame" x="109" y="93" width="158" height="17"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="SK2-LM-QRC">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="SK2-LM-QRC">
                                     <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="shN-9w-DIb">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="shN-9w-DIb">
                                     <rect key="frame" x="47" y="0.0" width="17" height="17"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-Ki-2At">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-Ki-2At">
                                     <rect key="frame" x="94" y="0.0" width="17" height="17"/>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="nNc-z6-SEG">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="nNc-z6-SEG">
                                     <rect key="frame" x="141" y="0.0" width="17" height="17"/>
                                 </imageView>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ge5-M4-EBx">
-                            <rect key="frame" x="72.5" y="118" width="230" height="310"/>
+                            <rect key="frame" x="50" y="118" width="275" height="370"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-5M-Gwf">
-                                    <rect key="frame" x="0.0" y="0.0" width="230" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="275" height="85"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTo-DH-Ybc">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="VTo-DH-Ybc" secondAttribute="height" multiplier="1:1" id="tXa-1U-B76"/>
                                             </constraints>
@@ -115,7 +115,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fI5-Fu-NL7">
-                                            <rect key="frame" x="80" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="95" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="2"/>
                                             <connections>
@@ -123,7 +123,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SH-UN-nGq">
-                                            <rect key="frame" x="160" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="190" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="3"/>
                                             <connections>
@@ -133,10 +133,10 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bmu-Mx-qbc">
-                                    <rect key="frame" x="0.0" y="80" width="230" height="70"/>
+                                    <rect key="frame" x="0.0" y="95" width="275" height="85"/>
                                     <subviews>
                                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAX-kk-pq4">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="4"/>
                                             <connections>
@@ -144,7 +144,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYu-Sj-lEb">
-                                            <rect key="frame" x="80" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="95" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="5"/>
                                             <connections>
@@ -152,7 +152,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ow3-M7-tQT">
-                                            <rect key="frame" x="160" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="190" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="6"/>
                                             <connections>
@@ -162,10 +162,10 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AlB-GP-ssV">
-                                    <rect key="frame" x="0.0" y="160" width="230" height="70"/>
+                                    <rect key="frame" x="0.0" y="190" width="275" height="85"/>
                                     <subviews>
                                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJS-EU-OZY">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="7"/>
                                             <connections>
@@ -173,7 +173,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaZ-Fu-IcO">
-                                            <rect key="frame" x="80" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="95" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="8"/>
                                             <connections>
@@ -181,7 +181,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Md3-Wx-SBm">
-                                            <rect key="frame" x="160" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="190" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="9"/>
                                             <connections>
@@ -191,17 +191,17 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dbi-FE-OUE">
-                                    <rect key="frame" x="0.0" y="240" width="230" height="70"/>
+                                    <rect key="frame" x="0.0" y="285" width="275" height="85"/>
                                     <subviews>
                                         <button opaque="NO" tag="-2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8n-F4-4Hg">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                             <state key="normal" image="touchId"/>
                                             <connections>
                                                 <action selector="touchIdTapped" destination="-1" eventType="touchUpInside" id="PGd-ve-gKe"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghI-7b-gIS">
-                                            <rect key="frame" x="80" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="95" y="0.0" width="85" height="85"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                             <state key="normal" title="0"/>
                                             <connections>
@@ -209,7 +209,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2b-uQ-JQo" userLabel="Delete Button">
-                                            <rect key="frame" x="160" y="0.0" width="70" height="70"/>
+                                            <rect key="frame" x="190" y="0.0" width="85" height="85"/>
                                             <state key="normal" image="deleteIcon"/>
                                             <connections>
                                                 <action selector="deleteTapped" destination="-1" eventType="touchUpInside" id="HUz-Su-Gkg"/>
@@ -218,13 +218,9 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <constraints>
-                                <constraint firstAttribute="height" priority="750" constant="310" id="I4O-4W-xD0"/>
-                                <constraint firstAttribute="width" secondItem="Ge5-M4-EBx" secondAttribute="height" multiplier="23:31" id="pK5-N2-Wes"/>
-                            </constraints>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMv-iw-B3w">
-                            <rect key="frame" x="147" y="448" width="81" height="30"/>
+                            <rect key="frame" x="147" y="508" width="81" height="30"/>
                             <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                             <state key="normal" title="Forgot PIN?"/>
                             <connections>
@@ -243,11 +239,11 @@
                         <constraint firstItem="ae8-qt-5mG" firstAttribute="top" secondItem="UXP-kQ-nwC" secondAttribute="top" constant="8" id="CQf-RB-Dfu"/>
                         <constraint firstItem="Fp1-kG-UZZ" firstAttribute="leading" secondItem="UXP-kQ-nwC" secondAttribute="leading" constant="32" id="G7b-K5-ZJL"/>
                         <constraint firstItem="iMv-iw-B3w" firstAttribute="top" secondItem="Ge5-M4-EBx" secondAttribute="bottom" constant="20" id="LZh-J5-zuF"/>
-                        <constraint firstAttribute="bottom" secondItem="iMv-iw-B3w" secondAttribute="bottom" constant="8" id="NAi-j4-w1v"/>
                         <constraint firstAttribute="trailing" secondItem="NYd-jc-qbw" secondAttribute="trailing" constant="8" id="TA0-Mf-ubw"/>
                         <constraint firstItem="Fp1-kG-UZZ" firstAttribute="top" secondItem="ae8-qt-5mG" secondAttribute="bottom" constant="20" id="bTS-kj-3Rm"/>
                         <constraint firstItem="IkV-7f-Jfy" firstAttribute="centerX" secondItem="UXP-kQ-nwC" secondAttribute="centerX" id="boD-3w-mkM"/>
                         <constraint firstItem="Fp1-kG-UZZ" firstAttribute="centerX" secondItem="UXP-kQ-nwC" secondAttribute="centerX" id="qCY-Ck-eEs"/>
+                        <constraint firstItem="Ge5-M4-EBx" firstAttribute="leading" secondItem="UXP-kQ-nwC" secondAttribute="leading" constant="50" id="v6f-7Q-17e"/>
                         <constraint firstItem="Ge5-M4-EBx" firstAttribute="centerX" secondItem="UXP-kQ-nwC" secondAttribute="centerX" id="yEG-fn-q63"/>
                     </constraints>
                 </view>
@@ -259,9 +255,10 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UXP-kQ-nwC" secondAttribute="trailing" id="5o5-4m-ecb"/>
                 <constraint firstItem="UXP-kQ-nwC" firstAttribute="top" secondItem="KoS-tA-g7N" secondAttribute="bottom" id="H4I-l4-dXQ"/>
                 <constraint firstItem="KoS-tA-g7N" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fpD-EV-g35"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iMv-iw-B3w" secondAttribute="bottom" constant="8" id="pRj-Zz-vkg"/>
                 <constraint firstItem="UXP-kQ-nwC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" id="pRu-19-9W8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KoS-tA-g7N" secondAttribute="trailing" id="rta-Oo-l7d"/>
-                <constraint firstItem="UXP-kQ-nwC" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="yhY-7u-8jC"/>
+                <constraint firstItem="UXP-kQ-nwC" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="yhY-7u-8jC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
