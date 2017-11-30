@@ -997,3 +997,8 @@
 "backup.newDesign.wordPageFmt" = "%d OF %d";
 "backup.newDesign.completeTitle" = "YOUR BACKUP IS COMPLETE";
 "backup.newDesign.completeMessage" = "Keep your list of 12 words safe. Use it to restore your account when you install Lykke Wallet on another device (or reinstall Lykke Wallet on this device)";
+
+"noNetwork.newDesign.title" = "NO CONNECTION";
+"noNetwork.newDesign.subtitle" = "You are not connected to the internet.\nPlease check and try again.";
+"noNetwork.newDesign.reload" = "RELOAD";
+
