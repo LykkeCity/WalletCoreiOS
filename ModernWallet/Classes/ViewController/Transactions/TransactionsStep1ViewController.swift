@@ -24,7 +24,7 @@ class TransactionsStep1ViewController: UIViewController {
     let disposeBag = DisposeBag()
     lazy var transactionsViewModel:TransactionsViewModel = {
         return TransactionsViewModel(
-            downloadCsv: ReloadTrigger.instance.trigger(observable: self.downloadCSV.rx.tap.asObservable()),
+            downloadCsv: self.downloadCSV.rx.tap.asObservable(),
             currencyExchanger: CurrencyExchanger()
         )
     }()

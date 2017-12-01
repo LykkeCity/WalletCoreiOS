@@ -189,13 +189,11 @@ class BuyOptimizedViewController: UIViewController {
         case buy, sell
         
         var isBuy: Bool {
-            if case .buy = self { return true }
-            return false
+            return self == .buy
         }
         
         var isSell: Bool {
-            if case .sell = self { return true }
-            return false
+            return self == .sell
         }
     }
 }

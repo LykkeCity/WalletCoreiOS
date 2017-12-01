@@ -15,12 +15,18 @@ class AssetAmountView: UIView {
     
     @IBInspectable var amountFont: UIFont? {
         get { return amountLabel?.font }
-        set { amountLabel?.font = newValue }
+        set {
+            amountLabel?.font = newValue
+            invalidateIntrinsicContentSize()
+        }
     }
     
     @IBInspectable var codeFont: UIFont? {
         get { return codeLabel?.font }
-        set { codeLabel?.font = newValue }
+        set {
+            codeLabel?.font = newValue
+            invalidateIntrinsicContentSize()
+        }
     }
     
     @IBInspectable var textColor: UIColor? {
@@ -32,17 +38,26 @@ class AssetAmountView: UIView {
     
     @IBInspectable var spacing: CGFloat {
         get { return stackView.spacing }
-        set { stackView.spacing = newValue }
+        set {
+            stackView.spacing = newValue
+            invalidateIntrinsicContentSize()
+        }
     }
     
     var amount: String? {
         get { return amountLabel?.text }
-        set { amountLabel?.text = newValue }
+        set {
+            amountLabel?.text = newValue?.trimmingCharacters(in: CharacterSet.whitespaces)
+            invalidateIntrinsicContentSize()
+        }
     }
     
     var code: String? {
         get { return codeLabel?.text }
-        set { codeLabel?.text = newValue }
+        set {
+            codeLabel?.text = newValue?.trimmingCharacters(in: CharacterSet.whitespaces)
+            invalidateIntrinsicContentSize()
+        }
     }
 
     override init(frame: CGRect) {
@@ -63,24 +78,16 @@ class AssetAmountView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        var amountLabelIsEmpty = false
-        if amountLabel.text?.count ?? 0 == 0 {
-            amountLabel.text = "I"
-            amountLabelIsEmpty = true
+        var amountText = amountLabel.text ?? "I"
+        if amountText == "" {
+            amountText = "I"
         }
-        let amountSize = amountLabel.intrinsicContentSize
-        if amountLabelIsEmpty {
-            amountLabel.text = ""
+        let amountSize = amountText.size(attributes: [NSFontAttributeName: amountLabel.font])
+        var codeText = codeLabel.text ?? "I"
+        if codeText == "" {
+            codeText = "I"
         }
-        var codeLabelIsEmpty = false
-        if codeLabel.text?.count ?? 0 == 0 {
-            codeLabel.text = "I"
-            codeLabelIsEmpty = true
-        }
-        let codeSize = codeLabel.intrinsicContentSize
-        if codeLabelIsEmpty {
-            codeLabel.text = ""
-        }
+        let codeSize = codeText.size(attributes: [NSFontAttributeName: amountLabel.font])
         return CGSize(width: amountSize.width + stackView.spacing + codeSize.width,
                       height: max(amountSize.height, codeSize.height))
     }
