@@ -944,6 +944,7 @@
 "newDesign.calculating" = "Calculating...";
 "newDesign.notAvailable" = "Not Available";
 "newDesign.chatNow" = "Chat Now";
+"newDesign.enterPin" = "ENTER PIN";
 
 "emptyWallet.newDesign.title" = "YOU DON'T HAVE ANY ASSETS";
 "emptyWallet.newDesign.buyMessage" = "Your wallet is empty. In order to buy some assets, please add some money first.";
@@ -990,7 +991,7 @@
 "backup.newDesign.makeBackup" = "MAKE A BACKUP";
 "backup.newDesign.backupInfo" = "You need to make a backup of your wallet. With your backup, you can easily restore your funds if your defice is lost or damaged. Your backup is a series of 12 words. Just write them down and keep them in a safe place. Anyone who knows this sequence of words can access and spend all the funds in your wallet, so be sure to keep it in a safe place.";
 "backup.newDesign.readyToWrite" = "I'M READY TO WRITE";
-"backup.newDesign.forAdditionalSecurity" = "FOR ADDITIONAL SECURITY ENTER YOUR PIN";
+"backup.newDesign.forAdditionalSecurity" = "FOR ADDITIONAL SECURITY\nENTER YOUR PIN";
 "backup.newDesign.writeDownWords" = "WRITE DOWN THE FOLLOWING WORDS AND KEEP THEM IN A SAFE PLACE";
 "backup.newDesign.prevWord" = "PREV";
 "backup.newDesign.nextWord" = "NEXT";
