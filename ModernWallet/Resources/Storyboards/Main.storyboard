@@ -224,7 +224,7 @@
                                         <rect key="frame" x="109.5" y="11" width="155" height="24"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLj-NN-jgj" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
-                                        <rect key="frame" x="323.5" y="1" width="43.5" height="44"/>
+                                        <rect key="frame" x="322.5" y="1" width="44.5" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="9N1-LK-uVA"/>
                                         </constraints>
@@ -262,7 +262,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezg-3T-fv3">
-                                        <rect key="frame" x="68" y="15" width="239" height="15"/>
+                                        <rect key="frame" x="68" y="15.5" width="239" height="15"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -327,16 +327,16 @@
                                 <rect key="frame" x="109.5" y="28" width="155" height="24"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoConnection" translatesAutoresizingMaskIntoConstraints="NO" id="eTd-9s-vBz">
-                                <rect key="frame" x="97.5" y="152.5" width="181" height="183"/>
+                                <rect key="frame" x="97.5" y="153" width="181" height="183"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO CONNECTION" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RtW-P4-yom">
-                                <rect key="frame" x="32" y="365.5" width="312.5" height="20"/>
+                                <rect key="frame" x="32" y="366" width="312.5" height="20"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9S-0d-fE2">
-                                <rect key="frame" x="32" y="393.5" width="312.5" height="30"/>
+                                <rect key="frame" x="32" y="394" width="312.5" height="30"/>
                                 <string key="text">You are not connected to the internet.
 Please check and try again.</string>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
@@ -611,6 +611,9 @@ Please check and try again.</string>
                                                                 <real key="value" value="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <segue destination="9KT-oO-mC1" kind="show" identifier="BuyAsset" id="nT8-UK-dR3"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccx-lx-GjE" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
                                                         <rect key="frame" x="94" y="0.0" width="93" height="58.5"/>
@@ -621,6 +624,9 @@ Please check and try again.</string>
                                                                 <real key="value" value="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <segue destination="9KT-oO-mC1" kind="show" identifier="SellAsset" id="HQi-28-giY"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJu-jR-HiH" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
                                                         <rect key="frame" x="188" y="0.0" width="93" height="58.5"/>
@@ -704,7 +710,7 @@ Please check and try again.</string>
                                             <rect key="frame" x="89" y="0.0" width="197" height="59"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-D9-gM2" userLabel="Transactions Stack View">
-                                                    <rect key="frame" x="33.5" y="22.5" width="130" height="14"/>
+                                                    <rect key="frame" x="34" y="22.5" width="130" height="14"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bvp-5i-wvn">
                                                             <rect key="frame" x="0.0" y="0.0" width="21" height="14"/>
@@ -777,6 +783,14 @@ Please check and try again.</string>
             </objects>
             <point key="canvasLocation" x="3412" y="447.52623688155927"/>
         </scene>
+        <!--Buy-->
+        <scene sceneID="sBY-aQ-1Hk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Buy" id="9KT-oO-mC1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="19W-Dr-ZlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4125" y="447"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="zec-zB-bD6">
             <objects>
@@ -790,7 +804,7 @@ Please check and try again.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-gZ-usr">
-                                <rect key="frame" x="74" y="217.5" width="227" height="232"/>
+                                <rect key="frame" x="74.5" y="218" width="227" height="232"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="V18-eG-6Hb">
                                         <rect key="frame" x="0.0" y="0.0" width="227" height="180"/>
@@ -913,7 +927,7 @@ Please check and try again.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vhl-7N-vv1"/>
-        <segue reference="HQi-28-giY"/>
+        <segue reference="nT8-UK-dR3"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
