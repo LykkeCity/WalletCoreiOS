@@ -30,6 +30,22 @@ class Pin1ViewController: UIViewController {
         return viewController
     }
     
+    static func presentPinViewController(from viewController: UIViewController, title: String?, isTouchIdEnabled: Bool) -> Observable<Void> {
+        let pinViewController = enterPinViewController(title: title, isTouchIdEnabled: isTouchIdEnabled)
+        viewController.present(pinViewController, animated: true)
+        return pinViewController.complete
+            .filter { $0 }
+            .map { _ in return () }
+            .shareReplay(1)
+    }
+    
+    static func presentOrderPinViewController(from viewController: UIViewController, title: String?, isTouchIdEnabled: Bool) -> Observable<Void> {
+        guard LWCache.instance()?.shouldSignOrder ?? true else {
+            return Observable.just(Void())
+        }
+        return presentPinViewController(from: viewController, title: title, isTouchIdEnabled: isTouchIdEnabled)
+    }
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var dotsView: UIStackView!

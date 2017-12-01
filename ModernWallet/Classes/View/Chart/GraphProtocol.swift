@@ -75,3 +75,7 @@ extension GraphProtocol  where Self: UIViewController {
     
     
 }
+
+class PeriodButton: UIButton {
+    var period: LWGraphPeriodModel?
+}
