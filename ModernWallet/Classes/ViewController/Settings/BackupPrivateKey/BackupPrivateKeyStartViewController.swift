@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import WalletCore
 
 class BackupPrivateKeyStartViewController: UIViewController {
@@ -24,20 +25,13 @@ class BackupPrivateKeyStartViewController: UIViewController {
         makeBackupLabel.text = Localize("backup.newDesign.makeBackup")
         infoLabel.text = Localize("backup.newDesign.backupInfo")
         startButton.setTitle(Localize("backup.newDesign.readyToWrite"), for: .normal)
-    }
-    
-    // MARK: IBActions
-    
-    @IBAction func startTapped() {
-        let pinVC = PinViewController.enterPinViewController(title: Localize("backup.newDesign.forAdditionalSecurity"),
-                                                              isTouchIdEnabled: true)
-        pinVC.complete
-            .bind(onNext: { [weak self] pinPassed in
-                guard pinPassed else { return }
+        
+        startButton.rx.tap
+            .flatMap { return PinViewController.presentPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: false) }
+            .bind(onNext: { [weak self] _ in
                 self?.performSegue(withIdentifier: "StartBackup", sender: nil)
             })
             .disposed(by: disposeBag)
-        present(pinVC, animated: true)
     }
 
 }
