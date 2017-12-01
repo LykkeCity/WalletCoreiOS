@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import WalletCore
 
 class CashOutConfirmationViewController: UIViewController {
@@ -18,8 +19,6 @@ class CashOutConfirmationViewController: UIViewController {
     @IBOutlet private weak var confirmButton: UIButton!
     
     var cashOutViewModel: CashOutViewModel!
-    
-    fileprivate let pinPassed = Variable(false)
     
     private let disposeBag = DisposeBag()
     
@@ -48,10 +47,9 @@ class CashOutConfirmationViewController: UIViewController {
         
         confirmButton.setTitle(Localize("newDesign.confirm"), for: .normal)
         
-        pinPassed.asObservable()
-            .filter { $0 }
-            .map { _ in Void() }
-            .subscribe(cashOutViewModel.trigger)
+        confirmButton.rx.tap
+            .flatMap { return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
+            .bind(to: cashOutViewModel.trigger)
             .disposed(by: disposeBag)
         
         cashOutViewModel.errors
@@ -78,26 +76,8 @@ class CashOutConfirmationViewController: UIViewController {
 
     // MARK: - Navigation
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "EnterPin" && pinPassed.value {
-            cashOutViewModel.trigger.toggle()
-            return false
-        }
-        return true
-    }
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EnterPin" {
-            segue.destination.loadViewIfNeeded()
-            guard
-                let pinVC = segue.destination.childViewControllers.first as? PinViewController
-            else {
-                return
-            }
-            pinVC.delegate = self
-        }
-        else if segue.identifier == "ShowSummary" {
+        if segue.identifier == "ShowSummary" {
             guard
                 let vc = segue.destination as? CashOutSummaryViewController,
                 let result = sender as? LWModelCashOutSwiftResult
@@ -116,13 +96,6 @@ class CashOutConfirmationViewController: UIViewController {
             return generalDetails[indexPath.row - 1]
         default:
             return nil
-        }
-    }
-    
-    fileprivate func pinPassed(success: Bool) {
-        guard success else { return }
-        presentedViewController?.dismiss(animated: true) { [pinPassed] in
-            pinPassed.value = true
         }
     }
 
@@ -192,18 +165,6 @@ extension CashOutConfirmationViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AssetCell", for: indexPath) as! CashOutAssetDetailsTableViewCell
         cell.bind(to: cashOutViewModel)
         return cell
-    }
-    
-}
-
-extension CashOutConfirmationViewController: PinViewControllerDelegate {
-    
-    func isPinCorrect(_ success: Bool, pinController: PinViewController) {
-        pinPassed(success: success)
-    }
-    
-    func isTouchIdCorrect(_ success: Bool, pinController: PinViewController) {
-        pinPassed(success: success)
     }
     
 }

@@ -11,23 +11,39 @@ import RxSwift
 import RxCocoa
 import WalletCore
 
-class Pin1ViewController: UIViewController {
+class PinViewController: UIViewController {
     
-    static var createPinViewController: Pin1ViewController {
-        let viewController = Pin1ViewController(nibName: "Pin1ViewController", bundle: nil)
+    static var createPinViewController: PinViewController {
+        let viewController = PinViewController(nibName: "PinViewController", bundle: nil)
         viewController.mode = .createPin
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = viewController
         return viewController
     }
     
-    static func enterPinViewController(title: String?, isTouchIdEnabled: Bool) -> Pin1ViewController {
-        let viewController = Pin1ViewController(nibName: "Pin1ViewController", bundle: nil)
+    static func enterPinViewController(title: String?, isTouchIdEnabled: Bool) -> PinViewController {
+        let viewController = PinViewController(nibName: "PinViewController", bundle: nil)
         viewController.mode = .enterPin(isTouchIdEnabled: isTouchIdEnabled)
         viewController.title = title
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = viewController
         return viewController
+    }
+    
+    static func presentPinViewController(from viewController: UIViewController, title: String?, isTouchIdEnabled: Bool) -> Observable<Void> {
+        let pinViewController = enterPinViewController(title: title, isTouchIdEnabled: isTouchIdEnabled)
+        viewController.present(pinViewController, animated: true)
+        return pinViewController.complete
+            .filter { $0 }
+            .map { _ in return () }
+            .shareReplay(1)
+    }
+    
+    static func presentOrderPinViewController(from viewController: UIViewController, title: String?, isTouchIdEnabled: Bool) -> Observable<Void> {
+        guard LWCache.instance()?.shouldSignOrder ?? true else {
+            return Observable.just(Void())
+        }
+        return presentPinViewController(from: viewController, title: title, isTouchIdEnabled: isTouchIdEnabled)
     }
     
     @IBOutlet private weak var titleLabel: UILabel!
@@ -251,7 +267,7 @@ class Pin1ViewController: UIViewController {
     
 }
 
-extension Pin1ViewController: UIViewControllerTransitioningDelegate {
+extension PinViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PinAnimatedTransitioning(presenting: true)

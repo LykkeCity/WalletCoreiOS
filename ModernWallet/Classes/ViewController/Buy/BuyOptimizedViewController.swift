@@ -24,19 +24,9 @@ class BuyOptimizedViewController: UIViewController {
     //MARK:- Properties
     let assetModel = Variable<LWAssetModel?>(nil)
     
-    var requirePinForTrading = true
-    
     var pinPassed = Variable(false)
     
-    var confirmTrading: Observable<Void> {
-        return Observable.merge(
-            self.submitButton.rx.tap.asObservable()
-                .filter{ [weak self] in !(self?.requirePinForTrading ?? false)},
-            self.pinPassed.asObservable()
-                .filter{$0}
-                .map{_ in Void()}
-        )
-    }
+    var confirmTrading = PublishSubject<Void>()
     
     let bid = Variable<Bool?>(nil)
     
@@ -151,7 +141,8 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         submitButton.rx.tap
-            .subscribeToPresentPin(withViewController: self)
+            .flatMap { return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
+            .bind(to: confirmTrading)
             .disposed(by: disposeBag)
 
         confirmTrading
@@ -196,10 +187,12 @@ class BuyOptimizedViewController: UIViewController {
             return self == .sell
         }
     }
+    
 }
 
 //MARK:- Binding
 fileprivate extension ObservableType where Self.E == Void {
+    
     func mapToTradeParams(withViewModel viewModel: BuyOptimizedViewModel) -> Observable<OffchainTradeViewModel.TradeParams> {
         return map{  _ -> OffchainTradeViewModel.TradeParams? in
             
@@ -210,9 +203,11 @@ fileprivate extension ObservableType where Self.E == Void {
         }
         .filterNil()
     }
+    
 }
 
 fileprivate extension OffchainTradeViewModel {
+    
     func bind(toViewController vc: BuyOptimizedViewController) -> [Disposable] {
         return [
             errors.asObservable().bind(to: vc.rx.error),
@@ -225,9 +220,11 @@ fileprivate extension OffchainTradeViewModel {
             })
         ]
     }
+    
 }
 
 fileprivate extension BuyOptimizedViewModel {
+    
     func bind(toViewController vc: BuyOptimizedViewController) -> [Disposable] {
         return [
             isValidPayWithAmount.bind(to: vc.submitButton.rx.isEanbledWithBorderColor),
@@ -290,9 +287,11 @@ fileprivate extension BuyOptimizedViewModel {
             .drive(view.assetName.rx.text)
             .disposed(by: disposeBag)
     }
+    
 }
 
 extension BuyOptimizedViewModel {
+    
     convenience init(withTrigger trigger: Observable<Void>) {
         self.init(
             trigger: trigger,
@@ -304,6 +303,7 @@ extension BuyOptimizedViewModel {
             )
         )
     }
+    
 }
 
 //MARK:- Factory Methods
@@ -314,26 +314,8 @@ fileprivate extension BuyOptimizedViewController {
         firstAssetList.setupUX(width: view.frame.width, disposedBy: disposeBag)
         secondAssetList.setupUX(width: view.frame.width, disposedBy: disposeBag)
     }
-}
-
-// MARK: - Confort PIN Protocols
-extension BuyOptimizedViewController: PinViewControllerDelegate {
-    func isPinCorrect(_ success: Bool, pinController: PinViewController) {
-        guard success else {return}
-        pinController.dismiss(animated: true) { [pinPassed] in
-            pinPassed.value = success
-        }
-    }
     
-    func isTouchIdCorrect(_ success: Bool, pinController: PinViewController) {
-        guard success else {return}
-        pinController.dismiss(animated: true) {[pinPassed] in
-            pinPassed.value = success
-        }
-    }
 }
-
-extension BuyOptimizedViewController: PinAwarePresenter{}
 
 // MARK: - Confort TextFieldNextDelegate Protocol
 extension BuyOptimizedViewController: InputForm {

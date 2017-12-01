@@ -55,8 +55,8 @@ class SignInPasswordFormController: FormController {
         return nil
     }
     
-    private var pinViewController: Pin1ViewController {
-        return Pin1ViewController.enterPinViewController(title: Localize("auth.newDesign.enterPin"), isTouchIdEnabled: false)
+    private var pinViewController: PinViewController {
+        return PinViewController.enterPinViewController(title: Localize("auth.newDesign.enterPin"), isTouchIdEnabled: false)
     }
     
     private var loginTrigger = PublishSubject<Void>()
@@ -75,7 +75,7 @@ class SignInPasswordFormController: FormController {
     
     private var disposeBag = DisposeBag()
     
-    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<Pin1ViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>) {
+    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>) {
         disposeBag = DisposeBag()
         
         passwordTextField.rx.returnTap
