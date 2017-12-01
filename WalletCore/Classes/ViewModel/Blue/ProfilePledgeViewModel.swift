@@ -30,8 +30,13 @@ public class ProfilePledgeViewModel {
     /// Example: 75%
     public let percentComplete: Driver<String>
     
+    /// Example: 0.75
+    public let percentFraction: Driver<Double>
+    
     /// 600t CO2/year
     public let positiveTonsPerYear: Driver<String>
+    
+    public let pledgeTaken: Driver<Bool>
     
     public let loadingViewModel: LoadingViewModel
     
@@ -50,12 +55,16 @@ public class ProfilePledgeViewModel {
             .asDriver(onErrorJustReturn: "")
         
         goalMultiplier = pledge
-            .mapToFootPrint()
+            .mapToGoal()
             .asDriver(onErrorJustReturn: "")
         
         goalTons = pledge
             .mapToGoalTons(withService: pledgeService)
             .asDriver(onErrorJustReturn: "")
+        
+        pledgeTaken = pledge
+            .map{ return $0.getSuccess() != nil }
+            .asDriver(onErrorJustReturn: false)
         
         remainingTons = pledgeAndTrees
             .mapToRemainingTons(withService: pledgeService)
@@ -68,6 +77,10 @@ public class ProfilePledgeViewModel {
         percentComplete = pledgeAndTrees
             .mapToPercent(withService: pledgeService)
             .asDriver(onErrorJustReturn: "")
+        
+        percentFraction = pledgeAndTrees
+            .mapPercentToFraction(withService: pledgeService)
+            .asDriver(onErrorJustReturn: 0.0)
         
         positiveTonsPerYear = wallets
             .mapToPositivePerYear(withService: pledgeService)
@@ -102,9 +115,12 @@ fileprivate extension ObservableType where Self.E == ApiResultList<LWSpotWallet>
 }
 
 fileprivate extension ObservableType where Self.E == ApiResult<PledgeModel> {
+    
     func mapToFootPrint() -> Observable<String> {
         return filterSuccess()
-            .map{ "\($0.footprint)t" }
+            .map{ $0.footprint }
+            .mapToTons()
+            .map { "\($0)t" }
             .startWith("")
     }
     
@@ -132,8 +148,8 @@ fileprivate extension ObservableType where Self.E == (pledge: PledgeModel, trees
     func mapToRemainingTrees(withService service: PledgeService) -> Observable<String> {
         return
             map{ service.calculateRemainingTrees(forPledge: $0.pledge, withTrees: $0.trees) }
-            .map{ NumberFormatter.currencyInstance(accuracy: 0).string(from: NSNumber(value: $0)) }
-            .replaceNilWith("")
+            .map{ "\($0) TREE" }
+            
     }
     
     func mapToRemainingTons(withService service: PledgeService) -> Observable<String> {
@@ -148,5 +164,10 @@ fileprivate extension ObservableType where Self.E == (pledge: PledgeModel, trees
             map{ service.calculatePecent(forPledge: $0.pledge, withTrees: $0.trees) }
             .map{ NumberFormatter.percentInstance.string(from: NSNumber(value: $0)) }
             .replaceNilWith("")
+    }
+    
+    func mapPercentToFraction(withService service: PledgeService) -> Observable<Double> {
+        return
+            map{ Double(service.calculatePecent(forPledge: $0.pledge, withTrees: $0.trees) / 100) }
     }
 }

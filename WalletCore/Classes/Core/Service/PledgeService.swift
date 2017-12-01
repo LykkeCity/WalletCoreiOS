@@ -20,7 +20,7 @@ public class PledgeService {
     ///   - trees: <#trees description#>
     /// - Returns: <#return value description#>
     public func calculateRemainingTones(forPledge pledge: PledgeModel, withTrees trees: Int) -> Int {
-        return calculateGoal(forPledge: pledge) - calculateEmission(forTreeCount: trees)
+        return Int.abs(calculateGoal(forPledge: pledge) - calculateEmission(forTreeCount: trees))
     }
     
     /// <#Description#>
@@ -30,7 +30,7 @@ public class PledgeService {
     ///   - trees: <#trees description#>
     /// - Returns: <#return value description#>
     public func calculateRemainingTrees(forPledge pledge: PledgeModel, withTrees trees: Int) -> Int {
-        return calculateRemainingTones(forPledge: pledge, withTrees: trees) / treeToKGEmision
+        return Int.abs(calculateRemainingTones(forPledge: pledge, withTrees: trees) / treeToKGEmision)
     }
     
     /// <#Description#>
@@ -43,10 +43,10 @@ public class PledgeService {
         return calculateEmission(forTreeCount: trees) / calculateGoal(forPledge: pledge)
     }
     
-    /// Calculate goal in kg
+    /// Calculate goal in Kg
     ///
     /// - Parameter pledge: Pledge model
-    /// - Returns: Goal in kg
+    /// - Returns: Goal in Kg
     public func calculateGoal(forPledge pledge: PledgeModel) -> Int {
         return pledge.footprint * pledge.netPositiveValue
     }
