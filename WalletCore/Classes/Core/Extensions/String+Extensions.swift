@@ -22,4 +22,9 @@ public extension String {
         let decimalSeparator = Locale.current.decimalSeparator ?? ""
         return replacingOccurrences(of: ".", with: decimalSeparator)
     }
+    
+    func removeGroupingSeparator() -> String {
+        let groupingSeparator = Locale.current.groupingSeparator ?? ""
+        return replacingOccurrences(of: groupingSeparator, with: "")
+    }
 }

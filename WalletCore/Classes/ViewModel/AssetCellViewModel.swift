@@ -93,8 +93,8 @@ public extension Decimal {
         let formatterNumber = NumberFormatter
             .currencyInstance(accuracy: accuracy)
             .string(from: self as NSNumber) ?? ""
-        
-        return "\(symbol)\(formatterNumber) \(code)"
+        let codeStr = code == "" ? "" : " \(code)"
+        return "\(symbol)\(formatterNumber)\(codeStr)"
     }
     
     public func convertAsCurrency(asset: LWAssetModel?, withCode: Bool) -> String {

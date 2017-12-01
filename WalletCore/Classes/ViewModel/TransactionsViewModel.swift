@@ -63,9 +63,9 @@ fileprivate extension ObservableType where Self.E == Void {
 
 fileprivate extension ObservableType where Self.E == [TransactionViewModel] {
     
-    func combineLatest() -> Observable<[(date: String, amauntInBase: String, amaunt: String, title: String)]> {
-        return map{(transactions: [TransactionViewModel]) in
-            return transactions.map{(viewModel: TransactionViewModel) in
+    func combineLatest() -> Observable<[(date: String, amountInBase: String, amount: String, title: String)]> {
+        return map { (transactions: [TransactionViewModel]) in
+            return transactions.map { (viewModel: TransactionViewModel) in
                 return Observable.combineLatest(
                     viewModel.date.asObservable(),
                     viewModel.amauntInBase.asObservable(),
@@ -79,18 +79,18 @@ fileprivate extension ObservableType where Self.E == [TransactionViewModel] {
                 )}
             }
         }
-        .flatMap{(data: [Observable<(date: String, amauntInBase: String, amaunt: String, title: String)>]) in
+        .flatMap { (data: [Observable<(date: String, amountInBase: String, amount: String, title: String)>]) in
             return Observable.combineLatest(data)
         }
     }
 }
 
-fileprivate extension ObservableType where Self.E == [(date: String, amauntInBase: String, amaunt: String, title: String)] {
+fileprivate extension ObservableType where Self.E == [(date: String, amountInBase: String, amount: String, title: String)] {
     func mapToCsvContent() -> Observable<String> {
-        return map{(transactions: [(date: String, amauntInBase: String, amaunt: String, title: String)]) -> String in
+        return map { (transactions: E) -> String in
             return transactions
-                .map{"\($0.title.csvValue),\($0.amaunt.csvValue),\($0.amauntInBase.csvValue),\($0.date.csvValue)\n"}
-                .reduce("Title, Amaunt, Amaunt in Base Asset,Transaction Date\n") {$0 + $1}
+                .map{"\($0.title.csvValue),\($0.amount.csvNumberValue),\($0.amountInBase.csvNumberValue),\($0.date.csvValue)\n"}
+                .reduce("Title,Amount,Amount in Base Asset,Transaction Date\n") {$0 + $1}
         }
     }
 }
@@ -119,9 +119,18 @@ public extension SharedSequenceConvertibleType where SharingStrategy == DriverSh
 }
 
 fileprivate extension String {
+    
     var csvValue: String {
         return
             replacingOccurrences(of: "\n", with: " ")
             .replacingOccurrences(of: ",", with: "")
     }
+
+    var csvNumberValue: String {
+        return
+            replacingOccurrences(of: "\n", with: " ")
+            .removeGroupingSeparator()
+            .replaceDecimalSeparator()
+    }
+
 }
