@@ -26,7 +26,7 @@ class SignUpFormViewController: UIViewController {
     
     private var nextTrigger = PublishSubject<Void>()
     
-    private var pinTrigger = PublishSubject<Pin1ViewController?>()
+    private var pinTrigger = PublishSubject<PinViewController?>()
     
     private var disposeBag = DisposeBag()
 

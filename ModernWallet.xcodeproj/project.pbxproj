@@ -82,6 +82,7 @@
 		664676D21FCEF238006FC340 /* SignUpFillProfileFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D11FCEF238006FC340 /* SignUpFillProfileFormController.swift */; };
 		664676D41FCEF260006FC340 /* SignUpFillPhoneFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D31FCEF260006FC340 /* SignUpFillPhoneFormController.swift */; };
 		664676D61FCEFD5C006FC340 /* SignUpShakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D51FCEFD5C006FC340 /* SignUpShakeViewController.swift */; };
+		665286631FD1BD1E0085640C /* PinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665286621FD1BD1E0085640C /* PinViewController.xib */; };
 		66529DCC1F8D1A670059786B /* CashOutSelectAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */; };
 		66529DD01F8E38F10059786B /* Geomanist-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCD1F8E38F00059786B /* Geomanist-Light.otf */; };
 		66529DD11F8E38F10059786B /* Geomanist-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCE1F8E38F00059786B /* Geomanist-Regular.otf */; };
@@ -99,8 +100,7 @@
 		6689EE521FBB291C0006010F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE511FBB291C0006010F /* SettingsTableViewController.swift */; };
 		6689EE551FBB316A0006010F /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */; };
 		668E68031FCD9AFD004552BD /* SignInPasswordFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668E68021FCD9AFD004552BD /* SignInPasswordFormController.swift */; };
-		668E68081FCDC449004552BD /* Pin1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668E68061FCDC449004552BD /* Pin1ViewController.swift */; };
-		668E68091FCDC449004552BD /* Pin1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 668E68071FCDC449004552BD /* Pin1ViewController.xib */; };
+		668E68081FCDC449004552BD /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668E68061FCDC449004552BD /* PinViewController.swift */; };
 		66907BA31FD010CF00FAD801 /* ReloadTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907BA21FD010CF00FAD801 /* ReloadTrigger.swift */; };
 		66907BA51FD0130900FAD801 /* NoConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907BA41FD0130900FAD801 /* NoConnectionViewController.swift */; };
 		669B6A511FCD6AE5003227AF /* SignUpFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669B6A501FCD6AE5003227AF /* SignUpFormViewController.swift */; };
@@ -253,6 +253,7 @@
 		664676D11FCEF238006FC340 /* SignUpFillProfileFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFillProfileFormController.swift; sourceTree = "<group>"; };
 		664676D31FCEF260006FC340 /* SignUpFillPhoneFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFillPhoneFormController.swift; sourceTree = "<group>"; };
 		664676D51FCEFD5C006FC340 /* SignUpShakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpShakeViewController.swift; sourceTree = "<group>"; };
+		665286621FD1BD1E0085640C /* PinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinViewController.xib; sourceTree = "<group>"; };
 		66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSelectAssetViewController.swift; sourceTree = "<group>"; };
 		66529DCD1F8E38F00059786B /* Geomanist-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Light.otf"; sourceTree = "<group>"; };
 		66529DCE1F8E38F00059786B /* Geomanist-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Regular.otf"; sourceTree = "<group>"; };
@@ -270,8 +271,7 @@
 		6689EE511FBB291C0006010F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		6689EE541FBB316A0006010F /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		668E68021FCD9AFD004552BD /* SignInPasswordFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPasswordFormController.swift; sourceTree = "<group>"; };
-		668E68061FCDC449004552BD /* Pin1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin1ViewController.swift; sourceTree = "<group>"; };
-		668E68071FCDC449004552BD /* Pin1ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Pin1ViewController.xib; sourceTree = "<group>"; };
+		668E68061FCDC449004552BD /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
 		66907BA21FD010CF00FAD801 /* ReloadTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadTrigger.swift; sourceTree = "<group>"; };
 		66907BA41FD0130900FAD801 /* NoConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionViewController.swift; sourceTree = "<group>"; };
 		669B6A501FCD6AE5003227AF /* SignUpFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormViewController.swift; sourceTree = "<group>"; };
@@ -389,8 +389,8 @@
 				61BAB0DF1F0F72F600212E16 /* FakeData.swift */,
 				66907BA41FD0130900FAD801 /* NoConnectionViewController.swift */,
 				61FBCCC51F20C8FB004F7219 /* TotalBalanceViewController.swift */,
-				668E68061FCDC449004552BD /* Pin1ViewController.swift */,
-				668E68071FCDC449004552BD /* Pin1ViewController.xib */,
+				668E68061FCDC449004552BD /* PinViewController.swift */,
+				665286621FD1BD1E0085640C /* PinViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -959,7 +959,7 @@
 				EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */,
 				46D16C311FBC84BD0046F67D /* ButtonWithIconView.xib in Resources */,
 				A12DB5521D741C2300319EA7 /* Proxima Nova Semibold.otf in Resources */,
-				668E68091FCDC449004552BD /* Pin1ViewController.xib in Resources */,
+				665286631FD1BD1E0085640C /* PinViewController.xib in Resources */,
 				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
 				665A7CC51FBEDDD5004F6CFA /* SettingsTableViewCell.xib in Resources */,
 				6197A3C41EEA9017008ECF5A /* PieChartCenter.xib in Resources */,
@@ -1218,7 +1218,7 @@
 				870D4DD11FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift in Sources */,
 				61BAB0E01F0F72F600212E16 /* FakeData.swift in Sources */,
 				664676D41FCEF260006FC340 /* SignUpFillPhoneFormController.swift in Sources */,
-				668E68081FCDC449004552BD /* Pin1ViewController.swift in Sources */,
+				668E68081FCDC449004552BD /* PinViewController.swift in Sources */,
 				469DA7251F6C1FBF000B904C /* KYCStep2ViewController.swift in Sources */,
 				66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */,
 				87C6CDFE1FA5BCBD0069CC38 /* CashOutConfirmationDetailTableViewCell.swift in Sources */,

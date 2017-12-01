@@ -29,7 +29,7 @@ class BackupPrivateKeyStartViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func startTapped() {
-        let pinVC = Pin1ViewController.enterPinViewController(title: Localize("backup.newDesign.forAdditionalSecurity"),
+        let pinVC = PinViewController.enterPinViewController(title: Localize("backup.newDesign.forAdditionalSecurity"),
                                                               isTouchIdEnabled: true)
         pinVC.complete
             .bind(onNext: { [weak self] pinPassed in

@@ -141,7 +141,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         submitButton.rx.tap
-            .flatMap { return Pin1ViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
+            .flatMap { return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
             .bind(to: confirmTrading)
             .disposed(by: disposeBag)
 

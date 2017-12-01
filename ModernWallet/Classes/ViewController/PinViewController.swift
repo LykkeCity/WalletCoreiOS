@@ -11,18 +11,18 @@ import RxSwift
 import RxCocoa
 import WalletCore
 
-class Pin1ViewController: UIViewController {
+class PinViewController: UIViewController {
     
-    static var createPinViewController: Pin1ViewController {
-        let viewController = Pin1ViewController(nibName: "Pin1ViewController", bundle: nil)
+    static var createPinViewController: PinViewController {
+        let viewController = PinViewController(nibName: "PinViewController", bundle: nil)
         viewController.mode = .createPin
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = viewController
         return viewController
     }
     
-    static func enterPinViewController(title: String?, isTouchIdEnabled: Bool) -> Pin1ViewController {
-        let viewController = Pin1ViewController(nibName: "Pin1ViewController", bundle: nil)
+    static func enterPinViewController(title: String?, isTouchIdEnabled: Bool) -> PinViewController {
+        let viewController = PinViewController(nibName: "PinViewController", bundle: nil)
         viewController.mode = .enterPin(isTouchIdEnabled: isTouchIdEnabled)
         viewController.title = title
         viewController.modalPresentationStyle = .custom
@@ -267,7 +267,7 @@ class Pin1ViewController: UIViewController {
     
 }
 
-extension Pin1ViewController: UIViewControllerTransitioningDelegate {
+extension PinViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PinAnimatedTransitioning(presenting: true)

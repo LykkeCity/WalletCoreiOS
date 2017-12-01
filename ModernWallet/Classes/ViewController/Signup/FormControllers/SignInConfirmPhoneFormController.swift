@@ -95,7 +95,7 @@ class SignInConfirmPhoneFormController: FormController {
     
     private var disposeBag = DisposeBag()
     
-    func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<Pin1ViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+    func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
         smsCodeTextField.rx.text
@@ -156,7 +156,7 @@ class SignInConfirmPhoneFormController: FormController {
             .disposed(by: disposeBag)
         
         let pinViewControllerObservable = shouldGetCodes.filter { !$0 }
-            .map { _ in return Pin1ViewController.createPinViewController }
+            .map { _ in return PinViewController.createPinViewController }
             .shareReplay(1)
         
         let pinResult = pinViewControllerObservable
