@@ -65,6 +65,23 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
             }
     }
     
+    public func request(byAssetId assetId: String) -> Observable<ApiResult<LWSpotWallet?>> {
+        return request()
+            .map{result in
+                switch result {
+                case .error(let data): return .error(withData: data)
+                case .loading: return .loading
+                case .notAuthorized: return .notAuthorized
+                case .forbidden: return .forbidden
+                case .success(let data): return .success(withData:
+                    (data.lykkeData.wallets ?? [])
+                        .map{ $0 as! LWSpotWallet }
+                        .first{ $0.identity == assetId }
+                    )
+                }
+        }
+    }
+    
     func getErrorResult(fromPacket packet: Packet) -> Result {
         return Result.error(withData: packet.errors)
     }
@@ -79,6 +96,22 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
     
     func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
         return Result.notAuthorized
+    }
+}
+
+public extension ObservableType where Self.E == ApiResult<LWSpotWallet?> {
+    public func filterSuccess() -> Observable<LWSpotWallet?> {
+        return filter{ $0.isSuccess }.map{
+            guard let wallet = $0.getSuccess() else {
+                return nil
+            }
+            
+            return wallet
+        }
+    }
+    
+    public func isLoading() -> Observable<Bool> {
+        return map{$0.isLoading}
     }
 }
 

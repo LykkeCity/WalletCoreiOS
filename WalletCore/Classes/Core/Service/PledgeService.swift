@@ -10,37 +10,37 @@ import Foundation
 
 public class PledgeService {
     
-    private let treeToKGEmision = 25
+    private let treeToKGEmission = 25
     
     
-    /// <#Description#>
+    /// Calculates remaining pledge in kilos
     ///
     /// - Parameters:
-    ///   - pledge: <#pledge description#>
-    ///   - trees: <#trees description#>
-    /// - Returns: <#return value description#>
-    public func calculateRemainingTones(forPledge pledge: PledgeModel, withTrees trees: Int) -> Int {
+    ///   - pledge: PledgeModel
+    ///   - trees: TREEs count
+    /// - Returns: Kilos amount
+    public func calculateRemainingKilos(forPledge pledge: PledgeModel, withTrees trees: Int) -> Int {
         return Int.abs(calculateGoal(forPledge: pledge) - calculateEmission(forTreeCount: trees))
     }
     
-    /// <#Description#>
+    /// Calculates remaining pledge in TREEs
     ///
     /// - Parameters:
-    ///   - pledge: <#pledge description#>
-    ///   - trees: <#trees description#>
-    /// - Returns: <#return value description#>
+    ///   - pledge: PledgeModel
+    ///   - trees: TREEs count
+    /// - Returns: TREEs amount
     public func calculateRemainingTrees(forPledge pledge: PledgeModel, withTrees trees: Int) -> Int {
-        return Int.abs(calculateRemainingTones(forPledge: pledge, withTrees: trees) / treeToKGEmision)
+        return Int.abs(calculateRemainingKilos(forPledge: pledge, withTrees: trees) / treeToKGEmission)
     }
     
-    /// <#Description#>
+    /// Calculates percent of pledge completed
     ///
     /// - Parameters:
-    ///   - pledge: <#pledge description#>
-    ///   - trees: <#trees description#>
-    /// - Returns: <#return value description#>
-    public func calculatePecent(forPledge pledge: PledgeModel, withTrees trees: Int) -> Int {
-        return calculateEmission(forTreeCount: trees) / calculateGoal(forPledge: pledge)
+    ///   - pledge: PledgeModel
+    ///   - trees: TREEs count
+    /// - Returns: Percent amount
+    public func calculatePecent(forPledge pledge: PledgeModel, withTrees trees: Int) -> Double {
+        return Double(calculateEmission(forTreeCount: trees)) / Double(calculateGoal(forPledge: pledge))
     }
     
     /// Calculate goal in Kg
@@ -51,11 +51,11 @@ public class PledgeService {
         return pledge.footprint * pledge.netPositiveValue
     }
     
-    /// <#Description#>
+    /// Calculates emission in Kilos
     ///
-    /// - Parameter treeCount: <#treeCount description#>
-    /// - Returns: <#return value description#>
+    /// - Parameter TREEs count
+    /// - Returns: Emission kilos
     public func calculateEmission(forTreeCount treeCount: Int) -> Int {
-        return treeCount * treeToKGEmision
+        return treeCount * treeToKGEmission
     }
 }

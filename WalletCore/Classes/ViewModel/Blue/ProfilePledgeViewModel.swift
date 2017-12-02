@@ -40,13 +40,15 @@ public class ProfilePledgeViewModel {
     
     public let loadingViewModel: LoadingViewModel
     
+    fileprivate let treeId = "c33f03ea-bacd-4d26-a676-539ef5e8ec74"
+    
     public init(
         blueManager: LWRxBlueAuthManager = LWRxBlueAuthManager.instance,
         authManager: LWRxAuthManager = LWRxAuthManager.instance,
         pledgeService: PledgeService = PledgeService()
     ) {
         let pledge = blueManager.pledgeGet.request()
-        let wallets = authManager.lykkeWallets.requestNonEmptyWallets()
+        let wallets = authManager.lykkeWallets.request(byAssetId: treeId)
         
         let pledgeAndTrees = Observable.zip(pledge.filterSuccess(), wallets.mapToTrees()){((pledge: $0, trees: $1))}
         
@@ -93,16 +95,10 @@ public class ProfilePledgeViewModel {
     }
 }
 
-fileprivate extension ObservableType where Self.E == ApiResultList<LWSpotWallet> {
+fileprivate extension ObservableType where Self.E == ApiResult<LWSpotWallet?> {
     func mapToTrees() -> Observable<Int> {
-        return
-            filterSuccess()
-            .map{
-                $0.reduce(0.0){acumulator, wallet -> Decimal in
-                    return acumulator + wallet.balance.decimalValue
-                }
-            }
-            .map{ Int(exactly: $0.doubleValue) }
+        return filterSuccess()
+            .map{ $0?.balance.intValue }
             .replaceNilWith(0)
     }
     
@@ -154,7 +150,7 @@ fileprivate extension ObservableType where Self.E == (pledge: PledgeModel, trees
     
     func mapToRemainingTons(withService service: PledgeService) -> Observable<String> {
         return
-            map{ service.calculateRemainingTones(forPledge: $0.pledge, withTrees: $0.trees) }
+            map{ service.calculateRemainingKilos(forPledge: $0.pledge, withTrees: $0.trees) }
             .mapToTons()
             .map{ "\($0)t" }
     }
@@ -162,12 +158,11 @@ fileprivate extension ObservableType where Self.E == (pledge: PledgeModel, trees
     func mapToPercent(withService service: PledgeService) -> Observable<String> {
         return
             map{ service.calculatePecent(forPledge: $0.pledge, withTrees: $0.trees) }
-            .map{ NumberFormatter.percentInstance.string(from: NSNumber(value: $0)) }
+            .map{ NumberFormatter.percentInstance.string(for: $0) }
             .replaceNilWith("")
     }
     
     func mapPercentToFraction(withService service: PledgeService) -> Observable<Double> {
-        return
-            map{ Double(service.calculatePecent(forPledge: $0.pledge, withTrees: $0.trees) / 100) }
+        return map{ service.calculatePecent(forPledge: $0.pledge, withTrees: $0.trees) / 100.0 }
     }
 }
