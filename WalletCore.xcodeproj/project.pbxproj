@@ -573,6 +573,8 @@
 		5D35EEBE70B8D28827A34C71 /* Pods_WalletCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA74A9725DA6B8766C4E699 /* Pods_WalletCoreTests.framework */; };
 		61226E181FCEF2D90033FA39 /* ProfilePledgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61226E171FCEF2D90033FA39 /* ProfilePledgeViewModel.swift */; };
 		61226E1A1FCF00380033FA39 /* PledgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61226E191FCF00380033FA39 /* PledgeService.swift */; };
+		61226E211FD28D5E0033FA39 /* WalletCoreConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 61226E1F1FD28D5E0033FA39 /* WalletCoreConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61226E221FD28D5E0033FA39 /* WalletCoreConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 61226E201FD28D5E0033FA39 /* WalletCoreConfig.m */; };
 		612B7BCB1F69048D0085F692 /* LWEthereumTransactionsManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612B7BCA1F69048D0085F692 /* LWEthereumTransactionsManager+Rx.swift */; };
 		612B7BCD1F6904930085F692 /* LWOffchainTransactionsManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612B7BCC1F6904930085F692 /* LWOffchainTransactionsManager+Rx.swift */; };
 		614214131F7262C000E2F524 /* LWRxAuthManagerKYCForAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614214121F7262C000E2F524 /* LWRxAuthManagerKYCForAsset.swift */; };
@@ -1204,6 +1206,8 @@
 		5B75A707CAB0D989329019ED /* Pods-WalletCoreTests.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.debug.test.xcconfig"; sourceTree = "<group>"; };
 		61226E171FCEF2D90033FA39 /* ProfilePledgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePledgeViewModel.swift; sourceTree = "<group>"; };
 		61226E191FCF00380033FA39 /* PledgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PledgeService.swift; sourceTree = "<group>"; };
+		61226E1F1FD28D5E0033FA39 /* WalletCoreConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletCoreConfig.h; sourceTree = "<group>"; };
+		61226E201FD28D5E0033FA39 /* WalletCoreConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WalletCoreConfig.m; sourceTree = "<group>"; };
 		612B7BCA1F69048D0085F692 /* LWEthereumTransactionsManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWEthereumTransactionsManager+Rx.swift"; sourceTree = "<group>"; };
 		612B7BCC1F6904930085F692 /* LWOffchainTransactionsManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWOffchainTransactionsManager+Rx.swift"; sourceTree = "<group>"; };
 		614214121F7262C000E2F524 /* LWRxAuthManagerKYCForAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerKYCForAsset.swift; sourceTree = "<group>"; };
@@ -1848,6 +1852,8 @@
 				46C9AD9F1F417BD700B83CCB /* LWValidator.m */,
 				46C9ADA01F417BD700B83CCB /* Macro.h */,
 				46C9ADA11F417BD700B83CCB /* Macro.m */,
+				61226E1F1FD28D5E0033FA39 /* WalletCoreConfig.h */,
+				61226E201FD28D5E0033FA39 /* WalletCoreConfig.m */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -2659,6 +2665,7 @@
 				46C9AEF31F417BD700B83CCB /* LWPacketGraphData.h in Headers */,
 				46C9AE531F417BD700B83CCB /* LWAssetBlockchainModel.h in Headers */,
 				46C9AFEA1F417BD800B83CCB /* ABPadButton.h in Headers */,
+				61226E211FD28D5E0033FA39 /* WalletCoreConfig.h in Headers */,
 				46C9A8C31F417AC300B83CCB /* WalletCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3116,6 +3123,7 @@
 				46C08DB11F98C2540059BDD3 /* LWPacketOffchainChannelKey.swift in Sources */,
 				46C9B0841F42D80900B83CCB /* DateFormatter+Extensions.swift in Sources */,
 				46C9AF8E1F417BD800B83CCB /* LWTransactionTransferModel.m in Sources */,
+				61226E221FD28D5E0033FA39 /* WalletCoreConfig.m in Sources */,
 				46C9B02D1F417C1B00B83CCB /* GraphDataViewModel.swift in Sources */,
 				46C9AFD51F417BD800B83CCB /* LWBankCardsData.m in Sources */,
 				46C9AFB61F417BD800B83CCB /* LWWatchListElement.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import "LWPacketEmailVerificationSet.h"
-
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketEmailVerificationSet
 
@@ -19,7 +19,10 @@
 }
 
 - (NSDictionary *)params {
-    return @{@"email" : self.email};
+    return @{
+             @"Email" : self.email,
+             @"PartnerId": WalletCoreConfig.partnerId
+             };
 }
 
 @end

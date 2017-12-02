@@ -23,8 +23,8 @@
 
 #define kStagingTestServer @"api-staging.lykke.com"
 //#define kDevelopTestServer @"lykke-api-dev.azurewebsites.net"
-#define kDevelopTestServer @"api-test.lykkex.net"
-#define kTestingTestServer    @"api-test.lykkex.net"
+#define kDevelopTestServer @"api-dev.lykkex.net"
+#define kTestingTestServer    @"api-dev.lykkex.net"
 
 
 #pragma mark - General Constants

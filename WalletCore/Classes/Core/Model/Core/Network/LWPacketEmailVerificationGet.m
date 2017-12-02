@@ -7,7 +7,7 @@
 //
 
 #import "LWPacketEmailVerificationGet.h"
-
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketEmailVerificationGet
 
@@ -26,10 +26,15 @@
 }
 
 - (NSString *)urlRelative {
-    
-    NSString *sss=[NSString stringWithFormat:@"EmailVerification?email=%@&code=%@", self.email, self.code];
-    NSLog(@"%@", sss);
-    return [NSString stringWithFormat:@"EmailVerification?email=%@&code=%@", self.email, self.code];
+    return @"EmailVerification";
+}
+
+- (NSDictionary *)params {
+    return @{
+             @"email": self.email,
+             @"code": self.code,
+             @"partnerId": WalletCoreConfig.partnerId
+             };
 }
 
 - (GDXRESTPacketType)type {

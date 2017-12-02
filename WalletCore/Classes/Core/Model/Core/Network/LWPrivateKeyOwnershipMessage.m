@@ -7,6 +7,7 @@
 //
 
 #import "LWPrivateKeyOwnershipMessage.h"
+#import "WalletCoreConfig.h"
 
 @implementation LWPrivateKeyOwnershipMessage
 
@@ -21,18 +22,15 @@
 }
 
 - (NSString *)urlRelative {
-    if(!self.signature)
-        return [NSString stringWithFormat:@"PrivateKeyOwnershipMsg?email=%@", self.email];
-    else
-        return @"PrivateKeyOwnershipMsg";
+    return @"PrivateKeyOwnershipMsg";
 }
 
 -(NSDictionary *) params
 {
     if(self.signature)
-        return @{@"Email":self.email, @"SignedOwnershipMsg":self.signature};
+        return @{@"Email":self.email, @"SignedOwnershipMsg":self.signature, @"PartnerId": WalletCoreConfig.partnerId};
     else
-        return nil;
+        return @{@"email":self.email, @"partnerId": WalletCoreConfig.partnerId};
 }
 
 - (GDXRESTPacketType)type {

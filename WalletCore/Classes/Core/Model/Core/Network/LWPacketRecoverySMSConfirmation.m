@@ -8,6 +8,7 @@
 
 #import "LWPacketRecoverySMSConfirmation.h"
 #import "LWRecoveryPasswordModel.h"
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketRecoverySMSConfirmation
 
@@ -27,7 +28,11 @@
 
 -(NSDictionary *) params
 {
-    return @{@"Email":self.recModel.email, @"SignedOwnershipMsg":self.recModel.signature1};
+    return @{
+             @"Email":self.recModel.email,
+             @"SignedOwnershipMsg":self.recModel.signature1,
+             @"PartnerId": WalletCoreConfig.partnerId
+             };
 }
 
 

@@ -10,6 +10,7 @@
 #import "LWRecoveryPasswordModel.h"
 #import "LWPrivateKeyManager.h"
 #import "LWCache.h"
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketChangePINAndPassword
 
@@ -34,7 +35,16 @@
     NSString *pass = [LWPrivateKeyManager hashForString:self.recModel.password]; //only hash is allowed for new passwords
                                                         
                                                         
-    NSDictionary *params=@{@"Email":self.recModel.email, @"SignedOwnershipMsg":self.recModel.signature2, @"SmsCode":self.recModel.smsCode, @"NewPin":self.recModel.pin, @"NewPassword": pass, @"NewHint":self.recModel.hint, @"EncodedPrivateKey":[[LWPrivateKeyManager shared] encryptKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke password:self.recModel.password]};
+    NSDictionary *params=@{
+                           @"Email":self.recModel.email,
+                           @"SignedOwnershipMsg":self.recModel.signature2,
+                           @"SmsCode":self.recModel.smsCode,
+                           @"NewPin":self.recModel.pin,
+                           @"NewPassword": pass,
+                           @"NewHint":self.recModel.hint,
+                           @"EncodedPrivateKey":[[LWPrivateKeyManager shared] encryptKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke password:self.recModel.password],
+                           @"PartnerId": WalletCoreConfig.partnerId
+                           };
     NSLog(@"%@", params);
     return params;
 }

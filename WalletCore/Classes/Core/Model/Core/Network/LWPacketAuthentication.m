@@ -13,6 +13,7 @@
 //#import "AppDelegate.h"
 #import "LWAuthManager.h"
 #import "LWCache.h"
+#import "WalletCoreConfig.h"
 
 
 
@@ -80,7 +81,9 @@
 - (NSDictionary *)params {
     return @{@"Email" : self.authenticationData.email,
              @"Password" : [LWCache instance].passwordIsHashed?[LWPrivateKeyManager hashForString:self.authenticationData.password]:self.authenticationData.password,
-             @"ClientInfo" : self.authenticationData.clientInfo};
+             @"ClientInfo" : self.authenticationData.clientInfo,
+             @"PartnerId": WalletCoreConfig.partnerId
+             };
 }
 
 @end

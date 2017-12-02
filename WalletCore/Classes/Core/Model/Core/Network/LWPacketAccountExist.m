@@ -8,7 +8,7 @@
 
 #import "LWPacketAccountExist.h"
 #import "LWCache.h"
-
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketAccountExist
 
@@ -30,7 +30,7 @@
 }
 
 - (NSDictionary *)params {
-    return @{@"email" : self.email};
+    return @{@"email" : self.email, @"partnerId": WalletCoreConfig.partnerId};
 }
 
 - (GDXRESTPacketType)type {

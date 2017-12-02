@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketEmailHint.h"
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketEmailHint
 
@@ -27,7 +28,10 @@
 
 -(NSDictionary *) params
 {
-    return @{@"Email":self.email};
+    return @{
+             @"Email":self.email,
+             @"PartnerId": WalletCoreConfig.partnerId
+             };
 }
 
 

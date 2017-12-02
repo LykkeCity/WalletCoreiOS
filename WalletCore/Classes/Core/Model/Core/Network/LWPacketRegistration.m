@@ -11,6 +11,7 @@
 //#import "AppDelegate.h"
 #import "LWPrivateKeyManager.h"
 #import "LWCache.h"
+#import "WalletCoreConfig.h"
 
 
 @implementation LWPacketRegistration
@@ -56,6 +57,8 @@
                                      @"Hint":self.registrationData.passwordHint} mutableCopy];
     if (self.registrationData.partnerIdentifier != nil) {
         params[@"PartnerId"] = self.registrationData.partnerIdentifier;
+    } else {
+        params[@"PartnerId"] = WalletCoreConfig.partnerId;
     }
     return [params copy];
 }
