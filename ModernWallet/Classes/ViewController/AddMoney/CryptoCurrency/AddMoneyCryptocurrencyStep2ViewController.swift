@@ -56,9 +56,16 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
         
         sendEmailWithAddressViewModel = SendEmailWithAddressViewModel(sendObservable: emailMeButton.rx.tap.asObservable(), wallet: self.wallet)
         
-        observeCopyWallet()
-        observeEmailMeWalletAddress()
-        handleQRCode()
+        #if TEST
+            qrCodeImageView.image = #imageLiteral(resourceName: "BetaQrCode")
+            copyButton.isEnabled = false
+            copyLabel.alpha = 0.6
+            emailMeButton.isEnabled = false
+        #else
+            observeCopyWallet()
+            observeEmailMeWalletAddress()
+            handleQRCode()
+        #endif
         localize()
         // Do any additional setup after loading the view from its nib.
     }
