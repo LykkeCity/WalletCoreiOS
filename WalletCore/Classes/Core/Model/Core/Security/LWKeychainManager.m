@@ -10,6 +10,7 @@
 #import "LWPersonalDataModel.h"
 #import "LWConstants.h"
 #import "LWPrivateKeyManager.h"
+#import "WalletCoreConfig.h"
 #import <Valet/Valet.h>
 
 static NSString *const kKeychainManagerAppId    = @"LykkeWallet";
@@ -238,14 +239,9 @@ SINGLETON_INIT {
     NSString *result = [valet stringForKey:kKeychainManagerAddress];
     // validate for nil, empty or non-existing addresses
     if (!result || [result isEqualToString:@""]) {
-        [self saveAddress:kDevelopTestServer];
-        return kDevelopTestServer;
-    }
-    else if (![result isEqualToString:kTestingTestServer] &&
-             ![result isEqualToString:kDevelopTestServer] &&
-             ![result isEqualToString:kStagingTestServer]) {
-        [self saveAddress:kDevelopTestServer];
-        return kDevelopTestServer;
+        NSString *testingServer = WalletCoreConfig.testingServer;
+        [self saveAddress:testingServer];
+        return testingServer;
     }
     return result;
 #else

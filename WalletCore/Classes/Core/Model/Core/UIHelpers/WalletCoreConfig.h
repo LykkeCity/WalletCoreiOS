@@ -8,10 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, WalletCoreTestingServer) {
+    WalletCoreTestingServerDevelop,
+    WalletCoreTestingServerTest,
+    WalletCoreTestingServerStaging
+};
+
 @interface WalletCoreConfig : NSObject
 
-@property (class, copy, nonatomic) NSString *partnerId;
+@property (class, readonly, nonatomic) NSString *partnerId;
+
+@property (class, readonly, nonatomic) NSString *testingServer;
 
 + (void)configure:(NSString*) partnerId;
+
++ (void)configurePartnerId:(NSString *)partnerId testingServer:(WalletCoreTestingServer)testingServer;
 
 @end
