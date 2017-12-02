@@ -16,18 +16,16 @@ open class SignUpRegistrationViewModel {
     public let reenterPassword = Variable<String>("")
     public let clientInfo = Variable<String>("")
     public let hint = Variable<String>("")
-    public let partnerIdentifier: String?
     let fake = Variable<String>("")
     
     public let loading: Observable<Bool>
     public let result: Driver<ApiResult<LWPacketRegistration>>
     
-    public init(submit: Observable<Void>, partnerIdentifier: String? = nil, authManager: LWRxAuthManager = LWRxAuthManager.instance)
+    public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
-        self.partnerIdentifier = partnerIdentifier
         result = submit
             .throttle(1, scheduler: MainScheduler.instance)
-            .mapToPack(email: email, password: password, clientInfo: clientInfo, hint: hint, partnerIdentifier: self.partnerIdentifier, authManager: authManager)
+            .mapToPack(email: email, password: password, clientInfo: clientInfo, hint: hint, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
         loading = result.asObservable().isLoading()
@@ -55,7 +53,6 @@ fileprivate extension ObservableType where Self.E == Void {
         password: Variable<String>,
         clientInfo: Variable<String>,
         hint: Variable<String>,
-        partnerIdentifier: String?,
         authManager: LWRxAuthManager
         ) -> Observable<ApiResult<LWPacketRegistration>> {
         
@@ -65,7 +62,6 @@ fileprivate extension ObservableType where Self.E == Void {
             authData.password = password.value
             authData.clientInfo = clientInfo.value
             authData.passwordHint = hint.value
-            authData.partnerIdentifier = partnerIdentifier
             
             return authData
             }

@@ -51,16 +51,13 @@
 }
 
 - (NSDictionary *)params {
-    NSMutableDictionary *params = [@{@"Email" : self.registrationData.email,
-                                     @"Password" : [LWPrivateKeyManager hashForString:self.registrationData.password],
-                                     @"ClientInfo" : self.registrationData.clientInfo,
-                                     @"Hint":self.registrationData.passwordHint} mutableCopy];
-    if (self.registrationData.partnerIdentifier != nil) {
-        params[@"PartnerId"] = self.registrationData.partnerIdentifier;
-    } else {
-        params[@"PartnerId"] = WalletCoreConfig.partnerId;
-    }
-    return [params copy];
+    return @{
+             @"Email" : self.registrationData.email,
+             @"Password" : [LWPrivateKeyManager hashForString:self.registrationData.password],
+             @"ClientInfo" : self.registrationData.clientInfo,
+             @"Hint":self.registrationData.passwordHint,
+             @"PartnerId": WalletCoreConfig.partnerId
+             };
 }
 
 @end
