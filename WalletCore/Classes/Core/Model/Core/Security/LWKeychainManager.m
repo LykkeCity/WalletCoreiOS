@@ -123,6 +123,7 @@ SINGLETON_INIT {
     [valet removeObjectForKey:kKeychainManagerNotificationsTag];
     [valet removeObjectForKey:kKeychainManagerPersonalData];
     [valet removeObjectForKey:kKeychainManagerPIN];
+    [valet removeObjectForKey:kKeychainManagerAddress];
 }
 
 -(void) saveEncodedLykkePrivateKey:(NSString *)privateKey
