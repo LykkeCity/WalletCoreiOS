@@ -33,13 +33,6 @@ class RootViewController: UIViewController {
             embededNavigationController.setViewControllers([viewController], animated: false)
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let buttonWidth = chatButton.bounds.width
-        let imageWidth = chatButton.imageView?.image?.size.width ?? 0
-        chatButton.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: (buttonWidth + imageWidth) / 2, bottom: 10.0, right: 0.0)
-    }
 
     // MARK: - IBActions
     
