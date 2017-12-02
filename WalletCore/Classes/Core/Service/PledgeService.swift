@@ -40,7 +40,7 @@ public class PledgeService {
     ///   - trees: TREEs count
     /// - Returns: Percent amount
     public func calculatePecent(forPledge pledge: PledgeModel, withTrees trees: Int) -> Double {
-        return Double(calculateEmission(forTreeCount: trees)) / Double(calculateGoal(forPledge: pledge))
+        return Double(calculateEmission(forTreeCount: trees)) / Double(calculateGoal(forPledge: pledge)) * 100.0
     }
     
     /// Calculate goal in Kg
