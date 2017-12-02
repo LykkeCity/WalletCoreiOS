@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Configure tracker from GoogleService-Info.plist.
         
+        WalletCoreConfig.configurePartnerId("LykkeModernMoney", testingServer: .test)
+        
         AFNetworkReachabilityManager.shared().startMonitoring()
         subsctibeForNotAuthorized()
         
