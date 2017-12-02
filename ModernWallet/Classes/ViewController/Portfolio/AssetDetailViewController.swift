@@ -77,9 +77,13 @@ class AssetDetailViewController: UIViewController {
         }
         switch segueIdentifier {
         case "BuyAsset":
-            (segue.destination as? BuyOptimizedViewController)?.tradeType = .buy
+            guard let buyVC = segue.destination as? BuyOptimizedViewController else { return }
+            buyVC.tradeType = .buy
+            buyVC.tradeAssetIdentifier = asset.value.cryptoCurrency.identity
         case "SellAsset":
-            (segue.destination as? BuyOptimizedViewController)?.tradeType = .sell
+            guard let sellVC = segue.destination as? BuyOptimizedViewController else { return }
+            sellVC.tradeType = .sell
+            sellVC.tradeAssetIdentifier = asset.value.cryptoCurrency.identity
         default:
             break
         }

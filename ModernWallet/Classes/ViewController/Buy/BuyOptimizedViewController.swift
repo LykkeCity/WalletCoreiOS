@@ -32,6 +32,8 @@ class BuyOptimizedViewController: UIViewController {
     
     public var tradeType: TradeType!
     
+    public var tradeAssetIdentifier: String?
+    
     fileprivate let disposeBag = DisposeBag()
     
     //MARK:- View Models
@@ -169,6 +171,27 @@ class BuyOptimizedViewController: UIViewController {
                 self.navigationController?.setViewControllers([emptyWalletVC], animated: false)
             })
             .disposed(by: disposeBag)
+        
+        if let assetIdentifier = tradeAssetIdentifier {
+            if tradeType.isBuy {
+                assetList
+                    .take(1)
+                    .map { $0.filter { asset in return asset.identity == assetIdentifier }.first }
+                    .filterNil()
+                    .map{(autoUpdated: true, asset: $0)}
+                    .bind(to: buyOptimizedViewModel.buyAsset)
+                    .disposed(by: disposeBag)
+            }
+            else {
+                walletList
+                    .take(1)
+                    .map { $0.filter { wallet in return wallet.asset.identity == assetIdentifier }.first }
+                    .filterNil()
+                    .map { (autoUpdated: true, wallet: $0) }
+                    .bind(to: buyOptimizedViewModel.payWithWallet)
+                    .disposed(by: disposeBag)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
