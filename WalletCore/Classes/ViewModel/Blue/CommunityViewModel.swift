@@ -20,9 +20,11 @@ public class CommunityViewModel {
     
     public let amountInBaseAsset: Driver<String>
     
+    public let zeroBalance: Driver<Bool>
+    
     public let loadingViewModel: LoadingViewModel
     
-    init(blueAuthManager: LWRxBlueAuthManager = LWRxBlueAuthManager.instance,
+    public init(blueAuthManager: LWRxBlueAuthManager = LWRxBlueAuthManager.instance,
          authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
         let comunityUsersCountRequest =  blueAuthManager.getCommunityUsersCount.request()
@@ -37,7 +39,7 @@ public class CommunityViewModel {
         let wallet = walletRequest.filterSuccess().filterNil().shareReplay(1)
         
         treesCount = wallet
-            .map { NumberFormatter.currencyInstance(accuracy: $0.accuracy.intValue).string(from: $0.balance) }
+            .map { NumberFormatter.currencyInstance(accuracy: 0).string(from: $0.balance) }
             .replaceNilWith("")
             .asDriver(onErrorJustReturn: "")
         
@@ -54,7 +56,9 @@ public class CommunityViewModel {
                 return wallet.amountInBase.decimalValue.convertAsCurrency(asset: baseAsset)
             }
             .asDriver(onErrorJustReturn: "")
-
+        
+        zeroBalance = wallet.map{$0.balance == 0.0}.asDriver(onErrorJustReturn: true)
+        
         loadingViewModel = LoadingViewModel([comunityUsersCountRequest.isLoading(), walletRequest.isLoading(), baseAssetRequest.isLoading()])
     }
     
