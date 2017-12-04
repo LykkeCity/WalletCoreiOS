@@ -41,6 +41,19 @@ static WalletCoreTestingServer _testingServer = WalletCoreTestingServerDevelop;
     }
 }
 
++ (NSString *)blueTestingServer{
+    switch (_testingServer) {
+        case WalletCoreTestingServerTest:
+            return kBlueTestingTestServer;
+            
+        case WalletCoreTestingServerStaging:
+            return kBlueStagingTestServer;
+            
+        default:
+            return kBlueDevelopTestServer;
+    }
+}
+
 + (void)configure:(NSString*) partnerId {
     WalletCoreConfig.partnerId = partnerId;
 }

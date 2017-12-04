@@ -224,6 +224,15 @@ SINGLETON_INIT {
 //}
 
 
+- (NSString *)blueAddress {
+    
+#ifdef TEST
+    return WalletCoreConfig.blueTestingServer;
+#else
+    return kBlueProductionServer;
+#endif
+    
+}
 
 
 - (NSString *)address {

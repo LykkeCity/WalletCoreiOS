@@ -29,7 +29,7 @@ public class PledgeGetPacket: LWAuthorizePacket {
     
     //TODO: check according TEST flag
     override public var urlBase: String {
-        return "https://blue-api-dev.lykkex.net/api"
+        return "https://\(LWKeychainManager.instance().blueAddress!)/api"
     }
     
     override public var urlRelative: String! {

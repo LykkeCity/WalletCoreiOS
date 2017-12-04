@@ -20,6 +20,7 @@ SINGLETON_DECLARE
 @property (readonly, nonatomic) NSString *login;
 @property (readonly, nonatomic) NSString *token;
 @property (readonly, nonatomic) NSString *address;
+@property (readonly, nonatomic) NSString *blueAddress;
 @property (readonly, nonatomic) NSString *password;
 @property (readonly, nonatomic) NSString *notificationsTag;
 @property (readonly, nonatomic) NSString *encodedPrivateKeyLykke;

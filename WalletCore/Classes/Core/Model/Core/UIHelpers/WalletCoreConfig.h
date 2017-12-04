@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, WalletCoreTestingServer) {
 @property (class, readonly, nonatomic) NSString *partnerId;
 
 @property (class, readonly, nonatomic) NSString *testingServer;
+@property (class, readonly, nonatomic) NSString *blueTestingServer;
 
 + (void)configure:(NSString*) partnerId;
 

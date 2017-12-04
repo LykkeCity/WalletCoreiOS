@@ -18,14 +18,17 @@
 
 
 #pragma mark - Server Constants
+//#define kDevelopTestServer @"lykke-api-dev.azurewebsites.net"
 
 #define kProductionServer  @"api.lykke.com"
-
 #define kStagingTestServer @"api-staging.lykke.com"
-//#define kDevelopTestServer @"lykke-api-dev.azurewebsites.net"
 #define kDevelopTestServer @"api-dev.lykkex.net"
 #define kTestingTestServer @"api-test.lykkex.net"
 
+#define kBlueProductionServer  @"blue-api.lykke.com"
+#define kBlueStagingTestServer @"blue-api-staging.lykke.com"
+#define kBlueDevelopTestServer @"blue-api-dev.lykkex.net"
+#define kBlueTestingTestServer @"blue-api-test.lykkex.net"
 
 #pragma mark - General Constants
 
