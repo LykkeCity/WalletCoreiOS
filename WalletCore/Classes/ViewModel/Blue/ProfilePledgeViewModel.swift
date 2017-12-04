@@ -40,15 +40,13 @@ public class ProfilePledgeViewModel {
     
     public let loadingViewModel: LoadingViewModel
     
-    fileprivate let treeId = "c33f03ea-bacd-4d26-a676-539ef5e8ec74"
-    
     public init(
         blueManager: LWRxBlueAuthManager = LWRxBlueAuthManager.instance,
         authManager: LWRxAuthManager = LWRxAuthManager.instance,
         pledgeService: PledgeService = PledgeService()
     ) {
         let pledge = blueManager.pledgeGet.request()
-        let wallets = authManager.lykkeWallets.request(byAssetId: treeId)
+        let wallets = authManager.lykkeWallets.request(byAssetId: blueManager.treeCoinIdentifier)
         
         let pledgeAndTrees = Observable.zip(pledge.filterSuccess(), wallets.mapToTrees()){((pledge: $0, trees: $1))}
         
