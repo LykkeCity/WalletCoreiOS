@@ -18,4 +18,7 @@ public class LWRxBlueAuthManager {
     public lazy var pledgePost = { LWRxBlueAuthManagerPledgePost() }()
     public lazy var pledgeGet = { LWRxBlueAuthManagerPledgeGet() }()
     public lazy var getCommunityUsersCount = { LWRxBlueAuthManagerCommunityUsersCount() }()
+    public lazy var referralLink = { LWRxBlueAuthManagerReferralLink() }()
+    public lazy var referralLinkInfo = { LWRxBlueAuthManagerReferralLinkInfo() }()
+    public lazy var claimReferralLink = { LWRxBlueAuthManagerClaimReferralLink() }()
 }
