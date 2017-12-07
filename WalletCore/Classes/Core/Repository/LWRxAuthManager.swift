@@ -15,13 +15,17 @@ public class LWRxAuthManager {
     public static let instance = LWRxAuthManager()
     init() {}
     
-    public func triggerSaveCache() -> [Disposable] {
+    public func triggerSaveCache(baseAssetId: String = "USD") -> [Disposable] {
 
         return [
             allAssets.request()
                 .subscribe(),
-            baseAsset.request()
+            baseAssetSet
+                .request(withParams: baseAssetId)
                 .filterSuccess()
+                .flatMap{[baseAsset] _ in
+                    baseAsset.request().filterSuccess()
+                }
                 .subscribe(onNext: {
                     LWCache.instance().baseAssetId = $0.identity
                 })
