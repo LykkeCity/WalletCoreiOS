@@ -15,6 +15,19 @@ public class LWRxAuthManager {
     public static let instance = LWRxAuthManager()
     init() {}
     
+    public func triggerSaveCache() -> [Disposable] {
+
+        return [
+            allAssets.request()
+                .subscribe(),
+            baseAsset.request()
+                .filterSuccess()
+                .subscribe(onNext: {
+                    LWCache.instance().baseAssetId = $0.identity
+                })
+        ]
+    }
+    
     public lazy var countryCodes        = {LWRxAuthManagerCountryCodes()}()
     public lazy var prevCardPayment     = {LWAuthManagerPacketPrevCardPayment()}()
     public lazy var paymentUrl          = {LWAuthManagerPacketGetPaymentUrl()}()
