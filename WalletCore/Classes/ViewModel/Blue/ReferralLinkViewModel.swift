@@ -16,7 +16,9 @@ public class ReferralLinkViewModel {
     public let loadingViewModel: LoadingViewModel
     
     public init(trigger: Observable<Void>, blueManager: LWRxBlueAuthManager = LWRxBlueAuthManager.instance) {
-        let referralLink = trigger.flatMap{ blueManager.referralLink.request() }
+        let referralLink = trigger
+            .flatMapLatest{ blueManager.referralLink.request() }
+            .shareReplay(1)
         
         referralLinkUrl = referralLink
             .filterSuccess()
