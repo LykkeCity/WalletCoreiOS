@@ -239,6 +239,7 @@ fileprivate extension OffchainTradeViewModel {
                 vc?.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
             }),
             success.drive(onNext: {[weak vc] _ in
+                FinalizePendingRequestsTrigger.instance.finalizeNow()
                 vc?.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
             })
         ]

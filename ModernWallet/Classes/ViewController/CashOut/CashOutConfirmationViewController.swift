@@ -58,6 +58,7 @@ class CashOutConfirmationViewController: UIViewController {
         
         cashOutViewModel.success
             .drive(onNext: { [weak self] result in
+                FinalizePendingRequestsTrigger.instance.finalizeNow()
                 self?.performSegue(withIdentifier: "ShowSummary", sender: result)
             })
             .disposed(by: disposeBag)

@@ -52,7 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CSToastManager.setQueueEnabled(false)
         
         offcainService
-            .finalizePendingRequests(refresh: Observable<Void>.interval(600), maxProcessingTime: 600)
+            .finalizePendingRequests(refresh: FinalizePendingRequestsTrigger.instance.trigger(interval: 600),
+                                     maxProcessingTime: 600)
             .subscribe()
             .disposed(by: disposeBag)
         

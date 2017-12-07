@@ -91,6 +91,7 @@
 		665A7CC51FBEDDD5004F6CFA /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665A7CC41FBEDDD5004F6CFA /* SettingsTableViewCell.xib */; };
 		665A7CC91FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665A7CC81FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift */; };
 		6664C6111F9DE84000F6D1A6 /* ConfirmSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */; };
+		6667F0AB1FD93F74000737CC /* FinalizePendingRequestsTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667F0AA1FD93F74000737CC /* FinalizePendingRequestsTrigger.swift */; };
 		667D404B1F8C95EE00457698 /* CashOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 667D404A1F8C95EE00457698 /* CashOut.storyboard */; };
 		667D404D1F8D018C00457698 /* AssetAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667D404C1F8D018C00457698 /* AssetAmountView.swift */; };
 		66806B9F1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66806B9E1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift */; };
@@ -261,6 +262,7 @@
 		665A7CC41FBEDDD5004F6CFA /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		665A7CC81FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPersonalDataTableViewController.swift; sourceTree = "<group>"; };
 		6664C6101F9DE84000F6D1A6 /* ConfirmSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSlider.swift; sourceTree = "<group>"; };
+		6667F0AA1FD93F74000737CC /* FinalizePendingRequestsTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalizePendingRequestsTrigger.swift; sourceTree = "<group>"; };
 		667D404A1F8C95EE00457698 /* CashOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CashOut.storyboard; sourceTree = "<group>"; };
 		667D404C1F8D018C00457698 /* AssetAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetAmountView.swift; sourceTree = "<group>"; };
 		66806B9E1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashOutEnterAmountViewController.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				CCDB256F1EEFCF05000D590F /* UtilsHelper.swift */,
 				870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */,
 				66907BA21FD010CF00FAD801 /* ReloadTrigger.swift */,
+				6667F0AA1FD93F74000737CC /* FinalizePendingRequestsTrigger.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1230,6 +1233,7 @@
 				462B34301F00EC5000374038 /* Colors.swift in Sources */,
 				469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */,
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
+				6667F0AB1FD93F74000737CC /* FinalizePendingRequestsTrigger.swift in Sources */,
 				462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */,
 				6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */,
 				664676D21FCEF238006FC340 /* SignUpFillProfileFormController.swift in Sources */,
