@@ -236,24 +236,8 @@ SINGLETON_INIT {
 
 
 - (NSString *)address {
-    
-//    return kTestingTestServer; //Pothberry
-
-//    return kProductionServer;//Testing
-    
-//    return @"http://testtestest.me";//Andrey
-    
-//    return kStagingTestServer;
-    
 #ifdef TEST
-    NSString *result = [valet stringForKey:kKeychainManagerAddress];
-    // validate for nil, empty or non-existing addresses
-    if (!result || [result isEqualToString:@""]) {
-        NSString *testingServer = WalletCoreConfig.testingServer;
-        [self saveAddress:testingServer];
-        return testingServer;
-    }
-    return result;
+    return WalletCoreConfig.testingServer;
 #else
     return kProductionServer;
 #endif
