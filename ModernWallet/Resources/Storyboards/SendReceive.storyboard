@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geomanist-Book.otf">
+            <string>Geomanist-Book</string>
+        </array>
+        <array key="Geomanist-Light.otf">
+            <string>Geomanist-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Receive Wallet View Controller-->
+        <scene sceneID="GZt-D0-L9w">
+            <objects>
+                <viewController storyboardIdentifier="WalletAddress" id="VOL-Fr-Laf" customClass="ReceiveWalletViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bfM-Y0-B6u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8W-Ux-Q09">
+                                <rect key="frame" x="323" y="28" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="ZUh-G8-SGN"/>
+                                    <constraint firstAttribute="height" constant="44" id="tLH-2y-QA9"/>
+                                </constraints>
+                                <state key="normal" image="CloseCross"/>
+                                <connections>
+                                    <action selector="closeTapped" destination="VOL-Fr-Laf" eventType="touchUpInside" id="7Ty-el-z6g"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fHu-SM-7tL">
+                                <rect key="frame" x="172" y="40" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="DcO-YI-cuh"/>
+                                    <constraint firstAttribute="height" constant="30" id="SaI-hD-RdK"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN RECEIVING ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjy-mw-FOO">
+                                <rect key="frame" x="90" y="80" width="196" height="15"/>
+                                <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hgh-W5-01g">
+                                <rect key="frame" x="107" y="125" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="1SX-8S-dGH"/>
+                                    <constraint firstAttribute="width" constant="160" id="j9a-5x-uXa"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3cgTHy6yuJK8y7900hGy7mnb98iU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="8EH-r0-JtH">
+                                <rect key="frame" x="30" y="315" width="315" height="16"/>
+                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="TYL-Ub-Kdu">
+                                <rect key="frame" x="30" y="567" width="315" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6B-a8-nf6" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="60"/>
+                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
+                                        <state key="normal" title="EMAIL" image="EmailIcon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                                <real key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQJ-oe-hZ2" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="115" y="0.0" width="85" height="60"/>
+                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
+                                        <state key="normal" title="COPY" image="CopyIcon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                                <real key="value" value="19"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvD-SZ-OXW" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="230" y="0.0" width="85" height="60"/>
+                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
+                                        <state key="normal" title="SHARE" image="ShareIcon"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="AfE-yn-oVU"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8EH-r0-JtH" firstAttribute="leading" secondItem="7Fa-bR-5i4" secondAttribute="leading" constant="30" id="3qt-Qn-LgH"/>
+                            <constraint firstItem="7Fa-bR-5i4" firstAttribute="trailing" secondItem="TYL-Ub-Kdu" secondAttribute="trailing" constant="30" id="4lu-pD-R8d"/>
+                            <constraint firstItem="bjy-mw-FOO" firstAttribute="top" secondItem="fHu-SM-7tL" secondAttribute="bottom" constant="10" id="7T6-Bh-bTY"/>
+                            <constraint firstItem="8EH-r0-JtH" firstAttribute="top" secondItem="hgh-W5-01g" secondAttribute="bottom" constant="30" id="BMK-5n-FzG"/>
+                            <constraint firstItem="7Fa-bR-5i4" firstAttribute="bottom" secondItem="TYL-Ub-Kdu" secondAttribute="bottom" constant="40" id="BvZ-G5-YXs"/>
+                            <constraint firstItem="fHu-SM-7tL" firstAttribute="top" secondItem="7Fa-bR-5i4" secondAttribute="top" constant="20" id="FN2-s8-SFw"/>
+                            <constraint firstItem="hgh-W5-01g" firstAttribute="top" secondItem="bjy-mw-FOO" secondAttribute="bottom" constant="30" id="QEv-yd-My3"/>
+                            <constraint firstItem="7Fa-bR-5i4" firstAttribute="trailing" secondItem="A8W-Ux-Q09" secondAttribute="trailing" constant="8" id="Qd8-zo-sya"/>
+                            <constraint firstItem="hgh-W5-01g" firstAttribute="centerX" secondItem="bfM-Y0-B6u" secondAttribute="centerX" id="Y0h-Aw-riz"/>
+                            <constraint firstItem="fHu-SM-7tL" firstAttribute="centerX" secondItem="bfM-Y0-B6u" secondAttribute="centerX" id="Yox-UR-2lu"/>
+                            <constraint firstItem="TYL-Ub-Kdu" firstAttribute="leading" secondItem="7Fa-bR-5i4" secondAttribute="leading" constant="30" id="ZQP-el-Ycl"/>
+                            <constraint firstItem="A8W-Ux-Q09" firstAttribute="top" secondItem="7Fa-bR-5i4" secondAttribute="top" constant="8" id="g99-Lm-NDu"/>
+                            <constraint firstItem="bjy-mw-FOO" firstAttribute="centerX" secondItem="bfM-Y0-B6u" secondAttribute="centerX" id="gcE-6r-vbc"/>
+                            <constraint firstItem="8EH-r0-JtH" firstAttribute="centerX" secondItem="bfM-Y0-B6u" secondAttribute="centerX" id="zDo-jB-tPh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Fa-bR-5i4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mRw-Ra-7Gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="156"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CloseCross" width="17" height="17"/>
+        <image name="CopyIcon" width="18" height="23"/>
+        <image name="EmailIcon" width="22" height="15"/>
+        <image name="ShareIcon" width="17" height="24"/>
+    </resources>
+</document>

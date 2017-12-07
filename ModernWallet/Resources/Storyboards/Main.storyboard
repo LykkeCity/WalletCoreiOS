@@ -224,7 +224,7 @@
                                         <rect key="frame" x="109.5" y="11" width="155" height="24"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLj-NN-jgj" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
-                                        <rect key="frame" x="322.5" y="1" width="44.5" height="44"/>
+                                        <rect key="frame" x="323.5" y="1" width="43.5" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="9N1-LK-uVA"/>
                                         </constraints>
@@ -473,7 +473,7 @@ Please check and try again.</string>
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="182"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-p9-w07" userLabel="Asset Balance">
-                                                <rect key="frame" x="107.5" y="52" width="160" height="79"/>
+                                                <rect key="frame" x="107.5" y="51.5" width="160" height="79"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
                                                         <rect key="frame" x="48.5" y="0.0" width="63.5" height="11"/>
@@ -639,7 +639,7 @@ Please check and try again.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uru-6Z-Vey" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uru-6Z-Vey" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
                                                         <rect key="frame" x="282" y="0.0" width="93" height="58.5"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="10"/>
                                                         <state key="normal" title="RECEIVE" image="portfolioRecieveIcon"/>
@@ -648,6 +648,9 @@ Please check and try again.</string>
                                                                 <real key="value" value="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <segue destination="uwL-eM-4NZ" kind="presentation" id="aIY-A1-2pd"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -783,6 +786,14 @@ Please check and try again.</string>
                 <tapGestureRecognizer id="Pmp-3c-dyM" userLabel="Transactions Tap"/>
             </objects>
             <point key="canvasLocation" x="3412" y="447.52623688155927"/>
+        </scene>
+        <!--WalletAddress-->
+        <scene sceneID="P3W-1V-XO8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SendReceive" referencedIdentifier="WalletAddress" id="uwL-eM-4NZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WI7-HX-Wv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4112" y="254"/>
         </scene>
         <!--Buy-->
         <scene sceneID="sBY-aQ-1Hk">
