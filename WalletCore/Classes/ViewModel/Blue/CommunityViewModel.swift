@@ -31,15 +31,15 @@ public class CommunityViewModel {
     ) {
         //arrange requests
         let comunityUsersCountRequest = triggerRefresh
-            .flatMap{ blueAuthManager.getCommunityUsersCount.request() }
+            .flatMapLatest{ blueAuthManager.getCommunityUsersCount.request() }
             .shareReplay(1)
         
         let walletRequest = triggerRefresh
-            .flatMap{ authManager.lykkeWallets.request(byAssetId: blueAuthManager.treeCoinIdentifier) }
+            .flatMapLatest{ authManager.lykkeWallets.request(byAssetName: blueAuthManager.treeAssetName) }
             .shareReplay(1)
         
         let baseAssetRequest = triggerRefresh
-            .flatMap{ authManager.baseAsset.request() }
+            .flatMapLatest{ authManager.baseAsset.request() }
             .shareReplay(1)
         
         communityUsersCount = comunityUsersCountRequest.filterSuccess()
@@ -66,13 +66,15 @@ public class CommunityViewModel {
             }
             .asDriver(onErrorJustReturn: "")
         
-        zeroBalance = wallet.map{$0.balance == 0.0}.asDriver(onErrorJustReturn: true)
+        zeroBalance = wallet
+            .map{$0.balance == 0.0}
+            .asDriver(onErrorJustReturn: true)
         
         //show loading indicator only for initial loading
         loadingViewModel = LoadingViewModel([
-            comunityUsersCountRequest.isLoading().take(2),
-            walletRequest.isLoading().take(2),
-            baseAssetRequest.isLoading().take(2)
+            comunityUsersCountRequest.isLoading().distinctUntilChanged().take(2),
+            walletRequest.isLoading().distinctUntilChanged().take(2),
+            baseAssetRequest.isLoading().distinctUntilChanged().take(2)
         ])
     }
 }

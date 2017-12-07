@@ -118,6 +118,10 @@ public extension ObservableType where Self.E == ApiResult<LWAssetModel?> {
 
 //TODO: Make this code to use generics
 public extension ObservableType where Self.E == ApiResultList<LWAssetModel> {
+    public func filterError() -> Observable<[AnyHashable : Any]> {
+        return map{$0.getError()}.filterNil()
+    }
+    
     public func filterSuccess() -> Observable<[LWAssetModel]> {
         return map{$0.getSuccess()}.filterNil()
     }

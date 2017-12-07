@@ -46,7 +46,7 @@ public class ProfilePledgeViewModel {
         pledgeService: PledgeService = PledgeService()
     ) {
         let pledge = blueManager.pledgeGet.request()
-        let wallets = authManager.lykkeWallets.request(byAssetId: blueManager.treeCoinIdentifier)
+        let wallets = authManager.lykkeWallets.request(byAssetName: blueManager.treeAssetName)
         
         let pledgeAndTrees = Observable.zip(pledge.filterSuccess(), wallets.mapToTrees()){((pledge: $0, trees: $1))}
         

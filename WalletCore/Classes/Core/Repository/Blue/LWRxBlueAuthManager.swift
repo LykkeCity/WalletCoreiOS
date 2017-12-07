@@ -12,7 +12,7 @@ public class LWRxBlueAuthManager {
     public static let instance = LWRxBlueAuthManager()
     private init() {}
     
-    let treeCoinIdentifier = "c33f03ea-bacd-4d26-a676-539ef5e8ec74"
+    let treeAssetName = "TREE"
     
     public lazy var twitterJson = { LWRxAuthManagerTwitterTimeLineJson() }()
     public lazy var pledgePost = { LWRxBlueAuthManagerPledgePost() }()
