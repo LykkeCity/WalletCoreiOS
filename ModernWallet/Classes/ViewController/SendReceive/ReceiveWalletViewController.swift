@@ -70,7 +70,7 @@ class CenteredAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitio
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.25
+        return 0.3
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -87,6 +87,11 @@ class CenteredAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitio
             frame.origin.x = (containerBounds.width - frame.width) / 2.0
             view.frame = frame
             containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+            let viewLayer = view.layer
+            viewLayer.shadowRadius = 4
+            viewLayer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            viewLayer.shadowOpacity = 0.5
+            viewLayer.shadowOffset = CGSize(width: 0, height: 2)
             UIView.animate(withDuration: transitionDuration(using: transitionContext),
                            animations: {
                             view.frame.origin.y = (containerBounds.height - view.frame.height) / 2.0
