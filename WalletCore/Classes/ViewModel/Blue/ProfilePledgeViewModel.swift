@@ -41,14 +41,18 @@ public class ProfilePledgeViewModel {
     public let loadingViewModel: LoadingViewModel
     
     public init(
+        triggerRefresh: Observable<Void>,
         blueManager: LWRxBlueAuthManager = LWRxBlueAuthManager.instance,
         authManager: LWRxAuthManager = LWRxAuthManager.instance,
         pledgeService: PledgeService = PledgeService()
     ) {
         let pledge = blueManager.pledgeGet.request()
-        let wallets = authManager.lykkeWallets.request(byAssetName: blueManager.treeAssetName)
         
-        let pledgeAndTrees = Observable.zip(pledge.filterSuccess(), wallets.mapToTrees()){((pledge: $0, trees: $1))}
+        let wallets = triggerRefresh
+            .flatMapLatest{ authManager.lykkeWallets.request(byAssetName: blueManager.treeAssetName) }
+            .shareReplay(1)
+        
+        let pledgeAndTrees = Observable.combineLatest(pledge.filterSuccess(), wallets.mapToTrees()){((pledge: $0, trees: $1))}
         
         footprintTons = pledge
             .mapToFootPrint()
@@ -88,7 +92,7 @@ public class ProfilePledgeViewModel {
         
         loadingViewModel = LoadingViewModel([
             pledge.isLoading(),
-            wallets.isLoading()
+            wallets.isLoading().distinctUntilChanged().take(2)
         ])
     }
 }
