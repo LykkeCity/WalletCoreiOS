@@ -32,11 +32,11 @@ public class ReferralLinkPacket: LWAuthorizePacket {
     }
     
     override public var urlRelative: String! {
-        return "refLinks/request/invitationLink"
+        return "referralLinks/invitation"
     }
     
     override public var type: GDXRESTPacketType {
-        return .GET
+        return .POST
     }
     
 }

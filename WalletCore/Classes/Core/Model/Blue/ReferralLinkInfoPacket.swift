@@ -35,7 +35,7 @@ public class ReferralLinkInfoPacket: LWAuthorizePacket {
     }
     
     override public var urlRelative: String! {
-        return "refLinks/id/\(id)"
+        return "referralLinks/\(id)"
     }
     
     override public var type: GDXRESTPacketType {

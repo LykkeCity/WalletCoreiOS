@@ -37,11 +37,11 @@ public class ReferralLinkClaimPacket: LWAuthorizePacket {
     }
     
     override public var urlRelative: String! {
-        return "refLinks/claim/invitationLink"
+        return "referralLinks/invitation/\(body.referralLinkId)/claim"
     }
     
     override public var type: GDXRESTPacketType {
-        return .POST
+        return .PUT
     }
     
     override public var params: [AnyHashable : Any] {
