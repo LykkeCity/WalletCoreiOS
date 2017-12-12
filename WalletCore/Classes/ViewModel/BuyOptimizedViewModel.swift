@@ -23,7 +23,7 @@ public class BuyOptimizedViewModel {
     public let payWithWallet   = Variable<Wallet?>(nil)
     public let bid             = Variable<Bool?>(nil)
     
-    public let isValidPayWithAmount: Observable<Bool>
+    public let isValidPayWithAmount: Observable<ApiResult<Void>>
     
     public let baseAssetCode: Driver<String>
     
@@ -186,12 +186,8 @@ public class BuyOptimizedViewModel {
         
         
         isValidPayWithAmount = Observable
-            .combineLatest(payWithAmount.asObservable(), payWithWallet.asObservable()){(amount: $0, wallet: $1)}
-            .map{
-                guard let amount = $0.amount.value.decimalValue, amount > 0 else { return false }
-                guard let walletAmount = $0.wallet?.wallet.balance.decimalValue else { return false }
-                return amount <= walletAmount
-            }
+            .combineLatest(payWithAmount.asObservable(), payWithWallet.asObservable())
+            .validate()
         
         //MARK: two way amount bindings
         payWithWallet.asObservable()
@@ -224,6 +220,30 @@ public class BuyOptimizedViewModel {
 extension ObservableType where Self.E == String {
     func mapToDecimal() -> Observable<Decimal> {
         return map{$0.decimalValue}.replaceNilWith(0.0)
+    }
+}
+
+fileprivate extension ObservableType where Self.E == (BuyOptimizedViewModel.Amount, BuyOptimizedViewModel.Wallet?) {
+    func validate() -> Observable<ApiResult<Void>> {
+        return
+            map{ data -> ApiResult<Void> in
+                let (amount, wallet) = data
+                
+                guard let amountValue = amount.value.decimalValue, amountValue > 0 else {
+                    return .error(withData: ["Message": "Amount can't be zero or empty."])
+                }
+                
+                guard let walletAmount = wallet?.wallet.balance.decimalValue else {
+                    return .error(withData: ["Message": "Wallet amount is zero"])
+                }
+                
+                guard amountValue <= walletAmount else {
+                    return .error(withData: ["Message": "Please fill lower amount."])
+                }
+                
+                return .success(withData: Void())
+            }
+            .shareReplay(1)
     }
 }
 
