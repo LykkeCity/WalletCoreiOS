@@ -33,12 +33,7 @@ public extension UIImage {
         colorFilter.setValue(CIColor(color: color), forKey: "inputColor0")
         colorFilter.setValue(CIColor(color: UIColor.clear), forKey: "inputColor1")
         
-        //Transperant filter
-        guard let transparentFilter = CIFilter(name: "CIMaskToAlpha") else { return nil }
-        transparentFilter.setDefaults()
-        transparentFilter.setValue(colorFilter.outputImage, forKey: "inputImage")
-        
-        return transparentFilter.outputImage?.nonInterpolatedImage(withSize: size)
+        return colorFilter.outputImage?.nonInterpolatedImage(withSize: size)
     }
 }
 
