@@ -125,6 +125,7 @@ fileprivate extension ObservableType where Self.E == LWPersonalDataModel {
         
         map{$0.amount}
             .filterNil()
+            .filter{ $0 != 0.0 }
             .map{String(describing: $0)}
             .bind(to: input.amaunt)
             .disposed(by: disposeBag)
