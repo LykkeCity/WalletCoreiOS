@@ -26,31 +26,66 @@ public class AssetBalanceViewModel {
         assetCode = asset.mapToCryptoCode().asDriver(onErrorJustReturn: "")
         baseAssetCode = asset.mapToRealCode().asDriver(onErrorJustReturn: "")
         
-        asset
-            .filter({ return $0.wallet?.asset.blockchainType == BLOCKCHAIN_TYPE_ETHEREUM })
-            .flatMap { assetWallet -> Observable<String> in
-                guard let asset = assetWallet.wallet?.asset else { return Observable.empty() }
-                return Observable.create { observer in
-                    LWEthereumTransactionsManager.shared().createEthereumSign(forAsset: asset, completion: { (success) in
-                        if success {
-                            observer.onNext(asset.blockchainDepositAddress)
-                        }
-                        observer.onCompleted()
-                    })
-                    return Disposables.create()
-                }
-            }
+        let depositableAssetObservable = asset
+            .map { $0.wallet?.asset }
+            .filterNil()
+            .filter { $0.blockchainDeposit }
+            .shareReplay(1)
+        
+        depositableAssetObservable
+            .filterEtheriumBlockchainAsset()
+            .mapToEthereumDepositAddress()
             .bind(to: blockchainAddress)
             .disposed(by: disposeBag)
 
-        asset
-            .filter({ return $0.wallet?.asset.blockchainType == BLOCKCHAIN_TYPE_BITCOIN })
-            .flatMap {
-                return LWRxAuthManager.instance.getBlockchainAddress.request(withParams: $0.cryptoCurrency.identity)
-            }
-            .filterSuccess()
-            .map { $0.address }
+        depositableAssetObservable
+            .filterBitcoinBlockchainAsset()
+            .mapToBitcoinDepositAddress()
             .bind(to: blockchainAddress)
             .disposed(by: disposeBag)
     }
+}
+
+extension Observable where Element == LWAssetModel {
+    
+    func filterEtheriumBlockchainAsset() -> Observable<LWAssetModel> {
+        return filter { $0.blockchainType == BLOCKCHAIN_TYPE_ETHEREUM }
+    }
+    
+    func filterBitcoinBlockchainAsset() -> Observable<LWAssetModel> {
+        return filter { $0.blockchainType == BLOCKCHAIN_TYPE_BITCOIN }
+    }
+    
+    func mapToEthereumDepositAddress() -> Observable<String> {
+        return
+            flatMap { (asset) -> Observable<(Bool, LWAssetModel)> in
+                guard asset.blockchainType == BLOCKCHAIN_TYPE_ETHEREUM else {
+                    return Observable<(Bool, LWAssetModel)>.empty()
+                }
+                if asset.blockchainDepositAddress.isNotEmpty {
+                    return Observable<(Bool, LWAssetModel)>.just((true, asset))
+                }
+                return LWEthereumTransactionsManager.shared().rx.createEthereumSign(forAsset: asset)
+            }
+            .map { (success, asset) in return success ? asset.blockchainDepositAddress : "" }
+    }
+    
+    func mapToBitcoinDepositAddress() -> Observable<String> {
+        return
+            flatMap { asset -> Observable<ApiResult<LWPacketGetBlockchainAddress>> in
+                guard asset.blockchainType == BLOCKCHAIN_TYPE_BITCOIN else {
+                    return Observable<ApiResult<LWPacketGetBlockchainAddress>>.empty()
+                }
+                if asset.blockchainDepositAddress.isNotEmpty {
+                    let packet = LWPacketGetBlockchainAddress()
+                    packet.assetId = asset.identity
+                    packet.address = asset.blockchainDepositAddress
+                    return Observable<ApiResult<LWPacketGetBlockchainAddress>>.just(.success(withData: packet))
+                }
+                return LWRxAuthManager.instance.getBlockchainAddress.request(withParams: asset.identity)
+            }
+            .filterSuccess()
+            .map { $0.address }
+    }
+    
 }
