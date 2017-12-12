@@ -83,4 +83,6 @@ public class LWRxAuthManager {
     public lazy var currencyDeposit          = { LWRxAuthManagerCurrencyDeposit() }()
     public lazy var walletMigration          = { LWRxAuthManagerWalletMigration() }()
     public lazy var walletBackupComplete     = { LWRxAuthManagerWalletBackupComplete() }()
+    public lazy var getBlockchainAddress     = { LWRxAuthManagerGetBlockchainAddress() }()
+    public lazy var sendBlockchainEmail      = { LWRxAuthManagerSendBlockchainEmail() }()
 }
