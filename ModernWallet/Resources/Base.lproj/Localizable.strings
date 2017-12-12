@@ -1010,4 +1010,4 @@
 "receive.newDesign.emailToast" = "Email sent";
 "receive.newDesign.copyToast" = "Copied";
 "receive.newDesign.shareToast" = "Shared";
-
+"receive.newDesign.shareMessageFmt" = "My %@ wallet address is %@";
