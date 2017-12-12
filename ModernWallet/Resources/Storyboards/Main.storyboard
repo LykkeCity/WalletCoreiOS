@@ -649,7 +649,7 @@ Please check and try again.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <segue destination="uwL-eM-4NZ" kind="presentation" id="aIY-A1-2pd"/>
+                                                            <segue destination="uwL-eM-4NZ" kind="presentation" identifier="ReceiveAddress" id="aIY-A1-2pd"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -778,6 +778,7 @@ Please check and try again.</string>
                         <outlet property="baseAssetAmount" destination="tF3-il-4Jb" id="dNX-d3-fsc"/>
                         <outlet property="filterButton" destination="U2F-vb-jJp" id="do4-e9-u5E"/>
                         <outlet property="messageButton" destination="Um3-ti-Wjx" id="ij3-Wy-x9y"/>
+                        <outlet property="receiveButton" destination="uru-6Z-Vey" id="ADz-Fd-hUI"/>
                         <outlet property="transactionsTable" destination="xy7-RG-klk" id="yD4-GW-Qgx"/>
                         <outlet property="transactionsTap" destination="Pmp-3c-dyM" id="c2U-9c-R4A"/>
                     </connections>

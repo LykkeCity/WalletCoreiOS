@@ -37,7 +37,7 @@
                                     <action selector="closeTapped" destination="VOL-Fr-Laf" eventType="touchUpInside" id="7Ty-el-z6g"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fHu-SM-7tL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fHu-SM-7tL">
                                 <rect key="frame" x="172" y="40" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="DcO-YI-cuh"/>
@@ -85,6 +85,9 @@
                                                 <real key="value" value="19"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="copyTapped" destination="VOL-Fr-Laf" eventType="touchUpInside" id="LvW-PG-vgj"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvD-SZ-OXW" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="230" y="0.0" width="85" height="60"/>
@@ -95,6 +98,9 @@
                                                 <real key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="shareTapped" destination="VOL-Fr-Laf" eventType="touchUpInside" id="hhB-7K-Ge9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -122,6 +128,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Fa-bR-5i4"/>
                     </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="8EH-r0-JtH" id="H1g-tw-3b0"/>
+                        <outlet property="assetIconImageView" destination="fHu-SM-7tL" id="R8L-YI-O6n"/>
+                        <outlet property="copyButton" destination="qQJ-oe-hZ2" id="iPB-0b-uFd"/>
+                        <outlet property="emailButton" destination="q6B-a8-nf6" id="iRh-8R-W9x"/>
+                        <outlet property="qrCodeImageView" destination="hgh-W5-01g" id="eD1-mi-Wii"/>
+                        <outlet property="shareButton" destination="RvD-SZ-OXW" id="iwV-Lv-k0l"/>
+                        <outlet property="titleLabel" destination="bjy-mw-FOO" id="Qeh-Op-YfA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRw-Ra-7Gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,8 +145,8 @@
     </scenes>
     <resources>
         <image name="CloseCross" width="17" height="17"/>
-        <image name="CopyIcon" width="18" height="23"/>
-        <image name="EmailIcon" width="22" height="15"/>
-        <image name="ShareIcon" width="17" height="24"/>
+        <image name="CopyIcon" width="17" height="22"/>
+        <image name="EmailIcon" width="21" height="15"/>
+        <image name="ShareIcon" width="17" height="26"/>
     </resources>
 </document>
