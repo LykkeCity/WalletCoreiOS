@@ -14,6 +14,7 @@ import Toast
 
 class ReceiveWalletViewController: UIViewController {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var assetIconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var qrCodeImageView: UIImageView!
@@ -45,6 +46,8 @@ class ReceiveWalletViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        containerView.setShadow(radius: 4.0, color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), opacity: 0.5, offset: CGSize(width: 0, height: 2))
         
         emailButton.setTitle(Localize("receive.newDesign.email"), for: .normal)
         copyButton.setTitle(Localize("receive.newDesign.copy"), for: .normal)
@@ -113,7 +116,12 @@ class ReceiveWalletViewController: UIViewController {
     
     @IBAction func shareTapped() {
         shareButton.isEnabled = false
-        let items: [Any] = ["This is my bitcoin address:", address]
+        let messageFormat = Localize("receive.newDesign.shareMessageFmt") ?? "%@ %@"
+        let message = String(format: messageFormat, asset.value.wallet?.asset.displayId ?? "", address)
+        var items: [Any] = [message.replacingOccurrences(of: "  ", with: " ")]
+        if let qrCodeImage = qrCodeImageView.image {
+            items.append(qrCodeImage)
+        }
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityController.excludedActivityTypes = [.addToReadingList, .assignToContact, .print, UIActivityType("com.apple.CloudDocsUI.AddToiCloudDrive")]
         activityController.completionWithItemsHandler = { [weak view, weak shareButton] (type, success, items, error) in
@@ -127,16 +135,6 @@ class ReceiveWalletViewController: UIViewController {
         }
         present(activityController, animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -173,19 +171,13 @@ class CenteredAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitio
             else { return }
             containerView.addSubview(view)
             let containerBounds = containerView.bounds
-            var frame = CGRect(origin: .zero, size: viewController.preferredContentSize)
-            frame.origin.y = containerBounds.maxY
-            frame.origin.x = (containerBounds.width - frame.width) / 2.0
+            var frame = containerBounds
+            frame.origin.y = (frame.height + viewController.preferredContentSize.height) / 2.0
             view.frame = frame
             containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
-            let viewLayer = view.layer
-            viewLayer.shadowRadius = 4
-            viewLayer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            viewLayer.shadowOpacity = 0.5
-            viewLayer.shadowOffset = CGSize(width: 0, height: 2)
             UIView.animate(withDuration: transitionDuration(using: transitionContext),
                            animations: {
-                            view.frame.origin.y = (containerBounds.height - view.frame.height) / 2.0
+                            view.frame.origin.y = 0.0
                             containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
             },
                            completion: { _ in
@@ -193,12 +185,15 @@ class CenteredAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitio
             })
         }
         else {
-            guard let view = transitionContext.viewController(forKey: .from)?.view else { return }
+            guard
+                let viewController = transitionContext.viewController(forKey: .from),
+                let view = viewController.view
+            else { return }
             containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
-            let containerBounds = containerView.bounds
+            let y = (containerView.bounds.height + viewController.preferredContentSize.height) / 2.0
             UIView.animate(withDuration: transitionDuration(using: transitionContext),
                            animations: {
-                            view.frame.origin.y = containerBounds.maxY
+                            view.frame.origin.y = y
                             containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
             },
                            completion: { _ in
@@ -206,4 +201,5 @@ class CenteredAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitio
             })
         }
     }
+    
 }

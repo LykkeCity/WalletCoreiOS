@@ -82,6 +82,7 @@
 		664676D21FCEF238006FC340 /* SignUpFillProfileFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D11FCEF238006FC340 /* SignUpFillProfileFormController.swift */; };
 		664676D41FCEF260006FC340 /* SignUpFillPhoneFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D31FCEF260006FC340 /* SignUpFillPhoneFormController.swift */; };
 		664676D61FCEFD5C006FC340 /* SignUpShakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664676D51FCEFD5C006FC340 /* SignUpShakeViewController.swift */; };
+		66512F3D1FE030A800D7B63B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66512F3C1FE030A800D7B63B /* UIView+Extensions.swift */; };
 		665286631FD1BD1E0085640C /* PinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 665286621FD1BD1E0085640C /* PinViewController.xib */; };
 		66529DCC1F8D1A670059786B /* CashOutSelectAssetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */; };
 		66529DD01F8E38F10059786B /* Geomanist-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66529DCD1F8E38F00059786B /* Geomanist-Light.otf */; };
@@ -255,6 +256,7 @@
 		664676D11FCEF238006FC340 /* SignUpFillProfileFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFillProfileFormController.swift; sourceTree = "<group>"; };
 		664676D31FCEF260006FC340 /* SignUpFillPhoneFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFillPhoneFormController.swift; sourceTree = "<group>"; };
 		664676D51FCEFD5C006FC340 /* SignUpShakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpShakeViewController.swift; sourceTree = "<group>"; };
+		66512F3C1FE030A800D7B63B /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		665286621FD1BD1E0085640C /* PinViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinViewController.xib; sourceTree = "<group>"; };
 		66529DCB1F8D1A670059786B /* CashOutSelectAssetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutSelectAssetViewController.swift; sourceTree = "<group>"; };
 		66529DCD1F8E38F00059786B /* Geomanist-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geomanist-Light.otf"; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 				4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */,
 				4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */,
 				4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */,
+				66512F3C1FE030A800D7B63B /* UIView+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1218,6 +1221,7 @@
 				664676D61FCEFD5C006FC340 /* SignUpShakeViewController.swift in Sources */,
 				CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */,
 				467C20741FB47BEC002A90AE /* DrawerController.swift in Sources */,
+				66512F3D1FE030A800D7B63B /* UIView+Extensions.swift in Sources */,
 				66D83A281FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift in Sources */,
 				66C83D3F1FC2D18400428527 /* BackupPrivateKeyStartViewController.swift in Sources */,
 				4671C9D21F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift in Sources */,
