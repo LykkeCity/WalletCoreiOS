@@ -26,12 +26,12 @@
         <!--Add Money View Controller-->
         <scene sceneID="lod-Xg-kwi">
             <objects>
-                <viewController storyboardIdentifier="AddMoney" id="JNW-9u-JrF" customClass="AddMoneyViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddMoney" id="JNW-9u-JrF" customClass="AddMoneyViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6PT-V0-2PV"/>
                         <viewControllerLayoutGuide type="bottom" id="YRM-zR-LBK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="m4s-bH-D6z" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="m4s-bH-D6z" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -143,19 +143,19 @@
         <!--End Bank View Controller-->
         <scene sceneID="46R-cP-peC">
             <objects>
-                <viewController id="DBL-f3-YPi" customClass="EndBankViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DBL-f3-YPi" customClass="EndBankViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iem-ud-Hml"/>
                         <viewControllerLayoutGuide type="bottom" id="L7I-Fa-Lvg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KnU-gi-dzX" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="KnU-gi-dzX" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axe-bV-ehz" userLabel="End Bank View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666669"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnO-ts-R6c" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnO-ts-R6c" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -166,19 +166,19 @@
                                         <rect key="frame" x="0.0" y="2" width="414" height="370.66666666666669"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0IX-cQ-nkx">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="218"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="268.66666666666669"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="RHc-Hs-cYX">
-                                                        <rect key="frame" x="36" y="26" width="342" height="166"/>
+                                                        <rect key="frame" x="36" y="25.999999999999986" width="342" height="216.66666666666663"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lTV-It-B9i">
-                                                                <rect key="frame" x="-36" y="0.0" width="0.0" height="66"/>
+                                                                <rect key="frame" x="-36" y="0.0" width="0.0" height="68.666666666666671"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="enP-NW-86i">
                                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="38"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="SUCCESS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HI-kC-8ly" userLabel="SUCCESS">
-                                                                        <rect key="frame" x="0.0" y="50" width="0.0" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="50" width="0.0" height="18.666666666666671"/>
                                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -186,13 +186,13 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Lykke bank account details have been sent to your email address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQh-4h-ccr">
-                                                                <rect key="frame" x="-36" y="84" width="0.0" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="86.666666666666671" width="342" height="37.333333333333329"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eK2-tv-gqR">
-                                                                <rect key="frame" x="16" y="102" width="310" height="64"/>
+                                                                <rect key="frame" x="16" y="142" width="310" height="74.666666666666686"/>
                                                                 <string key="text">Once you have instructed your bank to wire money to the Lykke Bank then please allow 3-5 working days for your %s bank transfer to appear in your Lykke Wallet.</string>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -226,7 +226,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSY-Zp-caI" userLabel="Footer">
                                         <rect key="frame" x="0.0" y="372.66666666666669" width="414" height="69"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5z-m2-1BO" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5z-m2-1BO" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -249,7 +249,7 @@
                                                         <state key="normal" title="RETURN TO PORTFOLIO"/>
                                                         <connections>
                                                             <action selector="portfolioAction:" destination="DBL-f3-YPi" eventType="touchUpInside" id="YXU-sv-cnY"/>
-                                                            <segue destination="pr1-1c-hal" kind="custom" customClass="DrawerEmbedMainControllerSegue" customModule="ModernWallet" customModuleProvider="target" id="Vu1-RS-glB"/>
+                                                            <segue destination="pr1-1c-hal" kind="custom" customClass="DrawerEmbedMainControllerSegue" customModule="ModernMoney" customModuleProvider="target" id="Vu1-RS-glB"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -317,16 +317,16 @@
         <!--Bank Info View Controller-->
         <scene sceneID="ByS-tY-fxW">
             <objects>
-                <viewController id="vs0-o8-uYz" customClass="BankInfoViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vs0-o8-uYz" customClass="BankInfoViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="biE-i3-zl3"/>
                         <viewControllerLayoutGuide type="bottom" id="EWT-uS-ftb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BFo-vf-cs4" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="BFo-vf-cs4" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvH-Z2-P0t" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvH-Z2-P0t" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -337,10 +337,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="340.66666666666669"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E98-bY-Zh9">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="142"/>
                                         <subviews>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="YA3-Bl-zYH">
-                                                <rect key="frame" x="36" y="26" width="342" height="70"/>
+                                                <rect key="frame" x="36" y="26" width="342" height="54"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To deposit funds from your personal bank account to your Lykke Wallet please follow the steps below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5r-dG-b1T">
                                                         <rect key="frame" x="-36" y="0.0" width="0.0" height="0.0"/>
@@ -349,13 +349,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Click “Email me the Lykke Bank Details” below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHJ-er-SbG">
-                                                        <rect key="frame" x="-36" y="18" width="0.0" height="16"/>
+                                                        <rect key="frame" x="-36" y="18" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI7-6e-pW3">
-                                                        <rect key="frame" x="-36" y="52" width="0.0" height="0.0"/>
+                                                        <rect key="frame" x="-36" y="36" width="0.0" height="0.0"/>
                                                         <string key="text">2. Once you recieve the email with the Lykke bank details forward them on to your bank.
 </string>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
@@ -363,7 +363,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Instruct your bank to send the specified amount you require via a wire transfer to the Lykke bank account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU9-98-vZc">
-                                                        <rect key="frame" x="-36" y="70" width="0.0" height="0.0"/>
+                                                        <rect key="frame" x="-36" y="54" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -371,7 +371,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJZ-QT-U2k">
-                                                <rect key="frame" x="94.666666666666686" y="128" width="225" height="30"/>
+                                                <rect key="frame" x="94.666666666666686" y="112" width="225" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sV0-vB-roI"/>
                                                 </constraints>
@@ -403,7 +403,7 @@
                                     <constraint firstAttribute="bottom" secondItem="E98-bY-Zh9" secondAttribute="bottom" id="rpy-T1-ZzB"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbj-dF-GmO" customClass="SubmitButton" customModule="ModernWallet" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbj-dF-GmO" customClass="SubmitButton" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="32" y="340.66666666666669" width="350" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="zpg-ok-IrP"/>
@@ -448,19 +448,19 @@
         <!--Bank View Controller-->
         <scene sceneID="nf7-jC-PcR">
             <objects>
-                <viewController id="hUz-FU-4Rj" customClass="BankViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hUz-FU-4Rj" customClass="BankViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9V8-vA-6SS"/>
                         <viewControllerLayoutGuide type="bottom" id="2kw-TV-KXl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MG1-Yc-LgM" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="MG1-Yc-LgM" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFp-03-QR5" userLabel="Bank View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGl-V9-3hI" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGl-V9-3hI" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -631,7 +631,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jr6-iD-Du2" userLabel="Footer">
                                         <rect key="frame" x="0.0" y="372.33333333333331" width="414" height="69"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="had-n7-hdl" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="had-n7-hdl" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -639,13 +639,13 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AOF-5q-lXp">
-                                                <rect key="frame" x="184" y="25" width="47.333333333333343" height="20"/>
+                                                <rect key="frame" x="182.33333333333334" y="25" width="50.666666666666657" height="20"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backArrow" translatesAutoresizingMaskIntoConstraints="NO" id="iEd-Ae-0TS">
                                                         <rect key="frame" x="0.0" y="0.0" width="10" height="20"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="BACK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VY-ah-P67">
-                                                        <rect key="frame" x="18" y="0.0" width="29.333333333333329" height="20"/>
+                                                        <rect key="frame" x="17.999999999999996" y="0.0" width="32.666666666666657" height="20"/>
                                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="12"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -726,33 +726,33 @@
         <!--Start View Controller-->
         <scene sceneID="SGE-7E-vX9">
             <objects>
-                <viewController id="1Fv-iS-Z5H" customClass="StartViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1Fv-iS-Z5H" customClass="StartViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PeL-VC-eKw"/>
                         <viewControllerLayoutGuide type="bottom" id="1lO-ft-mgd"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kOa-k9-xBy" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="kOa-k9-xBy" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZpU-FK-uPd">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666669"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP9-nH-Bmx" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP9-nH-Bmx" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="32" y="0.0" width="350" height="2"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="fiU-1j-kIY"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRr-s6-r9H" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRr-s6-r9H" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="32" y="145.33333333333334" width="350" height="2"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="sQs-TV-tMr"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jph-6m-PK0" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jph-6m-PK0" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="32" y="292.33333333333331" width="350" height="2"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -906,19 +906,19 @@
         <!--Add MoneyCC Step1 View Controller-->
         <scene sceneID="c3m-oC-94s">
             <objects>
-                <viewController storyboardIdentifier="addMoneyCCstep1VC" id="DWh-4p-WB8" customClass="AddMoneyCCStep1ViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addMoneyCCstep1VC" id="DWh-4p-WB8" customClass="AddMoneyCCStep1ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zvf-pp-Wvy"/>
                         <viewControllerLayoutGuide type="bottom" id="yfE-NE-Hub"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hFl-2z-3Ww" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="hFl-2z-3Ww" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="py1-qC-0XN">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="369.66666666666669"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbt-sV-nMO" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbt-sV-nMO" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="28" y="0.0" width="358" height="2"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -941,13 +941,18 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="00.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D3s-fL-iM6">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="00.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D3s-fL-iM6">
                                                 <rect key="frame" x="17" y="-0.3333333333333286" width="79.333333333333329" height="36"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="30.100000381469727"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="next"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="delegate" destination="DWh-4p-WB8" id="I7A-1g-SDW"/>
                                                 </connections>
@@ -1224,7 +1229,7 @@
                                     <constraint firstItem="bbt-sV-nMO" firstAttribute="top" secondItem="py1-qC-0XN" secondAttribute="top" id="xu7-1A-g1m"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4a-mS-dnz" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4a-mS-dnz" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="28" y="369.66666666666669" width="358" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1291,7 +1296,7 @@
         <!--Add MoneyCC Step2 View Controller-->
         <scene sceneID="YG2-Al-tAi">
             <objects>
-                <viewController storyboardIdentifier="addMoneyCC2VC" id="XiU-Gv-POa" customClass="AddMoneyCCStep2ViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addMoneyCC2VC" id="XiU-Gv-POa" customClass="AddMoneyCCStep2ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vzR-Ke-pPQ"/>
                         <viewControllerLayoutGuide type="bottom" id="1TB-mg-HP0"/>
@@ -1325,16 +1330,16 @@
         <!--Add Money Cryptocurrency Step1 View Controller-->
         <scene sceneID="D3w-Hi-t0l">
             <objects>
-                <viewController id="mFa-N3-wog" customClass="AddMoneyCryptocurrencyStep1ViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mFa-N3-wog" customClass="AddMoneyCryptocurrencyStep1ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pcx-R9-EqM"/>
                         <viewControllerLayoutGuide type="bottom" id="rox-aT-z79"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jco-oU-ELi" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="jco-oU-ELi" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3A-Rq-n61" userLabel="Divider" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3A-Rq-n61" userLabel="Divider" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                 <color key="backgroundColor" red="0.29411764709999999" green="0.54117647059999996" blue="0.69803921570000005" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -1379,16 +1384,16 @@
         <!--Add Money Cryptocurrency Step2 View Controller-->
         <scene sceneID="PD6-Xc-LxZ">
             <objects>
-                <viewController storyboardIdentifier="addMoneyCC2" id="S2r-im-EpT" customClass="AddMoneyCryptocurrencyStep2ViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addMoneyCC2" id="S2r-im-EpT" customClass="AddMoneyCryptocurrencyStep2ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pKc-K4-18M"/>
                         <viewControllerLayoutGuide type="bottom" id="YD8-Qy-GNY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dkB-MO-deB" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="dkB-MO-deB" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ft-Ja-nlS" userLabel="Divider" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ft-Ja-nlS" userLabel="Divider" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
                                 <color key="backgroundColor" red="0.29411764709999999" green="0.54117647059999996" blue="0.69803921570000005" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -1439,7 +1444,7 @@ transaction is confirmed in the blockchain</string>
                                     <outletCollection property="gestureRecognizers" destination="Cja-1S-Rpd" appends="YES" id="cBF-ZP-kM4"/>
                                 </connections>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZD-8U-zKw" userLabel="Divider" customClass="SeparatorView" customModule="ModernWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZD-8U-zKw" userLabel="Divider" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="20" y="386.66666666666669" width="374" height="2"/>
                                 <color key="backgroundColor" red="0.29411764709999999" green="0.54117647059999996" blue="0.69803921570000005" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
