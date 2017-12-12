@@ -34,6 +34,17 @@ extension Reactive where Base: UIImageView {
         }
     }
     
+    var afTemplateImage: UIBindingObserver<Base, URL?> {
+        return UIBindingObserver(UIElement: base) { imageView, url in
+            guard let url = url else {
+                imageView.image = nil
+                return
+            }
+            
+            imageView.af_setTemplateImage(withURL: url, useToken: false)
+        }
+    }
+    
     /// - parameter transitionType: Optional transition type while setting the image (kCATransitionFade, kCATransitionMoveIn, ...)
     var afImageAuthorized: UIBindingObserver<Base, URL> {
         return UIBindingObserver(UIElement: base) { imageView, url in
@@ -57,6 +68,24 @@ extension UIImageView {
             if loaderHolder != nil {SwiftSpinner.hide()}
             if let image = response.result.value {
                 self?.image = image
+            }
+        }
+    }
+
+    func af_setTemplateImage(withURL url: URL, useToken: Bool, loaderHolder: UIViewController? = nil) {
+        
+        var urlRequest = URLRequest(url: url)
+        
+        if useToken, let token = LWKeychainManager.instance()?.token {
+            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        if loaderHolder != nil {SwiftSpinner.show("Loading...", animated: true)}
+        
+        Alamofire.request(urlRequest).responseImage { [weak self] response in
+            if loaderHolder != nil {SwiftSpinner.hide()}
+            if let image = response.result.value {
+                self?.image = image.withRenderingMode(.alwaysTemplate)
             }
         }
     }
