@@ -47,7 +47,7 @@ open class AssetCellViewModel {
 
 public extension ObservableType where Self.E == Asset {
     func mapToCryptoName() -> Observable<String> {
-        return map{$0.cryptoCurrency.name}
+        return map{$0.cryptoCurrency.shortName}
     }
     
     func mapToCryptoValue() -> Observable<String> {
