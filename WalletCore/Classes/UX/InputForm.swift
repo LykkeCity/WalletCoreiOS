@@ -15,6 +15,10 @@ fileprivate let keyboardTypesForAccessoryInput: Set<UIKeyboardType> = Set([.numb
 
 public protocol InputForm: UITextFieldDelegate {
     
+    var accessoryButtonBackgroundColor: UIColor {get}
+    
+    var accessoryButtonTextColor: UIColor {get}
+    
     var scrollView: UIScrollView! {get}
     
     var textFields: [UITextField] {get}
@@ -71,11 +75,11 @@ public extension InputForm {
     }
     
     fileprivate func createAccessoryButton(withTitle title: String, width: CGFloat) -> UIButton {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: 0, width: width, height: 45.0)
         button.setTitle(title, for: .normal)
-        button.backgroundColor = UIColor(red: 29.0/255.0, green: 161.0/255.0, blue: 243.0/255.0, alpha: 1.0)
-        button.titleLabel?.textColor = UIColor.white
+        button.backgroundColor = accessoryButtonBackgroundColor
+        button.tintColor = accessoryButtonTextColor
         
         return button
     }
