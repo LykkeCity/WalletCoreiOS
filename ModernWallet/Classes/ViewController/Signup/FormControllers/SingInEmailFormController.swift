@@ -29,7 +29,7 @@ class SingInEmailFormController: FormController {
         return nil
     }
     
-    lazy var emailTextField: UITextField = {
+    lazy private(set) var emailTextField: UITextField = {
         let textField = self.textField(placeholder: Localize("auth.newDesign.email"))
         textField.keyboardType = .emailAddress
         textField.autocorrectionType = .no
