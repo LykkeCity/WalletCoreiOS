@@ -16,6 +16,7 @@ class SignUpFormViewController: UIViewController {
     @IBOutlet private weak var leftStackView: UIStackView!
     @IBOutlet private weak var rightStackView: UIStackView!
     @IBOutlet private weak var submitButton: UIButton!
+    @IBOutlet private weak var registerButton: UIButton!
     
     @IBOutlet private weak var leftStackCenterConstraint: NSLayoutConstraint!
     @IBOutlet private weak var leftStackBottomConstraint: NSLayoutConstraint!
@@ -57,6 +58,15 @@ class SignUpFormViewController: UIViewController {
         popFormController(animated: true)
     }
     
+    @IBAction private func registerTapped(_ sender: Any) {
+        guard let signInEmailForm = forms.last as? SingInEmailFormController else {
+            return
+        }
+        
+        let email = signInEmailForm.emailTextField.text ?? ""
+        push(formController: SignUpEmailFormController(email: email), animated: true)
+    }
+    
     // MARK: - Private
     
     func gotoNext() {
@@ -75,6 +85,9 @@ class SignUpFormViewController: UIViewController {
     }
     
     func push(formController: FormController, animated: Bool) {
+        
+        registerButton.isHidden = forms.isNotEmpty
+        
         if !animated {
             leftStackView.removeAllSubviews()
             rightStackView.setSubviews(formController.formViews)
@@ -110,8 +123,12 @@ class SignUpFormViewController: UIViewController {
     
     func popFormController(animated: Bool) {
         guard forms.count > 1 else {
+            registerButton.isHidden = true
             return
         }
+        
+        registerButton.isHidden = false
+        
         let currentFormContrller = forms.removeLast()
         let previousFormController = forms.last!
         if !animated {
