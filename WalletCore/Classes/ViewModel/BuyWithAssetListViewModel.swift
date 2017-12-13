@@ -21,14 +21,15 @@ public class BuyWithAssetListViewModel {
             authManager.assetPairs.request().filterSuccess()
         )
         .map{(assets, sellAsset, assetPairs) in
-            return assets.filter{(asset: LWAssetModel) in
+            let assetPairsSet = Set(assetPairs.map { $0.identity })
+            return assets.filter{ (asset) in
                 
                 guard let walletAssetId = sellAsset.displayId, let assetId = asset.displayId else {
                     return false
                 }
                 
-                let possiblePairs = ["\(assetId)\(walletAssetId)", "\(walletAssetId)\(assetId)"]
-                return assetPairs.contains{ possiblePairs.contains($0.identity) }
+                let possiblePairs: Set = ["\(assetId)\(walletAssetId)", "\(walletAssetId)\(assetId)"]
+                return !assetPairsSet.isDisjoint(with: possiblePairs)
             }
         }
     }
