@@ -92,7 +92,7 @@ class ReceiveWalletViewController: UIViewController {
         sendEmailObservable.filterSuccess()
             .map { _ in return Localize("receive.newDesign.emailToast") }
             .asDriver(onErrorJustReturn: nil)
-            .drive(onNext: { [weak view] message in view?.makeToast(message) })
+            .drive(onNext: { [weak containerView] message in containerView?.makeToast(message) })
             .disposed(by: disposeBag)
         
         sendEmailObservable.filterError()
@@ -111,7 +111,7 @@ class ReceiveWalletViewController: UIViewController {
     
     @IBAction func copyTapped() {
         UIPasteboard.general.string = address
-        view.makeToast(Localize("receive.newDesign.copyToast"))
+        containerView.makeToast(Localize("receive.newDesign.copyToast"))
     }
     
     @IBAction func shareTapped() {
@@ -124,13 +124,13 @@ class ReceiveWalletViewController: UIViewController {
         }
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         activityController.excludedActivityTypes = [.addToReadingList, .assignToContact, .print, UIActivityType("com.apple.CloudDocsUI.AddToiCloudDrive")]
-        activityController.completionWithItemsHandler = { [weak view, weak shareButton] (type, success, items, error) in
+        activityController.completionWithItemsHandler = { [weak containerView, weak shareButton] (type, success, items, error) in
             shareButton?.isEnabled = true
             if success {
-                view?.makeToast(Localize("receive.newDesign.shareToast"))
+                containerView?.makeToast(Localize("receive.newDesign.shareToast"))
             }
             else {
-                view?.makeToast(error?.localizedDescription)
+                containerView?.makeToast(error?.localizedDescription)
             }
         }
         present(activityController, animated: true)
