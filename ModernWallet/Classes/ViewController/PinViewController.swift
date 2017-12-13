@@ -278,6 +278,7 @@ extension PinViewController: UIViewControllerTransitioningDelegate {
     }
     
 }
+
 class PinAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     
     private let presenting: Bool

@@ -22,22 +22,62 @@ public class IconOverTextButton: UIButton {
     
     public override func contentRect(forBounds bounds: CGRect) -> CGRect {
         var rect = CGRect(origin: bounds.origin, size: intrinsicContentSize)
-        rect.origin.x += (bounds.width - rect.width) / 2.0
-        rect.origin.y += (bounds.height - rect.height) / 2.0
+        rect.size.width = min(rect.width, bounds.width)
+        switch contentVerticalAlignment {
+        case .center:
+            rect.origin.y += (bounds.height - rect.height) / 2.0
+        case .bottom:
+            rect.origin.y += bounds.height - rect.height
+        case .fill:
+            rect.size.height = bounds.height
+        default:
+            break
+        }
+        switch effectiveContentHorizontalAlignment {
+        case .center:
+            rect.origin.x += (bounds.width - rect.width) / 2.0
+        case .right:
+            rect.origin.x += bounds.width - rect.width
+        case .fill:
+            rect.size.width = bounds.width
+        default:
+            break
+        }
         return rect
     }
     
     public override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
         var rect = CGRect(origin: contentRect.origin, size: titleSize)
         isTitleRectPassedOnce = true
-        rect.origin.x += (contentRect.width - rect.width) / 2.0
-        rect.origin.y += contentRect.height - rect.height + spacing
+        rect.size.width = min(rect.width, contentRect.width)
+        switch effectiveContentHorizontalAlignment {
+        case .center:
+            rect.origin.x += (contentRect.width - rect.width) / 2.0
+        case .right:
+            rect.origin.x += contentRect.width - rect.width
+        default:
+            break
+        }
+        rect.origin.y += contentRect.height - rect.height
         return rect
     }
     
     public override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
         var rect = CGRect(origin: contentRect.origin, size: imageSize)
-        rect.origin.x += (contentRect.width - rect.width) / 2.0
+        rect.size.width = min(rect.width, contentRect.width)
+        if contentVerticalAlignment == .fill || contentRect.height < intrinsicContentSize.height {
+            rect.size.height = max(contentRect.height - titleRect(forContentRect: contentRect).height - spacing, 0.0)
+        }
+        switch effectiveContentHorizontalAlignment {
+        case .center:
+            rect.origin.x += (contentRect.width - rect.width) / 2.0
+        case .right:
+            rect.origin.x += contentRect.width - rect.width
+        case .fill:
+            rect.size.width = contentRect.width
+        default:
+            break
+        }
         return rect
     }
 

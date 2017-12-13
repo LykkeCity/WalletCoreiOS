@@ -1003,3 +1003,11 @@
 "noNetwork.newDesign.subtitle" = "You are not connected to the internet.\nPlease check and try again.";
 "noNetwork.newDesign.reload" = "RELOAD";
 
+"receive.newDesign.receivingAddressFmt" = "%@ RECEIVING ADDRESS";
+"receive.newDesign.email" = "EMAIL";
+"receive.newDesign.copy" = "COPY";
+"receive.newDesign.share" = "SHARE";
+"receive.newDesign.emailToast" = "Email sent";
+"receive.newDesign.copyToast" = "Copied";
+"receive.newDesign.shareToast" = "Shared";
+"receive.newDesign.shareMessageFmt" = "My %@ wallet address is %@";

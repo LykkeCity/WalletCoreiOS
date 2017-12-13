@@ -15,6 +15,7 @@ class AssetDetailViewController: UIViewController {
 
     @IBOutlet weak var baseAssetAmount: AssetAmountView!
     @IBOutlet weak var assetAmount: AssetAmountView!
+    @IBOutlet weak var receiveButton: UIButton!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var transactionsTap: UITapGestureRecognizer!
     
@@ -64,6 +65,11 @@ class AssetDetailViewController: UIViewController {
             .asDriver(onErrorJustReturn: "")
             .drive(rx.title)
             .disposed(by: disposeBag)
+        
+        assetBalanceViewModel.blockchainAddress.asDriver()
+            .map{ $0.isNotEmpty }
+            .drive(receiveButton.rx.isEnabled)
+            .disposed(by: disposeBag)
 
         assetAmount.configure(fontSize: 30)
         baseAssetAmount.configure(fontSize: 12)
@@ -84,6 +90,10 @@ class AssetDetailViewController: UIViewController {
             guard let sellVC = segue.destination as? BuyOptimizedViewController else { return }
             sellVC.tradeType = .sell
             sellVC.tradeAssetIdentifier = asset.value.cryptoCurrency.identity
+        case "ReceiveAddress":
+            guard let receiveVC = segue.destination as? ReceiveWalletViewController else { return }
+            receiveVC.asset = asset
+            receiveVC.address = assetBalanceViewModel.blockchainAddress.value
         default:
             break
         }
