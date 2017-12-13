@@ -32,7 +32,7 @@ public class TradingAssetsViewModel {
             Observable.zip(nonEmptyWallets.filterSuccess(), allAssets.filterSuccess(), assetPairs.filterSuccess())
             .map{wallets, assets, pairs in
                 assets.filter{asset in
-                    guard let assetId = asset.identity else {return false}
+                    guard let assetId = asset.displayId else {return false}
                     return wallets.contains(withAssetId: assetId, assetPairs: pairs)
                 }
             }

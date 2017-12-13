@@ -23,7 +23,7 @@ public class BuyWithAssetListViewModel {
         .map{(assets, sellAsset, assetPairs) in
             return assets.filter{(asset: LWAssetModel) in
                 
-                guard let walletAssetId = sellAsset.identity, let assetId = asset.identity else {
+                guard let walletAssetId = sellAsset.displayId, let assetId = asset.displayId else {
                     return false
                 }
                 

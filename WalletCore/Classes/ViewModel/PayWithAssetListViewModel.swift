@@ -28,7 +28,7 @@ public class PayWithAssetListViewModel {
             Observable.combineLatest(nonEmptyWallets.filterSuccess(), buyAsset, assetPairs.filterSuccess())
             .map{(wallets, buyAsset, assetPairs) in
                 return wallets.filter{(wallet: LWSpotWallet) in
-                    guard let walletAssetId = wallet.asset.identity, let assetId = buyAsset.identity else {
+                    guard let walletAssetId = wallet.asset.displayId, let assetId = buyAsset.displayId else {
                         return false
                     }
                     

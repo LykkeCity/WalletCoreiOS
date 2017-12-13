@@ -78,7 +78,7 @@ public class BuyOptimizedViewModel {
     ) {
         baseAssetCode = dependency.authManager.baseAsset.request()
             .filterSuccess()
-            .mapToIdentity()
+            .mapToDisplayId()
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
@@ -95,7 +95,7 @@ public class BuyOptimizedViewModel {
         
         buyAssetCode = buyAsset.asObservable()
             .mapToAsset()
-            .mapToIdentity()
+            .mapToDisplayId()
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
@@ -126,7 +126,7 @@ public class BuyOptimizedViewModel {
         
         payWithAssetCode = payWithWallet.asObservable()
             .mapToAsset()
-            .mapToIdentity()
+            .mapToDisplayId()
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
