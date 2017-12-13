@@ -10,6 +10,7 @@ import UIKit
 import WalletCore
 import RxSwift
 import RxCocoa
+import Toast
 
 class BuyOptimizedViewController: UIViewController {
     
@@ -244,14 +245,20 @@ fileprivate extension OffchainTradeViewModel {
             })
         ]
     }
-    
 }
 
 fileprivate extension BuyOptimizedViewModel {
     
     func bind(toViewController vc: BuyOptimizedViewController) -> [Disposable] {
         return [
-            isValidPayWithAmount.bind(to: vc.submitButton.rx.isEanbledWithBorderColor),
+            isValidPayWithAmount
+                .filterError()
+                .map{ $0["Message"] as? String }
+                .filterNil()
+                .subscribe(onNext: { [weak vc] message in
+                    vc?.view.makeToast(message, duration: 2.0, position: CSToastPositionTop)
+                }),
+            isValidPayWithAmount.map{ $0.isSuccess }.bind(to: vc.submitButton.rx.isEanbledWithBorderColor),
             spreadPercent.drive(vc.spreadPercent.rx.text),
             spreadAmount.drive(vc.spreadAmount.rx.text),
             bid.asDriver().filterNil().map{ $0 ? "SELL" : "PAY WITH" }.drive(vc.walletListView.label.rx.text),
