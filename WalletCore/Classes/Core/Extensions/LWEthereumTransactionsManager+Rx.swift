@@ -22,4 +22,14 @@ extension Reactive where Base : LWEthereumTransactionsManager {
         .startWith(.loading)
         .shareReplay(1)
     }
+    
+    func createEthereumSign(forAsset asset: LWAssetModel) -> Observable<(Bool, LWAssetModel)> {
+        return Observable.create { observer in
+            LWEthereumTransactionsManager.shared().createEthereumSign(forAsset: asset, completion: { (success) in
+                observer.onNext((success, asset))
+                observer.onCompleted()
+            })
+            return Disposables.create()
+        }
+    }
 }

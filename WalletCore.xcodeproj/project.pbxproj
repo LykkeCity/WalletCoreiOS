@@ -601,6 +601,8 @@
 		66CE48791FAA244600AAB98F /* CashOutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE48781FAA244600AAB98F /* CashOutService.swift */; };
 		874FA6741FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FA6731FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift */; };
 		874FA6761FAD880E004E233F /* LWModelCashOutSwiftResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874FA6751FAD880E004E233F /* LWModelCashOutSwiftResult.swift */; };
+		AB1BF0571FDDD346001CB0D2 /* LWRxAuthManagerGetBlockchainAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF0561FDDD346001CB0D2 /* LWRxAuthManagerGetBlockchainAddress.swift */; };
+		AB1BF0591FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF0581FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
 		C14A6A6F1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift */; };
 		C14A6A711FCDBF4F00EC078A /* PledgePostPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A6A701FCDBF4F00EC078A /* PledgePostPacket.swift */; };
@@ -1250,6 +1252,8 @@
 		874FA6751FAD880E004E233F /* LWModelCashOutSwiftResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWModelCashOutSwiftResult.swift; sourceTree = "<group>"; };
 		A365F33C6B54102FA54D32DE /* Pods-WalletCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6006A15181B6E664CEE7CEA /* Pods-WalletCore.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.debug.test.xcconfig"; sourceTree = "<group>"; };
+		AB1BF0561FDDD346001CB0D2 /* LWRxAuthManagerGetBlockchainAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerGetBlockchainAddress.swift; sourceTree = "<group>"; };
+		AB1BF0581FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerSendBlockchainEmail.swift; sourceTree = "<group>"; };
 		B2D803A07289BA7B1909DDA3 /* Pods-WalletCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.xcconfig"; sourceTree = "<group>"; };
 		C12CC0391F91106900904A8C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxBlueAuthManagerPledgePost.swift; sourceTree = "<group>"; };
@@ -2359,6 +2363,8 @@
 				460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */,
 				665E15471FC6BEEB000973DA /* LWRxAuthManagerWalletMigration.swift */,
 				665E15491FC6CD20000973DA /* LWRxAuthManagerWalletBackupComplete.swift */,
+				AB1BF0561FDDD346001CB0D2 /* LWRxAuthManagerGetBlockchainAddress.swift */,
+				AB1BF0581FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2959,6 +2965,7 @@
 				46C9AF621F417BD800B83CCB /* LWPersonalDataPacket.m in Sources */,
 				46C9B0861F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift in Sources */,
 				46B583711F94C3CF00B475DB /* UIImage+Extension.swift in Sources */,
+				AB1BF0591FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift in Sources */,
 				CC83DDAD1F4ADE52008BA5C2 /* LWPacketGetClientCodes.m in Sources */,
 				46C9AFE71F417BD800B83CCB /* LWSpotWallet.m in Sources */,
 				46C9AF841F417BD800B83CCB /* LWHistoryManager.m in Sources */,
@@ -3017,6 +3024,7 @@
 				46C9AECE1F417BD700B83CCB /* LWPacketEmailPrivateWalletAddress.m in Sources */,
 				C183F4AB1FD833B600F96379 /* ReferralLinkClaimPacket.swift in Sources */,
 				46C9AE621F417BD700B83CCB /* LWAuthManager.m in Sources */,
+				AB1BF0571FDDD346001CB0D2 /* LWRxAuthManagerGetBlockchainAddress.swift in Sources */,
 				C196EB1C1FCEEE73000FD730 /* LWRxBlueAuthManagerPledgeGet.swift in Sources */,
 				46C9AE881F417BD700B83CCB /* LWPacketAllAssetPairs.m in Sources */,
 				46C9B0671F42C91B00B83CCB /* LWAuthManagerPacketPrevCardPayment.swift in Sources */,
