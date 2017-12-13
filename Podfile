@@ -10,7 +10,6 @@ target 'WalletCore' do
   pod 'RxCocoa', '~> 3.6.1'
   pod 'RxOptional', '~> 3.1'
   pod 'RxSwiftExt', '~> 2.4'
-  pod 'QRCodeReader.swift', '~> 7.4.0'
   pod 'AFNetworking'
   pod 'MDWamp'
   pod 'UIDeviceIdentifier'
