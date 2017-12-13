@@ -188,6 +188,7 @@ public class BuyOptimizedViewModel {
         isValidPayWithAmount = Observable
             .combineLatest(payWithAmount.asObservable(), payWithWallet.asObservable())
             .validate()
+            .skip(2) //skip 2 because payWithAmount and payWithWallet have initial values
         
         //MARK: two way amount bindings
         payWithWallet.asObservable()
