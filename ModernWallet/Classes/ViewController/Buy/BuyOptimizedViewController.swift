@@ -120,7 +120,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         walletList
-            .bind(to: walletListView.itemPicker.picker.rx.itemTitles) {$1.asset.displayFullName}
+            .bind(to: walletListView.itemPicker.picker.rx.itemTitles) {$1.asset.displayId}
             .disposed(by: disposeBag)
         
         assetListView.itemPicker.picker.rx.itemSelected
@@ -140,7 +140,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         assetList
-            .bind(to: assetListView.itemPicker.picker.rx.itemTitles) {$1.displayFullName}
+            .bind(to: assetListView.itemPicker.picker.rx.itemTitles) {$1.displayId}
             .disposed(by: disposeBag)
         
         submitButton.rx.tap
