@@ -88,6 +88,9 @@ class BuyOptimizedViewController: UIViewController {
     //MARK:- Lifecicle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstAssetList.itemPicker.picker.backgroundColor = #colorLiteral(red: 0, green: 0.431372549, blue: 0.3411764706, alpha: 1)
+        secondAssetList.itemPicker.picker.backgroundColor = #colorLiteral(red: 0, green: 0.431372549, blue: 0.3411764706, alpha: 1)
 
         setupUX()
         
@@ -120,7 +123,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         walletList
-            .bind(to: walletListView.itemPicker.picker.rx.itemTitles) {$1.asset.displayId}
+            .bind(to: walletListView.itemPicker.picker.rx.itemAttributedTitles) { (_, wallet) in return NSAttributedString(string: wallet.asset.displayId, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)]) }
             .disposed(by: disposeBag)
         
         assetListView.itemPicker.picker.rx.itemSelected
@@ -140,7 +143,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         assetList
-            .bind(to: assetListView.itemPicker.picker.rx.itemTitles) {$1.displayId}
+            .bind(to: assetListView.itemPicker.picker.rx.itemAttributedTitles) { (_, asset) in return NSAttributedString(string: asset.displayId, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)]) }
             .disposed(by: disposeBag)
         
         submitButton.rx.tap
