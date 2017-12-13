@@ -73,6 +73,7 @@
 		61FC79CF1F714016002A78CE /* KYCPhotoPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FC79CE1F714016002A78CE /* KYCPhotoPlaceholderView.swift */; };
 		61FC79D21F714033002A78CE /* KYCPhotoPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FC79D11F714033002A78CE /* KYCPhotoPlaceholderView.xib */; };
 		6618C4DE1FD9852900808572 /* SendReceive.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6618C4DD1FD9852900808572 /* SendReceive.storyboard */; };
+		661C030E1FE15E2D003178B3 /* InputForm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661C030D1FE15E2D003178B3 /* InputForm+Extensions.swift */; };
 		663628611FD066E10041CDE3 /* IconOverTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663628601FD066E10041CDE3 /* IconOverTextButton.swift */; };
 		66385DE21FCEDE42002DC70B /* SignUpEmailFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66385DE11FCEDE42002DC70B /* SignUpEmailFormController.swift */; };
 		66385DE41FCEDE71002DC70B /* SignUpEmailCodeFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66385DE31FCEDE71002DC70B /* SignUpEmailCodeFormController.swift */; };
@@ -247,6 +248,7 @@
 		61FC79CE1F714016002A78CE /* KYCPhotoPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCPhotoPlaceholderView.swift; sourceTree = "<group>"; };
 		61FC79D11F714033002A78CE /* KYCPhotoPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYCPhotoPlaceholderView.xib; sourceTree = "<group>"; };
 		6618C4DD1FD9852900808572 /* SendReceive.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendReceive.storyboard; sourceTree = "<group>"; };
+		661C030D1FE15E2D003178B3 /* InputForm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputForm+Extensions.swift"; sourceTree = "<group>"; };
 		663628601FD066E10041CDE3 /* IconOverTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconOverTextButton.swift; sourceTree = "<group>"; };
 		66385DE11FCEDE42002DC70B /* SignUpEmailFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailFormController.swift; sourceTree = "<group>"; };
 		66385DE31FCEDE71002DC70B /* SignUpEmailCodeFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpEmailCodeFormController.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */,
 				4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */,
 				66512F3C1FE030A800D7B63B /* UIView+Extensions.swift */,
+				661C030D1FE15E2D003178B3 /* InputForm+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1159,6 +1162,7 @@
 				6689EE551FBB316A0006010F /* SettingsTableViewCell.swift in Sources */,
 				61FBCCC61F20C8FB004F7219 /* TotalBalanceViewController.swift in Sources */,
 				611248ED1F06856D005DE4E6 /* AddMoneyCryptocurrencyStep1ViewController.swift in Sources */,
+				661C030E1FE15E2D003178B3 /* InputForm+Extensions.swift in Sources */,
 				61FC79CF1F714016002A78CE /* KYCPhotoPlaceholderView.swift in Sources */,
 				66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */,
 				66806B9F1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift in Sources */,
