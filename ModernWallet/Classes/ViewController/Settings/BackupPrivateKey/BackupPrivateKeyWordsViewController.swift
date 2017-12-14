@@ -18,8 +18,15 @@ class BackupPrivateKeyWordsViewController: UIViewController {
     @IBOutlet private weak var nextButton: UIButton!
 
     fileprivate let words: [String] = {
-        if let words = LWPrivateKeyManager.shared().privateKeyWords() as? [String] {
+        let keyManager = LWPrivateKeyManager.shared()
+        if let words = keyManager?.privateKeyWords() as? [String] {
             return words;
+        }
+        if let encrypthedKey = keyManager?.encryptedKeyLykke {
+            keyManager?.decryptLykkePrivateKeyAndSave(encrypthedKey)
+            if let words = keyManager?.privateKeyWords() as? [String] {
+                return words;
+            }
         }
         return LWPrivateKeyManager.generateSeedWords12() as! [String]
     }()
