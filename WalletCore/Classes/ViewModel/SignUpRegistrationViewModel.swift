@@ -28,7 +28,7 @@ open class SignUpRegistrationViewModel {
             .mapToPack(email: email, password: password, clientInfo: clientInfo, hint: hint, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
-        loading = result.asObservable().isLoading()
+        loading = result.asObservable().isLoading().shareReplay(1)
     }
     
     public lazy var isValid : Observable<Bool> = {
