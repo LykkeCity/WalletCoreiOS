@@ -18,7 +18,7 @@ extension ObservableType where Self.E == Void {
             .interval(period, scheduler: MainScheduler.instance)
             .map{_ in Void()}
             .filter{
-                return UIApplication.shared.applicationState.isActive && LWKeychainManager.instance().isAuthenticated
+                return UIApplication.shared.applicationState.isActive && LWKeychainManager.instance().isAuthenticated && UserDefaults.standard.bool(forKey: "loggedIn")
             }
             .startWith(Void())
             .throttle(2.0, scheduler: MainScheduler.instance)
