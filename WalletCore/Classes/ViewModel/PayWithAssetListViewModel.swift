@@ -27,13 +27,14 @@ public class PayWithAssetListViewModel {
         payWithWalletList =
             Observable.combineLatest(nonEmptyWallets.filterSuccess(), buyAsset, assetPairs.filterSuccess())
             .map{(wallets, buyAsset, assetPairs) in
+                let assetPairsSet = Set(assetPairs.map { $0.identity })
                 return wallets.filter{(wallet: LWSpotWallet) in
-                    guard let walletAssetId = wallet.asset.identity, let assetId = buyAsset.identity else {
+                    guard let walletAssetId = wallet.asset.displayId, let assetId = buyAsset.displayId else {
                         return false
                     }
                     
-                    let possiblePairs = ["\(assetId)\(walletAssetId)", "\(walletAssetId)\(assetId)"]
-                    return assetPairs.contains{ possiblePairs.contains($0.identity) }
+                    let possiblePairs: Set = ["\(assetId)\(walletAssetId)", "\(walletAssetId)\(assetId)"]
+                    return !assetPairsSet.isDisjoint(with: possiblePairs)
                 }
             }
     }

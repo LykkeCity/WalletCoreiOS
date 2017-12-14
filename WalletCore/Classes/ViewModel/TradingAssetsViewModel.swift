@@ -30,22 +30,22 @@ public class TradingAssetsViewModel {
         
         availableToBuy =
             Observable.zip(nonEmptyWallets.filterSuccess(), allAssets.filterSuccess(), assetPairs.filterSuccess())
-            .map{wallets, assets, pairs in
-                assets.filter{asset in
-                    guard let assetId = asset.identity else {return false}
-                    return wallets.contains(withAssetId: assetId, assetPairs: pairs)
-                }
-            }
+                .map{wallets, assets, pairs in
+                    let pairsSet = Set(pairs.map { $0.identity })
+                    return assets.filter{asset in
+                        guard let assetId = asset.displayId else { return false }
+                        return wallets.contains(withAssetId: assetId, assetPairs: pairsSet)
+                    }
+        }
     }
 }
 
 extension Array where Element == LWSpotWallet {
-    func contains(withAssetId assetId: String, assetPairs: [LWAssetPairModel]) -> Bool {
+    func contains(withAssetId assetId: String, assetPairs: Set<String>) -> Bool {
         return contains{wallet in
-            guard let walletId = wallet.asset.identity else {return false}
-            
-            let possiblePairs = ["\(assetId)\(walletId)", "\(walletId)\(assetId)"]
-            return assetPairs.contains{assetPair in possiblePairs.contains(assetPair.identity)}
+            guard let walletId = wallet.asset.displayId else {return false}
+            let possiblePairs: Set = ["\(assetId)\(walletId)", "\(walletId)\(assetId)"]
+            return !assetPairs.isDisjoint(with: possiblePairs)
         }
     }
 }
