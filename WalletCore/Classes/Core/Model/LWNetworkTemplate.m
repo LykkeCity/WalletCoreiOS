@@ -146,7 +146,7 @@
     else
         device=@"iPad";
 #ifdef TEST
-    NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@", device];
+    NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@;AppVersion=234.0", device];
 #else
     NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@;AppVersion=%@", device, [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
 #endif
