@@ -62,9 +62,6 @@ extension Observable where Element == LWAssetModel {
                 guard asset.blockchainType == BLOCKCHAIN_TYPE_ETHEREUM else {
                     return Observable<(Bool, LWAssetModel)>.empty()
                 }
-                if asset.blockchainDepositAddress.isNotEmpty {
-                    return Observable<(Bool, LWAssetModel)>.just((true, asset))
-                }
                 return LWEthereumTransactionsManager.shared().rx.createEthereumSign(forAsset: asset)
             }
             .map { (success, asset) in return success ? asset.blockchainDepositAddress : "" }
@@ -76,16 +73,13 @@ extension Observable where Element == LWAssetModel {
                 guard asset.blockchainType == BLOCKCHAIN_TYPE_BITCOIN else {
                     return Observable<ApiResult<LWPacketGetBlockchainAddress>>.empty()
                 }
-                if asset.blockchainDepositAddress.isNotEmpty {
-                    let packet = LWPacketGetBlockchainAddress()
-                    packet.assetId = asset.identity
-                    packet.address = asset.blockchainDepositAddress
-                    return Observable<ApiResult<LWPacketGetBlockchainAddress>>.just(.success(withData: packet))
-                }
                 return LWRxAuthManager.instance.getBlockchainAddress.request(withParams: asset.identity)
             }
             .filterSuccess()
-            .map { $0.address }
+            .map { packet in
+                (LWCache.instance().allAssets as? [LWAssetModel] ?? []).filter { $0.identity == packet.assetId }.first?.blockchainDepositAddress = packet.address
+                return packet.address
+            }
     }
     
 }
