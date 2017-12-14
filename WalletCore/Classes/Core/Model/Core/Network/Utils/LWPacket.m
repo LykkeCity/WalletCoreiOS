@@ -129,7 +129,11 @@
         device=@"iPhone";
     else
         device=@"iPad";
-    NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@;AppVersion=%@;ClientFeatures=1", device, [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
+#ifdef TEST
+    NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@", device];
+#else
+    NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@;AppVersion=%@", device, [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
+#endif
 
     return @{@"User-Agent":userAgent, @"Content-Type": @"application/json"}; // no headers by default
 }
