@@ -18,7 +18,7 @@ public class TradingAssetsViewModel {
         
         let nonEmptyWallets =  authManager.lykkeWallets.requestNonEmptyWallets()
         let allAssets = authManager.allAssets.request()
-        let assetPairs = authManager.assetPairs.request()
+        let assetPairs = authManager.assetPairRates.request(withParams: true)
         
         loadingViewModel = LoadingViewModel([
             nonEmptyWallets.isLoading(),

@@ -18,7 +18,7 @@ public class BuyWithAssetListViewModel {
         buyWithAssetList = Observable.combineLatest(
             authManager.allAssets.request().filterSuccess(),
             sellAsset,
-            authManager.assetPairs.request().filterSuccess()
+            authManager.assetPairRates.request(withParams: true).filterSuccess()
         )
         .map{(assets, sellAsset, assetPairs) in
             let assetPairsSet = Set(assetPairs.map { $0.identity })

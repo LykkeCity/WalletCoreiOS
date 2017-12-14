@@ -17,7 +17,7 @@ public class PayWithAssetListViewModel {
     public init(buyAsset: Observable<LWAssetModel>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
         let nonEmptyWallets = authManager.lykkeWallets.requestNonEmptyWallets()
-        let assetPairs = authManager.assetPairs.request()
+        let assetPairs = authManager.assetPairRates.request(withParams: true)
         
         loadingViewModel = LoadingViewModel([
             nonEmptyWallets.isLoading(),
