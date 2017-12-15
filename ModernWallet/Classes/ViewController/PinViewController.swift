@@ -135,7 +135,7 @@ class PinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if case .createPin = mode {
+        if case .createPin = mode, SignUpStep.instance?.isNotGenerateWallet ?? false {
             SignUpStep.instance = .setPin
         }
 

@@ -170,6 +170,22 @@ fileprivate extension SignUpStep {
     }
 }
 
+
+// MARK: - <#Description#>
+extension SignUpStep {
+    var isGenerateWallet: Bool {
+        if case .generateWallet = self {
+            return true
+        }
+        
+        return false
+    }
+    
+    var isNotGenerateWallet: Bool {
+        return !isGenerateWallet
+    }
+}
+
 // MARK: - RX
 extension ObservableType where Self.E == ApiResult<SignUpStep.ControllerResult?> {
     func filterSuccess() -> Observable<SignUpStep.ControllerResult?> {
