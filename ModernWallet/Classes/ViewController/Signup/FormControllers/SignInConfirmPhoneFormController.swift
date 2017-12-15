@@ -187,6 +187,7 @@ class SignInConfirmPhoneFormController: FormController {
         
         clientCodes.encodeMainKeyObservable
             .map { _ in
+                SignUpStep.resetInstance()
                 UserDefaults.standard.set(loggedIn: true)
                 UserDefaults.standard.synchronize()
                 NotificationCenter.default.post(name: .loggedIn, object: nil)
