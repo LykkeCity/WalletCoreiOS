@@ -151,7 +151,7 @@
         <!--Sign Up Shake View Controller-->
         <scene sceneID="OaC-CL-WFh">
             <objects>
-                <viewController id="gga-op-U57" customClass="SignUpShakeViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUpShake" id="gga-op-U57" customClass="SignUpShakeViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F0m-q7-6KQ"/>
                         <viewControllerLayoutGuide type="bottom" id="dgA-iN-7CT"/>
@@ -164,25 +164,25 @@
                                 <rect key="frame" x="20" y="100" width="335" height="54"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RwK-NB-qB8">
-                                <rect key="frame" x="32" y="234" width="311" height="20"/>
+                                <rect key="frame" x="32" y="234" width="311" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i29-bC-jx3">
-                                <rect key="frame" x="32" y="274" width="311" height="14"/>
+                                <rect key="frame" x="32" y="277.5" width="311" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4R-2p-NFb">
-                                <rect key="frame" x="179" y="333" width="18" height="32"/>
+                                <rect key="frame" x="179" y="339" width="18" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-zO-enI">
-                                <rect key="frame" x="32" y="465" width="311" height="14"/>
+                                <rect key="frame" x="32" y="476.5" width="311" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

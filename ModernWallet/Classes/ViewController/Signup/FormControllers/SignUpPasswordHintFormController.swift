@@ -101,13 +101,19 @@ class SignUpPasswordHintFormController: FormController {
                 }
                 .shareReplay(1)
             
-            Observable.merge([viewModel.loading, allAssetRequest.isLoading(), setBaseAssetRequest.isLoading()])
+            let loadingViewModel = LoadingViewModel([viewModel.loading, allAssetRequest.isLoading(), setBaseAssetRequest.isLoading()])
+            
+            loadingViewModel.isLoading
                 .asDriver(onErrorJustReturn: false)
                 .drive(onNext: { button.isEnabled = !$0 })
                 .disposed(by: disposeBag)
 
             setBaseAssetRequest.map { _ in return () }
                 .bind(to: nextTrigger)
+                .disposed(by: disposeBag)
+            
+            loadingViewModel.isLoading
+                .bind(to: loading)
                 .disposed(by: disposeBag)
             
         #else
@@ -123,11 +129,10 @@ class SignUpPasswordHintFormController: FormController {
                 .drive(onNext: { button.isEnabled = !$0 })
                 .disposed(by: disposeBag)
 
+            viewModel.loading
+                .bind(to: loading)
+                .disposed(by: disposeBag)
         #endif
-        
-        viewModel.loading
-            .bind(to: loading)
-            .disposed(by: disposeBag)
         
         hintTextField.rx.returnTap
             .withLatestFrom(viewModel.isValidHint)

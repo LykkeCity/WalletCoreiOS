@@ -17,6 +17,8 @@ class SignUpEmailCodeFormController: FormController {
     
     init(email: String) {
         self.email = email
+        UserDefaults.standard.set(tempEmail: email)
+        UserDefaults.standard.synchronize()
     }
     
     lazy var formViews: [UIView] = {

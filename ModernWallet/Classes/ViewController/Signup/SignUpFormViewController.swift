@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import WalletCore
 
 class SignUpFormViewController: UIViewController {
     
@@ -50,6 +51,10 @@ class SignUpFormViewController: UIViewController {
                 self?.present(pinViewController, animated: true)
             })
             .disposed(by: disposeBag)
+        
+        SignUpStep.instance?.initializeFormController()
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - IBActions
@@ -83,10 +88,26 @@ class SignUpFormViewController: UIViewController {
             navigationController?.dismiss(animated: true)
         }
     }
+
+    private func didPush() {
+        SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
+    }
+    
+    private func willPush() {
+        registerButton.isHidden = forms.isNotEmpty
+    }
+    
+    private func didPop() {
+        SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
+        registerButton.isHidden = forms.count > 1
+    }
+    
+    private func willPop() {
+        
+    }
     
     func push(formController: FormController, animated: Bool) {
-        
-        registerButton.isHidden = forms.isNotEmpty
+        willPush()
         
         if !animated {
             leftStackView.removeAllSubviews()
@@ -119,15 +140,16 @@ class SignUpFormViewController: UIViewController {
         formController.bind(button: submitButton, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
         submitButton.setTitle(formController.buttonTitle, for: .normal)
         forms.append(formController)
+        
+        didPush()
     }
     
     func popFormController(animated: Bool) {
+        willPop()
+        
         guard forms.count > 1 else {
-            registerButton.isHidden = true
             return
         }
-        
-        registerButton.isHidden = false
         
         let currentFormContrller = forms.removeLast()
         let previousFormController = forms.last!
@@ -161,6 +183,8 @@ class SignUpFormViewController: UIViewController {
         currentFormContrller.unbind()
         previousFormController.bind(button: submitButton, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
         submitButton.setTitle(previousFormController.buttonTitle, for: .normal)
+        
+        didPop()
     }
     
     private func setBackVisible(_ visible: Bool) {
@@ -185,7 +209,6 @@ class SignUpFormViewController: UIViewController {
         rightStackCenterConstraint.isActive = true
         rightStackBottomConstraint.isActive = true
     }
-
 }
 
 extension UIStackView {
@@ -201,5 +224,26 @@ extension UIStackView {
             self.removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
+    }
+}
+
+fileprivate extension ObservableType where Self.E == ApiResult<SignUpStep.ControllerResult?> {
+    func bind(toViewController vc: SignUpFormViewController) -> [Disposable] {
+        return [
+            isLoading().bind(to: vc.rx.loading),
+            filterSuccess().filterNil().subscribe(onNext: { [weak vc] controllerResult in
+                if let formController = controllerResult.formController {
+                    vc?.push(formController: formController, animated: true)
+                    
+                    if controllerResult.showPin, let confirmPhoneFormController = formController as? SignInConfirmPhoneFormController {
+                        confirmPhoneFormController.forceShowPin.onNext(())
+                    }
+                }
+                
+                if let viewController = controllerResult.viewController {
+                    vc?.navigationController?.pushViewController(viewController, animated: false)
+                }
+            })
+        ]
     }
 }

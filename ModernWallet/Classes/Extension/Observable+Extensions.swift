@@ -17,10 +17,13 @@ extension ObservableType where Self.E == Void {
         return Observable<Int>
             .interval(period, scheduler: MainScheduler.instance)
             .map{_ in Void()}
-            .filter{
-                return UIApplication.shared.applicationState.isActive && LWKeychainManager.instance().isAuthenticated && UserDefaults.standard.bool(forKey: "loggedIn")
-            }
             .startWith(Void())
+            .filter{
+                return UIApplication.shared.applicationState.isActive &&
+                    LWKeychainManager.instance().isAuthenticated &&
+                    UserDefaults.standard.isLoggedIn &&
+                    SignUpStep.instance == nil
+            }
             .throttle(2.0, scheduler: MainScheduler.instance)
             .shareReplay(1)
     }

@@ -20,6 +20,7 @@ class SignInConfirmPhoneFormController: FormController {
     init(signIn: Bool, phone: String) {
         self.signIn = signIn
         self.phone = phone
+        UserDefaults.standard.set(tempPhone: phone)
     }
     
     lazy var formViews: [UIView] = {
@@ -95,6 +96,8 @@ class SignInConfirmPhoneFormController: FormController {
     
     private var disposeBag = DisposeBag()
     
+    let forceShowPin = PublishSubject<Void>()
+    
     func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
@@ -155,7 +158,10 @@ class SignInConfirmPhoneFormController: FormController {
             .bind(to: getCodesTrigger)
             .disposed(by: disposeBag)
         
-        let pinViewControllerObservable = shouldGetCodes.filter { !$0 }
+        let pinViewControllerObservable = Observable.merge(
+                forceShowPin.asObservable(),
+                shouldGetCodes.filter { !$0 }.map{ _ in () }
+            )
             .map { _ in return PinViewController.createPinViewController }
             .shareReplay(1)
         
@@ -181,7 +187,8 @@ class SignInConfirmPhoneFormController: FormController {
         
         clientCodes.encodeMainKeyObservable
             .map { _ in
-                UserDefaults.standard.set("true", forKey: "loggedIn")
+                UserDefaults.standard.set(loggedIn: true)
+                UserDefaults.standard.synchronize()
                 NotificationCenter.default.post(name: .loggedIn, object: nil)
                 return ()
             }

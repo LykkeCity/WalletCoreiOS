@@ -54,6 +54,10 @@ class PortfolioViewController: UIViewController {
         configurePieChart()
         configureTableView()
         
+        if UserDefaults.standard.isNotLoggedIn || SignUpStep.instance != nil {
+            return
+        }
+        
         tableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
         //Bind table
@@ -74,10 +78,6 @@ class PortfolioViewController: UIViewController {
             .map{$0.isEmpty}
             .drive(pieChartCenterView.addMoneyButton.rx.isHidden)
             .disposed(by: disposeBag)
-        
-        if UserDefaults.standard.value(forKey: "loggedIn") == nil {
-            return
-        }
         
         tableView.rx
             .modelSelected(Variable<Asset>.self)
@@ -118,6 +118,10 @@ class PortfolioViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
      
+        if UserDefaults.standard.isNotLoggedIn || SignUpStep.instance != nil {
+            return
+        }
+        
         loadingDisposeBag = DisposeBag()
         
         loadingViewModel.isLoading
