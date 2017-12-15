@@ -37,6 +37,10 @@ class SignUpPasswordHintFormController: FormController {
         return textField
     }()
     
+    #if TEST
+    private var testLoadingViewModel: LoadingViewModel?
+    #endif
+    
     var canGoBack: Bool {
         return true
     }
@@ -101,20 +105,25 @@ class SignUpPasswordHintFormController: FormController {
                 }
                 .shareReplay(1)
             
-            let loadingViewModel = LoadingViewModel([viewModel.loading, allAssetRequest.isLoading(), setBaseAssetRequest.isLoading()])
+            testLoadingViewModel = LoadingViewModel([viewModel.loading.debug("GG: loading view model"), allAssetRequest.isLoading().debug("GG: loading allAssetRequest"), setBaseAssetRequest.isLoading().debug("GG: loading setBaseAssetRequest")])
             
-            loadingViewModel.isLoading
+            testLoadingViewModel?.isLoading
                 .asDriver(onErrorJustReturn: false)
                 .drive(onNext: { button.isEnabled = !$0 })
                 .disposed(by: disposeBag)
-
-            setBaseAssetRequest.map { _ in return () }
-                .bind(to: nextTrigger)
-                .disposed(by: disposeBag)
             
-            loadingViewModel.isLoading
+            testLoadingViewModel?.isLoading
+                .debug("GG: loading", trimOutput: false)
                 .bind(to: loading)
                 .disposed(by: disposeBag)
+
+            // use zip in order to wait till loading for all above three calls has finished before going to next screen.
+            Observable.zip(
+                testLoadingViewModel!.isLoading.filter{ !$0 },
+                setBaseAssetRequest.filterSuccess()
+            ) { _,_ in Void() }
+            .bind(to: nextTrigger)
+            .disposed(by: disposeBag)
             
         #else
             
