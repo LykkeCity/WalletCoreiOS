@@ -1016,3 +1016,9 @@
 
 "selectCountry,newDesign.title" = "SELECT COUNTRY";
 "selectCountry,newDesign.search" = "Search";
+
+"send.newDesign.proceed" = "PROCEED";
+"send.newDesign.selectWalletForTransfer" = "SELECT WALLET FOR TRANSFER";
+"send.newDesign.enterWalletAddress" = "ENTER WALLET ADDRESS";
+"send.newDesign.paste" = "PASTE";
+"send.newDesign.navigationTitle" = "TRANSFER";
