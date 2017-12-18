@@ -95,4 +95,24 @@ extension AppDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     }
+    
+    func buildBlurredImageViewFromVisibleViewController() -> UIImageView? {
+        guard let visibleViewController = self.visibleViewController else {
+            return nil
+        }
+        
+        let screenBounds = UIScreen.main.bounds
+        
+        let blurredImageView = UIImageView(frame: screenBounds)
+        
+        UIGraphicsBeginImageContext(screenBounds.size)
+        visibleViewController.view.drawHierarchy(in: screenBounds, afterScreenUpdates: true)
+        blurredImageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        visualEffectView.frame = screenBounds
+        blurredImageView.addSubview(visualEffectView)
+        
+        return blurredImageView
+    }
 }
