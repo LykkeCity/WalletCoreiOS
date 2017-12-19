@@ -33,7 +33,14 @@ public class IconOverTextButton: UIButton {
         default:
             break
         }
-        switch effectiveContentHorizontalAlignment {
+        let horizontalAlignment: UIControlContentHorizontalAlignment
+        if #available(iOS 11.0, *) {
+            horizontalAlignment = effectiveContentHorizontalAlignment
+        }
+        else {
+            horizontalAlignment = contentHorizontalAlignment
+        }
+        switch horizontalAlignment {
         case .center:
             rect.origin.x += (bounds.width - rect.width) / 2.0
         case .right:
@@ -50,7 +57,14 @@ public class IconOverTextButton: UIButton {
         var rect = CGRect(origin: contentRect.origin, size: titleSize)
         isTitleRectPassedOnce = true
         rect.size.width = min(rect.width, contentRect.width)
-        switch effectiveContentHorizontalAlignment {
+        let horizontalAlignment: UIControlContentHorizontalAlignment
+        if #available(iOS 11.0, *) {
+            horizontalAlignment = effectiveContentHorizontalAlignment
+        }
+        else {
+            horizontalAlignment = contentHorizontalAlignment
+        }
+        switch horizontalAlignment {
         case .center:
             rect.origin.x += (contentRect.width - rect.width) / 2.0
         case .right:
@@ -68,7 +82,14 @@ public class IconOverTextButton: UIButton {
         if contentVerticalAlignment == .fill || contentRect.height < intrinsicContentSize.height {
             rect.size.height = max(contentRect.height - titleRect(forContentRect: contentRect).height - spacing, 0.0)
         }
-        switch effectiveContentHorizontalAlignment {
+        let horizontalAlignment: UIControlContentHorizontalAlignment
+        if #available(iOS 11.0, *) {
+            horizontalAlignment = effectiveContentHorizontalAlignment
+        }
+        else {
+            horizontalAlignment = contentHorizontalAlignment
+        }
+        switch horizontalAlignment {
         case .center:
             rect.origin.x += (contentRect.width - rect.width) / 2.0
         case .right:

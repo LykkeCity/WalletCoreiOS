@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PieChartCenter" customModule="LykkeWallet" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PieChartCenter" customModule="ModernMoney" customModuleProvider="target">
             <connections>
                 <outlet property="addMoneyButton" destination="pDG-ql-9rg" id="EYs-H5-b6o"/>
                 <outlet property="balanceLabel" destination="wA0-dx-HdW" id="D3d-yx-hhO"/>
@@ -28,23 +28,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVx-FD-ESL">
-                    <rect key="frame" x="60" y="60" width="68" height="12"/>
+                    <rect key="frame" x="56.5" y="55.5" width="75" height="14"/>
                     <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11.699999809265137"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="eXt-hG-y9b">
-                    <rect key="frame" x="67" y="72" width="73" height="30"/>
+                    <rect key="frame" x="65.5" y="69.5" width="76" height="35"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-dx-HdW">
-                            <rect key="frame" x="0.0" y="0.0" width="55.5" height="30"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-dx-HdW">
+                            <rect key="frame" x="0.0" y="0.0" width="58.5" height="35"/>
                             <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="30"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BNO-o0-WjS">
-                            <rect key="frame" x="55.5" y="15" width="17.5" height="10"/>
+                            <rect key="frame" x="58.5" y="21" width="17.5" height="10"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDG-ql-9rg">
-                    <rect key="frame" x="56.5" y="110" width="75" height="24"/>
+                    <rect key="frame" x="54" y="112.5" width="80" height="26"/>
                     <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11.699999809265137"/>
                     <state key="normal" title="+ ADD MONEY">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
