@@ -159,6 +159,7 @@
 		A1BCD2DF1D01651D00CF42E4 /* tips_about.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BCD2DE1D01651D00CF42E4 /* tips_about.png */; };
 		A1D65DD21D602B0100828783 /* english_words_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD11D602B0100828783 /* english_words_list.txt */; };
 		A1F4D4A71DCAFF50002EF855 /* lykke-ethereum.html in Resources */ = {isa = PBXBuildFile; fileRef = A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */; };
+		C5B982ED1FE974F300D1A642 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B982EC1FE974F200D1A642 /* UIImageEffects.m */; };
 		CC48AB581F0E802A0081AF27 /* Buy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC48AB571F0E802A0081AF27 /* Buy.storyboard */; };
 		CC8A99AA1EF7BAB80078E6B0 /* AddMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */; };
 		CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94587C1F03D44E00676249 /* EndBankViewController.swift */; };
@@ -341,6 +342,8 @@
 		A1D65DD11D602B0100828783 /* english_words_list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = english_words_list.txt; sourceTree = "<group>"; };
 		A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "lykke-ethereum.html"; sourceTree = "<group>"; };
 		A57C827D33CFD609CABF906F /* Pods-ModernMoney.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.debug.test.xcconfig"; sourceTree = "<group>"; };
+		C5B982EB1FE974F100D1A642 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
+		C5B982EC1FE974F200D1A642 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		CC48AB571F0E802A0081AF27 /* Buy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Buy.storyboard; sourceTree = "<group>"; };
 		CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMoneyViewController.swift; sourceTree = "<group>"; };
 		CC94587C1F03D44E00676249 /* EndBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndBankViewController.swift; sourceTree = "<group>"; };
@@ -555,6 +558,8 @@
 				4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */,
 				66512F3C1FE030A800D7B63B /* UIView+Extensions.swift */,
 				661C030D1FE15E2D003178B3 /* InputForm+Extensions.swift */,
+				C5B982EB1FE974F100D1A642 /* UIImageEffects.h */,
+				C5B982EC1FE974F200D1A642 /* UIImageEffects.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1258,6 +1263,7 @@
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
 				6667F0AB1FD93F74000737CC /* FinalizePendingRequestsTrigger.swift in Sources */,
 				462A2A0E1FA0BF48008D6807 /* AppDelegate+Extensions.swift in Sources */,
+				C5B982ED1FE974F300D1A642 /* UIImageEffects.m in Sources */,
 				668360251FD9B42C00B9D644 /* ReceiveWalletViewController.swift in Sources */,
 				6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */,
 				664676D21FCEF238006FC340 /* SignUpFillProfileFormController.swift in Sources */,

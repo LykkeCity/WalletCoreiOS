@@ -102,16 +102,23 @@ extension AppDelegate {
         }
         
         let screenBounds = UIScreen.main.bounds
+        let blurRadius: CGFloat = 20.0
+        let tintColor = UIColor.clear
+        let saturationDeltaFactor: CGFloat = 2.0
         
         let blurredImageView = UIImageView(frame: screenBounds)
         
         UIGraphicsBeginImageContext(screenBounds.size)
         visibleViewController.view.drawHierarchy(in: screenBounds, afterScreenUpdates: true)
-        blurredImageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame = screenBounds
-        blurredImageView.addSubview(visualEffectView)
+        guard let snapshotImage = UIGraphicsGetImageFromCurrentImageContext(),
+            let blurredSnapshotImage = UIImageEffects.imageByApplyingBlur(to: snapshotImage,
+                                                                      withRadius: blurRadius,
+                                                                      tintColor: tintColor,
+                                                                      saturationDeltaFactor: saturationDeltaFactor,
+                                                                      maskImage: nil) else {
+                                                                        return nil
+        }
+        blurredImageView.image = blurredSnapshotImage
         
         return blurredImageView
     }
