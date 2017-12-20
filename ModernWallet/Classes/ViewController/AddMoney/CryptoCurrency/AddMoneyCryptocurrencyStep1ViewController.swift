@@ -11,33 +11,47 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import WalletCore
+import AlamofireImage
 
 class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
 
     @IBOutlet weak var currenciesTableView: UITableView!
     
     let disposeBag = DisposeBag()
-    let currencies = FakeData.cryptoCyrrency
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         currenciesTableView.backgroundColor = UIColor.clear
 
-        currenciesTableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
-
+        currenciesTableView.register(UINib(nibName: "AddMoneyCryptoCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "AddMoneyCryptoCurrencyTableViewCell")
         
-        currenciesTableView.rx.itemSelected.asObservable()
-            .subscribe(onNext: {[weak self] indexPath in
-                self?.performSegue(withIdentifier: "cc2Segue", sender: self)
-            })
-            .disposed(by: disposeBag)
-        
-        currencies.asObservable()
-            .bind(to: currenciesTableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell", cellType: PortfolioCurrencyTableViewCell.self)) { (row, element, cell) in
-                cell.bind(toCurrency: CryptoCurrencyCellViewModel(element))
+        LWRxAuthManager.instance.lykkeWallets.request()
+            .filterSuccess()
+            .map{$0.lykkeData.wallets.filter {
+                            return ($0 as! LWSpotWallet).asset.blockchainDeposit
+                }.map({ (wallet) -> Variable<LWAddMoneyCryptoCurrencyModel> in
+                    let w: LWSpotWallet = wallet as! LWSpotWallet
+                    return Variable(LWAddMoneyCryptoCurrencyModel(name:w.name,
+                                                                address:w.asset.blockchainDepositAddress,
+                                                                imageUrl:URL(string: w.asset.iconUrlString)))
+                })
+                
+            }.bind(to: currenciesTableView.rx.items(cellIdentifier: "AddMoneyCryptoCurrencyTableViewCell",
+                                                    cellType: AddMoneyCryptoCurrencyTableViewCell.self)) { (row, element, cell) in
+                                                        cell.bind(toCurrency: AddMoneyCryptoCurrencyCellViewModel(element))
             }
             .disposed(by: disposeBag)
+
+
+
+//
+//        currenciesTableView.rx.itemSelected.asObservable()
+//            .subscribe(onNext: {[weak self] indexPath in
+//                self?.performSegue(withIdentifier: "cc2Segue", sender: self)
+//            })
+//            .disposed(by: disposeBag)
+        
     }
 
     override func didReceiveMemoryWarning() {

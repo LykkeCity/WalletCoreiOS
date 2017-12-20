@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GillSans.ttc">
+            <string>GillSans</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="62" id="KGk-i7-Jjw" customClass="AddMoneyCryptoCurrencyTableViewCell" customModule="ModernMoney" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="61.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ddq-Nh-mBn">
+                        <rect key="frame" x="16" y="15" width="31" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31" id="B9X-S3-aIR"/>
+                            <constraint firstAttribute="width" constant="31" id="qWS-jQ-pKt"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="BITCOIN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0n-91-EpA">
+                        <rect key="frame" x="55" y="11" width="211" height="21"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.28733327980000001" green="0.4135307372" blue="0.70203119520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="hwI-ti-GdP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17.600000381469727"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="BITCOIN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqg-qf-ld4">
+                        <rect key="frame" x="55" y="30" width="211" height="21"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.28733327980000001" green="0.4135307372" blue="0.70203119520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="vlA-Oa-tEV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BitcoinQrCode" translatesAutoresizingMaskIntoConstraints="NO" id="IBO-ia-AZe">
+                        <rect key="frame" x="274" y="15" width="31" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="31" id="FPG-qu-dTx"/>
+                            <constraint firstAttribute="height" constant="31" id="j5U-ir-8Ag"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGe-QL-Hfv" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
+                        <rect key="frame" x="10" y="59.5" width="300" height="2"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="oMx-aO-ecu"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="m0n-91-EpA" firstAttribute="leading" secondItem="ddq-Nh-mBn" secondAttribute="trailing" constant="8" id="7Rd-Tv-HSP"/>
+                    <constraint firstItem="IBO-ia-AZe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="H9c-Ft-7JL"/>
+                    <constraint firstItem="vGe-QL-Hfv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="IYD-aU-Uhy"/>
+                    <constraint firstItem="m0n-91-EpA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="JKR-wD-l1w"/>
+                    <constraint firstItem="ddq-Nh-mBn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="bVJ-dG-3uH"/>
+                    <constraint firstItem="Sqg-qf-ld4" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="gPS-AU-xTJ"/>
+                    <constraint firstAttribute="bottom" secondItem="vGe-QL-Hfv" secondAttribute="bottom" id="ndW-lh-YlS"/>
+                    <constraint firstItem="IBO-ia-AZe" firstAttribute="leading" secondItem="m0n-91-EpA" secondAttribute="trailing" constant="8" id="oMK-aH-EyL"/>
+                    <constraint firstAttribute="trailing" secondItem="IBO-ia-AZe" secondAttribute="trailing" constant="15" id="orx-Ec-KPP"/>
+                    <constraint firstItem="Sqg-qf-ld4" firstAttribute="leading" secondItem="ddq-Nh-mBn" secondAttribute="trailing" constant="8" id="qAt-i5-Zef"/>
+                    <constraint firstItem="ddq-Nh-mBn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vYW-qu-Wc6"/>
+                    <constraint firstAttribute="trailing" secondItem="vGe-QL-Hfv" secondAttribute="trailing" constant="10" id="wky-7h-4tp"/>
+                    <constraint firstItem="IBO-ia-AZe" firstAttribute="leading" secondItem="Sqg-qf-ld4" secondAttribute="trailing" constant="8" id="yDM-PQ-TjA"/>
+                </constraints>
+                <variation key="heightClass=compact-widthClass=compact">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cryptoAddressLabel" destination="Sqg-qf-ld4" id="PFb-0C-pQH"/>
+                <outlet property="cryptoNameLabel" destination="m0n-91-EpA" id="68Y-Kn-OLO"/>
+                <outlet property="iconImageView" destination="ddq-Nh-mBn" id="5uE-EB-fPx"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="71"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="BitcoinQrCode" width="173" height="173"/>
+    </resources>
+</document>
