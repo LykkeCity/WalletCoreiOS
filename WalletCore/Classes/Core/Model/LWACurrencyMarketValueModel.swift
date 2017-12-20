@@ -7,19 +7,25 @@
 //
 
 import Foundation
-
 public class LWACurrencyMarketValueModel {
     public typealias Variance = (currency: Asset.Currency, percent: Double)
     
     let name: String
     let capitalization: Asset.Currency
     let variance: Variance
-    let img: UIImage
+    public let imgUrl: URL?
     
     public init(name: String, capitalization: Asset.Currency, variance: Variance) {
         self.name = name
         self.capitalization = capitalization
         self.variance = variance
-        self.img = #imageLiteral(resourceName: "bitcoinCurrency")
+        self.imgUrl = nil
     }
+    public init(name: String, capitalization: Asset.Currency, variance: Variance, imageUrl: URL?) {
+        self.name = name
+        self.capitalization = capitalization
+        self.variance = variance
+        self.imgUrl = imageUrl
+    }
+    
 }
