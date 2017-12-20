@@ -45,12 +45,12 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
 
 
 
-//
-//        currenciesTableView.rx.itemSelected.asObservable()
-//            .subscribe(onNext: {[weak self] indexPath in
-//                self?.performSegue(withIdentifier: "cc2Segue", sender: self)
-//            })
-//            .disposed(by: disposeBag)
+
+        currenciesTableView.rx.itemSelected.asObservable()
+            .subscribe(onNext: {[weak self] indexPath in
+                self?.performSegue(withIdentifier: "cc2Segue", sender: self)
+            })
+            .disposed(by: disposeBag)
         
     }
 
