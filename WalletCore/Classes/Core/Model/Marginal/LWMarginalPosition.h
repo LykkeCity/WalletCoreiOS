@@ -12,21 +12,34 @@
 @class LWMarginalAccount;
 @class LWMarginalWalletAsset;
 
-typedef enum {POSITION, LIMIT_ORDER} ORDER_TYPE;
-typedef enum {STATUS_WAITING, STATUS_ACTIVE, STATUS_CLOSED} POSITION_STATUS;
+typedef NS_ENUM(NSInteger, LWOrderType) {
+  LWOrderTypePosition,
+  LWOrderTypeLimit
+};
 
-typedef enum {NONE = 0, MANUAL, STOP_LOSS, TAKE_PROFIT, MARGIN} CLOSE_REASON;
+typedef NS_ENUM(NSInteger, LWPositionStatus) {
+  LWPositionStatusWaiting,
+  LWPositionStatusActive,
+  LWPositionStatusClosed
+};
 
+typedef NS_ENUM(NSInteger, LWPositionCloseReason) {
+  LWPositionCloseReasonNone = 0,
+  LWPositionCloseReasonManual,
+  LWPositionCloseReasonStopLoss,
+  LWPositionCloseReasonTakeProfit,
+  LWPositionCloseReasonMargin
+};
 
 @interface LWMarginalPosition : NSObject
 
--(id) initWithDict:(NSDictionary *) d;
--(void) updateWithDict:(NSDictionary *) d;
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
+- (void)updateWithDictionary:(NSDictionary *)dict;
 
-+(double) expectedPNLForAsset:(LWMarginalWalletAsset *) asset account:(LWMarginalAccount *) account volume:(double) volume limit:(double) limit isShort:(BOOL) flagShort fromPrice:(double) price position:(LWMarginalPosition *)position;
++ (double)expectedPNLForAsset:(LWMarginalWalletAsset *)asset account:(LWMarginalAccount *)account volume:(double)volume limit:(double)limit isShort:(BOOL)isShort fromPrice:(double)price position:(LWMarginalPosition *)position;
 
-@property (readonly) LWMarginalAccount *account;
-@property (readonly) LWMarginalWalletAsset *asset;
+@property (readonly, nonatomic) LWMarginalAccount *account;
+@property (readonly, nonatomic) LWMarginalWalletAsset *asset;
 
 @property (strong, nonatomic) NSDate *openDate;
 
@@ -34,27 +47,25 @@ typedef enum {NONE = 0, MANUAL, STOP_LOSS, TAKE_PROFIT, MARGIN} CLOSE_REASON;
 @property (strong, nonatomic) NSString *positionId;
 @property (strong, nonatomic) NSString *accountAssetId;
 @property (strong, nonatomic) NSString *assetPairId;
-@property double price;
-@property double stopLoss;
-@property double takeProfit;
-@property double volume;
-@property BOOL flagShort;
+@property (assign, nonatomic) double price;
+@property (assign, nonatomic) double stopLoss;
+@property (assign, nonatomic) double takeProfit;
+@property (assign, nonatomic) double volume;
+@property (assign, nonatomic, getter = isShortPosition) BOOL shortPosition;
 
-@property (readonly) double pAndL;
-@property (readonly) double margin;
-@property (readonly) double marginLowLeverage;
+@property (readonly, nonatomic) double pAndL;
+@property (readonly, nonatomic) double margin;
+@property (readonly, nonatomic) double marginLowLeverage;
 
-@property (readonly) LWMarginalWalletRate *currentRate;
+@property (readonly, nonatomic) LWMarginalWalletRate *currentRate;
 
-@property ORDER_TYPE orderType;
-
-@property POSITION_STATUS status;
-
-@property CLOSE_REASON closeReason;
+@property (readonly, nonatomic) LWOrderType orderType;
+@property (readonly, nonatomic) LWPositionStatus status;
+@property (readonly, nonatomic) LWPositionCloseReason closeReason;
 
 @property (strong, nonatomic) NSNumber *limitOrderOpenPrice;
 
--(double) swapPNL;
--(double) marketPNL;
+- (double)swapPNL;
+- (double)marketPNL;
 
 @end

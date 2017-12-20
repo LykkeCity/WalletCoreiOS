@@ -8,33 +8,37 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {CFD, SPOT} WATCH_LIST_TYPE;
+typedef NS_ENUM(NSInteger, LWWatchListType) {
+  LWWatchListTypeCFD,
+  LWWatchListTypeSPOT
+};
 
 @class LWWatchListElement;
 
 @interface LWWatchList : NSObject
 
--(id) initWithDict:(NSDictionary *) dict type:(WATCH_LIST_TYPE) type;
--(void) updateWithDict:(NSDictionary *) dict;
+- (instancetype)initWithDict:(NSDictionary *)dict type:(LWWatchListType)type;
+- (void)updateWithDict:(NSDictionary *)dict;
 
--(void) addLastOrder;
+- (void)addLastOrder;
 
-@property WATCH_LIST_TYPE type;
+@property (assign, nonatomic) LWWatchListType type;
 
 @property (strong, nonatomic) NSString *accountId;
 @property (strong, nonatomic) NSString *identity;
 @property (strong, nonatomic) NSString *name;
 @property (readonly, nonatomic) NSMutableArray *elements;
-@property BOOL readOnly;
-@property BOOL isSelected;
+@property (readonly, nonatomic) BOOL readOnly;
+@property (assign, nonatomic, getter = isSelected) BOOL selected;
+@property (readonly, assign, nonatomic) BOOL isDefault;
 
-@property int order;
+@property (assign, nonatomic) NSInteger order;
 
 
--(void) addElement:(LWWatchListElement *) element;
--(void) removeElement:(LWWatchListElement *) element;
+-(void)addElement:(LWWatchListElement *) element;
+-(void)removeElement:(LWWatchListElement *) element;
 
--(NSDictionary *) dictionary;
--(LWWatchList *) copy;
+-(NSDictionary *)dictionary;
+-(LWWatchList *)copy;
 
 @end

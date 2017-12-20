@@ -24,7 +24,7 @@
         _dateTime = [date toDate];
         _volume   = [json objectForKey:@"Volume"];
         _asset    = [json objectForKey:@"Asset"];
-        _assetId    = [json objectForKey:@"AssetId"];
+		_orderId  = [json objectForKey:@"OrderId"];
         _iconId   = [json objectForKey:@"IconId"];
         _blockchainHash=[json objectForKey:@"BlockChainHash"];
         _addressFrom=json[@"AddressFrom"];
@@ -33,6 +33,7 @@
         
         _isOffchain = [json[@"State"] isEqualToString:@"InProcessOffchain"] || [json[@"State"] isEqualToString:@"SettledOffchain"];
         _isSettled = [json[@"State"] isEqualToString:@"SettledOnchain"] || [json[@"State"] isEqualToString:@"SettledOffchain"];
+		_isLimitTrade = [json[@"IsLimitTrade"] boolValue];
         
     }
     return self;

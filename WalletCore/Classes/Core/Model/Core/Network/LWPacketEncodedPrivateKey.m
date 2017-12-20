@@ -13,16 +13,22 @@
 
 @implementation LWPacketEncodedPrivateKey
 
+-(id) init {
+    self = [super init];
+    
+    _needGeneratePrivateKey = NO;
+    
+    return self;
+}
+
 - (void)parseResponse:(id)response error:(NSError *)error {
     
-//    if([response[@"Error"] isKindOfClass:[NSDictionary class]] && [response[@"Error"][@"Code"] intValue]==1)  //Error occures
-//    {
-////        [[LWPrivateKeyManager shared] generatePrivateKey];
-////        [[LWAuthManager instance] requestSaveClientKeysWithPubKey:[LWPrivateKeyManager shared].publicKeyLykke encodedPrivateKey:[LWPrivateKeyManager shared].encryptedKeyLykke];
-//        return;
-//    }
     
     [super parseResponse:response error:error];
+    
+    if(self.isRejected && [response[@"Error"][@"Code"] intValue] == 32) {
+        _needGeneratePrivateKey = YES;
+    }
     
     if (self.isRejected) {
         return;
@@ -36,14 +42,19 @@
     
 }
 
+- (GDXRESTPacketType)type {
+    return GDXRESTPacketTypePOST;
+}
+
 
 - (NSString *)urlRelative {
-    return @"EncodedPrivateKey";
+    return @"Client/keys/encodedmainkey";
 }
 
 -(NSDictionary *) params
 {
-    NSDictionary *params=@{@"Password":[LWKeychainManager instance].password};
+    NSDictionary *params=@{@"AccessToken":_accessToken};
+//    NSDictionary *params = @{@"Email":@"a320@a.com"};
     return params;
 }
 

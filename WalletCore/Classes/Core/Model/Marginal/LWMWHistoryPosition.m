@@ -31,9 +31,9 @@
     _assetId = d[@"Instrument"];
     
     _openPrice=[d[@"OpenPrice"] doubleValue];
-    _marketPNL = [d[@"Fpl"] doubleValue];
+    _marketPNL = [d[@"PnL"] doubleValue];
     
-    _interestRateSwapPNL = [d[@"InterestRateSwap"] doubleValue];
+    _interestRateSwapPNL = -[d[@"InterestRateSwap"] doubleValue];
     _totalPNL = [d[@"TotalPnL"] doubleValue];
     _comission = [d[@"OpenCommission"] doubleValue] + [d[@"CloseCommission"] doubleValue];
     
@@ -57,18 +57,8 @@
     _takeProfit = [d[@"TakeProfit"] doubleValue];
     
     
-    int reason = [d[@"CloseReason"] intValue];
-    _closeReason = NONE;
-    if(reason == 0)
-        _closeReason = NONE;
-    else if(reason == 1)
-        _closeReason = MANUAL;
-    else if(reason == 2)
-        _closeReason = STOP_LOSS;
-    else if(reason == 3)
-        _closeReason = TAKE_PROFIT;
-    else if(reason == 4)
-        _closeReason = MARGIN;
+    NSInteger reason = [d[@"CloseReason"] intValue];
+    _closeReason = reason;
     
     _openDate = [self dateFromString:d[@"OpenDate"]];
     _closeDate = [self dateFromString:d[@"CloseDate"]];
@@ -77,7 +67,7 @@
     _currencySymbol = @"";
     for(LWMarginalAccount *acc in [LWMarginalWalletsDataManager shared].accounts) {
         if([acc.identity isEqualToString:_accountId]) {
-            _currencySymbol = [[LWCache instance] currencySymbolForAssetId:acc.baseAssetId];
+            _currencySymbol = [LWCache displayIdForAssetId:acc.baseAssetId];
             break;
         }
     }
@@ -99,7 +89,7 @@
     _accuracy = 2;
     for(LWMarginalAccount *acc in [LWMarginalWalletsDataManager shared].accounts) {
         if([acc.identity isEqualToString:_accountId]) {
-            _currencySymbol = [[LWCache instance] currencySymbolForAssetId:acc.baseAssetId];
+            _currencySymbol = [LWCache displayIdForAssetId:acc.baseAssetId];
             _accuracy = [LWCache accuracyForAssetId:acc.baseAssetId];
             break;
         }

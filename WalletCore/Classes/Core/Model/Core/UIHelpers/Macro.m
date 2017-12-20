@@ -16,4 +16,8 @@ NSString * Localize(NSString *tag) {
 //    return NSLocalizedString(tag, tag);
 }
 
+NSString * NSStringFromClassWithoutModule(Class obj) {
+	NSString *nameWithModule = NSStringFromClass(obj);
+	return [[nameWithModule componentsSeparatedByString:@"."] lastObject];
+}
 

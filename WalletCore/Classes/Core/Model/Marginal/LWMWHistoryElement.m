@@ -39,13 +39,13 @@
     if(_type == OPEN) {
         return @"Open";
     }
-    if(self.closeReason == STOP_LOSS) {
+    if(self.closeReason == LWPositionCloseReasonStopLoss) {
         return @"Close/SL ";
     }
-    else if(self.closeReason == TAKE_PROFIT) {
+    else if(self.closeReason == LWPositionCloseReasonTakeProfit) {
         return @"Close/TP ";
     }
-    else if(self.closeReason == MARGIN) {
+    else if(self.closeReason == LWPositionCloseReasonMargin) {
         return @"Margin Call ";
     }
     else {

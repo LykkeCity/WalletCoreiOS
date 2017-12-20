@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <EasyMapping/EasyMapping.h>
 
-
-@interface LWJSONObject : NSObject {
+@interface LWJSONObject : NSObject <EKMappingProtocol> {
     
 }
 

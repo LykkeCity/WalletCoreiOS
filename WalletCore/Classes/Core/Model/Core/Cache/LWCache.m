@@ -10,8 +10,14 @@
 #import "LWAssetModel.h"
 #import "LWUtils.h"
 #import "LWWatchList.h"
+#import "LWUserDefault.h"
+#import "LWKeychainManager.h"
+#import "LWLykkeData.h"
+#import "LWSpotWallet.h"
+#import "LWAssetPairModel.h"
 
-#define SMS_DELAY 59
+static const NSTimeInterval kSMSDelay = 59.0;
+static double kDefaultMarketOrderPriceDeviation = 10;
 
 @implementation LWCache
 
@@ -19,157 +25,70 @@
 #pragma mark - Root
 
 SINGLETON_INIT {
-    self = [super init];
-    if (self) {
-        // initial values
-        
-        _pushNotificationsStatus=PushNotificationsStatusUnknown;
-        _refreshTimer = [NSNumber numberWithInteger:5000];
-        _debugMode    = NO;
-        self.cachedAssetPairsRates=[[NSMutableDictionary alloc] init];
-        _cachedBuyOrders=[[NSMutableDictionary alloc] init];
-        _cachedSellOrders=[[NSMutableDictionary alloc] init];
-        self.showMyLykkeTab=NO;
-        
-        _smsRetriesLeft=3;
-
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logPacketHeaders:) name:@"PacketHeadersToLog" object:nil];
-    }
-    return self;
-}
-
--(void) setIsUserFromUSA:(BOOL)isUserFromUSA {
-    [[NSUserDefaults standardUserDefaults] setBool:isUserFromUSA forKey:@"TheUserIsFromUSA"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
--(BOOL) isUserFromUSA {
-//  return YES; //Testing
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"TheUserIsFromUSA"];
-}
-
--(BOOL) flagShowMarginWallets {
-//    return NO; //Testing
+  self = [super init];
+  if (self) {
+    // initial values
     
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"ShowMarginTrading"] boolValue];
-}
-
--(BOOL) flagShowMarginWalletsLive {
-    //@"ShowMarginTradingLive"
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"ShowMarginTradingLive"] boolValue];
-
-}
-
--(BOOL) flagOffchainRequests {
-
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"UseOffchainOperations"] boolValue];
-}
-
--(BOOL) flagMarginTermsOfUseAgreed {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"MarginTermsOfUseAgreed"] boolValue];
-}
-
--(void) setFlagMarginTermsOfUseAgreed:(BOOL)flagMarginTermsOfUseAgreed {
-    [[NSUserDefaults standardUserDefaults] setObject:@(flagMarginTermsOfUseAgreed) forKey:@"MarginTermsOfUseAgreed"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    self.pushNotificationsStatus = PushNotificationsStatusUnknown;
+    self.refreshTimer = [NSNumber numberWithInteger:5000];
+    self.debugMode = NO;
+    self.cachedAssetPairsRates= [NSMutableDictionary new];
+    self.cachedBuyOrders = [NSMutableDictionary new];
+    self.cachedSellOrders = [NSMutableDictionary new];
+    self.showMyLykkeTab = NO;
+    
+    self.smsRetriesLeft = 3;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logPacketHeaders:) name:@"PacketHeadersToLog" object:nil];
+  }
+  return self;
 }
 
 - (BOOL)isMultisigAvailable {
-    return (self.multiSig != nil
-            && ![self.multiSig isKindOfClass:[NSNull class]]
-            && ![self.multiSig isEqualToString:@""]);
+  return (self.multiSig != nil
+          && ![self.multiSig isKindOfClass:[NSNull class]]
+          && ![self.multiSig isEqualToString:@""]);
 }
 
-+(BOOL) shouldHideDepositForAssetId:(NSString *)assetID
-{
-    BOOL shouldHide=YES;
-    for(LWAssetModel *asset in [LWCache instance].allAssets)
-    {
-        if([asset.identity isEqualToString:assetID])
-        {
-            shouldHide = !(asset.visaDeposit || asset.swiftDeposit || asset.blockchainDeposit);
-//            shouldHide=!((asset.bankCardDepositEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"])
-//                         ||
-//                         (asset.swiftDepositEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:@"SwiftDepositEnabled"])
-//                         ||
-//                         asset.blockchainDepositEnabled
-//                         );
-            break;
-        }
+- (NSString *)ethereumAddress {
+  for (LWAssetModel *asset in self.allAssets) {
+    if ([asset.identity isEqualToString:self.etherAssetId]) {
+      return asset.blockchainDepositAddress;
     }
-    
-    return shouldHide;
-
+  }
+  return nil;
 }
 
-
-+(BOOL) shouldHideWithdrawForAssetId:(NSString *)assetID
-{
-    BOOL shouldHide=NO;
-    for(LWAssetModel *asset in [LWCache instance].allAssets)
-    {
-        if([asset.identity isEqualToString:assetID])
-        {
-            shouldHide=asset.hideWithdraw;
-            break;
-        }
-    }
-    
-    return shouldHide;
-
-//    NSArray *arr=@[@"USD",@"EUR", @"CHF", @"GBP", @"BTC", @"LKK"];
-//    return [arr containsObject:assetID];
++ (BOOL)shouldHidePlusForAssetId:(NSString *)assetID {
+	LWAssetModel *asset = [self assetById:assetID];
+	return !(asset.visaDeposit || asset.swiftDeposit || asset.blockchainDeposit || asset.buyScreen);
 }
 
-+(BOOL) isBankCardDepositEnabledForAssetId:(NSString *)assetID
-{
-    for(LWAssetModel *asset in [LWCache instance].allAssets)
-    {
-        if([asset.identity isEqualToString:assetID])
-        {
-            return asset.bankCardDepositEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:@"CanCashInViaBankCard"];
-        }
-    }
-    return NO;
-
++ (BOOL)shouldHideDepositForAssetId:(NSString *)assetID {
+	LWAssetModel *asset = [self assetById:assetID];
+	return !(asset.visaDeposit || asset.swiftDeposit || asset.blockchainDeposit);
 }
 
-+(BOOL) isSwiftDepositEnabledForAssetId:(NSString *)assetID
-{
-    for(LWAssetModel *asset in [LWCache instance].allAssets)
-    {
-        if([asset.identity isEqualToString:assetID])
-        {
-            return asset.swiftDepositEnabled && [[NSUserDefaults standardUserDefaults] boolForKey:@"SwiftDepositEnabled"];
-        }
-    }
-    return NO;
++ (BOOL)shouldHideWithdrawForAssetId:(NSString *)assetID {
+	return [self assetById:assetID].hideWithdraw;
 }
 
-+(BOOL) isBlockchainDepositEnabledForAssetId:(NSString *) assetID
-{
-    for(LWAssetModel *asset in [LWCache instance].allAssets)
-    {
-        if([asset.identity isEqualToString:assetID])
-        {
-            return asset.blockchainDepositEnabled;
-        }
-    }
-    return NO;
-
++ (BOOL)isBankCardDepositEnabledForAssetId:(NSString *)assetID {
+	LWAssetModel *asset = [self assetById:assetID];
+	return asset.bankCardDepositEnabled && [LWKeychainManager instance].canCashInViaBankCard;
 }
 
-+(NSString *) currentAppVersion
-{
-    
-    NSString *version= [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
-    NSString *buildNum=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    if(version && buildNum)
-    {
-        return [NSString stringWithFormat:@"Version %@ (%@)", buildNum, version];
++ (BOOL)isSwiftDepositEnabledForAssetId:(NSString *)assetID {
+	return [self assetById:assetID].swiftDepositEnabled && [[self instance] isSwiftDepositEnabled];
+}
+
++ (BOOL)isBlockchainDepositEnabledForAssetId:(NSString *)assetID {
+  for (LWAssetModel *asset in [LWCache instance].allAssets) {
+    if ([asset.identity isEqualToString:assetID]) {
+      return asset.blockchainDepositEnabled;
     }
-    return nil;
+  }
+  return NO;
 }
 
 -(NSString *) currencySymbolForAssetId:(NSString *)assetId
@@ -197,218 +116,156 @@ SINGLETON_INIT {
     return symbol;
 }
 
-+(NSString *) nameForAsset:(NSString *) assetId
-{
-    for(LWAssetModel *asset in [LWCache instance].allAssets)
-    {
-        if([asset.identity isEqualToString:assetId])
-            return asset.name;
++ (NSString *)currentAppVersion {
+  NSString *version= [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+  NSString *buildNum=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+  if (version && buildNum) {
+    return [NSString stringWithFormat:@"Version %@ (%@)", buildNum, version];
+  }
+  return nil;
+}
+
++ (NSString *)nameForAsset:(NSString *)assetId {
+  for (LWAssetModel *asset in [LWCache instance].allAssets) {
+    if ([asset.identity isEqualToString:assetId]) {
+      return asset.name;
     }
-    return @"";
+  }
+  return @"";
 }
 
-+(BOOL) isBaseAsset:(NSString *) assetId
-{
-    BOOL flag=NO;
-    for(LWAssetModel *asset in [LWCache instance].baseAssets)
-    {
-        if([asset.identity isEqualToString:assetId])
-        {
-            flag=YES;
-            break;
-        }
++ (BOOL)isBaseAsset:(NSString *)assetId {
+  for (LWAssetModel *asset in [LWCache instance].baseAssets) {
+    if ([asset.identity isEqualToString:assetId]) {
+      return YES;
     }
-    return flag;
+  }
+  return NO;
 }
 
--(NSString *) baseAssetSymbol
-{
-    return [self currencySymbolForAssetId:self.baseAssetId];
+- (NSString *)baseAssetSymbol {
+  return [LWCache displayIdForAssetId:self.baseAssetId];
 }
 
-+(int) accuracyForAssetId:(NSString *)assetId
-{
-    for(LWAssetModel *asset in [LWCache instance].allAssets)
-    {
-        if([asset.identity isEqualToString:assetId])
-            return asset.accuracy.intValue;
++ (int)accuracyForAssetId:(NSString *)assetId {
+  for (LWAssetModel *asset in [LWCache instance].allAssets) {
+    if ([asset.identity isEqualToString:assetId])
+      return asset.accuracy.intValue;
+  }
+  return 0;
+}
+
+- (NSNumber *)marketOrderPriceDeviation {
+  return _marketOrderPriceDeviation ?: @(kDefaultMarketOrderPriceDeviation);
+}
+
+- (void)startTimerForSMS {
+  _smsDelaySecondsLeft = kSMSDelay;
+  [self.timerSMS invalidate];
+  self.timerSMS = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(smsDelayTimerFired) userInfo:nil repeats:YES];
+  [[NSRunLoop currentRunLoop] addTimer:self.timerSMS forMode:NSDefaultRunLoopMode];
+}
+
+- (void)smsDelayTimerFired {
+  _smsDelaySecondsLeft--;
+  if(_smsDelaySecondsLeft <= 0) {
+    _smsRetriesLeft--;
+    [self.timerSMS invalidate];
+    self.timerSMS = nil;
+    if ([self.smsDelayDelegate respondsToSelector:@selector(smsTimerFinished)]) {
+      [self.smsDelayDelegate smsTimerFinished];
     }
-    return 0;
-}
-
-
--(void) startTimerForSMS
-{
-    _smsDelaySecondsLeft=SMS_DELAY;
-    _timerSMS=[NSTimer timerWithTimeInterval:1 target:self selector:@selector(smsDelayTimerFired) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:_timerSMS forMode:NSDefaultRunLoopMode];
-}
-
--(void) smsDelayTimerFired
-{
-    _smsDelaySecondsLeft--;
-    if(_smsDelaySecondsLeft==0)
-    {
-        _smsRetriesLeft--;
-        [_timerSMS invalidate];
-        _timerSMS=nil;
-        if([_smsDelayDelegate respondsToSelector:@selector(smsTimerFinished)])
-        {
-            [_smsDelayDelegate smsTimerFinished];
-        }
+  } else {
+    if ([self.smsDelayDelegate respondsToSelector:@selector(smsTimerFired)]) {
+      [self.smsDelayDelegate smsTimerFired];
     }
-    else
-    {
-        if([_smsDelayDelegate respondsToSelector:@selector(smsTimerFired)])
-        {
-            [_smsDelayDelegate smsTimerFired];
-        }
+  }
+}
 
+- (void)logPacketHeaders:(NSNotification *)notification {
+  [LWUtils appendToLogFile:notification.object];
+}
+
+- (NSMutableArray *)marginalWatchLists {
+  return _marginalWatchLists;
+}
+
+- (LWWatchList *)currentSpotWatchList {
+  for (LWWatchList *list in self.spotWatchLists) {
+    if (list.isSelected) {
+      return list;
     }
+  }
+  return nil;
 }
 
--(void) logPacketHeaders:(NSNotification *) notification
-{
-    [LWUtils appendToLogFile:notification.object];
-}
-
--(NSArray *) lastMarginalBaseAssets
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"LastMarginalBaseAssets"];
-}
-
--(void) setLastMarginalBaseAssets:(NSArray *)lastMarginalBaseAssets
-{
-    [[NSUserDefaults standardUserDefaults] setObject:lastMarginalBaseAssets forKey:@"LastMarginalBaseAssets"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
--(NSString *) currentMarginalBaseAsset
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentMarginalBaseAsset"];
-    
-}
-
--(void) setCurrentMarginalBaseAsset:(NSString *)currentMarginalBaseAsset
-{
-    [[NSUserDefaults standardUserDefaults] setObject:currentMarginalBaseAsset forKey:@"CurrentMarginalBaseAsset"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
--(NSMutableArray *) marginalWatchLists
-{
-    return _marginalWatchLists;
-    
-    if(_marginalWatchLists)
-        return _marginalWatchLists;
-    
-    
-    NSArray *arr=[[NSUserDefaults standardUserDefaults] objectForKey:@"MarginalWatchLists"];
-//    if(!arr)
-//    {
-//        
-//        NSMutableArray *aaa=[[NSMutableArray alloc] init];
-//        [aaa addObject:@{@"name":@"Forex", @"assets":@[@"EURUSD", @"BTCUSD", @"BTCLKK"], @"isSelected":@(YES)}];
-//        [aaa addObject:@{@"name":@"Custom", @"assets":@[@"ETHLKK", @"BTCGBP", @"BTCEUR"], @"isSelected":@(NO)}];
-//        arr=aaa;
-//    }
-    NSMutableArray *lists=[[NSMutableArray alloc] init];
-    for(NSDictionary *d in arr)
-    {
-        LWWatchList *list=[[LWWatchList alloc] initWithDict:d type:CFD];
-        [lists addObject:list];
+- (LWWatchList *)currentMarginWatchList {
+  for (LWWatchList *list in self.marginalWatchLists) {
+    if (list.isSelected) {
+      return list;
     }
-    _marginalWatchLists=lists;
-    
-    return _marginalWatchLists;
+  }
+  return nil;
 }
 
--(NSMutableArray *) spotWatchLists {
-    return _spotWatchLists;
-//    if(_spotWatchLists)
-//        return _spotWatchLists;
-//
-//    NSArray *arr=[[NSUserDefaults standardUserDefaults] objectForKey:@"SpotWatchLists"];
-//    BOOL flagNew = false;
-//    if(!arr)
-//    {
-//        NSMutableArray *aaa=[[NSMutableArray alloc] init];
-//        for(LWAssetModel *a in self.allAssetPairs) {
-//            [aaa addObject:a.identity];
-//        }
-//        
-////        [aaa addObject:@{@"name":@"Forex", @"assets":@[@"EURUSD", @"BTCUSD", @"BTCLKK"], @"isSelected":@(YES)}];
-////        [aaa addObject:@{@"name":@"Custom", @"assets":@[@"ETHLKK", @"BTCGBP", @"BTCEUR"], @"isSelected":@(NO)}];
-//        arr = @[@{@"Name": @"All assets", @"AssetIds": aaa, @"ReadOnly": @(YES), @"Id":@"SPOTDefaultAllAssetsWatchList"}];
-//        flagNew = true;
-//    }
-//    NSMutableArray *lists=[[NSMutableArray alloc] init];
-//    for(NSDictionary *d in arr)
-//    {
-//        LWWatchList *list=[[LWWatchList alloc] initWithDict:d type:SPOT];
-//        [lists addObject:list];
-//    }
-//    _spotWatchLists=lists;
-//    
-//    if(flagNew)
-//    {
-//        LWWatchList *l = _spotWatchLists.firstObject;
-//        l.isSelected = true;
-//    }
-//    
-//    return _spotWatchLists;
-
-}
-
--(void) saveWatchLists
-{
-//    if(_marginalWatchLists)
-//    {
-//        NSMutableArray *arr=[[NSMutableArray alloc] init];
-//        
-//        for(LWWatchList *list in _marginalWatchLists)
-//        {
-//            NSDictionary *dict=[list dictionary];
-//            [arr addObject:dict];
-//        }
-//        [[NSUserDefaults standardUserDefaults] setObject:arr forKey:@"MarginalWatchLists"];
-//    }
-    
-//    if(_spotWatchLists)
-//    {
-//        NSMutableArray *arr=[[NSMutableArray alloc] init];
-//        
-//        for(LWWatchList *list in _spotWatchLists)
-//        {
-//            NSDictionary *dict=[list dictionary];
-//            [arr addObject:dict];
-//        }
-//        [[NSUserDefaults standardUserDefaults] setObject:arr forKey:@"SpotWatchLists"];
-//    }
-//
-//    
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    
-}
-
-+(NSString *) displayIdForAssetId:(NSString *)assetId {
-    for(LWAssetModel *m in [LWCache instance].allAssets) {
-        if([m.identity isEqualToString:assetId]) {
-            return m.displayId;
-        }
++ (NSString *)displayIdForAssetId:(NSString *)assetId {
+  for(LWAssetModel *m in [LWCache instance].allAssets) {
+    if([m.identity isEqualToString:assetId]) {
+      return m.displayId;
     }
-    return @"";
+  }
+  return @"";
 }
 
-+(LWAssetModel *) assetById:(NSString *)assetId {
-    for(LWAssetModel *m in [LWCache instance].allAssets) {
-        if([m.identity isEqualToString:assetId]) {
-            return m;
-        }
++ (LWAssetModel *)assetById:(NSString *)assetId {
+  for(LWAssetModel *m in [LWCache instance].allAssets) {
+    if([m.identity isEqualToString:assetId]) {
+      return m;
     }
-    return nil;
+  }
+  return nil;
 }
 
++ (NSNumber *)accuracyForAssetWithId:(NSString *)identity {
+  for (LWAssetModel *asset in [LWCache instance].allAssets) {
+    if ([asset.identity isEqualToString:identity]) {
+      return asset.accuracy;
+    }
+  }
+  return @(0);
+}
+
++ (LWSpotWallet *)walletForAssetId:(NSString *)assetId {
+  for (LWSpotWallet *wallet in [LWCache instance].walletsData.wallets) {
+    if ([wallet.asset.identity isEqualToString:assetId]) {
+      return wallet;
+    }
+  }
+  return nil;
+}
+
++ (LWAssetPairModel *)assetPairById:(NSString *)assetPairId {
+  for (LWAssetPairModel *pair in [LWCache instance].allAssetPairs) {
+    if ([pair.identity isEqualToString:assetPairId]) {
+      return pair;
+    }
+  }
+  return nil;
+}
+
++ (LWAssetPairModel *)assetPairForAssetId:(NSString *)assetId otherAssetId:(NSString *)otherAssetId {
+	for (LWAssetPairModel *pair in [LWCache instance].allAssetPairs) {
+		if (([pair.baseAssetId isEqualToString:assetId] && [pair.quotingAssetId isEqualToString:otherAssetId]) ||
+			([pair.quotingAssetId isEqualToString:assetId] && [pair.baseAssetId isEqualToString:otherAssetId])) {
+			return pair;
+		}
+	}
+	return nil;
+}
+
++ (void)logout {
+  [[LWUserDefault instance] reset];
+  [self reset];
+}
 
 @end

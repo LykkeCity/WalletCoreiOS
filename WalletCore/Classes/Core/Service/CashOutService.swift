@@ -45,27 +45,14 @@ public class CashOutService {
     
     public func swiftCashOut(withData data: CashOutData
     ) -> Observable<ApiResult<LWModelCashOutSwiftResult>> {
-        if cache.flagOffchainRequests {
-            return offchainService.cashOutSwift(amount: data.amount,
-                                                fromAsset: data.asset,
-                                                toBank: data.bankName,
-                                                iban: data.iban,
-                                                bic: data.bic,
-                                                accountHolder: data.accountHolder,
-                                                accountHolderAddress: data.accountHolderAddress)
-                .mapToCashOutSwiftResult(withData: data)
-        }
-        else {
-            let body = LWPacketCashOutSwift.Body(amount: data.amount,
-                                                 asset: data.asset.identity,
-                                                 bankName: data.bankName,
-                                                 iban: data.iban,
-                                                 bic: data.bic,
-                                                 accountHolder: data.accountHolder,
-                                                 accountHolderAddress: data.accountHolderAddress)
-            return authManager.cashOutSwift.request(withParams: body)
-                .mapToCashOutSwiftResult(withData: data)
-        }
+        return offchainService.cashOutSwift(amount: data.amount,
+                                            fromAsset: data.asset,
+                                            toBank: data.bankName,
+                                            iban: data.iban,
+                                            bic: data.bic,
+                                            accountHolder: data.accountHolder,
+                                            accountHolderAddress: data.accountHolderAddress)
+            .mapToCashOutSwiftResult(withData: data)
     }
 
 }

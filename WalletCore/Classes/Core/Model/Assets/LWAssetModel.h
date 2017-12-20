@@ -8,16 +8,21 @@
 
 #import "LWJSONObject.h"
 
-typedef enum {BLOCKCHAIN_TYPE_BITCOIN, BLOCKCHAIN_TYPE_ETHEREUM, BLOCKCHAIN_TYPE_NONE} BLOCKCHAIN_TYPE;
+extern NSString * const kBTC_ID;
+extern NSString * const kETH_ID;
+extern NSString * const kETH_GUID;
 
-@interface LWAssetModel : LWJSONObject {
-    
-}
+typedef NS_ENUM(NSInteger, LWBlockchainType) {
+  LWBlockchainTypeBitcoint = 0,
+  LWBlockchainTypeEthereum,
+  LWBlockchainTypeNone
+};
 
+@interface LWAssetModel : LWJSONObject
 
 #pragma mark - Properties
 
-@property (readonly) BLOCKCHAIN_TYPE blockchainType;
+@property (readonly) LWBlockchainType blockchainType;
 
 @property (readonly, nonatomic) NSString *identity;
 @property (readonly, nonatomic) NSString *name;
@@ -32,36 +37,34 @@ typedef enum {BLOCKCHAIN_TYPE_BITCOIN, BLOCKCHAIN_TYPE_ETHEREUM, BLOCKCHAIN_TYPE
 @property (readonly, nonatomic) NSString *iconUrlString;
 
 @property (strong, nonatomic) NSString *blockchainDepositAddress;
-//@property (readonly) BOOL hideDeposit;     теперь решаем по флагам ниже и по флагам получаемым при Auth
 
+@property (strong, nonatomic) NSString *assetType;
 
-@property BOOL visaDeposit;
-@property BOOL swiftDeposit;
-@property BOOL blockchainDeposit;
-@property BOOL buyScreen;
+@property (assign, nonatomic) BOOL visaDeposit;
+@property (assign, nonatomic) BOOL swiftDeposit;
+@property (assign, nonatomic) BOOL blockchainDeposit;
+@property (assign, nonatomic) BOOL buyScreen;
 
-@property BOOL visaWithdraw;
-@property BOOL swiftWithdraw;
-@property BOOL blockchainWithdraw;
-@property BOOL sellScreen;
+@property (assign, nonatomic) BOOL visaWithdraw;
+@property (assign, nonatomic) BOOL swiftWithdraw;
+@property (assign, nonatomic) BOOL blockchainWithdraw;
+@property (assign, nonatomic) BOOL sellScreen;
 
+@property (assign, nonatomic) BOOL crossChainWithdrawal;  //Flag another blockchain (not Bitcoin). For SLR, ETH etc.
 
-@property BOOL crossChainWithdrawal;  //Flag another blockchain (not Bitcoin). For SLR, ETH etc.
-
-@property BOOL forwardWithdrawal; //Flag settlement is possible
+@property (assign, nonatomic) BOOL forwardWithdrawal; //Flag settlement is possible
 @property (readonly, nonatomic) NSString *forwardWithdrawalBaseAssetId;
-@property int forwardFrozenDays;
+@property (readonly, nonatomic) NSInteger forwardFrozenDays;
 @property (strong, nonatomic) NSString *forwardWithdrawalMemorandumUrl;
 
+@property (readonly, nonatomic) BOOL hideWithdraw;
 
-@property (readonly) BOOL hideWithdraw;
+@property (readonly, nonatomic) BOOL bankCardDepositEnabled;
+@property (readonly, nonatomic) BOOL swiftDepositEnabled;
+@property (readonly, nonatomic) BOOL blockchainDepositEnabled;
 
-@property (readonly) BOOL bankCardDepositEnabled;
-@property (readonly) BOOL swiftDepositEnabled;
-@property (readonly) BOOL blockchainDepositEnabled;
-
-
-
+@property (readonly, nonatomic) BOOL isErc20;
+@property (readonly, nonatomic, getter = isTrusted) BOOL trusted;
 #pragma mark - Root
 
 + (NSString *)assetByIdentity:(NSString *)identity fromList:(NSArray *)list;

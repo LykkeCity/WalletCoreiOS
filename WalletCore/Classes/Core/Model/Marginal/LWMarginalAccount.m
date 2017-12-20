@@ -9,6 +9,7 @@
 #import "LWMarginalAccount.h"
 #import "LWMarginalWalletsDataManager.h"
 #import "LWMarginalPosition.h"
+#import "LWUserDefault.h"
 
 @interface LWMarginalAccount()
 {
@@ -23,40 +24,27 @@
 
 @implementation LWMarginalAccount
 
--(id) initWithDict:(NSDictionary *) dict
-{
-    self=[super init];
-    
-//    _isCurrent=NO;
+- (instancetype)initWithDict:(NSDictionary *)dict {
+  self=[super init];
+  if (self) {
+    _collateral = 0;
+    _withdrawTransferLimit = [dict[@"WithdrawTransferLimit"] doubleValue];
+    _transferType = [dict[@"FundsTransferType"] isEqualToString:@"Loan"] ? LWFoundsTransferTypeLoan : LWFoundsTransferTypeDirect;
     _identity=dict[@"Id"];
     _userId=dict[@"UserId"];
-//    _leverage=[dict[@"Leverage"] doubleValue];
     _baseAssetId=dict[@"BaseAssetId"];
     _balance=[dict[@"Balance"] doubleValue];
-//    _availableBalance=[dict[@"AvailableBalance"] doubleValue];
-//    if(dict[@"IsCurrent"])
-//        _isCurrent=[dict[@"IsCurrent"] boolValue];
-//    _margin=[dict[@"Margin"] doubleValue];
-//    _freeMargin=[dict[@"FreeMargin"] doubleValue];
-//    _openPositionsCount=[dict[@"OpenPositionsCount"] intValue];
-//    _profitLoss=[dict[@"ProfitLoss"] doubleValue];
-    
     _isDemo = true;
-    
-    return self;
+  }
+  return self;
 }
 
--(void) setIsCurrent:(BOOL)isCurrent {
-    
-    [[NSUserDefaults standardUserDefaults] setObject:_identity forKey:@"CurrentMarginalAccountId"];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    });
-    
+- (void)setIsCurrent:(BOOL)isCurrent {
+  [LWUserDefault instance].currentMarginalAccountId = self.identity;
 }
 
--(BOOL) isCurrent {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"CurrentMarginalAccountId"] isEqualToString:_identity];
+- (BOOL)isCurrent {
+    return [[LWUserDefault instance].currentMarginalAccountId isEqualToString:_identity];
 }
 
 -(void) calc:(BOOL) flagLowMargin

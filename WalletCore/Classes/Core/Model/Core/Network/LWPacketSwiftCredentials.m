@@ -20,23 +20,17 @@
         return;
     }
     
-    NSArray *arr=result.allKeys;
+    LWSwiftCredentialsModel *c=[LWSwiftCredentialsModel new];
+    c=[[LWSwiftCredentialsModel alloc] init];
+    c.bic=result[@"BIC"];
+    c.accountNumber=result[@"AccountNumber"];
+    c.accountName=result[@"AccountName"];
+    c.purposeOfPayment=result[@"PurposeOfPayment"];
+    c.bankAddress=result[@"BankAddress"];
+    c.correspondentBank = result[@"CorrespondentAccount"] ?: @"";
+    c.companyAddress=result[@"CompanyAddress"];
     
-    NSMutableDictionary *swiftCredentialsDict=[[NSMutableDictionary alloc] init];
-    for(NSString *key in arr)
-    {
-        LWSwiftCredentialsModel *c=[LWSwiftCredentialsModel new];
-        c=[[LWSwiftCredentialsModel alloc] init];
-        c.bic=result[key][@"BIC"];
-        c.accountNumber=result[key][@"AccountNumber"];
-        c.accountName=result[key][@"AccountName"];
-        c.purposeOfPayment=result[key][@"PurposeOfPayment"];
-        c.bankAddress=result[key][@"BankAddress"];
-        c.companyAddress=result[key][@"CompanyAddress"];
-        swiftCredentialsDict[key]=c;
-    }
-    
-    [LWCache instance].swiftCredentialsDict=swiftCredentialsDict;;
+    _credentials = c;
     
 }
 
@@ -45,7 +39,7 @@
 }
 
 - (NSString *)urlRelative {
-    return [NSString stringWithFormat:@"SwiftCredentials"];
+    return [NSString stringWithFormat:@"SwiftCredentials/%@", _assetId];
 }
 
 

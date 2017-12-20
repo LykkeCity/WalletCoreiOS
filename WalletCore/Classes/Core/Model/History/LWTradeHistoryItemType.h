@@ -17,9 +17,9 @@
     
 }
 
-
-
 @property (strong, nonatomic) LWExchangeInfoModel *marketOrder;
+@property (assign, nonatomic) BOOL isLimitTrade;
+@property (strong, nonatomic) NSString *orderId;
 
 + (LWTradeHistoryItemType *)convertFromNetworkModel:(LWTransactionTradeModel *)model;
 

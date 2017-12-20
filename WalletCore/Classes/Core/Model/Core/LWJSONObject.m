@@ -21,4 +21,10 @@
     return self;
 }
 
++ (EKObjectMapping *)objectMapping {
+	return [EKObjectMapping mappingForClass:self withBlock:^(EKObjectMapping *mapping) {
+		
+	}];
+}
+
 @end

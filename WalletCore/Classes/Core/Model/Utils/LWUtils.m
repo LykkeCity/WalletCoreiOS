@@ -21,11 +21,47 @@
         if ([issuerId isEqualToString:@"BTC"]) {
             return [UIImage imageNamed:@"WalletBitcoin"];
         }
+#ifdef PROJECT_IATA
+        else if ([issuerId isEqualToString:@"LKE"]) {
+            return [UIImage imageNamed:@"IATAWallet"];
+        }        
+#else
         else if ([issuerId isEqualToString:@"LKE"]) {
             return [UIImage imageNamed:@"WalletLykke"];
         }
+#endif
     }
     return nil;
+}
+
++ (UIImage *)imageForIATAId:(NSString *)imageType {
+#ifdef PROJECT_IATA
+    if (imageType) {
+        if ([imageType isEqualToString:@"EK"]) {
+            return [UIImage imageNamed:@"EmiratesIcon"];
+        }
+        else if ([imageType isEqualToString:@"QR"]) {
+            return [UIImage imageNamed:@"QatarIcon"];
+        }
+        else if ([imageType isEqualToString:@"BA"]) {
+            return [UIImage imageNamed:@"BritishAirwaysIcon"];
+        }
+        else if ([imageType isEqualToString:@"DL"]) {
+            return [UIImage imageNamed:@"DeltaAirLinesIcon"];
+        }
+        else if ([imageType isEqualToString:@"IT"]) {
+            return [UIImage imageNamed:@"IATAIcon"];
+        }
+        else {
+            return nil;
+        }
+    }
+    else {
+        return nil;
+    }
+#else
+    return nil;
+#endif
 }
 
 +(NSNumber *) accuracyForAssetId:(NSString *) assetID
@@ -91,38 +127,45 @@
     return string;
 }
 
-+(double) fairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher
-{
-    NSString *formatString=[NSString stringWithFormat:@"%d",accuracy];
-    formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"lf"];
-    NSString *tmpStr=[NSString stringWithFormat:formatString,volume];
-    
-    
-    double append=1;
-    int acc=accuracy+2;
-    while(acc>0)
-    {
-        append=append/10;
-        acc--;
-    }
-    
-    if((tmpStr.doubleValue>volume-append && flagRoundHigher) || tmpStr.doubleValue==volume || (tmpStr.doubleValue<volume+append && flagRoundHigher==NO))
-        return tmpStr.doubleValue;
-    
-    
-    append=1;
-    acc=accuracy;
-    while(acc>0)
-    {
-        append=append/10;
-        acc--;
-    }
-    if(flagRoundHigher)
-        volume=tmpStr.doubleValue+append;
-    else
-        volume=tmpStr.doubleValue-append;
-    return volume;
-    
++ (double)fairVolume:(double)volume accuracy:(int)accuracy roundToHigher:(BOOL)flagRoundHigher {
+	return [self fairVolume:volume accuracy:accuracy roundType:flagRoundHigher ? LWRoundTypeToHigher : LWRoundTypeToLower];
+}
+
++ (double)fairVolume:(double)volume accuracy:(int)accuracy roundType:(LWRoundType)roundType {
+	NSString *formatString = [NSString stringWithFormat:@"%%.%dlf", accuracy];
+	NSString *tmpStr = [NSString stringWithFormat:formatString, volume];
+	
+	double append = 1;
+	int acc = accuracy + 2;
+	while (acc > 0)	{
+		append = append/10;
+		acc--;
+	}
+	
+	if ((tmpStr.doubleValue > volume-append && roundType == LWRoundTypeToHigher) ||
+		(tmpStr.doubleValue < volume+append && roundType == LWRoundTypeToLower) ||
+		tmpStr.doubleValue == volume) {
+		return tmpStr.doubleValue;
+	}
+	
+	append = 1;
+	acc = accuracy;
+	while (acc > 0)	{
+		append = append/10;
+		acc--;
+	}
+	
+	if (roundType == LWRoundTypeToHigher) {
+		volume = tmpStr.doubleValue + append;
+	}
+	else if (roundType == LWRoundTypeToHigher) {
+		volume = tmpStr.doubleValue - append;
+	}
+	else {
+		volume = tmpStr.doubleValue;
+	}
+	
+	return volume;
 }
 
 +(NSString *) formatVolume:(double) volume accuracy:(int) accuracy
@@ -147,16 +190,19 @@
     return [LWUtils addZeroesIfNeeded:str accuracy:accuracy];
 }
 
-+(NSString *) formatFairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher
-{
- 
-    double fairVolume=[LWUtils fairVolume:volume accuracy:accuracy roundToHigher:flagRoundHigher];
-    NSString *formatString=[NSString stringWithFormat:@"%d",accuracy];
-    formatString=[[@"%." stringByAppendingString:formatString] stringByAppendingString:@"lf"];
-    NSString *tmpStr=[NSString stringWithFormat:formatString,fairVolume];
-    
-    return [LWUtils formatVolumeString:tmpStr currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
-    
++ (NSString *) formatFairVolume:(double) volume accuracy:(int) accuracy roundToHigher:(BOOL) flagRoundHigher {
+	return [self formatFairVolume:volume accuracy:accuracy roundType:flagRoundHigher ? LWRoundTypeToHigher : LWRoundTypeToLower];
+}
+
++ (NSString *)formatFairVolume:(double)volume accuracy:(int)accuracy roundType:(LWRoundType)roundType {
+	double fairVolume =
+//	roundType == LWRoundTypeStandard
+//										? volume // "%.{acc}%dlf" will round it with usual math rules
+										 [LWUtils fairVolume:volume accuracy:accuracy roundType:roundType];
+	NSString *formatString = [NSString stringWithFormat:@"%%.%dlf", accuracy];
+	NSString *tmpStr = [NSString stringWithFormat:formatString, fairVolume];
+	
+	return [LWUtils formatVolumeString:tmpStr currencySign:@"" accuracy:accuracy removeExtraZeroes:YES];
 }
 
 +(NSString *) formatVolumeNumber:(NSNumber *) volumee currencySign:(NSString *) currency accuracy:(int) accuracy removeExtraZeroes:(BOOL) flagRemoveZeroes
@@ -249,36 +295,11 @@
 
 + (NSString *)baseAssetTitle:(LWAssetPairModel *)assetPair {
     
-    return [LWAssetModel assetByIdentity:assetPair.baseAssetId fromList:[LWCache instance].allAssets]; //Andrey
-
-    
-    NSString *baseAssetId = [LWCache instance].baseAssetId;
-    NSString *assetTitleId = assetPair.baseAssetId;
-    if ([baseAssetId isEqualToString:assetPair.baseAssetId]) {
-        assetTitleId = assetPair.quotingAssetId;
-    }
-    NSString *assetTitle = [LWAssetModel
-                            assetByIdentity:assetTitleId
-                            fromList:[LWCache instance].allAssets];
-    return assetTitle;
+    return [LWAssetModel assetByIdentity:assetPair.baseAssetId fromList:[LWCache instance].allAssets];
 }
 
 + (NSString *)quotedAssetTitle:(LWAssetPairModel *)assetPair {
-    
-    return [LWAssetModel assetByIdentity:assetPair.quotingAssetId fromList:[LWCache instance].allAssets]; //Andrey
-
-    
-    
-    NSString *baseAssetId = [LWCache instance].baseAssetId;
-    NSString *assetTitleId = assetPair.quotingAssetId;
-    if (![baseAssetId isEqualToString:assetPair.quotingAssetId]) {
-        assetTitleId = assetPair.baseAssetId;
-    }
-    
-    NSString *assetTitle = [LWAssetModel
-                            assetByIdentity:assetTitleId
-                            fromList:[LWCache instance].allAssets];
-    return assetTitle;
+    return [LWAssetModel assetByIdentity:assetPair.quotingAssetId fromList:[LWCache instance].allAssets];
 }
 
 + (NSString *)priceForAsset:(LWAssetPairModel *)assetPair forValue:(NSNumber *)value {
@@ -312,7 +333,7 @@
     
     
     
-    result=[NSString stringWithFormat:@"%@ %@ %@ %@", format, Localize(@"exchange.spot.button.atprice"), [[LWCache instance] currencySymbolForAssetId:assetPair.quotingAssetId], rateString];
+    result=[NSString stringWithFormat:@"%@ %@ %@ %@", format, Localize(@"exchange.spot.button.atprice"), [LWCache displayIdForAssetId:assetPair.quotingAssetId], rateString];
     
     return result;
 }
@@ -350,28 +371,26 @@
 
 +(void) appendToLogFile:(NSString *)string
 {
-    return;
-    
-    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDir = [documentPaths objectAtIndex:0];
-    NSString *logPath = [[NSString alloc] initWithFormat:@"%@",[documentsDir stringByAppendingPathComponent:@"log.txt"]];
-    if([[NSFileManager defaultManager] fileExistsAtPath:logPath]==NO)
-    {
-        [[NSFileManager defaultManager] createFileAtPath:logPath contents:[NSData data] attributes:nil];
-    }
-    NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:logPath];
-    [fileHandler seekToEndOfFile];
-    
-    
-    NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-
-    NSString *toAppend=[NSString stringWithFormat:@"%@  %@\n",[formatter stringFromDate:[NSDate date]], string];
-    
-    
-    [fileHandler writeData:[toAppend dataUsingEncoding:NSUTF8StringEncoding]];
-    [fileHandler closeFile];
+//    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDir = [documentPaths objectAtIndex:0];
+//    NSString *logPath = [[NSString alloc] initWithFormat:@"%@",[documentsDir stringByAppendingPathComponent:@"log.txt"]];
+//    if([[NSFileManager defaultManager] fileExistsAtPath:logPath]==NO)
+//    {
+//        [[NSFileManager defaultManager] createFileAtPath:logPath contents:[NSData data] attributes:nil];
+//    }
+//    NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:logPath];
+//    [fileHandler seekToEndOfFile];
+//
+//
+//    NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//
+//
+//    NSString *toAppend=[NSString stringWithFormat:@"%@  %@\n",[formatter stringFromDate:[NSDate date]], string];
+//
+//
+//    [fileHandler writeData:[toAppend dataUsingEncoding:NSUTF8StringEncoding]];
+//    [fileHandler closeFile];
 }
 
 
@@ -416,8 +435,9 @@
     if([from isEqualToString:to])
         return amount;
     double final=0;
-    
-    for(LWMarginalWalletAsset *asset in [LWMarginalWalletsDataManager shared].assets)
+	
+	NSArray *allAssets = [LWMarginalWalletsDataManager shared].allAssets.copy;
+    for(LWMarginalWalletAsset *asset in allAssets)
     {
         if([asset.baseAssetId isEqualToString:from] && [asset.quotingAssetId isEqualToString:to])
         {

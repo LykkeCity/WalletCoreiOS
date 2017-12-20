@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, LWFoundsTransferType) {
+  LWFoundsTransferTypeDirect,
+  LWFoundsTransferTypeLoan
+};
+
 @interface LWMarginalAccount : NSObject
 
 -(id) initWithDict:(NSDictionary *) dict;
 
 @property (strong, nonatomic) NSString *identity;
 @property (strong, nonatomic) NSString *userId;
-//@property double leverage;
 @property (strong, nonatomic) NSString *baseAssetId;
 @property double balance;
 @property (readonly) double totalCapital;
@@ -29,6 +33,11 @@
 @property (readonly) int openPositionsCount;
 
 @property BOOL isDemo;
+
+@property (assign, nonatomic) LWFoundsTransferType transferType;
+
+@property double withdrawTransferLimit;
+@property double collateral;
 
 @end
 

@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, LWHistoryItemType) {
     LWHistoryItemTypeTrade,
     LWHistoryItemTypeCashInOut,
     LWHistoryItemTypeTransfer,
-    LWHistoryItemTypeSettle
+    LWHistoryItemTypeSettle,
+	LWHistoryItemTypeLimit
 };
 
 
@@ -28,7 +29,6 @@ typedef NS_ENUM(NSInteger, LWHistoryItemType) {
 @property (assign, nonatomic) LWHistoryItemType  historyType;
 @property (copy,   nonatomic) NSString          *identity;
 @property (copy,   nonatomic) NSString          *asset;
-@property (copy,   nonatomic) NSString          *assetId;
 @property (copy,   nonatomic) NSDate            *dateTime;
 @property (copy, nonatomic) NSString *blockchainHash;
 @property (copy, nonatomic) NSString *iconId;

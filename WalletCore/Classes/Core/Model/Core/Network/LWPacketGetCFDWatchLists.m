@@ -24,7 +24,7 @@
     NSLog(@"%@", response);
     
     
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    NSMutableArray<LWWatchList *> *arr = [[NSMutableArray alloc] init];
     for(NSDictionary *d in result) {
         BOOL found = NO;
         for(LWWatchList *w in [LWCache instance].marginalWatchLists) {
@@ -35,7 +35,7 @@
             }
         }
         if(!found) {
-            LWWatchList *w = [[LWWatchList alloc] initWithDict:d type:CFD];
+            LWWatchList *w = [[LWWatchList alloc] initWithDict:d type:LWWatchListTypeCFD];
             [arr addObject:w];
         }
     }
@@ -47,7 +47,7 @@
         }
     }
     if(foundSelected == NO && arr.count > 0) {
-        [arr[0] setIsSelected:YES];
+        [arr[0] setSelected:YES];
     }
     
     [LWCache instance].marginalWatchLists = arr;

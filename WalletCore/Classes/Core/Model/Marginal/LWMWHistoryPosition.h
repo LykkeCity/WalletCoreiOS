@@ -26,6 +26,7 @@
 -(id) initWithPosition:(NSDictionary *) dict;
 -(id) initWithTransfer:(NSDictionary *) dict;
 
+
 @property (strong, nonatomic) NSString *accountId;
 @property (strong, nonatomic) NSString *assetId;
 
@@ -38,7 +39,7 @@
 @property int accuracy;
 @property double stopLoss;
 @property double takeProfit;
-@property CLOSE_REASON closeReason;
+@property LWPositionCloseReason closeReason;
 
 @property double interestRateSwapPNL;
 @property double marketPNL;

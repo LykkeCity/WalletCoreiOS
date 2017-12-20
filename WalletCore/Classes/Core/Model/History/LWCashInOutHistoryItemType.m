@@ -30,7 +30,6 @@
     result.identity    = model.identity;
     result.volume      = model.amount;
     result.asset       = model.asset;
-    result.assetId     = model.assetId;
     
     
     

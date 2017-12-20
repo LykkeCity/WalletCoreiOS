@@ -12,13 +12,15 @@
 
 @class LWLykkeData;
 @class LWPersonalDataModel;
-@class  LWAssetModel;
-
+@class LWAssetModel;
+@class LWAssetPairModel;
+@class LWWatchList;
+@class LWSpotWallet;
 
 typedef NS_ENUM(NSUInteger, PushNotificationsStatus) {
-    PushNotificationsStatusUnknown=0,
-    PushNotificationsStatusDisabled=1,
-    PushNotificationsStatusEnabled=2
+    PushNotificationsStatusUnknown = 0,
+    PushNotificationsStatusDisabled = 1,
+    PushNotificationsStatusEnabled = 2
     
 };
 
@@ -31,29 +33,18 @@ SINGLETON_DECLARE
 
 #pragma mark - Properties
 
-//@property BOOL userWatchedAllBackupWords;
-
 @property (readonly) BOOL flagShowMarginWallets;
-@property (readonly) BOOL flagShowMarginWalletsLive;
-@property (readonly) BOOL flagOffchainRequests;
-
-
 @property BOOL flagMarginTermsOfUseAgreed;
-
-@property (strong, nonatomic) NSArray *allMarginalBaseAssets;
-@property (strong, nonatomic) NSArray *lastMarginalBaseAssets;
-@property (strong, nonatomic) NSString *currentMarginalBaseAsset;
-
 @property (strong, nonatomic) NSMutableArray *marginalWatchLists;
 @property (strong, nonatomic) NSMutableArray *spotWatchLists;
+@property (readonly, strong, nonatomic) LWWatchList *currentSpotWatchList;
+@property (readonly, strong, nonatomic) LWWatchList *currentMarginWatchList;
 
-
-@property BOOL isUserFromUSA;
 @property BOOL passwordIsHashed;
 
 @property (strong, nonatomic) NSTimer *timerSMS;
-@property (strong, nonatomic) id smsDelayDelegate;
-@property int smsDelaySecondsLeft;
+@property (weak, nonatomic) id smsDelayDelegate;
+@property (assign, nonatomic) NSTimeInterval smsDelaySecondsLeft;
 @property int smsRetriesLeft;
 
 @property (strong, nonatomic) NSMutableDictionary *cachedBuyOrders;
@@ -64,7 +55,7 @@ SINGLETON_DECLARE
 
 @property (strong, nonatomic) NSDictionary *issuers;
 
-@property PushNotificationsStatus pushNotificationsStatus;
+@property (assign, nonatomic) PushNotificationsStatus pushNotificationsStatus;
 
 @property BOOL showMyLykkeTab;
 
@@ -84,6 +75,7 @@ SINGLETON_DECLARE
 @property (strong, nonatomic) NSString *spotTermsOfUseUrl;
 
 @property (copy, nonatomic) NSNumber *refreshTimer;
+@property (copy, nonatomic) NSNumber *marketOrderPriceDeviation;
 @property (copy, nonatomic) NSString *baseAssetId;
 @property (copy, nonatomic) NSString *baseAssetSymbol;
 @property (copy, nonatomic) NSArray  *baseAssets; // Array of LWAssetModel items
@@ -104,6 +96,10 @@ SINGLETON_DECLARE
 @property (copy, nonatomic) NSString *multiSig;
 @property (copy, nonatomic) NSString *coloredMultiSig;
 @property (copy, nonatomic) NSString *solarCoinAddress;
+@property (copy, nonatomic) NSString *ethereumAddress;
+@property (copy, nonatomic) NSString *etherAssetId;
+@property (assign, nonatomic) NSInteger ethStepsCount;
+@property (strong, nonatomic) NSDecimalNumber *ethStepGas;
 
 @property (copy, nonatomic) NSString *refundAddress;
 @property BOOL refundSendAutomatically;
@@ -118,8 +114,12 @@ SINGLETON_DECLARE
 @property (assign, nonatomic) BOOL shouldSignOrder;
 @property (assign, nonatomic) BOOL debugMode;
 
+@property (assign, nonatomic) BOOL icoIsEnabled;
+@property (assign, nonatomic) BOOL icoShowBanner;
+
 - (BOOL)isMultisigAvailable;
 
++ (BOOL)shouldHidePlusForAssetId:(NSString *)assetID;
 +(BOOL) shouldHideDepositForAssetId:(NSString *)assetID;
 +(BOOL) shouldHideWithdrawForAssetId:(NSString *)assetID;
 
@@ -134,22 +134,27 @@ SINGLETON_DECLARE
 
 -(NSString *) currencySymbolForAssetId:(NSString *) assetId;
 +(NSString *) nameForAsset:(NSString *) assetId;
-+(int) accuracyForAssetId:(NSString *) assetId;
++ (int)accuracyForAssetId:(NSString *) assetId;
 
 -(void) startTimerForSMS;
 
--(void) saveWatchLists;
-
-+(NSString *) displayIdForAssetId:(NSString *) assetId;
++ (NSString *)displayIdForAssetId:(NSString *)assetId;
 
 +(LWAssetModel *) assetById:(NSString *) assetId;
++ (NSNumber *)accuracyForAssetWithId:(NSString *)identity;
 
++ (LWSpotWallet *)walletForAssetId:(NSString *)assetId;
++ (LWAssetPairModel *)assetPairById:(NSString *)assetPairId;
++ (LWAssetPairModel *)assetPairForAssetId:(NSString *)assetId otherAssetId:(NSString *)otherAssetId;
+
++ (void)logout;
 
 @end
 
 
 @protocol SMSTimerDelegate
 
--(void) smsTimerFinished;
--(void) smsTimerFired;
+-(void)smsTimerFinished;
+-(void)smsTimerFired;
+
 @end

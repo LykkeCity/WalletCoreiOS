@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LWMarginalWalletRate.h"
 
+@class LWMarginalAccount;
+
 @interface LWMarginalWalletAsset : NSObject
 
 -(id) initWithDict:(NSDictionary *) dict;
@@ -23,7 +25,8 @@
 @property double swapLong;
 @property double swapShort;
 
-@property (strong, nonatomic) NSMutableArray *belongsToAccounts;
+@property (strong, nonatomic)  LWMarginalAccount *account;
+
 
 @property int accuracy;
 
@@ -46,6 +49,6 @@
 
 @property (strong, nonatomic) NSArray *graphValues;
 
--(BOOL) rateChanged:(LWMarginalWalletRate *) newRate;
+- (BOOL)ratesChanged:(NSArray *)newRates;
 
 @end

@@ -15,21 +15,23 @@
 #pragma mark - LWPacket
 
 - (void)parseResponse:(id)response error:(NSError *)error {
-    [super parseResponse:response error:error];
-    
-    if (self.isRejected || !response) {
-        return;
-    }
-    
-    NSMutableArray *list = [NSMutableArray new];
-    for (NSDictionary *item in result[@"Assets"]) {
-        [list addObject:[[LWAssetModel alloc] initWithJSON:item]];
-        
-        
-    }
-    
-    
-    [LWCache instance].allAssets = list;
+  [super parseResponse:response error:error];
+  
+  if (self.isRejected || !response) {
+    return;
+  }
+  
+  NSMutableArray *list = [NSMutableArray new];
+  for (NSDictionary *item in result[@"Assets"]) {
+    [list addObject:[[LWAssetModel alloc] initWithJSON:item]];
+  }
+  
+  [LWCache instance].allAssets = list;
+  if (self.completionBlock != nil) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.completionBlock();
+    });
+  }
 }
 
 - (NSString *)urlRelative {

@@ -26,7 +26,7 @@
 
 
 -(NSString *) urlBase {
-    if(_watchList.type == CFD) {
+    if(_watchList.type == LWWatchListTypeCFD) {
     return [LWCache instance].marginalApiUrl;
     }
     else {

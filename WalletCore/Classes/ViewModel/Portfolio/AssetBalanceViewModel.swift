@@ -49,17 +49,17 @@ public class AssetBalanceViewModel {
 extension Observable where Element == LWAssetModel {
     
     func filterEtheriumBlockchainAsset() -> Observable<LWAssetModel> {
-        return filter { $0.blockchainType == BLOCKCHAIN_TYPE_ETHEREUM }
+        return filter { $0.blockchainType == .ethereum }
     }
     
     func filterBitcoinBlockchainAsset() -> Observable<LWAssetModel> {
-        return filter { $0.blockchainType == BLOCKCHAIN_TYPE_BITCOIN }
+        return filter { $0.blockchainType == .bitcoint }
     }
     
     func mapToEthereumDepositAddress() -> Observable<String> {
         return
             flatMap { (asset) -> Observable<(Bool, LWAssetModel)> in
-                guard asset.blockchainType == BLOCKCHAIN_TYPE_ETHEREUM else {
+                guard asset.blockchainType == .ethereum else {
                     return Observable<(Bool, LWAssetModel)>.empty()
                 }
                 return LWEthereumTransactionsManager.shared().rx.createEthereumSign(forAsset: asset)
@@ -70,7 +70,7 @@ extension Observable where Element == LWAssetModel {
     func mapToBitcoinDepositAddress() -> Observable<String> {
         return
             flatMap { asset -> Observable<ApiResult<LWPacketGetBlockchainAddress>> in
-                guard asset.blockchainType == BLOCKCHAIN_TYPE_BITCOIN else {
+                guard asset.blockchainType == .bitcoint else {
                     return Observable<ApiResult<LWPacketGetBlockchainAddress>>.empty()
                 }
                 return LWRxAuthManager.instance.getBlockchainAddress.request(withParams: asset.identity)

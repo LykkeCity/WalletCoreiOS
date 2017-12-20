@@ -10,6 +10,6 @@
 
 @interface LWPacketPasswordHashSet : LWAuthorizePacket
 
-@property (strong, nonatomic) NSString *passwordHash;
+@property (strong, nonatomic) NSString *password;
 
 @end

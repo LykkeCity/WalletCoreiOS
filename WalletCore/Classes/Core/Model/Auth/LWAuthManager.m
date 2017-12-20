@@ -12,8 +12,6 @@
 #import "LWPacketRegistration.h"
 #import "LWPacketRegistrationGet.h"
 #import "LWPacketCheckDocumentsToUpload.h"
-#import "LWPacketKYCSendDocument.h"
-#import "LWPacketKYCSendDocumentBin.h"
 #import "LWPacketKYCStatusGet.h"
 #import "LWPacketKYCStatusSet.h"
 #import "LWPacketPinSecurityGet.h"
@@ -30,8 +28,8 @@
 #import "LWPacketAssetPairRate.h"
 #import "LWPacketAssetPairRates.h"
 #import "LWPacketAppSettings.h"
+#import "LWPacketEtherSettings.h"
 #import "LWPacketAssetsDescriptions.h"
-#import "LWPacketBuySellAsset.h"
 #import "LWPacketSettingSignOrder.h"
 #import "LWPacketBlockchainTransaction.h"
 #import "LWPacketBlockchainCashTransaction.h"
@@ -69,6 +67,9 @@
 #import "LWPacketGetPaymentUrl.h"
 #import "LWPacketPrevCardPayment.h"
 #import "LWPacketGetHistory.h"
+#import "LWPacketLimitOrderDetails.h"
+#import "LWPacketLimitOrderTrades.h"
+#import "LWPacketLimitOrderHistory.h"
 #import "LWPrivateKeyOwnershipMessage.h"
 #import "LWPacketRecoverySMSConfirmation.h"
 #import "LWPacketChangePINAndPassword.h"
@@ -78,7 +79,6 @@
 #import "LWPacketGetNews.h"
 #import "LWPacketMyLykkeCashInEmail.h"
 #import "LWPacketSwiftCredentials.h"
-#import "LWPacketSwiftCredential.h"
 #import "LWPacketGetEthereumAddress.h"
 #import "LWPacketLykkeSettings.h"
 #import "LWPacketEmailHint.h"
@@ -105,6 +105,9 @@
 #import "LWPacketSendSignedSPOTTransactions.h"
 #import "LWPacketGetMarginTermsStatus.h"
 #import "LWPacketSetMarginTermsStatus.h"
+#import "LWPacketMarginChartData.h"
+#import "LWPacketGetDialogs.h"
+#import "LWPacketSendDialog.h"
 
 #import "LWPacketGetMainScreenInfo.h"
 #import "LWPacketMarginDepositWithdraw.h"
@@ -125,7 +128,11 @@
 #import "LWAssetBlockchainModel.h"
 #import "LWExchangeInfoModel.h"
 #import "LWSwiftCredentialsModel.h"
+#import "LWPacketClientState.h"
 
+#import "LWPacketRequestVerificationCode.h"
+#import "LWPacketSendVerificationCode.h"
+#import "LWPacketMarginSwiftWithdraw.h"
 
 #import "LWUtils.h"
 
@@ -146,46 +153,33 @@
 
 @implementation LWAuthManager
 
-#pragma mark - Common
 
-+ (LWAuthManager*)instance {
-    static LWAuthManager *sharedObject = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        sharedObject = [[self alloc] init];
+#pragma mark - Root
 
-        if (sharedObject) {
-            [sharedObject subscribe:kNotificationGDXNetAdapterDidReceiveResponse
-                          selector:@selector(observeGDXNetAdapterDidReceiveResponseNotification:)];
-            [sharedObject subscribe:kNotificationGDXNetAdapterDidFailRequest
-                          selector:@selector(observeGDXNetAdapterDidFailRequestNotification:)];
-        }
-    });
-    
-    return sharedObject;
+SINGLETON_INIT {
+    self = [super init];
+    if (self) {
+        [self subscribe:kNotificationGDXNetAdapterDidReceiveResponse
+               selector:@selector(observeGDXNetAdapterDidReceiveResponseNotification:)];
+        [self subscribe:kNotificationGDXNetAdapterDidFailRequest
+               selector:@selector(observeGDXNetAdapterDidFailRequestNotification:)];
+    }
+    return self;
 }
 
-+ (LWAuthManager*)newInstance {
-//    return [LWAuthManager instance];
-    
-    LWAuthManager* authManager = [[self alloc] init];
-    
-    if (authManager) {
-        [authManager subscribe:kNotificationGDXNetAdapterDidReceiveResponse
-                      selector:@selector(observeGDXNetAdapterDidReceiveResponseNotification:)];
-        [authManager subscribe:kNotificationGDXNetAdapterDidFailRequest
-                      selector:@selector(observeGDXNetAdapterDidFailRequestNotification:)];
-    }
-    
-    return authManager;
+
+#pragma mark - Common
+
+-(void) requestClientState {
+    LWPacketClientState *pack = [LWPacketClientState new];
+    [self sendPacket:pack];
 }
 
 - (void)requestEmailValidation:(NSString *)email {
-    LWPacketAccountExist *pack = [LWPacketAccountExist new];
-    pack.email = email;
-    
-    [self sendPacket:pack];
+	LWPacketAccountExist *pack = [LWPacketAccountExist new];
+	pack.email = email;
+	
+	[self sendPacket:pack];
 }
 
 - (void)requestAuthentication:(LWAuthenticationData *)data {
@@ -211,28 +205,6 @@
 - (void)requestDocumentsToUpload {
     LWPacketCheckDocumentsToUpload *pack = [LWPacketCheckDocumentsToUpload new];
 
-    [self sendPacket:pack];
-}
-
-- (void)requestSendDocument:(KYCDocumentType)docType image:(UIImage *)image {
-    LWPacketKYCSendDocument *pack = [LWPacketKYCSendDocument new];
-    pack.docType = docType;
-    
-    // set document compression
-    double const compression = [[LWAuthManager instance].documentsStatus compression:docType];
-    pack.imageJPEGRepresentation = UIImageJPEGRepresentation(image, compression);
-    
-    [self sendPacket:pack];
-}
-
-- (void)requestSendDocumentBin:(KYCDocumentType)docType image:(UIImage *)image {
-    LWPacketKYCSendDocumentBin *pack = [LWPacketKYCSendDocumentBin new];
-    pack.docType = docType;
-
-    // set document compression
-    double const compression = [[LWAuthManager instance].documentsStatus compression:docType];
-    pack.imageJPEGRepresentation = UIImageJPEGRepresentation(image, compression);
-    
     [self sendPacket:pack];
 }
 
@@ -308,6 +280,13 @@
 
 }
 
+- (void)requestAllAssetsWithCompletion:(void(^)(void))completion {
+  LWPacketAllAssets *pack = [LWPacketAllAssets new];
+  pack.completionBlock = completion;
+  [self sendPacket:pack];
+  
+}
+
 - (void)requestBaseAssetGet {
     LWPacketBaseAssetGet *pack = [LWPacketBaseAssetGet new];
     
@@ -347,10 +326,10 @@
 }
 
 - (void)requestAssetPairRate:(NSString *)pairId {
-#warning this need to be uncomment when we implement generate key
-//    if([LWKeychainManager instance].isAuthenticated == false) {
-//        return;
-//    }
+    
+    if([LWKeychainManager instance].isAuthenticated == false) {
+        return;
+    }
     
     LWPacketAssetPairRate *pack = [LWPacketAssetPairRate new];
     pack.identity = pairId;
@@ -392,16 +371,10 @@
     [self sendPacket:pack];
 }
 
-- (void)requestBuySellAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSString *)rate {
-    LWPacketBuySellAsset *pack = [LWPacketBuySellAsset new];
-    pack.baseAsset = asset;
-    pack.assetPair = assetPair;
-    pack.volume    = volume;
-    pack.rate      = rate;
-    
-    [self sendPacket:pack];
+- (void)requestEtherSettings {
+	LWPacketEtherSettings *pack = [LWPacketEtherSettings new];
+	[self sendPacket:pack];
 }
-
 
 - (void)requestSignOrders:(BOOL)shouldSignOrders {
     LWPacketSettingSignOrder *pack = [LWPacketSettingSignOrder new];
@@ -624,9 +597,10 @@
     [self sendPacket:pack];
 }
 
--(void) requestEncodedPrivateKey
+-(void) requestEncodedPrivateKey:(NSString *) accessToken
 {
     LWPacketEncodedPrivateKey *pack=[[LWPacketEncodedPrivateKey alloc] init];
+    pack.accessToken = accessToken;
     [self sendPacket:pack];
 }
 
@@ -651,11 +625,28 @@
     [self sendPacket:pack];
 }
 
--(void) requestGetHistory:(NSString *) assetId
-{
-    LWPacketGetHistory *pack=[[LWPacketGetHistory alloc] init];
-    pack.assetId=assetId;
+- (void)requestGetHistory:(NSString *)assetId {
+    LWPacketGetHistory *pack = [[LWPacketGetHistory alloc] init];
+    pack.assetId = assetId;
     [self sendPacket:pack];
+}
+
+- (void)requestGetLimitOrderHistoryDetails:(NSString *)orderId {
+	LWPacketLimitOrderDetails *pack = [[LWPacketLimitOrderDetails alloc] init];
+	pack.orderId = orderId;
+	[self sendPacket:pack];
+}
+
+- (void)requestGetLimitOrderHistoryTrades:(NSString *)orderId {
+	LWPacketLimitOrderTrades *pack = [[LWPacketLimitOrderTrades alloc] init];
+	pack.orderId = orderId;
+	[self sendPacket:pack];
+}
+
+- (void)requestGetLimitOrderHistory:(NSString *)orderId {
+	LWPacketLimitOrderHistory *pack = [[LWPacketLimitOrderHistory alloc] init];
+	pack.orderId = orderId;
+	[self sendPacket:pack];
 }
 
 -(void) requestPrivateKeyOwnershipMessage:(NSString *)email
@@ -714,17 +705,10 @@
     [self sendPacket:pack];
 }
 
--(void) requestSwiftCredentials
+-(void) requestSwiftCredentialsForAsset:(NSString *) assetId
 {
     LWPacketSwiftCredentials *pack=[LWPacketSwiftCredentials new];
-    [self sendPacket:pack];
-}
-    
--(void) requestSwiftCredential:(NSString *)assetId
-{
-    LWPacketSwiftCredential *pack=[LWPacketSwiftCredential new];
-    pack.identity = assetId;
-    
+    pack.assetId = assetId;
     [self sendPacket:pack];
 }
 
@@ -780,10 +764,9 @@
     [self sendPacket:pack];
 }
 
--(void) requestSetPasswordHash:(NSString *)hash
-{
-    LWPacketPasswordHashSet *pack=[LWPacketPasswordHashSet new];
-    pack.passwordHash=hash;
+- (void)requestSetPasswordHashWithPassword:(NSString *)password {
+    LWPacketPasswordHashSet *pack = [LWPacketPasswordHashSet new];
+    pack.password = password;
     [self sendPacket:pack];
 }
 
@@ -932,15 +915,8 @@
     pack.transactions = transactions;
     [self sendPacket:pack];
 }
-
 -(void) requestMainScreenInfo {
     LWPacketGetMainScreenInfo *pack = [LWPacketGetMainScreenInfo new];
-    [self sendPacket:pack];
-}
-
--(void) requestMainScreenInfo: (NSString *) assetId {
-    LWPacketGetMainScreenInfo *pack = [LWPacketGetMainScreenInfo new];
-    pack.assetId = assetId;
     [self sendPacket:pack];
 }
 
@@ -965,6 +941,47 @@
     LWPacketResetDemoMarginAccount *pack = [LWPacketResetDemoMarginAccount new];
     pack.accountId = accountId;
     [self sendPacket:pack];
+}
+
+-(void) requestVerificationCode {
+    LWPacketRequestVerificationCode *pack = [LWPacketRequestVerificationCode new];
+    [self sendPacket:pack];
+    
+}
+
+-(void) requestSendVerificationCode:(NSString *)code {
+    LWPacketSendVerificationCode *pack = [LWPacketSendVerificationCode new];
+    pack.code = code;
+    [self sendPacket:pack];
+}
+
+-(void) requestMarginSwiftWithdraw:(NSDictionary *)credentials {
+    LWPacketMarginSwiftWithdraw *pack = [LWPacketMarginSwiftWithdraw new];
+    pack.credentials = credentials;
+    [self sendPacket:pack];
+}
+
+-(void) requestMarginChartDataForAssets:(NSArray *)assetIds {
+	LWPacketMarginChartData *pack = [LWPacketMarginChartData new];
+	pack.assetIds = assetIds;
+	[self sendPacket:pack];
+}
+
+-(void) requestAllMarginChartData {
+	LWPacketMarginChartData *pack = [LWPacketMarginChartData new];
+	[self sendPacket:pack];
+}
+
+- (void)requestClientDialogs {
+	LWPacketGetDialogs *pack = [LWPacketGetDialogs new];
+	[self sendPacket:pack];
+}
+
+- (void)requestSendClientDialog:(NSString *)dialogId buttonId:(NSString *)buttonId {
+	LWPacketSendDialog *pack = [LWPacketSendDialog new];
+	pack.dialogId = dialogId;
+	pack.buttonId = buttonId;
+	[self sendPacket:pack];
 }
 
 #pragma mark - Observing
@@ -992,6 +1009,12 @@
   
 
     // parse packet by class
+        if (pack.class == LWPacketClientState.class) {
+            if ([self.delegate respondsToSelector:@selector(authManagerDidGetClienState)])  {
+                [self.delegate authManagerDidGetClienState];
+            }
+        }
+
     if (pack.class == LWPacketAccountExist.class) {
         if ([self.delegate respondsToSelector:@selector(authManager:didCheckRegistration:)])  {
             LWPacketAccountExist *account = (LWPacketAccountExist *)pack;
@@ -1037,17 +1060,6 @@
         // call delegate
         if ([self.delegate respondsToSelector:@selector(authManager:didCheckDocumentsStatus:)]) {
             [self.delegate authManager:self didCheckDocumentsStatus:self.documentsStatus];
-        }
-    }
-    else if (pack.class == LWPacketKYCSendDocument.class ||
-             pack.class == LWPacketKYCSendDocumentBin.class) {
-        KYCDocumentType docType = ((LWPacketKYCSendDocument *)pack).docType;
-        // modify self documents status
-        [self.documentsStatus setTypeUploaded:docType withImage:nil];
-        [self.documentsStatus setCroppedStatus:docType withCropped:NO];
-        // call delegate
-        if ([self.delegate respondsToSelector:@selector(authManagerDidSendDocument:ofType:)]) {
-            [self.delegate authManagerDidSendDocument:self ofType:docType];
         }
     }
     else if (pack.class == LWPacketKYCStatusGet.class) {
@@ -1145,11 +1157,6 @@
     else if (pack.class == LWPacketAppSettings.class) {
         if ([self.delegate respondsToSelector:@selector(authManager:didGetAppSettings:)]) {
             [self.delegate authManager:self didGetAppSettings:((LWPacketAppSettings *)pack).appSettings];
-        }
-    }
-    else if (pack.class == LWPacketBuySellAsset.class) {
-        if ([self.delegate respondsToSelector:@selector(authManager:didReceiveDealResponse:)]) {
-            [self.delegate authManager:self didReceiveDealResponse:((LWPacketBuySellAsset *)pack).deal];
         }
     }
     else if (pack.class == LWPacketSettingSignOrder.class) {
@@ -1318,12 +1325,21 @@
             [self.delegate authManager:self  didGetHistory:(LWPacketGetHistory *) pack];
         }
     }
-    
-    else if (pack.class == LWPacketGetHistory.class) {
-        if ([self.delegate respondsToSelector:@selector(authManager:didGetHistory:)]) {
-            [self.delegate authManager:self  didGetHistory:(LWPacketGetHistory *) pack];
-        }
-    }
+	else if (pack.class == LWPacketLimitOrderDetails.class) {
+		if ([self.delegate respondsToSelector:@selector(authManager:didGetLimitOrderHistoryDetails:)]) {
+			[self.delegate authManager:self didGetLimitOrderHistoryDetails:(LWPacketLimitOrderDetails *)pack];
+		}
+	}
+	else if (pack.class == LWPacketLimitOrderTrades.class) {
+		if ([self.delegate respondsToSelector:@selector(authManager:didGetLimitOrderHistoryTrades:)]) {
+			[self.delegate authManager:self didGetLimitOrderHistoryTrades:(LWPacketLimitOrderTrades *)pack];
+		}
+	}
+	else if (pack.class == LWPacketLimitOrderHistory.class) {
+		if ([self.delegate respondsToSelector:@selector(authManager:didGetLimitOrderHistory:)]) {
+			[self.delegate authManager:self didGetLimitOrderHistory:(LWPacketLimitOrderHistory *)pack];
+		}
+	}
     else if (pack.class == LWPacketClientKeys.class) {
         if ([self.delegate respondsToSelector:@selector(authManagerDidSendClientKeys:)]) {
             [self.delegate authManagerDidSendClientKeys:self];
@@ -1368,11 +1384,6 @@
     else if (pack.class == LWPacketSwiftCredentials.class) {
         if ([self.delegate respondsToSelector:@selector(authManagerDidGetSwiftCredentials:)]) {
             [self.delegate authManagerDidGetSwiftCredentials:(LWPacketSwiftCredentials *) pack];
-        }
-    }
-    else if (pack.class == LWPacketSwiftCredential.class) {
-        if ([self.delegate respondsToSelector:@selector(authManagerDidGetSwiftCredential:)]) {
-            [self.delegate authManagerDidGetSwiftCredential:(LWPacketSwiftCredential *) pack];
         }
     }
     else if (pack.class == LWPacketGetEthereumAddress.class) {
@@ -1490,8 +1501,38 @@
             [self.delegate authManagerDidSendMarginDepositWithdraw:(LWPacketMarginDepositWithdraw *) pack];
         }
     }
-    
-        
+    else if(pack.class == LWPacketRequestVerificationCode.class) {
+        if([self.delegate respondsToSelector:@selector(authManagerDidRequestVerificationCode)]) {
+            [self.delegate authManagerDidRequestVerificationCode];
+        }
+    }
+    else if(pack.class == LWPacketSendVerificationCode.class) {
+        if([self.delegate respondsToSelector:@selector(authManagerDidSendVerificationCode:)]) {
+            [self.delegate authManagerDidSendVerificationCode:(LWPacketSendVerificationCode *) pack];
+        }
+    }
+    else if(pack.class == LWPacketMarginSwiftWithdraw.class) {
+        if([self.delegate respondsToSelector:@selector(authManagerDidSendMarginSwiftWithdraw)]) {
+            [self.delegate authManagerDidSendMarginSwiftWithdraw];
+        }
+    }
+	else if(pack.class == LWPacketMarginChartData.class) {
+		if([self.delegate respondsToSelector:@selector(authManagerDidGetMarginChartData:)]) {
+			[self.delegate authManagerDidGetMarginChartData:(LWPacketMarginChartData *)pack];
+		}
+	}
+	else if (pack.class == LWPacketGetDialogs.class) {
+		if ([self.delegate respondsToSelector:@selector(authManagerDidGetDialogs:)]) {
+			[self.delegate authManagerDidGetDialogs:((LWPacketGetDialogs *)pack).dialogs];
+		}
+	}
+	else if (pack.class == LWPacketSendDialog.class) {
+		if ([self.delegate respondsToSelector:@selector(authManagerDidSendDialog)]) {
+			[self.delegate authManagerDidSendDialog];
+		}
+	}
+		
+		
         
         self.delegate=delegate;
           }
@@ -1506,6 +1547,13 @@
     if([pack isKindOfClass:[LWPacketGetMainScreenInfo class]]) {
         return;
     }
+  
+  if ([pack isKindOfClass:[LWPacketAllAssets class]]) {
+    void(^completion)(void) = [(LWPacketAllAssets *)pack completionBlock];
+    if (completion != nil) {
+      completion();
+    }
+  }
 
     
     // check if user not authorized - kick them
@@ -1517,7 +1565,9 @@
         NSString *http=[[NSString alloc] initWithData:ctx.task.currentRequest.HTTPBody encoding:NSUTF8StringEncoding];
         
         [LWUtils appendToLogFile:[NSString stringWithFormat:@"Authentication failed. Packet: %@\nRequest: %@", NSStringFromClass([pack class]), http]];
-        [self.delegate authManagerDidNotAuthorized:self];
+        if ([self.delegate respondsToSelector:@selector(authManagerDidNotAuthorized:)]) {
+            [self.delegate authManagerDidNotAuthorized:self];
+        }
     }
     else {
         if ([self.delegate respondsToSelector:@selector(authManager:didFailWithReject:context:)]) {

@@ -18,6 +18,7 @@ extension LWBaseHistoryItemType {
             case .cashInOut: return volume > 0 ? Localize("transaction.newDesign.cashIn") : Localize("transaction.newDesign.cashOut")
             case .transfer: return volume > 0 ? Localize("transaction.newDesign.transferIn") : Localize("transaction.newDesign.transferOut")
             case .settle: return Localize("history.cell.settle")
+            case .limit: return Localize("history.cell.limit")
         }
     }
     

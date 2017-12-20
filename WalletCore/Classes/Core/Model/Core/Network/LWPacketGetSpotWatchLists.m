@@ -31,7 +31,7 @@
     
     
     
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    NSMutableArray<LWWatchList *> *arr = [[NSMutableArray alloc] init];
     for(NSDictionary *d in result) {
         BOOL found = NO;
         for(LWWatchList *w in [LWCache instance].marginalWatchLists) {
@@ -42,7 +42,7 @@
             }
         }
         if(!found) {
-            LWWatchList *w = [[LWWatchList alloc] initWithDict:d type:SPOT];
+            LWWatchList *w = [[LWWatchList alloc] initWithDict:d type:LWWatchListTypeSPOT];
             [arr addObject:w];
         }
     }
@@ -55,7 +55,7 @@
         }
     }
     if(foundSelected == NO && arr.count > 0) {
-        [arr[0] setIsSelected:YES];
+        [arr[0] setSelected:YES];
     }
 
     

@@ -150,11 +150,10 @@ Pod::Spec.new do |s|
   s.dependency 'RxOptional', '~> 3.1'
   s.dependency 'RxSwiftExt', '~> 2.4'
   s.dependency 'RxKeyboard', '~> 0.6.2'
-  
-  s.dependency 'QRCodeReader.swift', '~> 7.4.0'
   s.dependency 'AFNetworking'
   s.dependency 'MDWamp'
   s.dependency 'UIDeviceIdentifier'
   s.dependency 'Valet'
-
+  s.dependency 'BlocksKit'
+  s.dependency 'EasyMapping'
 end
