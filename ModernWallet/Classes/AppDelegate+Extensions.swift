@@ -96,17 +96,22 @@ extension AppDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     }
     
-    func buildBlurredImageViewFromVisibleViewController() -> UIImageView? {
+    func buildBlurredImageViewFromVisibleViewController() -> UIImageView {
+        let screenBounds = UIScreen.main.bounds
+        let blurredImageView = UIImageView(frame: screenBounds)
+        
+        let backgroundImageName = "Background"
+        blurredImageView.image = UIImage(named: backgroundImageName, in: Bundle(for: BackgroundView.self), compatibleWith: nil)
+        
+        blurredImageView.contentMode = .scaleAspectFill
+
         guard let visibleViewController = self.visibleViewController else {
-            return nil
+            return blurredImageView
         }
         
-        let screenBounds = UIScreen.main.bounds
         let blurRadius: CGFloat = 20.0
         let tintColor = UIColor.clear
         let saturationDeltaFactor: CGFloat = 2.0
-        
-        let blurredImageView = UIImageView(frame: screenBounds)
         
         UIGraphicsBeginImageContext(screenBounds.size)
         visibleViewController.view.drawHierarchy(in: screenBounds, afterScreenUpdates: true)
@@ -116,7 +121,7 @@ extension AppDelegate {
                                                                       tintColor: tintColor,
                                                                       saturationDeltaFactor: saturationDeltaFactor,
                                                                       maskImage: nil) else {
-                                                                        return nil
+                                                                        return blurredImageView
         }
         blurredImageView.image = blurredSnapshotImage
         

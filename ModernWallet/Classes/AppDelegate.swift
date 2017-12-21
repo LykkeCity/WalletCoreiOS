@@ -71,9 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillResignActive(_ application: UIApplication) {        
         // Show blur when app goes to background (also when the Task Switcher is opened)
-        guard let blurredImageView = buildBlurredImageViewFromVisibleViewController() else {
-            return
-        }
+        let blurredImageView = buildBlurredImageViewFromVisibleViewController()
         blurredImageView.tag = blurViewTag
         self.window?.addSubview(blurredImageView)
     }
