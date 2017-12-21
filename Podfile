@@ -15,6 +15,8 @@ target 'WalletCore' do
   pod 'UIDeviceIdentifier'
   pod 'Valet'
   pod 'RxKeyboard', '~> 0.6.2'
+  pod 'BlocksKit'
+  pod 'EasyMapping'
 
   target 'WalletCoreTests' do
     inherit! :search_paths

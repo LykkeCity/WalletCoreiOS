@@ -22,18 +22,23 @@
 @property (readonly, nonatomic) NSString *group;
 @property (readonly, nonatomic) NSString *name;
 @property (readonly, nonatomic) NSNumber *accuracy;
+
 @property (readonly, nonatomic) NSString *baseAssetId;
 @property (readonly, nonatomic) NSString *quotingAssetId;
+
 @property (readonly, nonatomic) NSNumber *invertedAccuracy;
 @property (readonly, nonatomic) NSNumber *normalAccuracy;
 
-
-@property (readonly, nonatomic) NSString *originalBaseAsset;
+@property (readonly, nonatomic) NSString *normalBaseAsset;
+@property (readonly, nonatomic) NSString *normalQuotingAsset;
 
 @property BOOL inverted;
     
 @property (readonly) NSString *baseAssetDisplayId;
 @property (readonly) NSString *quotingAssetDisplayId;
+
+@property (readonly) NSString *normalBaseAssetDisplayId;
+@property (readonly) NSString *normalQuotingAssetDisplayId;
 
 @property (strong, nonatomic) LWAssetPairRateModel *rate;
 

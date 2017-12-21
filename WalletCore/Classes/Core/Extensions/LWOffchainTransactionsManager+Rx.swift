@@ -14,7 +14,7 @@ public extension Reactive where Base : LWOffchainTransactionsManager {
         let manager = self.base
         
         return Observable.create{[weak manager] observer in
-            manager?.sendSwapRequest(forAsset: asset.identity, pair: pair.identity, volume: volume.doubleValue) {data in
+            manager?.sendSwapRequest(forAsset: asset.identity, pair: pair.identity, volume: volume as NSNumber) {data in
                 guard let data = data else {
                     observer.onCompleted()
                     return

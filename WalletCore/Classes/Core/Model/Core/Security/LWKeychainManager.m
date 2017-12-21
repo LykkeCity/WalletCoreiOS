@@ -10,26 +10,32 @@
 #import "LWPersonalDataModel.h"
 #import "LWConstants.h"
 #import "LWPrivateKeyManager.h"
-#import "WalletCoreConfig.h"
 #import <Valet/Valet.h>
+#import <EasyMapping/EasyMapping.h>
+#import <WalletCore/WalletCore-Swift.h>
 
-static NSString *const kKeychainManagerAppId    = @"LykkeWallet";
-static NSString *const kKeychainManagerToken    = @"Token";
-static NSString *const kKeychainManagerLogin    = @"Login";
-static NSString *const kKeychainManagerPhone    = @"Phone";
-static NSString *const kKeychainManagerFullName = @"FullName";
-static NSString *const kKeychainManagerAddress  = @"Address";
-static NSString *const kKeychainManagerPassword  = @"Password";
-static NSString *const kKeychainManagerPIN  = @"Pin";
+static NSString * const kKeychainManagerAppId    = @"LykkeWallet";
+static NSString * const kKeychainManagerToken    = @"Token";
+static NSString * const kKeychainManagerLogin    = @"Login";
+static NSString * const kKeychainManagerPhone    = @"Phone";
+static NSString * const kKeychainManagerFullName = @"FullName";
+static NSString * const kKeychainManagerAddress  = @"Address";
+static NSString * const kKeychainManagerPassword  = @"Password";
+static NSString * const kKeychainManagerPIN  = @"Pin";
 
-static NSString *const kKeychainManagerNotificationsTag  = @"NotificationsTag";
+static NSString * const kKeychainManagerNotificationsTag  = @"NotificationsTag";
 
-static NSString *const kKeychainManagerUserPrivateWalletsAddresses=@"UserWalletsAddresses";
+static NSString * const kKeychainManagerUserPrivateWalletsAddresses=@"UserWalletsAddresses";
 
-static NSString *const kKeychainManagerPersonalData = @"PersonalData";
+static NSString * const kKeychainManagerPersonalData = @"PersonalData";
 
-
-
+static NSString * const kIsUserFromUSAKey = @"TheUserIsFromUSA";
+static NSString * const kShowMarginWalletsKey = @"ShowMarginWallets";
+static NSString * const kShowMarginWalletsLiveKey = @"ShowMarginWalletsLive";
+static NSString * const kUseOffchainOperationsKey = @"UseOffchainOperations";
+static NSString * const kSwiftDepositEnabledKey = @"SwiftDepositEnabled";
+static NSString * const kCanCashInViaBankCardKey = @"CanCashInViaBankCard";
+static NSString * const kMainScreenValuesKey = @"CurrentMainScreenValues";
 
 @interface LWKeychainManager () {
     VALValet *valet;
@@ -55,6 +61,13 @@ SINGLETON_INIT {
     return self;
 }
 
+- (void)setBool:(BOOL)boolValue forKey:(NSString *)key {
+  [valet setString:[NSString stringWithFormat:@"%@", boolValue ? @"YES" : @"NO"] forKey:key];
+}
+
+- (BOOL)boolForKey:(NSString *)key {
+  return [[valet stringForKey:key] boolValue];
+}
 
 #pragma mark - Common
 
@@ -64,7 +77,6 @@ SINGLETON_INIT {
     [valet setString:token forKey:kKeychainManagerToken];
     [valet setString:login forKey:kKeychainManagerLogin];
     [valet setString:password forKey:kKeychainManagerPassword];
-    
 }
 
 - (void)savePersonalData:(LWPersonalDataModel *)personalData {
@@ -106,8 +118,6 @@ SINGLETON_INIT {
     [valet setString:address forKey:kKeychainManagerAddress];
 }
 
-
-
 -(void) saveNotificationsTag:(NSString *)tag
 {
     [valet setString:tag forKey:kKeychainManagerNotificationsTag];
@@ -115,15 +125,19 @@ SINGLETON_INIT {
 
 
 - (void)clear {
-    [valet removeObjectForKey:kKeychainManagerToken];
-    [valet removeObjectForKey:kKeychainManagerLogin];
-    [valet removeObjectForKey:kKeychainManagerPhone];
-    [valet removeObjectForKey:kKeychainManagerFullName];
-    [valet removeObjectForKey:kKeychainManagerPassword];
-    [valet removeObjectForKey:kKeychainManagerNotificationsTag];
-    [valet removeObjectForKey:kKeychainManagerPersonalData];
-    [valet removeObjectForKey:kKeychainManagerPIN];
-    [valet removeObjectForKey:kKeychainManagerAddress];
+  [valet removeObjectForKey:kKeychainManagerToken];
+  [valet removeObjectForKey:kKeychainManagerLogin];
+  [valet removeObjectForKey:kKeychainManagerPhone];
+  [valet removeObjectForKey:kKeychainManagerFullName];
+  [valet removeObjectForKey:kKeychainManagerPassword];
+  [valet removeObjectForKey:kKeychainManagerNotificationsTag];
+  [valet removeObjectForKey:kKeychainManagerPersonalData];
+  [valet removeObjectForKey:kKeychainManagerPIN];
+  [valet removeObjectForKey:kMainScreenValuesKey];
+}
+
+-(void) clearWholeKeychain {
+    [valet removeAllObjects];
 }
 
 -(void) saveEncodedLykkePrivateKey:(NSString *)privateKey
@@ -236,21 +250,109 @@ SINGLETON_INIT {
 
 
 - (NSString *)address {
+    
+//    return kTestingTestServer; //Pothberry
+
+//    return kProductionServer;//Testing
+    
+//    return @"http://testtestest.me";//Andrey
+    
+//    return kStagingTestServer;
+
+#ifdef PROJECT_IATA
+    return kDevelopTestServer;
+#else
+    
 #ifdef TEST
-    return WalletCoreConfig.testingServer;
+    NSString *result = [valet stringForKey:kKeychainManagerAddress];
+    // validate for nil, empty or non-existing addresses
+    if (!result || [result isEqualToString:@""] ||
+        (![result isEqualToString:kTestingTestServer] &&
+         ![result isEqualToString:kDevelopTestServer] &&
+         ![result isEqualToString:kStagingTestServer])) {
+        NSString *testingServer = WalletCoreConfig.testingServer;
+        [self saveAddress:testingServer];
+        return testingServer;
+    }
+    return result;
 #else
     return kProductionServer;
 #endif
-
+    
+#endif
 }
 
 - (BOOL)isAuthenticated {
-   // return (self.token && ![self.token isEqualToString:@""] && [LWPrivateKeyManager shared].privateKeyLykke);//nikola !!!
-    return (self.token && ![self.token isEqualToString:@""]);
+    return (self.token && ![self.token isEqualToString:@""] && [LWPrivateKeyManager shared].privateKeyLykke);
 }
 
 - (NSString *)fullName {
     return [valet stringForKey:kKeychainManagerFullName];
+}
+
+- (void)setUserFromUSA:(BOOL)userFromUSA {
+  [self setBool:userFromUSA forKey:kIsUserFromUSAKey];
+}
+
+- (BOOL)isUserFromUSA {
+  return [self boolForKey:kIsUserFromUSAKey];
+}
+
+- (void)setShowMarginWallets:(BOOL)showMarginWallets {
+  [self setBool:showMarginWallets forKey:kShowMarginWalletsKey];
+}
+
+- (BOOL)showMarginWallets {
+  return [self boolForKey:kShowMarginWalletsKey];
+}
+
+- (void)setShowMarginWalletsLive:(BOOL)showMarginWalletsLive {
+  [self setBool:showMarginWalletsLive forKey:kShowMarginWalletsLiveKey];
+}
+
+- (BOOL)showMarginWalletsLive {
+  return [self boolForKey:kShowMarginWalletsLiveKey];
+}
+
+- (void)setSwiftDepositEnabled:(BOOL)swiftDepositEnabled {
+  [self setBool:swiftDepositEnabled forKey:kSwiftDepositEnabledKey];
+}
+
+- (BOOL)isSwiftDepositEnabled {
+  return [self boolForKey:kSwiftDepositEnabledKey];
+}
+
+- (void)setUseOffchainRequests:(BOOL)useOffchainRequests {
+  [self setBool:useOffchainRequests forKey:kUseOffchainOperationsKey];
+}
+
+- (BOOL)useOffchainRequests {
+  return [self boolForKey:kUseOffchainOperationsKey];
+}
+
+- (void)setCanCashInViaBankCard:(BOOL)canCashInViaBankCard {
+  [self setBool:canCashInViaBankCard forKey:kCanCashInViaBankCardKey];
+}
+
+- (BOOL)canCashInViaBankCard {
+  return [self boolForKey:kCanCashInViaBankCardKey];
+}
+
+- (LWMainScreenData *)mainScreenData {
+  NSString *json = [valet stringForKey:kMainScreenValuesKey];
+  NSData *jsonData = [json dataUsingEncoding:NSUTF8StringEncoding];
+  if (jsonData == nil) {
+    return nil;
+  }
+  NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+  return [EKMapper objectFromExternalRepresentation:dictionary withMapping:[LWMainScreenData objectMapping]];
+}
+
+- (void)setMainScreenData:(LWMainScreenData *)mainScreenData {
+  NSDictionary *dictionary = mainScreenData ? [EKSerializer serializeObject:mainScreenData withMapping:[LWMainScreenData objectMapping]] : nil;
+  NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:0 error:nil];
+  NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+  [valet setString:json forKey:kMainScreenValuesKey];
 }
 
 @end

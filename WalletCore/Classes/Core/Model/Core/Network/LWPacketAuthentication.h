@@ -23,6 +23,4 @@
 @property (readonly, nonatomic) LWPersonalDataModel *personalData;
 @property (readonly, nonatomic) BOOL            isPinEntered;
 
-- (void)parseResponse:(id)response error:(NSError *)error;
-
 @end

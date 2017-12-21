@@ -18,7 +18,6 @@
     data.identity    = [self.identity copy];
     data.dateTime    = [self.dateTime copy];
     data.asset       = [self.asset copy];
-    data.assetId       = [self.assetId copy];
     data.blockchainHash=[self.blockchainHash copy];
     data.addressFrom=_addressFrom.copy;
     data.addressTo=_addressTo.copy;

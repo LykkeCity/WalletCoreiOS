@@ -9,7 +9,6 @@
 #import "LWNetAccessor.h"
 #import "LWRegistrationData.h"
 #import "LWAuthenticationData.h"
-#import "LWPacketKYCSendDocument.h"
 #import "LWAuthSteps.h"
 
 
@@ -47,6 +46,9 @@
 @class LWPacketGetPaymentUrl;
 @class LWPacketPrevCardPayment;
 @class LWPacketGetHistory;
+@class LWPacketLimitOrderDetails;
+@class LWPacketLimitOrderTrades;
+@class LWPacketLimitOrderHistory;
 @class LWPacketClientKeys;
 @class LWPrivateKeyOwnershipMessage;
 @class LWRecoveryPasswordModel;
@@ -54,7 +56,6 @@
 @class LWPacketMyLykkeInfo;
 @class LWPacketGetNews;
 @class LWPacketSwiftCredentials;
-@class LWPacketSwiftCredential;
 @class LWPacketGetEthereumAddress;
 @class LWWalletMigrationModel;
 @class LWPacketOrderBook;
@@ -73,18 +74,19 @@
 @class LWPacketGetMainScreenInfo;
 @class LWPacketMarginDepositWithdraw;
 @class LWPacketAccountExist;
-
+@class LWPacketSendVerificationCode;
+@class LWPacketMarginChartData;
 
 @protocol LWAuthManagerDelegate<NSObject>
 @optional
 - (void)authManager:(LWAuthManager *)manager didFailWithReject:(NSDictionary *)reject context:(GDXRESTContext *)context;
 - (void)authManager:(LWAuthManager *)manager didCheckRegistration:(LWPacketAccountExist *) packet;
 - (void)authManagerDidRegister:(LWAuthManager *)manager;
-- (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalData *)personalData;
+- (void)authManagerDidRegisterGet:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered personalData:(LWPersonalDataModel *)personalData;
 - (void)authManagerDidAuthenticate:(LWAuthManager *)manager KYCStatus:(NSString *)status isPinEntered:(BOOL)isPinEntered;
 - (void)authManager:(LWAuthManager *)manager didCheckDocumentsStatus:(LWDocumentsStatus *)status;
 - (void)authManagerDidSendDocument:(LWAuthManager *)manager ofType:(KYCDocumentType)docType;
-- (void)authManager:(LWAuthManager *)manager didGetKYCStatus:(NSString *)status personalData:(LWPersonalData *)personalData;
+- (void)authManager:(LWAuthManager *)manager didGetKYCStatus:(NSString *)status personalData:(LWPersonalDataModel *)personalData;
 - (void)authManagerDidSetKYCStatus:(LWAuthManager *)manager;
 - (void)authManager:(LWAuthManager *)manager didValidatePin:(BOOL)isValid;
 - (void)authManagerDidSetPin:(LWAuthManager *)manager;
@@ -102,7 +104,6 @@
 - (void)authManager:(LWAuthManager *)manager didGetAssetPairRates:(NSArray *)assetPairRates;
 - (void)authManager:(LWAuthManager *)manager didGetAssetsDescriptions:(NSArray *)assetsDescriptions;
 - (void)authManager:(LWAuthManager *)manager didGetAppSettings:(LWAppSettingsModel *)appSettings;
-- (void)authManager:(LWAuthManager *)manager didReceiveDealResponse:(LWAssetDealModel *)purchase;
 - (void)authManagerDidSetSignOrders:(LWAuthManager *)manager;
 - (void)authManager:(LWAuthManager *)manager didGetBlockchainTransaction:(LWAssetBlockchainModel *)blockchain;
 - (void)authManager:(LWAuthManager *)manager didGetBlockchainCashTransaction:(LWAssetBlockchainModel *)blockchain;
@@ -144,6 +145,9 @@
 
 -(void) authManager:(LWAuthManager *)manager didGetLastCardPaymentData:(LWPacketPrevCardPayment *) packet;
 -(void) authManager:(LWAuthManager *)manager didGetHistory:(LWPacketGetHistory *) packet;
+- (void)authManager:(LWAuthManager *)manager didGetLimitOrderHistoryDetails:(LWPacketLimitOrderDetails *)packet;
+- (void)authManager:(LWAuthManager *)manager didGetLimitOrderHistoryTrades:(LWPacketLimitOrderTrades *)packet;
+- (void)authManager:(LWAuthManager *)manager didGetLimitOrderHistory:(LWPacketLimitOrderHistory *)packet;
 
 -(void) authManagerDidSendClientKeys:(LWAuthManager *) manager;
 
@@ -156,7 +160,6 @@
 
 -(void) authManagerDidSendMyLykkeCashInEmail:(LWAuthManager *)manager;
 -(void) authManagerDidGetSwiftCredentials:(LWPacketSwiftCredentials *) packet;
--(void) authManagerDidGetSwiftCredential:(LWPacketSwiftCredential *) packet;
 
 -(void) authManagerDidGetEthereumAddress:(LWPacketGetEthereumAddress *) ethereumAddress;
 
@@ -202,6 +205,15 @@
 -(void) authManagerDidSetMarginTermsStatus;
 -(void) authManagerDidSendMarginDepositWithdraw:(LWPacketMarginDepositWithdraw *) pack;
 
+-(void) authManagerDidGetClienState;
+-(void) authManagerDidRequestVerificationCode;
+-(void) authManagerDidSendVerificationCode:(LWPacketSendVerificationCode *) pack;
+-(void) authManagerDidSendMarginSwiftWithdraw;
+-(void) authManagerDidGetMarginChartData:(LWPacketMarginChartData *)pack;
+
+- (void)authManagerDidGetDialogs:(NSArray *)dialogs;
+- (void)authManagerDidSendDialog;
+
 @end
 
 
@@ -209,6 +221,7 @@
     
 }
 
+SINGLETON_DECLARE
 
 @property (weak, nonatomic) id<LWAuthManagerDelegate> delegate;
 
@@ -217,15 +230,12 @@
 @property (readonly, nonatomic) LWDocumentsStatus  *documentsStatus;
 
 #pragma mark - Common
-+ (LWAuthManager*)instance;
-+ (LWAuthManager*)newInstance;
+
 - (void)requestEmailValidation:(NSString *)email;
 - (void)requestAuthentication:(LWAuthenticationData *)data;
 - (void)requestRegistration:(LWRegistrationData *)data;
 - (void)requestRegistrationGet;
 - (void)requestDocumentsToUpload;
-- (void)requestSendDocument:(KYCDocumentType)docType image:(UIImage *)image;
-- (void)requestSendDocumentBin:(KYCDocumentType)docType image:(UIImage *)image;
 - (void)requestKYCStatusGet;
 - (void)requestKYCStatusSet;
 - (void)requestPinSecurityGet:(NSString *)pin;
@@ -237,6 +247,7 @@
 - (void)requestAddBankCard:(LWBankCardsAdd *)card;
 - (void)requestBaseAssets;
 -(void) requestAllAssets;
+- (void)requestAllAssetsWithCompletion:(void(^)(void))completion;
 - (void)requestBaseAssetGet;
 - (void)requestBaseAssetSet:(NSString *)assetId;
 -(void) requestLastBaseAssets;
@@ -247,7 +258,7 @@
 -(void) requestAssetPairRatesNoBaseAsset;
 - (void)requestAssetsDescriptions:(NSArray *)assetIds;
 - (void)requestAppSettings;
-- (void)requestBuySellAsset:(NSString *)asset assetPair:(NSString *)assetPair volume:(NSNumber *)volume rate:(NSString *)rate;
+- (void)requestEtherSettings;
 - (void)requestSignOrders:(BOOL)shouldSignOrders;
 - (void)requestBlockchainOrderTransaction:(NSString *)orderId;
 - (void)requestBlockchainCashTransaction:(NSString *)cashOperationId;
@@ -287,14 +298,17 @@
 -(void) requestGetPushSettings;
 -(void) requestSetPushEnabled:(BOOL) isEnabled;
 
--(void) requestEncodedPrivateKey;
+-(void) requestEncodedPrivateKey: (NSString *) accessToken;
 -(void) requestSaveClientKeysWithPubKey:(NSString *) pubKey encodedPrivateKey:(NSString *) encodedPrivateKey;
 
 -(void) requestGetPaymentUrlWithParameters:(NSDictionary *) params;
 
 -(void) requestPrevCardPayment;
 
--(void) requestGetHistory:(NSString *) assetId;
+- (void)requestGetHistory:(NSString *) assetId;
+- (void)requestGetLimitOrderHistoryDetails:(NSString *)orderId;
+- (void)requestGetLimitOrderHistoryTrades:(NSString *)orderId;
+- (void)requestGetLimitOrderHistory:(NSString *)orderId;
 
 -(void) requestPrivateKeyOwnershipMessage:(NSString *) email;
 -(void) requestCheckPrivateKeyOwnershipMessageSignature:(NSString *) signature email:(NSString *) email;
@@ -313,9 +327,7 @@
 
 -(void) requestSendMyLykkeCashInEmail:(NSDictionary *) params;
 
--(void) requestSwiftCredentials __attribute((deprecated("use requestSwiftCredential:assetId method")));
-    
--(void) requestSwiftCredential:(NSString *) assetId;
+-(void) requestSwiftCredentialsForAsset:(NSString *) assetId;
 
 -(void) requestEthereumAddress;
 
@@ -328,7 +340,7 @@
 -(void) requestVoiceCall:(NSString *) phone email:(NSString *) email;
 
 -(void) requestWalletMigration:(LWWalletMigrationModel *) migration;
--(void) requestSetPasswordHash:(NSString *) hash;
+- (void)requestSetPasswordHashWithPassword:(NSString *)password;
 
 -(void) requestOrderBook:(NSString *) assetPairId;
 -(void) requestKYCDocuments;
@@ -347,10 +359,6 @@
 -(void) requestSendSolarCoinAddressEmail:(NSString *) address;
 
 -(void) requestIssuers;
-
--(void) requestMarginalAccounts;
-
--(void) requestCrossbarUrl;
 
 -(void) requestLogout;
 
@@ -373,13 +381,24 @@
 -(void) requestSendSignedSPOTTransactions:(NSArray *) transactions;
 
 -(void) requestMainScreenInfo;
--(void) requestMainScreenInfo: (NSString *) assetId;
 
 -(void) requestGetMarginTermsStatus;
 -(void) requestSetMarginTermsStatus;
 
 -(void) requestMarginalDepositWithdrawForAccountId:(NSString *) accountId amount: (NSNumber *) amount;
 -(void) requestResetDemoMarginAccount:(NSString *) accountId;
+-(void) requestClientState;
+
+-(void) requestVerificationCode;
+-(void) requestSendVerificationCode:(NSString *) code;
+
+-(void) requestMarginSwiftWithdraw:(NSDictionary *) credentials;
+
+-(void) requestMarginChartDataForAssets:(NSArray *)assetIds;
+-(void) requestAllMarginChartData;
+
+- (void)requestClientDialogs;
+- (void)requestSendClientDialog:(NSString *)dialogId buttonId:(NSString *)buttonId;
 
 //PubkeyAddressValidation
 

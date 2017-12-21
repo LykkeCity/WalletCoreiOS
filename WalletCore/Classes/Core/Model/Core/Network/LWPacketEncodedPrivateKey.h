@@ -10,4 +10,8 @@
 
 @interface LWPacketEncodedPrivateKey : LWAuthorizePacket
 
+@property (strong, nonatomic) NSString *accessToken;
+
+@property BOOL needGeneratePrivateKey;
+
 @end

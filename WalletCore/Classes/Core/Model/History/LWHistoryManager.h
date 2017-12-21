@@ -16,10 +16,10 @@
     
 }
 
-+(NSArray *) prepareHistory:(NSArray *) operations marginal:(NSArray *) marginal;
-//+(NSArray *) convertHistoryToArrayOfArrays:(NSArray *) history;
-
-
++ (NSArray *)prepareLimitHistory:(NSArray *)operations;
++ (NSArray *)prepareHistory:(NSArray *)operations marginal:(NSArray *)marginal;
 + (NSArray *)sortKeys:(NSDictionary *)dictionary;
+
++ (NSArray *)historyForOrderId:(NSString *)orderId;
 
 @end

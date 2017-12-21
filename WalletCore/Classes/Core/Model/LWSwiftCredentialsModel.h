@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *accountName;
 @property (strong, nonatomic) NSString *purposeOfPayment;
 @property (strong, nonatomic) NSString *bankAddress;
+@property (strong, nonatomic) NSString *correspondentBank;
 @property (strong, nonatomic) NSString *companyAddress;
 
 

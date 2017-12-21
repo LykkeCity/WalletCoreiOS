@@ -10,5 +10,7 @@
 @class LWSwiftCredentialsModel;
 @interface LWPacketSwiftCredentials : LWAuthorizePacket
 
+@property (strong, nonatomic) NSString *assetId;
+@property (strong, nonatomic) LWSwiftCredentialsModel *credentials;
 
 @end

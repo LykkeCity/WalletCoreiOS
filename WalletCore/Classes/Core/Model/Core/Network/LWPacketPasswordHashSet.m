@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketPasswordHashSet.h"
+#import "LWPrivateKeyManager.h"
 
 @implementation LWPacketPasswordHashSet
 
@@ -16,8 +17,6 @@
     if (self.isRejected) {
         return;
     }
-    
-    
 }
 
 - (GDXRESTPacketType)type {
@@ -25,12 +24,11 @@
 }
 
 - (NSString *)urlRelative {
-    return [NSString stringWithFormat:@"HashedPwd"];
+    return @"HashedPwd";
 }
 
--(NSDictionary *) params
-{
-    NSDictionary *params=@{@"PwdHash":_passwordHash};
+- (NSDictionary *)params {
+    NSDictionary *params = @{ @"PwdHash": [LWPrivateKeyManager hashForString:self.password] };
     return params;
 }
 

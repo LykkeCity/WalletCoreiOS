@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Macro.h"
 
+@class LWMainScreenData;
 @class LWPersonalDataModel;
 
 @interface LWKeychainManager : NSObject {
@@ -25,8 +26,15 @@ SINGLETON_DECLARE
 @property (readonly, nonatomic) NSString *notificationsTag;
 @property (readonly, nonatomic) NSString *encodedPrivateKeyLykke;
 
-@property (readonly, nonatomic) BOOL     isAuthenticated;
+@property (readonly, nonatomic) BOOL isAuthenticated;
 
+@property (nonatomic, getter = isUserFromUSA) BOOL userFromUSA;
+@property (nonatomic, getter = isSwiftDepositEnabled) BOOL swiftDepositEnabled;
+@property (nonatomic) LWMainScreenData *mainScreenData;
+@property (nonatomic) BOOL showMarginWallets;
+@property (nonatomic) BOOL showMarginWalletsLive;
+@property (nonatomic) BOOL useOffchainRequests;
+@property (nonatomic) BOOL canCashInViaBankCard;
 
 #pragma mark - Common
 
@@ -48,6 +56,8 @@ SINGLETON_DECLARE
 -(LWPersonalDataModel *) personalData;
 
 - (void)clear;
+
+-(void) clearWholeKeychain;
 
 -(void) saveFullName:(NSString *) fullName;
 

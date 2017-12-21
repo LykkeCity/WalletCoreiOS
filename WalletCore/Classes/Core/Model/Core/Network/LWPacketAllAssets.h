@@ -10,4 +10,6 @@
 
 @interface LWPacketAllAssets : LWAuthorizePacket
 
+@property (copy, nonatomic) void(^completionBlock)(void);
+
 @end

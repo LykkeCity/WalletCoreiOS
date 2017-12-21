@@ -253,7 +253,7 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, w
     
     func filter(includeEthereum: Bool) -> Observable<(asset: LWAssetModel, units: Decimal, wallet: LWSpotWallet, bid: Bool)> {
         return filter{data in
-            [data.asset.blockchainType, data.asset.blockchainType].contains(BLOCKCHAIN_TYPE_ETHEREUM) == includeEthereum
+            [data.asset.blockchainType, data.asset.blockchainType].contains(.ethereum) == includeEthereum
         }
     }
     

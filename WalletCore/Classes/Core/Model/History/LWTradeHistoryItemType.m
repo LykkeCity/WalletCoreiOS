@@ -17,9 +17,9 @@
     result.dateTime    = model.dateTime;
     result.identity    = model.identity;
     result.volume      = model.volume;
-    
+	result.orderId	   = model.orderId;
+	
     result.asset       = model.asset;
-    result.assetId     = model.assetId;
     result.historyType = LWHistoryItemTypeTrade;
     result.addressFrom=model.addressFrom;
     result.addressTo=model.addressTo;
@@ -28,7 +28,9 @@
     result.blockchainHash=model.blockchainHash;
     result.isSettled=model.isSettled;
     result.isOffchain = model.isOffchain;
-    
+	
+	result.isLimitTrade = model.isLimitTrade;
+	
     return result;
 }
 

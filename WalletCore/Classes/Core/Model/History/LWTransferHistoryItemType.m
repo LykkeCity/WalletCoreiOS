@@ -18,7 +18,6 @@
     result.identity    = model.identity;
     result.volume      = model.volume;
     result.asset       = model.asset;
-    result.assetId     = model.assetId;
     
     result.historyType = LWHistoryItemTypeTransfer;
     result.addressFrom=model.addressFrom;
@@ -27,6 +26,7 @@
     result.iconId=model.iconId;
     result.blockchainHash=model.blockchainHash;
     result.isSettled=model.isSettled;
+    result.isOffchain = model.isOffchain;
 
     
     return result;

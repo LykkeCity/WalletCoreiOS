@@ -21,7 +21,7 @@
 }
 
 - (GDXRESTPacketType)type {
-    if(_watchList.type == CFD || _watchList.identity == nil)
+    if(_watchList.type == LWWatchListTypeCFD || _watchList.identity == nil)
         return GDXRESTPacketTypePOST;
     else
         return GDXRESTPacketTypePUT;
@@ -30,7 +30,7 @@
 -(NSString *) urlBase {
     
     NSString *url = [super urlBase];
-    if(_watchList.type == CFD) {
+    if(_watchList.type == LWWatchListTypeCFD) {
         return [LWCache instance].marginalApiUrl;
     }
     else {
@@ -47,7 +47,7 @@
 }
 
 - (NSString *)urlRelative {
-    if(_watchList.identity == nil || _watchList.type == CFD)
+    if(_watchList.identity == nil || _watchList.type == LWWatchListTypeCFD)
         return @"watchlists";
     else {
         return [@"watchlists" stringByAppendingFormat:@"/%@",_watchList.identity];
