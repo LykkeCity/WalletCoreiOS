@@ -14,33 +14,66 @@ import WalletCore
 import AlamofireImage
 
 class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
-
+    
     @IBOutlet weak var currenciesTableView: UITableView!
     
     let disposeBag = DisposeBag()
     
     
+    var assets = Variable<[Variable<Asset>]>([])
+    fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
+        return TotalBalanceViewModel(refresh: ReloadTrigger.instance.trigger(interval: 10))
+    }()
+    
+    fileprivate lazy var walletsViewModel: WalletsViewModel = {
+        return WalletsViewModel(
+            refreshWallets: Observable.just(Void()),
+            mainInfo: self.totalBalanceViewModel.observables.mainInfo.filterSuccess()
+        )
+    }()
+    
+    fileprivate lazy var loadingViewModel: LoadingViewModel = {
+        return LoadingViewModel([
+            self.totalBalanceViewModel.loading.isLoading,
+            self.walletsViewModel.loadingViewModel.isLoading
+            ])
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         currenciesTableView.backgroundColor = UIColor.clear
-
-        currenciesTableView.register(UINib(nibName: "AddMoneyCryptoCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "AddMoneyCryptoCurrencyTableViewCell")
-//        let allCryptoAssets = LWRxAuthManager.instance.allAssets.request()
-//        .filterSuccess()
-//            .map{$0.filter{$0.blockchainDeposit}}
         
-        LWRxAuthManager.instance.lykkeWallets.request()
-            .filterSuccess()
+        currenciesTableView.register(UINib(nibName: "AddMoneyCryptoCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "AddMoneyCryptoCurrencyTableViewCell")
+        loadingViewModel.isLoading
+            .bind(to: rx.loading)
+            .disposed(by: disposeBag)
+        
+        //        walletsViewModel.wallets
+        //            .asObservable()
+        //            .map{$0
+        ////                .filter{($0.value.wallet?.asset.blockchainDeposit)!}
+        //                .map{
+        //                    return Variable(LWAddMoneyCryptoCurrencyModel(name:($0.value.wallet?.asset.name)!,
+        //                                                                  address:$0.value.wallet?.asset.blockchainDepositAddress,
+        //                                                                  imageUrl:$0.value.wallet?.asset.iconUrl))
+        //                }
+        //            }.bind(to: currenciesTableView.rx.items(cellIdentifier: "AddMoneyCryptoCurrencyTableViewCell",
+        //                                              cellType: AddMoneyCryptoCurrencyTableViewCell.self)) { (row, element, cell) in
+        //                                                cell.bind(toCurrency: AddMoneyCryptoCurrencyCellViewModel(element))
+        //            }
+        //            .disposed(by: disposeBag)
+        //
+        
+        
+        let lykkeWallets = LWRxAuthManager.instance.lykkeWallets.request()
+        
+        lykkeWallets.filterSuccess()
             .map{$0.lykkeData.wallets.filter {
-                            return ($0 as! LWSpotWallet).asset.blockchainDeposit
+                return ($0 as! LWSpotWallet).asset.blockchainDeposit && (($0 as! LWSpotWallet).asset.blockchainDepositAddress != nil)
                 }.map({ (wallet) -> Variable<LWAddMoneyCryptoCurrencyModel> in
                     let w: LWSpotWallet = wallet as! LWSpotWallet
                     let model = LWAddMoneyCryptoCurrencyModel(name:w.name,
                                                               address:w.asset.blockchainDepositAddress,
                                                               imageUrl:w.asset.iconUrl)
-//                    self.findImageUrl(identity: w.identity,allCryptoAssets: allCryptoAssets).subscribe(onNext: { url in
-//                        model.imgUrl = URL(string: (url[0]?.absoluteString)!)
-//                        }).addDisposableTo(self.disposeBag)
                     return Variable(model)
                 })
                 
@@ -49,36 +82,44 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
                                                         cell.bind(toCurrency: AddMoneyCryptoCurrencyCellViewModel(element))
             }
             .disposed(by: disposeBag)
-
-
-
-
+        
+        
         currenciesTableView.rx.itemSelected.asObservable()
             .subscribe(onNext: {[weak self] indexPath in
                 self?.performSegue(withIdentifier: "cc2Segue", sender: self)
             })
             .disposed(by: disposeBag)
         
+        bindViewModels()
     }
-
-    func findImageUrl(identity:String?, allCryptoAssets:Observable<[LWAssetModel]>) -> Observable<[URL?]>{
-        let url = allCryptoAssets.map{$0.filter{$0.identity == identity}.map{$0.iconUrl}}
-        return url
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+fileprivate extension TotalBalanceViewModel {
+    func bind(toVieController viewController: AddMoneyCryptocurrencyStep1ViewController) -> [Disposable] {
+        return [
+            observables.baseAsset.filterSuccess().subscribe(onNext: {asset in LWCache.instance().baseAssetId = asset.identity})
+        ]
+    }
+}
+extension AddMoneyCryptocurrencyStep1ViewController {
+    func bindViewModels() {
+        
+        totalBalanceViewModel
+            .bind(toVieController: self)
+            .disposed(by: disposeBag)
+        
+        walletsViewModel.wallets
+            .bind(to: assets)
+            .disposed(by: disposeBag)
+    }
+}
+
