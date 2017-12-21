@@ -12,9 +12,9 @@ import WalletCore
 extension LWNetworkTemplate: LWAuthManagerDelegate {
     
     func showReleaseError(_ error: NSError, request: NSURLRequest) {
-//        guard request.showErrorIfFailed else {
-//            return
-//        }
+        guard request.showErrorIfFailed else {
+            return
+        }
         DispatchQueue.main.async {
             guard let viewController = (UIApplication.shared.delegate as? AppDelegate)?.visibleViewController else {
                 return
