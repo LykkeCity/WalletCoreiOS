@@ -162,6 +162,7 @@
 		A1D65DD21D602B0100828783 /* english_words_list.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1D65DD11D602B0100828783 /* english_words_list.txt */; };
 		A1F4D4A71DCAFF50002EF855 /* lykke-ethereum.html in Resources */ = {isa = PBXBuildFile; fileRef = A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */; };
 		C5B982ED1FE974F300D1A642 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B982EC1FE974F200D1A642 /* UIImageEffects.m */; };
+		AB29EEF81FEB0C000006F43F /* LWNetworkClient+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */; };
 		CC48AB581F0E802A0081AF27 /* Buy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC48AB571F0E802A0081AF27 /* Buy.storyboard */; };
 		CC8A99AA1EF7BAB80078E6B0 /* AddMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */; };
 		CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94587C1F03D44E00676249 /* EndBankViewController.swift */; };
@@ -348,6 +349,7 @@
 		A57C827D33CFD609CABF906F /* Pods-ModernMoney.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.debug.test.xcconfig"; sourceTree = "<group>"; };
 		C5B982EB1FE974F100D1A642 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		C5B982EC1FE974F200D1A642 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
+		AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWNetworkClient+Extension.swift"; sourceTree = "<group>"; };
 		CC48AB571F0E802A0081AF27 /* Buy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Buy.storyboard; sourceTree = "<group>"; };
 		CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMoneyViewController.swift; sourceTree = "<group>"; };
 		CC94587C1F03D44E00676249 /* EndBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndBankViewController.swift; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 				661C030D1FE15E2D003178B3 /* InputForm+Extensions.swift */,
 				C5B982EB1FE974F100D1A642 /* UIImageEffects.h */,
 				C5B982EC1FE974F200D1A642 /* UIImageEffects.m */,
+				AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1046,15 +1049,16 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyMapping/EasyMapping.framework",
 				"${BUILT_PRODUCTS_DIR}/GHODictionary/GHODictionary.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MDWamp/MDWamp.framework",
 				"${BUILT_PRODUCTS_DIR}/MPMessagePack/MPMessagePack.framework",
-				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
@@ -1079,15 +1083,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyMapping.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GHODictionary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDWamp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MPMessagePack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
@@ -1255,6 +1260,7 @@
 				61BAB0E01F0F72F600212E16 /* FakeData.swift in Sources */,
 				664676D41FCEF260006FC340 /* SignUpFillPhoneFormController.swift in Sources */,
 				668E68081FCDC449004552BD /* PinViewController.swift in Sources */,
+				AB29EEF81FEB0C000006F43F /* LWNetworkClient+Extension.swift in Sources */,
 				469DA7251F6C1FBF000B904C /* KYCStep2ViewController.swift in Sources */,
 				66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */,
 				87C6CDFE1FA5BCBD0069CC38 /* CashOutConfirmationDetailTableViewCell.swift in Sources */,

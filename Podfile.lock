@@ -17,10 +17,28 @@ PODS:
   - Alamofire (4.4.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - Charts (3.0.2):
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
   - CocoaAsyncSocket (7.6.1)
+  - EasyMapping (0.21.2):
+    - EasyMapping/Core (= 0.21.2)
+  - EasyMapping/Core (0.21.2)
   - Firebase/Core (4.3.0):
     - FirebaseAnalytics (= 4.0.4)
     - FirebaseCore (= 4.0.8)
@@ -50,7 +68,6 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - QRCodeReader.swift (7.4.3)
   - RxCocoa (3.6.1):
     - RxSwift (~> 3.6)
   - RxDataSources (1.0.4):
@@ -78,8 +95,9 @@ PODS:
   - Valet (2.4.1)
   - WalletCore (0.0.1):
     - AFNetworking
+    - BlocksKit
+    - EasyMapping
     - MDWamp
-    - QRCodeReader.swift (~> 7.4.0)
     - RxCocoa (~> 3.6.1)
     - RxKeyboard (~> 0.6.2)
     - RxOptional (~> 3.1)
@@ -114,8 +132,10 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
+  EasyMapping: 93c1f054da1bc5dff6aa332477b040bea7767841
   Firebase: 83283761a1ef6dc9846e03d08059f51421afbd65
   FirebaseAnalytics: 722b53c7b32bfc7806b06e0093a2f5180d4f2c5a
   FirebaseCore: 69b1a5ac5f857ba6d5fd9d5fe794f4786dd5e579
@@ -127,7 +147,6 @@ SPEC CHECKSUMS:
   MDWamp: c41dd5e15ffb61f4f23d027c925173e8c2313c3b
   MPMessagePack: 6dc3a4b93bfdc7cdafcb64de62e2adc50cd99880
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  QRCodeReader.swift: 4a1d46f3057b1b6fc555578b2dc9f2dc99c7ccda
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxDataSources: b3389acc5fe2eefb8fcd81a2b76a876ad08bc82a
   RxKeyboard: 09e6bd45070888cd9701e941b2324a49cc974a1b
@@ -143,7 +162,7 @@ SPEC CHECKSUMS:
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
   UIDeviceIdentifier: 9281343882e24460235f00a0d7d2fc04a65688c6
   Valet: 6c148c9562e871f7f6b364eda80e78b377e5b908
-  WalletCore: c976f55f5b38cbb24f3d02fc05ab255c406eac69
+  WalletCore: 68e73dcf36e9031687d674267bf8d0899c9f33de
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
 PODFILE CHECKSUM: 62c53063cb6284f97122afdbcd6e17e9d658fa05

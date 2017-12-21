@@ -241,7 +241,7 @@ class MenuTableViewController: UITableViewController {
         }
     }
     
-    private static func logout(_ viewController: UIViewController) {
+    static func logout(_ viewController: UIViewController) {
         
         UserDefaults.standard.set(loggedIn: false)
         UserDefaults.standard.synchronize()
