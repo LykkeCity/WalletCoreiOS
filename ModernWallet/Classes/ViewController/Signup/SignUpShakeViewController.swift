@@ -39,6 +39,8 @@ class SignUpShakeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        SignUpStep.instance = .generateWallet
+        
         titleLabel.text = Localize("auth.newDesign.generateKeysTitle")
         instructionsLabel.text = Localize("auth.newDesign.generateKeysInstructions")
         descriptionLabel.text = Localize("auth.newDesign.generateKeysDetails")
@@ -55,6 +57,7 @@ class SignUpShakeViewController: UIViewController {
         
         resultObservable
             .filterError()
+            .filter{ !$0.isCodeOne }
             .subscribe(onNext: { [weak self] errorData in
                 guard let `self` = self else { return }
                 self.show(error: errorData)
@@ -62,11 +65,17 @@ class SignUpShakeViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        resultObservable
-            .filterSuccess()
+        Observable
+            .merge(
+                resultObservable.filterError().filter{ $0.isCodeOne }.map{ _ in Void() },
+                resultObservable.filterSuccess().map{ _ in () }
+            )
             .subscribe { [weak self] _ in
-                UserDefaults.standard.set("true", forKey: "loggedIn")
+                SignUpStep.resetInstance()
+                UserDefaults.standard.set(loggedIn: true)
+                UserDefaults.standard.synchronize()
                 NotificationCenter.default.post(name: .loggedIn, object: nil)
+                
                 self?.navigationController?.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
@@ -102,4 +111,17 @@ class SignUpShakeViewController: UIViewController {
         trigger.onNext(())
     }
     
+}
+
+extension Dictionary where Key == AnyHashable{
+    
+    
+    /// If the error code is one this could be interpreted that the entity is already created
+    var isCodeOne: Bool {
+        guard let code = self["Code"] as? Int else {
+            return false
+        }
+        
+        return code == 1
+    }
 }

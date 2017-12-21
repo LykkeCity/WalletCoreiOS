@@ -243,7 +243,8 @@ class MenuTableViewController: UITableViewController {
     
     private static func logout(_ viewController: UIViewController) {
         
-        UserDefaults.standard.setValue(nil, forKey: "loggedIn")
+        UserDefaults.standard.set(loggedIn: false)
+        UserDefaults.standard.synchronize()
         
         if LWKeychainManager.instance().isAuthenticated {
            LWAuthManager.instance().requestLogout()

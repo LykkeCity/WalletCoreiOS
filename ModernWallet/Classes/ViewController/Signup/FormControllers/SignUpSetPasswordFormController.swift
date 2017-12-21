@@ -42,7 +42,7 @@ class SignUpSetPasswordFormController: FormController {
     }()
     
     var canGoBack: Bool {
-        return false
+        return true
     }
     
     var buttonTitle: String? {

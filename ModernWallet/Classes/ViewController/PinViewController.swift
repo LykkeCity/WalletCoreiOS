@@ -109,14 +109,22 @@ class PinViewController: UIViewController {
         result.loading.asDriver(onErrorJustReturn: false)
             .drive(self.rx.loading)
             .disposed(by: self.disposeBag)
+        
         result.result.asObservable().filterError()
+            .filter{ !$0.isCodeOne }
             .subscribe(self.rx.error)
             .disposed(by: self.disposeBag)
-        result.result.asObservable().filterSuccess()
+        
+        Observable
+            .merge(
+                result.result.asObservable().filterError().filter{ $0.isCodeOne }.map{ _ in () },
+                result.result.asObservable().filterSuccess().map{ _ in () }
+            )
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(success: true, animated: true)
             })
             .disposed(by: self.disposeBag)
+        
         return result
     }()
     
@@ -126,6 +134,10 @@ class PinViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if case .createPin = mode, SignUpStep.instance?.isNotGenerateWallet ?? false {
+            SignUpStep.instance = .setPin
+        }
 
         forgotPinButton.setTitle(Localize("auth.newDesign.forgotPin"), for: UIControlState.normal)
         triesLeftCount = permitedTriesCount
