@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let blurViewTag = 10
     
+    var inactivityTimer: Timer?
+    let pinInactivityInterval = TimeInterval(60)
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Configure tracker from GoogleService-Info.plist.
@@ -89,9 +92,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(ino64_t(30 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {() -> Void in
             self.waitForImage(toUpload: bgTask)
         })
+        
+        // Invalidate the inactivity timer
+        invalidateInactivityTimer()
+
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
+        // Start the inactivity timer
+        createInactivityTimer()
+
         // Dismiss the blur when app is active again
         if let coverView = self.window?.viewWithTag(blurViewTag) {
             coverView.removeFromSuperview()

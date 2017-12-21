@@ -46,6 +46,13 @@ class PinViewController: UIViewController {
         return presentPinViewController(from: viewController, title: title, isTouchIdEnabled: isTouchIdEnabled)
     }
     
+    static func inactivePinViewController(withTitle title: String?, isTouchIdEnabled: Bool) -> PinViewController {
+        let pinViewController = enterPinViewController(title: title, isTouchIdEnabled: isTouchIdEnabled)
+        pinViewController.isPresentedForInactivity = true
+        
+        return pinViewController
+    }
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var dotsView: UIStackView!
@@ -55,6 +62,8 @@ class PinViewController: UIViewController {
     @IBOutlet private weak var forgotPinButton: UIButton!
 
     var permitedTriesCount = 3
+    
+    var isPresentedForInactivity: Bool = false
     
     let complete = PublishSubject<Bool>()
 
@@ -200,7 +209,10 @@ class PinViewController: UIViewController {
     }
     
     @IBAction private func closeTapped() {
-        dismiss(animated: true)
+        // Disable the close button action if the view controller is presented due to inactivity
+        if !isPresentedForInactivity {
+            dismiss(animated: true)
+        }
     }
     
     // MARK: Private
@@ -250,7 +262,7 @@ class PinViewController: UIViewController {
     private func shakeAndReset() {
         shakeKeyboard()
         triesLeftCount -= 1
-        if triesLeftCount == 0 {
+        if triesLeftCount == 0 && !isPresentedForInactivity {
             dismiss(success: false, animated: true)
             return
         }

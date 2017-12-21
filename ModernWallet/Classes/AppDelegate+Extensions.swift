@@ -96,6 +96,7 @@ extension AppDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     }
     
+    // MARK: - Blur when TaskSwitcher is open (LMW-154)
     func buildBlurredImageViewFromVisibleViewController() -> UIImageView {
         let screenBounds = UIScreen.main.bounds
         let blurredImageView = UIImageView(frame: screenBounds)
@@ -126,5 +127,32 @@ extension AppDelegate {
         blurredImageView.image = blurredSnapshotImage
         
         return blurredImageView
+    }
+    
+    // MARK: - Inactivity pin show/hide (LMW-153)
+    func invalidateInactivityTimer() {
+        inactivityTimer?.invalidate()
+        inactivityTimer = nil
+    }
+    
+    func createInactivityTimer() {
+        if userDefaults.value(forKey: "loggedIn") == nil { return }
+        
+        inactivityTimer = Timer.scheduledTimer(timeInterval: pinInactivityInterval, target: self, selector: #selector(timerDidFinish), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func timerDidFinish() {
+        if visibleViewController is PinViewController { return }
+        
+        let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+        
+        guard let visibleViewController = visibleViewController else {
+            window?.rootViewController = pinViewController
+            window?.makeKeyAndVisible()
+            
+            return
+        }
+        
+        visibleViewController.present(pinViewController, animated: true)
     }
 }
