@@ -10,7 +10,7 @@ import UIKit
 public class LWAddMoneyCryptoCurrencyModel {
     let name: String
     let address: String?
-    public let imgUrl: URL?
+    public var imgUrl: URL?
     
     public init(name: String, address: String?) {
         self.name = name
