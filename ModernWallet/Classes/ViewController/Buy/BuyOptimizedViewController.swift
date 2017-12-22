@@ -54,13 +54,7 @@ class BuyOptimizedViewController: UIViewController {
         return TradingAssetsViewModel()
     }()
     
-    lazy var loadingViewModel: LoadingViewModel = {
-        return LoadingViewModel([
-            self.tradingAssetsViewModel.loadingViewModel.isLoading,
-            self.payWithAssetListViewModel.loadingViewModel.isLoading,
-            self.offchainTradeViewModel.loadingViewModel.isLoading
-        ])
-    }()
+    var loadingViewModel: LoadingViewModel!
     
     lazy var offchainTradeViewModel: OffchainTradeViewModel = {
         return OffchainTradeViewModel(offchainService: OffchainService.instance)
@@ -150,15 +144,51 @@ class BuyOptimizedViewController: UIViewController {
             .flatMap { return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
             .bind(to: confirmTrading)
             .disposed(by: disposeBag)
-
-        confirmTrading
-            .mapToTradeParams(withViewModel: buyOptimizedViewModel)
-            .bind(to: offchainTradeViewModel.tradeParams)
+        
+        let assetPairObservable = confirmTrading.asObserver()
+            .map { [buyOptimizedViewModel] _ in (buyOptimizedViewModel.mainAsset, buyOptimizedViewModel.quotingAsset) }
+            .filter { $0.0 != nil && $0.1 != nil }
+            .flatMap { LWRxAuthManager.instance.assetPairs.request(baseAsset: $0.0!, quotingAsset: $0.1!) }
+            .shareReplay(1)
+        
+        assetPairObservable
+            .filter { $0.getError() != nil }
+            .map { _ -> [AnyHashable: Any] in ["Message": "Unable to take asset pair"] }
+            .asDriver(onErrorJustReturn: [:])
+            .drive(rx.error)
             .disposed(by: disposeBag)
         
-        offchainTradeViewModel
-            .bind(toViewController: self)
+        let tradingObservable = assetPairObservable.filterSuccess()
+            .filterNil()
+            .flatMap { [buyOptimizedViewModel] assetPair -> Observable<ApiResult<LWAssetDealModel?>> in
+                guard let asset = buyOptimizedViewModel.mainAsset, let isSell = buyOptimizedViewModel.bid.value, let amount = buyOptimizedViewModel.tradeAmount else {
+                    return Observable.empty()
+                }
+                return LWMarketOrdersManager.createOrder(assetPair: assetPair, assetId: asset.identity, isSell: isSell, volume: String(describing: amount))
+            }
+            .shareReplay(1)
+        
+        tradingObservable
+            .map { $0.getSuccess() }
+            .filterNil()
+            .map { $0 != nil }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: {[weak self] success in
+                guard success else { return }
+                FinalizePendingRequestsTrigger.instance.finalizeNow()
+                guard let vc = self else { return }
+                vc.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
+                vc.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
+                vc.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
+            })
             .disposed(by: disposeBag)
+
+        loadingViewModel = LoadingViewModel([
+            tradingAssetsViewModel.loadingViewModel.isLoading,
+            payWithAssetListViewModel.loadingViewModel.isLoading,
+            assetPairObservable.isLoading(),
+            tradingObservable.isLoading()
+        ])
         
         loadingViewModel.isLoading
             .bind(to: rx.loading)
@@ -213,6 +243,18 @@ class BuyOptimizedViewController: UIViewController {
         var isSell: Bool {
             return self == .sell
         }
+    }
+    
+}
+
+extension Observable where Element == ApiResult<LWAssetDealModel?> {
+    
+    func isLoading() -> Observable<Bool> {
+        return
+            map { result -> Bool in
+                if case .loading = result { return true }
+                else { return false }
+            }
     }
     
 }
