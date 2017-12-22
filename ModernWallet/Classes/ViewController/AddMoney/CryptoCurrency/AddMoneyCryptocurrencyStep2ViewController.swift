@@ -25,7 +25,7 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
     let walletsManager = LWRxPrivateWalletsManager.instance
     
     //MARK:- Data
-    let wallet = Variable<LWPrivateWalletModel?>(nil)
+    var wallet = Variable<LWPrivateWalletModel?>(nil)
     
     //MARK:- View Models
     var copyWalletViewModel: CopyWalletAddressViewModel?
@@ -43,12 +43,13 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
         localize()
         
         //loading private wallets and assign the first one to the current wallet
-        walletsManager.loadWallets()
-            .filterSuccess()
-            .map{$0.first}
-            .bind(to: wallet)
-            .disposed(by: disposeBag)
-    
+//        walletsManager.loadWallets()
+//            .filterSuccess()
+//            .map{$0.filter{$0.address == self.address}}
+//            .map{$0.first}
+//            .bind(to: wallet)
+//            .disposed(by: disposeBag)
+//    
         copyWalletViewModel = CopyWalletAddressViewModel(
             tap: copyButton.rx.event.asDriver().map{_ in Void()},
             wallet: self.wallet
@@ -56,16 +57,16 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
         
         sendEmailWithAddressViewModel = SendEmailWithAddressViewModel(sendObservable: emailMeButton.rx.tap.asObservable(), wallet: self.wallet)
         
-        #if TEST
-            qrCodeImageView.image = #imageLiteral(resourceName: "BetaQrCode")
-            copyButton.isEnabled = false
-            copyLabel.alpha = 0.6
-            emailMeButton.isEnabled = false
-        #else
+//        #if TEST
+//            qrCodeImageView.image = #imageLiteral(resourceName: "BetaQrCode")
+//            copyButton.isEnabled = false
+//            copyLabel.alpha = 0.6
+//            emailMeButton.isEnabled = false
+//        #else
             observeCopyWallet()
             observeEmailMeWalletAddress()
             handleQRCode()
-        #endif
+//        #endif
         localize()
         // Do any additional setup after loading the view from its nib.
     }
