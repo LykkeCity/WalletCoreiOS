@@ -11,21 +11,40 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import WalletCore
+import AlamofireImage
 
 class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
-
+    
     @IBOutlet weak var currenciesTableView: UITableView!
     
     let disposeBag = DisposeBag()
-    let currencies = FakeData.cryptoCyrrency
-    
+
+    fileprivate lazy var cryptoCurrenciesViewModel: CryptoCurrenciesViewModel = {
+        return CryptoCurrenciesViewModel()
+    }()
+
+    fileprivate lazy var loadingViewModel: LoadingViewModel = {
+        return LoadingViewModel([
+            self.cryptoCurrenciesViewModel.loadingViewModel.isLoading
+            ])
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         currenciesTableView.backgroundColor = UIColor.clear
-
-        currenciesTableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
-
+        
+        currenciesTableView.register(UINib(nibName: "AddMoneyCryptoCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "AddMoneyCryptoCurrencyTableViewCell")
+        loadingViewModel.isLoading
+            .bind(to: rx.loading)
+            .disposed(by: disposeBag)
+        
+        cryptoCurrenciesViewModel.walletsData
+            .bind(to: currenciesTableView.rx.items(cellIdentifier: "AddMoneyCryptoCurrencyTableViewCell",
+                                                                    cellType: AddMoneyCryptoCurrencyTableViewCell.self)) { (row, element, cell) in
+                                                                        cell.bind(toCurrency: AddMoneyCryptoCurrencyCellViewModel(element))
+                            }
+                            .disposed(by: disposeBag)
+        
         
         currenciesTableView.rx.itemSelected.asObservable()
             .subscribe(onNext: {[weak self] indexPath in
@@ -33,27 +52,16 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        currencies.asObservable()
-            .bind(to: currenciesTableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell", cellType: PortfolioCurrencyTableViewCell.self)) { (row, element, cell) in
-                cell.bind(toCurrency: CryptoCurrencyCellViewModel(element))
-            }
-            .disposed(by: disposeBag)
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+

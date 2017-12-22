@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		11DA99157D1096C1AE2DAB86 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA906845E44B9E56EC79B6 /* PortfolioViewController.swift */; };
+		253592A61FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253592A41FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift */; };
+		253592A71FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 253592A51FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib */; };
 		461C6F8D1F8B4E9000C5E8B3 /* BuyAssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461C6F8C1F8B4E9000C5E8B3 /* BuyAssetListView.xib */; };
 		461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F8E1F8B4EB200C5E8B3 /* BuyAssetListView.swift */; };
 		462878731F433A710006BE45 /* GraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462878721F433A710006BE45 /* GraphProtocol.swift */; };
@@ -185,6 +187,8 @@
 		0D38EBBA7496F4FDC04B73E2 /* Pods-ModernWallet.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.test.xcconfig"; sourceTree = "<group>"; };
 		11DA906845E44B9E56EC79B6 /* PortfolioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		1E40AEA280DFA63F977172BD /* Pods-ModernMoney.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.release.test.xcconfig"; sourceTree = "<group>"; };
+		253592A41FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyCryptoCurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		253592A51FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMoneyCryptoCurrencyTableViewCell.xib; sourceTree = "<group>"; };
 		461C6F8C1F8B4E9000C5E8B3 /* BuyAssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyAssetListView.xib; sourceTree = "<group>"; };
 		461C6F8E1F8B4EB200C5E8B3 /* BuyAssetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyAssetListView.swift; sourceTree = "<group>"; };
 		462878721F433A710006BE45 /* GraphProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphProtocol.swift; sourceTree = "<group>"; };
@@ -362,7 +366,7 @@
 		CCDB256F1EEFCF05000D590F /* UtilsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsHelper.swift; sourceTree = "<group>"; };
 		CCDB25781EF42B2D000D590F /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		CF21DC7B1C17590E00D2399E /* ModernWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ModernWallet.app; path = ModernMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF21DC7B1C17590E00D2399E /* ModernMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModernMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF6632431C175B54004353F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF6632441C175B54004353F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF66327C1C1768B0004353F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -426,6 +430,15 @@
 				1E40AEA280DFA63F977172BD /* Pods-ModernMoney.release.test.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		2532E5BD1FEA92AB009D2C3A /* AddMoney */ = {
+			isa = PBXGroup;
+			children = (
+				253592A41FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift */,
+				253592A51FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib */,
+			);
+			path = AddMoney;
 			sourceTree = "<group>";
 		};
 		463FC5A91F94DB5C005930DD /* AddMoney */ = {
@@ -831,7 +844,7 @@
 		CF21DC7C1C17590E00D2399E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF21DC7B1C17590E00D2399E /* ModernWallet.app */,
+				CF21DC7B1C17590E00D2399E /* ModernMoney.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -864,6 +877,7 @@
 		CF6632411C175B54004353F5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2532E5BD1FEA92AB009D2C3A /* AddMoney */,
 				46B583781F94C9B200B475DB /* Menu */,
 				46B583731F94C51500B475DB /* Asset */,
 				46B583721F94C4C700B475DB /* Chart */,
@@ -934,7 +948,7 @@
 			);
 			name = ModernMoney;
 			productName = ModernWallet;
-			productReference = CF21DC7B1C17590E00D2399E /* ModernWallet.app */;
+			productReference = CF21DC7B1C17590E00D2399E /* ModernMoney.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -995,6 +1009,7 @@
 				665286631FD1BD1E0085640C /* PinViewController.xib in Resources */,
 				A10A95061D0E8F5F00557C87 /* SlashSign@2x.png in Resources */,
 				665A7CC51FBEDDD5004F6CFA /* SettingsTableViewCell.xib in Resources */,
+				253592A71FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib in Resources */,
 				6197A3C41EEA9017008ECF5A /* PieChartCenter.xib in Resources */,
 				66529DD01F8E38F10059786B /* Geomanist-Light.otf in Resources */,
 				A14515871D7EFA7000B4BED9 /* lykke_logo.png in Resources */,
@@ -1209,6 +1224,7 @@
 				66385DE81FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift in Sources */,
 				46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */,
 				462878761F433B0F0006BE45 /* TradingLinearGraphViewTest.m in Sources */,
+				253592A61FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift in Sources */,
 				667D404D1F8D018C00457698 /* AssetAmountView.swift in Sources */,
 				663628611FD066E10041CDE3 /* IconOverTextButton.swift in Sources */,
 				669B6A561FCD84B5003227AF /* SingInEmailFormController.swift in Sources */,

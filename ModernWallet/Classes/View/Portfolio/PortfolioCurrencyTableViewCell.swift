@@ -71,8 +71,27 @@ class PortfolioCurrencyTableViewCell: UITableViewCell {
             .drive(valueLabel.rx.text)
             .disposed(by: disposeBag)
         
-        currency.img
-            .drive(iconImageView.rx.image)
+        currency.imgUrl
+            .drive(iconImageView.rx.afImage)
+            .addDisposableTo(disposeBag)
+        
+        return self
+    }
+    @discardableResult
+    func bindCrypto(toCurrency currency: CryptoCurrencyCellViewModel) -> Self {
+        self.disposeBag = DisposeBag()
+        
+        currency.name
+            .drive(cryptoNameLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        currency.capitalization
+            .drive(percentLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        
+        currency.imgUrl
+            .drive(iconImageView.rx.afImage)
             .addDisposableTo(disposeBag)
         
         return self
