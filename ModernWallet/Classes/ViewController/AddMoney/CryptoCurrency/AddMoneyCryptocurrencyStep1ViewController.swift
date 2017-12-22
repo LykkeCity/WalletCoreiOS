@@ -69,6 +69,7 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
             }
             let m: Variable<LWAddMoneyCryptoCurrencyModel> = sender as! Variable<LWAddMoneyCryptoCurrencyModel>
             let model = LWPrivateWalletModel()
+            model.name = m.value.name
             model.address = m.value.address
             model.iconURL = m.value.imgUrl?.absoluteString
             
