@@ -644,6 +644,7 @@
 		AB1BF0591FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF0581FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift */; };
 		AB1D63631FEB01DE000495E7 /* LWOperationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D63621FEB01DE000495E7 /* LWOperationModel.swift */; };
 		AB1D63651FEB0289000495E7 /* LWOperationTransferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D63641FEB0288000495E7 /* LWOperationTransferModel.swift */; };
+		AB418E601FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB418E5F1FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
 		C14A6A6F1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift */; };
 		C14A6A711FCDBF4F00EC078A /* PledgePostPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14A6A701FCDBF4F00EC078A /* PledgePostPacket.swift */; };
@@ -1337,6 +1338,7 @@
 		AB1BF0581FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerSendBlockchainEmail.swift; sourceTree = "<group>"; };
 		AB1D63621FEB01DE000495E7 /* LWOperationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWOperationModel.swift; sourceTree = "<group>"; };
 		AB1D63641FEB0288000495E7 /* LWOperationTransferModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWOperationTransferModel.swift; sourceTree = "<group>"; };
+		AB418E5F1FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWMarketOrdersManager+Rx.swift"; sourceTree = "<group>"; };
 		B2D803A07289BA7B1909DDA3 /* Pods-WalletCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.xcconfig"; sourceTree = "<group>"; };
 		C12CC0391F91106900904A8C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C14A6A6E1FCDBF1000EC078A /* LWRxBlueAuthManagerPledgePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxBlueAuthManagerPledgePost.swift; sourceTree = "<group>"; };
@@ -2454,6 +2456,7 @@
 			children = (
 				612B7BCC1F6904930085F692 /* LWOffchainTransactionsManager+Rx.swift */,
 				612B7BCA1F69048D0085F692 /* LWEthereumTransactionsManager+Rx.swift */,
+				AB418E5F1FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift */,
 				46C9B0831F42D80900B83CCB /* DateFormatter+Extensions.swift */,
 				46C9B0811F42D7FB00B83CCB /* NumberFormatter+Extensions.swift */,
 				4630905F1F908E7200F24A56 /* Decimal+Extensions.swift */,
@@ -3362,6 +3365,7 @@
 				46C9AED21F417BD700B83CCB /* LWPacketEmailVerificationSet.m in Sources */,
 				46C9AFF41F417BD800B83CCB /* ABPadLockScreenViewController.m in Sources */,
 				460E814E1F98947100C60E72 /* LWModelOffchainResult.swift in Sources */,
+				AB418E601FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift in Sources */,
 				465805BF1F98DA2200FFFA0A /* LWRxAuthManagerOffchainChannelKey.swift in Sources */,
 				46C9AFD91F417BD800B83CCB /* LWLykkeWalletsData.m in Sources */,
 				46C9AFCF1F417BD800B83CCB /* LWPersonalDataModel.m in Sources */,
