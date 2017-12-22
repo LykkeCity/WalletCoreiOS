@@ -8,8 +8,8 @@
 import UIKit
 
 public class LWAddMoneyCryptoCurrencyModel {
-    let name: String
-    let address: String?
+    public let name: String
+    public let address: String?
     public var imgUrl: URL?
     
     public init(name: String, address: String?) {
