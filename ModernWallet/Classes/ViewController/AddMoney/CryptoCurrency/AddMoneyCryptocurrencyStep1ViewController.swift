@@ -45,10 +45,10 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
                             }
                             .disposed(by: disposeBag)
         
-        
-        currenciesTableView.rx.itemSelected.asObservable()
-            .subscribe(onNext: {[weak self] indexPath in
-                self?.performSegue(withIdentifier: "cc2Segue", sender: self)
+        currenciesTableView.rx
+            .modelSelected(Variable<LWAddMoneyCryptoCurrencyModel>.self)
+            .subscribe(onNext: { [weak self] model in
+                self?.performSegue(withIdentifier: "cc2Segue", sender: model)
             })
             .disposed(by: disposeBag)
         
@@ -62,6 +62,19 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "cc2Segue" {
+            guard let vc = segue.destination as? AddMoneyCryptocurrencyStep2ViewController else {
+                return
+            }
+            let m: Variable<LWAddMoneyCryptoCurrencyModel> = sender as! Variable<LWAddMoneyCryptoCurrencyModel>
+            let model = LWPrivateWalletModel()
+            model.address = m.value.address
+            model.iconURL = m.value.imgUrl?.absoluteString
+            
+            vc.wallet = Variable(model)
+        }
+    }
 }
 
 
