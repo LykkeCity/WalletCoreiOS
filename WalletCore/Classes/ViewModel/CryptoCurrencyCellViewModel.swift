@@ -16,7 +16,7 @@ open class CryptoCurrencyCellViewModel {
     public let capitalization: Driver<String>
     public let percentVariance: Driver<String>
     public let variance: Driver<String>
-    public var img: Driver<UIImage>
+    public var imgUrl: Driver<URL?>
     
     public init(_ currency: Variable<LWACurrencyMarketValueModel>) {
         let currencyObservable = currency.asObservable()
@@ -30,16 +30,16 @@ open class CryptoCurrencyCellViewModel {
             .asDriver(onErrorJustReturn: "")
         
         percentVariance = currencyObservable
-            .mapToCapitalization()
+            .mapToPercent()
             .asDriver(onErrorJustReturn: "")
         
         variance = currencyObservable
             .mapToVariance()
             .asDriver(onErrorJustReturn: "")
         
-        img = currencyObservable
+        imgUrl = currencyObservable
             .mapToImage()
-            .asDriver(onErrorJustReturn: UIImage())
+            .asDriver(onErrorJustReturn: nil)
     }
 }
 
@@ -64,8 +64,8 @@ fileprivate extension ObservableType where Self.E == LWACurrencyMarketValueModel
         )}
     }
     
-    func mapToImage() -> Observable<UIImage> {
-        return map{$0.img}
+    func mapToImage() -> Observable<URL?> {
+        return map{$0.imgUrl}
     }
     
     func mapToName() -> Observable<String> {
