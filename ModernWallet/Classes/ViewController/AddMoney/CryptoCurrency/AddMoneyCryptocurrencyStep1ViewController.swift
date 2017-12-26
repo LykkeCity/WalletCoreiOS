@@ -25,7 +25,7 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
 
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
-            self.cryptoCurrenciesViewModel.loadingViewModel.isLoading
+            self.cryptoCurrenciesViewModel.isLoading
             ])
     }()
     
