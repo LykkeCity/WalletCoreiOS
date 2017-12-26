@@ -11,18 +11,14 @@ import RxCocoa
 
 open class CryptoCurrenciesViewModel {
     public var walletsData : Observable<[Variable<LWAddMoneyCryptoCurrencyModel>]>
-    public var loadingViewModel: LoadingViewModel
-    
+    public var isLoading: Observable<Bool>
     public init(
         authManager:LWRxAuthManager = LWRxAuthManager.instance
         ) {
         
         let allWallets = authManager.lykkeWallets.request()
         
-        
-        self.loadingViewModel = LoadingViewModel([
-            allWallets.isLoading(),
-            ])
+        isLoading = allWallets.isLoading()
         
         self.walletsData = allWallets.filterSuccess().map{$0.lykkeData.wallets.filter {
             return ($0 as! LWSpotWallet).asset.blockchainDeposit && (($0 as! LWSpotWallet).asset.blockchainDepositAddress != nil)
