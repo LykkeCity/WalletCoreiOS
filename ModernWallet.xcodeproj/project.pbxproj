@@ -1161,7 +1161,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run ba1542186702839de56067a2e360193fc0556afe 0fc26b7bcce2b987ce194812c4400f5e540b53c9b3a26742e50a30d4f6f67c14";
+			shellScript = "${PODS_ROOT}/Fabric/run";
 		};
 		F38B708EB3FC8C1111058B85 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1427,6 +1427,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1563,6 +1564,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
