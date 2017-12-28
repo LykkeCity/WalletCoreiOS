@@ -90,10 +90,6 @@ class SignInPasswordFormController: FormController {
             .bind(to: loginTrigger)
             .disposed(by: disposeBag)
         
-        passwordTextField.rx.returnTap
-            .bind(to: loginTrigger)
-            .disposed(by: disposeBag)
-        
         passwordTextField.rx.text.asObservable()
             .filterNil()
             .bind(to: loginViewModel.password)
@@ -118,18 +114,12 @@ class SignInPasswordFormController: FormController {
         pinViewControllerObservable
             .bind(to: pinTrigger)
             .disposed(by: disposeBag)
-        
-        let shouldSendSms = pinResult.filter { $0 }
-            .map { _ in
-                return LWPrivateKeyManager.shared()?.isPrivateKeyLykkeEmpty() ?? false
-            }
-            .shareReplay(1)
-        
-        shouldSendSms
+           
+        pinResult
             .filterFalseAndBind(toTrigger: nextTrigger)
             .disposed(by: disposeBag)
         
-        shouldSendSms.filter { $0 }
+        pinResult.filter { $0 }
             .map { [sendSmsViewModel] _ in
                 sendSmsViewModel.phonenumber.value = LWKeychainManager.instance()?.personalData()?.phone ?? ""
                 return ()
