@@ -131,28 +131,28 @@ extension AppDelegate {
     
     // MARK: - Inactivity pin show/hide (LMW-153)
     func invalidateInactivityTimer() {
-        inactivityTimer?.invalidate()
-        inactivityTimer = nil
+        inactivitySubscription?.dispose()
     }
     
     func createInactivityTimer() {
         if userDefaults.value(forKey: "loggedIn") == nil { return }
         
-        inactivityTimer = Timer.scheduledTimer(timeInterval: pinInactivityInterval, target: self, selector: #selector(timerDidFinish), userInfo: nil, repeats: false)
-    }
-    
-    @objc private func timerDidFinish() {
-        if visibleViewController is PinViewController { return }
-        
-        let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
-        
-        guard let visibleViewController = visibleViewController else {
-            window?.rootViewController = pinViewController
-            window?.makeKeyAndVisible()
-            
-            return
-        }
-        
-        visibleViewController.present(pinViewController, animated: true)
+        let inactivityTimer = Observable<Int>.interval(pinInactivityInterval, scheduler: MainScheduler.instance)
+        inactivitySubscription = inactivityTimer
+            .take(1)
+            .subscribe(onNext: { [weak self] _ in
+                if self?.visibleViewController is PinViewController { return }
+                
+                let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+                
+                guard let visibleViewController = self?.visibleViewController else {
+                    self?.window?.rootViewController = pinViewController
+                    self?.window?.makeKeyAndVisible()
+                    
+                    return
+                }
+                
+                visibleViewController.present(pinViewController, animated: true)
+            })
     }
 }
