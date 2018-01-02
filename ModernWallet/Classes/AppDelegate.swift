@@ -100,6 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Start the inactivity timer
+        invalidateInactivityTimer()
         createInactivityTimer()
 
         // Dismiss the blur when app is active again
