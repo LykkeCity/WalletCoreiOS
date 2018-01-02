@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let blurViewTag = 10
     
     var inactivitySubscription: Disposable?
-    let pinInactivityInterval = RxTimeInterval(60)
+    let pinInactivityInterval = RxTimeInterval(10)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -93,15 +93,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.waitForImage(toUpload: bgTask)
         })
         
-        // Invalidate the inactivity timer
-        invalidateInactivityTimer()
-
+        createInactivityTimer()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Start the inactivity timer
         invalidateInactivityTimer()
-        createInactivityTimer()
 
         // Dismiss the blur when app is active again
         if let coverView = self.window?.viewWithTag(blurViewTag) {
@@ -110,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        
         // Dismiss the blur when app is active again
         if let coverView = self.window?.viewWithTag(blurViewTag) {
             coverView.removeFromSuperview()
