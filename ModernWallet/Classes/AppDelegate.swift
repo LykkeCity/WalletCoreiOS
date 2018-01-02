@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let blurViewTag = 10
     
     var inactivitySubscription: Disposable?
-    let pinInactivityInterval = RxTimeInterval(4)
+    let pinInactivityInterval = RxTimeInterval(60)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
