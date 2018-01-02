@@ -28,8 +28,19 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
     var wallet = Variable<LWPrivateWalletModel?>(nil)
     
     //MARK:- View Models
-    var copyWalletViewModel: CopyWalletAddressViewModel?
-    var sendEmailWithAddressViewModel: SendEmailWithAddressViewModel?
+    lazy var copyWalletViewModel: CopyWalletAddressViewModel = {
+        return CopyWalletAddressViewModel(
+            tap: self.copyButton.rx.event.asDriver().map{_ in Void()},
+            wallet: self.wallet
+        )
+    }()
+    
+    lazy var sendEmailWithAddressViewModel: SendEmailWithAddressViewModel = {
+        return SendEmailWithAddressViewModel(
+            sendObservable: self.emailMeButton.rx.tap.asObservable(),
+            wallet: self.wallet
+        )
+    }()
     
     //MARK: Dispose Bag
     private let disposeBag = DisposeBag()
@@ -42,32 +53,15 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
         
         localize()
         
-        //loading private wallets and assign the first one to the current wallet
-//        walletsManager.loadWallets()
-//            .filterSuccess()
-//            .map{$0.filter{$0.address == self.address}}
-//            .map{$0.first}
-//            .bind(to: wallet)
-//            .disposed(by: disposeBag)
-//    
-        copyWalletViewModel = CopyWalletAddressViewModel(
-            tap: copyButton.rx.event.asDriver().map{_ in Void()},
-            wallet: self.wallet
-        )
+        copyWalletViewModel
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
         
-        sendEmailWithAddressViewModel = SendEmailWithAddressViewModel(sendObservable: emailMeButton.rx.tap.asObservable(), wallet: self.wallet)
-        
-//        #if TEST
-//            qrCodeImageView.image = #imageLiteral(resourceName: "BetaQrCode")
-//            copyButton.isEnabled = false
-//            copyLabel.alpha = 0.6
-//            emailMeButton.isEnabled = false
-//        #else
-            observeCopyWallet()
-            observeEmailMeWalletAddress()
-            handleQRCode()
-//        #endif
-        localize()
+        sendEmailWithAddressViewModel
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
+
+        handleQRCode()
         // Do any additional setup after loading the view from its nib.
     }
     
@@ -90,31 +84,6 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
         )
     }
     
-    //MARK:- Send Wallet Address
-    func observeEmailMeWalletAddress() {
-        //Loading indicator
-        sendEmailWithAddressViewModel?.emailSent
-            .isLoading()
-            .asObservable()
-            .bind(to: rx.loading)
-            .disposed(by: disposeBag)
-        
-        //Toast message
-        sendEmailWithAddressViewModel?.emailSent
-            .filterSuccess()
-            .drive(onNext: {[weak self] in
-                self?.view.makeToast(Localize("wallets.bitcoin.sendemail"))
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    //MARK:- Copy Wallet Address
-    func observeCopyWallet() {
-        copyWalletViewModel?.tap
-            .drive(onNext: {[weak self] in self?.copy(walletAddress: $0)})
-            .disposed(by: disposeBag)
-    }
-    
     func copy(walletAddress address: String) {
         UIPasteboard.general.string = address
         view.makeToast(Localize("wallets.bitcoin.copytoast"))
@@ -130,5 +99,27 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+fileprivate extension SendEmailWithAddressViewModel {
+    func bind(toViewController vc: AddMoneyCryptocurrencyStep2ViewController) -> [Disposable] {
+        return [
+            emailSent.isLoading().asObservable()
+                .bind(to: vc.rx.loading),
+            
+            emailSent.filterSuccess()
+                .drive(onNext: {[weak vc] in
+                    vc?.view.makeToast(Localize("wallets.bitcoin.sendemail"))
+                })
+        ]
+    }
+}
+
+fileprivate extension CopyWalletAddressViewModel {
+    func bind(toViewController vc: AddMoneyCryptocurrencyStep2ViewController) -> [Disposable] {
+        return [
+            tap.drive(onNext: {[weak vc] in vc?.copy(walletAddress: $0)})
+        ]
     }
 }
