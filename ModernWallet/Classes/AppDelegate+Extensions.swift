@@ -135,7 +135,7 @@ extension AppDelegate {
     }
     
     func createInactivityTimer() {
-        if userDefaults.value(forKey: "loggedIn") == nil { return }
+        if userDefaults.isNotLoggedIn { return }
         
         let inactivityTimer = Observable<Int>.interval(pinInactivityInterval, scheduler: MainScheduler.instance)
         inactivitySubscription = inactivityTimer
