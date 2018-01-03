@@ -105,7 +105,11 @@ class SignUpPasswordHintFormController: FormController {
                 }
                 .shareReplay(1)
             
-            testLoadingViewModel = LoadingViewModel([viewModel.loading.debug("GG: loading view model"), allAssetRequest.isLoading().debug("GG: loading allAssetRequest"), setBaseAssetRequest.isLoading().debug("GG: loading setBaseAssetRequest")])
+            testLoadingViewModel = LoadingViewModel([
+                viewModel.loading,
+                allAssetRequest.isLoading(),
+                setBaseAssetRequest.isLoading()
+            ])
             
             testLoadingViewModel?.isLoading
                 .asDriver(onErrorJustReturn: false)
@@ -120,8 +124,9 @@ class SignUpPasswordHintFormController: FormController {
             // use zip in order to wait till loading for all above three calls has finished before going to next screen.
             Observable.zip(
                 testLoadingViewModel!.isLoading.filter{ !$0 },
-                setBaseAssetRequest.filterSuccess()
+                setBaseAssetRequest.filter{ !$0.isLoading }
             ) { _,_ in Void() }
+            .debug("Next trigger", trimOutput: false)
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
             
