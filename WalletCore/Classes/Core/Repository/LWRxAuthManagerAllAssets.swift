@@ -9,7 +9,12 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerAllAssets: NSObject{
+public protocol LWRxAuthManagerAllAssetsProtocol {
+    func request(byId id: String?) -> Observable<ApiResult<LWAssetModel?>>
+    func request() -> Observable<ApiResultList<LWAssetModel>>
+}
+
+public class LWRxAuthManagerAllAssets: NSObject, LWRxAuthManagerAllAssetsProtocol{
     
     public typealias Packet = LWPacketAllAssets
     public typealias Result = ApiResultList<LWAssetModel>
@@ -72,7 +77,11 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol{
             }
     }
     
-    public func request(withParams: RequestParams = RequestParams()) -> Observable<Result> {
+    public func request() -> Observable<Result> {
+        return request(withParams: Void())
+    }
+    
+    public func request(withParams: RequestParams) -> Observable<Result> {
         if let allAssets = LWCache.instance().allAssets, allAssets.isNotEmpty {
             return Observable
                 .just(.success(withData: allAssets.map{$0 as! LWAssetModel}))

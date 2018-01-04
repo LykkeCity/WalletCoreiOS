@@ -154,7 +154,7 @@ extension ObservableType where Self.E == LWAssetModel {
         return map{$0.name}.replaceNilWith("")
     }
     
-    func mapToIconUrl(withAuthManager authManager: LWRxAuthManager) -> Observable<URL?> {
+    func mapToIconUrl(withAuthManager authManager: LWRxAuthManagerProtocol) -> Observable<URL?> {
         return flatMapLatest{asset in
             return authManager.allAssets
                 .request(byId: asset.identity ?? "")
@@ -166,7 +166,7 @@ extension ObservableType where Self.E == LWAssetModel {
 }
 
 extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, bid: Bool) {
-    func mapToUnitsInBase(currencyExchanger: CurrencyExchanger) -> Observable<String> {
+    func mapToUnitsInBase(currencyExchanger: CurrencyExchangerProtocol) -> Observable<String> {
         return
             flatMapLatest{ assetUnits in currencyExchanger.exchangeToBaseAsset(
                 amaunt: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid

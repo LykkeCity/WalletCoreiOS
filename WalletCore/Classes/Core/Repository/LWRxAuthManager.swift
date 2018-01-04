@@ -11,7 +11,13 @@ import RxSwift
 import RxCocoa
 import RxOptional
 
-public class LWRxAuthManager {
+public protocol LWRxAuthManagerProtocol {
+    var baseAsset: LWRxAuthManagerBaseAssetProtocol { get }
+    var allAssets: LWRxAuthManagerAllAssetsProtocol { get }
+    var assetPairRates: LWRxAuthManagerAssetPairRatesProtocol { get }
+}
+
+public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public static let instance = LWRxAuthManager()
     init() {}
     
@@ -32,17 +38,18 @@ public class LWRxAuthManager {
         ]
     }
     
+    public lazy var allAssets: LWRxAuthManagerAllAssetsProtocol             = { LWRxAuthManagerAllAssets() }()
+    public lazy var assetPairRates: LWRxAuthManagerAssetPairRatesProtocol   = { LWRxAuthManagerAssetPairRates() }()
+    public lazy var baseAsset: LWRxAuthManagerBaseAssetProtocol             = { LWRxAuthManagerBaseAsset() }()
+    
     public lazy var countryCodes        = {LWRxAuthManagerCountryCodes()}()
     public lazy var prevCardPayment     = {LWAuthManagerPacketPrevCardPayment()}()
     public lazy var paymentUrl          = {LWAuthManagerPacketGetPaymentUrl()}()
-    public lazy var allAssets           = {LWRxAuthManagerAllAssets()}()
     public lazy var lykkeWallets        = {LWRxAuthManagerLykkeWallets()}()
-    public lazy var baseAsset           = {LWRxAuthManagerBaseAsset()}()
     public lazy var mainInfo            = {LWRxAuthManagerMainInfo()}()
     public lazy var emailWalletAddress  = {LWRxAuthManagerEmailWalletAddress()}()
     public lazy var assetPairs          = {LWRxAuthManagerAssetPairs()}()
     public lazy var assetPairRate       = {LWRxAuthManagerAssetPairRate()}()
-    public lazy var assetPairRates      = {LWRxAuthManagerAssetPairRates()}()
     public lazy var graphPeriods        = {LWRxAuthManagerGraphPeriods()}()
     public lazy var graphData           = {LWRxAuthManagerGraphData()}()
     public lazy var transactions        = {LWRxAuthManagerTransactions()}()

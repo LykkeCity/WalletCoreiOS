@@ -9,7 +9,11 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerBaseAsset: NSObject  {
+public protocol LWRxAuthManagerBaseAssetProtocol {
+    func request() -> Observable<ApiResult<LWAssetModel>>
+}
+
+public class LWRxAuthManagerBaseAsset: NSObject, LWRxAuthManagerBaseAssetProtocol  {
     
     public typealias Packet = LWPacketBaseAssetGet
     public typealias Result = ApiResult<LWAssetModel>
@@ -35,7 +39,11 @@ public class LWRxAuthManagerBaseAsset: NSObject  {
 
 extension LWRxAuthManagerBaseAsset: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams = Void()) -> Observable<Result> {
+    public func request() -> Observable<Result> {
+        return self.request(withParams: Void())
+    }
+    
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         
         if let baseAssetId = LWCache.instance().baseAssetId, let baseAsset = LWCache.asset(byId: baseAssetId) {
             return Observable

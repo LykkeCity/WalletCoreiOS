@@ -9,7 +9,17 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerAssetPairRates: NSObject  {
+public protocol LWRxAuthManagerAssetPairRatesProtocol {
+    func request() -> Observable<ApiResultList<LWAssetPairRateModel>>
+    
+    /// <#Description#>
+    ///
+    /// - Parameter params: Ignore base asset
+    /// - Returns: <#return value description#>
+    func request(withParams params: Bool) -> Observable<ApiResultList<LWAssetPairRateModel>>
+}
+
+public class LWRxAuthManagerAssetPairRates: NSObject, LWRxAuthManagerAssetPairRatesProtocol  {
     
     public typealias Packet = LWPacketAssetPairRates
     public typealias Result = ApiResultList<LWAssetPairRateModel>
@@ -35,7 +45,16 @@ public class LWRxAuthManagerAssetPairRates: NSObject  {
 
 extension LWRxAuthManagerAssetPairRates: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams = false) -> Observable<Result> {
+    public func request() -> Observable<Result> {
+        return request(withParams: false)
+    }
+    
+    
+    /// <#Description#>
+    ///
+    /// - Parameter params: Ignore base asset
+    /// - Returns: <#return value description#>
+    public func request(withParams params: RequestParams) -> Observable<Result> {
         return Observable.create{observer in
             let packet = Packet(observer: observer, ignoreBase: params)
             GDXNet.instance().send(packet, userInfo: nil, method: .REST)

@@ -65,7 +65,6 @@
 		46C25EB91FCDA3AD002BCEA9 /* LWRxAuthManagerTwitterTimeLineJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C25EB81FCDA3AD002BCEA9 /* LWRxAuthManagerTwitterTimeLineJson.swift */; };
 		46C25EBB1FCDA719002BCEA9 /* LWRxBlueAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C25EBA1FCDA719002BCEA9 /* LWRxBlueAuthManager.swift */; };
 		46C9A8BC1F417AC300B83CCB /* WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46C9A8B21F417AC300B83CCB /* WalletCore.framework */; };
-		46C9A8C11F417AC300B83CCB /* WalletCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9A8C01F417AC300B83CCB /* WalletCoreTests.swift */; };
 		46C9A8C31F417AC300B83CCB /* WalletCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 46C9A8B51F417AC300B83CCB /* WalletCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		46C9AE531F417BD700B83CCB /* LWAssetBlockchainModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 46C9AC721F417BD700B83CCB /* LWAssetBlockchainModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		46C9AE541F417BD700B83CCB /* LWAssetBlockchainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C9AC731F417BD700B83CCB /* LWAssetBlockchainModel.m */; };
@@ -571,6 +570,7 @@
 		46FB360F1F4A25B000D327D6 /* CreditCardBaseInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB360E1F4A25B000D327D6 /* CreditCardBaseInfoViewModel.swift */; };
 		46FB36131F4ABFD700D327D6 /* LWRxAuthManagerCountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB36121F4ABFD700D327D6 /* LWRxAuthManagerCountryCodes.swift */; };
 		5D35EEBE70B8D28827A34C71 /* Pods_WalletCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA74A9725DA6B8766C4E699 /* Pods_WalletCoreTests.framework */; };
+		61026C211FFD0E9900A5F11A /* BuyOptimizedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61026C201FFD0E9900A5F11A /* BuyOptimizedViewModelTests.swift */; };
 		61226E181FCEF2D90033FA39 /* ProfilePledgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61226E171FCEF2D90033FA39 /* ProfilePledgeViewModel.swift */; };
 		61226E1A1FCF00380033FA39 /* PledgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61226E191FCF00380033FA39 /* PledgeService.swift */; };
 		61226E211FD28D5E0033FA39 /* WalletCoreConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 61226E1F1FD28D5E0033FA39 /* WalletCoreConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -583,6 +583,13 @@
 		6142141C1F79249600E2F524 /* KYCDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */; };
 		6142141E1F793D4500E2F524 /* LWRxKYCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */; };
 		614214201F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */; };
+		61DC8ABD1FFD1E84009BC942 /* CurrencyExchangerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */; };
+		61DC8ABF1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */; };
+		61DC8AC21FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8AC11FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift */; };
+		61DC8AC41FFD1F53009BC942 /* LWRxAuthManagerAllAssetsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8AC31FFD1F53009BC942 /* LWRxAuthManagerAllAssetsMock.swift */; };
+		61DC8AC71FFE1CEF009BC942 /* LWAssetModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8AC61FFE1CEF009BC942 /* LWAssetModel+Extensions.swift */; };
+		61DC8AC91FFE443D009BC942 /* CurrencyExchangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8AC81FFE443D009BC942 /* CurrencyExchangerTests.swift */; };
+		61DC8ACB1FFE44C3009BC942 /* LWRxAuthManagerAssetPairRatesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ACA1FFE44C3009BC942 /* LWRxAuthManagerAssetPairRatesMock.swift */; };
 		661B7F071FD54DBC004610D1 /* CommunityUsersCountPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661B7F061FD54DBC004610D1 /* CommunityUsersCountPacket.swift */; };
 		661B7F091FD54EFD004610D1 /* LWRxBlueAuthManagerCommunityUsersCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661B7F081FD54EFD004610D1 /* LWRxBlueAuthManagerCommunityUsersCount.swift */; };
 		661B7F0B1FD551BD004610D1 /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661B7F0A1FD551BD004610D1 /* CommunityViewModel.swift */; };
@@ -752,7 +759,6 @@
 		46C9A8B51F417AC300B83CCB /* WalletCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletCore.h; sourceTree = "<group>"; };
 		46C9A8B61F417AC300B83CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46C9A8BB1F417AC300B83CCB /* WalletCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46C9A8C01F417AC300B83CCB /* WalletCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoreTests.swift; sourceTree = "<group>"; };
 		46C9A8C21F417AC300B83CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46C9AC721F417BD700B83CCB /* LWAssetBlockchainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWAssetBlockchainModel.h; sourceTree = "<group>"; };
 		46C9AC731F417BD700B83CCB /* LWAssetBlockchainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWAssetBlockchainModel.m; sourceTree = "<group>"; };
@@ -1260,6 +1266,7 @@
 		46FB36121F4ABFD700D327D6 /* LWRxAuthManagerCountryCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCountryCodes.swift; sourceTree = "<group>"; };
 		4FF64AADF4D947387E06CDA3 /* Pods-WalletCore.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.test.xcconfig"; sourceTree = "<group>"; };
 		5B75A707CAB0D989329019ED /* Pods-WalletCoreTests.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.debug.test.xcconfig"; sourceTree = "<group>"; };
+		61026C201FFD0E9900A5F11A /* BuyOptimizedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOptimizedViewModelTests.swift; sourceTree = "<group>"; };
 		61226E171FCEF2D90033FA39 /* ProfilePledgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePledgeViewModel.swift; sourceTree = "<group>"; };
 		61226E191FCF00380033FA39 /* PledgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PledgeService.swift; sourceTree = "<group>"; };
 		61226E1F1FD28D5E0033FA39 /* WalletCoreConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletCoreConfig.h; sourceTree = "<group>"; };
@@ -1272,6 +1279,13 @@
 		6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentsViewModel.swift; sourceTree = "<group>"; };
 		6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxKYCManager.swift; sourceTree = "<group>"; };
 		6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KycUploadDocumentsViewModel.swift; sourceTree = "<group>"; };
+		61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangerMock.swift; sourceTree = "<group>"; };
+		61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerMock.swift; sourceTree = "<group>"; };
+		61DC8AC11FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerBaseAssetMock.swift; sourceTree = "<group>"; };
+		61DC8AC31FFD1F53009BC942 /* LWRxAuthManagerAllAssetsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerAllAssetsMock.swift; sourceTree = "<group>"; };
+		61DC8AC61FFE1CEF009BC942 /* LWAssetModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWAssetModel+Extensions.swift"; sourceTree = "<group>"; };
+		61DC8AC81FFE443D009BC942 /* CurrencyExchangerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangerTests.swift; sourceTree = "<group>"; };
+		61DC8ACA1FFE44C3009BC942 /* LWRxAuthManagerAssetPairRatesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerAssetPairRatesMock.swift; sourceTree = "<group>"; };
 		661B7F061FD54DBC004610D1 /* CommunityUsersCountPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityUsersCountPacket.swift; sourceTree = "<group>"; };
 		661B7F081FD54EFD004610D1 /* LWRxBlueAuthManagerCommunityUsersCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxBlueAuthManagerCommunityUsersCount.swift; sourceTree = "<group>"; };
 		661B7F0A1FD551BD004610D1 /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
@@ -1515,7 +1529,6 @@
 			isa = PBXGroup;
 			children = (
 				46E5D0C71F5DD77F00D78692 /* ViewModel */,
-				46C9A8C01F417AC300B83CCB /* WalletCoreTests.swift */,
 				46C9A8C21F417AC300B83CCB /* Info.plist */,
 			);
 			path = WalletCoreTests;
@@ -2470,7 +2483,11 @@
 		46E5D0C71F5DD77F00D78692 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				61DC8AC51FFE1CD9009BC942 /* Extensions */,
+				61DC8ABB1FFD1E67009BC942 /* Mocks */,
 				46E5D0C81F5DD77F00D78692 /* LoadingViewModelTests.swift */,
+				61DC8AC81FFE443D009BC942 /* CurrencyExchangerTests.swift */,
+				61026C201FFD0E9900A5F11A /* BuyOptimizedViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2493,6 +2510,34 @@
 				6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */,
 			);
 			name = KYC;
+			sourceTree = "<group>";
+		};
+		61DC8ABB1FFD1E67009BC942 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				61DC8AC01FFD1F1A009BC942 /* Repositories */,
+				61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */,
+				61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		61DC8AC01FFD1F1A009BC942 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				61DC8AC11FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift */,
+				61DC8AC31FFD1F53009BC942 /* LWRxAuthManagerAllAssetsMock.swift */,
+				61DC8ACA1FFE44C3009BC942 /* LWRxAuthManagerAssetPairRatesMock.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		61DC8AC51FFE1CD9009BC942 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				61DC8AC61FFE1CEF009BC942 /* LWAssetModel+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		6625465A1FA323F600B6F33A /* CashOut */ = {
@@ -3493,8 +3538,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46C9A8C11F417AC300B83CCB /* WalletCoreTests.swift in Sources */,
+				61DC8AC21FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift in Sources */,
+				61DC8ABF1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift in Sources */,
+				61DC8ACB1FFE44C3009BC942 /* LWRxAuthManagerAssetPairRatesMock.swift in Sources */,
+				61DC8AC91FFE443D009BC942 /* CurrencyExchangerTests.swift in Sources */,
+				61026C211FFD0E9900A5F11A /* BuyOptimizedViewModelTests.swift in Sources */,
+				61DC8AC71FFE1CEF009BC942 /* LWAssetModel+Extensions.swift in Sources */,
+				61DC8AC41FFD1F53009BC942 /* LWRxAuthManagerAllAssetsMock.swift in Sources */,
 				46E5D0C91F5DD77F00D78692 /* LoadingViewModelTests.swift in Sources */,
+				61DC8ABD1FFD1E84009BC942 /* CurrencyExchangerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3582,6 +3634,7 @@
 					"$(PROJECT_DIR)/WalletCore",
 					"$(PROJECT_DIR)/Pods",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WalletCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3603,10 +3656,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WalletCoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PrimeHolding.WalletCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug.Test;
@@ -3641,6 +3696,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "TEST=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -3652,7 +3708,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -3677,6 +3733,7 @@
 					"$(PROJECT_DIR)/WalletCore",
 					"$(PROJECT_DIR)/Pods",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WalletCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3686,6 +3743,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_ENVIRONMENT = YES;
 			};
@@ -3697,10 +3755,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WalletCoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PrimeHolding.WalletCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release.Test;
@@ -3790,6 +3850,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3800,7 +3861,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -3825,6 +3886,7 @@
 					"$(PROJECT_DIR)/WalletCore",
 					"$(PROJECT_DIR)/Pods",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WalletCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3857,6 +3919,7 @@
 					"$(PROJECT_DIR)/WalletCore",
 					"$(PROJECT_DIR)/Pods",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WalletCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3866,6 +3929,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_ENVIRONMENT = NO;
 			};
@@ -3877,10 +3941,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WalletCoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PrimeHolding.WalletCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -3891,10 +3957,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = ZNE622G954;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = WalletCoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PrimeHolding.WalletCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
