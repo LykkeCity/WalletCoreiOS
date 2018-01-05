@@ -70,10 +70,8 @@ public class BuyOptimizedViewModel {
     public init(
         trigger: Observable<Void>,
         dependency: (
-            currencyExchanger: CurrencyExchanger,
-            authManager: LWRxAuthManager,
-            offchainManager: LWOffchainTransactionsManager,
-            ethereumManager: LWEthereumTransactionsManager
+            currencyExchanger: CurrencyExchangerProtocol,
+            authManager: LWRxAuthManagerProtocol
         )
     ) {
         baseAssetCode = dependency.authManager.baseAsset.request()
@@ -101,9 +99,9 @@ public class BuyOptimizedViewModel {
         
         let buyAssetAmountObservable = Observable
             .combineLatest(
-                buyAsset.asObservable().mapToAsset(),
-                buyAmount.asObservable().mapToValue().mapToDecimal(),
-                bid.asObservable().filterNil()
+                buyAsset.asObservable().mapToAsset().debug(),
+                buyAmount.asObservable().mapToValue().mapToDecimal().debug(),
+                bid.asObservable().filterNil().debug()
             )
             .map{(asset: $0, units: $1, bid: $2)}
             .shareReplay(1)
@@ -132,9 +130,9 @@ public class BuyOptimizedViewModel {
         
         let payWithAssetAmountObservable = Observable
             .combineLatest(
-                payWithWallet.asObservable().mapToAsset(),
-                payWithAmount.asObservable().mapToValue().mapToDecimal(),
-                bid.asObservable().filterNil()
+                payWithWallet.asObservable().mapToAsset().debug("GG: 12"),
+                payWithAmount.asObservable().mapToValue().mapToDecimal().debug("GG: 13"),
+                bid.asObservable().filterNil().debug("GG: 14")
             )
             .map{(asset: $0, units: $1, bid: $2)}
             .shareReplay(1)
@@ -249,7 +247,7 @@ fileprivate extension ObservableType where Self.E == (BuyOptimizedViewModel.Amou
 }
 
 fileprivate extension ObservableType where Self.E == BuyOptimizedViewModel.ExchangeData {
-    func exchangeAmount(currencyExchanger: CurrencyExchanger) -> Observable<BuyOptimizedViewModel.Amount> {
+    func exchangeAmount(currencyExchanger: CurrencyExchangerProtocol) -> Observable<BuyOptimizedViewModel.Amount> {
         return flatMap{combinedData in
             currencyExchanger.exchange(
                 amaunt: combinedData.amount,
@@ -285,7 +283,7 @@ fileprivate extension ObservableType where Self.E == String {
     func bind(
         toBuy buyAmount: Variable<BuyOptimizedViewModel.Amount>,
         withData viewModel: BuyOptimizedViewModel,
-        currencyExchanger: CurrencyExchanger
+        currencyExchanger: CurrencyExchangerProtocol
     ) -> Disposable {
         return
             mapToDecimal()
@@ -305,7 +303,7 @@ fileprivate extension ObservableType where Self.E == String {
     func bind(
         toPay payWithAmount: Variable<BuyOptimizedViewModel.Amount>,
         withData viewModel: BuyOptimizedViewModel,
-        currencyExchanger: CurrencyExchanger
+        currencyExchanger: CurrencyExchangerProtocol
     ) -> Disposable {
         return
             mapToDecimal()
@@ -351,7 +349,7 @@ fileprivate extension ObservableType where Self.E == LWAssetModel {
     func bind(
         toBuy buyAmount: Variable<BuyOptimizedViewModel.Amount>,
         withData viewModel: BuyOptimizedViewModel,
-        currencyExchanger: CurrencyExchanger
+        currencyExchanger: CurrencyExchangerProtocol
     ) -> Disposable {
         return
             distinctUntilChangedById()
@@ -370,7 +368,7 @@ fileprivate extension ObservableType where Self.E == LWAssetModel {
     func bind(
         toPayWith payWithAmount: Variable<BuyOptimizedViewModel.Amount>,
         withData viewModel: BuyOptimizedViewModel,
-        currencyExchanger: CurrencyExchanger
+        currencyExchanger: CurrencyExchangerProtocol
     ) -> Disposable {
         return
             distinctUntilChangedById()

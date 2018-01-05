@@ -9,12 +9,33 @@
 import Foundation
 import RxSwift
 
-public class CurrencyExchanger {
-    public let authManager: LWRxAuthManager
+public protocol CurrencyExchangerProtocol {
+    /// Convert an asset's amaunt into a value of another asset
+    ///
+    /// - Parameters:
+    ///   - amaunt: Amaunt you want to exchange
+    ///   - from: Asset you have and want to exchange
+    ///   - to: Asset you want to be exchanged for
+    ///   - bid: Bid or ask price
+    /// - Returns: Observable of exchanged amaunt that will updates each 5 seconds according pair rates
+    func exchange(amaunt: Decimal, from: LWAssetModel, to: LWAssetModel, bid: Bool) -> Observable<Decimal?>
+    
+    /// Convert an asset's amaunt into user's base asset
+    ///
+    /// - Parameters:
+    ///   - amaunt: Amaunt you want to exchange
+    ///   - from: Asset you have and want to exchange
+    ///   - bid: Bid or ask price
+    /// - Returns: Observable of exchanged amaunt that will updates each 5 seconds according pair rates
+    func exchangeToBaseAsset(amaunt: Decimal, from: LWAssetModel, bid: Bool) -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?>
+}
+
+public class CurrencyExchanger: CurrencyExchangerProtocol {
+    public let authManager: LWRxAuthManagerProtocol
     public let pairRates: Variable<[LWAssetPairRateModel]> = Variable([])
     private let disposeBag = DisposeBag()
     
-    public init(refresh: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
+    public init(refresh: Observable<Void>, authManager: LWRxAuthManagerProtocol = LWRxAuthManager.instance) {
         
         self.authManager = authManager
         
@@ -32,7 +53,7 @@ public class CurrencyExchanger {
     ///   - to: Asset you want to be exchanged for
     ///   - bid: Bid or ask price
     /// - Returns: Observable of exchanged amaunt that will updates each 5 seconds according pair rates
-    func exchange(amaunt: Decimal, from: LWAssetModel, to: LWAssetModel, bid: Bool) -> Observable<Decimal?> {
+    public func exchange(amaunt: Decimal, from: LWAssetModel, to: LWAssetModel, bid: Bool) -> Observable<Decimal?> {
         let pair = from.getPairId(withAsset: to)
         
         //If from/to are the same currency then return the same amaunt
@@ -68,7 +89,7 @@ public class CurrencyExchanger {
     ///   - from: Asset you have and want to exchange
     ///   - bid: Bid or ask price
     /// - Returns: Observable of exchanged amaunt that will updates each 5 seconds according pair rates
-    func exchangeToBaseAsset(amaunt: Decimal, from: LWAssetModel, bid: Bool) -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> {
+    public func exchangeToBaseAsset(amaunt: Decimal, from: LWAssetModel, bid: Bool) -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> {
         return authManager.baseAsset.request().filterSuccess()
             .flatMap{[weak self] baseAsset -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> in
                 guard let this = self else {return Observable.just(nil)}

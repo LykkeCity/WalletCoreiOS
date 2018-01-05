@@ -165,6 +165,7 @@ class LoadingViewModelTests: XCTestCase {
             scheduler.scheduleAt(3000) { subscription.dispose() }
             scheduler.start()
             
+            //3. assert
             XCTAssertEqual(results.events[0].time, 100)
             XCTAssertTrue(results.events[0].value.element!)
             
