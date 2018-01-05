@@ -15,11 +15,22 @@ import RxTest
 class BuyOptimizedViewModelTests: XCTestCase {
     
     var scheduler: TestScheduler!
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
+    
+    typealias TestData = (
+        pairModels: [LWAssetPairRateModel],
+        baseAsset: LWAssetModel,
+        buyAsset: LWAssetModel,
+        payWithWallet: LWSpotWallet,
+        bid: Bool,
+        buyAmount: String,
+        expectedResult: String
+    )
     
     override func setUp() {
         super.setUp()
         scheduler = TestScheduler(initialClock: 0)
+        disposeBag = DisposeBag()
     }
     
     override func tearDown() {
@@ -27,84 +38,97 @@ class BuyOptimizedViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    /**
-     Turns
-     Input:
-     |--true-----false----------->
-     
-     into output
-     |--true-----false----------->
-     */
     func testSpread() {
-        driveOnScheduler(scheduler) {
-            
-            let tradingViewModel = BuyOptimizedViewModel(trigger: Observable.never(), dependency: (
-                currencyExchanger: CurrencyExchangerMock(),
-                authManager: LWRxAuthManagerMock()
+        driveOnScheduler(scheduler) {[weak self] in
+            self?.assertSpread(withData: (
+                pairModels: [LWAssetPairRateModel(json: ["Id": "USDEUR", "Bid": 2, "Ask": 3])!],
+                baseAsset: LWAssetModel(assetId: "USD"),
+                buyAsset: LWAssetModel(assetId: "EUR"),
+                payWithWallet: LWSpotWallet(assetId: "USD"),
+                bid: true,
+                buyAmount: "12",
+                expectedResult: "4"
             ))
-            
-            scheduler
-                .createHotObservable([next(100, (autoUpdated: false, asset: LWAssetModel()))])
-                .asObservable()
-                .bind(to: tradingViewModel.buyAsset)
-                .disposed(by: disposeBag)
-            
-            scheduler
-                .createHotObservable([next(110, true)])
-                .asObservable()
-                .bind(to: tradingViewModel.bid)
-                .disposed(by: disposeBag)
-
-            scheduler
-                .createHotObservable([next(120, (autoUpdated: true, value: "12,12"))])
-                .asObservable()
-                .bind(to: tradingViewModel.buyAmount)
-                .disposed(by: disposeBag)
-            
-            scheduler
-                .createHotObservable([next(130, (autoUpdated: false, wallet: LWSpotWallet.factory()))])
-                .asObservable()
-                .bind(to: tradingViewModel.payWithWallet)
-                .disposed(by: disposeBag)
-            
-            let results = scheduler.createObserver(String.self)
-            let subscription = tradingViewModel.spreadAmount.drive(results)
-            
-            scheduler.scheduleAt(3000) { subscription.dispose() }
-            scheduler.start()
-            
-            let events = results.events
-            let das = 123
-            
-            //1. arrange
-//            let isLoadingObservable = scheduler.createHotObservable([
-//                next(100, true),
-//                next(200, false)
-//                ]).asObservable()
-//
-//            let viewModel = LoadingViewModel([isLoadingObservable], mainScheduler: scheduler)
-//
-//            //2. execute
-//            let results = scheduler.createObserver(Bool.self)
-//            let subscription = viewModel.isLoading.subscribeOn(scheduler).bind(to: results)
-//
-//            scheduler.scheduleAt(3000) { subscription.dispose() }
-//            scheduler.start()
-//
-//            XCTAssertEqual(results.events[0].time, 100)
-//            XCTAssertTrue(results.events[0].value.element!)
-//
-//            XCTAssertEqual(results.events[1].time, 201)
-//            XCTAssertFalse(results.events[1].value.element!)
         }
     }
-}
+    
+    func testSpreadWithReversedPair() {
+        driveOnScheduler(scheduler) {[weak self] in
+            self?.assertSpread(withData: (
+                pairModels: [LWAssetPairRateModel(json: ["Id": "EURUSD", "Bid": 2, "Ask": 3])!],
+                baseAsset: LWAssetModel(assetId: "USD"),
+                buyAsset: LWAssetModel(assetId: "EUR"),
+                payWithWallet: LWSpotWallet(assetId: "USD"),
+                bid: true,
+                buyAmount: "12",
+                expectedResult: "24"
+            ))
+        }
+    }
+    
+    func testSpreadWithReversedPair2() {
+        driveOnScheduler(scheduler) {[weak self] in
+            self?.assertSpread(withData: (
+                pairModels: [
+                    LWAssetPairRateModel(json: ["Id": "EURUSD", "Bid": 2, "Ask": 3])!,
+                    LWAssetPairRateModel(json: ["Id": "BTCEUR", "Bid": 2, "Ask": 3])!
+                ],
+                baseAsset: LWAssetModel(assetId: "USD"),
+                buyAsset: LWAssetModel(assetId: "EUR"),
+                payWithWallet: LWSpotWallet(assetId: "USD"),
+                bid: true,
+                buyAmount: "12",
+                expectedResult: "24"
+            ))
+        }
+    }
+    
+    func assertSpread(withData data: TestData) {
 
-fileprivate extension LWSpotWallet {
-    static func factory() ->  LWSpotWallet{
-        let wallet = LWSpotWallet()
-        wallet.asset = LWAssetModel(assetId: "USD")
+        let trigger = scheduler.createHotObservable([next(0, Void())]).asObservable()
+        let authManager = LWRxAuthManagerMock(
+            baseAsset: LWRxAuthManagerBaseAssetMock(asset: data.baseAsset),
+            assetPairRates: LWRxAuthManagerAssetPairRatesMock(data: data.pairModels)
+        )
         
-        return wallet
+        let currencyExchanger = CurrencyExchanger(refresh: trigger, authManager: authManager)
+        
+        let tradingViewModel = BuyOptimizedViewModel(trigger: Observable.never(), dependency: (
+            currencyExchanger: currencyExchanger,
+            authManager: authManager
+        ))
+        
+        scheduler
+            .createHotObservable([next(100, (autoUpdated: false, asset: data.buyAsset))])
+            .asObservable()
+            .bind(to: tradingViewModel.buyAsset)
+            .disposed(by: disposeBag)
+        
+        scheduler
+            .createHotObservable([next(110, data.bid)])
+            .asObservable()
+            .bind(to: tradingViewModel.bid)
+            .disposed(by: disposeBag)
+        
+        scheduler
+            .createHotObservable([next(120, (autoUpdated: true, value: data.buyAmount))])
+            .asObservable()
+            .bind(to: tradingViewModel.buyAmount)
+            .disposed(by: disposeBag)
+        
+        scheduler
+            .createHotObservable([next(130, (autoUpdated: false, wallet: data.payWithWallet))])
+            .asObservable()
+            .bind(to: tradingViewModel.payWithWallet)
+            .disposed(by: disposeBag)
+        
+        let results = scheduler.createObserver(String.self)
+        let subscription = tradingViewModel.spreadAmount.drive(results)
+        
+        scheduler.scheduleAt(3000) { subscription.dispose() }
+        scheduler.start()
+        
+        XCTAssertEqual(results.events.first!.value.element!, data.expectedResult)
     }
 }
+

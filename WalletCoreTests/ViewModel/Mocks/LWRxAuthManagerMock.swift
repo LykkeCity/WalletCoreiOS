@@ -17,7 +17,7 @@ class LWRxAuthManagerMock: LWRxAuthManagerProtocol {
     let allAssets: LWRxAuthManagerAllAssetsProtocol
     
     init(
-        baseAsset: LWRxAuthManagerBaseAssetMock = LWRxAuthManagerBaseAssetMock(),
+        baseAsset: LWRxAuthManagerBaseAssetMock = LWRxAuthManagerBaseAssetMock(asset: LWAssetModel(assetId: "USD")),
         allAssets: LWRxAuthManagerAllAssetsMock = LWRxAuthManagerAllAssetsMock(),
         assetPairRates:LWRxAuthManagerAssetPairRatesMock = LWRxAuthManagerAssetPairRatesMock(data: [])
     ) {

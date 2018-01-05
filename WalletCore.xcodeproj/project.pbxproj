@@ -583,6 +583,7 @@
 		6142141C1F79249600E2F524 /* KYCDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */; };
 		6142141E1F793D4500E2F524 /* LWRxKYCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */; };
 		614214201F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */; };
+		6163A9441FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */; };
 		61DC8ABD1FFD1E84009BC942 /* CurrencyExchangerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */; };
 		61DC8ABF1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */; };
 		61DC8AC21FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8AC11FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift */; };
@@ -1279,6 +1280,7 @@
 		6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentsViewModel.swift; sourceTree = "<group>"; };
 		6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxKYCManager.swift; sourceTree = "<group>"; };
 		6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KycUploadDocumentsViewModel.swift; sourceTree = "<group>"; };
+		6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWSpotWallet+Extensions.swift"; sourceTree = "<group>"; };
 		61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangerMock.swift; sourceTree = "<group>"; };
 		61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerMock.swift; sourceTree = "<group>"; };
 		61DC8AC11FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerBaseAssetMock.swift; sourceTree = "<group>"; };
@@ -2536,6 +2538,7 @@
 			isa = PBXGroup;
 			children = (
 				61DC8AC61FFE1CEF009BC942 /* LWAssetModel+Extensions.swift */,
+				6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3543,6 +3546,7 @@
 				61DC8ACB1FFE44C3009BC942 /* LWRxAuthManagerAssetPairRatesMock.swift in Sources */,
 				61DC8AC91FFE443D009BC942 /* CurrencyExchangerTests.swift in Sources */,
 				61026C211FFD0E9900A5F11A /* BuyOptimizedViewModelTests.swift in Sources */,
+				6163A9441FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift in Sources */,
 				61DC8AC71FFE1CEF009BC942 /* LWAssetModel+Extensions.swift in Sources */,
 				61DC8AC41FFD1F53009BC942 /* LWRxAuthManagerAllAssetsMock.swift in Sources */,
 				46E5D0C91F5DD77F00D78692 /* LoadingViewModelTests.swift in Sources */,
