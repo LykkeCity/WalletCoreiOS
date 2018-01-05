@@ -373,9 +373,7 @@ extension BuyOptimizedViewModel {
             trigger: trigger,
             dependency: (
                 currencyExchanger: CurrencyExchanger(),
-                authManager: LWRxAuthManager.instance,
-                offchainManager: LWOffchainTransactionsManager.shared(),
-                ethereumManager: LWEthereumTransactionsManager.shared()
+                authManager: LWRxAuthManager.instance
             )
         )
     }
