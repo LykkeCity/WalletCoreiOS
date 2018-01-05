@@ -162,7 +162,7 @@ fileprivate extension CreditCardBaseInfoViewModel {
     
     func bindToFormFields(_ vc: AddMoneyCCStep1ViewController) {
         
-        (vc.amountTextField.rx.textInput <-> input.amaunt)
+        (vc.amountTextField.rx.textInput <-> input.amount)
             .disposed(by: vc.disposeBag)
         
         (vc.firstNameField.rx.textInput <-> input.firstName)

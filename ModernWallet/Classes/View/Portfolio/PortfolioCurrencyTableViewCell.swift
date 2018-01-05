@@ -105,11 +105,11 @@ class PortfolioCurrencyTableViewCell: UITableViewCell {
             .drive(cryptoNameLabel.rx.text)
             .disposed(by: disposeBag)
         
-        transaction.amaunt
+        transaction.amount
             .drive(cryptoValueLabel.rx.text)
             .disposed(by: disposeBag)
         
-        transaction.amauntInBase
+        transaction.amountInBase
             .drive(valueLabel.rx.text)
             .disposed(by: disposeBag)
         
