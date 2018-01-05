@@ -17,11 +17,11 @@ open class TransactionViewModel {
     /// Transaction due date.Example: "July 21, 2017"
     public let date: Driver<String>
     
-    /// Amaunt in base asset.Example: "(+12,123.00 AUD)"
-    public let amauntInBase: Driver<String>
+    /// Amount in base asset.Example: "(+12,123.00 AUD)"
+    public let amountInBase: Driver<String>
     
     /// Amaun in transaction asset.Example: "+123.54 EUR"
-    public let amaunt: Driver<String>
+    public let amount: Driver<String>
     
     /// Title of transaction.Example: "Receive Lykke Shares"
     public let title: Driver<String>
@@ -43,11 +43,11 @@ open class TransactionViewModel {
             .mapToDate()
             .asDriver(onErrorJustReturn: "")
         
-        self.amauntInBase = assetObservable
+        self.amountInBase = assetObservable
             .mapToAmountInBase(volume: volume, currencyExcancher: currencyExcancher)
             .asDriver(onErrorJustReturn: "")
 
-        self.amaunt = Observable.combineLatest(volumeObservable, assetObservable){(volume: $0, asset: $1)}
+        self.amount = Observable.combineLatest(volumeObservable, assetObservable){(volume: $0, asset: $1)}
             .mapToAmount()
             .asDriver(onErrorJustReturn: "")
         
@@ -79,11 +79,11 @@ fileprivate extension ObservableType where Self.E == LWBaseHistoryItemType {
 
 fileprivate extension ObservableType where Self.E == LWAssetModel? {
     func mapToAmountInBase(volume: Decimal, currencyExcancher: CurrencyExchanger) -> Observable<String> {
-        return flatMap{baseAsset -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> in
+        return flatMap{baseAsset -> Observable<(baseAsset: LWAssetModel, amount: Decimal)?> in
             guard let baseAsset = baseAsset else {return Observable.just(nil)}
-            return currencyExcancher.exchangeToBaseAsset(amaunt: volume, from: baseAsset, bid: false)
+            return currencyExcancher.exchangeToBaseAsset(amount: volume, from: baseAsset, bid: false)
         }
-        .map{(volume: $0?.amaunt, asset: $0?.baseAsset)}
+        .map{(volume: $0?.amount, asset: $0?.baseAsset)}
         .mapToAmount()
         .map{"(\($0))"}
         .startWith(Localize("newDesign.calculating"))

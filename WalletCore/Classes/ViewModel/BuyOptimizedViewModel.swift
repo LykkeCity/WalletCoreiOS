@@ -145,16 +145,16 @@ public class BuyOptimizedViewModel {
         let spreadObservable = Observable.combineLatest(
             buyAssetAmountObservable
                 .flatMapLatest{ assetUnits in dependency.currencyExchanger.exchangeToBaseAsset(
-                    amaunt: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
+                    amount: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
                 )},
             payWithAssetAmountObservable
                 .flatMapLatest{ assetUnits in dependency.currencyExchanger.exchangeToBaseAsset(
-                    amaunt: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
+                    amount: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
                 )}
         )
         .map{data -> (buyAmount: Decimal, payWithAmount: Decimal, asset: LWAssetModel)? in
-            guard let buyAmount = data.0?.amaunt else {return nil}
-            guard let payWith = data.1?.amaunt else {return nil}
+            guard let buyAmount = data.0?.amount else {return nil}
+            guard let payWith = data.1?.amount else {return nil}
             guard let asset = data.0?.baseAsset else {return nil}
             
             return (buyAmount: buyAmount, payWithAmount: payWith, asset: asset)
@@ -250,7 +250,7 @@ fileprivate extension ObservableType where Self.E == BuyOptimizedViewModel.Excha
     func exchangeAmount(currencyExchanger: CurrencyExchangerProtocol) -> Observable<BuyOptimizedViewModel.Amount> {
         return flatMap{combinedData in
             currencyExchanger.exchange(
-                amaunt: combinedData.amount,
+                amount: combinedData.amount,
                 from: combinedData.from,
                 to: combinedData.to,
                 bid: combinedData.bid

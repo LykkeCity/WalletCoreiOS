@@ -86,12 +86,12 @@ fileprivate extension ObservableType where Self.E == ApiResult<(mainInfo: LWPack
         return
             filterSuccess()
             .map{(
-                amaunt: $0.mainInfo.totalBalance,
+                amount: $0.mainInfo.totalBalance,
                 symbol: $0.asset.symbol ?? "",
                 accuracy: $0.asset.accuracy
             )}
             .map{
-                $0.amaunt.convertAsCurrency(code: "", symbol: $0.symbol, accuracy: Int($0.accuracy))
+                $0.amount.convertAsCurrency(code: "", symbol: $0.symbol, accuracy: Int($0.accuracy))
             }
             .startWith("")
     }

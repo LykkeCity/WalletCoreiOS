@@ -97,11 +97,11 @@ open class BLBuySellStep1ViewModel {
         
         return combinedObservable
             .flatMapLatest{combinedData in currencyExchanger.exchangeToBaseAsset(
-                amaunt: totalCurrency, from: combinedData.wallet.asset, bid: combinedData.bid
+                amount: totalCurrency, from: combinedData.wallet.asset, bid: combinedData.bid
                 )}
             .map{ data -> String? in
                 guard let data = data else {return nil}
-                return data.amaunt.convertAsCurrency(asset: data.baseAsset)
+                return data.amount.convertAsCurrency(asset: data.baseAsset)
             }
             .replaceNilWith("Not Available")
             .asDriver(onErrorJustReturn: "")

@@ -68,13 +68,13 @@ fileprivate extension ObservableType where Self.E == [TransactionViewModel] {
             return transactions.map { (viewModel: TransactionViewModel) in
                 return Observable.combineLatest(
                     viewModel.date.asObservable(),
-                    viewModel.amauntInBase.asObservable(),
-                    viewModel.amaunt.asObservable(),
+                    viewModel.amountInBase.asObservable(),
+                    viewModel.amount.asObservable(),
                     viewModel.title.asObservable()
                 ) {(
                     date: $0,
-                    amauntInBase: $1,
-                    amaunt: $2,
+                    amountInBase: $1,
+                    amount: $2,
                     title: $3
                 )}
             }

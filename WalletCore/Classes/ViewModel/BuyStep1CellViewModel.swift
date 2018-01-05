@@ -43,7 +43,7 @@ open class BuyStep1CellViewModel {
             .asDriver(onErrorJustReturn: "")
         
         price = assetObservable
-            .exchange(forAmaunt: 1, currencyExchanger: dependency.currencyExchanger)
+            .exchange(forAmount: 1, currencyExchanger: dependency.currencyExchanger)
             .asDriver(onErrorJustReturn: "")
         
         change = rates
@@ -69,17 +69,17 @@ fileprivate extension ObservableType where Self.E == LWAssetModel {
     /// Exchange an amount
     ///
     /// - Parameters:
-    ///   - amaunt: <#amaunt description#>
+    ///   - amount: <#amount description#>
     ///   - currencyExchanger: <#currencyExchanger description#>
     /// - Returns: <#return value description#>
-    func exchange(forAmaunt amaunt: Double = 1.0, currencyExchanger: CurrencyExchanger) -> Observable<String> {
+    func exchange(forAmount amount: Double = 1.0, currencyExchanger: CurrencyExchanger) -> Observable<String> {
         return
-            flatMap{(model: LWAssetModel) -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> in
-                return currencyExchanger.exchangeToBaseAsset(amaunt: 1, from: model, bid: false)
+            flatMap{(model: LWAssetModel) -> Observable<(baseAsset: LWAssetModel, amount: Decimal)?> in
+                return currencyExchanger.exchangeToBaseAsset(amount: 1, from: model, bid: false)
             }
             .map{data -> String? in
                 guard let data = data else {return nil}
-                return data.amaunt.convertAsCurrencyWithSymbol(asset: data.baseAsset)
+                return data.amount.convertAsCurrencyWithSymbol(asset: data.baseAsset)
             }
             .replaceNilWith("")
             .startWith("")
@@ -127,7 +127,7 @@ fileprivate extension ObservableType where Self.E == LWMarketModel? {
             }
             // exchange volume24H for base asset
             .flatMap{data -> Observable<Decimal?> in
-                return dependency.currencyExchanger.exchange(amaunt: data.volume24H, from: data.asset, to: baseAsset, bid: false)
+                return dependency.currencyExchanger.exchange(amount: data.volume24H, from: data.asset, to: baseAsset, bid: false)
             }
             .map{$0?.convertAsCurrency(asset: baseAsset)}
             .replaceNilWith("")

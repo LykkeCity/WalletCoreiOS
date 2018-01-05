@@ -137,11 +137,11 @@ open class BuyStep3ViewModel {
         
         return combinedObservable
             .flatMapLatest{combinedData in currencyExchanger.exchangeToBaseAsset(
-                amaunt: totalCurrency, from: combinedData.wallet.asset, bid: combinedData.bid
+                amount: totalCurrency, from: combinedData.wallet.asset, bid: combinedData.bid
             )}
             .map{ data -> String? in
                 guard let data = data else {return nil}
-                return data.amaunt.convertAsCurrency(asset: data.baseAsset)
+                return data.amount.convertAsCurrency(asset: data.baseAsset)
             }
             .replaceNilWith("Not Available")
             .asDriver(onErrorJustReturn: "")
@@ -169,11 +169,11 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, b
     func mapToUnitsInBase(currencyExchanger: CurrencyExchangerProtocol) -> Observable<String> {
         return
             flatMapLatest{ assetUnits in currencyExchanger.exchangeToBaseAsset(
-                amaunt: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
+                amount: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
             )}
             .map{data -> String? in
                 guard let data = data else {return nil}
-                return data.amaunt.convertAsCurrency(asset: data.baseAsset, withCode: false)
+                return data.amount.convertAsCurrency(asset: data.baseAsset, withCode: false)
             }
             .replaceNilWith("Not Available.")
     }
@@ -215,16 +215,16 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, w
             flatMapLatest{combinedData in
                 currencyExchanger
                     .exchange(
-                        amaunt: combinedData.units,
+                        amount: combinedData.units,
                         from: combinedData.asset,
                         to: combinedData.wallet.asset,
                         bid: combinedData.bid
                     )
-                    .map{(amaunt: $0, asset: combinedData.wallet.asset)}
+                    .map{(amount: $0, asset: combinedData.wallet.asset)}
             }
             .map{ data -> String? in
-                guard let amaunt = data.amaunt else {return nil}
-                return amaunt.convertAsCurrencyStrip(asset: data.asset)
+                guard let amount = data.amount else {return nil}
+                return amount.convertAsCurrencyStrip(asset: data.asset)
             }
             .replaceNilWith("Not Available")
     }
@@ -240,13 +240,13 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, w
     func mapToPriceInBase(currencyExchanger: CurrencyExchanger, amount: Decimal? = nil, baseAsset: Bool = true) -> Observable<String> {
         return
             flatMapLatest{combinedData in currencyExchanger.exchangeToBaseAsset(
-                amaunt: amount ?? combinedData.units,
+                amount: amount ?? combinedData.units,
                 from: baseAsset ? combinedData.asset : combinedData.wallet.asset,
                 bid: combinedData.bid
             )}
             .map{ data -> String? in
                 guard let data = data else {return nil}
-                return data.amaunt.convertAsCurrency(asset: data.baseAsset)
+                return data.amount.convertAsCurrency(asset: data.baseAsset)
             }
             .replaceNilWith("Not Available")
     }

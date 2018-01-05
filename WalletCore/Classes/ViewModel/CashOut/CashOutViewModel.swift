@@ -107,9 +107,9 @@ extension Observable where Element == (LWSpotWallet, Decimal) {
     
     func mapToAmountCodePairInBase(currencyExchanger: CurrencyExchanger) -> Observable<AmountCodePair> {
         return self
-            .flatMap { (data) -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> in
+            .flatMap { (data) -> Observable<(baseAsset: LWAssetModel, amount: Decimal)?> in
                 let (wallet, amount) = data
-                return currencyExchanger.exchangeToBaseAsset(amaunt: amount, from: wallet.asset, bid: false)
+                return currencyExchanger.exchangeToBaseAsset(amount: amount, from: wallet.asset, bid: false)
             }
             .filterNil()
             .map {
@@ -124,8 +124,8 @@ extension Observable where Element == LWSpotWallet {
 
     func mapToExchangeInBaseCourse(currencyExchanger: CurrencyExchanger) -> Observable<AmountCodePair> {
         return self
-            .flatMap { (wallet) -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> in
-                return currencyExchanger.exchangeToBaseAsset(amaunt: 1, from: wallet.asset, bid: false)
+            .flatMap { (wallet) -> Observable<(baseAsset: LWAssetModel, amount: Decimal)?> in
+                return currencyExchanger.exchangeToBaseAsset(amount: 1, from: wallet.asset, bid: false)
             }
             .filterNil()
             .map {

@@ -11,7 +11,7 @@ import RxCocoa
 
 open class CreditCardBaseInfoViewModel {
     fileprivate typealias Input = (
-        amaunt: Variable<String>,
+        amount: Variable<String>,
         firstName: Variable<String>, lastName: Variable<String>,
         city: Variable<String>, zip: Variable<String>, address:Variable<String>, country: Variable<String>,
         email: Variable<String>, phone: Variable<String>, phoneCode: Variable<String>,
@@ -20,7 +20,7 @@ open class CreditCardBaseInfoViewModel {
     
     /// <#Description#>
     public let input = Input(
-        amaunt: Variable(""),
+        amount: Variable(""),
         firstName: Variable(""), lastName: Variable(""),
         city: Variable(""), zip: Variable(""), address:Variable(""), country: Variable(""),
         email: Variable(""), phone: Variable(""), phoneCode: Variable(""),
@@ -80,7 +80,7 @@ open class CreditCardBaseInfoViewModel {
     }
     
     public class Errors {
-        public let amaunt: Driver<String?>
+        public let amount: Driver<String?>
         public let firstName: Driver<String?>
         public let lastName: Driver<String?>
         public let city: Driver<String?>
@@ -99,7 +99,7 @@ open class CreditCardBaseInfoViewModel {
                 packet.filterSuccess().map{_ -> [AnyHashable: Any] in [:]}
             )
             
-            amaunt = error.asDriver(byFieldName: "Amount")
+            amount = error.asDriver(byFieldName: "Amount")
             firstName = error.asDriver(byFieldName: "FirstName")
             lastName = error.asDriver(byFieldName: "LastName")
             city = error.asDriver(byFieldName: "City")
@@ -127,7 +127,7 @@ fileprivate extension ObservableType where Self.E == LWPersonalDataModel {
             .filterNil()
             .filter{ $0 != 0.0 }
             .map{String(describing: $0)}
-            .bind(to: input.amaunt)
+            .bind(to: input.amount)
             .disposed(by: disposeBag)
         
         map{$0.firstName}
@@ -232,7 +232,7 @@ fileprivate extension ObservableType where Self.E == Void {
                 let country = countries.value.first{country in country.name == input.country.value}
             
                 return LWPacketGetPaymentUrlParams(
-                    amount: input.amaunt.value,
+                    amount: input.amount.value,
                     firstName: input.firstName.value,
                     lastName: input.lastName.value,
                     city: input.city.value,
