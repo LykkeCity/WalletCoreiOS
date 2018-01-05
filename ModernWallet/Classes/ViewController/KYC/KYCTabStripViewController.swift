@@ -13,11 +13,13 @@ import RxCocoa
 import XLPagerTabStrip
 import AlamofireImage
 
-class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTabCollectionViewCell> {
+class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTabCollectionViewCell>,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var nextStepButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var pendingApprovalContainer: UIStackView!
+    
+    private var pickedImage = Variable<UIImage?>(nil)
     
     private let disposeBag = DisposeBag()
     
@@ -33,7 +35,7 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
     
     lazy var documentsUploadViewModel: KycUploadDocumentsViewModel = {
         return KycUploadDocumentsViewModel(
-            forImage: self.cameraButton.rx.tap.mapToTakeImage(withParent: self),
+            forImage: self.pickedImage.asObservable(),
             withType: self.documentType
         )
     }()
@@ -165,8 +167,28 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
             .bind(to: cameraButton.rx.isHiddenAnimated)
             .disposed(by: disposeBag)
         
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = false
+        
+        cameraButton.rx.tap.bind{ [weak self] in
+            self?.present(imagePicker, animated: true, completion: nil)
+        }.disposed(by: disposeBag)
         
         super.viewDidLoad()
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.pickedImage.value = pickedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     
