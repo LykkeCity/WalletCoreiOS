@@ -54,6 +54,47 @@ public class CashOutService {
                                             accountHolderAddress: data.accountHolderAddress)
             .mapToCashOutSwiftResult(withData: data)
     }
+    
+    public func cashout(to address: String, assetId: String, amount: Decimal) -> Observable<ApiResult<Bool>> {
+        let asset = LWCache.asset(byId: assetId)
+        
+        return Observable.create { (observer) -> Disposable in
+            if asset?.isErc20 ?? false {
+                HotWalletNetworkClient.cachout(to: address,
+                                               assetId: assetId,
+                                               volume: amount as NSDecimalNumber,
+                                               completion: { success in
+                                                observer.onNext(.success(withData: success))
+                                                observer.onCompleted()
+                })
+            } else if asset?.blockchainType == .ethereum {
+                LWEthereumTransactionsManager.shared().requestCashout(forAsset: asset,
+                                                                      volume: amount as NSDecimalNumber,
+                                                                      addressTo: address,
+                                                                      completion: { (data) in
+                                                                        observer.onNext(.success(withData: data != nil))
+                                                                        observer.onCompleted()
+                })
+            } else if !LWKeychainManager.instance().useOffchainRequests {
+                return self.authManager.cashOut.request(withParams: LWPacketCashOutParams(amount: amount,
+                                                                               assetId: assetId,
+                                                                               multiSig: address))
+                    .bind(to: observer)
+            } else {
+                LWOffchainTransactionsManager.shared().requestCashOut(amount as NSDecimalNumber,
+                                                                      assetId: assetId,
+                                                                      multiSig: address,
+                                                                      completion: { data in
+                                                                        observer.onNext(.success(withData: data != nil))
+                                                                        observer.onCompleted()
+                })
+            }
+            
+            return Disposables.create {}
+        }
+            .startWith(.loading)
+            .shareReplay(1)
+    }
 
 }
 
