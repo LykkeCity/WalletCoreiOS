@@ -107,6 +107,15 @@
                                     <constraint firstItem="ijG-6k-K4w" firstAttribute="width" secondItem="lSa-5F-CWb" secondAttribute="width" id="u9c-y0-Qcr"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNb-hs-ZkU">
+                                <rect key="frame" x="120.5" y="630" width="133" height="29"/>
+                                <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Select Test Server"/>
+                                <connections>
+                                    <action selector="selectTestServerTapped" destination="0kG-iQ-RqS" eventType="touchUpInside" id="qwx-N1-z2T"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1W6-7K-CFQ">
                                 <rect key="frame" x="8" y="28" width="44" height="44"/>
                                 <constraints>
@@ -121,12 +130,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="CNb-hs-ZkU" firstAttribute="centerX" secondItem="3lF-pn-mYe" secondAttribute="centerX" id="2b7-GZ-IC2"/>
                             <constraint firstItem="lSa-5F-CWb" firstAttribute="leading" secondItem="3lF-pn-mYe" secondAttribute="leading" id="8UR-Ju-D6t"/>
                             <constraint firstItem="1W6-7K-CFQ" firstAttribute="top" secondItem="Sn7-9f-5f3" secondAttribute="bottom" constant="8" id="Dja-k2-TOt"/>
                             <constraint firstItem="e7U-27-v4P" firstAttribute="top" secondItem="lSa-5F-CWb" secondAttribute="bottom" id="LuV-1B-6gx"/>
                             <constraint firstItem="1W6-7K-CFQ" firstAttribute="leading" secondItem="3lF-pn-mYe" secondAttribute="leading" constant="8" id="Qcp-a2-gQa"/>
                             <constraint firstItem="lSa-5F-CWb" firstAttribute="top" secondItem="Sn7-9f-5f3" secondAttribute="bottom" id="Yiq-xv-cw3"/>
                             <constraint firstAttribute="trailing" secondItem="lSa-5F-CWb" secondAttribute="trailing" id="fqp-RP-kPd"/>
+                            <constraint firstItem="e7U-27-v4P" firstAttribute="top" secondItem="CNb-hs-ZkU" secondAttribute="bottom" constant="8" id="jQ8-SS-PGY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="99u-ab-52F"/>
@@ -140,6 +151,7 @@
                         <outlet property="rightStackCenterConstraint" destination="CMm-F4-p8Q" id="ijD-7l-YZI"/>
                         <outlet property="rightStackView" destination="gDd-Gb-ygJ" id="YgU-26-T7k"/>
                         <outlet property="scrollView" destination="lSa-5F-CWb" id="hqJ-oK-lCP"/>
+                        <outlet property="selectTestServerButton" destination="CNb-hs-ZkU" id="i1j-8m-gDe"/>
                         <outlet property="submitButton" destination="SqJ-rG-SsS" id="mdr-jt-0tV"/>
                         <segue destination="gga-op-U57" kind="show" identifier="CreateKey" id="Z1d-Uy-bzp"/>
                     </connections>

@@ -18,6 +18,7 @@ class SignUpFormViewController: UIViewController {
     @IBOutlet private weak var rightStackView: UIStackView!
     @IBOutlet private weak var submitButton: UIButton!
     @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var selectTestServerButton: UIButton!
     
     @IBOutlet private weak var leftStackCenterConstraint: NSLayoutConstraint!
     @IBOutlet private weak var leftStackBottomConstraint: NSLayoutConstraint!
@@ -55,6 +56,10 @@ class SignUpFormViewController: UIViewController {
         SignUpStep.instance?.initializeFormController()
             .bind(toViewController: self)
             .disposed(by: disposeBag)
+        
+        #if !TEST
+            selectTestServerButton.isHidden = true
+        #endif
     }
     
     // MARK: - IBActions
@@ -70,6 +75,23 @@ class SignUpFormViewController: UIViewController {
         
         let email = signInEmailForm.emailTextField.text ?? ""
         push(formController: SignUpEmailFormController(email: email), animated: true)
+    }
+    
+    @IBAction private func selectTestServerTapped() {
+        let keychainManager = LWKeychainManager.instance()
+        let currentAddress = keychainManager?.address ?? WalletCoreConfig.testingServer
+        let testServers = ["DEV": kDevelopTestServer,
+                           "TEST": kTestingTestServer,
+                           "STAGE": kStagingTestServer]
+        let handler: (UIAlertAction) -> () = { action in
+            guard let title = action.title else { return }
+            keychainManager?.saveAddress(testServers[title])
+        }
+        let controller = UIAlertController(title: "Select a test server", message: nil, preferredStyle: .actionSheet)
+        for (title, address) in testServers {
+            controller.addAction(UIAlertAction(title: title, style: currentAddress == address ? .cancel : .default, handler: handler))
+        }
+        present(controller, animated: true)
     }
     
     // MARK: - Private
@@ -95,11 +117,17 @@ class SignUpFormViewController: UIViewController {
     
     private func willPush() {
         registerButton.isHidden = forms.isNotEmpty
+        #if TEST
+            selectTestServerButton.isHidden = forms.isNotEmpty
+        #endif
     }
     
     private func didPop() {
         SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
         registerButton.isHidden = forms.count > 1
+        #if TEST
+            selectTestServerButton.isHidden = forms.count > 1
+        #endif
     }
     
     private func willPop() {
