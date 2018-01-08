@@ -16,7 +16,7 @@ class KYCPhotoFailedViewController: UIViewController {
     
     var documentsModel: LWKYCDocumentsModel?
     
-    typealias TableCellModel = (type: KYCDocumentType, message: String)
+    typealias TableCellModel = (type: KYCDocumentType, message: String?)
     
     var statuses: [TableCellModel] {
         guard let documentsModel = self.documentsModel else {return []}
