@@ -147,7 +147,7 @@ fileprivate extension ObservableType where Self.E == LWAssetModel {
                     
                     switch mainInfoResult {
                     case .error(let data): return Observable.just(.error(withData: data))
-                    case .loading: return Observable.never()
+                    case .loading: return Observable.just(.loading)
                     case .notAuthorized: return Observable.just(.notAuthorized)
                     case .forbidden: return Observable.just(.forbidden)
                     case .success(let mainInfo): return Observable.just(.success(withData: (mainInfo: mainInfo, asset: asset)))

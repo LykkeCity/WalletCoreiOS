@@ -39,7 +39,7 @@ open class TotalBalanceViewModel {
             .shareReplay(1)
         
         loading = LoadingViewModel([
-            mainInfoObservable.isLoading().take(2), //take just first loading true and false
+            mainInfoObservable.isLoading().distinctUntilChanged().take(2), //take just first loading true and false
             baseAssetObservable.isLoading()
         ])
         
