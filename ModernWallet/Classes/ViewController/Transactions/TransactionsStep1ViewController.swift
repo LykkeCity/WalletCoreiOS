@@ -63,12 +63,6 @@ class TransactionsStep1ViewController: UIViewController {
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
         
-        findTransactionBtn.rx.tap.bind {
-            print("Produce crash")
-            let testArray = ["1"]
-            let a = testArray[2]
-            print("Produce crash \(a)")
-            }.disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
