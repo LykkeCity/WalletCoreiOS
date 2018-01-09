@@ -112,7 +112,9 @@ class SignUpFormViewController: UIViewController {
     }
 
     private func didPush() {
-        SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
+        if forms.count > 1 {
+            SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
+        }
     }
     
     private func willPush() {

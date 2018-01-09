@@ -31,6 +31,7 @@ extension SignUpStep {
         
         set {
             guard let signUpStep = newValue else {
+                resetInstance()
                 return
             }
             
