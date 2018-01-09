@@ -63,8 +63,8 @@ class CashOutEnterAmountViewController: UIViewController {
         enterAmountLabel.text = Localize("cashOut.newDesign.enterAmount")
         slideToRetrieveLabel.text = Localize("cashOut.newDesign.slideToRetrieve")
         
-        baseAssetAmountView.amountFont = UIFont(name: "Geomanist-Light", size: 20.0)
-        assetAmountView.amountFont = UIFont(name: "Geomanist-Light", size: 14.0)
+        assetAmountView.amountFont = UIFont(name: "Geomanist-Light", size: 20.0)
+        baseAssetAmountView.amountFont = UIFont(name: "Geomanist-Light", size: 14.0)
         
         walletViewModel.assetIconUrl
             .distinctUntilChanged()
