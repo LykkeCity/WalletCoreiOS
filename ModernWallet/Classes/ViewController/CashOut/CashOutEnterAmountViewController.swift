@@ -135,6 +135,15 @@ class CashOutEnterAmountViewController: UIViewController {
             .drive(confirmSlider.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        amountViewModel.isValid
+            .asDriver(onErrorJustReturn: false)
+            .distinctUntilChanged()
+            .filter{ !$0 }
+            .skip(1)
+            .map{ _ in Localize("cashOut.newDesign.error.lowFunds") }
+            .drive(rx.messageTop)
+            .disposed(by: disposeBag)
+        
         setupFormUX(disposedBy: disposeBag)
     }
     

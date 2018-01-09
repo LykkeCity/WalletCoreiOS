@@ -977,6 +977,7 @@
 "cashOut.newDesign.transactionDetails" = "TRANSACTION DETAILS";
 "cashOut.newDesign.waitMessage" = "Please allow 3-5 business days for the transaction to be processed.";
 "cashOut.newDesign.backToPortfolio" = "BACK TO PORTFOLIO";
+"cashOut.newDesign.error.lowFunds" = "Please fill lower amount.";
 
 "settings.newDesign.title" = "SETTINGS";
 "settings.newDesign.personalData" = "PERSONAL DATA";
