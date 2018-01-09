@@ -13,6 +13,7 @@ import WalletCore
 
 class TransactionsStep1ViewController: UIViewController {
 
+    @IBOutlet weak var sortIcon: UIImageView!
     @IBOutlet weak var findTransactionBtn: UIButton!
     @IBOutlet weak var filterTransactionBtn: UIButton!
     @IBOutlet weak var downloadCSV: UIButton!
@@ -32,10 +33,7 @@ class TransactionsStep1ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
-        
-        findTransactionLbl.text = Localize("transaction.newDesign.findTransaction")
-        filterTransactionLbl.text = Localize("transaction.newDesign.filterTransaction")
-        downloadCSVLbl.text = Localize("transaction.newDesign.downoloadCSV")
+        localize()
         
         transactionsTableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
@@ -59,6 +57,12 @@ class TransactionsStep1ViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
+    private func localize() {
+        findTransactionLbl.text = Localize("transaction.newDesign.findTransaction")
+        filterTransactionLbl.text = Localize("transaction.newDesign.sortTransaction")
+        downloadCSVLbl.text = Localize("transaction.newDesign.downoloadCSV")
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -76,10 +80,27 @@ fileprivate extension TransactionsViewModel {
             transactions.asObservable()
                 .bind(to: vc.transactionsTableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell",
                                                             cellType: PortfolioCurrencyTableViewCell.self)
-                ){ (row, element, cell) in cell.bind(toTransaction: element) }
-            ,
-            loading.isLoading.bind(to: vc.rx.loading),
-            transactionsAsCsv.filterSuccess().drive(onNext: {[weak vc] path in vc?.creatCSV(path)})
+                ){ (row, element, cell) in cell.bind(toTransaction: element) },
+            
+            loading.isLoading
+                .bind(to: vc.rx.loading),
+            
+            transactionsAsCsv
+                .filterSuccess()
+                .drive(onNext: {[weak vc] path in vc?.creatCSV(path)}),
+            
+            sortBy.asDriver()
+                .map{ $0.asImage() }
+                .drive(vc.sortIcon.rx.image)
         ]
+    }
+}
+
+fileprivate extension TransactionsViewModel.SortType {
+    func asImage() -> UIImage {
+        switch self {
+        case .asc: return #imageLiteral(resourceName: "sortAscending")
+        case .desc: return #imageLiteral(resourceName: "sortDescending")
+        }
     }
 }
