@@ -12,6 +12,7 @@ import WalletCore
 import RxCocoa
 import RxSwift
 import SwiftSpinner
+import Toast
 
 extension Reactive where Base: UIViewController {
     
@@ -26,6 +27,24 @@ extension Reactive where Base: UIViewController {
             }
             
             SwiftSpinner.show("Loading...")
+        }
+    }
+    
+    var messageTop: UIBindingObserver<Base, String> {
+        return UIBindingObserver(UIElement: self.base) { vc, message in
+            vc.view.makeToast(message, duration: 2.0, position: CSToastPositionTop)
+        }
+    }
+    
+    var messageBottom: UIBindingObserver<Base, String> {
+        return UIBindingObserver(UIElement: self.base) { vc, message in
+            vc.view.makeToast(message, duration: 2.0, position: CSToastPositionBottom)
+        }
+    }
+    
+    var messageCenter: UIBindingObserver<Base, String> {
+        return UIBindingObserver(UIElement: self.base) { vc, message in
+            vc.view.makeToast(message, duration: 2.0, position: CSToastPositionCenter)
         }
     }
     
