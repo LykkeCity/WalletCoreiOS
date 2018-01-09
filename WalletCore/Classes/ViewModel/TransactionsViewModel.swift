@@ -43,18 +43,6 @@ open class TransactionsViewModel {
     ) {
         let transactionsObservable = authManager.history.request()
         
-        transactionsObservable
-            .filterSuccess()
-            .bind(to: transactionModels)
-            .disposed(by: disposeBag)
-        
-        //Reorder transactionModels according sortBy events
-        sortBy.asObservable()
-            .skip(1) // skip initial value
-            .sort(models: transactionModels)
-            .bind(to: transactionModels)
-            .disposed(by: disposeBag)
-        
         let transactions = transactionModels.asObservable()
             .mapToViewModels(currencyExchanger: currencyExchanger)
         
@@ -69,6 +57,18 @@ open class TransactionsViewModel {
             transactionsObservable.isLoading(),
             self.transactionsAsCsv.isLoading().asObservable()
         ])
+        
+        //Reorder transactionModels according sortBy events
+        sortBy.asObservable()
+            .skip(1) // skip initial value
+            .sort(models: transactionModels)
+            .bind(to: transactionModels)
+            .disposed(by: disposeBag)
+        
+        transactionsObservable
+            .filterSuccess()
+            .bind(to: transactionModels)
+            .disposed(by: disposeBag)
     }
 }
 
