@@ -26,15 +26,16 @@ enum SignUpStep: Int {
 extension SignUpStep {
     static var instance: SignUpStep? {
         get {
-            return UserDefaults.standard.getSignUpStep()
+            return UserDefaults.standard.signUpStep
         }
         
         set {
             guard let signUpStep = newValue else {
+                resetInstance()
                 return
             }
             
-            UserDefaults.standard.set(signUpStep: signUpStep)
+            UserDefaults.standard.signUpStep = signUpStep
             UserDefaults.standard.synchronize()
         }
     }
@@ -147,7 +148,7 @@ extension SignUpStep {
             return SignUpStep.setPhone
         }
         
-        if formController is SignInConfirmPhoneFormController {
+        if let confirmPhoneformController = formController as? SignInConfirmPhoneFormController, !confirmPhoneformController.signIn {
             return SignUpStep.confirmPhone
         }
         
@@ -159,14 +160,14 @@ extension SignUpStep {
 fileprivate extension SignUpStep {
     func getPhone(fromPacket packet:  LWPacketPersonalData?) -> String? {
         guard let phone = packet?.data?.phone, phone.isNotEmpty else {
-            return UserDefaults.standard.getTempPhone()
+            return UserDefaults.standard.tempPhone
         }
         
         return phone
     }
     
     func getEmail(fromPacket packet: LWPacketPersonalData?) -> String {
-        return packet?.data?.email ?? UserDefaults.standard.getTempEmail() ?? ""
+        return packet?.data?.email ?? UserDefaults.standard.tempEmail ?? ""
     }
 }
 

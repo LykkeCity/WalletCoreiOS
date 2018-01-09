@@ -17,44 +17,33 @@ extension UserDefaults {
         loggedIn: "loggedIn"
     )
     
-    func set(tempEmail: String) {
-        set(tempEmail, forKey: UserDefaults.keys.tempEmail)
+    var tempEmail: String? {
+        get { return string(forKey: UserDefaults.keys.tempEmail) }
+        set { set(newValue, forKey: UserDefaults.keys.tempEmail) }
     }
     
-    func getTempEmail() -> String? {
-        return string(forKey: UserDefaults.keys.tempEmail)
-    }
-
-    func set(tempPhone: String) {
-        set(tempPhone, forKey: UserDefaults.keys.tempPhone)
+    var tempPhone: String? {
+        get { return string(forKey: UserDefaults.keys.tempPhone) }
+        set { set(newValue, forKey: UserDefaults.keys.tempPhone) }
     }
     
-    func getTempPhone() -> String? {
-        return string(forKey: UserDefaults.keys.tempPhone)
-    }
-    
-    func getSignUpStep() -> SignUpStep? {
-        return SignUpStep(rawValue: integer(forKey: UserDefaults.keys.signUpStep))
-    }
-    
-    func nulifySignUpStep() {
-        set(nil, forKey: UserDefaults.keys.signUpStep)
-        synchronize()
-    }
-    
-    func set(signUpStep: SignUpStep) {
-        set(signUpStep.rawValue, forKey: UserDefaults.keys.signUpStep)
-    }
-    
-    func set(loggedIn: Bool) {
-        set(loggedIn, forKey: UserDefaults.keys.loggedIn)
+    var signUpStep: SignUpStep? {
+        get { return SignUpStep(rawValue: integer(forKey: UserDefaults.keys.signUpStep)) }
+        set { set(newValue?.rawValue, forKey: UserDefaults.keys.signUpStep) }
     }
     
     var isLoggedIn: Bool {
-        return bool(forKey: UserDefaults.keys.loggedIn)
+        get { return bool(forKey: UserDefaults.keys.loggedIn) }
+        set { set(newValue, forKey: UserDefaults.keys.loggedIn) }
     }
     
     var isNotLoggedIn: Bool {
         return !isLoggedIn
     }
+
+    func nulifySignUpStep() {
+        signUpStep = nil
+        synchronize()
+    }
+    
 }

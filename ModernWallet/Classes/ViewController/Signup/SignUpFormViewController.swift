@@ -112,7 +112,9 @@ class SignUpFormViewController: UIViewController {
     }
 
     private func didPush() {
-        SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
+        if forms.count > 1 {
+            SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
+        }
     }
     
     private func willPush() {
@@ -124,9 +126,10 @@ class SignUpFormViewController: UIViewController {
     
     private func didPop() {
         SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
-        registerButton.isHidden = forms.count > 1
+        let isNotFirstStep = forms.count > 1
+        registerButton.isHidden = isNotFirstStep
         #if TEST
-            selectTestServerButton.isHidden = forms.count > 1
+            selectTestServerButton.isHidden = isNotFirstStep
         #endif
     }
     

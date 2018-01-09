@@ -20,7 +20,8 @@ class SignInConfirmPhoneFormController: FormController {
     init(signIn: Bool, phone: String) {
         self.signIn = signIn
         self.phone = phone
-        UserDefaults.standard.set(tempPhone: phone)
+        UserDefaults.standard.tempPhone = phone
+        UserDefaults.standard.synchronize()
     }
     
     lazy var formViews: [UIView] = {
@@ -188,7 +189,7 @@ class SignInConfirmPhoneFormController: FormController {
         clientCodes.encodeMainKeyObservable
             .map { _ in
                 SignUpStep.resetInstance()
-                UserDefaults.standard.set(loggedIn: true)
+                UserDefaults.standard.isLoggedIn = true
                 UserDefaults.standard.synchronize()
                 NotificationCenter.default.post(name: .loggedIn, object: nil)
                 return ()

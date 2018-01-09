@@ -72,7 +72,7 @@ class SignUpShakeViewController: UIViewController {
             )
             .subscribe { [weak self] _ in
                 SignUpStep.resetInstance()
-                UserDefaults.standard.set(loggedIn: true)
+                UserDefaults.standard.isLoggedIn = true
                 UserDefaults.standard.synchronize()
                 NotificationCenter.default.post(name: .loggedIn, object: nil)
                 

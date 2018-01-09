@@ -17,7 +17,7 @@ class SignUpEmailCodeFormController: FormController {
     
     init(email: String) {
         self.email = email
-        UserDefaults.standard.set(tempEmail: email)
+        UserDefaults.standard.tempEmail = email
         UserDefaults.standard.synchronize()
     }
     
