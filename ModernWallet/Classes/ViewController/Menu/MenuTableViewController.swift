@@ -243,7 +243,7 @@ class MenuTableViewController: UITableViewController {
     
     static func logout(_ viewController: UIViewController) {
         
-        UserDefaults.standard.set(loggedIn: false)
+        UserDefaults.standard.isLoggedIn = false
         UserDefaults.standard.synchronize()
         
         if LWKeychainManager.instance().isAuthenticated {
