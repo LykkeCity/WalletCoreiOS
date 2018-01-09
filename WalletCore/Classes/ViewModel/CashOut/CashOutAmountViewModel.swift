@@ -14,8 +14,10 @@ public class CashOutAmountViewModel {
     public let walletObservable: Observable<LWSpotWallet>
     
     public let amount = Variable<Decimal>(0)
+    public let baseAmount = Variable<Decimal>(0)
     
     public let isValid: Observable<Bool>
+    public let isBaseValid: Observable<Bool>
     
     public init(
         walletObservable: Observable<LWSpotWallet>
@@ -26,6 +28,12 @@ public class CashOutAmountViewModel {
             return (walletAmount: $0.0.balance.decimalValue, enteredAmount: $0.1)
             }
             .map { $0.enteredAmount > 0 && $0.enteredAmount <= $0.walletAmount }
+        
+       isBaseValid = Observable.combineLatest(walletObservable, baseAmount.asObservable()) {
+            return (walletAmount: $0.0.amountInBase.decimalValue, enteredAmount: $0.1)
+            }
+            .map { $0.enteredAmount > 0 && $0.enteredAmount <= $0.walletAmount }
+        
     }
     
 }
