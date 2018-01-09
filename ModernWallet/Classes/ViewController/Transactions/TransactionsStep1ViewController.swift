@@ -13,6 +13,7 @@ import WalletCore
 
 class TransactionsStep1ViewController: UIViewController {
 
+    @IBOutlet weak var sortIcon: UIImageView!
     @IBOutlet weak var findTransactionBtn: UIButton!
     @IBOutlet weak var filterTransactionBtn: UIButton!
     @IBOutlet weak var downloadCSV: UIButton!
@@ -32,37 +33,18 @@ class TransactionsStep1ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.clear
-        
-        findTransactionLbl.text = Localize("transaction.newDesign.findTransaction")
-        filterTransactionLbl.text = Localize("transaction.newDesign.filterTransaction")
-        downloadCSVLbl.text = Localize("transaction.newDesign.downoloadCSV")
+        localize()
         
         transactionsTableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
-        transactionsViewModel.transactions.asObservable()
-            .bind(
-                to: transactionsTableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell",
-                cellType: PortfolioCurrencyTableViewCell.self)
-            ){ (row, element, cell) in
-                cell.bind(toTransaction: element)
-            }
+        filterTransactionBtn.rx.tap.asObservable()
+            .map{[transactionsViewModel] in transactionsViewModel.sortBy.value.reversed }
+            .bind(to: transactionsViewModel.sortBy)
             .disposed(by: disposeBag)
         
-        transactionsViewModel.loading.isLoading
-            .bind(to: rx.loading)
+        transactionsViewModel
+            .bind(toViewController: self)
             .disposed(by: disposeBag)
-        
-        transactionsViewModel.transactionsAsCsv
-            .filterSuccess()
-            .drive(onNext: {[weak self] path in self?.creatCSV(path)})
-            .disposed(by: disposeBag)
-        
-        transactionsViewModel.transactionsAsCsv
-            .isLoading()
-            .asObservable()
-            .bind(to: rx.loading)
-            .disposed(by: disposeBag)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +57,12 @@ class TransactionsStep1ViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
+    private func localize() {
+        findTransactionLbl.text = Localize("transaction.newDesign.findTransaction")
+        filterTransactionLbl.text = Localize("transaction.newDesign.sortTransaction")
+        downloadCSVLbl.text = Localize("transaction.newDesign.downoloadCSV")
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -84,4 +72,35 @@ class TransactionsStep1ViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+fileprivate extension TransactionsViewModel {
+    func bind(toViewController vc: TransactionsStep1ViewController) -> [Disposable] {
+        return [
+            transactions.asObservable()
+                .bind(to: vc.transactionsTableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell",
+                                                            cellType: PortfolioCurrencyTableViewCell.self)
+                ){ (row, element, cell) in cell.bind(toTransaction: element) },
+            
+            loading.isLoading
+                .bind(to: vc.rx.loading),
+            
+            transactionsAsCsv
+                .filterSuccess()
+                .drive(onNext: {[weak vc] path in vc?.creatCSV(path)}),
+            
+            sortBy.asDriver()
+                .map{ $0.asImage() }
+                .drive(vc.sortIcon.rx.image)
+        ]
+    }
+}
+
+fileprivate extension TransactionsViewModel.SortType {
+    func asImage() -> UIImage {
+        switch self {
+        case .asc: return #imageLiteral(resourceName: "sortAscending")
+        case .desc: return #imageLiteral(resourceName: "sortDescending")
+        }
+    }
 }

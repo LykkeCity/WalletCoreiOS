@@ -930,6 +930,7 @@
 "transaction.newDesign.transactionTitle" = "TRANSACTIONS";
 "transaction.newDesign.findTransaction" = "Find Transaction";
 "transaction.newDesign.filterTransaction" = "Filter Transaction";
+"transaction.newDesign.sortTransaction" = "Sort by Date";
 "transaction.newDesign.downoloadCSV" = "Downlaod CSV";
 "transaction.newDesign.cashIn" = "Receive";
 "transaction.newDesign.cashOut" = "Send";
