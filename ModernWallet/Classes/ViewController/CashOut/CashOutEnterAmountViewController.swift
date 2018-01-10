@@ -123,14 +123,11 @@ class CashOutEnterAmountViewController: UIViewController {
         
         let amountViewModel = cashOutViewModel.amountViewModel
         
-        Observable.combineLatest(walletObservable, assetAmountTextField.rx.text.filterNil())
-            .map { (data) -> Decimal in
-                let (wallet, amountString) = data
-                var amount = amountString.decimalValue ?? 0
-                var roundedAmount = Decimal()
-                NSDecimalRound(&roundedAmount, &amount, wallet.asset.accuracy.intValue, .bankers)
-                return roundedAmount
-            }
+        
+        buyOptimizedViewModel.payWithAmount
+            .asObservable()
+            .map{ $0.value.decimalValue }
+            .filterNil()
             .bind(to: amountViewModel.amount)
             .disposed(by: disposeBag)
         
