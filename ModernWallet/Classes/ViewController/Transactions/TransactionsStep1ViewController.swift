@@ -24,7 +24,7 @@ class TransactionsStep1ViewController: UIViewController {
     @IBOutlet weak var downloadCSVLbl: UILabel!
     
     var isTableHeaderHidden = false
-    var isTransperantBackground = true
+    var addBackgroundImage = false
     
     lazy var transactionsViewModel:TransactionsViewModel = {
         return TransactionsViewModel(
@@ -37,9 +37,10 @@ class TransactionsStep1ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.clear
         
-        if isTransperantBackground {
-            view.backgroundColor = UIColor.clear
+        if addBackgroundImage {
+            view.insertSubview(UIImageView(image: #imageLiteral(resourceName: "Background")), belowSubview: transactionsTableView)
         }
         
         tableHeader.isHidden = isTableHeaderHidden
@@ -108,7 +109,7 @@ extension TransactionsStep1ViewController: UISearchResultsUpdating {
         }
         
         searchResultsController.isTableHeaderHidden = true
-        searchResultsController.isTransperantBackground = false
+        searchResultsController.addBackgroundImage = true
         
         let searchController = UISearchController(searchResultsController: searchResultsController)
         let searchContainer = UISearchContainerViewController(searchController: searchController)

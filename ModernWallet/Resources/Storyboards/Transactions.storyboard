@@ -131,7 +131,7 @@
                         <viewControllerLayoutGuide type="top" id="xdh-k0-8DG"/>
                         <viewControllerLayoutGuide type="bottom" id="p0f-RW-SDw"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wfA-CU-gRt" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="wfA-CU-gRt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
