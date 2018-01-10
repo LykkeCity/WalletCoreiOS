@@ -28,11 +28,16 @@ open class TransactionsViewModel {
     /// Once the value of this Variable is changed there will be created an event with sorted TransactionsViewModel.transactions according SortType
     public let sortBy = Variable<SortType>(SortType.asc)
     
+    /// Filter transactions by title
+    public let filter = Variable<String?>(nil)
+    
     /// Loading indicator
     public let loading: LoadingViewModel
     
     /// Transaction models fetched from the API
     private let transactionModels = Variable<[LWBaseHistoryItemType]>([])
+    
+    private let transactionsToDisplay = Variable<[LWBaseHistoryItemType]>([])
 
     private let disposeBag = DisposeBag()
     
@@ -43,7 +48,7 @@ open class TransactionsViewModel {
     ) {
         let transactionsObservable = authManager.history.request()
         
-        let transactions = transactionModels.asObservable()
+        let transactions = transactionsToDisplay.asObservable()
             .mapToViewModels(currencyExchanger: currencyExchanger)
         
         self.transactions = transactions
@@ -58,11 +63,29 @@ open class TransactionsViewModel {
             self.transactionsAsCsv.isLoading().asObservable()
         ])
         
+        transactionModels.asObservable()
+            .bind(to: transactionsToDisplay)
+            .disposed(by: disposeBag)
+        
         //Reorder transactionModels according sortBy events
         sortBy.asObservable()
             .skip(1) // skip initial value
-            .sort(models: transactionModels)
-            .bind(to: transactionModels)
+            .sort(models: transactionsToDisplay)
+            .bind(to: transactionsToDisplay)
+            .disposed(by: disposeBag)
+        
+        filter.asObservable()
+            .filterNil()
+            .map{ [transactionModels] filter in
+                guard filter.isNotEmpty else {
+                    return transactionModels.value
+                }
+                
+                return transactionModels.value.filter {
+                    [$0.localizedString, $0.asset].contains{ $0.localizedCaseInsensitiveContains(filter) }
+                }
+            }
+            .bind(to: transactionsToDisplay)
             .disposed(by: disposeBag)
         
         transactionsObservable
@@ -81,7 +104,11 @@ fileprivate extension ObservableType where Self.E == TransactionsViewModel.SortT
     func sort(models: Variable<[LWBaseHistoryItemType]>) -> Observable<[LWBaseHistoryItemType]>  {
         return map{ sortBy -> [LWBaseHistoryItemType] in
             models.value.sorted{ first, second in
-                sortBy.isAsc ? first.dateTime > second.dateTime : first.dateTime < second.dateTime
+                guard let firstDate = first.dateTime, let secondDateTime = second.dateTime else {
+                    return false
+                }
+                
+                return sortBy.isAsc ? firstDate > secondDateTime : firstDate < secondDateTime
             }
         }
     }
