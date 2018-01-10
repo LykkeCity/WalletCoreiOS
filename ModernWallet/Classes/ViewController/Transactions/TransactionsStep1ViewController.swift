@@ -13,6 +13,7 @@ import WalletCore
 
 class TransactionsStep1ViewController: UIViewController {
 
+    @IBOutlet weak var tableHeader: UIView!
     @IBOutlet weak var sortIcon: UIImageView!
     @IBOutlet weak var findTransactionBtn: UIButton!
     @IBOutlet weak var filterTransactionBtn: UIButton!
@@ -22,7 +23,9 @@ class TransactionsStep1ViewController: UIViewController {
     @IBOutlet weak var filterTransactionLbl: UILabel!
     @IBOutlet weak var downloadCSVLbl: UILabel!
     
-    let disposeBag = DisposeBag()
+    var isTableHeaderHidden = false
+    var isTransperantBackground = true
+    
     lazy var transactionsViewModel:TransactionsViewModel = {
         return TransactionsViewModel(
             downloadCsv: self.downloadCSV.rx.tap.asObservable(),
@@ -30,9 +33,17 @@ class TransactionsStep1ViewController: UIViewController {
         )
     }()
     
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.clear
+        
+        if isTransperantBackground {
+            view.backgroundColor = UIColor.clear
+        }
+        
+        tableHeader.isHidden = isTableHeaderHidden
+        
         localize()
         
         transactionsTableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
@@ -72,6 +83,44 @@ class TransactionsStep1ViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+extension TransactionsStep1ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        
+        transactionsViewModel.filter.value = text
+    }
+    
+    
+    static func factorySearchContainer(withViewModel viewModel: TransactionsViewModel? = nil) -> UISearchContainerViewController {
+        let storyboard = UIStoryboard(name: "Transactions", bundle: nil)
+        
+        guard let searchResultsController = storyboard.instantiateViewController(withIdentifier: "transactionsVC")
+            as? TransactionsStep1ViewController else {
+                fatalError("Unable to instatiate a SearchResultsViewController from the storyboard.")
+        }
+        
+        if let viewModel = viewModel {
+            searchResultsController.transactionsViewModel = viewModel
+        }
+        
+        searchResultsController.isTableHeaderHidden = true
+        searchResultsController.isTransperantBackground = false
+        
+        let searchController = UISearchController(searchResultsController: searchResultsController)
+        let searchContainer = UISearchContainerViewController(searchController: searchController)
+        
+        searchController.searchResultsUpdater = searchResultsController
+        searchController.searchBar.placeholder = "Search transactions"
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barTintColor = Colors.darkGreen
+        searchController.searchBar.sizeToFit()
+        
+        return searchContainer
+    }
 }
 
 fileprivate extension TransactionsViewModel {
