@@ -35,6 +35,17 @@ class AddMoneyCCStep1ViewController: UIViewController {
         return CreditCardBaseInfoViewModel(submit: self.submitButton.rx.tap.asObservable())
     }()
     
+    fileprivate var selectedCountry: LWCountryModel? {
+        didSet {
+            guard let country = selectedCountry else {
+                return
+            }
+            countryField.text = country.name
+        }
+    }
+    
+    private let selectCountryViewModel = SelectCountryViewModel()
+    
     fileprivate let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -82,15 +93,32 @@ class AddMoneyCCStep1ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "SelectCountry" {
+            guard
+                let navController = segue.destination as? UINavigationController,
+                let vc = navController.viewControllers.first as? SelectCountryViewController
+            else {
+                return
+            }
+            vc.viewModel = selectCountryViewModel
+            vc.selectedCountry = selectedCountry ?? selectCountryViewModel.countryBy(name: countryField.text)
+            vc.delegate = self
+        }
     }
-    */
+
+}
+
+extension AddMoneyCCStep1ViewController: SelectCountryViewControllerDelegate {
+    
+    func controller(_ controller: SelectCountryViewController, didSelectCountry country: LWCountryModel) {
+        self.selectedCountry = country
+        controller.dismiss(animated: true)
+    }
+    
 }
 
 fileprivate extension CreditCardBaseInfoViewModel {
@@ -201,7 +229,6 @@ extension AddMoneyCCStep1ViewController: InputForm {
             addressField,
             cityField,
             zipField,
-            countryField,
             codeField,
             phoneField
         ]
