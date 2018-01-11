@@ -74,9 +74,7 @@ class SettingsTableViewController: UITableViewController {
             .subscribe(onNext: { [weak self] rowInfo in
                 guard let `self` = self else { return }
                 if rowInfo.segue != "" {
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: rowInfo.segue, sender: nil)
-                    }
+                    self.performSegue(withIdentifier: rowInfo.segue, sender: nil)
                 }
                 else if let indexPath = self.tableView.indexPathForSelectedRow {
                     self.tableView.deselectRow(at: indexPath, animated: true)
