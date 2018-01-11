@@ -11,6 +11,9 @@
 
 @interface NSString (Date)
 
++ (NSDateFormatter *)dateFormatter;
+- (NSDateFormatter *)dateFormatter;
+
 - (NSDate *)toDate;
 
 - (NSDate *)toDateWithMilliSeconds;

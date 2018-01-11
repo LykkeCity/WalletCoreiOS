@@ -8,54 +8,60 @@
 
 #import "NSString+Date.h"
 
-
 @implementation NSString (Date)
 
++ (NSDateFormatter *)dateFormatter {
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        
+        dateFormatter.timeZone=[NSTimeZone timeZoneWithName:@"UTC"];
+        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"en_US"];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    });
+    return dateFormatter;
+}
+
+- (NSDateFormatter *)dateFormatter {
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        
+        dateFormatter.timeZone=[NSTimeZone timeZoneWithName:@"UTC"];
+        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"en_US"];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    });
+    return dateFormatter;
+}
+
 - (NSDate *)toDate {
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-//    [dateFormatter setTimeZone:gmt];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-//    NSDate *dateFromString = [[NSDate alloc] init];
-//    dateFromString = [dateFormatter dateFromString:self];
-//    return dateFromString;
-    
-    
     NSString *string=[self copy];
     string=[string stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     string=[string substringWithRange:NSMakeRange(0, 19)];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.timeZone=[NSTimeZone timeZoneWithName:@"UTC"];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    //    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"UTC"]];
-    NSDate *date = [dateFormatter dateFromString:string];
     
-    return date;
+    return [[self dateFormatter] dateFromString:string];
+}
+
+- (NSDateFormatter *)millisecsDateFormatter {
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+
+        dateFormatter.timeZone=[NSTimeZone timeZoneWithName:@"UTC"];
+        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"en_US"];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS 'z'"];
+    });
+    return dateFormatter;
 }
 
 - (NSDate *)toDateWithMilliSeconds {
-    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    //    [dateFormatter setTimeZone:gmt];
-    //    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-    //    NSDate *dateFromString = [[NSDate alloc] init];
-    //    dateFromString = [dateFormatter dateFromString:self];
-    //    return dateFromString;
-    
-    
-    NSString *string=[self copy];
-//    string=[string stringByReplacingOccurrencesOfString:@"T" withString:@" "];
-//    string=[string substringWithRange:NSMakeRange(0, 19)];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.timeZone=[NSTimeZone timeZoneWithName:@"UTC"];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSz"];
-    //    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"UTC"]];
-    NSDate *date = [dateFormatter dateFromString:string];
-    
-    return date;
+    return [[self millisecsDateFormatter] dateFromString:self];
 }
-
-
-
 
 @end
