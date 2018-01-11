@@ -126,7 +126,7 @@
         <!--Transactions Step1 View Controller-->
         <scene sceneID="ejX-Dk-JgT">
             <objects>
-                <viewController id="2Zw-wx-Jhf" customClass="TransactionsStep1ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="transactionsVC" id="2Zw-wx-Jhf" customClass="TransactionsStep1ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xdh-k0-8DG"/>
                         <viewControllerLayoutGuide type="bottom" id="p0f-RW-SDw"/>
@@ -135,7 +135,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LfR-vK-4aX">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LfR-vK-4aX">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="gv0-zQ-GPk">
@@ -362,6 +362,7 @@
                         <outlet property="findTransactionBtn" destination="boT-aF-v5z" id="VUv-Jz-4kT"/>
                         <outlet property="findTransactionLbl" destination="DsD-mQ-ubF" id="v1X-aR-mjk"/>
                         <outlet property="sortIcon" destination="mBZ-lt-tOU" id="F2m-SN-tAU"/>
+                        <outlet property="tableHeader" destination="gv0-zQ-GPk" id="wDJ-ft-DJE"/>
                         <outlet property="transactionsTableView" destination="LfR-vK-4aX" id="8ps-vu-2CV"/>
                     </connections>
                 </viewController>

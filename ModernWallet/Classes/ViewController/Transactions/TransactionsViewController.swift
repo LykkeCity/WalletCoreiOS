@@ -22,6 +22,29 @@ class TransactionsViewController: UIViewController {
     
     let isGraphHidden = Variable(true)
     
+    var searchContainer: UISearchContainerViewController? {
+        willSet {
+            if newValue == nil {
+                UIView.animate(
+                    withDuration: 0.3,
+                    animations: { self.searchContainer?.searchController.searchBar.alpha = 0.0 },
+                    completion: { _ in self.searchContainer?.searchController.searchBar.removeFromSuperview() }
+                )
+            }
+        }
+        
+        didSet {
+            guard let container = searchContainer else { return }
+            container.searchController.delegate = self
+            self.view.addSubview(container.searchController.searchBar)
+            container.searchController.searchBar.becomeFirstResponder()
+        }
+    }
+    
+    var transactionsController: TransactionsStep1ViewController? {
+        return childViewControllers.first{ $0 is TransactionsStep1ViewController } as? TransactionsStep1ViewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
          
@@ -42,6 +65,15 @@ class TransactionsViewController: UIViewController {
             .map{!$0}
             .bind(to: isGraphHidden)
             .disposed(by: disposeBag)
+        
+        
+        transactionsController?.findTransactionBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] in
+                self?.searchContainer = TransactionsStep1ViewController.factorySearchContainer(
+                    withViewModel: self?.transactionsController?.transactionsViewModel
+                )
+            })
+            .disposed(by: disposeBag)
         // Do any additional setup after loading the view.
         
     }
@@ -53,21 +85,11 @@ class TransactionsViewController: UIViewController {
             (drawerController.mainViewController as? RootViewController)?.embed(viewController: portfolioVC, animated: true)
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+
+extension TransactionsViewController: UISearchControllerDelegate {
+    func didDismissSearchController(_ searchController: UISearchController) {
+        // nulify searchContainer so that will be removed from the superview
+        searchContainer = nil
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
