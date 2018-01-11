@@ -75,11 +75,6 @@ public class CashOutService {
                                                                         observer.onNext(.success(withData: data != nil))
                                                                         observer.onCompleted()
                 })
-            } else if !LWKeychainManager.instance().useOffchainRequests {
-                return self.authManager.cashOut.request(withParams: LWPacketCashOutParams(amount: amount,
-                                                                               assetId: assetId,
-                                                                               multiSig: address))
-                    .bind(to: observer)
             } else {
                 LWOffchainTransactionsManager.shared().requestCashOut(amount as NSDecimalNumber,
                                                                       assetId: assetId,
