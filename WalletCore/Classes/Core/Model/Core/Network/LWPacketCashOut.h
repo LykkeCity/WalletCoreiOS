@@ -14,8 +14,8 @@
 }
 
 // in
-@property (assign, nonatomic) NSString *multiSig;
-@property (assign, nonatomic) NSNumber *amount;
-@property (assign, nonatomic) NSString *assetId;
+@property (copy, nonatomic) NSString *multiSig;
+@property (strong, nonatomic) NSNumber *amount;
+@property (copy, nonatomic) NSString *assetId;
 
 @end

@@ -92,4 +92,5 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var walletBackupComplete     = { LWRxAuthManagerWalletBackupComplete() }()
     public lazy var getBlockchainAddress     = { LWRxAuthManagerGetBlockchainAddress() }()
     public lazy var sendBlockchainEmail      = { LWRxAuthManagerSendBlockchainEmail() }()
+    public lazy var cashOut                  = { LWRxAuthManagerCashOut() }()
 }
