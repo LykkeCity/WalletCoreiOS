@@ -19,6 +19,7 @@ class AssetDetailViewController: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var transactionsTap: UITapGestureRecognizer!
     
+    @IBOutlet weak var sendButton: IconOverTextButton!
     @IBOutlet weak var transactionsTable: UITableView!
     @IBOutlet weak var messageButton: UIButton!
     
@@ -66,11 +67,16 @@ class AssetDetailViewController: UIViewController {
             .drive(rx.title)
             .disposed(by: disposeBag)
         
+        asset.asDriver()
+            .map{$0.wallet?.asset.blockchainWithdraw ?? false}
+            .drive(sendButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
         assetBalanceViewModel.blockchainAddress.asDriver()
             .map{ $0.isNotEmpty }
             .drive(receiveButton.rx.isEnabled)
             .disposed(by: disposeBag)
-
+        
         assetAmount.configure(fontSize: 30)
         baseAssetAmount.configure(fontSize: 12)
     }
@@ -94,6 +100,9 @@ class AssetDetailViewController: UIViewController {
             guard let receiveVC = segue.destination as? ReceiveWalletViewController else { return }
             receiveVC.asset = asset
             receiveVC.address = assetBalanceViewModel.blockchainAddress.value
+        case "SendAsset":
+            guard let sendVC = segue.destination as? SendToWalletViewController else { return }
+            sendVC.asset = asset
         default:
             break
         }

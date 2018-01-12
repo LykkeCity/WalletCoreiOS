@@ -1022,3 +1022,4 @@
 "send.newDesign.enterWalletAddress" = "ENTER WALLET ADDRESS";
 "send.newDesign.paste" = "PASTE";
 "send.newDesign.navigationTitle" = "TRANSFER";
+"send.newDesign.confirm.message" = "Cashout completed";

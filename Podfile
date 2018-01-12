@@ -12,7 +12,7 @@ pod 'SWTableViewCell'
 pod 'Firebase/Core'
 pod 'Alamofire', '~> 4.4'
 pod 'AlamofireImage', '~> 3.1'
-pod 'Charts', '~> 3.0'
+pod 'Charts', '3.0.2'
 pod 'SideMenu'
 pod 'SwiftReorder', '~> 2.0'
 pod 'RxDataSources', '~> 1.0'
@@ -21,6 +21,7 @@ pod 'TextFieldEffects', '~> 1.3'
 pod 'XLPagerTabStrip', '~> 7.0'
 pod 'WalletCore', :path => '../WalletCoreiOS'
 pod 'SwiftSpinner'
+pod 'QRCodeReader.swift', '~> 7.5.0'
 end
 
 post_install do |installer_representation|
