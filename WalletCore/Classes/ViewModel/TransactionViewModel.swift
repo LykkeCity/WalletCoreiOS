@@ -20,7 +20,7 @@ open class TransactionViewModel {
     /// Amount in base asset.Example: "(+12,123.00 AUD)"
     public let amountInBase: Driver<String>
     
-    /// Amaun in transaction asset.Example: "+123.54 EUR"
+    /// Amount in transaction asset.Example: "+123.54 EUR"
     public let amount: Driver<String>
     
     /// Title of transaction.Example: "Receive Lykke Shares"
@@ -31,7 +31,12 @@ open class TransactionViewModel {
     
     public let transaction: LWBaseHistoryItemType
     
-    public init(item: LWBaseHistoryItemType, currencyExcancher: CurrencyExchanger, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
+    public init(
+        item: LWBaseHistoryItemType,
+        currencyExcancher: CurrencyExchanger,
+        authManager: LWRxAuthManager = LWRxAuthManager.instance,
+        formatter: TransactionFormatterProtocol = TransactionFormatterDefault.instance
+    ) {
         let assetObservable = authManager.allAssets.request(byId: item.asset).filterSuccess()
         let volume = (item.volume ?? 0).decimalValue
         let itemObservable = Observable.just(item)
@@ -40,19 +45,19 @@ open class TransactionViewModel {
         self.transaction = item
         
         self.date = itemObservable
-            .mapToDate()
+            .mapToDate(withFormatter: formatter)
             .asDriver(onErrorJustReturn: "")
         
         self.amountInBase = assetObservable
-            .mapToAmountInBase(volume: volume, currencyExcancher: currencyExcancher)
+            .mapToAmountInBase(volume: volume, currencyExcancher: currencyExcancher, formatter: formatter)
             .asDriver(onErrorJustReturn: "")
 
-        self.amount = Observable.combineLatest(volumeObservable, assetObservable){(volume: $0, asset: $1)}
-            .mapToAmount()
+        self.amount = Observable.combineLatest(volumeObservable, assetObservable)
+            .map{ formatter.formatAmount(volume: $0.0, asset: $0.1) }
             .asDriver(onErrorJustReturn: "")
         
         self.title = Observable.combineLatest(assetObservable, itemObservable){(asset: $0, item: $1)}
-            .mapToDisplayName()
+            .map{ formatter.formatDisplayName(asset: $0.asset, item: $0.item) }
             .asDriver(onErrorJustReturn: "")
         
         self.icon = itemObservable
@@ -62,55 +67,27 @@ open class TransactionViewModel {
 }
 
 fileprivate extension ObservableType where Self.E == LWBaseHistoryItemType {
-    func mapToDate() -> Observable<String> {
+    func mapToDate(withFormatter formatter: TransactionFormatterProtocol) -> Observable<String> {
         return
             map{$0.dateTime}
             .filterNil()
-            .map{DateFormatter.mediumStyle.string(from: $0)}
+            .map{ formatter.format(date: $0) }
             .startWith("")
     }
     
     func mapToIcon() -> Observable<UIImage> {
-        return
-            map{$0.asImage()}
-            .filterNil()
+        return map{$0.asImage()}.filterNil()
     }
 }
 
 fileprivate extension ObservableType where Self.E == LWAssetModel? {
-    func mapToAmountInBase(volume: Decimal, currencyExcancher: CurrencyExchanger) -> Observable<String> {
+    func mapToAmountInBase(volume: Decimal, currencyExcancher: CurrencyExchanger, formatter: TransactionFormatterProtocol) -> Observable<String> {
         return flatMap{baseAsset -> Observable<(baseAsset: LWAssetModel, amount: Decimal)?> in
             guard let baseAsset = baseAsset else {return Observable.just(nil)}
             return currencyExcancher.exchangeToBaseAsset(amount: volume, from: baseAsset, bid: false)
         }
-        .map{(volume: $0?.amount, asset: $0?.baseAsset)}
-        .mapToAmount()
+        .map{ formatter.formatAmount(volume: $0?.amount, asset: $0?.baseAsset) }
         .map{"(\($0))"}
         .startWith(Localize("newDesign.calculating"))
-    }
-}
-
-fileprivate extension ObservableType where Self.E == (asset: LWAssetModel?, item: LWBaseHistoryItemType) {
-    func mapToDisplayName() -> Observable<String> {
-        return map{data in
-            let assetName = data.asset?.displayFullName ?? ""
-            return "\(data.item.localizedString) \(assetName)"
-        }
-    }
-}
-
-fileprivate extension ObservableType where Self.E == (volume: Decimal?, asset: LWAssetModel?) {
-    func mapToAmount() -> Observable<String> {
-        return map{data -> String in
-            guard let volume = data.volume else {return Localize("newDesign.notAvailable")}
-            
-            let volumeString = volume.convertAsCurrency(
-                code: data.asset?.name ?? "",
-                symbol: "",
-                accuracy: Int(data.asset?.accuracy ?? 2)
-            )
-            
-            return volume > 0 ? "+\(volumeString)" : volumeString
-        }
     }
 }

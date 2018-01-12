@@ -578,6 +578,7 @@
 		6142141C1F79249600E2F524 /* KYCDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */; };
 		6142141E1F793D4500E2F524 /* LWRxKYCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */; };
 		614214201F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */; };
+		6148359220089FC600099057 /* TransactionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6148359120089FC600099057 /* TransactionFormatter.swift */; };
 		6163A9441FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */; };
 		61DC8ABD1FFD1E84009BC942 /* CurrencyExchangerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */; };
 		61DC8ABF1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */; };
@@ -1256,6 +1257,7 @@
 		6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCDocumentsViewModel.swift; sourceTree = "<group>"; };
 		6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxKYCManager.swift; sourceTree = "<group>"; };
 		6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KycUploadDocumentsViewModel.swift; sourceTree = "<group>"; };
+		6148359120089FC600099057 /* TransactionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFormatter.swift; sourceTree = "<group>"; };
 		6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWSpotWallet+Extensions.swift"; sourceTree = "<group>"; };
 		61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangerMock.swift; sourceTree = "<group>"; };
 		61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerMock.swift; sourceTree = "<group>"; };
@@ -1469,6 +1471,7 @@
 		46C9A8CE1F417B1B00B83CCB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6148359020089FB300099057 /* Formatter */,
 				46286F641FC304C5002CAF8D /* UX */,
 				46C9B00C1F417BF100B83CCB /* ViewModel */,
 				46C9A8D31F417B7500B83CCB /* Core */,
@@ -2432,6 +2435,14 @@
 			name = KYC;
 			sourceTree = "<group>";
 		};
+		6148359020089FB300099057 /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				6148359120089FC600099057 /* TransactionFormatter.swift */,
+			);
+			path = Formatter;
+			sourceTree = "<group>";
+		};
 		61DC8ABB1FFD1E67009BC942 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3289,6 +3300,7 @@
 				46C9AE661F417BD700B83CCB /* LWDocumentsStatus.m in Sources */,
 				46C9AE841F417BD700B83CCB /* LWURLProtocol.m in Sources */,
 				46C9AEBE1F417BD700B83CCB /* LWPacketClientFullNameSet.m in Sources */,
+				6148359220089FC600099057 /* TransactionFormatter.swift in Sources */,
 				46C9AE641F417BD700B83CCB /* LWAuthSteps.m in Sources */,
 				46C9AF581F417BD800B83CCB /* LWPacketWalletMigration.m in Sources */,
 				6656BB3D1FEAAB67006CAD5D /* LWMainScreenData.swift in Sources */,
