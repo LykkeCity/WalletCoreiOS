@@ -70,6 +70,7 @@ class SettingsTableViewController: UITableViewController {
         
         tableView.rx
             .modelSelected(RowInfo.self)
+            .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] rowInfo in
                 guard let `self` = self else { return }
                 if rowInfo.segue != "" {
