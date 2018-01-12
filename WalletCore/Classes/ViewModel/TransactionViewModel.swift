@@ -31,13 +31,9 @@ open class TransactionViewModel {
     
     public let transaction: LWBaseHistoryItemType
     
-    public init(
-        item: LWBaseHistoryItemType,
-        currencyExcancher: CurrencyExchanger,
-        authManager: LWRxAuthManager = LWRxAuthManager.instance,
-        formatter: TransactionFormatterProtocol = TransactionFormatterDefault.instance
-    ) {
-        let assetObservable = authManager.allAssets.request(byId: item.asset).filterSuccess()
+    public init(item: LWBaseHistoryItemType, dependency: TransactionsViewModel.Dependency) {
+        
+        let assetObservable = dependency.authManager.allAssets.request(byId: item.asset).filterSuccess()
         let volume = (item.volume ?? 0).decimalValue
         let itemObservable = Observable.just(item)
         let volumeObservable = Observable.just(Optional(volume))
@@ -45,19 +41,19 @@ open class TransactionViewModel {
         self.transaction = item
         
         self.date = itemObservable
-            .mapToDate(withFormatter: formatter)
+            .mapToDate(withFormatter: dependency.formatter)
             .asDriver(onErrorJustReturn: "")
         
         self.amountInBase = assetObservable
-            .mapToAmountInBase(volume: volume, currencyExcancher: currencyExcancher, formatter: formatter)
+            .mapToAmountInBase(volume: volume, currencyExcancher: dependency.currencyExcancher, formatter: dependency.formatter)
             .asDriver(onErrorJustReturn: "")
 
         self.amount = Observable.combineLatest(volumeObservable, assetObservable)
-            .map{ formatter.formatAmount(volume: $0.0, asset: $0.1) }
+            .map{ dependency.formatter.formatAmount(volume: $0.0, asset: $0.1) }
             .asDriver(onErrorJustReturn: "")
         
         self.title = Observable.combineLatest(assetObservable, itemObservable){(asset: $0, item: $1)}
-            .map{ formatter.formatDisplayName(asset: $0.asset, item: $0.item) }
+            .map{ dependency.formatter.formatDisplayName(asset: $0.asset, item: $0.item) }
             .asDriver(onErrorJustReturn: "")
         
         self.icon = itemObservable

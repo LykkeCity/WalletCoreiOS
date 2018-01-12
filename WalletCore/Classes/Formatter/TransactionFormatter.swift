@@ -38,5 +38,5 @@ public extension TransactionFormatterProtocol {
 }
 
 public class TransactionFormatterDefault: TransactionFormatterProtocol {
-    static let instance = TransactionFormatterDefault()
+    public static let instance = TransactionFormatterDefault()
 }

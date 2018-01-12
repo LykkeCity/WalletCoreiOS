@@ -12,6 +12,12 @@ import RxCocoa
 
 open class TransactionsViewModel {
     
+    public typealias Dependency = (
+        currencyExcancher: CurrencyExchanger,
+        authManager: LWRxAuthManager,
+        formatter: TransactionFormatterProtocol
+    )
+    
     public enum SortType {
         case asc
         case desc
@@ -41,15 +47,11 @@ open class TransactionsViewModel {
 
     private let disposeBag = DisposeBag()
     
-    public init(
-        downloadCsv: Observable<Void>,
-        currencyExchanger: CurrencyExchanger,
-        authManager: LWRxAuthManager = LWRxAuthManager.instance
-    ) {
-        let transactionsObservable = authManager.history.request()
+    public init(downloadCsv: Observable<Void>, dependency: Dependency) {
+        let transactionsObservable = dependency.authManager.history.request()
         
         let transactions = transactionsToDisplay.asObservable()
-            .mapToViewModels(currencyExchanger: currencyExchanger)
+            .map{ $0.map{ TransactionViewModel(item: $0, dependency: dependency) } }
         
         self.transactions = transactions
             .asDriver(onErrorJustReturn: [])
@@ -110,19 +112,6 @@ fileprivate extension ObservableType where Self.E == TransactionsViewModel.SortT
                 
                 return sortBy.isAsc ? firstDate > secondDateTime : firstDate < secondDateTime
             }
-        }
-    }
-}
-
-fileprivate extension ObservableType where Self.E == [LWBaseHistoryItemType] {
-    
-    /// Map collection of LWBaseHistoryItemType to collection of TransactionViewModel
-    ///
-    /// - Parameter currencyExchanger: CurrencyExchanger required by TransactionViewModel
-    /// - Returns: Observable of collection of TransactionViewModel
-    func mapToViewModels(currencyExchanger: CurrencyExchanger) -> Observable<[TransactionViewModel]> {
-        return map{(transactions: [LWBaseHistoryItemType]) in
-            return transactions.map{TransactionViewModel(item: $0, currencyExcancher: currencyExchanger)}
         }
     }
 }
