@@ -19,7 +19,7 @@ extension ObservableType where Self.E == Void {
             .map{_ in Void()}
             .startWith(Void())
             .filter{
-                return UIApplication.shared.applicationState.isActive &&
+                return UIApplication.shared.applicationState.isForeground &&
                     LWKeychainManager.instance().isAuthenticated &&
                     UserDefaults.standard.isLoggedIn &&
                     SignUpStep.instance == nil
@@ -32,6 +32,14 @@ extension ObservableType where Self.E == Void {
 extension UIApplicationState {
     var isActive: Bool {
         if case .active = UIApplication.shared.applicationState {
+            return true
+        }
+        
+        return false
+    }
+    
+    var isForeground: Bool {
+        if [.active, .inactive].contains(UIApplication.shared.applicationState) {
             return true
         }
         

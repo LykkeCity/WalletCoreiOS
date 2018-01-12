@@ -22,7 +22,6 @@ class PortfolioViewController: UIViewController {
     @IBOutlet weak var emptyPortfolioView: EmptyPortfolioView!
     
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var loadingDisposeBag = DisposeBag()
     fileprivate let pieChartValueFormatter = PieValueFormatter()
     
     fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
@@ -44,6 +43,7 @@ class PortfolioViewController: UIViewController {
     }()
     
     var assets = Variable<[Variable<Asset>]>([])
+    var isScreenVisible = BehaviorSubject(value: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +100,13 @@ class PortfolioViewController: UIViewController {
                 pieChartView?.data?.setValueFont(UIFont(name: "GEOMANIST", size: 16))
             })
             .disposed(by: disposeBag)
+
+        // Use the negative value of `isScreenVisible` in order to hide the loader
+        Observable.combineLatest(loadingViewModel.isLoading, isScreenVisible) { return $0 && !$1 }
+            .distinctUntilChanged()
+            .take(2)
+        .bind(to: rx.loading)
+        .disposed(by: disposeBag)
     
         //Bind buttons that shows add money
         Observable
@@ -122,11 +129,8 @@ class PortfolioViewController: UIViewController {
             return
         }
         
-        loadingDisposeBag = DisposeBag()
-        
-        loadingViewModel.isLoading
-            .bind(to: rx.loading)
-            .disposed(by: disposeBag)
+        // Notify the loading observer, that the screen is visible for the user
+        isScreenVisible.onNext(true)
     }
     
     deinit {
