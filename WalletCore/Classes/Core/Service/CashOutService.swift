@@ -56,10 +56,12 @@ public class CashOutService {
     }
     
     public func cashout(to address: String, assetId: String, amount: Decimal) -> Observable<ApiResult<Bool>> {
-        let asset = LWCache.asset(byId: assetId)
+        guard let asset = LWCache.asset(byId: assetId) else {
+            return Observable.just(ApiResult.error(withData: ["Message": "Please specify asset."]))
+        }
         
         return Observable.create { (observer) -> Disposable in
-            if asset?.isErc20 ?? false {
+            if asset.isErc20 || asset.isTrusted {
                 HotWalletNetworkClient.cachout(to: address,
                                                assetId: assetId,
                                                volume: amount as NSDecimalNumber,
@@ -67,7 +69,7 @@ public class CashOutService {
                                                 observer.onNext(.success(withData: success))
                                                 observer.onCompleted()
                 })
-            } else if asset?.blockchainType == .ethereum {
+            } else if asset.blockchainType == .ethereum {
                 LWEthereumTransactionsManager.shared().requestCashout(forAsset: asset,
                                                                       volume: amount as NSDecimalNumber,
                                                                       addressTo: address,
