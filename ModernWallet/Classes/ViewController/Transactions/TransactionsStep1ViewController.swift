@@ -29,7 +29,11 @@ class TransactionsStep1ViewController: UIViewController {
     lazy var transactionsViewModel:TransactionsViewModel = {
         return TransactionsViewModel(
             downloadCsv: self.downloadCSV.rx.tap.asObservable(),
-            currencyExchanger: CurrencyExchanger()
+            dependency: (
+                currencyExcancher: CurrencyExchanger(),
+                authManager: LWRxAuthManager.instance,
+                formatter: TransactionFormatter.instance
+            )
         )
     }()
     
