@@ -9,16 +9,46 @@
 import Foundation
 
 public protocol TransactionFormatterProtocol {
+    
+    /// Format transaction date
+    ///
+    /// - Parameter date: Date that will be formatted
+    /// - Returns: Formated date
     func format(date: Date) -> String
-    func formatAmount(volume: Optional<Decimal>, asset: Optional<LWAssetModel>) -> String
+    
+    
+    /// Format transaction amount
+    ///
+    /// - Parameters:
+    ///   - volume: Amount that will be formatted
+    ///   - asset: Transaction asset
+    /// - Returns: Formatted amount
+    func formatAmount(volume: Decimal?, asset: LWAssetModel?) -> String
+    
+    /// Format asset && history record into a human readable string
+    ///
+    /// - Parameters:
+    ///   - asset: History asset
+    ///   - item: History record
+    /// - Returns: Formatted string
     func formatDisplayName(asset: LWAssetModel?, item: LWBaseHistoryItemType) -> String
 }
 
 public extension TransactionFormatterProtocol {
+    /// Format transaction date
+    ///
+    /// - Parameter date: Date that will be formatted
+    /// - Returns: Formated date
     func format(date: Date) -> String {
         return DateFormatter.mediumStyle.string(from: date)
     }
     
+    /// Format transaction amount
+    ///
+    /// - Parameters:
+    ///   - volume: Amount that will be formatted
+    ///   - asset: Transaction asset
+    /// - Returns: Formatted amount
     func formatAmount(volume: Decimal?, asset: LWAssetModel?) -> String {
         guard let volume = volume else { return Localize("newDesign.notAvailable") }
         
@@ -31,12 +61,18 @@ public extension TransactionFormatterProtocol {
         return volume > 0 ? "+\(volumeString)" : volumeString
     }
     
+    /// Format asset && history record into a human readable string
+    ///
+    /// - Parameters:
+    ///   - asset: History asset
+    ///   - item: History record
+    /// - Returns: Formatted string
     func formatDisplayName(asset: LWAssetModel?, item: LWBaseHistoryItemType) -> String {
         let assetName = asset?.displayFullName ?? ""
         return "\(item.localizedString) \(assetName)"
     }
 }
 
-public class TransactionFormatterDefault: TransactionFormatterProtocol {
-    public static let instance = TransactionFormatterDefault()
+public class TransactionFormatter: TransactionFormatterProtocol {
+    public static let instance = TransactionFormatter()
 }
