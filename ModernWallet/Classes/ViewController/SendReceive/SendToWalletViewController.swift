@@ -59,7 +59,7 @@ class SendToWalletViewController: UIViewController {
         
         readerVC.completionBlock = {[weak self] (result: QRCodeReaderResult?) in
             if let result = result {
-                self?.walletAddressTextField.text = result.value
+                self?.viewModel.address.value = result.value
             }
         }
         
@@ -67,7 +67,7 @@ class SendToWalletViewController: UIViewController {
     }
     
     @IBAction func pasteTapped(_ sender: Any) {
-        walletAddressTextField.text = UIPasteboard.general.string
+        viewModel.address.value = UIPasteboard.general.string ?? ""
     }
     
     private func setupUI() {
@@ -128,9 +128,7 @@ fileprivate extension CashOutToAddressViewModel {
                 .filterNil()
                 .bind(to: amount),
             
-            vc.walletAddressTextField.rx.text.asObservable()
-                .replaceNilWith("")
-                .bind(to: address),
+            vc.walletAddressTextField.rx.textInput <-> address,
             
             vc.asset.asObservable()
                 .map{ $0.wallet?.asset.identity }
