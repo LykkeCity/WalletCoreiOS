@@ -62,11 +62,6 @@ public extension AuthManagerProtocol where Result == ApiResultList<ResultType> {
         return ApiResultList<ResultType>.error(withData: packet.errors)
     }
     
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        // TODO: add it to another default implementation where packet == result type
-        return ApiResultList<ResultType>.success(withData: packet as! [Self.ResultType])
-    }
-    
     func getForbiddenResult(fromPacket packet: Packet) -> Result {
         return ApiResultList<ResultType>.forbidden
     }
@@ -97,17 +92,19 @@ public extension AuthManagerProtocol where Result == ApiResult<ResultType> {
         return ApiResult<ResultType>.error(withData: packet.errors)
     }
     
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        // TODO: add it to another default implementation where packet == result type
-        return ApiResult<ResultType>.success(withData: packet as! ResultType)
-    }
-    
     func getForbiddenResult(fromPacket packet: Packet) -> Result {
         return ApiResult<ResultType>.forbidden
     }
     
     func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
         return ApiResult<ResultType>.notAuthorized
+    }
+}
+
+public extension AuthManagerProtocol where Packet == ResultType, Result == ApiResult<ResultType> {
+    
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return ApiResult<ResultType>.success(withData: packet)
     }
 }
 
@@ -124,7 +121,6 @@ public extension AuthManagerProtocol where Result == ApiResultList<ResultType>, 
         return defaultRequestImplementation(with: params)
     }
 }
-
 
 extension AuthManagerProtocol {
     

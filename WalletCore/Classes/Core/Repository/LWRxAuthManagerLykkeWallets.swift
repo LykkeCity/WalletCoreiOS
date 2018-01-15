@@ -53,6 +53,10 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
         return Packet(observer: observer)
     }
     
+    public func getSuccessResult(fromPacket packet: LWPacketWallets) -> ApiResult<LWLykkeWalletsData> {
+        return Result.success(withData: packet.data)
+    }
+    
     public func requestNonEmptyWallets() -> Observable<ApiResultList<LWSpotWallet>> {
         return request()
             .map{result in
