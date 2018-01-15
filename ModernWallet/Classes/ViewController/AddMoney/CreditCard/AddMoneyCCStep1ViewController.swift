@@ -40,7 +40,7 @@ class AddMoneyCCStep1ViewController: UIViewController {
             guard let country = selectedCountry else {
                 return
             }
-            countryField.text = country.name
+            creditCardViewModel.input.country.value = country.name
         }
     }
     
