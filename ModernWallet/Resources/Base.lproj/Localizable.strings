@@ -1013,3 +1013,6 @@
 "receive.newDesign.copyToast" = "Copied";
 "receive.newDesign.shareToast" = "Shared";
 "receive.newDesign.shareMessageFmt" = "My %@ wallet address is %@";
+
+"selectCountry,newDesign.title" = "SELECT COUNTRY";
+"selectCountry,newDesign.search" = "Search";
