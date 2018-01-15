@@ -27,6 +27,7 @@ class PieValueFormatter: NSObject, IValueFormatter {
     /// - parameter viewPortHandler: provides information about the current chart state (scale, translation, ...)
     ///
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        guard value > 5.0 else { return "" }
         guard let pieEntry = entry as? PieChartDataEntry else { return "\(value)" }
         if let dataString = pieEntry.data as? String  { return dataString }
         guard let asset = pieEntry.data as? Asset else { return "\(value)" }
