@@ -48,6 +48,9 @@ class SelectCountryViewController: UIViewController {
             searchController.obscuresBackgroundDuringPresentation = false
         }
         searchController.searchBar.placeholder = Localize("selectCountry,newDesign.search")
+        searchController.searchBar.barStyle = .black
+        searchController.searchBar.isTranslucent = false
+        searchController.searchBar.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
         searchController.searchBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         if #available(iOS 11.0, *) {
             navigationItem.searchController = searchController
