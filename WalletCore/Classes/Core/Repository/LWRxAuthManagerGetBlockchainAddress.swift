@@ -36,7 +36,7 @@ public class LWRxAuthManagerGetBlockchainAddress: NSObject {
 
 extension LWRxAuthManagerGetBlockchainAddress: AuthManagerProtocol {
     
-    public func createPacket(with observer: Any, params: String) -> LWPacketGetBlockchainAddress {
+    public func createPacket(withObserver observer: Any, params: String) -> LWPacketGetBlockchainAddress {
         return Packet(observer: observer, assetId: params)
     }
 }

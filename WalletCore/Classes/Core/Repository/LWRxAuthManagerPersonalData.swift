@@ -36,7 +36,7 @@ public class LWRxAuthManagerPersonalData: NSObject{
 
 extension LWRxAuthManagerPersonalData: AuthManagerProtocol{
     
-    public func createPacket(with observer: Any, params: Void) -> LWPacketPersonalData {
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketPersonalData {
         return Packet(observer: observer)
     }
     
