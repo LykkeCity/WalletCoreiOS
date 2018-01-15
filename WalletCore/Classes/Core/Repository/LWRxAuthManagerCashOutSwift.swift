@@ -12,6 +12,7 @@ import RxSwift
 public class LWRxAuthManagerCashOutSwift: NSObject {
     public typealias Packet = LWPacketCashOutSwift
     public typealias Result = ApiResult<Void>
+    public typealias ResultType = Void
     public typealias RequestParams = LWPacketCashOutSwift.Body
     
     override init() {

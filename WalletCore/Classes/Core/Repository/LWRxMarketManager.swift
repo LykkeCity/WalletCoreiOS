@@ -13,6 +13,7 @@ public class LWRxMarketManager: NSObject  {
     
     public typealias Packet = LWPacketMarket
     public typealias Result = ApiResultList<LWMarketModel>
+    public typealias ResultType = LWMarketModel
     public typealias RequestParams = Void
     
     override init() {

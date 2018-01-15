@@ -13,6 +13,7 @@ public class LWRxAuthManagerPostClientCodes: NSObject{
     
     public typealias Packet = LWPacketPostClientCodes
     public typealias Result = ApiResult<LWPacketPostClientCodes>
+    public typealias ResultType = LWPacketPostClientCodes
     public typealias RequestParams = (String)
     
     override init() {

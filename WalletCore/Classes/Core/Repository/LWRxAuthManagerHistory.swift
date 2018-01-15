@@ -13,6 +13,7 @@ public class LWRxAuthManagerHistory: NSObject{
     
     public typealias Packet = LWPacketGetHistory
     public typealias Result = ApiResultList<LWBaseHistoryItemType>
+    public typealias ResultType = LWBaseHistoryItemType
     public typealias RequestParams = (String?)
     
     override init() {

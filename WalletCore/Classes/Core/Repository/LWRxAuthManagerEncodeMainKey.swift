@@ -13,6 +13,7 @@ public class LWRxAuthManagerEncodeMainKey : NSObject{
     
     public typealias Packet = LWPacketEncodedMainKey
     public typealias Result = ApiResult<LWPacketEncodedMainKey>
+    public typealias ResultType = LWPacketEncodedMainKey
     public typealias RequestParams = (String)
     
     override init() {

@@ -13,6 +13,7 @@ public class LWRxAuthManagerPersonalData: NSObject{
     
     public typealias Packet = LWPacketPersonalData
     public typealias Result = ApiResult<LWPacketPersonalData>
+    public typealias ResultType = LWPacketPersonalData
     public typealias RequestParams = Void
     
     override init() {

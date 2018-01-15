@@ -12,6 +12,7 @@ import RxSwift
 public class LWRxAuthManagerGetBlockchainAddress: NSObject {
     public typealias Packet = LWPacketGetBlockchainAddress
     public typealias Result = ApiResult<LWPacketGetBlockchainAddress>
+    public typealias ResultType = LWPacketGetBlockchainAddress
     public typealias RequestParams = String
     
     override init() {

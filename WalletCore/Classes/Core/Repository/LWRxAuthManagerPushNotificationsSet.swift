@@ -14,6 +14,7 @@ public class LWRxAuthManagerPushNotificationsSet:  NSObject{
     
     public typealias Packet = LWPacketPushSettingsSet
     public typealias Result = ApiResult<LWPacketPushSettingsSet>
+    public typealias ResultType = LWPacketPushSettingsSet
     public typealias RequestParams = (Bool)
     
     override init() {

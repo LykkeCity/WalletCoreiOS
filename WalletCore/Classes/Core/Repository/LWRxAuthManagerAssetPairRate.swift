@@ -13,6 +13,7 @@ public class LWRxAuthManagerAssetPairRate: NSObject{
     
     public typealias Packet = LWPacketAssetPairRate
     public typealias Result = ApiResult<LWAssetPairRateModel>
+    public typealias ResultType = LWAssetPairRateModel
     public typealias RequestParams = (String)
     
     override init() {

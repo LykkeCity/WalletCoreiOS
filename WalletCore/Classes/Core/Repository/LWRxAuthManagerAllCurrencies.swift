@@ -14,6 +14,7 @@ public class LWRxAuthManagerAllCurrencies:  NSObject {
     
     public typealias Packet = LWPacketAllAssets
     public typealias Result = ApiResult<LWPacketAllAssets>
+    public typealias ResultType = LWPacketAllAssets
     public typealias RequestParams = Void
     
     override init() {

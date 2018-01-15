@@ -13,6 +13,7 @@ public class LWRxAuthManagerGraphData: NSObject{
     
     public typealias Packet = LWPacketGraphData
     public typealias Result = ApiResult<LWPacketGraphData>
+    public typealias ResultType = LWPacketGraphData
     public typealias RequestParams = (period: LWGraphPeriodModel, assetPairId: String, points: Int32)
     
     override init() {

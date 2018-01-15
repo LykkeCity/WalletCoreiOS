@@ -13,6 +13,7 @@ public class LWAuthManagerPacketPrevCardPayment: NSObject{
     
     public typealias Packet = LWPacketPrevCardPayment
     public typealias Result = ApiResult<LWPersonalDataModel>
+    public typealias ResultType = LWPersonalDataModel
     public typealias RequestParams = Void
     
     override init() {

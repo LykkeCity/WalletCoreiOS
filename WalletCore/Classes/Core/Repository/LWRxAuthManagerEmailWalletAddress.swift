@@ -14,6 +14,7 @@ public class LWRxAuthManagerEmailWalletAddress: NSObject  {
     
     public typealias Packet = LWPacketEmailPrivateWalletAddress
     public typealias Result = ApiResult<Void>
+    public typealias ResultType = Void
     public typealias RequestParams = (LWPrivateWalletModel)
     
     override init() {

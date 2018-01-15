@@ -12,6 +12,7 @@ import RxSwift
 public protocol AuthManagerProtocol: NSObjectProtocol {
     associatedtype Packet: LWPacket
     associatedtype Result
+    associatedtype ResultType
     associatedtype RequestParams
     
     func request(withParams params: RequestParams) -> Observable<Result>
@@ -34,27 +35,22 @@ public protocol AuthManagerProtocol: NSObjectProtocol {
     func getForbiddenResult(fromPacket packet: Packet) -> Result
     func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result
 }
-public protocol ApiResultProtocol {
-    
-}
-extension ApiResult: ApiResultProtocol {}
-extension ApiResultList: ApiResultProtocol {}
 
-public extension AuthManagerProtocol where Result: ApiResultProtocol {
-    
+public extension AuthManagerProtocol where Result == ApiResultList<ResultType> {
+
     func createPacket(withObserver observer: Any, params: RequestParams) -> Packet {
         fatalError("Provide implementation")
     }
     
     func defaultRequestImplementation(with params: RequestParams) -> Observable<Result> {
-        return Observable<ApiResult<Any>>.create { observer in
-                let pack = self.createPacket(withObserver: observer, params: params)
-                GDXNet.instance().send(pack, userInfo: nil, method: .REST)
+        return Observable<Result>.create { observer in
+            let pack = self.createPacket(withObserver: observer, params: params)
+            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
             
-                return Disposables.create {}
+            return Disposables.create {}
             }
-            .startWith(.loading)
-            .shareReplay(1) as! Observable<Self.Result>
+            .startWith(ApiResultList<ResultType>.loading)
+            .shareReplay(1)
     }
     
     func request(withParams params: RequestParams) -> Observable<Result> {
@@ -62,24 +58,71 @@ public extension AuthManagerProtocol where Result: ApiResultProtocol {
     }
     
     func getErrorResult(fromPacket packet: Packet) -> Result {
-        return ApiResult<Any>.error(withData: packet.errors) as! Self.Result
+        return ApiResultList<ResultType>.error(withData: packet.errors)
     }
     
     func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.success(withData: packet) as! Self.Result
+        // TODO: add it to another default implementation where packet == result type
+        return ApiResultList<ResultType>.success(withData: packet as! [Self.ResultType])
     }
     
     func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return ApiResult<Any>.forbidden as! Self.Result
+        return ApiResultList<ResultType>.forbidden
     }
     
     func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return ApiResult<Any>.notAuthorized as! Self.Result
+        return ApiResultList<ResultType>.notAuthorized
     }
 }
 
-public extension AuthManagerProtocol where Result: ApiResultProtocol, RequestParams == Void {
+public extension AuthManagerProtocol where Result == ApiResult<ResultType> {
+    
+    func createPacket(withObserver observer: Any, params: RequestParams) -> Packet {
+        fatalError("Provide implementation")
+    }
+    
+    func defaultRequestImplementation(with params: RequestParams) -> Observable<Result> {
+        return Observable<Result>.create { observer in
+                let pack = self.createPacket(withObserver: observer, params: params)
+                GDXNet.instance().send(pack, userInfo: nil, method: .REST)
+            
+                return Disposables.create {}
+            }
+            .startWith(ApiResult<ResultType>.loading)
+            .shareReplay(1)
+    }
+    
+    func request(withParams params: RequestParams) -> Observable<Result> {
+        return defaultRequestImplementation(with: params)
+    }
+    
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return ApiResult<ResultType>.error(withData: packet.errors)
+    }
+    
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        // TODO: add it to another default implementation where packet == result type
+        return ApiResult<ResultType>.success(withData: packet as! ResultType)
+    }
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return ApiResult<ResultType>.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return ApiResult<ResultType>.notAuthorized
+    }
+}
 
+public extension AuthManagerProtocol where Result == ApiResult<ResultType>, RequestParams == Void {
+
+    func request(withParams params: Void = ()) -> Observable<Result> {
+        return defaultRequestImplementation(with: params)
+    }
+}
+
+public extension AuthManagerProtocol where Result == ApiResultList<ResultType>, RequestParams == Void {
+    
     func request(withParams params: Void = ()) -> Observable<Result> {
         return defaultRequestImplementation(with: params)
     }

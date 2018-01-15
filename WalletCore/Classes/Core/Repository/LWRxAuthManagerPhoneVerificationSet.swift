@@ -13,6 +13,7 @@ public class LWRxAuthManagerPhoneVerificationSet: NSObject{
     
     public typealias Packet = LWPacketPhoneVerificationSet
     public typealias Result = ApiResult<LWPacketPhoneVerificationSet>
+    public typealias ResultType = LWPacketPhoneVerificationSet
     public typealias RequestParams = (String)
     
     override init() {

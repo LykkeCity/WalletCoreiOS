@@ -12,6 +12,7 @@ public class LWRxAuthManagerKYCForAsset : NSObject{
     
     public typealias Packet = LWPacketKYCForAsset
     public typealias Result = ApiResult<LWPacketKYCForAsset>
+    public typealias ResultType = LWPacketKYCForAsset
     public typealias RequestParams = (String)
     
     override init() {

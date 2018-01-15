@@ -12,6 +12,7 @@ public class LWRxAuthManagerOffchainFinalizetransfer : NSObject{
     
     public typealias Packet = LWPacketOffchainFinalizetransfer
     public typealias Result = ApiResult<LWModelOffchainResult>
+    public typealias ResultType = LWModelOffchainResult
     public typealias RequestParams = (LWPacketOffchainFinalizetransfer.Body)
     
     override init() {

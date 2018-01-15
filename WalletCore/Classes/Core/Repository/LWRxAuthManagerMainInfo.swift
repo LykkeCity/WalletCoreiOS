@@ -13,6 +13,7 @@ public class LWRxAuthManagerMainInfo: NSObject  {
     
     public typealias Packet = LWPacketGetMainScreenInfo
     public typealias Result = ApiResult<LWPacketGetMainScreenInfo>
+    public typealias ResultType = LWPacketGetMainScreenInfo
     public typealias RequestParams = (String)
     
     override init() {

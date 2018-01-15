@@ -18,6 +18,7 @@ public class LWRxAuthManagerAllAssets: NSObject, LWRxAuthManagerAllAssetsProtoco
     
     public typealias Packet = LWPacketAllAssets
     public typealias Result = ApiResultList<LWAssetModel>
+    public typealias ResultType = LWAssetModel
     public typealias RequestParams = Void
     
     override init() {

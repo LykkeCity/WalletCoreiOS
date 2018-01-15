@@ -13,6 +13,7 @@ public class LWRxAuthManagerSwiftCredentials: NSObject{
     
     public typealias Packet = LWPacketSwiftCredential
     public typealias Result = ApiResult<LWSwiftCredentialsModel>
+    public typealias ResultType = LWSwiftCredentialsModel
     public typealias RequestParams = (String)
     
     override init() {

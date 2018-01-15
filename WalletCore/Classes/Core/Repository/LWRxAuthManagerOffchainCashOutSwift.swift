@@ -12,6 +12,7 @@ import RxSwift
 public class LWRxAuthManagerOffchainCashOutSwift: NSObject {
     public typealias Packet = LWPacketOffchainCashOutSwift
     public typealias Result = ApiResult<LWModelOffchainResult>
+    public typealias ResultType = LWModelOffchainResult
     public typealias RequestParams = LWPacketOffchainCashOutSwift.Body
 
     override init() {

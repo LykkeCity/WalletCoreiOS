@@ -13,6 +13,7 @@ public class LWRxAuthManagerWalletBackupComplete: NSObject {
     
     public typealias Packet = LWPacketSaveBackupState
     public typealias Result = ApiResult<LWPacketSaveBackupState>
+    public typealias ResultType = LWPacketSaveBackupState
     public typealias RequestParams = Void
     
     override init() {

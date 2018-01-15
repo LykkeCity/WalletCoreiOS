@@ -13,6 +13,7 @@ public class LWRxAuthManagerOffchainChannelKey : NSObject{
     
     public typealias Packet = LWPacketOffchainChannelKey
     public typealias Result = ApiResult<LWModelOffchainChannelKey>
+    public typealias ResultType = LWModelOffchainChannelKey
     public typealias RequestParams = (String)
     
     override init() {

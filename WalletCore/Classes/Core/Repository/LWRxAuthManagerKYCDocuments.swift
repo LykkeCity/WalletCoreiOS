@@ -12,6 +12,7 @@ public class LWRxAuthManagerKYCDocuments : NSObject{
     
     public typealias Packet = LWPacketKYCDocuments
     public typealias Result = ApiResult<LWKYCDocumentsModel>
+    public typealias ResultType = LWKYCDocumentsModel
     public typealias RequestParams = (String)
     
     override init() {

@@ -13,6 +13,7 @@ import RxCocoa
 public class LWRxAuthManagerSendBlockchainEmail: NSObject {
     public typealias Packet = LWPacketSendBlockchainEmail
     public typealias Result = ApiResult<LWPacketSendBlockchainEmail>
+    public typealias ResultType = LWPacketSendBlockchainEmail
     public typealias RequestParams = (assetId: String, address: String)
     
     override init() {

@@ -13,6 +13,7 @@ public class LWRxAuthManagerTransactions: NSObject{
     
     public typealias Packet = LWPacketTransactions
     public typealias Result = ApiResult<LWTransactionsModel>
+    public typealias ResultType = LWTransactionsModel
     public typealias RequestParams = (String?)
     
     override init() {

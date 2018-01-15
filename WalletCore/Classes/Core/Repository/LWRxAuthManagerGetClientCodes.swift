@@ -13,6 +13,7 @@ public class LWRxAuthManagerGetClientCodes:  NSObject{
     
     public typealias Packet = LWPacketGetClientCodes
     public typealias Result = ApiResult<LWPacketGetClientCodes>
+    public typealias ResultType = LWPacketGetClientCodes
     public typealias RequestParams = Void
     
     override init() {

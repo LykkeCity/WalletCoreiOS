@@ -12,6 +12,7 @@ import RxSwift
 public class LWRxAuthManagerPinSecurityGet: NSObject{
     public typealias Packet = LWPacketPinSecurityGet
     public typealias Result = ApiResult<LWPacketPinSecurityGet>
+    public typealias ResultType = LWPacketPinSecurityGet
     public typealias RequestParams = (String)
     
     override init() {

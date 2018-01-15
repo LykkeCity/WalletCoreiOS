@@ -14,6 +14,7 @@ public class LWRxAuthManagerHomeCountry: NSObject{
     
     public typealias Packet = LWPacketCountryCodes
     public typealias Result = ApiResult<LWPacketCountryCodes>
+    public typealias ResultType = LWPacketCountryCodes
     public typealias RequestParams = Void
     
     override init() {

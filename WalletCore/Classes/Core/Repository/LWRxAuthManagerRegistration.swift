@@ -14,6 +14,7 @@ public class LWRxAuthManagerRegistration : NSObject{
     
     public typealias Packet = LWPacketRegistration
     public typealias Result = ApiResult<LWPacketRegistration>
+    public typealias ResultType = LWPacketRegistration
     public typealias RequestParams = (LWRegistrationData)
     
     override init() {

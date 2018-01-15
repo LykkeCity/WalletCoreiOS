@@ -12,6 +12,7 @@ import RxSwift
 public class LWRxAuthManagerCurrencyDeposit: NSObject {
     public typealias Packet = LWPacketCurrencyDeposit
     public typealias Result = ApiResult<LWPacketCurrencyDeposit>
+    public typealias ResultType = LWPacketCurrencyDeposit
     public typealias RequestParams = (assetId: String, balanceChange: Decimal)
     
     override init() {

@@ -13,6 +13,7 @@ public class LWRxAuthManagerClientKeys: NSObject {
     
     public typealias Packet = LWPacketClientKeys
     public typealias Result = ApiResult<LWPacketClientKeys>
+    public typealias ResultType = LWPacketClientKeys
     public typealias RequestParams = (pubKey: String, encodedPrivateKey: String)
     
     override init() {

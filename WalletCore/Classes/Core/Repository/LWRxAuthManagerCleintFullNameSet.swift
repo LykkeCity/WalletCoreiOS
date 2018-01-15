@@ -13,6 +13,7 @@ public class LWRxAuthManagerCleintFullNameSet: NSObject{
     
     public typealias Packet = LWPacketClientFullNameSet
     public typealias Result = ApiResult<LWPacketClientFullNameSet>
+    public typealias ResultType = LWPacketClientFullNameSet
     public typealias RequestParams = (String)
     
     override init() {

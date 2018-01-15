@@ -13,6 +13,7 @@ public class LWRxAuthManagerCheckPendingActions : NSObject{
     
     public typealias Packet = LWPacketCheckPendingActions
     public typealias Result = ApiResult<LWPacketCheckPendingActions>
+    public typealias ResultType = LWPacketCheckPendingActions
     public typealias RequestParams = Void
     
     override init() {

@@ -12,6 +12,7 @@ public class LWRxAuthManagerOffchainTrade : NSObject{
     
     public typealias Packet = LWPacketOffchainTrade
     public typealias Result = ApiResult<LWModelOffchainResult>
+    public typealias ResultType = LWModelOffchainResult
     public typealias RequestParams = (LWPacketOffchainTrade.Body)
     
     override init() {

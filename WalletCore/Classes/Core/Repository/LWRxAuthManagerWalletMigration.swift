@@ -13,6 +13,7 @@ public class LWRxAuthManagerWalletMigration: NSObject {
     
     public typealias Packet = LWPacketWalletMigration
     public typealias Result = ApiResult<LWPacketWalletMigration>
+    public typealias ResultType = LWPacketWalletMigration
     public typealias RequestParams = (fromPrivateKey: String, toPrivateKey: String, toEncodedPrivateKey: String, toPubKey: String)
     
     override init() {

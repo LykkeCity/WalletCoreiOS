@@ -13,6 +13,7 @@ public class LWRxAuthManagerEmailVerificationPin: NSObject{
     
     public typealias Packet = LWPacketEmailVerificationGet
     public typealias Result = ApiResult<LWPacketEmailVerificationGet>
+    public typealias ResultType = LWPacketEmailVerificationGet
     public typealias RequestParams = (email:String, pin:String)
     
     override init() {

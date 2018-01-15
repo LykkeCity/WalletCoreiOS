@@ -13,6 +13,7 @@ public class LWRxAuthManagerLykkeWallets: NSObject{
     
     public typealias Packet = LWPacketWallets
     public typealias Result = ApiResult<LWLykkeWalletsData>
+    public typealias ResultType = LWLykkeWalletsData
     public typealias RequestParams = Void
     
     override init() {

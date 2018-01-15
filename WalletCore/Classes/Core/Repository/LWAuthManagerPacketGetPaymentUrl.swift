@@ -12,6 +12,7 @@ public class LWAuthManagerPacketGetPaymentUrl:  NSObject{
     
     public typealias Packet = LWPacketGetPaymentUrl
     public typealias Result = ApiResult<LWPacketGetPaymentUrl>
+    public typealias ResultType = LWPacketGetPaymentUrl
     public typealias RequestParams = (LWPacketGetPaymentUrlParams)
     
     override init() {

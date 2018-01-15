@@ -13,6 +13,7 @@ public class LWRxAuthManagerAppSettings:  NSObject{
     
     public typealias Packet = LWPacketAppSettings
     public typealias Result = ApiResult<LWPacketAppSettings>
+    public typealias ResultType = LWPacketAppSettings
     public typealias RequestParams = Void
     
     override init() {

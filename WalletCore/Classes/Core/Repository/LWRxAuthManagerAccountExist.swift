@@ -13,6 +13,7 @@ public class LWRxAuthManagerAccountExist : NSObject{
     
     public typealias Packet = LWPacketAccountExist
     public typealias Result = ApiResult<LWPacketAccountExist>
+    public typealias ResultType = LWPacketAccountExist
     public typealias RequestParams = (String)
     
     override init() {

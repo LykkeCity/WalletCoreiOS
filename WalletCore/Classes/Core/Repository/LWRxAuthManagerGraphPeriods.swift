@@ -14,6 +14,7 @@ public class LWRxAuthManagerGraphPeriods: NSObject{
     
     public typealias Packet = LWPacketGraphPeriods
     public typealias Result = ApiResult<LWPacketGraphPeriods>
+    public typealias ResultType = LWPacketGraphPeriods
     public typealias RequestParams = Void
     
     override init() {

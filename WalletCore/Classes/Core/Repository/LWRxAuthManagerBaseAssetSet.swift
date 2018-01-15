@@ -13,6 +13,7 @@ public class LWRxAuthManagerBaseAssetSet:  NSObject{
     
     public typealias Packet = LWPacketBaseAssetSet
     public typealias Result = ApiResult<LWPacketBaseAssetSet>
+    public typealias ResultType = LWPacketBaseAssetSet
     public typealias RequestParams = (String)
     
     override init() {

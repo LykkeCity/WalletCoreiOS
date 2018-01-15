@@ -14,6 +14,7 @@ public class LWRxAuthManagerPhoneVerificationPin:  NSObject{
     
     public typealias Packet = LWPacketPhoneVerificationGet
     public typealias Result = ApiResult<LWPacketPhoneVerificationGet>
+    public typealias ResultType = LWPacketPhoneVerificationGet
     public typealias RequestParams = (phone: String, pin: String)
     
     override init() {

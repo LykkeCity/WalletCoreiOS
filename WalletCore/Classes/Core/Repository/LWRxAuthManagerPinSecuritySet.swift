@@ -13,6 +13,7 @@ public class LWRxAuthManagerPinSecuritySet: NSObject{
     
     public typealias Packet = LWPacketPinSecuritySet
     public typealias Result = ApiResult<LWPacketPinSecuritySet>
+    public typealias ResultType = LWPacketPinSecuritySet
     public typealias RequestParams = (String)
     
     override init() {
