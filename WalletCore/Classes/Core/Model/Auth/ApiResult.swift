@@ -58,7 +58,7 @@ public enum ApiResultList<Data> {
     case notAuthorized
     case forbidden
     
-    var isLoading: Bool {
+    public var isLoading: Bool {
         guard case .loading = self else {return false}
         return true
     }
