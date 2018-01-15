@@ -98,20 +98,12 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol{
         .shareReplay(1)
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
+    public func getErrorResult(fromPacket packet: Packet) -> Result {
         return Result.error(withData: packet.errors)
     }
     
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         return Result.success(withData: LWCache.instance().allAssets.map{$0 as! LWAssetModel})
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

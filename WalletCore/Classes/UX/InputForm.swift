@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import WalletCore
 
 fileprivate let keyboardTypesForAccessoryInput: Set<UIKeyboardType> = Set([.numberPad, .decimalPad, .phonePad])
 

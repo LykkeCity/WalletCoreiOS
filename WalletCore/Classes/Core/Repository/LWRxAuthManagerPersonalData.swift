@@ -35,8 +35,11 @@ public class LWRxAuthManagerPersonalData: NSObject{
 
 extension LWRxAuthManagerPersonalData: AuthManagerProtocol{
     
-    public func request(withParams params:RequestParams = Void()) -> Observable<Result> {
-        
+    public func createPacket(with observer: Any, params: Void) -> LWPacketPersonalData {
+        return Packet(observer: observer)
+    }
+    
+    public func request(withParams params: Void) -> Observable<ApiResult<LWPacketPersonalData>> {
         if let personalData = LWKeychainManager.instance().personalData() {
             let packet = Packet()
             packet.data = personalData
@@ -46,30 +49,7 @@ extension LWRxAuthManagerPersonalData: AuthManagerProtocol{
                 .startWith(ApiResult.loading)
         }
         
-        return Observable.create{observer in
-            let pack = Packet(observer: observer)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
-    }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
+        return self.defaultRequestImplementation(with: ())
     }
 }
 

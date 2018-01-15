@@ -84,23 +84,11 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
         }
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         guard let rates = packet.assetPairs else {
             return Result.success(withData: [])
         }
         return Result.success(withData: rates.map{$0 as! LWAssetPairModel})
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

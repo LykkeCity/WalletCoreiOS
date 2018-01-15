@@ -34,31 +34,12 @@ public class LWRxAuthManagerCashOutSwift: NSObject {
 
 extension LWRxAuthManagerCashOutSwift: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams) -> Observable<Result> {
-        return Observable.create { observer in
-            let packet = Packet(body: params, observer: observer)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: LWPacketCashOutSwift.Body) -> LWPacketCashOutSwift {
+        return Packet(body: params, observer: observer)
     }
     
-    func getErrorResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
-        return ApiResult.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
+    public func getSuccessResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
         return ApiResult.success(withData: Void())
-    }
-    
-    func getForbiddenResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
-        return ApiResult.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: LWPacketCashOutSwift) -> ApiResult<Void> {
-        return ApiResult.notAuthorized
     }
 }
 

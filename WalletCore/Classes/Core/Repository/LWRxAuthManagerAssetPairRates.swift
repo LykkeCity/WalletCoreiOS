@@ -54,37 +54,16 @@ extension LWRxAuthManagerAssetPairRates: AuthManagerProtocol {
     ///
     /// - Parameter params: Ignore base asset
     /// - Returns: <#return value description#>
-    public func request(withParams params: RequestParams) -> Observable<Result> {
-        return Observable.create{observer in
-            let packet = Packet(observer: observer, ignoreBase: params)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: (Bool)) -> LWPacketAssetPairRates {
+        return Packet(observer: observer, ignoreBase: params)
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         guard let rates = packet.assetPairRates else {
             return Result.success(withData: [])
         }
         return Result.success(withData: rates.map{$0 as! LWAssetPairRateModel})
     }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
-    }
-    
-    
 }
 
 public extension ObservableType where Self.E == ApiResultList<LWAssetPairRateModel> {

@@ -35,31 +35,12 @@ public class LWRxAuthManagerOffchainRequests : NSObject{
 
 extension LWRxAuthManagerOffchainRequests: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams = Void()) -> Observable<Result> {
-        return Observable.create{observer in
-            let packet = Packet(observer: observer)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketOffchainRequests {
+        return Packet(observer: observer)
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         return Result.success(withData: packet.models)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 
