@@ -51,6 +51,9 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
         view.backgroundColor = UIColor.clear
         title = Localize("wallets.private.address.pagetitle")
         
+        qrCodeImageView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2966609589)
+        qrCodeImageView.layer.cornerRadius = 5
+        
         localize()
         
         copyWalletViewModel
