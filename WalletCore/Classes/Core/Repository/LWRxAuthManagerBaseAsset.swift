@@ -17,6 +17,7 @@ public class LWRxAuthManagerBaseAsset: NSObject, LWRxAuthManagerBaseAssetProtoco
     
     public typealias Packet = LWPacketBaseAssetGet
     public typealias Result = ApiResult<LWAssetModel>
+    public typealias ResultType = LWAssetModel
     public typealias RequestParams = Void
     
     override init() {
@@ -39,42 +40,26 @@ public class LWRxAuthManagerBaseAsset: NSObject, LWRxAuthManagerBaseAssetProtoco
 
 extension LWRxAuthManagerBaseAsset: AuthManagerProtocol {
     
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketBaseAssetGet {
+        return Packet(observer: observer)
+    }
+    
     public func request() -> Observable<Result> {
-        return self.request(withParams: Void())
+        return self.request(withParams: ())
     }
     
     public func request(withParams params: RequestParams) -> Observable<Result> {
-        
         if let baseAssetId = LWCache.instance().baseAssetId, let baseAsset = LWCache.asset(byId: baseAssetId) {
             return Observable
                 .just(ApiResult.success(withData: baseAsset))
                 .startWith(ApiResult.loading)
         }
         
-        return Observable.create{observer in
-            let packet = Packet(observer: observer)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+        return self.defaultRequestImplementation(with: ())
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         return Result.success(withData: packet.asset)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

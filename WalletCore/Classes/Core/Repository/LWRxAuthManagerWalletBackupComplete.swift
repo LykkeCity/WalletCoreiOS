@@ -13,6 +13,7 @@ public class LWRxAuthManagerWalletBackupComplete: NSObject {
     
     public typealias Packet = LWPacketSaveBackupState
     public typealias Result = ApiResult<LWPacketSaveBackupState>
+    public typealias ResultType = LWPacketSaveBackupState
     public typealias RequestParams = Void
     
     override init() {
@@ -37,33 +38,9 @@ public class LWRxAuthManagerWalletBackupComplete: NSObject {
 
 extension LWRxAuthManagerWalletBackupComplete: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams = ()) -> Observable<Result> {
-        return Observable.create{ observer in
-                let packet = Packet(observer: observer)
-                GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-                
-                return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketSaveBackupState {
+        return Packet(observer: observer)
     }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.notAuthorized
-    }
-    
 }
 
 

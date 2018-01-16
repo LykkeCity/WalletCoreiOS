@@ -13,6 +13,7 @@ public class LWRxAuthManagerAssetPairs: NSObject{
     
     public typealias Packet = LWPacketAssetPairs
     public typealias Result = ApiResultList<LWAssetPairModel>
+    public typealias ResultType = LWAssetPairModel
     public typealias RequestParams = Void
     
     override init() {
@@ -35,23 +36,8 @@ public class LWRxAuthManagerAssetPairs: NSObject{
 
 extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams = Void()) -> Observable<Result> {
-
-// TODO: fix that, for some reason no asset pairs are shown on buy step 1, when called twice
-//        if let cachedAssetPairs = LWCache.instance().allAssetPairs?.map({$0 as! LWAssetPairModel}), cachedAssetPairs.isNotEmpty  {
-//            return Observable<ApiResultList<LWAssetPairModel>>
-//                .just(.success(withData: cachedAssetPairs))
-//                .startWith(.loading)
-//        }
-        
-        return Observable.create{observer in
-            let packet = Packet(observer: observer)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketAssetPairs {
+        return Packet(observer: observer)
     }
     
     public func request(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>> {
@@ -84,23 +70,11 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
         }
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         guard let rates = packet.assetPairs else {
             return Result.success(withData: [])
         }
         return Result.success(withData: rates.map{$0 as! LWAssetPairModel})
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

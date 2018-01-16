@@ -13,6 +13,7 @@ public class LWRxAuthManagerLykkeWallets: NSObject{
     
     public typealias Packet = LWPacketWallets
     public typealias Result = ApiResult<LWLykkeWalletsData>
+    public typealias ResultType = LWLykkeWalletsData
     public typealias RequestParams = Void
     
     override init() {
@@ -48,16 +49,12 @@ extension ApiResult where Data == LWLykkeWalletsData {
 extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
     
     //requestLykkeWallets()
-    public func request(withParams params:RequestParams = Void()) -> Observable<Result> {
-        return Observable.create{observer in
-           
-            let pack = Packet(observer: observer)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketWallets {
+        return Packet(observer: observer)
+    }
+    
+    public func getSuccessResult(fromPacket packet: LWPacketWallets) -> ApiResult<LWLykkeWalletsData> {
+        return Result.success(withData: packet.data)
     }
     
     public func requestNonEmptyWallets() -> Observable<ApiResultList<LWSpotWallet>> {
@@ -118,22 +115,6 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
                     .first{ $0.identity == assetId }
             }
         }
-    }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet.data)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

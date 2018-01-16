@@ -13,6 +13,7 @@ public class LWRxAuthManagerTransactions: NSObject{
     
     public typealias Packet = LWPacketTransactions
     public typealias Result = ApiResult<LWTransactionsModel>
+    public typealias ResultType = LWTransactionsModel
     public typealias RequestParams = (String?)
     
     override init() {
@@ -35,32 +36,12 @@ public class LWRxAuthManagerTransactions: NSObject{
 
 extension LWRxAuthManagerTransactions: AuthManagerProtocol{
     
-    public func request(withParams params: RequestParams = nil) -> Observable<Result> {
-        return Observable.create{observer in
-            
-            let pack = Packet(observer: observer, assetId: params)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: (String?)) -> LWPacketTransactions {
+        return Packet(observer: observer, assetId: params)
     }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         return Result.success(withData: packet.model)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

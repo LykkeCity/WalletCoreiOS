@@ -14,6 +14,7 @@ public class LWRxAuthManagerPhoneVerificationPin:  NSObject{
     
     public typealias Packet = LWPacketPhoneVerificationGet
     public typealias Result = ApiResult<LWPacketPhoneVerificationGet>
+    public typealias ResultType = LWPacketPhoneVerificationGet
     public typealias RequestParams = (phone: String, pin: String)
     
     override init() {
@@ -34,33 +35,10 @@ public class LWRxAuthManagerPhoneVerificationPin:  NSObject{
     }
 }
 
-extension LWRxAuthManagerPhoneVerificationPin: AuthManagerProtocol{
+extension LWRxAuthManagerPhoneVerificationPin: AuthManagerProtocol {
 
-    func request(withParams params: RequestParams) -> Observable<Result> {
-        return Observable.create{observer in
-            let pack = Packet(observer: observer, phone: params.phone, pin: params.pin)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
-    }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
+    public func createPacket(withObserver observer: Any, params: (phone: String, pin: String)) -> LWPacketPhoneVerificationGet {
+        return Packet(observer: observer, phone: params.phone, pin: params.pin)
     }
 }
 

@@ -12,6 +12,7 @@ import RxSwift
 public class LWRxAuthManagerCurrencyDeposit: NSObject {
     public typealias Packet = LWPacketCurrencyDeposit
     public typealias Result = ApiResult<LWPacketCurrencyDeposit>
+    public typealias ResultType = LWPacketCurrencyDeposit
     public typealias RequestParams = (assetId: String, balanceChange: Decimal)
     
     override init() {
@@ -34,31 +35,9 @@ public class LWRxAuthManagerCurrencyDeposit: NSObject {
 
 
 extension LWRxAuthManagerCurrencyDeposit: AuthManagerProtocol {
-    public func request(withParams params: (assetId: String, balanceChange: Decimal)) -> Observable<Result> {
-        return Observable.create{ observer in
-            let packet = Packet(observer: observer, params: params)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
-    }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.notAuthorized
+    public func createPacket(withObserver observer: Any, params: (assetId: String, balanceChange: Decimal)) -> LWPacketCurrencyDeposit {
+        return Packet(observer: observer, params: params)
     }
 }
 

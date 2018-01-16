@@ -13,6 +13,7 @@ public class LWRxAuthManagerPostClientCodes: NSObject{
     
     public typealias Packet = LWPacketPostClientCodes
     public typealias Result = ApiResult<LWPacketPostClientCodes>
+    public typealias ResultType = LWPacketPostClientCodes
     public typealias RequestParams = (String)
     
     override init() {
@@ -35,31 +36,8 @@ public class LWRxAuthManagerPostClientCodes: NSObject{
 
 extension LWRxAuthManagerPostClientCodes: AuthManagerProtocol{
     
-    public func request(withParams params: RequestParams) -> Observable<Result> {
-        return Observable.create{observer in
-            let packet = Packet(observer: observer, codeSms: params)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
-    }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
+    public func createPacket(withObserver observer: Any, params: (String)) -> LWPacketPostClientCodes {
+        return Packet(observer: observer, codeSms: params)
     }
 }
 

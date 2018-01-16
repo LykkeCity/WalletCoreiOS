@@ -13,6 +13,7 @@ public class LWRxAuthManagerAssetPairRate: NSObject{
     
     public typealias Packet = LWPacketAssetPairRate
     public typealias Result = ApiResult<LWAssetPairRateModel>
+    public typealias ResultType = LWAssetPairRateModel
     public typealias RequestParams = (String)
     
     override init() {
@@ -35,31 +36,12 @@ public class LWRxAuthManagerAssetPairRate: NSObject{
 
 extension LWRxAuthManagerAssetPairRate: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams) -> Observable<Result> {
-        return Observable.create{observer in
-            let packet = Packet(observer: observer, pairId: params)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: (String)) -> LWPacketAssetPairRate {
+        return Packet(observer: observer, pairId: params)
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         return Result.success(withData: packet.assetPairRate)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

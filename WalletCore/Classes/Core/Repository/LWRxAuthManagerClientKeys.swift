@@ -13,6 +13,7 @@ public class LWRxAuthManagerClientKeys: NSObject {
     
     public typealias Packet = LWPacketClientKeys
     public typealias Result = ApiResult<LWPacketClientKeys>
+    public typealias ResultType = LWPacketClientKeys
     public typealias RequestParams = (pubKey: String, encodedPrivateKey: String)
     
     override init() {
@@ -35,32 +36,8 @@ public class LWRxAuthManagerClientKeys: NSObject {
 
 extension LWRxAuthManagerClientKeys: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams) -> Observable<Result> {
-        
-        return Observable.create{observer in
-            let pack = Packet(observer: observer, pubKey: params.pubKey, encodedPrivateKey: params.encodedPrivateKey)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
-    }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
+    public func createPacket(withObserver observer: Any, params: (pubKey: String, encodedPrivateKey: String)) -> LWPacketClientKeys {
+        return Packet(observer: observer, pubKey: params.pubKey, encodedPrivateKey: params.encodedPrivateKey)
     }
 }
 

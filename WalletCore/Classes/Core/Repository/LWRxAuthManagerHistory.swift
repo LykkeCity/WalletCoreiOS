@@ -13,6 +13,7 @@ public class LWRxAuthManagerHistory: NSObject{
     
     public typealias Packet = LWPacketGetHistory
     public typealias Result = ApiResultList<LWBaseHistoryItemType>
+    public typealias ResultType = LWBaseHistoryItemType
     public typealias RequestParams = (String?)
     
     override init() {
@@ -35,35 +36,20 @@ public class LWRxAuthManagerHistory: NSObject{
 
 extension LWRxAuthManagerHistory: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams = nil) -> Observable<Result> {
-        return Observable.create{observer in
-            let pack = Packet(observer: observer, assetId: params)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: (String?)) -> LWPacketGetHistory {
+        return Packet(observer: observer, assetId: params)
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
+    public func request() -> Observable<ApiResultList<LWBaseHistoryItemType>> {
+        return self.request(withParams: nil)
     }
     
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         let data: [LWBaseHistoryItemType] = LWHistoryManager
             .prepareHistory(packet.historyArray, marginal: [])
             .flatMap{$0 as? [LWBaseHistoryItemType] ?? []}
         
         return Result.success(withData: data)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

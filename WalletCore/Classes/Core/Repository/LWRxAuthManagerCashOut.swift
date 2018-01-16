@@ -12,6 +12,7 @@ import RxSwift
 public class LWRxAuthManagerCashOut: NSObject {
     public typealias Packet = LWPacketCashOut
     public typealias Result = ApiResult<Bool>
+    public typealias ResultType = Bool
     public typealias RequestParams = (LWPacketCashOutParams)
     
     override init() {
@@ -33,31 +34,13 @@ public class LWRxAuthManagerCashOut: NSObject {
 }
 
 extension LWRxAuthManagerCashOut: AuthManagerProtocol {
-    public func request(withParams params: LWPacketCashOutParams) -> Observable<Result> {
-        return Observable.create{observer in
-            let packet = Packet(observer: observer, params: params)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
+    
+    public func createPacket(withObserver observer: Any, params: (LWPacketCashOutParams)) -> LWPacketCashOut {
+        return Packet(observer: observer, params: params)
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         return Result.success(withData: true)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

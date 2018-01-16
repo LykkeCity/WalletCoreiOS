@@ -13,6 +13,7 @@ public class LWRxAuthManagerEmailVerificationPin: NSObject{
     
     public typealias Packet = LWPacketEmailVerificationGet
     public typealias Result = ApiResult<LWPacketEmailVerificationGet>
+    public typealias ResultType = LWPacketEmailVerificationGet
     public typealias RequestParams = (email:String, pin:String)
     
     override init() {
@@ -34,32 +35,8 @@ public class LWRxAuthManagerEmailVerificationPin: NSObject{
 }
 
 extension LWRxAuthManagerEmailVerificationPin: AuthManagerProtocol{
-    
-    public func request(withParams params: RequestParams) -> Observable<Result> {
-        return Observable.create{observer in
-            let pack = Packet(observer: observer, email: params.email, pin: params.pin)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
-    }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
+    public func createPacket(withObserver observer: Any, params: (email: String, pin: String)) -> LWPacketEmailVerificationGet {
+        return Packet(observer: observer, email: params.email, pin: params.pin)
     }
 }
 

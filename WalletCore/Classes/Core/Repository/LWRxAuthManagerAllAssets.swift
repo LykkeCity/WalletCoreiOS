@@ -18,6 +18,7 @@ public class LWRxAuthManagerAllAssets: NSObject, LWRxAuthManagerAllAssetsProtoco
     
     public typealias Packet = LWPacketAllAssets
     public typealias Result = ApiResultList<LWAssetModel>
+    public typealias ResultType = LWAssetModel
     public typealias RequestParams = Void
     
     override init() {
@@ -39,6 +40,10 @@ public class LWRxAuthManagerAllAssets: NSObject, LWRxAuthManagerAllAssetsProtoco
 }
 
 extension LWRxAuthManagerAllAssets: AuthManagerProtocol{
+    
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketAllAssets {
+        return Packet(observer: observer)
+    }
     
     public func request(byIds ids: [String]) -> Observable<ApiResultList<LWAssetModel>> {
         return request(withParams:()).map{ result -> ApiResultList<LWAssetModel> in
@@ -88,30 +93,15 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol{
                 .startWith(.loading)
         }
         
-        return Observable.create{observer in
-            let paket = Packet(observer: observer)
-            GDXNet.instance().send(paket, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+        return self.defaultRequestImplementation(with: ())
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
+    public func getErrorResult(fromPacket packet: Packet) -> Result {
         return Result.error(withData: packet.errors)
     }
     
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         return Result.success(withData: LWCache.instance().allAssets.map{$0 as! LWAssetModel})
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

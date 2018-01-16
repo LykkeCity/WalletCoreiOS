@@ -14,6 +14,7 @@ public class LWRxAuthManagerRegistration : NSObject{
     
     public typealias Packet = LWPacketRegistration
     public typealias Result = ApiResult<LWPacketRegistration>
+    public typealias ResultType = LWPacketRegistration
     public typealias RequestParams = (LWRegistrationData)
     
     override init() {
@@ -36,31 +37,8 @@ public class LWRxAuthManagerRegistration : NSObject{
 
 extension LWRxAuthManagerRegistration: AuthManagerProtocol{
     
-    public func request(withParams params: RequestParams) -> Observable<Result> {
-        return Observable.create{observer in
-            let pack = Packet(observer: observer, data: params)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
-    }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
+    public func createPacket(withObserver observer: Any, params: (LWRegistrationData)) -> LWPacketRegistration {
+        return Packet(observer: observer, data: params)
     }
 }
 

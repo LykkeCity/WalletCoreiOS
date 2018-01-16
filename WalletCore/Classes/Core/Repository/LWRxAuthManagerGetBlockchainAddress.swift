@@ -12,6 +12,7 @@ import RxSwift
 public class LWRxAuthManagerGetBlockchainAddress: NSObject {
     public typealias Packet = LWPacketGetBlockchainAddress
     public typealias Result = ApiResult<LWPacketGetBlockchainAddress>
+    public typealias ResultType = LWPacketGetBlockchainAddress
     public typealias RequestParams = String
     
     override init() {
@@ -34,31 +35,9 @@ public class LWRxAuthManagerGetBlockchainAddress: NSObject {
 
 
 extension LWRxAuthManagerGetBlockchainAddress: AuthManagerProtocol {
-    public func request(withParams params: String) -> Observable<Result> {
-        return Observable.create{ observer in
-            let packet = Packet(observer: observer, assetId: params)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-            }
-            .startWith(.loading)
-            .shareReplay(1)
-    }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.success(withData: packet)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return ApiResult.notAuthorized
+    public func createPacket(withObserver observer: Any, params: String) -> LWPacketGetBlockchainAddress {
+        return Packet(observer: observer, assetId: params)
     }
 }
 

@@ -12,6 +12,7 @@ public class LWRxAuthManagerOffchainFinalizetransfer : NSObject{
     
     public typealias Packet = LWPacketOffchainFinalizetransfer
     public typealias Result = ApiResult<LWModelOffchainResult>
+    public typealias ResultType = LWModelOffchainResult
     public typealias RequestParams = (LWPacketOffchainFinalizetransfer.Body)
     
     override init() {
@@ -34,31 +35,12 @@ public class LWRxAuthManagerOffchainFinalizetransfer : NSObject{
 
 extension LWRxAuthManagerOffchainFinalizetransfer: AuthManagerProtocol {
     
-    public func request(withParams params: RequestParams) -> Observable<Result> {
-        return Observable.create{observer in
-            let packet = Packet(body: params, observer: observer)
-            GDXNet.instance().send(packet, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+    public func createPacket(withObserver observer: Any, params: (LWPacketOffchainFinalizetransfer.Body)) -> LWPacketOffchainFinalizetransfer {
+        return Packet(body: params, observer: observer)
     }
     
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return Result.error(withData: packet.errors)
-    }
-    
-    func getSuccessResult(fromPacket packet: Packet) -> Result {
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
         return Result.success(withData: packet.model!)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return Result.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return Result.notAuthorized
     }
 }
 

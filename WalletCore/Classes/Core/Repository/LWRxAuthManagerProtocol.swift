@@ -9,12 +9,14 @@
 import Foundation
 import RxSwift
 
-protocol AuthManagerProtocol: NSObjectProtocol {
+public protocol AuthManagerProtocol: NSObjectProtocol {
     associatedtype Packet: LWPacket
     associatedtype Result
+    associatedtype ResultType
     associatedtype RequestParams
     
     func request(withParams params: RequestParams) -> Observable<Result>
+    func createPacket(withObserver observer: Any, params: RequestParams) -> Packet
     
     func subscribe(observer: NSObject, succcess: Selector, error: Selector)
     func unsubscribe(observer: NSObject)
@@ -35,8 +37,90 @@ protocol AuthManagerProtocol: NSObjectProtocol {
     func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result
 }
 
+public extension AuthManagerProtocol where Result == ApiResultList<ResultType> {
+
+    func defaultRequestImplementation(with params: RequestParams) -> Observable<Result> {
+        return Observable<Result>.create { observer in
+            let pack = self.createPacket(withObserver: observer, params: params)
+            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
+            
+            return Disposables.create {}
+            }
+            .startWith(ApiResultList<ResultType>.loading)
+            .shareReplay(1)
+    }
+    
+    func request(withParams params: RequestParams) -> Observable<Result> {
+        return defaultRequestImplementation(with: params)
+    }
+    
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return ApiResultList<ResultType>.error(withData: packet.errors)
+    }
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return ApiResultList<ResultType>.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return ApiResultList<ResultType>.notAuthorized
+    }
+}
+
+public extension AuthManagerProtocol where Result == ApiResult<ResultType> {
+    
+    func defaultRequestImplementation(with params: RequestParams) -> Observable<Result> {
+        return Observable<Result>.create { observer in
+                let pack = self.createPacket(withObserver: observer, params: params)
+                GDXNet.instance().send(pack, userInfo: nil, method: .REST)
+            
+                return Disposables.create {}
+            }
+            .startWith(ApiResult<ResultType>.loading)
+            .shareReplay(1)
+    }
+    
+    func request(withParams params: RequestParams) -> Observable<Result> {
+        return defaultRequestImplementation(with: params)
+    }
+    
+    func getErrorResult(fromPacket packet: Packet) -> Result {
+        return ApiResult<ResultType>.error(withData: packet.errors)
+    }
+    
+    func getForbiddenResult(fromPacket packet: Packet) -> Result {
+        return ApiResult<ResultType>.forbidden
+    }
+    
+    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
+        return ApiResult<ResultType>.notAuthorized
+    }
+}
+
+public extension AuthManagerProtocol where Packet == ResultType, Result == ApiResult<ResultType> {
+    
+    func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return ApiResult<ResultType>.success(withData: packet)
+    }
+}
+
+public extension AuthManagerProtocol where Result == ApiResult<ResultType>, RequestParams == Void {
+
+    func request(withParams params: Void = ()) -> Observable<Result> {
+        return defaultRequestImplementation(with: params)
+    }
+}
+
+public extension AuthManagerProtocol where Result == ApiResultList<ResultType>, RequestParams == Void {
+    
+    func request(withParams params: Void = ()) -> Observable<Result> {
+        return defaultRequestImplementation(with: params)
+    }
+}
+
 extension AuthManagerProtocol {
-    func subscribe(observer: NSObject, succcess: Selector, error: Selector) {
+    
+    public func subscribe(observer: NSObject, succcess: Selector, error: Selector) {
         NotificationCenter.default.addObserver(
             observer,
             selector: succcess,
@@ -52,11 +136,11 @@ extension AuthManagerProtocol {
         )
     }
     
-    func unsubscribe(observer: NSObject) {
+    public func unsubscribe(observer: NSObject) {
         NotificationCenter.default.removeObserver(observer)
     }
     
-    func getPacket(fromNotification notification: NSNotification) -> Packet? {
+    public func getPacket(fromNotification notification: NSNotification) -> Packet? {
         guard
             let ctx = notification.userInfo?[kNotificationKeyGDXNetContext] as? GDXRESTContext,
             let packet = ctx.packet as? Packet
@@ -67,7 +151,7 @@ extension AuthManagerProtocol {
         return packet
     }
     
-    func onError(_ notification: NSNotification) {
+    public func onError(_ notification: NSNotification) {
         guard let ctx = notification.userInfo?[kNotificationKeyGDXNetContext] as? GDXRESTContext else { return }
         guard let pack = getPacket(fromNotification: notification) else { return }
         
@@ -84,7 +168,7 @@ extension AuthManagerProtocol {
         onError(pack: pack)
     }
     
-    func onSuccess(_ notification: NSNotification) {
+    public func onSuccess(_ notification: NSNotification) {
         guard let packet = getPacket(fromNotification: notification) else {
             return
         }
@@ -92,25 +176,25 @@ extension AuthManagerProtocol {
         packet.isRejected ? onError(notification) : onSuccess(packet: packet)
     }
     
-    func onNotAuthorized(withPacket packet: Packet) {
+    public func onNotAuthorized(withPacket packet: Packet) {
         guard let observer = packet.observer as? AnyObserver<Result> else { return }
         observer.onNext(getNotAuthrorizedResult(fromPacket: packet))
         observer.onCompleted()
     }
     
-    func onError(pack: Packet) {
+    public func onError(pack: Packet) {
         guard let observer = pack.observer as? AnyObserver<Result> else { return }
         observer.onNext(getErrorResult(fromPacket: pack))
         observer.onCompleted()
     }
     
-    func onSuccess(packet: Packet) {
+    public func onSuccess(packet: Packet) {
         guard let observer = packet.observer as? AnyObserver<Result> else { return }
         observer.onNext(getSuccessResult(fromPacket: packet))
         observer.onCompleted()
     }
     
-    func onForbidden(withPacket packet: Packet) {
+    public func onForbidden(withPacket packet: Packet) {
         guard let observer = packet.observer as? AnyObserver<Result> else { return }
         observer.onNext(getForbiddenResult(fromPacket: packet))
         observer.onCompleted()
