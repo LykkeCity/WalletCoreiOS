@@ -35,6 +35,32 @@ public extension Reactive where Base : LWOffchainTransactionsManager {
         .startWith(.loading)
         .shareReplay(1)
     }
+    
+    func requestCashOut(amount: Decimal, assetId: String, multiSig: String) -> Observable<ApiResult<[AnyHashable: Any]>> {
+        let manager = self.base
+        
+        return Observable.create{[weak manager] observer in
+            manager?.requestCashOut(amount as NSDecimalNumber, assetId: assetId, multiSig: multiSig) {data in
+                guard let data = data else {
+                    observer.onCompleted()
+                    return
+                }
+                
+                if let errorData = data["Error"] as? [AnyHashable: Any] {
+                    observer.onNext(.error(withData:errorData))
+                    observer.onCompleted()
+                    return
+                }
+                
+                observer.onNext(.success(withData: data))
+                observer.onCompleted()
+            }
+            
+            return Disposables.create {}
+            }
+            .startWith(.loading)
+            .shareReplay(1)
+    }
 }
 
 

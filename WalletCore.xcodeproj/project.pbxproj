@@ -663,6 +663,8 @@
 		CC83DDAF1F4AE3FD008BA5C2 /* LWRxAuthManagerGetClientCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC83DDAE1F4AE3FD008BA5C2 /* LWRxAuthManagerGetClientCodes.swift */; };
 		CC83DDB11F4AF3FC008BA5C2 /* ClientCodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC83DDB01F4AF3FC008BA5C2 /* ClientCodesViewModel.swift */; };
 		CCEAA9611F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEAA9601F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift */; };
+		F5007E94200E2B6000956CF5 /* CashOutToAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */; };
+		F5007E96200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1345,6 +1347,8 @@
 		CC83DDAE1F4AE3FD008BA5C2 /* LWRxAuthManagerGetClientCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerGetClientCodes.swift; sourceTree = "<group>"; };
 		CC83DDB01F4AF3FC008BA5C2 /* ClientCodesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientCodesViewModel.swift; sourceTree = "<group>"; };
 		CCEAA9601F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientFullNameSetViewModel.swift; sourceTree = "<group>"; };
+		F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashOutToAddressViewModel.swift; sourceTree = "<group>"; };
+		F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCashOut.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2320,6 +2324,7 @@
 		46C9B0501F42C8E700B83CCB /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */,
 				469DA7141F6BFA91000B904C /* LWRxAuthManagerClientKeys.swift */,
 				469DA7151F6BFA91000B904C /* LWRxAuthManagerPinSecurityGet.swift */,
 				46E5D0CA1F5DD7ED00D78692 /* LWRxAuthManagerAllCurrencies.swift */,
@@ -2459,6 +2464,7 @@
 		6625465A1FA323F600B6F33A /* CashOut */ = {
 			isa = PBXGroup;
 			children = (
+				F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */,
 				6625465B1FA3268900B6F33A /* CashOutViewModel.swift */,
 				665960531FA3545D00DB3D62 /* CashOutAmountViewModel.swift */,
 				665960551FA354A600DB3D62 /* CashOutGeneralViewModel.swift */,
@@ -3182,6 +3188,7 @@
 				46E5D0D91F5DD7ED00D78692 /* LWRxAuthManagerAllCurrencies.swift in Sources */,
 				46C9AF861F417BD800B83CCB /* LWTradeHistoryItemType.m in Sources */,
 				46C9AE6C1F417BD700B83CCB /* LWSendImageManager.m in Sources */,
+				F5007E96200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift in Sources */,
 				6656BB451FEAB3D7006CAD5D /* LWSwiftCashOutDetailsModel.m in Sources */,
 				46C9AEE21F417BD700B83CCB /* LWPacketGetIssuers.m in Sources */,
 				46C9AE7E1F417BD700B83CCB /* LWMath.m in Sources */,
@@ -3273,6 +3280,7 @@
 				46C9AF301F417BD800B83CCB /* LWPacketRegistrationGet.m in Sources */,
 				46C08DB91F98C6290059BDD3 /* LWPacketRequestTransfer.swift in Sources */,
 				46C9AF321F417BD800B83CCB /* LWPacketResetDemoMarginAccount.m in Sources */,
+				F5007E94200E2B6000956CF5 /* CashOutToAddressViewModel.swift in Sources */,
 				46C9AF481F417BD800B83CCB /* LWPacketSettleForwardWithdraw.m in Sources */,
 				46C9AFB21F417BD800B83CCB /* LWSwiftCredentialsModel.m in Sources */,
 				46C9AF1E1F417BD800B83CCB /* LWPacketPhoneVerificationGet.m in Sources */,
