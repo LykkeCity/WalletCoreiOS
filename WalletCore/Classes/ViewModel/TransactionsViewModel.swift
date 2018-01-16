@@ -46,7 +46,7 @@ open class TransactionsViewModel {
         currencyExchanger: CurrencyExchanger,
         authManager: LWRxAuthManager = LWRxAuthManager.instance
     ) {
-        let transactionsObservable = authManager.history.request(withParams: nil)
+        let transactionsObservable = authManager.history.request()
         
         let transactions = transactionsToDisplay.asObservable()
             .mapToViewModels(currencyExchanger: currencyExchanger)

@@ -39,10 +39,6 @@ public protocol AuthManagerProtocol: NSObjectProtocol {
 
 public extension AuthManagerProtocol where Result == ApiResultList<ResultType> {
 
-    func createPacket(withObserver observer: Any, params: RequestParams) -> Packet {
-        fatalError("Provide implementation")
-    }
-    
     func defaultRequestImplementation(with params: RequestParams) -> Observable<Result> {
         return Observable<Result>.create { observer in
             let pack = self.createPacket(withObserver: observer, params: params)

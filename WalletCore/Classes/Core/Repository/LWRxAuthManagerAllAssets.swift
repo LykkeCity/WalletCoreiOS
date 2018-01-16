@@ -41,6 +41,10 @@ public class LWRxAuthManagerAllAssets: NSObject, LWRxAuthManagerAllAssetsProtoco
 
 extension LWRxAuthManagerAllAssets: AuthManagerProtocol{
     
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketAllAssets {
+        return Packet(observer: observer)
+    }
+    
     public func request(byIds ids: [String]) -> Observable<ApiResultList<LWAssetModel>> {
         return request(withParams:()).map{ result -> ApiResultList<LWAssetModel> in
             switch result {
@@ -89,14 +93,7 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol{
                 .startWith(.loading)
         }
         
-        return Observable.create{observer in
-            let paket = Packet(observer: observer)
-            GDXNet.instance().send(paket, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-        }
-        .startWith(.loading)
-        .shareReplay(1)
+        return self.defaultRequestImplementation(with: ())
     }
     
     public func getErrorResult(fromPacket packet: Packet) -> Result {

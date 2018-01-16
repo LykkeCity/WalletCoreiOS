@@ -40,6 +40,10 @@ extension LWRxAuthManagerHistory: AuthManagerProtocol {
         return Packet(observer: observer, assetId: params)
     }
     
+    public func request() -> Observable<ApiResultList<LWBaseHistoryItemType>> {
+        return self.request(withParams: nil)
+    }
+    
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
         let data: [LWBaseHistoryItemType] = LWHistoryManager
             .prepareHistory(packet.historyArray, marginal: [])
