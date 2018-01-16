@@ -971,7 +971,7 @@
 				TargetAttributes = {
 					CF21DC7A1C17590E00D2399E = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = ZNE622G954;
+						DevelopmentTeam = SPFVYM4YAV;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1443,7 +1443,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = ZNE622G954;
+				DEVELOPMENT_TEAM = SPFVYM4YAV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1461,7 +1461,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lykke.modernmoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1485,7 +1485,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = ZNE622G954;
+				DEVELOPMENT_TEAM = SPFVYM4YAV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1503,7 +1503,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lykke.modernmoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1580,7 +1580,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = ZNE622G954;
+				DEVELOPMENT_TEAM = SPFVYM4YAV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1599,7 +1599,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"TEST\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lykke.modernmoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
@@ -1668,7 +1668,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = ZNE622G954;
+				DEVELOPMENT_TEAM = SPFVYM4YAV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1687,7 +1687,7 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"TEST\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lykke.modernmoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "";
