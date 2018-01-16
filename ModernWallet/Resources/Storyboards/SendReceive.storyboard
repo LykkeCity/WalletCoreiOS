@@ -48,7 +48,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN RECEIVING ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjy-mw-FOO">
-                                        <rect key="frame" x="57.5" y="60" width="196" height="15"/>
+                                        <rect key="frame" x="57" y="60" width="196" height="15"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -156,11 +156,160 @@
             </objects>
             <point key="canvasLocation" x="140" y="156"/>
         </scene>
+        <!--Send To Wallet View Controller-->
+        <scene sceneID="bC4-26-Hvg">
+            <objects>
+                <viewController storyboardIdentifier="SendWallet" id="SXs-ru-MQj" customClass="SendToWalletViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cDG-gu-71c" userLabel="Background View" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT WALLET FOR TRANSFER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V44-MH-ktJ">
+                                <rect key="frame" x="54" y="67" width="266.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="e4Y-uW-ZgB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QlU-KM-4jJ" userLabel="Wallet Address Container">
+                                <rect key="frame" x="22" y="168" width="331" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bP3-oe-GOp" userLabel="QR Button">
+                                        <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="h6n-Yp-Zxd"/>
+                                            <constraint firstAttribute="height" constant="40" id="lwD-4j-IR1"/>
+                                        </constraints>
+                                        <state key="normal" image="QrCode"/>
+                                        <connections>
+                                            <action selector="scanTapped:" destination="SXs-ru-MQj" eventType="touchUpInside" id="VWW-4S-DrX"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ENTER WALLET ADDRESS" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0i-De-2Hp" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="40" y="0.0" width="241" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="qY3-K4-ODi"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" red="0.99211162328720093" green="0.99215096235275269" blue="0.99634915590286255" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.99211162328720093" green="0.99215096235275269" blue="0.99634915590286255" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                <color key="value" red="0.99211162328720093" green="0.99215096235275269" blue="0.99634915590286255" alpha="0.49595997429999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v0n-9u-6u6">
+                                        <rect key="frame" x="290" y="30" width="41" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Hns-WX-3BI"/>
+                                            <constraint firstAttribute="width" constant="41" id="hij-It-C6k"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="14"/>
+                                        <state key="normal" title="PASTE">
+                                            <color key="titleColor" red="0.99117213487625122" green="0.99635642766952515" blue="0.99172490835189819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pasteTapped:" destination="SXs-ru-MQj" eventType="touchUpInside" id="JEX-mw-HeE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="S0i-De-2Hp" firstAttribute="leading" secondItem="bP3-oe-GOp" secondAttribute="trailing" id="0l2-TO-Wm7"/>
+                                    <constraint firstAttribute="bottom" secondItem="bP3-oe-GOp" secondAttribute="bottom" id="3JN-Zs-ONv"/>
+                                    <constraint firstAttribute="trailing" secondItem="S0i-De-2Hp" secondAttribute="trailing" constant="50" id="9CU-cv-KRA"/>
+                                    <constraint firstItem="bP3-oe-GOp" firstAttribute="leading" secondItem="QlU-KM-4jJ" secondAttribute="leading" id="A1m-zQ-RGC"/>
+                                    <constraint firstAttribute="height" constant="60" id="BUK-zw-sho"/>
+                                    <constraint firstAttribute="trailing" secondItem="v0n-9u-6u6" secondAttribute="trailing" id="NhU-5e-Gfp"/>
+                                    <constraint firstAttribute="bottom" secondItem="S0i-De-2Hp" secondAttribute="bottom" constant="10" id="Rqm-zT-Vl6"/>
+                                    <constraint firstAttribute="bottom" secondItem="v0n-9u-6u6" secondAttribute="bottom" constant="10" id="oEO-bA-NfD"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Smt-DD-bxi" userLabel="Amount" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="62" y="293.5" width="241" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="uVa-pG-0TG"/>
+                                </constraints>
+                                <color key="textColor" red="0.99211162328720093" green="0.99215096235275269" blue="0.99634915590286255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="50"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWz-hN-uPR" customClass="SubmitButton" customModule="ModernMoney" customModuleProvider="target">
+                                <rect key="frame" x="22" y="557" width="331" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="dcH-E6-fV7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Da-qM-a4c" userLabel="Currency Code">
+                                <rect key="frame" x="318" y="364" width="45" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="axQ-P1-90F"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="DWz-hN-uPR" firstAttribute="leading" secondItem="QlU-KM-4jJ" secondAttribute="leading" id="0BK-1D-fVZ"/>
+                            <constraint firstItem="QlU-KM-4jJ" firstAttribute="leading" secondItem="4i7-Ed-X2E" secondAttribute="leading" constant="22" id="DSL-Cc-xp3"/>
+                            <constraint firstItem="4i7-Ed-X2E" firstAttribute="trailing" secondItem="QlU-KM-4jJ" secondAttribute="trailing" constant="22" id="Dkt-qB-ocx"/>
+                            <constraint firstItem="QlU-KM-4jJ" firstAttribute="top" secondItem="V44-MH-ktJ" secondAttribute="bottom" constant="80" id="MIe-IZ-Rom"/>
+                            <constraint firstItem="5Da-qM-a4c" firstAttribute="leading" secondItem="Smt-DD-bxi" secondAttribute="trailing" constant="15" id="PnH-RQ-aSe"/>
+                            <constraint firstItem="Smt-DD-bxi" firstAttribute="centerY" secondItem="4i7-Ed-X2E" secondAttribute="centerY" id="Wv2-es-vdp"/>
+                            <constraint firstItem="Smt-DD-bxi" firstAttribute="bottom" secondItem="5Da-qM-a4c" secondAttribute="bottom" id="ZLQ-Sb-eYf"/>
+                            <constraint firstItem="4i7-Ed-X2E" firstAttribute="bottom" secondItem="DWz-hN-uPR" secondAttribute="bottom" constant="41" id="dvv-EQ-a96"/>
+                            <constraint firstItem="Smt-DD-bxi" firstAttribute="leading" secondItem="S0i-De-2Hp" secondAttribute="leading" id="dzo-6a-5Yd"/>
+                            <constraint firstItem="Smt-DD-bxi" firstAttribute="trailing" secondItem="S0i-De-2Hp" secondAttribute="trailing" id="e46-CB-gFt"/>
+                            <constraint firstItem="V44-MH-ktJ" firstAttribute="top" secondItem="4i7-Ed-X2E" secondAttribute="top" constant="47" id="lRC-pm-rpN"/>
+                            <constraint firstItem="DWz-hN-uPR" firstAttribute="trailing" secondItem="QlU-KM-4jJ" secondAttribute="trailing" id="se4-IK-hkD"/>
+                            <constraint firstItem="V44-MH-ktJ" firstAttribute="centerX" secondItem="4i7-Ed-X2E" secondAttribute="centerX" id="uSF-SM-NMl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4i7-Ed-X2E"/>
+                    </view>
+                    <connections>
+                        <outlet property="amountTextField" destination="Smt-DD-bxi" id="3n3-fO-v0t"/>
+                        <outlet property="currencyLabel" destination="5Da-qM-a4c" id="6QU-mA-aYV"/>
+                        <outlet property="headingLabel" destination="V44-MH-ktJ" id="6oL-0g-s97"/>
+                        <outlet property="pasteButton" destination="v0n-9u-6u6" id="btb-8f-xIr"/>
+                        <outlet property="proceedButton" destination="DWz-hN-uPR" id="36H-37-lY9"/>
+                        <outlet property="walletAddressTextField" destination="S0i-De-2Hp" id="lrg-6h-w7l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aer-E7-rj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="885.60000000000002" y="152.47376311844079"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CloseCross" width="17" height="17"/>
         <image name="CopyIcon" width="17" height="22"/>
         <image name="EmailIcon" width="21" height="15"/>
+        <image name="QrCode" width="20" height="20"/>
         <image name="ShareIcon" width="17" height="26"/>
     </resources>
 </document>
