@@ -52,7 +52,7 @@ public class BuyOptimizedViewModel {
     
     public var tradeAmount: Decimal? {
         if bid.value ?? false {
-            return payWithAmount.value.value.decimalValue ?? nil
+            return payWithAmount.value.value.decimalValue
         }
         
         return  buyAmount.value.value.decimalValue
