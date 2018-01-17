@@ -106,7 +106,7 @@ extension AppDelegate {
         
         blurredImageView.contentMode = .scaleAspectFill
 
-        guard let visibleViewController = self.visibleViewController else {
+        guard let mainWindow = window else {
             return blurredImageView
         }
         
@@ -115,7 +115,7 @@ extension AppDelegate {
         let saturationDeltaFactor: CGFloat = 2.0
         
         UIGraphicsBeginImageContext(screenBounds.size)
-        visibleViewController.view.drawHierarchy(in: screenBounds, afterScreenUpdates: true)
+        mainWindow.drawHierarchy(in: screenBounds, afterScreenUpdates: false)
         guard let snapshotImage = UIGraphicsGetImageFromCurrentImageContext(),
             let blurredSnapshotImage = UIImageEffects.imageByApplyingBlur(to: snapshotImage,
                                                                       withRadius: blurRadius,
