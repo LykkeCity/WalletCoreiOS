@@ -13,6 +13,7 @@
 #import "LWAuthManager.h"
 #import "LWCache.h"
 #import "LWUserDefault.h"
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketAuthentication
 
@@ -61,7 +62,9 @@
                             @"Password" : [LWCache instance].passwordIsHashed
                             ? [LWPrivateKeyManager hashForString:self.authenticationData.password]
                             : self.authenticationData.password,
-                            @"ClientInfo" : self.authenticationData.clientInfo };
+                            @"ClientInfo" : self.authenticationData.clientInfo,
+                            @"PartnerId": WalletCoreConfig.partnerId
+                            };
   return params;
 }
 

@@ -11,6 +11,7 @@
 #import "LWMarginalWalletsDataManager.h"
 #import "LWKeychainManager.h"
 #import "LWUserDefault.h"
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketClientState
 
@@ -32,7 +33,7 @@
 
 - (NSDictionary *)params {
     if([LWKeychainManager instance].login) {
-    return @{@"email" : [LWKeychainManager instance].login};
+    return @{@"email" : [LWKeychainManager instance].login, @"partnerId": WalletCoreConfig.partnerId};
     }
     else {
         return [super params];
