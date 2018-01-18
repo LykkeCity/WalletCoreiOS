@@ -117,7 +117,6 @@ class SignUpPasswordHintFormController: FormController {
                 .disposed(by: disposeBag)
             
             testLoadingViewModel?.isLoading
-                .debug("GG: loading", trimOutput: false)
                 .bind(to: loading)
                 .disposed(by: disposeBag)
 
@@ -126,7 +125,6 @@ class SignUpPasswordHintFormController: FormController {
                 testLoadingViewModel!.isLoading.filter{ !$0 },
                 setBaseAssetRequest.filter{ !$0.isLoading }
             ) { _,_ in Void() }
-            .debug("Next trigger", trimOutput: false)
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
             

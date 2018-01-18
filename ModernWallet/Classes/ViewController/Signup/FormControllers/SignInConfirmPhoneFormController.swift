@@ -95,6 +95,13 @@ class SignInConfirmPhoneFormController: FormController {
         )
     }()
     
+    lazy var loadingViewModel: LoadingViewModel = {
+        return LoadingViewModel([
+            self.viewModel.loading,
+            self.clientCodes.loadingViewModel.isLoading
+        ])
+    }()
+    
     private var disposeBag = DisposeBag()
     
     let forceShowPin = PublishSubject<Void>()
@@ -123,12 +130,6 @@ class SignInConfirmPhoneFormController: FormController {
         button.rx.tap
             .bind(to: checkPinTrigger)
             .disposed(by: disposeBag)
-        
-        viewModel.loading
-            .subscribe(onNext: { isLoading in
-                button.isEnabled = !isLoading
-                self.resendSmsButton.isEnabled = !isLoading
-            }).disposed(by: disposeBag)
         
         viewModel.resultResendPin.asObservable()
             .filterError()
@@ -178,7 +179,7 @@ class SignInConfirmPhoneFormController: FormController {
             .filterTrueAndBind(toTrigger: nextTrigger)
             .disposed(by: disposeBag)
         
-        clientCodes.loadingViewModel.isLoading
+        loadingViewModel.isLoading
             .bind(to: loading)
             .disposed(by: disposeBag)
         
@@ -186,8 +187,11 @@ class SignInConfirmPhoneFormController: FormController {
             .bind(to: error)
             .disposed(by: disposeBag)
         
-        clientCodes.encodeMainKeyObservable
-            .map { _ in
+        Observable.zip(
+                clientCodes.loadingViewModel.isLoading.filter{ !$0 },
+                clientCodes.encodeMainKeyObservable
+            )
+            .map { _, _ in
                 SignUpStep.resetInstance()
                 UserDefaults.standard.isLoggedIn = true
                 UserDefaults.standard.synchronize()
