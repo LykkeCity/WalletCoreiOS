@@ -184,6 +184,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
 
         loadingViewModel = LoadingViewModel([
+            buyOptimizedViewModel.loadingViewModel.isLoading,
             tradingAssetsViewModel.loadingViewModel.isLoading,
             payWithAssetListViewModel.loadingViewModel.isLoading,
             assetPairObservable.isLoading(),
