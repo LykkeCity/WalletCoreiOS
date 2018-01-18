@@ -30,7 +30,11 @@ class AssetDetailViewController: UIViewController {
     fileprivate lazy var transactionsViewModel: TransactionsViewModel = {
         return TransactionsViewModel(
             downloadCsv: Observable.empty(),
-            currencyExchanger: CurrencyExchanger()
+            dependency: (
+                currencyExcancher: CurrencyExchanger(),
+                authManager: LWRxAuthManager.instance,
+                formatter: TransactionFormatter.instance
+            )
         )
     } ()
     
