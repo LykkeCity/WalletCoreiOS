@@ -59,6 +59,10 @@ class SignUpPasswordHintFormController: FormController {
     
     private let registrationTrigger = PublishSubject<Void>()
     
+    // This is the point where the system tells whether the email is already used
+    /// This Variable<Bool> determines the back button destination (either the prev. step or the first one)
+    var registrationFailed = Variable(false)
+    
     private lazy var viewModel : SignUpRegistrationViewModel={
         let viewModel = SignUpRegistrationViewModel(submit: self.registrationTrigger.asObservable())
         viewModel.clientInfo.value = LWDeviceInfo.instance().clientInfo()
@@ -84,6 +88,12 @@ class SignUpPasswordHintFormController: FormController {
         viewModel.result.asObservable()
             .filterError()
             .bind(to: error)
+            .disposed(by: disposeBag)
+        
+        viewModel.result.asObservable()
+            .filterError()
+            .map { _ in return true }
+            .bind(to: registrationFailed)
             .disposed(by: disposeBag)
 
         #if TEST

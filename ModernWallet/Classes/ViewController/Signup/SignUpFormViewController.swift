@@ -165,8 +165,11 @@ class SignUpFormViewController: UIViewController {
     
     // MARK: - Pop methods
     private func willPop() {
-        if forms.last is SignUpPasswordHintFormController || forms.last is SignUpSetPasswordFormController {
-            forms = [SingInEmailFormController(), SignUpEmailFormController(email: ""), forms.last!]
+        if let passwordHintFormController = forms.last as? SignUpPasswordHintFormController,
+            passwordHintFormController.registrationFailed.value {
+            forms = [SingInEmailFormController(), SignUpEmailFormController(email: passwordHintFormController.email), passwordHintFormController]
+        } else if let setPasswordFormController = forms.last as? SignUpSetPasswordFormController {
+            forms = [SingInEmailFormController(), SignUpEmailFormController(email: setPasswordFormController.email), setPasswordFormController]
         }
     }
     
