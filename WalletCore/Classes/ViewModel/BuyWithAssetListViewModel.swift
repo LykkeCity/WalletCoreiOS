@@ -18,18 +18,17 @@ public class BuyWithAssetListViewModel {
         buyWithAssetList = Observable.combineLatest(
             authManager.allAssets.request().filterSuccess(),
             sellAsset,
+            authManager.assetPairs.request().filterSuccess(),
             authManager.assetPairRates.request(withParams: true).filterSuccess()
         )
-        .map{(assets, sellAsset, assetPairs) in
-            let assetPairsSet = Set(assetPairs.map { $0.identity })
+        .map{(assets, sellAsset, assetPairs, assetPairRates) in
+            let pairRatesSet = Set(assetPairRates.map { $0.identity })
+            let pairsWithRates = assetPairs.filter { pairRatesSet.contains($0.identity) }
             return assets.filter{ (asset) in
-                
-                guard let walletAssetId = sellAsset.displayId, let assetId = asset.displayId else {
-                    return false
+                return pairsWithRates.contains { pair in
+                    return  (pair.baseAsset == asset && pair.quotingAsset == sellAsset) ||
+                            (pair.baseAsset == sellAsset && pair.quotingAsset == asset)
                 }
-                
-                let possiblePairs: Set = ["\(assetId)\(walletAssetId)", "\(walletAssetId)\(assetId)"]
-                return !assetPairsSet.isDisjoint(with: possiblePairs)
             }
         }
     }
