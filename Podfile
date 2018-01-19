@@ -20,7 +20,7 @@ pod 'KYDrawerController'
 pod 'TextFieldEffects', '~> 1.3'
 pod 'XLPagerTabStrip', '~> 7.0'
 pod 'WalletCore', :path => '../WalletCoreiOS'
-pod 'SwiftSpinner'
+pod 'SwiftSpinner', :git => 'https://github.com/StanevPrime/SwiftSpinner', :branch => 'show-spinner-during-hide-transition'
 pod 'QRCodeReader.swift', '~> 7.5.0'
 end
 

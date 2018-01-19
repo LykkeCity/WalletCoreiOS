@@ -73,6 +73,13 @@ class SignInPasswordFormController: FormController {
         return PhoneNumberViewModel(saveSubmit: self.sendSmsTrigger.asObservable() )
     }()
     
+    lazy var loadingViewModel: LoadingViewModel = {
+        return LoadingViewModel([
+            self.loginViewModel.loading,
+            self.sendSmsViewModel.loadingSaveChanges
+        ])
+    }()
+    
     private var disposeBag = DisposeBag()
     
     func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>) {
@@ -93,10 +100,6 @@ class SignInPasswordFormController: FormController {
         passwordTextField.rx.text.asObservable()
             .filterNil()
             .bind(to: loginViewModel.password)
-            .disposed(by: disposeBag)
-        
-        loginViewModel.loading
-            .bind(to: loading)
             .disposed(by: disposeBag)
 
         loginViewModel.result.asObservable().filterError()
@@ -127,7 +130,7 @@ class SignInPasswordFormController: FormController {
             .bind(to: sendSmsTrigger)
             .disposed(by: disposeBag)
         
-        sendSmsViewModel.loadingSaveChanges
+        loadingViewModel.isLoading
             .bind(to: loading)
             .disposed(by: disposeBag)
         
@@ -136,9 +139,9 @@ class SignInPasswordFormController: FormController {
             .bind(to: error)
             .disposed(by: disposeBag)
 
-        sendSmsViewModel.saveSettingsResult.asObservable()
-            .filterSuccess()
-            .map { _ in return () }
+        loadingViewModel.isLoading
+            .filter{ !$0 }
+            .withLatestFrom(sendSmsViewModel.saveSettingsResult.asObservable().filterSuccess()){ _ in () }
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
         
