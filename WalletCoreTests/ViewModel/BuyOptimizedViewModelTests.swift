@@ -23,9 +23,9 @@ class BuyOptimizedViewModelTests: XCTestCase {
         buyAsset: LWAssetModel,
         payWithWallet: LWSpotWallet,
         bid: Bool,
-        buyAmount: String,
         expectedResult: String
     )
+    
     
     override func setUp() {
         super.setUp()
@@ -38,50 +38,22 @@ class BuyOptimizedViewModelTests: XCTestCase {
         super.tearDown()
     }
     
+   
     func testSpread() {
         driveOnScheduler(scheduler) {[weak self] in
             self?.assertSpread(withData: (
-                pairModels: [LWAssetPairRateModel(json: ["Id": "USDEUR", "Bid": 2, "Ask": 3])!],
-                baseAsset: LWAssetModel(assetId: "USD"),
-                buyAsset: LWAssetModel(assetId: "EUR"),
+                pairModels: [LWAssetPairRateModel(json: ["Id": "BTCUSD", "Bid": 13600, "Ask": 13800])!,
+                             LWAssetPairRateModel(json: ["Id": "BTCAUD", "Bid": 14600, "Ask": 14900])!,
+                             LWAssetPairRateModel(json: ["Id": "USDAUD", "Bid": 1.1, "Ask": 1.2])!],
+                baseAsset: LWAssetModel(assetId: "AUD"),
+                buyAsset: LWAssetModel(assetId: "BTC"),
                 payWithWallet: LWSpotWallet(assetId: "USD"),
                 bid: true,
-                buyAmount: "12",
-                expectedResult: "4"
+                expectedResult: "230"
             ))
         }
     }
     
-    func testSpreadWithReversedPair() {
-        driveOnScheduler(scheduler) {[weak self] in
-            self?.assertSpread(withData: (
-                pairModels: [LWAssetPairRateModel(json: ["Id": "EURUSD", "Bid": 2, "Ask": 3])!],
-                baseAsset: LWAssetModel(assetId: "USD"),
-                buyAsset: LWAssetModel(assetId: "EUR"),
-                payWithWallet: LWSpotWallet(assetId: "USD"),
-                bid: true,
-                buyAmount: "12",
-                expectedResult: "24"
-            ))
-        }
-    }
-    
-    func testSpreadWithReversedPair2() {
-        driveOnScheduler(scheduler) {[weak self] in
-            self?.assertSpread(withData: (
-                pairModels: [
-                    LWAssetPairRateModel(json: ["Id": "EURUSD", "Bid": 2, "Ask": 3])!,
-                    LWAssetPairRateModel(json: ["Id": "BTCEUR", "Bid": 2, "Ask": 3])!
-                ],
-                baseAsset: LWAssetModel(assetId: "USD"),
-                buyAsset: LWAssetModel(assetId: "EUR"),
-                payWithWallet: LWSpotWallet(assetId: "USD"),
-                bid: true,
-                buyAmount: "12",
-                expectedResult: "24"
-            ))
-        }
-    }
     
     func assertSpread(withData data: TestData) {
 
@@ -111,24 +83,20 @@ class BuyOptimizedViewModelTests: XCTestCase {
             .disposed(by: disposeBag)
         
         scheduler
-            .createHotObservable([next(120, (autoUpdated: true, value: data.buyAmount))])
-            .asObservable()
-            .bind(to: tradingViewModel.buyAmount)
-            .disposed(by: disposeBag)
-        
-        scheduler
             .createHotObservable([next(130, (autoUpdated: false, wallet: data.payWithWallet))])
             .asObservable()
             .bind(to: tradingViewModel.payWithWallet)
             .disposed(by: disposeBag)
         
         let results = scheduler.createObserver(String.self)
+        
         let subscription = tradingViewModel.spreadAmount.drive(results)
         
         scheduler.scheduleAt(3000) { subscription.dispose() }
         scheduler.start()
         
-        XCTAssertEqual(results.events.first!.value.element!, data.expectedResult)
+        XCTAssertEqual(results.events.last!.value.element!, data.expectedResult)
     }
+    
 }
 

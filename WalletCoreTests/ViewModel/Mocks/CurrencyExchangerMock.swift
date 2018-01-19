@@ -11,14 +11,16 @@ import RxSwift
 @testable import WalletCore
 
 class CurrencyExchangerMock: CurrencyExchangerProtocol {
-    func exchange(amaunt: Decimal, from: LWAssetModel, to: LWAssetModel, bid: Bool) -> Observable<Decimal?> {
+    
+    func exchange(amount amaunt: Decimal, from: LWAssetModel, to: LWAssetModel, bid: Bool) -> Observable<Decimal?> {
         return Observable.just(amaunt)
     }
     
-    func exchangeToBaseAsset(amaunt: Decimal, from: LWAssetModel, bid: Bool) -> Observable<(baseAsset: LWAssetModel, amaunt: Decimal)?> {
+    func exchangeToBaseAsset(amount: Decimal, from: LWAssetModel, bid: Bool) -> Observable<(baseAsset: LWAssetModel, amount: Decimal)?> {
         return Observable.just((
             baseAsset: from,
-            amaunt: amaunt
+            amount: amount
         ))
     }
+
 }

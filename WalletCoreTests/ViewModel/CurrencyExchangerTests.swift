@@ -103,7 +103,7 @@ class CurrencyExchangerTests: XCTestCase {
             .observeOn(scheduler)
             .flatMap{ element in
                 currencyExchanger.exchange(
-                    amaunt: element.input.amaunt,
+                    amount: element.input.amaunt,
                     from: element.input.from,
                     to: element.input.to,
                     bid: element.input.bid
