@@ -19,8 +19,13 @@
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSURLRequest *requestSignature = [client createRequestWithAPI:@"signatureVerificationToken/KeyConfirmation" httpMethod:kMethodGET getParameters:@{@"email": email, @"partnerId": WalletCoreConfig.partnerId} postParameters:nil];
     id response = [client sendRequest:requestSignature];
-    if (response == nil || [response isKindOfClass:[NSError class]]) {
-      failur(response);
+    if (response == nil || ![response isKindOfClass:[NSDictionary class]]) {
+        if ([response isKindOfClass:[NSError class]]) {
+            failur(response);
+        } else {
+            failur(nil);
+        }
+        return;
     }
     NSString *message = response[@"Message"];
     if (message == nil) {
