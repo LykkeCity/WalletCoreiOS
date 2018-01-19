@@ -17,6 +17,7 @@ import RxCocoa
 
 class SendToWalletViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var walletAddressTextField: HoshiTextField!
     @IBOutlet weak var amountTextField: HoshiTextField!
     @IBOutlet weak var proceedButton: SubmitButton!
@@ -51,6 +52,7 @@ class SendToWalletViewController: UIViewController {
             .disposed(by: disposeBag)
         
         setupUI()
+        setupFormUX(disposedBy: disposeBag)
     }
     
     @IBAction func scanTapped(_ sender: Any) {
@@ -77,9 +79,6 @@ class SendToWalletViewController: UIViewController {
         pasteButton.setTitle(Localize("send.newDesign.paste"), for: .normal)
         navigationItem.title = Localize("send.newDesign.navigationTitle")
         
-        amountTextField.text = Decimal(0.0).convertAsCurrency(code: "",
-                                                            symbol: "",
-                                                            accuracy: asset?.value.wallet?.asset.accuracy.intValue ?? 0)
         currencyLabel.text = asset?.value.wallet?.symbol
     }
 }
