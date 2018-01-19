@@ -42,12 +42,6 @@ class SignInPasswordFormController: FormController {
     }
     
     var next: FormController? {
-//        guard
-//            let privateKeyManager = LWPrivateKeyManager.shared(),
-//            privateKeyManager.isPrivateKeyLykkeEmpty()
-//        else {
-//            return nil
-//        }
         return SignInConfirmPhoneFormController(signIn: true, phone: LWKeychainManager.instance()?.personalData()?.phone ?? "")
     }
     
@@ -118,11 +112,6 @@ class SignInPasswordFormController: FormController {
             .map{ _ in () }
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
-        
-//        loginViewModel.result.asObservable().filterSuccess()
-//            .map{ _ in () }
-//            .bind(to: nextTrigger)
-//            .disposed(by: disposeBag)
         
         loginViewModel.isValid
             .bind(to: button.rx.isEnabled)
