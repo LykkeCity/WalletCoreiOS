@@ -42,12 +42,14 @@ class SignInPasswordFormController: FormController {
     }
     
     var next: FormController? {
-        guard
-            let privateKeyManager = LWPrivateKeyManager.shared(),
-            privateKeyManager.isPrivateKeyLykkeEmpty()
-        else {
-            return nil
-        }
+//        LMW-349 - always ask for pin (temp solution)
+//        guard
+//            let privateKeyManager = LWPrivateKeyManager.shared(),
+//            privateKeyManager.isPrivateKeyLykkeEmpty()
+//        else {
+//            return nil
+//        }
+        
         return SignInConfirmPhoneFormController(signIn: true, phone: sendSmsViewModel.phonenumber.value)
     }
     
