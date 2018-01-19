@@ -17,24 +17,24 @@ public class PayWithAssetListViewModel {
     public init(buyAsset: Observable<LWAssetModel>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
         let nonEmptyWallets = authManager.lykkeWallets.requestNonEmptyWallets()
-        let assetPairs = authManager.assetPairRates.request(withParams: true)
-        
+        let assetPairs = authManager.assetPairs.request()
+        let assetPairRates = authManager.assetPairRates.request(withParams: true)
+
         loadingViewModel = LoadingViewModel([
             nonEmptyWallets.isLoading(),
             assetPairs.isLoading()
         ])
         
         payWithWalletList =
-            Observable.combineLatest(nonEmptyWallets.filterSuccess(), buyAsset, assetPairs.filterSuccess())
-            .map{(wallets, buyAsset, assetPairs) in
-                let assetPairsSet = Set(assetPairs.map { $0.identity })
-                return wallets.filter{(wallet: LWSpotWallet) in
-                    guard let walletAssetId = wallet.asset.displayId, let assetId = buyAsset.displayId else {
-                        return false
+            Observable.combineLatest(nonEmptyWallets.filterSuccess(), buyAsset, assetPairs.filterSuccess(), assetPairRates.filterSuccess())
+            .map{(wallets, buyAsset, assetPairs, assetPairRates) in
+                let pairRatesSet = Set(assetPairRates.map { $0.identity })
+                let pairsWithRates = assetPairs.filter { pairRatesSet.contains($0.identity) }
+                return wallets.filter { (wallet: LWSpotWallet) in
+                    return pairsWithRates.contains { pair in
+                        return  (pair.baseAsset == buyAsset && pair.quotingAsset == wallet.asset) ||
+                                (pair.baseAsset == wallet.asset && pair.quotingAsset == buyAsset)
                     }
-                    
-                    let possiblePairs: Set = ["\(assetId)\(walletAssetId)", "\(walletAssetId)\(assetId)"]
-                    return !assetPairsSet.isDisjoint(with: possiblePairs)
                 }
             }
     }

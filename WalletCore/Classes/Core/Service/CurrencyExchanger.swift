@@ -54,22 +54,17 @@ public class CurrencyExchanger: CurrencyExchangerProtocol {
     ///   - bid: Bid or ask price
     /// - Returns: Observable of exchanged amount that will updates each 5 seconds according pair rates
     public func exchange(amount: Decimal, from: LWAssetModel, to: LWAssetModel, bid: Bool) -> Observable<Decimal?> {
-        let pair = from.getPairId(withAsset: to)
-        
-        //If from/to are the same currency then return the same amount
-        if pair == from.getPairId(withAsset: from) {
+        if (from == to) {
             return Observable.just(amount)
         }
         
-        let reversedPair = to.getPairId(withAsset: from)
+        let pair = LWCache.assetPair(forAssetId: from.identity, otherAssetId: to.identity)
+        
+        let reversed = pair?.quotingAsset == from
         
         return pairRates.asObservable()
             .map{rates -> (pairModel: LWAssetPairRateModel?, reversed: Bool) in
-                guard let pairModel = rates.find(byPair: pair) else {
-                    return (pairModel: rates.find(byPair: reversedPair), reversed: true)
-                }
-                
-                return (pairModel: pairModel, reversed: false)
+                return (pairModel: rates.find(byPair: pair?.identity ?? ""), reversed: reversed)
             }
             .map{
                 guard let rate = (bid ? $0.pairModel?.bid : $0.pairModel?.ask)?.decimalValue else { return nil }

@@ -18,8 +18,9 @@ public class TradingAssetsViewModel {
         
         let nonEmptyWallets =  authManager.lykkeWallets.requestNonEmptyWallets()
         let allAssets = authManager.allAssets.request()
-        let assetPairs = authManager.assetPairRates.request(withParams: true)
-        
+        let assetPairs = authManager.assetPairs.request()
+        let assetPairRates = authManager.assetPairRates.request(withParams: true)
+
         loadingViewModel = LoadingViewModel([
             nonEmptyWallets.isLoading(),
             allAssets.isLoading(),
@@ -29,23 +30,22 @@ public class TradingAssetsViewModel {
         availableToSell = nonEmptyWallets.filterSuccess()
         
         availableToBuy =
-            Observable.zip(nonEmptyWallets.filterSuccess(), allAssets.filterSuccess(), assetPairs.filterSuccess())
-                .map{wallets, assets, pairs in
-                    let pairsSet = Set(pairs.map { $0.identity })
-                    return assets.filter{asset in
-                        guard let assetId = asset.displayId else { return false }
-                        return wallets.contains(withAssetId: assetId, assetPairs: pairsSet)
-                    }
+            Observable.combineLatest(nonEmptyWallets.filterSuccess(), allAssets.filterSuccess(), assetPairs.filterSuccess(), assetPairRates.filterSuccess())
+                .map{wallets, assets, pairs, pairRates in
+                    let pairRatesSet = Set(pairRates.map { $0.identity })
+                    let pairsWithRates = pairs.filter { pairRatesSet.contains($0.identity) }
+                    return assets.filter { asset in wallets.contains(withAsset: asset, assetPairs: pairsWithRates) }
         }
     }
 }
 
 extension Array where Element == LWSpotWallet {
-    func contains(withAssetId assetId: String, assetPairs: Set<String>) -> Bool {
-        return contains{wallet in
-            guard let walletId = wallet.asset.displayId else {return false}
-            let possiblePairs: Set = ["\(assetId)\(walletId)", "\(walletId)\(assetId)"]
-            return !assetPairs.isDisjoint(with: possiblePairs)
+    func contains(withAsset asset: LWAssetModel, assetPairs: [LWAssetPairModel]) -> Bool {
+        return contains { wallet in
+            return assetPairs.contains { pair in
+                return  (pair.baseAsset == wallet.asset && pair.quotingAsset == asset) ||
+                        (pair.quotingAsset == wallet.asset && pair.baseAsset == asset)
+            }
         }
     }
 }
