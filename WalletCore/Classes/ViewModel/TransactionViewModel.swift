@@ -53,7 +53,7 @@ open class TransactionViewModel {
             .asDriver(onErrorJustReturn: "")
         
         self.title = Observable.combineLatest(assetObservable, itemObservable){(asset: $0, item: $1)}
-            .map{ dependency.formatter.formatDisplayName(asset: $0.asset, item: $0.item) }
+            .map{ dependency.formatter.formatTransactionTitle(asset: $0.asset, item: $0.item) }
             .asDriver(onErrorJustReturn: "")
         
         self.icon = itemObservable

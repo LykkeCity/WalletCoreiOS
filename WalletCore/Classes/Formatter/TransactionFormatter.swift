@@ -31,7 +31,7 @@ public protocol TransactionFormatterProtocol {
     ///   - asset: History asset
     ///   - item: History record
     /// - Returns: Formatted string
-    func formatDisplayName(asset: LWAssetModel?, item: LWBaseHistoryItemType) -> String
+    func formatTransactionTitle(asset: LWAssetModel?, item: LWBaseHistoryItemType) -> String
 }
 
 public extension TransactionFormatterProtocol {
@@ -67,8 +67,8 @@ public extension TransactionFormatterProtocol {
     ///   - asset: History asset
     ///   - item: History record
     /// - Returns: Formatted string
-    func formatDisplayName(asset: LWAssetModel?, item: LWBaseHistoryItemType) -> String {
-        let assetName = asset?.displayFullName ?? ""
+    func formatTransactionTitle(asset: LWAssetModel?, item: LWBaseHistoryItemType) -> String {
+        let assetName = asset?.displayId ?? ""
         return "\(item.localizedString) \(assetName)"
     }
 }
