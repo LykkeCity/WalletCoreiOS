@@ -60,6 +60,7 @@ open class LoadingViewModel {
             .filter{!($0 == 0 && $1 == 0)} // filter initial setup isLoadingCount/isNotLoadingCount = 0
             .map{$0 > $1}
             .distinctUntilChanged()
+            .observeOn(mainScheduler)
             .shareReplay(1)
     }
 }
