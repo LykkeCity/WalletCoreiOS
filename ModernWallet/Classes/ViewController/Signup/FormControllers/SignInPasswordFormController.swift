@@ -41,13 +41,7 @@ class SignInPasswordFormController: FormController {
         return Localize("auth.newDesign.signin")
     }
     
-    var next: FormController? {
-        guard
-            let privateKeyManager = LWPrivateKeyManager.shared(),
-            privateKeyManager.isPrivateKeyLykkeEmpty()
-        else {
-            return nil
-        }
+    var next: FormController? {        
         return SignInConfirmPhoneFormController(signIn: true, phone: sendSmsViewModel.phonenumber.value)
     }
     
