@@ -13,23 +13,31 @@ import RxCocoa
 
 open class ClientCodesViewModel {
     
+    /// Observable of LWPacketEncodedMainKey that receive events only after encoded main keys is retrieved, decoded && cached
     public let encodeMainKeyObservable : Observable<LWPacketEncodedMainKey>
-    public let errors: Observable<[AnyHashable: Any]>
-    public let loadingViewModel: LoadingViewModel
     
+    /// Errors observalbe that accumulates errors from all http calls made in this view model
+    public let errors: Observable<[AnyHashable: Any]>
+    
+    /// Loading view model that merge all http calls
+    public let loadingViewModel: LoadingViewModel
+
+    /// - Parameters:
+    ///   - smsCodeForRetrieveKey: SMS code sent to the user that he/she should fill in order to get the encoded private key
+    ///   - triggerForSMSCode: A trigger for sending sms code
+    ///   - dependency: All dependency classes needed for this view model
     public init(
-        trigger: Observable<Void>,
+        smsCodeForRetrieveKey: Observable<String>,
+        triggerForSMSCode: Observable<Void> = Observable.just(()),
         dependency: (authManager: LWRxAuthManager, keychainManager: LWKeychainManager)
     ) {
-    
-        
-        let getClientCodeObservable = trigger
+        let getClientCodeObservable = triggerForSMSCode
             .flatMapLatest{_ in dependency.authManager.getClientCodes.request()}
             .shareReplay(1)
 
-        let postClientCodesObservable = getClientCodeObservable.filterSuccess()
-            .flatMapLatest{result in
-                dependency.authManager.postClientCodes.request(withParams: result.codeSms)
+        let postClientCodesObservable = smsCodeForRetrieveKey
+            .flatMapLatest{smsCode in
+                dependency.authManager.postClientCodes.request(withParams: smsCode)
             }
             .shareReplay(1)
         
