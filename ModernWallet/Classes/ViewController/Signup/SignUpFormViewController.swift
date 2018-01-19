@@ -110,31 +110,13 @@ class SignUpFormViewController: UIViewController {
             navigationController?.dismiss(animated: true)
         }
     }
-
-    private func didPush() {
-        if forms.count > 1 {
-            SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
-        }
-    }
     
+    // MARK: - Push methods
     private func willPush() {
         registerButton.isHidden = forms.isNotEmpty
         #if TEST
             selectTestServerButton.isHidden = forms.isNotEmpty
         #endif
-    }
-    
-    private func didPop() {
-        SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
-        let isNotFirstStep = forms.count > 1
-        registerButton.isHidden = isNotFirstStep
-        #if TEST
-            selectTestServerButton.isHidden = isNotFirstStep
-        #endif
-    }
-    
-    private func willPop() {
-        
     }
     
     func push(formController: FormController, animated: Bool) {
@@ -173,6 +155,19 @@ class SignUpFormViewController: UIViewController {
         forms.append(formController)
         
         didPush()
+    }
+    
+    private func didPush() {
+        if forms.count > 1 {
+            SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
+        }
+    }
+    
+    // MARK: - Pop methods
+    private func willPop() {
+        if let setPasswordFormController = forms.last as? SignUpSetPasswordFormController {
+            forms = [SingInEmailFormController(), SignUpEmailFormController(email: setPasswordFormController.email), setPasswordFormController]
+        }
     }
     
     func popFormController(animated: Bool) {
@@ -216,6 +211,15 @@ class SignUpFormViewController: UIViewController {
         submitButton.setTitle(previousFormController.buttonTitle, for: .normal)
         
         didPop()
+    }
+    
+    private func didPop() {
+        SignUpStep.instance = SignUpStep.initFrom(formController: forms.last)
+        let isNotFirstStep = forms.count > 1
+        registerButton.isHidden = isNotFirstStep
+        #if TEST
+            selectTestServerButton.isHidden = isNotFirstStep
+        #endif
     }
     
     private func setBackVisible(_ visible: Bool) {
