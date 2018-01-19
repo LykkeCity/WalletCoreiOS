@@ -10,7 +10,7 @@ import Foundation
 
 public extension LWAssetModel {
     func getPairId(withAsset asset: LWAssetModel) -> String {
-        return "\(displayId ?? "")\(asset.displayId ?? "")"
+        return LWCache.assetPair(forAssetId: identity, otherAssetId: asset.identity)?.identity ?? ""
     }
     
     /// Proxy to iconUrlString

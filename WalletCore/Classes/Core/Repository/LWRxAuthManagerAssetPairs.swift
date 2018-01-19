@@ -41,14 +41,12 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
     }
     
     public func request(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>> {
-        let pairId = baseAsset.getPairId(withAsset: quotingAsset)
-        let reversedPairId = quotingAsset.getPairId(withAsset: baseAsset)
-        
         return request(withParams: ())
             .filterSuccess()
             .map{ pairs in
-                pairs.first{ model in
-                    model.identity == pairId || model.identity == reversedPairId
+                pairs.first { (model: LWAssetPairModel) in
+                    (model.baseAssetId == baseAsset.identity && model.quotingAssetId == quotingAsset.identity) ||
+                    (model.baseAssetId == quotingAsset.identity && model.quotingAssetId == baseAsset.identity)
                 }
             }
             .map{ ApiResult.success(withData: $0) }
