@@ -41,8 +41,14 @@ class SignInPasswordFormController: FormController {
         return Localize("auth.newDesign.signin")
     }
     
-    var next: FormController? {        
-        return SignInConfirmPhoneFormController(signIn: true, phone: sendSmsViewModel.phonenumber.value)
+    var next: FormController? {
+//        guard
+//            let privateKeyManager = LWPrivateKeyManager.shared(),
+//            privateKeyManager.isPrivateKeyLykkeEmpty()
+//        else {
+//            return nil
+//        }
+        return SignInConfirmPhoneFormController(signIn: true, phone: LWKeychainManager.instance()?.personalData()?.phone ?? "")
     }
     
     var segueIdentifier: String? {
@@ -59,19 +65,6 @@ class SignInPasswordFormController: FormController {
         let viewModel = LogInViewModel(submit: self.loginTrigger.asObservable())
         viewModel.email.value = self.email
         return viewModel
-    }()
-    
-    private var sendSmsTrigger = PublishSubject<Void>()
-    
-    lazy var sendSmsViewModel : PhoneNumberViewModel = {
-        return PhoneNumberViewModel(saveSubmit: self.sendSmsTrigger.asObservable() )
-    }()
-    
-    lazy var loadingViewModel: LoadingViewModel = {
-        return LoadingViewModel([
-            self.loginViewModel.loading,
-            self.sendSmsViewModel.loadingSaveChanges
-        ])
     }()
     
     private var disposeBag = DisposeBag()
@@ -111,33 +104,25 @@ class SignInPasswordFormController: FormController {
         pinViewControllerObservable
             .bind(to: pinTrigger)
             .disposed(by: disposeBag)
-           
-        pinResult
-            .filterFalseAndBind(toTrigger: nextTrigger)
-            .disposed(by: disposeBag)
         
-        pinResult.filter { $0 }
-            .map { [sendSmsViewModel] _ in
-                sendSmsViewModel.phonenumber.value = LWKeychainManager.instance()?.personalData()?.phone ?? ""
-                return ()
-            }
-            .bind(to: sendSmsTrigger)
-            .disposed(by: disposeBag)
-        
-        loadingViewModel.isLoading
+        loginViewModel.loading
             .bind(to: loading)
             .disposed(by: disposeBag)
         
-        sendSmsViewModel.saveSettingsResult.asObservable()
-            .filterError()
+        loginViewModel.result.asObservable().filterError()
             .bind(to: error)
             .disposed(by: disposeBag)
 
-        loadingViewModel.isLoading
-            .filter{ !$0 }
-            .withLatestFrom(sendSmsViewModel.saveSettingsResult.asObservable().filterSuccess()){ _ in () }
+        pinResult
+            .filter{ $0 }
+            .map{ _ in () }
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
+        
+//        loginViewModel.result.asObservable().filterSuccess()
+//            .map{ _ in () }
+//            .bind(to: nextTrigger)
+//            .disposed(by: disposeBag)
         
         loginViewModel.isValid
             .bind(to: button.rx.isEnabled)
