@@ -32,8 +32,7 @@
 
 -(NSDictionary *) params
 {
-//    NSDictionary *params=@{@"PubKey":_pubKey, @"EncodedPrivateKey":_encodedPrivateKey, @"PrivateKey":[LWPrivateKeyManager shared].wifPrivateKeyLykke};
-    NSDictionary *params=@{@"PubKey":_pubKey, @"EncodedPrivateKey":_encodedPrivateKey, @"TempKey":[LWPrivateKeyManager shared].wifPrivateKeyLykke};
+    NSDictionary *params=@{@"PubKey":_pubKey, @"EncodedPrivateKey":_encodedPrivateKey};
     return params;
 }
 
