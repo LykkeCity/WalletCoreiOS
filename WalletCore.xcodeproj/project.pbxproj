@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25DB3CFC20123ECE0027789B /* LWRxAuthManagerAssetPairsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB3CFB20123ECE0027789B /* LWRxAuthManagerAssetPairsMock.swift */; };
 		39A5BF2421369EE514EA22D3 /* Pods_WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE31B8E679DB485E0AC92E8 /* Pods_WalletCore.framework */; };
 		460843BF1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */; };
 		460843C21FBF1C2400F14A5A /* CurrencyDepositViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460843C11FBF1C2400F14A5A /* CurrencyDepositViewModel.swift */; };
@@ -681,6 +682,7 @@
 /* Begin PBXFileReference section */
 		08A16B742600639B84A13EE5 /* Pods-WalletCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		15FF07B01F0658D96FF9CEC5 /* Pods-WalletCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.debug.xcconfig"; sourceTree = "<group>"; };
+		25DB3CFB20123ECE0027789B /* LWRxAuthManagerAssetPairsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerAssetPairsMock.swift; sourceTree = "<group>"; };
 		3EA74A9725DA6B8766C4E699 /* Pods_WalletCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCurrencyDeposit.swift; sourceTree = "<group>"; };
 		460843C11FBF1C2400F14A5A /* CurrencyDepositViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDepositViewModel.swift; sourceTree = "<group>"; };
@@ -2459,6 +2461,7 @@
 				61DC8AC11FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift */,
 				61DC8AC31FFD1F53009BC942 /* LWRxAuthManagerAllAssetsMock.swift */,
 				61DC8ACA1FFE44C3009BC942 /* LWRxAuthManagerAssetPairRatesMock.swift */,
+				25DB3CFB20123ECE0027789B /* LWRxAuthManagerAssetPairsMock.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -3459,6 +3462,7 @@
 				61DC8AC91FFE443D009BC942 /* CurrencyExchangerTests.swift in Sources */,
 				61026C211FFD0E9900A5F11A /* BuyOptimizedViewModelTests.swift in Sources */,
 				6163A9441FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift in Sources */,
+				25DB3CFC20123ECE0027789B /* LWRxAuthManagerAssetPairsMock.swift in Sources */,
 				61DC8AC71FFE1CEF009BC942 /* LWAssetModel+Extensions.swift in Sources */,
 				61DC8AC41FFD1F53009BC942 /* LWRxAuthManagerAllAssetsMock.swift in Sources */,
 				46E5D0C91F5DD77F00D78692 /* LoadingViewModelTests.swift in Sources */,

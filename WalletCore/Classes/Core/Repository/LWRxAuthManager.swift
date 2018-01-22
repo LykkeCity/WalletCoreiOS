@@ -15,6 +15,7 @@ public protocol LWRxAuthManagerProtocol {
     var baseAsset: LWRxAuthManagerBaseAssetProtocol { get }
     var allAssets: LWRxAuthManagerAllAssetsProtocol { get }
     var assetPairRates: LWRxAuthManagerAssetPairRatesProtocol { get }
+    var assetPairs: LWRxAuthManagerAssetPairsProtocol { get }
 }
 
 public class LWRxAuthManager: LWRxAuthManagerProtocol {
@@ -41,6 +42,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var allAssets: LWRxAuthManagerAllAssetsProtocol             = { LWRxAuthManagerAllAssets() }()
     public lazy var assetPairRates: LWRxAuthManagerAssetPairRatesProtocol   = { LWRxAuthManagerAssetPairRates() }()
     public lazy var baseAsset: LWRxAuthManagerBaseAssetProtocol             = { LWRxAuthManagerBaseAsset() }()
+    public lazy var assetPairs: LWRxAuthManagerAssetPairsProtocol           = {LWRxAuthManagerAssetPairs()}()
     
     public lazy var countryCodes        = {LWRxAuthManagerCountryCodes()}()
     public lazy var prevCardPayment     = {LWAuthManagerPacketPrevCardPayment()}()
@@ -48,7 +50,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var lykkeWallets        = {LWRxAuthManagerLykkeWallets()}()
     public lazy var mainInfo            = {LWRxAuthManagerMainInfo()}()
     public lazy var emailWalletAddress  = {LWRxAuthManagerEmailWalletAddress()}()
-    public lazy var assetPairs          = {LWRxAuthManagerAssetPairs()}()
+    
     public lazy var assetPairRate       = {LWRxAuthManagerAssetPairRate()}()
     public lazy var graphPeriods        = {LWRxAuthManagerGraphPeriods()}()
     public lazy var graphData           = {LWRxAuthManagerGraphData()}()

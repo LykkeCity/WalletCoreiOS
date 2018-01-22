@@ -12,6 +12,6 @@ import Foundation
 extension LWSpotWallet {
     convenience init(assetId: String) {
         self.init()
-        asset = LWAssetModel(assetId: "USD")
+        asset = LWAssetModel(assetId: assetId)
     }
 }

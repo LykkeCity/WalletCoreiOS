@@ -74,10 +74,13 @@ public class BuyOptimizedViewModel {
             .filterSuccess()
             .shareReplay(1)
         
-        let pairsRequest = dependency.authManager.assetPairRates.request(withParams: true)
+        let pairsRequest = dependency.authManager.assetPairs.request()
         let pairs = pairsRequest.filterSuccess()
         
-        loadingViewModel = LoadingViewModel([baseAssetRequest.isLoading(),pairsRequest.isLoading()])
+        let pairsRateRequest = dependency.authManager.assetPairRates.request(withParams: true)
+        let pairsRate = pairsRateRequest.filterSuccess()
+        
+        loadingViewModel = LoadingViewModel([baseAssetRequest.isLoading(),pairsRequest.isLoading(),pairsRateRequest.isLoading()])
         baseAssetCode = baseAssetObservable
             .mapToDisplayId()
             .asDriver(onErrorJustReturn: "")
@@ -108,7 +111,7 @@ public class BuyOptimizedViewModel {
             )
             .map{(asset: $0, units: $1, bid: $2)}
             .shareReplay(1)
-        
+       
         buyAmountInBase = buyAssetAmountObservable
             .mapToUnitsInBase(currencyExchanger: dependency.currencyExchanger)
             .asDriver(onErrorJustReturn: "")
@@ -146,29 +149,44 @@ public class BuyOptimizedViewModel {
             .startWith("")
         
         let spreadObservable = Observable.combineLatest(pairs,
+                                                        pairsRate,
                                                         buyAsset.asObservable(),
                                                         payWithWallet.asObservable(),
-                                                        baseAssetObservable)
-            .map{pairRates,buyAsset,payWithWallet,baseAsset -> (buySellPair: LWAssetPairRateModel?, sellBasePair: LWAssetPairRateModel?, baseAsset: LWAssetModel?)? in
+                                                        baseAssetObservable,
+                                                        bid.asObservable())
+            .map{pairs,pairsRate,buyAsset,payWithWallet,baseAsset,bid -> (buySellPair: LWAssetPairModel?, secondaryBasePair: LWAssetPairModel?, baseAsset: LWAssetModel?)? in
                 guard let payWithWallet = payWithWallet else {return nil}
                 guard let buyAsset = buyAsset else {return nil}
-                let buySellPairStr = buyAsset.asset.getPairId(withAsset: payWithWallet.wallet.asset)
-                let sellBasePairStr = payWithWallet.wallet.asset.getPairId(withAsset:  baseAsset)
-                return (buySellPair: pairRates.find(byPair: buySellPairStr), sellBasePair: pairRates.find(byPair: sellBasePairStr),baseAsset: baseAsset)
+                let buySell = pairs.find(assets: [buyAsset.asset.identity,payWithWallet.wallet.asset.identity])
+                let secondaryBase = pairs.find(assets: [baseAsset.identity,buySell?.quotingAssetId])
+
+                guard let buySellPair = buySell?.identity else {return nil}
+                 let secondaryBasePair = secondaryBase?.identity
+
+                buySell?.rate = pairsRate.find(byPair: buySellPair)
+                secondaryBase?.rate = pairsRate.find(byPair: secondaryBasePair)
+
+                return (buySellPair: buySell, secondaryBasePair:secondaryBase, baseAsset:baseAsset)
+                
         }
         .shareReplay(1)
-        
+
         
         spreadAmount = spreadObservable
             .map{data -> String? in
                 guard let data = data else {return nil}
-                guard let buySellPair = data.buySellPair else {return nil}
-                guard let sellBasePair = data.sellBasePair else {return nil}
+                guard let buySellPairRate = data.buySellPair?.rate else {return nil}
                 guard let baseAsset = data.baseAsset else {return nil}
+                
+                guard let secondaryBasePairRate = data.secondaryBasePair?.rate else {
+                    let spread = abs(buySellPairRate.ask.doubleValue - buySellPairRate.bid.doubleValue)
+                    return Decimal(spread).convertAsCurrency(asset: baseAsset, withCode: false)
+                }
+                
+                let spread = abs(buySellPairRate.ask.doubleValue - buySellPairRate.bid.doubleValue)
+                let secondaryBaseRate = (secondaryBasePairRate.ask.doubleValue + secondaryBasePairRate.bid.doubleValue) / 2
+                let spreadInBase =  Decimal(spread * secondaryBaseRate)
 
-                let spread = abs(buySellPair.ask.doubleValue - buySellPair.bid.doubleValue)
-                let sellToBaseRate = (sellBasePair.ask.doubleValue + sellBasePair.bid.doubleValue) / 2
-                let spreadInBase =  Decimal(spread * sellToBaseRate)
                 return spreadInBase.convertAsCurrency(asset: baseAsset, withCode: false)
             }
             .replaceNilWith("")
@@ -177,10 +195,10 @@ public class BuyOptimizedViewModel {
         spreadPercent = spreadObservable
             .map{data -> String? in
                 guard let data = data else {return nil}
-                guard let buySellPair = data.buySellPair else {return nil}
+                guard let buySellPairRate = data.buySellPair?.rate else {return nil}
                 
-                let spread = abs(buySellPair.ask.doubleValue - buySellPair.bid.doubleValue)
-                let percent = (spread / buySellPair.ask.doubleValue) * 100
+                let spread = abs(buySellPairRate.ask.doubleValue - buySellPairRate.bid.doubleValue)
+                let percent = (spread / buySellPairRate.ask.doubleValue) * 100
                 return NumberFormatter.percentInstancePerise.string(from: NSDecimalNumber(decimal: Decimal(percent)))
             }
             .replaceNilWith("")
