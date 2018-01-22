@@ -10,6 +10,7 @@ import UIKit
 import KYDrawerController
 import WalletCore
 import FirebaseAnalytics
+import RxSwift
 
 class MenuTableViewController: UITableViewController {
 
@@ -37,6 +38,9 @@ class MenuTableViewController: UITableViewController {
             self.onSelect = onSelect
         }
     }
+    
+    private var itemsOrder = Variable(UserDefaults.standard.menuOrder)
+    private let disposeBag = DisposeBag()
     
     private var items : [MenuItem] = [
         MenuItem(title: Localize("menu.newDesign.addMoney"), image: #imageLiteral(resourceName: "ADD MONEY"), storyboardName: "AddMoney"),
@@ -69,6 +73,13 @@ class MenuTableViewController: UITableViewController {
         
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(MenuTableViewController.longPressGestureRecognized(_:)))
         tableView.addGestureRecognizer(longpress)
+        
+        itemsOrder.asObservable()
+            .filter({ [weak self] in $0.count == self?.items.count })
+            .subscribe(onNext: {
+                UserDefaults.standard.menuOrder = $0
+            })
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Table view data source
@@ -81,7 +92,8 @@ class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuTableViewCell
         
-        let item = items[indexPath.row]
+        let position = itemsOrder.value[indexPath.row]
+        let item = items[position]
         if let menuNameLabelColor = item.color {
             cell.menuNameLabel.textColor = menuNameLabelColor
         }
@@ -97,7 +109,8 @@ class MenuTableViewController: UITableViewController {
             selectedCell.isSelected = false
         }
         
-        let item = items[indexPath.row]
+        let position = itemsOrder.value[indexPath.row]
+        let item = items[position]
         Analytics.logEvent("select_menu_item", parameters: [
                 "name" : item.title
             ])
@@ -121,6 +134,8 @@ class MenuTableViewController: UITableViewController {
     private var cellIsAnimating = false
     private var cellNeedToShow = false
     private var initialIndexPath: IndexPath?
+    /// Store the initial IndexPath, from which the reorder started
+    private var movementStartIndexPath: IndexPath?
     
     @objc private func longPressGestureRecognized(_ gestureRecognizer: UILongPressGestureRecognizer) {
         let locationInView = gestureRecognizer.location(in: tableView)
@@ -135,6 +150,8 @@ class MenuTableViewController: UITableViewController {
             }
             initialIndexPath = indexPath
             cellSnapshot  = snapshotOfCell(cell)
+            
+            movementStartIndexPath = indexPath
             
             var center = cell.center
             cellSnapshot!.center = center
@@ -173,7 +190,6 @@ class MenuTableViewController: UITableViewController {
             cellSnapshot.center = center
             
             if ((indexPath != nil) && (indexPath != initialIndexPath)) {
-                items.swapAt(initialIndexPath!.row, indexPath!.row)
                 tableView.moveRow(at: initialIndexPath!, to: indexPath!)
                 initialIndexPath = indexPath
             }
@@ -189,6 +205,9 @@ class MenuTableViewController: UITableViewController {
                 cell.alpha = 0.0
             }
             
+            let movedItemIndex = itemsOrder.value.remove(at: movementStartIndexPath!.row)
+            itemsOrder.value.insert(movedItemIndex, at: indexPath.row)
+            
             UIView.animate(withDuration: 0.25, animations: { () -> Void in
                 self.cellSnapshot?.center = cell.center
                 self.cellSnapshot?.transform = CGAffineTransform.identity
@@ -198,6 +217,7 @@ class MenuTableViewController: UITableViewController {
             }, completion: { (finished) -> Void in
                 if finished {
                     self.initialIndexPath = nil
+                    self.movementStartIndexPath = nil
                     self.cellSnapshot?.removeFromSuperview()
                     self.cellSnapshot = nil
                     self.tableView.reloadData()

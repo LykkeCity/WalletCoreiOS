@@ -14,8 +14,14 @@ extension UserDefaults {
         tempEmail: "tempEmail",
         tempPhone: "tempPhone",
         signUpStep: "SignUpStep",
-        loggedIn: "loggedIn"
+        loggedIn: "loggedIn",
+        menuOrder: "menuOrder"
     )
+    
+    var menuOrder: [Int] {
+        get { return array(forKey: UserDefaults.keys.menuOrder) as? [Int] ?? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] }
+        set { set(newValue, forKey: UserDefaults.keys.menuOrder) }
+    }
     
     var tempEmail: String? {
         get { return string(forKey: UserDefaults.keys.tempEmail) }
@@ -45,5 +51,4 @@ extension UserDefaults {
         signUpStep = nil
         synchronize()
     }
-    
 }
