@@ -44,7 +44,6 @@
 		46A48F811FA9B06B00843775 /* EmptyPortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A48F801FA9B06B00843775 /* EmptyPortfolioView.swift */; };
 		46A48F831FA9B07500843775 /* EmptyPortfolioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A48F821FA9B07500843775 /* EmptyPortfolioView.xib */; };
 		46E3FF2E1F9F9A8A002D13B4 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */; };
-		48E63CCB26A3592E77C997FF /* Pods_ModernMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C865A6948B11964FB854411 /* Pods_ModernMoney.framework */; };
 		6100D8D81F1F327200EB40A5 /* LineChartDataSet+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */; };
 		6100D8DA1F1F328D00EB40A5 /* LineChartView+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */; };
 		6100D8DC1F1F334B00EB40A5 /* UIStackView+Hint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6100D8DB1F1F334B00EB40A5 /* UIStackView+Hint.swift */; };
@@ -126,6 +125,7 @@
 		66EE6F6D1FC879D600F56E4D /* EmptyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE6F6C1FC879D600F56E4D /* EmptyWalletViewController.swift */; };
 		66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */; };
 		66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */; };
+		7CD44AF3D013BFFB1799B811 /* Pods_ModernMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F1CC5A2AE83C82DB8C8DA0F /* Pods_ModernMoney.framework */; };
 		8705FF371FC8BF1D00E0F2B9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FF361FC8BF1D00E0F2B9 /* RootViewController.swift */; };
 		870D4DD11FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */; };
 		870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870D4DD21FB1036000F23948 /* UIViewController+DrawerController.swift */; };
@@ -166,8 +166,8 @@
 		AB29EEF81FEB0C000006F43F /* LWNetworkClient+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */; };
 		AB6752DB20076BF1008A44F2 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6752DA20076BF1008A44F2 /* SelectCountryViewController.swift */; };
 		AB9EA05B20081A9900900058 /* SelectCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EA05A20081A9900900058 /* SelectCountryTableViewCell.swift */; };
-		C5B982ED1FE974F300D1A642 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B982EC1FE974F200D1A642 /* UIImageEffects.m */; };
 		C1DF9EF41FE02ADD00D15A72 /* SendToWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF9EF31FE02ADD00D15A72 /* SendToWalletViewController.swift */; };
+		C5B982ED1FE974F300D1A642 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B982EC1FE974F200D1A642 /* UIImageEffects.m */; };
 		CC48AB581F0E802A0081AF27 /* Buy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC48AB571F0E802A0081AF27 /* Buy.storyboard */; };
 		CC8A99AA1EF7BAB80078E6B0 /* AddMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */; };
 		CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC94587C1F03D44E00676249 /* EndBankViewController.swift */; };
@@ -187,11 +187,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0D38EBBA7496F4FDC04B73E2 /* Pods-ModernWallet.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.test.xcconfig"; sourceTree = "<group>"; };
 		11DA906845E44B9E56EC79B6 /* PortfolioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
-		1E40AEA280DFA63F977172BD /* Pods-ModernMoney.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.release.test.xcconfig"; sourceTree = "<group>"; };
+		18D2E9858DFE4FA358E0A0C1 /* Pods-ModernMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.release.xcconfig"; sourceTree = "<group>"; };
+		1B4362117F035AB105CCBAC9 /* Pods-ModernMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.debug.xcconfig"; sourceTree = "<group>"; };
 		253592A41FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyCryptoCurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		253592A51FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMoneyCryptoCurrencyTableViewCell.xib; sourceTree = "<group>"; };
+		332D124097658BC0F8525456 /* Pods-ModernMoney.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.release.test.xcconfig"; sourceTree = "<group>"; };
 		461C6F8C1F8B4E9000C5E8B3 /* BuyAssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyAssetListView.xib; sourceTree = "<group>"; };
 		461C6F8E1F8B4EB200C5E8B3 /* BuyAssetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyAssetListView.swift; sourceTree = "<group>"; };
 		462878721F433A710006BE45 /* GraphProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphProtocol.swift; sourceTree = "<group>"; };
@@ -228,7 +229,7 @@
 		46A48F821FA9B07500843775 /* EmptyPortfolioView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyPortfolioView.xib; sourceTree = "<group>"; };
 		46B583741F94C6D600B475DB /* ModernWallet-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ModernWallet-Bridging-Header.h"; sourceTree = "<group>"; };
 		46E3FF2D1F9F9A8A002D13B4 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
-		5C865A6948B11964FB854411 /* Pods_ModernMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModernMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B7FEC481BBFC295A42F342C /* Pods-ModernMoney.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.debug.test.xcconfig"; sourceTree = "<group>"; };
 		6100D8D71F1F327200EB40A5 /* LineChartDataSet+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartDataSet+Setup.swift"; sourceTree = "<group>"; };
 		6100D8D91F1F328D00EB40A5 /* LineChartView+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LineChartView+Setup.swift"; sourceTree = "<group>"; };
 		6100D8DB1F1F334B00EB40A5 /* UIStackView+Hint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Hint.swift"; sourceTree = "<group>"; };
@@ -310,8 +311,6 @@
 		66EE6F6C1FC879D600F56E4D /* EmptyWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWalletViewController.swift; sourceTree = "<group>"; };
 		66F6A2C81F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutPersonalDetailsViewController.swift; sourceTree = "<group>"; };
 		66F6A2CA1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOurBankAccountDetailsViewController.swift; sourceTree = "<group>"; };
-		69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.debug.xcconfig"; sourceTree = "<group>"; };
-		748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModernWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8705FF361FC8BF1D00E0F2B9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		870D4DD01FB1016A00F23948 /* DrawerEmbedMainControllerSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerEmbedMainControllerSegue.swift; sourceTree = "<group>"; };
 		870D4DD21FB1036000F23948 /* UIViewController+DrawerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DrawerController.swift"; sourceTree = "<group>"; };
@@ -320,9 +319,7 @@
 		87C6CDF91FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutAssetDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		87C6CDFB1FA5BBEC0069CC38 /* CashOutTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutTotalTableViewCell.swift; sourceTree = "<group>"; };
 		87C6CDFD1FA5BCBD0069CC38 /* CashOutConfirmationDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutConfirmationDetailTableViewCell.swift; sourceTree = "<group>"; };
-		8B274A6508F85B5D708F0876 /* Pods-ModernMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.release.xcconfig"; sourceTree = "<group>"; };
-		8F58CE1FC4A5FA6016BC92F9 /* Pods-ModernWallet.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.release.test.xcconfig"; sourceTree = "<group>"; };
-		9A8DBCF0110461E187A3B682 /* Pods-ModernMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.debug.xcconfig"; sourceTree = "<group>"; };
+		9F1CC5A2AE83C82DB8C8DA0F /* Pods_ModernMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ModernMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A102CF051D8A7CB500089A92 /* ModernWallet.Test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ModernWallet.Test.entitlements; sourceTree = "<group>"; };
 		A10A94F31D0D33AA00557C87 /* ThreeDots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThreeDots.png; sourceTree = "<group>"; };
 		A10A95041D0E8F5F00557C87 /* SlashSign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SlashSign@2x.png"; sourceTree = "<group>"; };
@@ -353,7 +350,6 @@
 		A1BCD2DE1D01651D00CF42E4 /* tips_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips_about.png; sourceTree = "<group>"; };
 		A1D65DD11D602B0100828783 /* english_words_list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = english_words_list.txt; sourceTree = "<group>"; };
 		A1F4D4A61DCAFF50002EF855 /* lykke-ethereum.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "lykke-ethereum.html"; sourceTree = "<group>"; };
-		A57C827D33CFD609CABF906F /* Pods-ModernMoney.debug.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.debug.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.debug.test.xcconfig"; sourceTree = "<group>"; };
 		AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWNetworkClient+Extension.swift"; sourceTree = "<group>"; };
 		AB6752DA20076BF1008A44F2 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		AB9EA05A20081A9900900058 /* SelectCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryTableViewCell.swift; sourceTree = "<group>"; };
@@ -378,7 +374,6 @@
 		CF66327C1C1768B0004353F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FE37221EEE30CA5CF71A6D1E /* Pods-ModernWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-ModernWallet/Pods-ModernWallet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,7 +389,7 @@
 				A15B3F071D13AAFE00A6B506 /* libiconv.tbd in Frameworks */,
 				A15B3EE21D13A4A500A6B506 /* AVFoundation.framework in Frameworks */,
 				EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */,
-				48E63CCB26A3592E77C997FF /* Pods_ModernMoney.framework in Frameworks */,
+				7CD44AF3D013BFFB1799B811 /* Pods_ModernMoney.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,21 +416,6 @@
 				665286621FD1BD1E0085640C /* PinViewController.xib */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		1F9B7E2D5363F7F85CE0B7C3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				69C31D6EBBAF9D86AF665D7C /* Pods-ModernWallet.debug.xcconfig */,
-				0D38EBBA7496F4FDC04B73E2 /* Pods-ModernWallet.debug.test.xcconfig */,
-				FE37221EEE30CA5CF71A6D1E /* Pods-ModernWallet.release.xcconfig */,
-				8F58CE1FC4A5FA6016BC92F9 /* Pods-ModernWallet.release.test.xcconfig */,
-				9A8DBCF0110461E187A3B682 /* Pods-ModernMoney.debug.xcconfig */,
-				A57C827D33CFD609CABF906F /* Pods-ModernMoney.debug.test.xcconfig */,
-				8B274A6508F85B5D708F0876 /* Pods-ModernMoney.release.xcconfig */,
-				1E40AEA280DFA63F977172BD /* Pods-ModernMoney.release.test.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		2532E5BD1FEA92AB009D2C3A /* AddMoney */ = {
@@ -793,6 +773,17 @@
 			path = BackupPrivateKey;
 			sourceTree = "<group>";
 		};
+		72A76C69889DEAE095EE8160 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1B4362117F035AB105CCBAC9 /* Pods-ModernMoney.debug.xcconfig */,
+				4B7FEC481BBFC295A42F342C /* Pods-ModernMoney.debug.test.xcconfig */,
+				18D2E9858DFE4FA358E0A0C1 /* Pods-ModernMoney.release.xcconfig */,
+				332D124097658BC0F8525456 /* Pods-ModernMoney.release.test.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		87C6CDF81FA5BA340069CC38 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,7 +837,7 @@
 				CF21DC7D1C17590E00D2399E /* ModernWallet */,
 				CF21DC7C1C17590E00D2399E /* Products */,
 				D19F0116617E74EB428F44A8 /* Frameworks */,
-				1F9B7E2D5363F7F85CE0B7C3 /* Pods */,
+				72A76C69889DEAE095EE8160 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -930,8 +921,7 @@
 				A15B3F061D13AAFE00A6B506 /* libiconv.tbd */,
 				A15B3EE11D13A4A500A6B506 /* AVFoundation.framework */,
 				EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */,
-				748C9C48B8272B7C163745F2 /* Pods_ModernWallet.framework */,
-				5C865A6948B11964FB854411 /* Pods_ModernMoney.framework */,
+				9F1CC5A2AE83C82DB8C8DA0F /* Pods_ModernMoney.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -943,13 +933,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF21DC921C17590E00D2399E /* Build configuration list for PBXNativeTarget "ModernMoney" */;
 			buildPhases = (
-				A04A8B5E409497A33AC41BE1 /* [CP] Check Pods Manifest.lock */,
+				C918EDD15CF50635C50F8104 /* [CP] Check Pods Manifest.lock */,
 				CF21DC771C17590E00D2399E /* Sources */,
 				CF21DC781C17590E00D2399E /* Frameworks */,
 				CF21DC791C17590E00D2399E /* Resources */,
 				CDECDC2F1C178C2B005AF96F /* ShellScript */,
-				73D68C996A3BC2D75978AE7E /* [CP] Embed Pods Frameworks */,
-				F38B708EB3FC8C1111058B85 /* [CP] Copy Pods Resources */,
+				4714FD13A95B6EB3AABECD0A /* [CP] Embed Pods Frameworks */,
+				165C25A20A29F6322C18E543 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1063,7 +1053,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		73D68C996A3BC2D75978AE7E /* [CP] Embed Pods Frameworks */ = {
+		165C25A20A29F6322C18E543 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4714FD13A95B6EB3AABECD0A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1143,7 +1148,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A04A8B5E409497A33AC41BE1 /* [CP] Check Pods Manifest.lock */ = {
+		C918EDD15CF50635C50F8104 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1173,21 +1178,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/Fabric/run";
-		};
-		F38B708EB3FC8C1111058B85 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1432,7 +1422,7 @@
 		};
 		CF21DC931C17590E00D2399E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A8DBCF0110461E187A3B682 /* Pods-ModernMoney.debug.xcconfig */;
+			baseConfigurationReference = 1B4362117F035AB105CCBAC9 /* Pods-ModernMoney.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
@@ -1475,7 +1465,7 @@
 		};
 		CF21DC941C17590E00D2399E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B274A6508F85B5D708F0876 /* Pods-ModernMoney.release.xcconfig */;
+			baseConfigurationReference = 18D2E9858DFE4FA358E0A0C1 /* Pods-ModernMoney.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
@@ -1569,7 +1559,7 @@
 		};
 		EC333C1F1C841DCD001C0727 /* Debug.Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A57C827D33CFD609CABF906F /* Pods-ModernMoney.debug.test.xcconfig */;
+			baseConfigurationReference = 4B7FEC481BBFC295A42F342C /* Pods-ModernMoney.debug.test.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
@@ -1658,7 +1648,7 @@
 		};
 		EC333C211C841DD9001C0727 /* Release.Test */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E40AEA280DFA63F977172BD /* Pods-ModernMoney.release.test.xcconfig */;
+			baseConfigurationReference = 332D124097658BC0F8525456 /* Pods-ModernMoney.release.test.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
