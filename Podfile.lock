@@ -140,7 +140,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftSpinner:
-    :commit: 721eb2ccd13deacde5d90fc2aa66e1c46e1c02dc
+    :commit: bd0702ff74bb6c2d6ca744d0bbeddba7b94c648d
     :git: https://github.com/StanevPrime/SwiftSpinner
 
 SPEC CHECKSUMS:
