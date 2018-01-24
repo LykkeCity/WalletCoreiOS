@@ -55,7 +55,7 @@ class BuyOptimizedViewModelTests: XCTestCase {
                 buyAsset: LWAssetModel(assetId: "BTC"),
                 payWithWallet: LWSpotWallet(assetId: "USD"),
                 bid: true,
-                expectedResult: "230"
+                expectedResult: "200(230)"
             ))
         }
     }
@@ -74,7 +74,7 @@ class BuyOptimizedViewModelTests: XCTestCase {
                 buyAsset: LWAssetModel(assetId: "USD"),
                 payWithWallet: LWSpotWallet(assetId: "BTC"),
                 bid: true,
-                expectedResult: "230"
+                expectedResult: "200(230)"
             ))
         }
     }

@@ -47,7 +47,7 @@ public class SpreadService: SpreadServiceProtocol {
         let secondaryBaseRate = (secondaryBasePairRate.ask.doubleValue + secondaryBasePairRate.bid.doubleValue) / 2
         let spreadInBase =  Decimal(spread * secondaryBaseRate)
         
-        return spreadInBase.convertAsCurrency(asset: baseAsset, withCode: false)
+        return Decimal(spread).convertAsCurrency(asset: buySellPair?.quotingAsset, withCode: false) + "(" + spreadInBase.convertAsCurrency(asset: baseAsset, withCode: false) + ")"
     }
     
     public func spreadPercent(buySellPair: LWAssetPairModel?) -> String?{
