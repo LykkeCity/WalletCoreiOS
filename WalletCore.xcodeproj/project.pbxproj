@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25377DE82017994200E2B511 /* SpreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25377DE72017994200E2B511 /* SpreadService.swift */; };
 		25DB3CFC20123ECE0027789B /* LWRxAuthManagerAssetPairsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DB3CFB20123ECE0027789B /* LWRxAuthManagerAssetPairsMock.swift */; };
 		39A5BF2421369EE514EA22D3 /* Pods_WalletCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FE31B8E679DB485E0AC92E8 /* Pods_WalletCore.framework */; };
 		460843BF1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */; };
@@ -682,6 +683,7 @@
 /* Begin PBXFileReference section */
 		08A16B742600639B84A13EE5 /* Pods-WalletCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		15FF07B01F0658D96FF9CEC5 /* Pods-WalletCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.debug.xcconfig"; sourceTree = "<group>"; };
+		25377DE72017994200E2B511 /* SpreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreadService.swift; sourceTree = "<group>"; };
 		25DB3CFB20123ECE0027789B /* LWRxAuthManagerAssetPairsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerAssetPairsMock.swift; sourceTree = "<group>"; };
 		3EA74A9725DA6B8766C4E699 /* Pods_WalletCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCurrencyDeposit.swift; sourceTree = "<group>"; };
@@ -2322,6 +2324,7 @@
 				46C9B0461F42C82300B83CCB /* CurrencyExchanger.swift */,
 				465805C21F98E5D900FFFA0A /* OffchainService.swift */,
 				66CE48781FAA244600AAB98F /* CashOutService.swift */,
+				25377DE72017994200E2B511 /* SpreadService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -3418,6 +3421,7 @@
 				46C9AE7C1F417BD700B83CCB /* LWLocalizationManager.m in Sources */,
 				46C9B0721F42C91B00B83CCB /* LWRxAuthManagerAssetPairRates.swift in Sources */,
 				469DA7161F6BFA91000B904C /* LWRxAuthManagerClientKeys.swift in Sources */,
+				25377DE82017994200E2B511 /* SpreadService.swift in Sources */,
 				46C9AE801F417BD700B83CCB /* LWOffchainTransactionsManager.m in Sources */,
 				46C08DB31F98C2690059BDD3 /* LWModelOffchainChannelKey.swift in Sources */,
 				465805BD1F98DA0900FFFA0A /* LWRxAuthManagerOffchainProcessChannel.swift in Sources */,

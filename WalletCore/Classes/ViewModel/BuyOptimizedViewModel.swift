@@ -66,7 +66,8 @@ public class BuyOptimizedViewModel {
         trigger: Observable<Void>,
         dependency: (
             currencyExchanger: CurrencyExchangerProtocol,
-            authManager: LWRxAuthManagerProtocol
+            authManager: LWRxAuthManagerProtocol,
+            spreadService: SpreadServiceProtocol
         )
     ) {
         let baseAssetRequest = dependency.authManager.baseAsset.request()
@@ -157,12 +158,12 @@ public class BuyOptimizedViewModel {
 
         
         spreadAmount = spreadObservable
-            .mapToSpreadAmount()
+            .mapToSpreadAmount(spreadService: dependency.spreadService)
             .replaceNilWith("")
             .asDriver(onErrorJustReturn: "")
 
         spreadPercent = spreadObservable
-            .mapToSpreadPercent()
+            .mapToSpreadPercent(spreadService: dependency.spreadService)
             .replaceNilWith("")
             .asDriver(onErrorJustReturn: "")
         
@@ -392,36 +393,20 @@ fileprivate extension ObservableType where Self.E == ([LWAssetPairModel], [LWAss
     }
 }
 fileprivate extension ObservableType where Self.E == (buySellPair: LWAssetPairModel?, secondaryBasePair: LWAssetPairModel?, baseAsset: LWAssetModel?)? {
-    func mapToSpreadAmount() -> Observable<String?> {
+    func mapToSpreadAmount(spreadService: SpreadServiceProtocol) -> Observable<String?> {
         return
             map{data -> String? in
                 guard let data = data else {return nil}
-                guard let buySellPairRate = data.buySellPair?.rate else {return nil}
-                guard let baseAsset = data.baseAsset else {return nil}
-                
-                guard let secondaryBasePairRate = data.secondaryBasePair?.rate else {
-                    let spread = abs(buySellPairRate.ask.doubleValue - buySellPairRate.bid.doubleValue)
-                    return Decimal(spread).convertAsCurrency(asset: baseAsset, withCode: false)
-                }
-                
-                let spread = abs(buySellPairRate.ask.doubleValue - buySellPairRate.bid.doubleValue)
-                let secondaryBaseRate = (secondaryBasePairRate.ask.doubleValue + secondaryBasePairRate.bid.doubleValue) / 2
-                let spreadInBase =  Decimal(spread * secondaryBaseRate)
-                
-                return spreadInBase.convertAsCurrency(asset: baseAsset, withCode: false)
+                return spreadService.spreadAmount(buySellPair: data.buySellPair, secondaryBasePair: data.secondaryBasePair, baseAsset: data.baseAsset)
         }
     }
 }
 fileprivate extension ObservableType where Self.E == (buySellPair: LWAssetPairModel?, secondaryBasePair: LWAssetPairModel?, baseAsset: LWAssetModel?)? {
-    func mapToSpreadPercent() -> Observable<String?> {
+    func mapToSpreadPercent(spreadService: SpreadServiceProtocol) -> Observable<String?> {
         return
             map{data -> String? in
                 guard let data = data else {return nil}
-                guard let buySellPairRate = data.buySellPair?.rate else {return nil}
-                
-                let spread = abs(buySellPairRate.ask.doubleValue - buySellPairRate.bid.doubleValue)
-                let percent = (spread / buySellPairRate.ask.doubleValue) * 100
-                return NumberFormatter.percentInstancePerise.string(from: NSDecimalNumber(decimal: Decimal(percent)))
+                return spreadService.spreadPercent(buySellPair: data.buySellPair)
         }
     }
 }
