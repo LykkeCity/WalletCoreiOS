@@ -11,7 +11,20 @@ import RxSwift
 
 public protocol SpreadServiceProtocol {
 
+    /// Calculate buyer to seller spread amount in base currency
+    ///
+    /// - Parameters:
+    ///   - buySellPair: buy sell pair
+    ///   - secondaryBasePair: secondary asset and base asset pair
+    ///   - baseAsset: base asset
+    /// - Returns: spread amount in base currecy as a string
     func spreadAmount(buySellPair: LWAssetPairModel?, secondaryBasePair: LWAssetPairModel?, baseAsset: LWAssetModel?) -> String?
+    
+    /// Calculate buyer to seller spread percent
+    ///
+    /// - Parameters:
+    ///   - buySellPair: buy sell pair
+    /// - Returns: spread amount percent as a string
     func spreadPercent(buySellPair: LWAssetPairModel?)-> String?
 }
 
@@ -36,6 +49,7 @@ public class SpreadService: SpreadServiceProtocol {
         
         return spreadInBase.convertAsCurrency(asset: baseAsset, withCode: false)
     }
+    
     public func spreadPercent(buySellPair: LWAssetPairModel?) -> String?{
         guard let buySellPairRate = buySellPair?.rate else {return nil}
         

@@ -112,7 +112,8 @@ class BuyOptimizedViewModelTests: XCTestCase {
         
         let tradingViewModel = BuyOptimizedViewModel(trigger: Observable.never(), dependency: (
             currencyExchanger: currencyExchanger,
-            authManager: authManager
+            authManager: authManager,
+            spreadService: SpreadService()
         ))
         
         scheduler
