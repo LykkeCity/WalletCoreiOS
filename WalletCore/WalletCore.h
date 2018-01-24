@@ -84,6 +84,7 @@ FOUNDATION_EXPORT const unsigned char WalletCoreVersionString[];
 #import <WalletCore/LWPacketPushSettingsGet.h>
 #import <WalletCore/LWPacketEmailVerificationSet.h>
 #import <WalletCore/LWPacketBaseAssetSet.h>
+#import <WalletCore/LWPacketBaseAssets.h>
 #import <WalletCore/LWPacketPersonalData.h>
 #import <WalletCore/LWPacketEmailVerificationGet.h>
 #import <WalletCore/LWPacketRegistration.h>

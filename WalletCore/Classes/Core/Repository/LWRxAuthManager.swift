@@ -75,6 +75,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var setPhoneNumberPin   = {LWRxAuthManagerPhoneVerificationPin()}()
     public lazy var appSettings         = {LWRxAuthManagerAppSettings()}()
     public lazy var baseAssetSet        = {LWRxAuthManagerBaseAssetSet()}()
+    public lazy var baseAssets          = {LWRxAuthManagerBaseAssets()}()
     public lazy var pushNotGet          = {LWRxAuthManagerPushNotificationsGet()}()
     public lazy var pushNotSet          = {LWRxAuthManagerPushNotificationsSet()}()
     public lazy var pubKeys             = {LWRxAuthManagerClientKeys()}()

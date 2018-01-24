@@ -655,6 +655,8 @@
 		AB6752DD2007746E008A44F2 /* SelectCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6752DC2007746E008A44F2 /* SelectCountryViewModel.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
 		C1985A5C1FCC602B00CCD0D7 /* PersonalDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1985A5B1FCC602B00CCD0D7 /* PersonalDataViewModel.swift */; };
+		C5E67BBC20172D2C00686006 /* BaseAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */; };
+		C5E67BBE201731B600686006 /* LWRxAuthManagerBaseAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E67BBD201731B600686006 /* LWRxAuthManagerBaseAssets.swift */; };
 		CC0A16AE1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = CC0A16AC1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC0A16AF1F4C2A0500CC40C3 /* LWPacketPostClientCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = CC0A16AD1F4C2A0500CC40C3 /* LWPacketPostClientCodes.m */; };
 		CC0A16B51F4C446500CC40C3 /* LWRxAuthManagerPostClientCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0A16B41F4C446500CC40C3 /* LWRxAuthManagerPostClientCodes.swift */; };
@@ -1346,6 +1348,8 @@
 		B2D803A07289BA7B1909DDA3 /* Pods-WalletCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.xcconfig"; sourceTree = "<group>"; };
 		C12CC0391F91106900904A8C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C1985A5B1FCC602B00CCD0D7 /* PersonalDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewModel.swift; sourceTree = "<group>"; };
+		C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAssetsViewModel.swift; sourceTree = "<group>"; };
+		C5E67BBD201731B600686006 /* LWRxAuthManagerBaseAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerBaseAssets.swift; sourceTree = "<group>"; };
 		CC0A16AC1F4C2A0500CC40C3 /* LWPacketPostClientCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPacketPostClientCodes.h; sourceTree = "<group>"; };
 		CC0A16AD1F4C2A0500CC40C3 /* LWPacketPostClientCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPacketPostClientCodes.m; sourceTree = "<group>"; };
 		CC0A16B41F4C446500CC40C3 /* LWRxAuthManagerPostClientCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerPostClientCodes.swift; sourceTree = "<group>"; };
@@ -2259,6 +2263,7 @@
 				460843C01FBF1C1100F14A5A /* AddMoney */,
 				464BAA691FBC77A700F473FA /* Portfolio */,
 				467C205F1FB452F7002A90AE /* BaseAssetSetViewModel.swift */,
+				C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */,
 				467C20601FB452F7002A90AE /* BLBuySellStep1ViewModel.swift */,
 				467C20561FB452F5002A90AE /* ClientKeysViewModel.swift */,
 				467C20621FB452F7002A90AE /* LogInViewModel.swift */,
@@ -2348,6 +2353,7 @@
 				46E5D0CA1F5DD7ED00D78692 /* LWRxAuthManagerAllCurrencies.swift */,
 				46E5D0CB1F5DD7ED00D78692 /* LWRxAuthManagerAppSettings.swift */,
 				46E5D0CC1F5DD7ED00D78692 /* LWRxAuthManagerBaseAssetSet.swift */,
+				C5E67BBD201731B600686006 /* LWRxAuthManagerBaseAssets.swift */,
 				46E5D0CD1F5DD7ED00D78692 /* LWRxAuthManagerPhoneVerificationPin.swift */,
 				46E5D0CE1F5DD7ED00D78692 /* LWRxAuthManagerPushNotificationsGet.swift */,
 				46E5D0CF1F5DD7ED00D78692 /* LWRxAuthManagerPushNotificationsSet.swift */,
@@ -3441,12 +3447,14 @@
 				46C9AE801F417BD700B83CCB /* LWOffchainTransactionsManager.m in Sources */,
 				46C08DB31F98C2690059BDD3 /* LWModelOffchainChannelKey.swift in Sources */,
 				465805BD1F98DA0900FFFA0A /* LWRxAuthManagerOffchainProcessChannel.swift in Sources */,
+				C5E67BBE201731B600686006 /* LWRxAuthManagerBaseAssets.swift in Sources */,
 				46C9AE6A1F417BD700B83CCB /* LWRegistrationData.m in Sources */,
 				46C9AF4C1F417BD800B83CCB /* LWPacketSolarCoinEmail.m in Sources */,
 				46C9AFBC1F417BD800B83CCB /* LWMarginalWalletAsset.m in Sources */,
 				46C9AF141F417BD800B83CCB /* LWPacketMyLykkeCashInEmail.m in Sources */,
 				CC0DFB001F545B5E00EBB96E /* AccountExistViewModel.swift in Sources */,
 				46C9AFE91F417BD800B83CCB /* LWEthereumSignManager.m in Sources */,
+				C5E67BBC20172D2C00686006 /* BaseAssetsViewModel.swift in Sources */,
 				46E5D0DC1F5DD7ED00D78692 /* LWRxAuthManagerPhoneVerificationPin.swift in Sources */,
 				460843C21FBF1C2400F14A5A /* CurrencyDepositViewModel.swift in Sources */,
 				46C9B0661F42C91B00B83CCB /* LWRxAuthManagerSwiftCredentials.swift in Sources */,
