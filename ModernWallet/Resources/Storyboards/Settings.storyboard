@@ -56,6 +56,7 @@
                         <segue destination="fZ5-mP-Q6d" kind="show" identifier="PersonalData" id="RWC-Xw-GRc"/>
                         <segue destination="wKS-qh-gbp" kind="presentation" identifier="BackupKey" id="ze4-Jq-e3v"/>
                         <segue destination="rv0-Jh-zA5" kind="show" identifier="TermsOfUse" id="6fl-6m-MEk"/>
+                        <segue destination="fBA-0U-sIh" kind="show" identifier="BaseAssetSelection" id="9ru-1E-bbm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UH-sd-hr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -314,7 +315,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 OF 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eF7-jH-Ket">
-                                <rect key="frame" x="161" y="510" width="53.5" height="17.5"/>
+                                <rect key="frame" x="165.5" y="510.5" width="44.5" height="15"/>
                                 <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -387,7 +388,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="pYg-Xb-OcF">
-                                                <rect key="frame" x="32" y="256" width="311" height="36"/>
+                                                <rect key="frame" x="32" y="256.5" width="311" height="36"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="6k1-o1-kEw"/>
@@ -397,7 +398,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mS6-ja-jGo">
-                                                <rect key="frame" x="32" y="292" width="311" height="1"/>
+                                                <rect key="frame" x="32" y="292.5" width="311" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="Ox8-cC-tA3"/>
@@ -506,6 +507,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1K-E7-rQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6993" y="-118"/>
+        </scene>
+        <!--Settings Base Asset Table View Controller-->
+        <scene sceneID="CXe-kb-22D">
+            <objects>
+                <tableViewController id="fBA-0U-sIh" customClass="SettingsBaseAssetTableViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RFQ-mc-dYl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BaseAssetCell" id="0Yp-cA-1D3" customClass="SelectBaseAssetTableViewCell" customModule="ModernMoney" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Yp-cA-1D3" id="Lwm-yf-FLp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqy-C6-K3O">
+                                            <rect key="frame" x="40" y="21.5" width="319" height="17"/>
+                                            <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="bqy-C6-K3O" firstAttribute="trailing" secondItem="Lwm-yf-FLp" secondAttribute="trailingMargin" id="o3D-w9-grp"/>
+                                        <constraint firstItem="bqy-C6-K3O" firstAttribute="centerY" secondItem="Lwm-yf-FLp" secondAttribute="centerY" id="qcZ-Q0-H9m"/>
+                                        <constraint firstItem="bqy-C6-K3O" firstAttribute="leading" secondItem="Lwm-yf-FLp" secondAttribute="leading" constant="40" id="xkf-Gj-zOM"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="titleLabel" destination="bqy-C6-K3O" id="swx-eu-HSs"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fBA-0U-sIh" id="JEW-KV-H4G"/>
+                            <outlet property="delegate" destination="fBA-0U-sIh" id="Yf4-AS-wyl"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zRT-RB-GjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2594" y="631"/>
         </scene>
     </scenes>
     <resources>
