@@ -184,6 +184,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
 
         loadingViewModel = LoadingViewModel([
+            buyOptimizedViewModel.loadingViewModel.isLoading,
             tradingAssetsViewModel.loadingViewModel.isLoading,
             payWithAssetListViewModel.loadingViewModel.isLoading,
             assetPairObservable.isLoading(),
@@ -373,7 +374,8 @@ extension BuyOptimizedViewModel {
             trigger: trigger,
             dependency: (
                 currencyExchanger: CurrencyExchanger(),
-                authManager: LWRxAuthManager.instance
+                authManager: LWRxAuthManager.instance,
+                spreadService: SpreadService()
             )
         )
     }
