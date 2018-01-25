@@ -39,7 +39,7 @@ class MenuTableViewController: UITableViewController {
         }
     }
     
-    private var itemsOrder = Variable(UserDefaults.standard.menuOrder)
+    private var menuIndexes = Variable(UserDefaults.standard.menuIndexes ?? Array(0...9))
     private let disposeBag = DisposeBag()
     
     private var items : [MenuItem] = [
@@ -74,10 +74,13 @@ class MenuTableViewController: UITableViewController {
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(MenuTableViewController.longPressGestureRecognized(_:)))
         tableView.addGestureRecognizer(longpress)
         
-        itemsOrder.asObservable()
+        // To be sure the `items` count is equal to the items
+        assert(items.count == menuIndexes.value.count, "Number of menu items is not equal to the number of the `itemsOrder` elements")
+        
+        menuIndexes.asObservable()
             .filter({ [weak self] in $0.count == self?.items.count })
             .subscribe(onNext: {
-                UserDefaults.standard.menuOrder = $0
+                UserDefaults.standard.menuIndexes = $0
             })
             .disposed(by: disposeBag)
     }
@@ -92,7 +95,7 @@ class MenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath) as! MenuTableViewCell
         
-        let position = itemsOrder.value[indexPath.row]
+        let position = menuIndexes.value[indexPath.row]
         let item = items[position]
         if let menuNameLabelColor = item.color {
             cell.menuNameLabel.textColor = menuNameLabelColor
@@ -109,7 +112,7 @@ class MenuTableViewController: UITableViewController {
             selectedCell.isSelected = false
         }
         
-        let position = itemsOrder.value[indexPath.row]
+        let position = menuIndexes.value[indexPath.row]
         let item = items[position]
         Analytics.logEvent("select_menu_item", parameters: [
                 "name" : item.title
@@ -205,8 +208,8 @@ class MenuTableViewController: UITableViewController {
                 cell.alpha = 0.0
             }
             
-            let movedItemIndex = itemsOrder.value.remove(at: movementStartIndexPath!.row)
-            itemsOrder.value.insert(movedItemIndex, at: indexPath.row)
+            let movedItemIndex = menuIndexes.value.remove(at: movementStartIndexPath!.row)
+            menuIndexes.value.insert(movedItemIndex, at: indexPath.row)
             
             UIView.animate(withDuration: 0.25, animations: { () -> Void in
                 self.cellSnapshot?.center = cell.center

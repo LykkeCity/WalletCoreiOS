@@ -15,12 +15,12 @@ extension UserDefaults {
         tempPhone: "tempPhone",
         signUpStep: "SignUpStep",
         loggedIn: "loggedIn",
-        menuOrder: "menuOrder"
+        menuIndexes: "menuIndexes"
     )
     
-    var menuOrder: [Int] {
-        get { return array(forKey: UserDefaults.keys.menuOrder) as? [Int] ?? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] }
-        set { set(newValue, forKey: UserDefaults.keys.menuOrder) }
+    var menuIndexes: [Int]? {
+        get { return array(forKey: UserDefaults.keys.menuIndexes) as? [Int] }
+        set { set(newValue, forKey: UserDefaults.keys.menuIndexes) }
     }
     
     var tempEmail: String? {
