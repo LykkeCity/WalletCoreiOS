@@ -15,14 +15,18 @@ class LWRxAuthManagerMock: LWRxAuthManagerProtocol {
     let assetPairRates: LWRxAuthManagerAssetPairRatesProtocol
     let baseAsset: LWRxAuthManagerBaseAssetProtocol
     let allAssets: LWRxAuthManagerAllAssetsProtocol
+    let assetPairs: LWRxAuthManagerAssetPairsProtocol
     
     init(
         baseAsset: LWRxAuthManagerBaseAssetMock = LWRxAuthManagerBaseAssetMock(asset: LWAssetModel(assetId: "USD")),
         allAssets: LWRxAuthManagerAllAssetsMock = LWRxAuthManagerAllAssetsMock(),
-        assetPairRates:LWRxAuthManagerAssetPairRatesMock = LWRxAuthManagerAssetPairRatesMock(data: [])
+        assetPairRates:LWRxAuthManagerAssetPairRatesMock = LWRxAuthManagerAssetPairRatesMock(data: []),
+        assetPairs:LWRxAuthManagerAssetPairsMock = LWRxAuthManagerAssetPairsMock(data: [])
+
     ) {
         self.baseAsset = baseAsset
         self.allAssets = allAssets
         self.assetPairRates = assetPairRates
+        self.assetPairs = assetPairs
     }
 }

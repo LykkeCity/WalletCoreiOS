@@ -40,6 +40,8 @@ public class BuyOptimizedViewModel {
     public let spreadPercent: Driver<String>
     public let spreadAmount: Driver<String>
     
+    public let loadingViewModel: LoadingViewModel
+    
     public var mainAsset: LWAssetModel? {
         guard let bid = self.bid.value else { return nil }
         return bid ? payWithWallet.value?.wallet.asset : buyAsset.value?.asset
@@ -64,11 +66,23 @@ public class BuyOptimizedViewModel {
         trigger: Observable<Void>,
         dependency: (
             currencyExchanger: CurrencyExchangerProtocol,
-            authManager: LWRxAuthManagerProtocol
+            authManager: LWRxAuthManagerProtocol,
+            spreadService: SpreadServiceProtocol
         )
     ) {
-        baseAssetCode = dependency.authManager.baseAsset.request()
+        let baseAssetRequest = dependency.authManager.baseAsset.request()
+        let baseAssetObservable = baseAssetRequest
             .filterSuccess()
+            .shareReplay(1)
+        
+        let pairsRequest = dependency.authManager.assetPairs.request()
+        let pairs = pairsRequest.filterSuccess()
+        
+        let pairsRateRequest = dependency.authManager.assetPairRates.request(withParams: true)
+        let pairsRate = pairsRateRequest.filterSuccess()
+        
+        loadingViewModel = LoadingViewModel([baseAssetRequest.isLoading(),pairsRequest.isLoading(),pairsRateRequest.isLoading()])
+        baseAssetCode = baseAssetObservable
             .mapToDisplayId()
             .asDriver(onErrorJustReturn: "")
             .startWith("")
@@ -98,7 +112,7 @@ public class BuyOptimizedViewModel {
             )
             .map{(asset: $0, units: $1, bid: $2)}
             .shareReplay(1)
-        
+       
         buyAmountInBase = buyAssetAmountObservable
             .mapToUnitsInBase(currencyExchanger: dependency.currencyExchanger)
             .asDriver(onErrorJustReturn: "")
@@ -135,45 +149,23 @@ public class BuyOptimizedViewModel {
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
-        let spreadObservable = Observable.combineLatest(
-            buyAssetAmountObservable
-                .flatMapLatest{ assetUnits in dependency.currencyExchanger.exchangeToBaseAsset(
-                    amount: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
-                )},
-            payWithAssetAmountObservable
-                .flatMapLatest{ assetUnits in dependency.currencyExchanger.exchangeToBaseAsset(
-                    amount: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
-                )}
-        )
-        .map{data -> (buyAmount: Decimal, payWithAmount: Decimal, asset: LWAssetModel)? in
-            guard let buyAmount = data.0?.amount else {return nil}
-            guard let payWith = data.1?.amount else {return nil}
-            guard let asset = data.0?.baseAsset else {return nil}
-            
-            return (buyAmount: buyAmount, payWithAmount: payWith, asset: asset)
-        }
-        .shareReplay(1)
+        let spreadObservable = Observable.combineLatest(pairs,
+                                                        pairsRate,
+                                                        buyAsset.asObservable(),
+                                                        payWithWallet.asObservable(),
+                                                        baseAssetObservable)
+            .mapToSpreadPairs()
+
         
         spreadAmount = spreadObservable
-            .map{data -> String? in
-                guard let data = data else {return nil}
-                let spread = data.buyAmount - data.payWithAmount
-                return spread.convertAsCurrency(asset: data.asset, withCode: false)
-            }
-            .replaceNilWith("")
-            .asDriver(onErrorJustReturn: "")
-        
-        spreadPercent = spreadObservable
-            .map{data -> String? in
-                guard let data = data, data.buyAmount != 0.0 else {return nil}
-                let spread = data.buyAmount - data.payWithAmount
-                let percent = (spread / data.buyAmount) * 100
-                
-                return NumberFormatter.percentInstancePerise.string(from: NSDecimalNumber(decimal: percent))
-            }
+            .mapToSpreadAmount(spreadService: dependency.spreadService)
             .replaceNilWith("")
             .asDriver(onErrorJustReturn: "")
 
+        spreadPercent = spreadObservable
+            .mapToSpreadPercent(spreadService: dependency.spreadService)
+            .replaceNilWith("")
+            .asDriver(onErrorJustReturn: "")
         
         
         isValidPayWithAmount = Observable
@@ -378,3 +370,44 @@ fileprivate extension ObservableType where Self.E == LWAssetModel {
             .bind(to: payWithAmount)
     }
 }
+fileprivate extension ObservableType where Self.E == ([LWAssetPairModel], [LWAssetPairRateModel], BuyOptimizedViewModel.Asset? , BuyOptimizedViewModel.Wallet? ,LWAssetModel) {
+    func mapToSpreadPairs() -> Observable<(buySellPair: LWAssetPairModel?, secondaryBasePair: LWAssetPairModel?, baseAsset: LWAssetModel?)?> {
+        return
+            map{pairs,pairsRate,buyAsset,payWithWallet,baseAsset -> (buySellPair: LWAssetPairModel?, secondaryBasePair: LWAssetPairModel?, baseAsset: LWAssetModel?)? in
+                
+                guard let payWithWallet = payWithWallet else {return nil}
+                guard let buyAsset = buyAsset else {return nil}
+                let buySell = pairs.find(assets: [buyAsset.asset,payWithWallet.wallet.asset])
+                let secondaryBase = pairs.find(assets: [baseAsset.displayId,buySell?.quotingAssetId])
+                
+                guard let buySellPair = buySell?.identity else {return nil}
+                let secondaryBasePair = secondaryBase?.identity
+                
+                buySell?.rate = pairsRate.find(byPair: buySellPair)
+                secondaryBase?.rate = pairsRate.find(byPair: secondaryBasePair)
+                
+                return (buySellPair: buySell, secondaryBasePair:secondaryBase, baseAsset:baseAsset)
+                
+                }
+                .shareReplay(1)
+    }
+}
+fileprivate extension ObservableType where Self.E == (buySellPair: LWAssetPairModel?, secondaryBasePair: LWAssetPairModel?, baseAsset: LWAssetModel?)? {
+    func mapToSpreadAmount(spreadService: SpreadServiceProtocol) -> Observable<String?> {
+        return
+            map{data -> String? in
+                guard let data = data else {return nil}
+                return spreadService.spreadAmount(buySellPair: data.buySellPair, secondaryBasePair: data.secondaryBasePair, baseAsset: data.baseAsset)
+        }
+    }
+}
+fileprivate extension ObservableType where Self.E == (buySellPair: LWAssetPairModel?, secondaryBasePair: LWAssetPairModel?, baseAsset: LWAssetModel?)? {
+    func mapToSpreadPercent(spreadService: SpreadServiceProtocol) -> Observable<String?> {
+        return
+            map{data -> String? in
+                guard let data = data else {return nil}
+                return spreadService.spreadPercent(buySellPair: data.buySellPair)
+        }
+    }
+}
+

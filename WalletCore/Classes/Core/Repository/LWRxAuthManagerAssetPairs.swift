@@ -8,8 +8,13 @@
 
 import Foundation
 import RxSwift
+public protocol LWRxAuthManagerAssetPairsProtocol {
+    func request(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>>
+    func request(byId id: String) -> Observable<ApiResult<LWAssetPairModel?>>
+    func request() -> Observable<ApiResultList<LWAssetPairModel>>
+}
 
-public class LWRxAuthManagerAssetPairs: NSObject{
+public class LWRxAuthManagerAssetPairs: NSObject,LWRxAuthManagerAssetPairsProtocol{
     
     public typealias Packet = LWPacketAssetPairs
     public typealias Result = ApiResultList<LWAssetPairModel>
@@ -38,6 +43,10 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
     
     public func createPacket(withObserver observer: Any, params: Void) -> LWPacketAssetPairs {
         return Packet(observer: observer)
+    }
+    
+    public func request() -> Observable<Result> {
+        return self.request(withParams: ())
     }
     
     public func request(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>> {
