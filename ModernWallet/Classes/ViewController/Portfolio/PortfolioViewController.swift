@@ -16,6 +16,12 @@ import WalletCore
 
 class PortfolioViewController: UIViewController {
 
+    @IBOutlet weak var filterContainer: UIStackView!
+    @IBOutlet weak var fiatFilterButton: IconOverTextButton!
+    @IBOutlet weak var allFilterButton: IconOverTextButton!
+    @IBOutlet weak var cryptoFilterButton: IconOverTextButton!
+
+    @IBOutlet weak var tableHeader: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var pieChartCenterView: PieChartCenter!
@@ -23,6 +29,14 @@ class PortfolioViewController: UIViewController {
     
     fileprivate let disposeBag = DisposeBag()
     fileprivate let pieChartValueFormatter = PieValueFormatter()
+    
+    var filterButtonsMap: [AssetsFilterViewModel.FilterType: IconOverTextButton] {
+        return [
+            AssetsFilterViewModel.FilterType.all: self.allFilterButton,
+            AssetsFilterViewModel.FilterType.crypto: self.cryptoFilterButton,
+            AssetsFilterViewModel.FilterType.fiat: self.fiatFilterButton,
+        ]
+    }
     
     fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
         return TotalBalanceViewModel(refresh: ReloadTrigger.instance.trigger(interval: 10))
@@ -42,7 +56,9 @@ class PortfolioViewController: UIViewController {
         ])
     }()
     
-    var assets = Variable<[Variable<Asset>]>([])
+    fileprivate lazy var assetsFilterViewModel = {
+        return AssetsFilterViewModel(assetsToFilter: self.walletsViewModel.wallets)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,24 +76,6 @@ class PortfolioViewController: UIViewController {
         tableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
         //Bind table
-        assets.asObservable()
-            .map{$0.sorted{$0.0.value.percent > $0.1.value.percent}}
-            .bind(to: tableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell", cellType: PortfolioCurrencyTableViewCell.self)) { (row, element, cell) in
-                cell.bind(toAsset: AssetCellViewModel(element))
-            }
-            .disposed(by: disposeBag)
-
-        //Bind show/hide according to empty wallets
-        assets.asDriver()
-            .map{ $0.isNotEmpty }
-            .drive(emptyPortfolioView.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        assets.asDriver()
-            .map{$0.isEmpty}
-            .drive(pieChartCenterView.addMoneyButton.rx.isHidden)
-            .disposed(by: disposeBag)
-        
         tableView.rx
             .modelSelected(Variable<Asset>.self)
             .subscribe(onNext: { [weak self] model in
@@ -85,26 +83,6 @@ class PortfolioViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        //Bind piechart
-        Driver
-            .merge(
-                assets.asDriver().mapToPieChartDataSet(),
-                assets.asDriver().mapToEmptyChart()
-            )
-            .drive(onNext: {[pieChartView, pieChartValueFormatter] dataSet in
-                
-                dataSet.colors = [UIColor.clear]
-                dataSet.valueFormatter = pieChartValueFormatter
-                pieChartView?.data = PieChartData(dataSet: dataSet)
-                pieChartView?.data?.setValueFont(UIFont(name: "GEOMANIST", size: 16))
-            })
-            .disposed(by: disposeBag)
-        
-        loadingViewModel.isLoading
-            .asDriver(onErrorJustReturn: false)
-            .drive(rx.loading)
-            .disposed(by: disposeBag)
-    
         //Bind buttons that shows add money
         Observable
             .merge(
@@ -117,18 +95,6 @@ class PortfolioViewController: UIViewController {
             .disposed(by: disposeBag)
         
         bindViewModels()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-     
-        if UserDefaults.standard.isNotLoggedIn || SignUpStep.instance != nil {
-            return
-        }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -159,8 +125,90 @@ class PortfolioViewController: UIViewController {
     }
 }
 
+
+// MARK: - AssetsFilterViewModel binders to PortfolioViewController
+fileprivate extension AssetsFilterViewModel {
+    
+    private func bindPieChart(toViewController viewController: PortfolioViewController) -> Disposable {
+        let pieChartView = viewController.pieChartView
+        let pieChartValueFormatter = viewController.pieChartValueFormatter
+        
+        return Driver
+            .merge(filteredAssets.mapToPieChartDataSet(), filteredAssets.mapToEmptyChart())
+            .drive(onNext: { dataSet in
+                
+                dataSet.colors = [UIColor.clear]
+                dataSet.valueFormatter = pieChartValueFormatter
+                pieChartView?.data = PieChartData(dataSet: dataSet)
+                pieChartView?.data?.setValueFont(UIFont(name: "GEOMANIST", size: 16))
+            })
+    }
+    
+    private func bind(toTableView tableView: UITableView) -> Disposable {
+        return filteredAssets.asObservable()
+            .map{ $0.sorted{ $0.0.value.percent > $0.1.value.percent } }
+            .bind(to: tableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell", cellType: PortfolioCurrencyTableViewCell.self)) { (row, element, cell) in
+                cell.bind(toAsset: AssetCellViewModel(element))
+            }
+    }
+    
+    private func bindFilter(toViewController viewController: PortfolioViewController) -> Disposable {
+        return Observable
+            .merge(
+                viewController.allFilterButton.rx.tap.map{ _ in AssetsFilterViewModel.FilterType.all },
+                viewController.cryptoFilterButton.rx.tap.map{ _ in AssetsFilterViewModel.FilterType.crypto },
+                viewController.fiatFilterButton.rx.tap.map{ _ in AssetsFilterViewModel.FilterType.fiat }
+            )
+            .distinctUntilChanged()
+            .bind(to: filter)
+    }
+    
+    private func bindFilterButtonsState(toViewController viewController: PortfolioViewController) -> Disposable {
+        let filterButtonsMap = viewController.filterButtonsMap
+        
+        return filter.asDriver().drive(onNext: { filterType in
+            filterButtonsMap.forEach{ arg in
+                let (key, value) = arg
+                value.isSelected = key == filterType
+            }
+        })
+    }
+    
+    func bind(toViewController viewController: PortfolioViewController) -> [Disposable] {
+        return [
+            bindPieChart(toViewController: viewController),
+            bind(toTableView: viewController.tableView),
+            bindFilter(toViewController: viewController),
+            bindFilterButtonsState(toViewController: viewController)
+        ]
+    }
+}
+
+// MARK: - WalletsViewModel binders to PortfolioViewController
+fileprivate extension WalletsViewModel {
+    func bind(toViewController viewController: PortfolioViewController) -> [Disposable] {
+        
+        return [
+            wallets.asDriver()
+                .map{ $0.isNotEmpty }
+                .drive(viewController.emptyPortfolioView.rx.isHidden),
+            
+            wallets.asDriver()
+                .map{ $0.isEmpty }
+                .drive(viewController.pieChartCenterView.addMoneyButton.rx.isHidden),
+            
+            wallets.asDriver()
+                .map{ $0.isEmpty }
+                .drive(viewController.filterContainer.rx.isHidden)
+        ]
+    }
+}
+
+
+// MARK: - TotalBalanceViewModel binders to PortfolioViewController
 fileprivate extension TotalBalanceViewModel {
     func bind(toVieController viewController: PortfolioViewController) -> [Disposable] {
+        
         return [
             observables.baseAsset.filterSuccess().subscribe(onNext: {asset in LWCache.instance().baseAssetId = asset.identity}),
             balance.drive(viewController.pieChartCenterView.balanceLabel.rx.text),
@@ -169,21 +217,33 @@ fileprivate extension TotalBalanceViewModel {
     }
 }
 
-extension PortfolioViewController {
+// MARK: - PortfolioViewController view model binder
+fileprivate extension PortfolioViewController {
     func bindViewModels() {
-        
         totalBalanceViewModel
             .bind(toVieController: self)
             .disposed(by: disposeBag)
         
-        walletsViewModel.wallets
-            .bind(to: assets)
+        walletsViewModel
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
+        
+        assetsFilterViewModel
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
+        
+        loadingViewModel.isLoading
+            .asDriver(onErrorJustReturn: false)
+            .drive(rx.loading)
             .disposed(by: disposeBag)
     }
 }
 
+
+// MARK: - RX custom operators
 fileprivate extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, Self.E == [Variable<Asset>] {
     func mapToPieChartDataSet() -> Driver<PieChartDataSet> {
+        
         return
             filter{ $0.isNotEmpty }
             .map{ $0.filter{$0.value.percent > 0} }
@@ -192,6 +252,7 @@ fileprivate extension SharedSequenceConvertibleType where SharingStrategy == Dri
     }
     
     func mapToEmptyChart() -> Driver<PieChartDataSet> {
+        
         return filter{$0.isEmpty}
             .map{_ in [
                 PieChartDataEntry(value: 20.0, data: "0%" as AnyObject),
@@ -199,5 +260,11 @@ fileprivate extension SharedSequenceConvertibleType where SharingStrategy == Dri
                 PieChartDataEntry(value: 40.0, data: "0%" as AnyObject)
             ]}
             .map{PieChartDataSet(values: $0, label: nil)}
+    }
+}
+
+fileprivate extension ObservableType where Self.E == [Variable<Asset>] {
+    func asDriver() -> Driver<[Variable<Asset>]> {
+        return asDriver(onErrorJustReturn: [])
     }
 }
