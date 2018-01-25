@@ -26,4 +26,8 @@ public extension LWAssetModel {
     public var displayName: String {
         return name ?? fullName ?? ""
     }
+    
+    public var isFiat: Bool {
+        return swiftDeposit || visaDeposit
+    }
 }
