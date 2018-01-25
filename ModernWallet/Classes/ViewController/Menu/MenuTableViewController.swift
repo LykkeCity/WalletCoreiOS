@@ -39,7 +39,7 @@ class MenuTableViewController: UITableViewController {
         }
     }
     
-    private var menuIndexes = Variable(UserDefaults.standard.menuIndexes ?? Array(0...9))
+    private var menuIndexes: Variable<[Int]> = Variable([])
     private let disposeBag = DisposeBag()
     
     private var items : [MenuItem] = [
@@ -74,8 +74,7 @@ class MenuTableViewController: UITableViewController {
         let longpress = UILongPressGestureRecognizer(target: self, action: #selector(MenuTableViewController.longPressGestureRecognized(_:)))
         tableView.addGestureRecognizer(longpress)
         
-        // To be sure the `items` count is equal to the items
-        assert(items.count == menuIndexes.value.count, "Number of menu items is not equal to the number of the `itemsOrder` elements")
+        menuIndexes.value = UserDefaults.standard.menuIndexes ?? Array(0...items.count-1)
         
         menuIndexes.asObservable()
             .filter({ [weak self] in $0.count == self?.items.count })
