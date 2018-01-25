@@ -103,7 +103,6 @@ class SettingsBaseAssetTableViewController: UITableViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
                 self.delegate?.didUpdateBaseAsset()
-                self.viewModel = SettingsViewModel()
                 self.navigationController?.popViewController(animated: true)
             }).disposed(by: disposeBag)
         
