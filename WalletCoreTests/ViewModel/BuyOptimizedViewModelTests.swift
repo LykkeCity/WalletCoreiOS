@@ -51,11 +51,11 @@ class BuyOptimizedViewModelTests: XCTestCase {
                 pairModels: [LWAssetPairModel.assetPair(withDict: ["Id":"BTCUSD","BaseAssetId":"BTC","QuotingAssetId":"USD"])!,
                              LWAssetPairModel.assetPair(withDict: ["Id":"BTCAUD","BaseAssetId":"BTC","QuotingAssetId":"AUD"])!,
                              LWAssetPairModel.assetPair(withDict: ["Id":"USDAUD","BaseAssetId":"USD","QuotingAssetId":"AUD"])!],
-                baseAsset: LWAssetModel(assetId: "AUD"),
+                baseAsset: LWAssetModel(json: ["Id":"AUD","DisplayId":"AUD"]),
                 buyAsset: LWAssetModel(assetId: "BTC"),
                 payWithWallet: LWSpotWallet(assetId: "USD"),
                 bid: true,
-                expectedResult: "200(230)"
+                expectedResult: "200 (~230)"
             ))
         }
     }
@@ -70,11 +70,11 @@ class BuyOptimizedViewModelTests: XCTestCase {
                 pairModels: [LWAssetPairModel.assetPair(withDict: ["Id":"BTCUSD","BaseAssetId":"BTC","QuotingAssetId":"USD"])!,
                              LWAssetPairModel.assetPair(withDict: ["Id":"BTCAUD","BaseAssetId":"BTC","QuotingAssetId":"AUD"])!,
                              LWAssetPairModel.assetPair(withDict: ["Id":"USDAUD","BaseAssetId":"USD","QuotingAssetId":"AUD"])!],
-                baseAsset: LWAssetModel(assetId: "AUD"),
+                baseAsset: LWAssetModel(json: ["Id":"AUD","DisplayId":"AUD"]),
                 buyAsset: LWAssetModel(assetId: "USD"),
                 payWithWallet: LWSpotWallet(assetId: "BTC"),
                 bid: true,
-                expectedResult: "200(230)"
+                expectedResult: "200 (~230)"
             ))
         }
     }
@@ -90,7 +90,7 @@ class BuyOptimizedViewModelTests: XCTestCase {
                 pairModels: [LWAssetPairModel.assetPair(withDict: ["Id":"BTCUSD","BaseAssetId":"BTC","QuotingAssetId":"USD"])!,
                              LWAssetPairModel.assetPair(withDict: ["Id":"BTCAUD","BaseAssetId":"BTC","QuotingAssetId":"AUD"])!,
                              LWAssetPairModel.assetPair(withDict: ["Id":"USDAUD","BaseAssetId":"USD","QuotingAssetId":"AUD"])!],
-                baseAsset: LWAssetModel(assetId: "USD"),
+                baseAsset: LWAssetModel(json: ["Id":"USD","DisplayId":"USD"]),
                 buyAsset: LWAssetModel(assetId: "USD"),
                 payWithWallet: LWSpotWallet(assetId: "BTC"),
                 bid: true,

@@ -377,8 +377,8 @@ fileprivate extension ObservableType where Self.E == ([LWAssetPairModel], [LWAss
                 
                 guard let payWithWallet = payWithWallet else {return nil}
                 guard let buyAsset = buyAsset else {return nil}
-                let buySell = pairs.find(assets: [buyAsset.asset.identity,payWithWallet.wallet.asset.identity])
-                let secondaryBase = pairs.find(assets: [baseAsset.identity,buySell?.quotingAssetId])
+                let buySell = pairs.find(assets: [buyAsset.asset,payWithWallet.wallet.asset])
+                let secondaryBase = pairs.find(assets: [baseAsset.displayId,buySell?.quotingAssetId])
                 
                 guard let buySellPair = buySell?.identity else {return nil}
                 let secondaryBasePair = secondaryBase?.identity
