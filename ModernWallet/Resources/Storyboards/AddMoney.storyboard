@@ -149,11 +149,11 @@
                         <viewControllerLayoutGuide type="bottom" id="L7I-Fa-Lvg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KnU-gi-dzX" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axe-bV-ehz" userLabel="End Bank View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666669"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnO-ts-R6c" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="20" y="0.0" width="374" height="2"/>
@@ -163,7 +163,7 @@
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aup-dL-Ynf">
-                                        <rect key="frame" x="0.0" y="2" width="414" height="370.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="2" width="414" height="665"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0IX-cQ-nkx">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="218"/>
@@ -224,7 +224,7 @@
                                         </constraints>
                                     </scrollView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oSY-Zp-caI" userLabel="Footer">
-                                        <rect key="frame" x="0.0" y="372.66666666666669" width="414" height="69"/>
+                                        <rect key="frame" x="0.0" y="667" width="414" height="69"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5z-m2-1BO" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
@@ -317,24 +317,24 @@
         <!--Bank Info View Controller-->
         <scene sceneID="ByS-tY-fxW">
             <objects>
-                <viewController id="vs0-o8-uYz" customClass="BankInfoViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bankInfo" id="vs0-o8-uYz" customClass="BankInfoViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="biE-i3-zl3"/>
                         <viewControllerLayoutGuide type="bottom" id="EWT-uS-ftb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BFo-vf-cs4" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvH-Z2-P0t" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
-                                <rect key="frame" x="20" y="0.0" width="374" height="2"/>
+                                <rect key="frame" x="20" y="20" width="374" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="Qgt-H6-fSy"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hgb-LJ-FQ2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="340.66666666666669"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="635"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E98-bY-Zh9">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
@@ -404,7 +404,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbj-dF-GmO" customClass="SubmitButton" customModule="ModernMoney" customModuleProvider="target">
-                                <rect key="frame" x="32" y="340.66666666666669" width="350" height="69"/>
+                                <rect key="frame" x="32" y="635" width="350" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="zpg-ok-IrP"/>
                                 </constraints>
@@ -454,11 +454,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2kw-TV-KXl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MG1-Yc-LgM" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="441.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFp-03-QR5" userLabel="Bank View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGl-V9-3hI" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="20" y="0.0" width="374" height="2"/>
@@ -468,7 +468,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="WrC-bZ-Lxd">
-                                        <rect key="frame" x="16" y="89" width="382" height="192"/>
+                                        <rect key="frame" x="16" y="236.66666666666663" width="382" height="192"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zsi-p4-p4n">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="22"/>
@@ -496,7 +496,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LZV-pt-feg">
-                                                <rect key="frame" x="0.0" y="34" width="382" height="22"/>
+                                                <rect key="frame" x="0.0" y="34.000000000000028" width="382" height="22"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXs-Ec-QyK">
                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="13"/>
@@ -521,7 +521,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YNy-Bs-lfA">
-                                                <rect key="frame" x="0.0" y="68" width="382" height="22"/>
+                                                <rect key="frame" x="0.0" y="68.000000000000028" width="382" height="22"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT NAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Eg-uK-vbl">
                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="13"/>
@@ -546,7 +546,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="PCp-7h-Wgm">
-                                                <rect key="frame" x="0.0" y="102" width="382" height="22"/>
+                                                <rect key="frame" x="0.0" y="102.00000000000003" width="382" height="22"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BANK ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFj-pH-nFM">
                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="13"/>
@@ -571,7 +571,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9RY-Ex-5Ox">
-                                                <rect key="frame" x="0.0" y="136" width="382" height="22"/>
+                                                <rect key="frame" x="0.0" y="136.00000000000003" width="382" height="22"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMPANY ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXj-kS-FHB">
                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="13"/>
@@ -596,7 +596,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BgS-mW-8cq">
-                                                <rect key="frame" x="0.0" y="170" width="382" height="22"/>
+                                                <rect key="frame" x="0.0" y="170.00000000000003" width="382" height="22"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PURPOSE OF PAYMENT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5p-el-Knr">
                                                         <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
@@ -629,7 +629,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jr6-iD-Du2" userLabel="Footer">
-                                        <rect key="frame" x="0.0" y="372.33333333333331" width="414" height="69"/>
+                                        <rect key="frame" x="0.0" y="667.33333333333337" width="414" height="69"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="had-n7-hdl" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
@@ -775,7 +775,6 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="133.33333333333334"/>
                                                 <connections>
                                                     <action selector="bankAccountAction:" destination="1Fv-iS-Z5H" eventType="touchUpInside" id="1xS-jt-a6J"/>
-                                                    <segue destination="vs0-o8-uYz" kind="show" id="oaN-Jn-CCv"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -839,7 +838,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o82-P2-7kv">
                                                 <rect key="frame" x="0.0" y="1" width="200" height="135.33333333333334"/>
                                                 <connections>
-                                                    <action selector="cryptoCurrencyAction:" destination="1Fv-iS-Z5H" eventType="touchUpInside" id="V4Q-AI-RhR"/>
                                                     <segue destination="mFa-N3-wog" kind="show" id="IEM-Jr-Qks"/>
                                                 </connections>
                                             </button>
