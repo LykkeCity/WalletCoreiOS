@@ -37,9 +37,16 @@ class BuyOptimizedViewController: UIViewController {
     
     fileprivate let disposeBag = DisposeBag()
     
+    lazy var currencyExchanger: CurrencyExchanger = {
+        return CurrencyExchanger()
+    } ()
+    
     //MARK:- View Models
     lazy var buyOptimizedViewModel: BuyOptimizedViewModel = {
-        return BuyOptimizedViewModel(withTrigger: self.confirmTrading)
+        return BuyOptimizedViewModel(
+            withTrigger: self.confirmTrading,
+            currencyExchanger: self.currencyExchanger
+        )
     }()
     
     lazy var payWithAssetListViewModel: PayWithAssetListViewModel = {
@@ -374,11 +381,11 @@ fileprivate extension BuyOptimizedViewModel {
 
 extension BuyOptimizedViewModel {
     
-    convenience init(withTrigger trigger: Observable<Void>) {
+    convenience init(withTrigger trigger: Observable<Void>, currencyExchanger: CurrencyExchanger = CurrencyExchanger()) {
         self.init(
             trigger: trigger,
             dependency: (
-                currencyExchanger: CurrencyExchanger(),
+                currencyExchanger: currencyExchanger,
                 authManager: LWRxAuthManager.instance,
                 spreadService: SpreadService()
             )
