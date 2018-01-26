@@ -12,5 +12,6 @@
 
 
 @property (copy, nonatomic) NSString *apiVersion;
+@property (copy, nonatomic) NSString *termsOfUse;
 
 @end

@@ -20,7 +20,7 @@
         return;
     }
     self.apiVersion=result[@"AppVersion"];
-    
+    self.termsOfUse=result[@"TermsOfUseLink"];
     if(result[@"CountryPhoneCodesLastModified"])
     {
         NSString *string=[result[@"CountryPhoneCodesLastModified"] stringByReplacingOccurrencesOfString:@"T" withString:@" "];
