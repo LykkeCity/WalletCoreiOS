@@ -141,7 +141,10 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         submitButton.rx.tap
-            .flatMap { return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
+            .flatMap { [weak self] _ -> Observable<Void> in
+                guard let `self` = self else { return Observable<Void>.never() }
+                return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+            }
             .bind(to: confirmTrading)
             .disposed(by: disposeBag)
         
@@ -309,7 +312,9 @@ fileprivate extension BuyOptimizedViewModel {
             spreadAmount.drive(vc.spreadAmount.rx.text),
             bid.asDriver().filterNil().map{ $0 ? "SELL" : "PAY WITH" }.drive(vc.walletListView.label.rx.text),
             bid.asDriver().filterNil().map{ $0 ? "RECEIVE" : "BUY" }.drive(vc.assetListView.label.rx.text),
-            bid.asDriver().filterNil().map{ $0 ? "SELL" : "BUY" }.drive(onNext: {vc.submitButton.setTitle($0, for: .normal)})
+            bid.asDriver().filterNil().map{ $0 ? "SELL" : "BUY" }.drive(onNext: {[weak vc] in
+                vc?.submitButton.setTitle($0, for: .normal)
+            })
         ]
     }
     
