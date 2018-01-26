@@ -10,6 +10,7 @@
 		11DA99157D1096C1AE2DAB86 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DA906845E44B9E56EC79B6 /* PortfolioViewController.swift */; };
 		253592A61FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253592A41FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift */; };
 		253592A71FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 253592A51FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib */; };
+		25A41843201A0233004F63BD /* SettingsTermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A41842201A0233004F63BD /* SettingsTermsOfUseViewController.swift */; };
 		461C6F8D1F8B4E9000C5E8B3 /* BuyAssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 461C6F8C1F8B4E9000C5E8B3 /* BuyAssetListView.xib */; };
 		461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461C6F8E1F8B4EB200C5E8B3 /* BuyAssetListView.swift */; };
 		462878731F433A710006BE45 /* GraphProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462878721F433A710006BE45 /* GraphProtocol.swift */; };
@@ -192,6 +193,7 @@
 		1B4362117F035AB105CCBAC9 /* Pods-ModernMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.debug.xcconfig"; sourceTree = "<group>"; };
 		253592A41FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyCryptoCurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		253592A51FEAE4570038CD92 /* AddMoneyCryptoCurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMoneyCryptoCurrencyTableViewCell.xib; sourceTree = "<group>"; };
+		25A41842201A0233004F63BD /* SettingsTermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTermsOfUseViewController.swift; sourceTree = "<group>"; };
 		332D124097658BC0F8525456 /* Pods-ModernMoney.release.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ModernMoney.release.test.xcconfig"; path = "Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney.release.test.xcconfig"; sourceTree = "<group>"; };
 		461C6F8C1F8B4E9000C5E8B3 /* BuyAssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BuyAssetListView.xib; sourceTree = "<group>"; };
 		461C6F8E1F8B4EB200C5E8B3 /* BuyAssetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyAssetListView.swift; sourceTree = "<group>"; };
@@ -732,6 +734,7 @@
 				6689EE511FBB291C0006010F /* SettingsTableViewController.swift */,
 				665A7CC81FBEDED1004F6CFA /* SettingsPersonalDataTableViewController.swift */,
 				66C83D421FC3086E00428527 /* BackupPrivateKey */,
+				25A41842201A0233004F63BD /* SettingsTermsOfUseViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1222,6 +1225,7 @@
 				66DA84CD1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift in Sources */,
 				66907BA31FD010CF00FAD801 /* ReloadTrigger.swift in Sources */,
 				CC94588A1F06630900676249 /* AddMoneyCCStep3ViewController.swift in Sources */,
+				25A41843201A0233004F63BD /* SettingsTermsOfUseViewController.swift in Sources */,
 				66385DE81FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift in Sources */,
 				46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */,
 				462878761F433B0F0006BE45 /* TradingLinearGraphViewTest.m in Sources */,
