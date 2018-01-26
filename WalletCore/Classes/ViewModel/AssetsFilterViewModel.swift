@@ -12,7 +12,7 @@ import RxSwift
 
 public class AssetsFilterViewModel {
     
-    public enum FilterType {
+    public enum FilterType: Equatable {
         case all
         case crypto
         case fiat

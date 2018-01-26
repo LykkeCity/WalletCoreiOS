@@ -28,6 +28,6 @@ public extension LWAssetModel {
     }
     
     public var isFiat: Bool {
-        return swiftDeposit || visaDeposit
+        return !blockchainDeposit
     }
 }
