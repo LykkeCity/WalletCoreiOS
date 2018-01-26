@@ -24,7 +24,7 @@ class SettingsTermsOfUseViewController: UIViewController {
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
             self.applicationInfoViewModel.isLoading,
-            self.webView.rx.didFinishLoad.mapToBool()
+            self.webView.rx.didFinishLoad.map{ _ in false }.startWith(true)
             ])
     }()
     
@@ -46,12 +46,6 @@ class SettingsTermsOfUseViewController: UIViewController {
         
     }
     
-}
-extension ObservableType where Self.E == Void {
-    
-     func mapToBool() -> Observable<Bool> {
-        return Observable<Bool>.just(false)
-    }
 }
 
 
