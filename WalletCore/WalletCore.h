@@ -109,7 +109,7 @@ FOUNDATION_EXPORT const unsigned char WalletCoreVersionString[];
 #import <WalletCore/LWPacketGetBlockchainAddress.h>
 #import <WalletCore/LWPacketSendBlockchainEmail.h>
 #import <WalletCore/LWPacketCashOut.h>
-
+#import <WalletCore/LWPacketApplicationInfo.h>
 #import <WalletCore/Macro.h>
 #import <WalletCore/LWUtils.h>
 #import <WalletCore/LWColorizer.h>
