@@ -28,12 +28,14 @@ class SettingsTableViewController: UITableViewController {
             self.subtitleFont = subtitleFont
             self.segue = segue
         }
-
+        
     }
     
     private let viewModel = SettingsViewModel()
     
     private let disposeBag = DisposeBag()
+    
+    private let shouldSignOrderTap = Variable<Bool>(false)
     
     private var rows = Variable([RowInfo]())
     
@@ -43,13 +45,13 @@ class SettingsTableViewController: UITableViewController {
         tableView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         
         navigationItem.title = Localize("settings.newDesign.title")
-
+        
         let cellNib = UINib(nibName: "SettingsTableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "SettingsCell")
         
         self.clearsSelectionOnViewWillAppear = true
         
-        viewModel.appSettings.asObservable()
+        Observable.combineLatest( viewModel.appSettings.asObservable(),viewModel.shouldSignOrder.asObservable())
             .mapToSettingsRowInfo()
             .asDriver(onErrorJustReturn: [
                 RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: ""),
@@ -58,7 +60,7 @@ class SettingsTableViewController: UITableViewController {
                 RowInfo(icon: #imageLiteral(resourceName: "RefundIcon"), title: Localize("settings.newDesign.refundAddress"), subtitle: "", segue: ""),
                 RowInfo(icon: #imageLiteral(resourceName: "BackupPrivateKeyIcon"), title: Localize("settings.newDesign.backupPrivateKey"), segue: ""),
                 RowInfo(icon: #imageLiteral(resourceName: "TermsIcon"), title: Localize("settings.newDesign.termsOfUse"), segue: "")
-            ])
+                ])
             .drive(rows)
             .disposed(by: disposeBag)
         
@@ -68,11 +70,32 @@ class SettingsTableViewController: UITableViewController {
             }
             .disposed(by: disposeBag)
         
+        shouldSignOrderTap
+            .asObservable()
+            .flatMap { shouldSign -> Observable<Bool> in
+                if shouldSign {
+                    return PinViewController.presentPinViewControllerWithCompleted(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: false)
+                }else {
+                    return Observable<Bool>.just(false)
+                }
+            }
+            .subscribe(onNext: { [weak self] completed in
+                guard let shouldSignOrder = self?.viewModel.shouldSignOrder else {return}
+                if completed{
+                    shouldSignOrder.value = !shouldSignOrder.value
+                    LWCache.instance().shouldSignOrder = shouldSignOrder.value
+                }
+            })
+            .disposed(by: disposeBag)
+        
         tableView.rx
             .modelSelected(RowInfo.self)
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] rowInfo in
                 guard let `self` = self else { return }
+                if rowInfo.title == Localize("settings.newDesign.confirmOrders"){
+                    self.shouldSignOrderTap.value = true
+                }
                 if rowInfo.segue != "" {
                     self.performSegue(withIdentifier: rowInfo.segue, sender: nil)
                 }
@@ -81,28 +104,26 @@ class SettingsTableViewController: UITableViewController {
                 }
             })
             .disposed(by: disposeBag)
-
+        
         viewModel.loadingViewModel.isLoading
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
     }
-
+    
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PersonalData" {
             let vc = segue.destination as! SettingsPersonalDataTableViewController
             vc.viewModel = viewModel
         }
     }
-
-}
-
-extension Observable where Element == LWAppSettingsModel {
     
+}
+fileprivate extension ObservableType where Self.E == (LWAppSettingsModel, Bool) {
     func mapToSettingsRowInfo() -> Observable<[SettingsTableViewController.RowInfo]> {
-        return map { (appSettings) in
-            let confirmOrdersIcon = appSettings.shouldSignOrders ? #imageLiteral(resourceName: "CheckboxChecked") : #imageLiteral(resourceName: "CheckboxUnchecked")
+        return map { appSettings, shouldSignOrders in
+            let confirmOrdersIcon = shouldSignOrders ? #imageLiteral(resourceName: "CheckboxChecked") : #imageLiteral(resourceName: "CheckboxUnchecked")
             return [
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: "PersonalData"),
                 SettingsTableViewController.RowInfo(icon: confirmOrdersIcon, title: Localize("settings.newDesign.confirmOrders"), segue: ""),
@@ -113,7 +134,6 @@ extension Observable where Element == LWAppSettingsModel {
             ]
         }
     }
-    
 }
 
 extension SettingsTableViewCell {
