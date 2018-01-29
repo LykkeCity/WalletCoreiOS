@@ -17,11 +17,14 @@ open class AssetsViewModel {
         formatter: SingleAssetFormatterProtocol
     )
     
+    public typealias AssetsList = Observable<ApiResultList<LWAssetModel>>
+    public typealias SelectedAsset = Observable<ApiResult<LWAssetModel>>
+    
     /// Collection of view models fetched and transformed
     public let assets: Driver<[SingleAssetViewModel]>
     
-    /// Current asset (if present)
-    public let currentAsset = Variable<LWAssetModel?>(nil)
+    /// Selected asset (if present)
+    public let selectedAsset = Variable<LWAssetModel?>(nil)
     
     /// Standart loading view model
     public let loadingViewModel: LoadingViewModel
@@ -31,14 +34,12 @@ open class AssetsViewModel {
     
     let disposeBag = DisposeBag()
     
-    public init(
-        withAssets assets: Observable<ApiResultList<LWAssetModel>>,
-        dependency: Dependency
-    ) {
-        self.assets = Observable.combineLatest(assets.filterSuccess(), currentAsset.asObservable()) {(all: $0, current: $1)}
+    public init(withAssets assets: AssetsList, dependency: Dependency) {
+        self.assets = Observable.combineLatest(assets.filterSuccess(), selectedAsset.asObservable()) {(all: $0, current: $1)}
             .map{ data in
                 data.all.map {
                     let viewModel = SingleAssetViewModel(withAsset: Observable.of($0), formatter: dependency.formatter)
+                    print("La vida es: \(($0.identity == data.current?.identity))")
                     viewModel.isSelected.value = ($0.identity == data.current?.identity)
                     return viewModel
                 }
@@ -51,5 +52,13 @@ open class AssetsViewModel {
         loadingViewModel = LoadingViewModel([
             assets.isLoading()
         ])
+    }
+    
+    convenience public init(withAssets assets: AssetsList, selectedAsset selected: SelectedAsset, dependency: Dependency) {
+        self.init(withAssets: assets, dependency: dependency)
+        
+        selected.asObservable().filterSuccess()
+            .bind(to: selectedAsset)
+            .disposed(by: disposeBag)
     }
 }

@@ -17,7 +17,7 @@ public class SingleAssetFormatter: SingleAssetFormatterProtocol{}
 open class SingleAssetViewModel {
     
     /// Current asset's ID
-    public let identity: Driver<String>
+    public let identity = Variable<String>("")
     
     /// Asset's name
     public var name: Driver<String>
@@ -34,11 +34,14 @@ open class SingleAssetViewModel {
     /// Determine wether the asset is a selection from a list
     public let isSelected = Variable<Bool>(false)
     
+    private let disposeBag = DisposeBag()
+    
     init(withAsset asset: Observable<LWAssetModel>, formatter: SingleAssetFormatterProtocol) {
         
-        self.identity = asset
-            .map{$0.identity}
-            .asDriver(onErrorJustReturn: "")
+        asset.map {
+            $0.identity
+        }.bind(to: identity)
+        .disposed(by: disposeBag)
         
         self.name = asset
             .map{$0.displayName}

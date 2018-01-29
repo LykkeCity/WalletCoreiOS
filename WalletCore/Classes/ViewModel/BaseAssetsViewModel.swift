@@ -28,7 +28,7 @@ open class BaseAssetsViewModel {
         
         let dependency = AssetsViewModel.Dependency(authManager: authManager, formatter: SingleAssetFormatter())
         
-        assetsViewModel = AssetsViewModel(withAssets: result, dependency: dependency)
+        assetsViewModel = AssetsViewModel(withAssets: result, selectedAsset: authManager.baseAsset.request(), dependency: dependency)
         
         // Loading and error handling
         loadingViewModel = LoadingViewModel([result.isLoading()])
