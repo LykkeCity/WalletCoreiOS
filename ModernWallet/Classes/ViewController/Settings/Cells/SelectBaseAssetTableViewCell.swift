@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SelectBaseAssetTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
-    var title: String? {
-        get { return titleLabel.text }
-        set { titleLabel.text = newValue }
-    }
+    let disposeBag = DisposeBag()
     
     var isSelectedBaseAsset: Bool {
         get { return accessoryType == .checkmark }
