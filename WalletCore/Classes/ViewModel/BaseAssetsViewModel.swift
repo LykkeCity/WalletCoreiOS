@@ -11,19 +11,29 @@ import RxSwift
 import RxCocoa
 
 open class BaseAssetsViewModel {
-    public let loading: Observable<Bool>
-    public let result: Driver<ApiResult<LWPacketBaseAssets>>
+    public var assetsViewModel: AssetsViewModel!
+    
+    /// Standart loading view model
+    public let loadingViewModel: LoadingViewModel
+    
+    /// Standart error driver
+    public let errors: Driver<[AnyHashable: Any]>
     
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
-        let allAssets = authManager.allAssets.request().filterSuccess()
-        result = allAssets
+        let result = authManager.allAssets.request().filterSuccess()
             .throttle(1, scheduler: MainScheduler.instance)
             .map { _ in return () }
             .mapAssets(authManager: authManager)
-            .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
-        loading = result.asObservable().isLoading()
+        let dependency = AssetsViewModel.Dependency(authManager: authManager, formatter: SingleAssetFormatter())
+        
+        assetsViewModel = AssetsViewModel(withAssets: result, dependency: dependency)
+        
+        // Loading and error handling
+        loadingViewModel = LoadingViewModel([result.isLoading()])
+        errors = result.filterError()
+            .asDriver(onErrorJustReturn: [:])
     }
 }
 
@@ -31,9 +41,9 @@ fileprivate extension ObservableType where Self.E == Void {
     
     func mapAssets(
         authManager: LWRxAuthManager
-        ) -> Observable<ApiResult<LWPacketBaseAssets>> {
+        ) -> Observable<ApiResultList<LWAssetModel>> {
         
-        return flatMapLatest { authManager.baseAssets.request(withParams: ()) }
+        return flatMapLatest { _ in authManager.baseAssets.request() }
             .shareReplay(1)
     }
 }

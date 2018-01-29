@@ -9,12 +9,16 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerBaseAssets:  NSObject{
-    
+public protocol LWRxAuthManagerBaseAssetsProtocol {
+    func request() -> Observable<ApiResultList<LWAssetModel>>
+}
+
+public class LWRxAuthManagerBaseAssets: NSObject, LWRxAuthManagerBaseAssetsProtocol {
+
     public typealias Packet = LWPacketBaseAssets
-    public typealias Result = ApiResult<LWPacketBaseAssets>
-    public typealias ResultType = LWPacketBaseAssets
-    public typealias RequestParams = ()
+    public typealias Result = ApiResultList<LWAssetModel>
+    public typealias ResultType = LWAssetModel
+    public typealias RequestParams = Void
     
     override init() {
         super.init()
@@ -34,30 +38,33 @@ public class LWRxAuthManagerBaseAssets:  NSObject{
     }
 }
 
-extension LWRxAuthManagerBaseAssets: AuthManagerProtocol{
+extension LWRxAuthManagerBaseAssets: AuthManagerProtocol {
     public func createPacket(withObserver observer: Any, params: ()) -> LWPacketBaseAssets {
         return Packet(observer: observer)
     }
-}
-
-public extension ObservableType where Self.E == ApiResult<LWPacketBaseAssets> {
-    public func filterSuccess() -> Observable<LWPacketBaseAssets> {
-        return map{$0.getSuccess()}.filterNil()
+    
+    public func request() -> Observable<ApiResultList<LWAssetModel>> {
+        return request(withParams:()).map{ result -> ApiResultList<LWAssetModel> in
+            switch result {
+            case .error(let data): return .error(withData: data)
+            case .loading: return .loading
+            case .notAuthorized: return .notAuthorized
+            case .forbidden: return .forbidden
+            case .success(let data): return .success(withData: data)
+            }
+        }
     }
     
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
+    public func request(withParams: RequestParams) -> Observable<Result> {
+        return self.defaultRequestImplementation(with: ())
     }
     
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
+    public func getErrorResult(fromPacket packet: Packet) -> Result {
+        return Result.error(withData: packet.errors)
     }
-}
-
-extension LWPacketBaseAssets {
-    convenience init(observer: Any) {
-        self.init()
-        self.observer = observer
+    
+    public func getSuccessResult(fromPacket packet: Packet) -> Result {
+        return Result.success(withData: LWCache.instance().allAssets.map{$0 as! LWAssetModel})
     }
 }
 
