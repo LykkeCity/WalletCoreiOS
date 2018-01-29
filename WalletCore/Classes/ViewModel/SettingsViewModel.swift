@@ -13,7 +13,7 @@ import RxCocoa
 open class SettingsViewModel {
     
     public let loading: Observable<Bool>
-    public var shouldSignOrder = Variable<Bool>(LWCache.instance().shouldSignOrder  )
+    public let shouldSignOrder: Variable<Bool>
     public let result: Driver<ApiResult<LWPacketPersonalData>>
     public let resultShouldSignOrder: Driver<LWPacketSettingSignOrder>
     
@@ -25,10 +25,11 @@ open class SettingsViewModel {
     
     private let disposeBag = DisposeBag()
     
-    
-    
-    public init( authManager: LWRxAuthManager = LWRxAuthManager.instance)
+    public init( authManager: LWRxAuthManager = LWRxAuthManager.instance,
+                 lwCache: LWCache = LWCache.instance())
     {
+        shouldSignOrder = Variable<Bool>(lwCache.shouldSignOrder)
+        
         let personalDataObservable = authManager.settings.request()
         result = personalDataObservable.asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
