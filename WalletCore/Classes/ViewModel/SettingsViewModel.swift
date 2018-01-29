@@ -13,8 +13,9 @@ import RxCocoa
 open class SettingsViewModel {
     
     public let loading: Observable<Bool>
-    public var shouldSignOrder = Variable<Bool>(false)
+    public var shouldSignOrder = Variable<Bool>(LWCache.instance().shouldSignOrder  )
     public let result: Driver<ApiResult<LWPacketPersonalData>>
+    public let resultShouldSignOrder: Driver<LWPacketSettingSignOrder>
     
     public let personalData: Driver<LWPersonalDataModel>
     
@@ -23,6 +24,8 @@ open class SettingsViewModel {
     public let loadingViewModel: LoadingViewModel
     
     private let disposeBag = DisposeBag()
+    
+    
     
     public init( authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
@@ -48,8 +51,22 @@ open class SettingsViewModel {
             .bind(to: shouldSignOrder)
             .disposed(by: disposeBag)
         
+        let shouldSignOrderObserver = shouldSignOrder
+            .asObservable()
+            .filter{ $0 != LWCache.instance().shouldSignOrder}
+            .flatMap{ signOrder -> Observable<ApiResult<LWPacketSettingSignOrder>> in
+                    return authManager.settingSignOrder.request(withParams: signOrder)
+            }
+            .shareReplay(1)
+
+        resultShouldSignOrder = shouldSignOrderObserver
+            .filterSuccess()
+            .asDriver(onErrorJustReturn: LWPacketSettingSignOrder(json: []))
         
-        loadingViewModel = LoadingViewModel([personalDataObservable.isLoading(), appSettingsRequestObservable.isLoading()])
+        loadingViewModel = LoadingViewModel([personalDataObservable.isLoading(),
+                                             appSettingsRequestObservable.isLoading(),
+                                             shouldSignOrderObserver.isLoading()
+                                             ])
         loading = loadingViewModel.isLoading
     }
     
