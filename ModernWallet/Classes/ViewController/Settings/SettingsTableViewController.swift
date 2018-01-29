@@ -82,8 +82,7 @@ class SettingsTableViewController: UITableViewController {
             .subscribe(onNext: { [weak self] completed in
                 guard let shouldSignOrder = self?.viewModel.shouldSignOrder else {return}
                 if completed{
-                    shouldSignOrder.value = !shouldSignOrder.value
-                    LWCache.instance().shouldSignOrder = shouldSignOrder.value
+                    self?.viewModel.shouldSignOrder.value = !shouldSignOrder.value
                 }
             })
             .disposed(by: disposeBag)
