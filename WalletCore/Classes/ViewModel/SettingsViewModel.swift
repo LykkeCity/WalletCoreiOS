@@ -11,8 +11,9 @@ import RxSwift
 import RxCocoa
 
 open class SettingsViewModel {
-
+    
     public let loading: Observable<Bool>
+    public var shouldSignOrder = Variable<Bool>(false)
     public let result: Driver<ApiResult<LWPacketPersonalData>>
     
     public let personalData: Driver<LWPersonalDataModel>
@@ -40,9 +41,17 @@ open class SettingsViewModel {
             .map { (packet: LWPacketAppSettings) in packet.appSettings! }
             .asDriver(onErrorJustReturn: LWAppSettingsModel())
         
+        appSettingsRequestObservable
+            .filterSuccess()
+            .filter { $0.appSettings != nil }
+            .map {$0.appSettings.shouldSignOrders }
+            .bind(to: shouldSignOrder)
+            .disposed(by: disposeBag)
+        
+        
         loadingViewModel = LoadingViewModel([personalDataObservable.isLoading(), appSettingsRequestObservable.isLoading()])
         loading = loadingViewModel.isLoading
     }
-
+    
 }
 
