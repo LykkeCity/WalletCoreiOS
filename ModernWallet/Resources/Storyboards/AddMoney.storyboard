@@ -1469,7 +1469,7 @@ transaction is confirmed in the blockchain</string>
                         <color key="backgroundColor" red="0.1137254902" green="0.63137254899999995" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="YZD-8U-zKw" firstAttribute="top" secondItem="sGx-4E-9JI" secondAttribute="bottom" constant="20" id="403-3H-hYZ"/>
+                            <constraint firstItem="YZD-8U-zKw" firstAttribute="top" relation="lessThanOrEqual" secondItem="sGx-4E-9JI" secondAttribute="bottom" constant="20" id="403-3H-hYZ"/>
                             <constraint firstItem="sGx-4E-9JI" firstAttribute="top" secondItem="dkB-MO-deB" secondAttribute="topMargin" constant="20" id="BIM-pS-Jv9"/>
                             <constraint firstItem="7ft-Ja-nlS" firstAttribute="leading" secondItem="dkB-MO-deB" secondAttribute="leadingMargin" id="Ch9-x4-5Fk"/>
                             <constraint firstItem="7ft-Ja-nlS" firstAttribute="top" secondItem="pKc-K4-18M" secondAttribute="bottom" id="Cic-ih-EXM"/>
@@ -1477,7 +1477,7 @@ transaction is confirmed in the blockchain</string>
                             <constraint firstAttribute="trailingMargin" secondItem="YZD-8U-zKw" secondAttribute="trailing" id="RR8-4o-aSK"/>
                             <constraint firstItem="YZD-8U-zKw" firstAttribute="leading" secondItem="dkB-MO-deB" secondAttribute="leadingMargin" id="Ucw-3t-IyQ"/>
                             <constraint firstItem="dsS-Fy-wTZ" firstAttribute="top" secondItem="YZD-8U-zKw" secondAttribute="bottom" constant="4" id="cJv-7d-ogb"/>
-                            <constraint firstItem="kpt-8F-lwH" firstAttribute="width" relation="lessThanOrEqual" secondItem="dkB-MO-deB" secondAttribute="width" multiplier="0.6" id="f2P-aC-8eq"/>
+                            <constraint firstItem="kpt-8F-lwH" firstAttribute="width" relation="lessThanOrEqual" secondItem="dkB-MO-deB" secondAttribute="width" multiplier="0.7" id="f2P-aC-8eq"/>
                             <constraint firstItem="dsS-Fy-wTZ" firstAttribute="trailing" secondItem="YZD-8U-zKw" secondAttribute="trailing" id="hIz-UU-0in"/>
                             <constraint firstAttribute="bottom" secondItem="dsS-Fy-wTZ" secondAttribute="bottom" constant="4" id="rxH-xP-JdX"/>
                             <constraint firstItem="7ft-Ja-nlS" firstAttribute="trailing" secondItem="dkB-MO-deB" secondAttribute="trailingMargin" id="xeK-5N-FQS"/>
