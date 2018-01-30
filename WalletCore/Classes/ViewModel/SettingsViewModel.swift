@@ -12,7 +12,6 @@ import RxCocoa
 
 open class SettingsViewModel {
     
-    public let loading: Observable<Bool>
     public let shouldSignOrder: Variable<Bool>
     public let result: Driver<ApiResult<LWPacketPersonalData>>
     public let resultShouldSignOrder: Driver<LWPacketSettingSignOrder>
@@ -54,7 +53,7 @@ open class SettingsViewModel {
         
         let shouldSignOrderObserver = shouldSignOrder
             .asObservable()
-            .filter{ $0 != LWCache.instance().shouldSignOrder}
+            .filter{ $0 != lwCache.shouldSignOrder}
             .flatMap{ signOrder -> Observable<ApiResult<LWPacketSettingSignOrder>> in
                     return authManager.settingSignOrder.request(withParams: signOrder)
             }
@@ -68,7 +67,6 @@ open class SettingsViewModel {
                                              appSettingsRequestObservable.isLoading(),
                                              shouldSignOrderObserver.isLoading()
                                              ])
-        loading = loadingViewModel.isLoading
     }
     
 }
