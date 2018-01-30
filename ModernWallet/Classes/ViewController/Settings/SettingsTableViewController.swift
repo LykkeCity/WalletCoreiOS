@@ -35,8 +35,6 @@ class SettingsTableViewController: UITableViewController {
     
     private let disposeBag = DisposeBag()
     
-    private let shouldSignOrderTap = Variable<Bool>(false)
-    
     private var rows = Variable([RowInfo]())
     
     override func viewDidLoad() {
@@ -70,38 +68,14 @@ class SettingsTableViewController: UITableViewController {
             }
             .disposed(by: disposeBag)
         
-        shouldSignOrderTap
-            .asObservable()
-            .flatMap { shouldSign -> Observable<Bool> in
-                if shouldSign {
-                    return PinViewController.presentPinViewControllerWithCompleted(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: false)
-                }else {
-                    return Observable<Bool>.just(false)
-                }
-            }
-            .subscribe(onNext: { [weak self] completed in
-                guard let shouldSignOrder = self?.viewModel.shouldSignOrder else {return}
-                if completed{
-                    self?.viewModel.shouldSignOrder.value = !shouldSignOrder.value
-                }
-            })
+        let modelSelected = tableView.rx.modelSelected(RowInfo.self).observeOn(MainScheduler.asyncInstance)
+        
+        modelSelected
+            .bindToSignOrder(toViewModel: viewModel, context: self)
             .disposed(by: disposeBag)
         
-        tableView.rx
-            .modelSelected(RowInfo.self)
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] rowInfo in
-                guard let `self` = self else { return }
-                if rowInfo.title == Localize("settings.newDesign.confirmOrders"){
-                    self.shouldSignOrderTap.value = true
-                }
-                if rowInfo.segue != "" {
-                    self.performSegue(withIdentifier: rowInfo.segue, sender: nil)
-                }
-                else if let indexPath = self.tableView.indexPathForSelectedRow {
-                    self.tableView.deselectRow(at: indexPath, animated: true)
-                }
-            })
+        modelSelected
+            .bindToPerformSeque(context: self)
             .disposed(by: disposeBag)
         
         viewModel.loadingViewModel.isLoading
@@ -117,8 +91,46 @@ class SettingsTableViewController: UITableViewController {
             vc.viewModel = viewModel
         }
     }
-    
 }
+
+fileprivate extension ObservableType where Self.E == SettingsTableViewController.RowInfo {
+    
+    /// Bind to SettingsViewModel.shouldSignOrder. Each event will open pin view controller and if passed will change SettingsViewModel.shouldSignOrder with the opposite value.
+    ///
+    /// - Parameters:
+    ///   - viewModel: ViewModel that shouldSignOrder will be changed
+    ///   - vc: Context where it's called the binding
+    /// - Returns: Diposable of the binding
+    func bindToSignOrder(toViewModel viewModel: SettingsViewModel, context vc: UIViewController) -> Disposable {
+        return
+            filter{ $0.title == Localize("settings.newDesign.confirmOrders") }
+            .flatMap{ [weak vc] _ -> Observable<Bool> in
+                guard let vc = vc else { return Observable<Bool>.never() }
+                return PinViewController.presentPinViewControllerWithCompleted(from: vc, title: Localize("newDesign.enterPin"), isTouchIdEnabled: false)
+            }
+            .filter{ $0 }
+            .map{ _ in !viewModel.shouldSignOrder.value }
+            .bind(to: viewModel.shouldSignOrder)
+    }
+    
+    /// Bind RowInfo to performing segue.If RowInfo does not contains segue the cell will be deselected
+    ///
+    /// - Parameter vc: Context where it's called the binding
+    /// - Returns: Disposable of the binding
+    func bindToPerformSeque(context vc: UITableViewController) -> Disposable {
+        return subscribe(onNext: { [weak vc] rowInfo in
+            guard let vc = vc else { return }
+            
+            if rowInfo.segue != "" {
+                vc.performSegue(withIdentifier: rowInfo.segue, sender: nil)
+            }
+            else if let indexPath = vc.tableView.indexPathForSelectedRow {
+                vc.tableView.deselectRow(at: indexPath, animated: true)
+            }
+        })
+    }
+}
+
 fileprivate extension ObservableType where Self.E == (LWAppSettingsModel, Bool) {
     func mapToSettingsRowInfo() -> Observable<[SettingsTableViewController.RowInfo]> {
         return map { appSettings, shouldSignOrders in
