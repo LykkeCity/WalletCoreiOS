@@ -110,9 +110,9 @@ extension SettingsBaseAssetTableViewController {
 extension SelectBaseAssetTableViewCell {
     func setBaseAssetData(_ assetInfo: SingleAssetViewModel) {
         assetInfo.shortName
-            .drive(titleLabel.rx.text)
+            .drive(assetTitleLabel.rx.text)
             .disposed(by: disposeBag)
-        
+
         isSelectedBaseAsset = assetInfo.isSelected.value
     }
     

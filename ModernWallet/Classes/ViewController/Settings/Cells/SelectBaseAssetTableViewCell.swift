@@ -12,7 +12,7 @@ import RxCocoa
 
 class SelectBaseAssetTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var assetTitleLabel: UILabel!
     
     let disposeBag = DisposeBag()
     

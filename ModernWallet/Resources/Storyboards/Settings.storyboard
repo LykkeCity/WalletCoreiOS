@@ -109,13 +109,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BACKUP PRIVATE KEY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3SP-Yf-tm3">
-                                <rect key="frame" x="32" y="76" width="311" height="17.5"/>
+                                <rect key="frame" x="32" y="76" width="311" height="15"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMj-Ix-TdS">
-                                <rect key="frame" x="0.0" y="101.5" width="375" height="565.5"/>
+                                <rect key="frame" x="0.0" y="99" width="375" height="568"/>
                                 <connections>
                                     <segue destination="hYX-dA-Tl5" kind="embed" identifier="EmbedNavController" id="qck-G5-p6Q"/>
                                 </connections>
@@ -179,7 +179,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTd-DM-2WZ">
-                                <rect key="frame" x="32" y="200" width="311" height="168"/>
+                                <rect key="frame" x="32" y="212" width="311" height="144"/>
                                 <string key="text">You need to make a backup of your wallet. With your backup, you can easily restore your funds if your defice is lost or damaged. Your backup is a series of 12 words. Just write them down and keep them in a safe place. Anyone who knows this sequence of words can access and spend all the funds in your wallet, so be sure to keep it in a safe place.</string>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -196,7 +196,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAKE A BACKUP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBa-fY-RDm">
-                                <rect key="frame" x="32" y="139" width="311" height="21"/>
+                                <rect key="frame" x="32" y="154" width="311" height="18"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -254,7 +254,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WRITE DOWN THE FOLLOWING WORDS AND KEEP THEM IN A SAFE PLACE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQ6-fa-jWq">
-                                <rect key="frame" x="33" y="89" width="309.5" height="63"/>
+                                <rect key="frame" x="30" y="89" width="315.5" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="250" constant="320" id="CcB-JG-348"/>
                                 </constraints>
@@ -263,7 +263,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETA-Dy-PkR">
-                                <rect key="frame" x="0.0" y="160" width="375" height="330"/>
+                                <rect key="frame" x="0.0" y="133" width="375" height="357"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="wek-0R-HhM">
                                     <size key="itemSize" width="364" height="198"/>
@@ -273,7 +273,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WordCell" id="WKM-UJ-zgJ">
-                                        <rect key="frame" x="0.0" y="66" width="364" height="198"/>
+                                        <rect key="frame" x="0.0" y="79.5" width="364" height="198"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="364" height="198"/>
@@ -301,7 +301,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YI-yy-meF">
-                                <rect key="frame" x="33" y="498" width="71" height="40"/>
+                                <rect key="frame" x="30" y="498" width="64" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="oWi-7U-PGU"/>
                                 </constraints>
@@ -321,7 +321,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qv-JH-RvF">
-                                <rect key="frame" x="272.5" y="498" width="70" height="40"/>
+                                <rect key="frame" x="279.5" y="498" width="66" height="40"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -379,7 +379,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TYPE ALL 12 WORDS SEPARATED BY SPACE TO VERIFY YOUR BACKUP" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bug-6H-6Qd">
-                                                <rect key="frame" x="27.5" y="69" width="320" height="42"/>
+                                                <rect key="frame" x="27.5" y="69" width="320" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="320" id="PFN-Qb-1Ge"/>
                                                 </constraints>
@@ -388,7 +388,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="pYg-Xb-OcF">
-                                                <rect key="frame" x="32" y="256.5" width="311" height="36"/>
+                                                <rect key="frame" x="32" y="257" width="311" height="36"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="6k1-o1-kEw"/>
@@ -398,7 +398,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mS6-ja-jGo">
-                                                <rect key="frame" x="32" y="292.5" width="311" height="1"/>
+                                                <rect key="frame" x="32" y="293" width="311" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="Ox8-cC-tA3"/>
@@ -471,19 +471,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BRAVO PATRONE!!!!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOc-vH-rxk">
-                                <rect key="frame" x="32" y="273" width="311" height="23.5"/>
+                                <rect key="frame" x="32" y="274" width="311" height="20"/>
                                 <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="20"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cib-Zj-dbO">
-                                <rect key="frame" x="32" y="316.5" width="311" height="21"/>
+                                <rect key="frame" x="32" y="314" width="311" height="18"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TickIcon" translatesAutoresizingMaskIntoConstraints="NO" id="UBQ-Mf-suZ">
-                                <rect key="frame" x="151" y="121" width="72" height="72"/>
+                                <rect key="frame" x="151" y="122" width="72" height="72"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -540,7 +540,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="titleLabel" destination="bqy-C6-K3O" id="swx-eu-HSs"/>
+                                    <outlet property="assetTitleLabel" destination="bqy-C6-K3O" id="Q6Y-G7-sTR"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -552,7 +552,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zRT-RB-GjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2594" y="631"/>
+            <point key="canvasLocation" x="1521" y="1012"/>
         </scene>
     </scenes>
     <resources>
