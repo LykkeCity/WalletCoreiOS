@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,7 +17,7 @@
         <!--Step1 View Controller-->
         <scene sceneID="ds5-hd-dgm">
             <objects>
-                <viewController storyboardIdentifier="kycStep1VC" id="vVd-03-28z" customClass="KYCStep1ViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="kycStep1VC" id="vVd-03-28z" customClass="KYCStep1ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RMD-ZX-iZX"/>
                         <viewControllerLayoutGuide type="bottom" id="66x-DU-2fp"/>
@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-ff-Ye0" customClass="KYCPhotoPlaceholderView" customModule="ModernWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-ff-Ye0" customClass="KYCPhotoPlaceholderView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="32" y="0.0" width="311" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -50,7 +50,7 @@
         <!--Step2 View Controller-->
         <scene sceneID="lv4-tH-Amj">
             <objects>
-                <viewController storyboardIdentifier="kycStep2VC" id="9Gp-Cr-SAM" customClass="KYCStep2ViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="kycStep2VC" id="9Gp-Cr-SAM" customClass="KYCStep2ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v9g-sI-Rye"/>
                         <viewControllerLayoutGuide type="bottom" id="TH6-6l-Gds"/>
@@ -59,7 +59,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUQ-wC-4Db" customClass="KYCPhotoPlaceholderView" customModule="ModernWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUQ-wC-4Db" customClass="KYCPhotoPlaceholderView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="32" y="0.0" width="311" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -83,7 +83,7 @@
         <!--Step3 View Controller-->
         <scene sceneID="dAF-E5-pdU">
             <objects>
-                <viewController storyboardIdentifier="kycStep3VC" id="okm-xa-NCr" customClass="KYCStep3ViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="kycStep3VC" id="okm-xa-NCr" customClass="KYCStep3ViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vtg-AJ-Gry"/>
                         <viewControllerLayoutGuide type="bottom" id="RR3-n0-sHV"/>
@@ -92,7 +92,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cc7-sA-M1v" customClass="KYCPhotoPlaceholderView" customModule="ModernWallet" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cc7-sA-M1v" customClass="KYCPhotoPlaceholderView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="32" y="0.0" width="311" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -116,12 +116,12 @@
         <!--REGISTER-->
         <scene sceneID="OLC-OD-IFW">
             <objects>
-                <viewController storyboardIdentifier="kycTabVC" id="v66-wv-zt1" customClass="KYCTabStripViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="kycTabVC" id="v66-wv-zt1" customClass="KYCTabStripViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7gC-j3-jsm"/>
                         <viewControllerLayoutGuide type="bottom" id="deE-YR-4KB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="suD-0z-5UF" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="suD-0z-5UF" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -232,12 +232,12 @@
         <!--Photo Failed View Controller-->
         <scene sceneID="3mR-gY-1qc">
             <objects>
-                <viewController storyboardIdentifier="kycPhotoFailedVC" id="Hza-j3-IWo" customClass="KYCPhotoFailedViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="kycPhotoFailedVC" id="Hza-j3-IWo" customClass="KYCPhotoFailedViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qm9-za-ubF"/>
                         <viewControllerLayoutGuide type="bottom" id="4Pb-Ho-j6j"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fuo-n2-m3u" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="fuo-n2-m3u" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -297,45 +297,49 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KYCPhotoFailedTableViewCell" rowHeight="92" id="9da-fV-Zep" customClass="KYCPhotoFailedTableViewCell" customModule="ModernWallet" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KYCPhotoFailedTableViewCell" rowHeight="92" id="9da-fV-Zep" customClass="KYCPhotoFailedTableViewCell" customModule="ModernMoney" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="308" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9da-fV-Zep" id="FQt-hl-pym">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kycIconDeclined" translatesAutoresizingMaskIntoConstraints="NO" id="Zri-S8-fvV">
-                                                    <rect key="frame" x="20" y="0.0" width="16" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHOTO OF YOUR PASSPORT OR ANOTHER ID " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-JN-YcC">
+                                                    <rect key="frame" x="56" y="0.0" width="299" height="38"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="Crj-Hk-Coi"/>
-                                                        <constraint firstAttribute="width" constant="16" id="ENJ-yi-6ek"/>
+                                                        <constraint firstAttribute="height" constant="38" id="M7c-Fy-K5P"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELFIE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-JN-YcC">
-                                                    <rect key="frame" x="56" y="-0.5" width="299" height="18"/>
                                                     <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xb-h5-75z">
-                                                    <rect key="frame" x="56" y="25.5" width="299" height="36.5"/>
+                                                    <rect key="frame" x="56" y="38" width="299" height="44"/>
                                                     <string key="text">Please resubmit a direct selfie photograph.
 Image should be well lit and in focus.</string>
                                                     <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kycIconDeclined" translatesAutoresizingMaskIntoConstraints="NO" id="Zri-S8-fvV">
+                                                    <rect key="frame" x="20" y="6" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="Crj-Hk-Coi"/>
+                                                        <constraint firstAttribute="width" constant="16" id="ENJ-yi-6ek"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Zri-S8-fvV" firstAttribute="top" secondItem="FQt-hl-pym" secondAttribute="top" id="0AK-An-2EL"/>
+                                                <constraint firstItem="Zri-S8-fvV" firstAttribute="top" secondItem="FQt-hl-pym" secondAttribute="top" constant="6" id="0AK-An-2EL"/>
                                                 <constraint firstAttribute="trailing" secondItem="5jN-JN-YcC" secondAttribute="trailing" constant="20" id="3fN-lw-olt"/>
+                                                <constraint firstItem="5jN-JN-YcC" firstAttribute="top" secondItem="FQt-hl-pym" secondAttribute="top" id="84F-FR-Dgp"/>
                                                 <constraint firstItem="Zri-S8-fvV" firstAttribute="leading" secondItem="FQt-hl-pym" secondAttribute="leading" constant="20" id="VLA-Mb-AKT"/>
-                                                <constraint firstItem="7Xb-h5-75z" firstAttribute="top" secondItem="5jN-JN-YcC" secondAttribute="bottom" constant="8" id="btJ-2k-32i"/>
+                                                <constraint firstItem="7Xb-h5-75z" firstAttribute="top" secondItem="5jN-JN-YcC" secondAttribute="bottom" id="btJ-2k-32i"/>
                                                 <constraint firstItem="7Xb-h5-75z" firstAttribute="trailing" secondItem="5jN-JN-YcC" secondAttribute="trailing" id="cB3-Ng-bup"/>
                                                 <constraint firstItem="7Xb-h5-75z" firstAttribute="leading" secondItem="5jN-JN-YcC" secondAttribute="leading" id="iva-lH-rrF"/>
                                                 <constraint firstItem="5jN-JN-YcC" firstAttribute="leading" secondItem="Zri-S8-fvV" secondAttribute="trailing" constant="20" id="pOt-Hw-9IR"/>
-                                                <constraint firstItem="Zri-S8-fvV" firstAttribute="centerY" secondItem="5jN-JN-YcC" secondAttribute="centerY" id="taY-kB-uQX"/>
-                                                <constraint firstAttribute="bottom" secondItem="7Xb-h5-75z" secondAttribute="bottom" constant="30" id="zCE-zo-fdC"/>
+                                                <constraint firstItem="Zri-S8-fvV" firstAttribute="centerY" secondItem="5jN-JN-YcC" secondAttribute="centerY" constant="-5" id="taY-kB-uQX"/>
+                                                <constraint firstAttribute="bottom" secondItem="7Xb-h5-75z" secondAttribute="bottom" constant="10" id="zCE-zo-fdC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
@@ -364,17 +368,17 @@ Image should be well lit and in focus.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0C5-Qt-Vtc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1779.7101449275365" y="-196.46739130434784"/>
+            <point key="canvasLocation" x="1778.4000000000001" y="-196.55172413793105"/>
         </scene>
         <!--Pending View Controller-->
         <scene sceneID="7rK-QW-WKl">
             <objects>
-                <viewController storyboardIdentifier="kycPendingVC" id="oki-uO-nG5" customClass="KYCPendingViewController" customModule="ModernWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="kycPendingVC" id="oki-uO-nG5" customClass="KYCPendingViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O58-ye-49y"/>
                         <viewControllerLayoutGuide type="bottom" id="rkE-Ly-5hH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AUh-U0-ZMF" customClass="BackgroundView" customModule="ModernWallet" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="AUh-U0-ZMF" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
