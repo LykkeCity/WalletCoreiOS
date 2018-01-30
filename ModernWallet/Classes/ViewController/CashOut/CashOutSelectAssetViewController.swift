@@ -33,10 +33,24 @@ class CashOutSelectAssetViewController: UIViewController {
         )
     }()
     
+    private lazy var kycNeededViewModel: KycNeededViewModel = {
+        let selectedAsset = self.collectionView.rx.modelSelected(Variable<Asset>.self)
+            .map{ $0.value.wallet?.asset }
+            .filterNil()
+            .flatMap{
+                Observable
+                    .just(ApiResult.success(withData: $0))
+                    .startWith(.loading)
+            }
+        
+        return KycNeededViewModel(forAsset: selectedAsset)
+    }()
+    
     private lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
             self.walletsViewModel.loadingViewModel.isLoading.filter { !$0 }.startWith(true),
-            self.totalBalanceViewModel.loading.isLoading
+            self.totalBalanceViewModel.loading.isLoading,
+            self.kycNeededViewModel.loadingViewModel.isLoading
         ])
     }()
     
@@ -78,9 +92,30 @@ class CashOutSelectAssetViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        collectionView.rx.itemSelected
-            .subscribe(onNext: { [weak self] indexPath in
-                guard let `self` = self else { return }
+        walletsViewModel.wallets
+            .filterOnlySwiftWithdraw()
+            .map { wallets in wallets.sorted { $0.0.value.percent > $0.1.value.percent } }
+            .bind(to: assets)
+            .disposed(by: disposeBag)
+        
+        kycNeededViewModel.needToFillData
+            .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycTabNVC")}
+            .subscribe(onNext: {[weak self] controller in
+                self?.navigationController?.present(controller, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        kycNeededViewModel.pending
+            .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPendingVC")}
+            .subscribe(onNext: {[weak self] controller in
+                self?.navigationController?.present(controller, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        kycNeededViewModel.ok
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self,
+                    let indexPath = self.collectionView.indexPathsForSelectedItems?.first else { return }
                 
                 let selectedWallet = self.assets.asObservable()
                     .map{ assets in assets[indexPath.row].value.wallet }
@@ -88,12 +123,6 @@ class CashOutSelectAssetViewController: UIViewController {
                 
                 self.performSegue(withIdentifier: "NextStep", sender: selectedWallet)
             })
-            .disposed(by: disposeBag)
-        
-        walletsViewModel.wallets
-            .filterOnlySwiftWithdraw()
-            .map { wallets in wallets.sorted { $0.0.value.percent > $0.1.value.percent } }
-            .bind(to: assets)
             .disposed(by: disposeBag)
         
         loadingViewModel.isLoading
