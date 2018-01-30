@@ -11,7 +11,13 @@ import RxSwift
 import RxCocoa
 
 open class BaseAssetsViewModel {
-    public var assetsViewModel: AssetsViewModel!
+    
+    public lazy var assetsViewModel : AssetsViewModel = {
+        return AssetsViewModel(withAssets: self.result,
+                               selectedAsset: LWRxAuthManager.instance.baseAsset.request(),
+                               dependency: AssetsViewModel.Dependency(authManager: LWRxAuthManager.instance,
+                                                                      formatter: SingleAssetFormatter()))
+    }()
     
     /// Standart loading view model
     public let loadingViewModel: LoadingViewModel
@@ -19,16 +25,13 @@ open class BaseAssetsViewModel {
     /// Standart error driver
     public let errors: Driver<[AnyHashable: Any]>
     
+    private var result: Observable<ApiResultList<LWAssetModel>>
+    
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
-        let result = authManager.allAssets.request().filterSuccess()
-            .throttle(1, scheduler: MainScheduler.instance)
+        result = authManager.allAssets.request().filterSuccess()
             .map { _ in return () }
             .mapAssets(authManager: authManager)
-        
-        let dependency = AssetsViewModel.Dependency(authManager: authManager, formatter: SingleAssetFormatter())
-        
-        assetsViewModel = AssetsViewModel(withAssets: result, selectedAsset: authManager.baseAsset.request(), dependency: dependency)
         
         // Loading and error handling
         loadingViewModel = LoadingViewModel([result.isLoading()])

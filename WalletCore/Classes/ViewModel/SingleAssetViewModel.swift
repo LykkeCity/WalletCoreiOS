@@ -36,28 +36,33 @@ open class SingleAssetViewModel {
     
     private let disposeBag = DisposeBag()
     
-    init(withAsset asset: Observable<LWAssetModel>, formatter: SingleAssetFormatterProtocol) {
+    init(withAsset asset: Variable<LWAssetModel>, formatter: SingleAssetFormatterProtocol) {
+
+        self.identity.value = asset.value.identity
         
-        asset.map {
-            $0.identity
-        }.bind(to: identity)
-        .disposed(by: disposeBag)
-        
-        self.name = asset
+        self.name = asset.transformToObservable()
             .map{$0.displayName}
             .asDriver(onErrorJustReturn: "")
         
-        self.fullName = asset
+        self.fullName = asset.transformToObservable()
             .map{$0.displayFullName}
             .asDriver(onErrorJustReturn: "")
         
-        self.shortName = asset
+        self.shortName = asset.transformToObservable()
             .map{$0.displayId}
             .asDriver(onErrorJustReturn: "")
         
-        self.iconUrl = asset
+        self.iconUrl = asset.transformToObservable()
             .map{$0.iconUrl}
             .asDriver(onErrorJustReturn: nil)
         
     }
+}
+
+extension Variable where Element == LWAssetModel {
+    
+    func transformToObservable() -> Observable<LWAssetModel> {
+        return Observable.just(value)
+    }
+    
 }

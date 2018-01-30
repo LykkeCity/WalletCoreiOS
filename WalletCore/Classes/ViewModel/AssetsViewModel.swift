@@ -35,13 +35,11 @@ open class AssetsViewModel {
     let disposeBag = DisposeBag()
     
     public init(withAssets assets: AssetsList, dependency: Dependency) {
-        self.assets = Observable.combineLatest(assets.filterSuccess(), selectedAsset.asObservable()) {(all: $0, current: $1)}
+        self.assets = assets.filterSuccess()
             .map{ data in
-                data.all.map {
-                    let viewModel = SingleAssetViewModel(withAsset: Observable.of($0), formatter: dependency.formatter)
-                    print("La vida es: \(($0.identity == data.current?.identity))")
-                    viewModel.isSelected.value = ($0.identity == data.current?.identity)
-                    return viewModel
+                data.map { value in
+                    print(value.self)
+                    return SingleAssetViewModel(withAsset: Variable<LWAssetModel>(value), formatter: dependency.formatter)
                 }
             }
             .asDriver(onErrorJustReturn: [])
