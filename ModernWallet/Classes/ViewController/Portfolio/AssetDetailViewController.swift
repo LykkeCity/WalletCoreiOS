@@ -27,11 +27,15 @@ class AssetDetailViewController: UIViewController {
         return AssetBalanceViewModel(asset: self.asset.asObservable())
     }()
     
+    fileprivate lazy var currencyExchanger: CurrencyExchanger = {
+        return CurrencyExchanger()
+    }()
+    
     fileprivate lazy var transactionsViewModel: TransactionsViewModel = {
         return TransactionsViewModel(
             downloadCsv: Observable.empty(),
             dependency: (
-                currencyExcancher: CurrencyExchanger(),
+                currencyExcancher: self.currencyExchanger,
                 authManager: LWRxAuthManager.instance,
                 formatter: TransactionFormatter.instance
             )
@@ -96,10 +100,12 @@ class AssetDetailViewController: UIViewController {
             guard let buyVC = segue.destination as? BuyOptimizedViewController else { return }
             buyVC.tradeType = .buy
             buyVC.tradeAssetIdentifier = asset.value.cryptoCurrency.identity
+            buyVC.currencyExchanger = currencyExchanger
         case "SellAsset":
             guard let sellVC = segue.destination as? BuyOptimizedViewController else { return }
             sellVC.tradeType = .sell
             sellVC.tradeAssetIdentifier = asset.value.cryptoCurrency.identity
+            sellVC.currencyExchanger = currencyExchanger
         case "ReceiveAddress":
             guard let receiveVC = segue.destination as? ReceiveWalletViewController else { return }
             receiveVC.asset = asset
