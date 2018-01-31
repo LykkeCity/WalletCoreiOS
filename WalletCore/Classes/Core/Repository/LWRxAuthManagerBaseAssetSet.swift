@@ -39,11 +39,18 @@ extension LWRxAuthManagerBaseAssetSet: AuthManagerProtocol{
     public func createPacket(withObserver observer: Any, params: (String)) -> LWPacketBaseAssetSet {
         return Packet(observer: observer, identity: params)
     }
+    
+    public func onSuccess(packet: Packet) {
+        guard let observer = packet.observer as? AnyObserver<Result> else { return }
+        LWCache.instance().baseAssetId = packet.identity
+        observer.onNext(getSuccessResult(fromPacket: packet))
+        observer.onCompleted()
+    }
 }
 
 public extension ObservableType where Self.E == ApiResult<LWPacketBaseAssetSet> {
     public func filterSuccess() -> Observable<LWPacketBaseAssetSet> {
-        return map{$0.getSuccess()}.filterNil().do(onNext: { assetData in LWCache.instance().baseAssetId = assetData.identity })
+        return map{$0.getSuccess()}.filterNil()
     }
     
     public func filterError() -> Observable< [AnyHashable : Any]>{
