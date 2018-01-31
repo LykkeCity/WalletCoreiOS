@@ -38,6 +38,13 @@ class PinViewController: UIViewController {
             .map { _ in return () }
             .shareReplay(1)
     }
+    static func presentPinViewControllerWithCompleted(from viewController: UIViewController, title: String?, isTouchIdEnabled: Bool) -> Observable<Bool> {
+        let pinViewController = enterPinViewController(title: title, isTouchIdEnabled: isTouchIdEnabled)
+        viewController.present(pinViewController, animated: true)
+        return pinViewController.complete
+            .filter { $0 }
+            .shareReplay(1)
+    }
     
     static func presentOrderPinViewController(from viewController: UIViewController, title: String?, isTouchIdEnabled: Bool) -> Observable<Void> {
         guard LWCache.instance()?.shouldSignOrder ?? true else {
