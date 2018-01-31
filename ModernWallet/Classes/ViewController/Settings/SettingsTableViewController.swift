@@ -49,7 +49,7 @@ class SettingsTableViewController: UITableViewController {
         
         self.clearsSelectionOnViewWillAppear = true
         
-        Observable.combineLatest( viewModel.appSettings.asObservable(),viewModel.shouldSignOrder.asObservable())
+        Observable.combineLatest(viewModel.appSettings.asObservable(), viewModel.shouldSignOrder.asObservable())
             .mapToSettingsRowInfo()
             .asDriver(onErrorJustReturn: [
                 RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: ""),
@@ -106,7 +106,7 @@ class SettingsTableViewController: UITableViewController {
 extension SettingsTableViewController: SettingsBaseAssetDelegate {
     func didUpdateBaseAsset() {
         // Update the Settings table view
-        viewModel = SettingsViewModel()
+        viewModel.performRefreshSettings()
     }
 }
 

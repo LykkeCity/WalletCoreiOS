@@ -60,7 +60,7 @@ class SettingsBaseAssetTableViewController: UITableViewController {
         // Update the base asset for the current user on the server
         let setBaseAssetRequest = selectedRow.asObserver()
             .flatMap { assetViewModel in
-                LWRxAuthManager.instance.baseAssetSet.request(withParams: assetViewModel.asset.identity)
+                LWRxAuthManager.instance.baseAssetSet.request(withParams: assetViewModel.asset.value.identity)
             }
             .shareReplay(1)
 
