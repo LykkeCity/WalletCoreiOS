@@ -44,7 +44,7 @@ open class AssetsViewModel {
         // Update the view models to update the selected one
         Observable.combineLatest(self.selectedAsset.asObservable(), self.assets.asObservable()) { (current: $0, all: $1) }
             .map { data in
-                data.all.first { $0.identity.value == data.current?.identity }
+                data.all.first { $0.asset.value.identity == data.current?.identity }
             }
             .filterNil()
             .subscribe(onNext: { viewModel in viewModel.isSelected.value = true })
@@ -61,10 +61,10 @@ open class AssetsViewModel {
 
 fileprivate extension ObservableType where Self.E == ApiResultList<LWAssetModel> {
     
-    /// <#Description#>
+    /// Transform asset model objects to `SingleAssetViewModel`
     ///
-    /// - Parameter dependency: <#dependency description#>
-    /// - Returns: <#return value description#>
+    /// - Parameter dependency: Dependency
+    /// - Returns: Observable of array containing assets view model
     func mapToViewModels(dependency: AssetsViewModel.Dependency) -> Observable<[SingleAssetViewModel]> {
         return
             filterSuccess()

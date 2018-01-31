@@ -26,6 +26,8 @@ open class BaseAssetsViewModel {
     
     private var result: Observable<ApiResultList<LWAssetModel>>
     
+    fileprivate let disposeBag = DisposeBag()
+    
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
         result = authManager.allAssets.request().filterSuccess()
@@ -36,6 +38,11 @@ open class BaseAssetsViewModel {
         loadingViewModel = LoadingViewModel([result.isLoading()])
         errors = result.filterError()
             .asDriver(onErrorJustReturn: [:])
+        
+        let currentBaseAsset = authManager.baseAsset.request()
+        currentBaseAsset.filterSuccess()
+            .bind(to: assetsViewModel.selectedAsset)
+            .disposed(by: disposeBag)
     }
 }
 

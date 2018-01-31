@@ -22,6 +22,8 @@ open class SettingsViewModel {
     
     public let loadingViewModel: LoadingViewModel
     
+    private let refreshSettings = PublishSubject<Void>()
+    
     private let disposeBag = DisposeBag()
     
     public init( authManager: LWRxAuthManager = LWRxAuthManager.instance,
@@ -37,7 +39,10 @@ open class SettingsViewModel {
             .map { $0.data }
             .asDriver(onErrorJustReturn: LWPersonalDataModel())
         
-        let appSettingsRequestObservable = authManager.appSettings.request()
+        let appSettingsRequestObservable = refreshSettings.asObservable()
+            .startWith(())
+            .flatMapLatest { authManager.appSettings.request() }
+        
         appSettings = appSettingsRequestObservable
             .filterSuccess()
             .filter { $0.appSettings != nil }
@@ -67,6 +72,11 @@ open class SettingsViewModel {
                                              appSettingsRequestObservable.isLoading(),
                                              shouldSignOrderObserver.isLoading()
                                              ])
+    }
+    
+    /// Refresh the settings by invoking data reload
+    public func performRefreshSettings() {
+        refreshSettings.onNext(())
     }
     
 }
