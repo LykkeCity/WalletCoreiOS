@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250B33F4201F2D9B002B3C14 /* LWRxAuthManagerSettingSignOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250B33F3201F2D9B002B3C14 /* LWRxAuthManagerSettingSignOrder.swift */; };
 		25377DE82017994200E2B511 /* SpreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25377DE72017994200E2B511 /* SpreadService.swift */; };
 		25A41845201A128D004F63BD /* LWRxAuthManagerApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A41844201A128D004F63BD /* LWRxAuthManagerApplicationInfo.swift */; };
 		25C0A34D201A5CAD00D0067C /* ApplicationInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A34C201A5CAD00D0067C /* ApplicationInfoViewModel.swift */; };
@@ -685,6 +686,7 @@
 /* Begin PBXFileReference section */
 		08A16B742600639B84A13EE5 /* Pods-WalletCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		15FF07B01F0658D96FF9CEC5 /* Pods-WalletCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.debug.xcconfig"; sourceTree = "<group>"; };
+		250B33F3201F2D9B002B3C14 /* LWRxAuthManagerSettingSignOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerSettingSignOrder.swift; sourceTree = "<group>"; };
 		25377DE72017994200E2B511 /* SpreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpreadService.swift; sourceTree = "<group>"; };
 		25A41844201A128D004F63BD /* LWRxAuthManagerApplicationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerApplicationInfo.swift; sourceTree = "<group>"; };
 		25C0A34C201A5CAD00D0067C /* ApplicationInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationInfoViewModel.swift; sourceTree = "<group>"; };
@@ -2397,6 +2399,7 @@
 				AB1BF0561FDDD346001CB0D2 /* LWRxAuthManagerGetBlockchainAddress.swift */,
 				AB1BF0581FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift */,
 				25A41844201A128D004F63BD /* LWRxAuthManagerApplicationInfo.swift */,
+				250B33F3201F2D9B002B3C14 /* LWRxAuthManagerSettingSignOrder.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -3237,6 +3240,7 @@
 				46C9AE581F417BD700B83CCB /* LWAssetDescriptionModel.m in Sources */,
 				46E5D0DF1F5DD7ED00D78692 /* LWRxAuthManagerAuth.swift in Sources */,
 				46C9AFBA1F417BD800B83CCB /* LWMarginalPosition.m in Sources */,
+				250B33F4201F2D9B002B3C14 /* LWRxAuthManagerSettingSignOrder.swift in Sources */,
 				467C206E1FB452F7002A90AE /* RegisterSendPinEmailViewModel.swift in Sources */,
 				CC83DDB11F4AF3FC008BA5C2 /* ClientCodesViewModel.swift in Sources */,
 				4668A38F1FA7150900D7CBD5 /* OffchainTradeViewModel.swift in Sources */,

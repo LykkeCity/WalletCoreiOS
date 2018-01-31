@@ -96,4 +96,5 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var sendBlockchainEmail      = { LWRxAuthManagerSendBlockchainEmail() }()
     public lazy var cashOut                  = { LWRxAuthManagerCashOut() }()
     public lazy var applicationInfo          = { LWRxAuthManagerApplicationInfo() }()
+    public lazy var settingSignOrder         = { LWRxAuthManagerSettingSignOrder() }()
 }

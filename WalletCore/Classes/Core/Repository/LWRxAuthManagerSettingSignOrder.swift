@@ -1,20 +1,20 @@
 //
-//  LWRxAuthManagerApplicationInfo.swift
+//  LWRxAuthManagerSettingSignOrder.swift
 //  WalletCore
 //
-//  Created by Ivan Stefanovic on 1/25/18.
+//  Created by Ivan Stefanovic on 1/29/18.
 //  Copyright © 2018 Lykke. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerApplicationInfo:  NSObject{
+public class LWRxAuthManagerSettingSignOrder:  NSObject{
     
-    public typealias Packet = LWPacketApplicationInfo
-    public typealias Result = ApiResult<LWPacketApplicationInfo>
-    public typealias ResultType = LWPacketApplicationInfo
-    public typealias RequestParams = Void
+    public typealias Packet = LWPacketSettingSignOrder
+    public typealias Result = ApiResult<LWPacketSettingSignOrder>
+    public typealias ResultType = LWPacketSettingSignOrder
+    public typealias RequestParams = Bool
     
     override init() {
         super.init()
@@ -34,15 +34,15 @@ public class LWRxAuthManagerApplicationInfo:  NSObject{
     }
 }
 
-extension LWRxAuthManagerApplicationInfo: AuthManagerProtocol{
+extension LWRxAuthManagerSettingSignOrder: AuthManagerProtocol{
     
-    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketApplicationInfo {
-        return Packet(observer: observer)
+    public func createPacket(withObserver observer: Any, params: Bool) -> LWPacketSettingSignOrder {
+        return Packet(observer: observer, shouldSign: params)
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketApplicationInfo> {
-    public func filterSuccess() -> Observable<LWPacketApplicationInfo> {
+public extension ObservableType where Self.E == ApiResult<LWPacketSettingSignOrder> {
+    public func filterSuccess() -> Observable<LWPacketSettingSignOrder> {
         return map{$0.getSuccess()}.filterNil()
     }
     
@@ -55,9 +55,10 @@ public extension ObservableType where Self.E == ApiResult<LWPacketApplicationInf
     }
 }
 
-extension LWPacketApplicationInfo {
-    convenience init(observer: Any) {
+extension LWPacketSettingSignOrder {
+    convenience init(observer: Any, shouldSign: Bool) {
         self.init()
         self.observer = observer
+        self.shouldSignOrder = shouldSign
     }
 }
