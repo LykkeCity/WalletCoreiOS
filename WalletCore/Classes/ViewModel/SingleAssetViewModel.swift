@@ -10,23 +10,23 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public protocol SingleAssetFormatterProtocol{}
+public protocol SingleAssetFormatterProtocol{
+    func formatTitle(forAsset asset: LWAssetModel) -> String
+}
 
-public class SingleAssetFormatter: SingleAssetFormatterProtocol{}
+public class SingleAssetFormatter: SingleAssetFormatterProtocol{
+    public func formatTitle(forAsset asset: LWAssetModel) -> String {
+        return asset.displayId ?? ""
+    }
+}
 
 open class SingleAssetViewModel {
     
     /// Current asset's ID
     public let identity = Variable<String>("")
     
-    /// Asset's name
-    public var name: Driver<String>
-    
-    /// Asset's full name
-    public var fullName: Driver<String>
-    
-    /// Asset's short name
-    public var shortName: Driver<String>
+    /// Row's title
+    public var title: Driver<String>
     
     /// Assets icon (if present)
     public let iconUrl: Driver<URL?>
@@ -40,22 +40,13 @@ open class SingleAssetViewModel {
 
         self.identity.value = asset.value.identity
         
-        self.name = asset.transformToObservable()
-            .map{$0.displayName}
-            .asDriver(onErrorJustReturn: "")
-        
-        self.fullName = asset.transformToObservable()
-            .map{$0.displayFullName}
-            .asDriver(onErrorJustReturn: "")
-        
-        self.shortName = asset.transformToObservable()
-            .map{$0.displayId}
+        self.title = asset.transformToObservable()
+            .map{ formatter.formatTitle(forAsset: $0) }
             .asDriver(onErrorJustReturn: "")
         
         self.iconUrl = asset.transformToObservable()
             .map{$0.iconUrl}
             .asDriver(onErrorJustReturn: nil)
-        
     }
 }
 

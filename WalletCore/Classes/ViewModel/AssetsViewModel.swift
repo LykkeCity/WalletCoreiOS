@@ -34,49 +34,53 @@ open class AssetsViewModel {
     
     let disposeBag = DisposeBag()
     
-    public init(withAssets assetsToFetch: AssetsList, andSelectedAsset selectedAssetToFetch: SelectedAsset? = nil, dependency: Dependency) {
-        let fetchedAssets = assetsToFetch.filterSuccess()
-            .map{ data in
-                data.map { value in
-                    return SingleAssetViewModel(withAsset: Variable<LWAssetModel>(value), formatter: dependency.formatter)
-                }
-            }
-            
-        self.assets = fetchedAssets
+    public init(withAssets assetsToFetch: AssetsList, dependency: Dependency) {
+        
+        self.assets = assetsToFetch
+            .mapToViewModels(dependency: dependency)
             .asDriver(onErrorJustReturn: [])
         
-        if let selectedAssetToFetch = selectedAssetToFetch {
-            selectedAssetToFetch.filterSuccess()
-                .bind(to: selectedAsset)
-                .disposed(by: disposeBag)
-            
-            // Update the view models to update the selected one
-            Observable.combineLatest(self.selectedAsset.asObservable(), self.assets.asObservable()) { (current: $0, all: $1) }
-                .map { data in
-                    data.all.first { $0.identity.value == data.current?.identity }
-                }
-                .filterNil()
-                .subscribe(onNext: { viewModel in viewModel.isSelected.value = true })
-                .disposed(by: disposeBag)
-            
-            // Combined loading (all assets + selected asset)
-            loadingViewModel = LoadingViewModel([
-                assetsToFetch.isLoading(),
-                selectedAssetToFetch.asObservable().isLoading()
-            ])
-            
-            // Combined error handling (all assets + selected asset)
-            errors = Observable.merge(assetsToFetch.filterError(), selectedAssetToFetch.filterError())
-                .asDriver(onErrorJustReturn: [:])
-        } else {
-            // Simple loading (all assets)
-            loadingViewModel = LoadingViewModel([
-                assetsToFetch.isLoading()
-            ])
-            
-            // Simple error handling (all assets)
-            errors = assetsToFetch.filterError()
-                .asDriver(onErrorJustReturn: [:])
-        }
+        // TODO: deselect last selected asset
+        // Update the view models to update the selected one
+        Observable.combineLatest(self.selectedAsset.asObservable(), self.assets.asObservable()) { (current: $0, all: $1) }
+            .map { data in
+                data.all.first { $0.identity.value == data.current?.identity }
+            }
+            .filterNil()
+            .subscribe(onNext: { viewModel in viewModel.isSelected.value = true })
+            .disposed(by: disposeBag)
+        
+        // Simple loading (all assets)
+        loadingViewModel = LoadingViewModel([assetsToFetch.isLoading()])
+        
+        // Simple error handling (all assets)
+        errors = assetsToFetch.filterError()
+            .asDriver(onErrorJustReturn: [:])
     }
 }
+
+fileprivate extension ObservableType where Self.E == ApiResultList<LWAssetModel> {
+    
+    /// <#Description#>
+    ///
+    /// - Parameter dependency: <#dependency description#>
+    /// - Returns: <#return value description#>
+    func mapToViewModels(dependency: AssetsViewModel.Dependency) -> Observable<[SingleAssetViewModel]> {
+        return
+            filterSuccess()
+            .map{ data in
+                data.map { SingleAssetViewModel(
+                    withAsset: Variable<LWAssetModel>($0),
+                    formatter: dependency.formatter)
+                }
+            }
+    }
+}
+
+
+
+
+
+
+
+

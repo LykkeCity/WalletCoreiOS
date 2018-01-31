@@ -14,7 +14,6 @@ open class BaseAssetsViewModel {
     
     public lazy var assetsViewModel : AssetsViewModel = {
         return AssetsViewModel(withAssets: self.result,
-                               andSelectedAsset: LWRxAuthManager.instance.baseAsset.request(),
                                dependency: AssetsViewModel.Dependency(authManager: LWRxAuthManager.instance,
                                                                       formatter: SingleAssetFormatter()))
     }()
