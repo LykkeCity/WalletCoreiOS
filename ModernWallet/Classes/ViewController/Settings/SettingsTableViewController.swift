@@ -103,6 +103,13 @@ class SettingsTableViewController: UITableViewController {
     }
 }
 
+extension SettingsTableViewController: SettingsBaseAssetDelegate {
+    func didUpdateBaseAsset() {
+        // Update the Settings table view
+        viewModel = SettingsViewModel()
+    }
+}
+
 fileprivate extension ObservableType where Self.E == SettingsTableViewController.RowInfo {
     
     /// Bind to SettingsViewModel.shouldSignOrder. Each event will open pin view controller and if passed will change SettingsViewModel.shouldSignOrder with the opposite value.
