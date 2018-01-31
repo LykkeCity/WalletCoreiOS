@@ -43,7 +43,7 @@ extension LWRxAuthManagerBaseAssetSet: AuthManagerProtocol{
 
 public extension ObservableType where Self.E == ApiResult<LWPacketBaseAssetSet> {
     public func filterSuccess() -> Observable<LWPacketBaseAssetSet> {
-        return map{$0.getSuccess()}.filterNil()
+        return map{$0.getSuccess()}.filterNil().do(onNext: { assetData in LWCache.instance().baseAssetId = assetData.identity })
     }
     
     public func filterError() -> Observable< [AnyHashable : Any]>{
