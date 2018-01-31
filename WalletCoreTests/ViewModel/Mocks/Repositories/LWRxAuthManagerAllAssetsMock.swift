@@ -17,11 +17,11 @@ class LWRxAuthManagerAllAssetsMock: LWRxAuthManagerAllAssetsProtocol {
             .startWith(.loading)
     }
     
-    func request() -> Observable<ApiResultList<LWAssetModel>> {
-        return Observable<ApiResultList<LWAssetModel>>
-            .just(ApiResultList.success(withData: [
+    func request() -> Observable<ApiResult<[LWAssetModel]>> {
+        return Observable<ApiResult<[LWAssetModel]>>
+            .just(ApiResult.success(withData: [
                 LWAssetModel()
             ]))
-            .startWith(ApiResultList.loading)
+            .startWith(.loading)
     }
 }

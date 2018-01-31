@@ -37,36 +37,6 @@ public protocol AuthManagerProtocol: NSObjectProtocol {
     func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result
 }
 
-public extension AuthManagerProtocol where Result == ApiResultList<ResultType> {
-
-    func defaultRequestImplementation(with params: RequestParams) -> Observable<Result> {
-        return Observable<Result>.create { observer in
-            let pack = self.createPacket(withObserver: observer, params: params)
-            GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-            return Disposables.create {}
-            }
-            .startWith(ApiResultList<ResultType>.loading)
-            .shareReplay(1)
-    }
-    
-    func request(withParams params: RequestParams) -> Observable<Result> {
-        return defaultRequestImplementation(with: params)
-    }
-    
-    func getErrorResult(fromPacket packet: Packet) -> Result {
-        return ApiResultList<ResultType>.error(withData: packet.errors)
-    }
-    
-    func getForbiddenResult(fromPacket packet: Packet) -> Result {
-        return ApiResultList<ResultType>.forbidden
-    }
-    
-    func getNotAuthrorizedResult(fromPacket packet: Packet) -> Result {
-        return ApiResultList<ResultType>.notAuthorized
-    }
-}
-
 public extension AuthManagerProtocol where Result == ApiResult<ResultType> {
     
     func defaultRequestImplementation(with params: RequestParams) -> Observable<Result> {
@@ -106,13 +76,6 @@ public extension AuthManagerProtocol where Packet == ResultType, Result == ApiRe
 
 public extension AuthManagerProtocol where Result == ApiResult<ResultType>, RequestParams == Void {
 
-    func request(withParams params: Void = ()) -> Observable<Result> {
-        return defaultRequestImplementation(with: params)
-    }
-}
-
-public extension AuthManagerProtocol where Result == ApiResultList<ResultType>, RequestParams == Void {
-    
     func request(withParams params: Void = ()) -> Observable<Result> {
         return defaultRequestImplementation(with: params)
     }

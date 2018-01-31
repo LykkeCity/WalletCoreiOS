@@ -12,8 +12,8 @@ import RxSwift
 public class LWRxAuthManagerHistory: NSObject{
     
     public typealias Packet = LWPacketGetHistory
-    public typealias Result = ApiResultList<LWBaseHistoryItemType>
-    public typealias ResultType = LWBaseHistoryItemType
+    public typealias Result = ApiResult<[LWBaseHistoryItemType]>
+    public typealias ResultType = [LWBaseHistoryItemType]
     public typealias RequestParams = (String?)
     
     override init() {
@@ -40,7 +40,7 @@ extension LWRxAuthManagerHistory: AuthManagerProtocol {
         return Packet(observer: observer, assetId: params)
     }
     
-    public func request() -> Observable<ApiResultList<LWBaseHistoryItemType>> {
+    public func request() -> Observable<ApiResult<[LWBaseHistoryItemType]>> {
         return self.request(withParams: nil)
     }
     
@@ -53,7 +53,7 @@ extension LWRxAuthManagerHistory: AuthManagerProtocol {
     }
 }
 
-public extension ObservableType where Self.E == ApiResultList<LWBaseHistoryItemType> {
+public extension ObservableType where Self.E == ApiResult<[LWBaseHistoryItemType]> {
     public func filterSuccess() -> Observable<[LWBaseHistoryItemType]> {
         return map{$0.getSuccess()}.filterNil()
     }

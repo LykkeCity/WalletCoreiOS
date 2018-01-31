@@ -18,14 +18,14 @@ open class SettingsPersonalInfoViewModel  {
     public let loading: Observable<Bool>
     public let loadingSaveChanges: Observable<Bool>
     public let result: Driver<ApiResult<LWPacketPersonalData>>
-    public let countryCodesResult: Driver<ApiResultList<LWCountryModel>>
+    public let countryCodesResult: Driver<ApiResult<[LWCountryModel]>>
     
     public let saveSettingsResult: Driver<ApiResult<LWPacketClientFullNameSet>>
     
     public init(saveSubmit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
         result = authManager.settings.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))//countryCodes
-        countryCodesResult = authManager.countryCodes.request().asDriver(onErrorJustReturn: ApiResultList.error(withData: [:]))
+        countryCodesResult = authManager.countryCodes.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
         let m = Observable.merge([self.result.asObservable().isLoading(), self.countryCodesResult.asObservable().isLoading()])
         loading = m

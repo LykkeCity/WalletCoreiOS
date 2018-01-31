@@ -24,7 +24,7 @@ open class BaseAssetsViewModel {
     /// Standart error driver
     public let errors: Driver<[AnyHashable: Any]>
     
-    private var result: Observable<ApiResultList<LWAssetModel>>
+    private var result: Observable<ApiResult<[LWAssetModel]>>
     
     fileprivate let disposeBag = DisposeBag()
     
@@ -52,7 +52,7 @@ fileprivate extension ObservableType where Self.E == Void {
     
     func mapAssets(
         authManager: LWRxAuthManager
-        ) -> Observable<ApiResultList<LWAssetModel>> {
+        ) -> Observable<ApiResult<[LWAssetModel]>> {
         
         return flatMapLatest { _ in authManager.baseAssets.request() }
             .shareReplay(1)

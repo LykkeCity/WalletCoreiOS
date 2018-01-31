@@ -14,7 +14,7 @@ import RxCocoa
 open class AppSettingsViewModel: NSObject { 
     public let loading: Observable<Bool>
     public let resultAppSettings: Driver<ApiResult<LWPacketAppSettings>>
-    public let resultAllCurrencies: Driver<ApiResultList<LWAssetModel>>
+    public let resultAllCurrencies: Driver<ApiResult<[LWAssetModel]>>
     public let resultPushNotifications: Driver<ApiResult<LWPacketPushSettingsGet>>
     public let resultAccount: Driver<ApiResult<LWPacketAccountExist>>
     
@@ -22,7 +22,7 @@ open class AppSettingsViewModel: NSObject {
     {
         //LWKeychainManager.instance().login!
         resultAppSettings = authManager.appSettings.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        resultAllCurrencies = authManager.allAssets.request().asDriver(onErrorJustReturn: ApiResultList.error(withData: [:]))
+        resultAllCurrencies = authManager.allAssets.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         resultPushNotifications = authManager.pushNotGet.request().asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         resultAccount = authManager.accountExist.request(withParams: LWKeychainManager.instance().login).asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         

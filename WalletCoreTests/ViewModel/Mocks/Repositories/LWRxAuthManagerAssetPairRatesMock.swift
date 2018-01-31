@@ -18,13 +18,13 @@ class LWRxAuthManagerAssetPairRatesMock: LWRxAuthManagerAssetPairRatesProtocol {
         self.data = data
     }
     
-    func request() -> Observable<ApiResultList<LWAssetPairRateModel>> {
-        return Observable<ApiResultList<LWAssetPairRateModel>>
+    func request() -> Observable<ApiResult<[LWAssetPairRateModel]>> {
+        return Observable<ApiResult<[LWAssetPairRateModel]>>
             .just(.success(withData: data))
             .startWith(.loading)
     }
     
-    func request(withParams params: Bool) -> Observable<ApiResultList<LWAssetPairRateModel>> {
+    func request(withParams params: Bool) -> Observable<ApiResult<[LWAssetPairRateModel]>> {
         return request()
     }
 }

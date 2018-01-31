@@ -11,14 +11,14 @@ import RxSwift
 
 public protocol LWRxAuthManagerAllAssetsProtocol {
     func request(byId id: String?) -> Observable<ApiResult<LWAssetModel?>>
-    func request() -> Observable<ApiResultList<LWAssetModel>>
+    func request() -> Observable<ApiResult<[LWAssetModel]>>
 }
 
 public class LWRxAuthManagerAllAssets: NSObject, LWRxAuthManagerAllAssetsProtocol{
     
     public typealias Packet = LWPacketAllAssets
-    public typealias Result = ApiResultList<LWAssetModel>
-    public typealias ResultType = LWAssetModel
+    public typealias Result = ApiResult<[LWAssetModel]>
+    public typealias ResultType = [LWAssetModel]
     public typealias RequestParams = Void
     
     override init() {
@@ -45,8 +45,8 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol{
         return Packet(observer: observer)
     }
     
-    public func request(byIds ids: [String]) -> Observable<ApiResultList<LWAssetModel>> {
-        return request(withParams:()).map{ result -> ApiResultList<LWAssetModel> in
+    public func request(byIds ids: [String]) -> Observable<ApiResult<[LWAssetModel]>> {
+        return request(withParams:()).map{ result -> ApiResult<[LWAssetModel]> in
             switch result {
                 case .error(let data): return .error(withData: data)
                 case .loading: return .loading
@@ -116,7 +116,7 @@ public extension ObservableType where Self.E == ApiResult<LWAssetModel?> {
 }
 
 //TODO: Make this code to use generics
-public extension ObservableType where Self.E == ApiResultList<LWAssetModel> {
+public extension ObservableType where Self.E == ApiResult<[LWAssetModel]> {
     public func filterError() -> Observable<[AnyHashable : Any]> {
         return map{$0.getError()}.filterNil()
     }

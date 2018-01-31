@@ -29,8 +29,8 @@ class LWRxAuthManagerAssetPairsMock: LWRxAuthManagerAssetPairsProtocol {
     }
 
     
-    func request() -> Observable<ApiResultList<LWAssetPairModel>> {
-        return Observable<ApiResultList<LWAssetPairModel>>
+    func request() -> Observable<ApiResult<[LWAssetPairModel]>> {
+        return Observable<ApiResult<[LWAssetPairModel]>>
             .just(.success(withData: data))
             .startWith(.loading)
     }

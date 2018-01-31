@@ -12,8 +12,8 @@ import RxSwift
 public class LWRxAuthManagerOffchainRequests : NSObject{
     
     public typealias Packet = LWPacketOffchainRequests
-    public typealias Result = ApiResultList<LWModelOffchainRequest>
-    public typealias ResultType = LWModelOffchainRequest
+    public typealias Result = ApiResult<[LWModelOffchainRequest]>
+    public typealias ResultType = [LWModelOffchainRequest]
     public typealias RequestParams = Void
     
     override init() {
@@ -45,7 +45,7 @@ extension LWRxAuthManagerOffchainRequests: AuthManagerProtocol {
     }
 }
 
-public extension ObservableType where Self.E == ApiResultList<LWModelOffchainRequest> {
+public extension ObservableType where Self.E == ApiResult<[LWModelOffchainRequest]> {
     public func filterSuccess() -> Observable<[LWModelOffchainRequest]> {
         return map{$0.getSuccess()}.filterNil()
     }

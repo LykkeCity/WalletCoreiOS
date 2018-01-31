@@ -62,6 +62,17 @@ extension LWRxAuthManagerMainInfo: AuthManagerProtocol {
         
         return Observable.merge(asset, mainScreen)
     }
+    
+    public func request(withParams params: (String)) -> Observable<Result> {
+        let mainInfo = LWPacketGetMainScreenInfo()
+        mainInfo.tradingBalance = 10.0
+        mainInfo.marginBalance = 10.0
+        mainInfo.privateBalance = 10.0
+        
+        return Observable
+            .just(ApiResult.success(withData: mainInfo))
+            .startWith(ApiResult.loading)
+    }
 }
 
 public extension ObservableType where Self.E == ApiResult<LWPacketGetMainScreenInfo> {
