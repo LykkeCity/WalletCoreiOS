@@ -17,7 +17,7 @@ open class AssetsViewModel {
         formatter: SingleAssetFormatterProtocol
     )
     
-    public typealias AssetsList = Observable<ApiResultList<LWAssetModel>>
+    public typealias AssetsList = Observable<ApiResult<[LWAssetModel]>>
     public typealias SelectedAsset = Observable<ApiResult<LWAssetModel>>
     
     /// Collection of view models fetched and transformed
@@ -61,7 +61,7 @@ open class AssetsViewModel {
     }
 }
 
-fileprivate extension ObservableType where Self.E == ApiResultList<LWAssetModel> {
+fileprivate extension ObservableType where Self.E == ApiResult<[LWAssetModel]> {
     
     /// Transform asset model objects to `SingleAssetViewModel`
     ///
