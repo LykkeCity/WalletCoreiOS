@@ -23,7 +23,7 @@ public class SingleAssetFormatter: SingleAssetFormatterProtocol{
 open class SingleAssetViewModel {
     
     /// Current asset's ID
-    public let identity = Variable<String>("")
+    public let asset: Variable<LWAssetModel>
     
     /// Row's title
     public var title: Driver<String>
@@ -38,22 +38,14 @@ open class SingleAssetViewModel {
     
     init(withAsset asset: Variable<LWAssetModel>, formatter: SingleAssetFormatterProtocol) {
 
-        self.identity.value = asset.value.identity
+        self.asset = asset
         
-        self.title = asset.transformToObservable()
+        self.title = asset.asObservable()
             .map{ formatter.formatTitle(forAsset: $0) }
             .asDriver(onErrorJustReturn: "")
         
-        self.iconUrl = asset.transformToObservable()
-            .map{$0.iconUrl}
+        self.iconUrl = asset.asObservable()
+            .map{ $0.iconUrl }
             .asDriver(onErrorJustReturn: nil)
     }
-}
-
-extension Variable where Element == LWAssetModel {
-    
-    func transformToObservable() -> Observable<LWAssetModel> {
-        return Observable.just(value)
-    }
-    
 }
