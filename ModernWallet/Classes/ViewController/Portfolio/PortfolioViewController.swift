@@ -207,8 +207,7 @@ fileprivate extension WalletsViewModel {
 
 // MARK: - TotalBalanceViewModel binders to PortfolioViewController
 fileprivate extension TotalBalanceViewModel {
-    func bind(toVieController viewController: PortfolioViewController) -> [Disposable] {
-        
+    func bind(toViewController viewController: PortfolioViewController) -> [Disposable] {
         return [
             observables.baseAsset.filterSuccess().subscribe(onNext: {asset in LWCache.instance().baseAssetId = asset.identity}),
             balance.drive(viewController.pieChartCenterView.balanceLabel.rx.text),
@@ -221,7 +220,7 @@ fileprivate extension TotalBalanceViewModel {
 fileprivate extension PortfolioViewController {
     func bindViewModels() {
         totalBalanceViewModel
-            .bind(toVieController: self)
+            .bind(toViewController: self)
             .disposed(by: disposeBag)
         
         walletsViewModel

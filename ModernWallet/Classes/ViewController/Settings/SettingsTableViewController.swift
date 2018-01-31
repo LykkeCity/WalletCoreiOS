@@ -31,7 +31,7 @@ class SettingsTableViewController: UITableViewController {
         
     }
     
-    private let viewModel = SettingsViewModel()
+    fileprivate var viewModel = SettingsViewModel()
     
     private let disposeBag = DisposeBag()
     
@@ -49,7 +49,7 @@ class SettingsTableViewController: UITableViewController {
         
         self.clearsSelectionOnViewWillAppear = true
         
-        Observable.combineLatest( viewModel.appSettings.asObservable(),viewModel.shouldSignOrder.asObservable())
+        Observable.combineLatest(viewModel.appSettings.asObservable(), viewModel.shouldSignOrder.asObservable())
             .mapToSettingsRowInfo()
             .asDriver(onErrorJustReturn: [
                 RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: ""),
@@ -86,10 +86,27 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PersonalData" {
+        guard let segueID = segue.identifier else { return }
+        switch segueID {
+        case "PersonalData":
             let vc = segue.destination as! SettingsPersonalDataTableViewController
             vc.viewModel = viewModel
+            
+        case "BaseAssetSelection":
+            let vc = segue.destination as! SettingsBaseAssetTableViewController
+            vc.viewModel = viewModel
+            vc.delegate = self
+            
+        default:
+            break
         }
+    }
+}
+
+extension SettingsTableViewController: SettingsBaseAssetDelegate {
+    func didUpdateBaseAsset() {
+        // Update the Settings table view
+        viewModel.performRefreshSettings()
     }
 }
 
@@ -138,7 +155,7 @@ fileprivate extension ObservableType where Self.E == (LWAppSettingsModel, Bool) 
             return [
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "PersonalDataIcon"), title: Localize("settings.newDesign.personalData"), segue: "PersonalData"),
                 SettingsTableViewController.RowInfo(icon: confirmOrdersIcon, title: Localize("settings.newDesign.confirmOrders"), segue: ""),
-                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BaseAssetIcon"), title: Localize("settings.newDesign.baseAsset"), subtitle: appSettings.baseAsset?.displayId ?? appSettings.baseAsset?.name, subtitleFont: UIFont(name: "Geomanist", size: 15.0), segue: ""),
+                SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BaseAssetIcon"), title: Localize("settings.newDesign.baseAsset"), subtitle: appSettings.baseAsset?.displayId ?? appSettings.baseAsset?.name, subtitleFont: UIFont(name: "Geomanist", size: 15.0), segue: "BaseAssetSelection"),
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "RefundIcon"), title: Localize("settings.newDesign.refundAddress"), subtitle: appSettings.refundAddress, segue: ""),
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "BackupPrivateKeyIcon"), title: Localize("settings.newDesign.backupPrivateKey"), segue: "BackupKey"),
                 SettingsTableViewController.RowInfo(icon: #imageLiteral(resourceName: "TermsIcon"), title: Localize("settings.newDesign.termsOfUse"), segue: "TermsOfUse")
