@@ -25,6 +25,7 @@
 		46286F681FC304F7002CAF8D /* ScrollView+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46286F671FC304F7002CAF8D /* ScrollView+Keyboard.swift */; };
 		462878781F433F9A0006BE45 /* LWHistoryGraphModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462878771F433F9A0006BE45 /* LWHistoryGraphModel.swift */; };
 		463090601F908E7200F24A56 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630905F1F908E7200F24A56 /* Decimal+Extensions.swift */; };
+		46361811201A01510001D9D5 /* AssetsFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361810201A01510001D9D5 /* AssetsFilterViewModel.swift */; };
 		4649C6321FACB2C500765579 /* RefreshTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649C6311FACB2C500765579 /* RefreshTrigger.swift */; };
 		4649C6341FACB8AC00765579 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649C6331FACB8AC00765579 /* Array+Extensions.swift */; };
 		464BAA6B1FBC77CB00F473FA /* AssetBalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BAA6A1FBC77CB00F473FA /* AssetBalanceViewModel.swift */; };
@@ -704,6 +705,7 @@
 		46286F671FC304F7002CAF8D /* ScrollView+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollView+Keyboard.swift"; sourceTree = "<group>"; };
 		462878771F433F9A0006BE45 /* LWHistoryGraphModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWHistoryGraphModel.swift; sourceTree = "<group>"; };
 		4630905F1F908E7200F24A56 /* Decimal+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extensions.swift"; sourceTree = "<group>"; };
+		46361810201A01510001D9D5 /* AssetsFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsFilterViewModel.swift; sourceTree = "<group>"; };
 		4649C6311FACB2C500765579 /* RefreshTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTrigger.swift; sourceTree = "<group>"; };
 		4649C6331FACB8AC00765579 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		464BAA6A1FBC77CB00F473FA /* AssetBalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetBalanceViewModel.swift; sourceTree = "<group>"; };
@@ -2289,6 +2291,7 @@
 				46C9B0221F417C1B00B83CCB /* TotalBalanceViewModel.swift */,
 				46C9B0261F417C1B00B83CCB /* WalletsViewModel.swift */,
 				6664C6121F9E012600F6D1A6 /* WalletViewModel.swift */,
+				46361810201A01510001D9D5 /* AssetsFilterViewModel.swift */,
 				CC83DDB01F4AF3FC008BA5C2 /* ClientCodesViewModel.swift */,
 				6142141A1F79247900E2F524 /* KYC */,
 				465538AA1FB5C3A0007CF395 /* SwiftCredentialsViewModel.swift */,
@@ -3387,6 +3390,7 @@
 				46C9AE721F417BD700B83CCB /* NSDate+String.m in Sources */,
 				46C9AEEE1F417BD700B83CCB /* LWPacketGetRefundAddress.m in Sources */,
 				46C9AF3A1F417BD800B83CCB /* LWPacketSendBlockchainEmail.m in Sources */,
+				46361811201A01510001D9D5 /* AssetsFilterViewModel.swift in Sources */,
 				46C9B04B1F42C84500B83CCB /* LWAssetModel+Extensions.swift in Sources */,
 				6664C6131F9E012600F6D1A6 /* WalletViewModel.swift in Sources */,
 				463090601F908E7200F24A56 /* Decimal+Extensions.swift in Sources */,
