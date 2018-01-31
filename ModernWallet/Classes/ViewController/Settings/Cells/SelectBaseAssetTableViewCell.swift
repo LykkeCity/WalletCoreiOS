@@ -14,7 +14,7 @@ class SelectBaseAssetTableViewCell: UITableViewCell {
     
     @IBOutlet weak var assetTitleLabel: UILabel!
     
-    let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     var isSelectedBaseAsset: Bool {
         get { return accessoryType == .checkmark }
@@ -28,4 +28,9 @@ class SelectBaseAssetTableViewCell: UITableViewCell {
         selectedBackgroundView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3976672535)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
 }
