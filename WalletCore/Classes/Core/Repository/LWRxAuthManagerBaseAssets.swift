@@ -44,15 +44,7 @@ extension LWRxAuthManagerBaseAssets: AuthManagerProtocol {
     }
     
     public func request() -> Observable<ApiResultList<LWAssetModel>> {
-        return request(withParams:()).map{ result -> ApiResultList<LWAssetModel> in
-            switch result {
-            case .error(let data): return .error(withData: data)
-            case .loading: return .loading
-            case .notAuthorized: return .notAuthorized
-            case .forbidden: return .forbidden
-            case .success(let data): return .success(withData: data)
-            }
-        }
+        return request(withParams:())
     }
     
     public func request(withParams: RequestParams) -> Observable<Result> {

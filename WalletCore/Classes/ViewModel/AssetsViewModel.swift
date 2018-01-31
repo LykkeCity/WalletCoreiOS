@@ -40,9 +40,11 @@ open class AssetsViewModel {
             .mapToViewModels(dependency: dependency)
             .asDriver(onErrorJustReturn: [])
         
-        // TODO: deselect last selected asset
         // Update the view models to update the selected one
         Observable.combineLatest(self.selectedAsset.asObservable(), self.assets.asObservable()) { (current: $0, all: $1) }
+            .do(onNext: { data in
+                data.all.forEach({ $0.isSelected.value = false })
+            })
             .map { data in
                 data.all.first { $0.asset.value.identity == data.current?.identity }
             }
