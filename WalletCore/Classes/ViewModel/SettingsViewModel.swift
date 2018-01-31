@@ -42,6 +42,7 @@ open class SettingsViewModel {
         let appSettingsRequestObservable = refreshSettings.asObservable()
             .startWith(())
             .flatMapLatest { authManager.appSettings.request() }
+            .shareReplay(1)
         
         appSettings = appSettingsRequestObservable
             .filterSuccess()
