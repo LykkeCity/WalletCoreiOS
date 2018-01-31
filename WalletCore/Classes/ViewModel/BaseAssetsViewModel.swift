@@ -34,12 +34,14 @@ open class BaseAssetsViewModel {
             .map { _ in return () }
             .mapAssets(authManager: authManager)
         
+        // Get the current base asset
+        let currentBaseAsset = authManager.baseAsset.request()
+        
         // Loading and error handling
-        loadingViewModel = LoadingViewModel([result.isLoading()])
-        errors = result.filterError()
+        loadingViewModel = LoadingViewModel([result.isLoading(), currentBaseAsset.isLoading()])
+        errors = Observable.merge(result.filterError(), currentBaseAsset.filterError())
             .asDriver(onErrorJustReturn: [:])
         
-        let currentBaseAsset = authManager.baseAsset.request()
         currentBaseAsset.filterSuccess()
             .bind(to: assetsViewModel.selectedAsset)
             .disposed(by: disposeBag)
