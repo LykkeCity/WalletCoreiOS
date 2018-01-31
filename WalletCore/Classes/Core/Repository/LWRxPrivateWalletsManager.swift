@@ -19,7 +19,7 @@ public class LWRxPrivateWalletsManager {
         self.manager = manager
     }
     
-    public func loadWallets() -> Observable<ApiResultList<LWPrivateWalletModel>> {
+    public func loadWallets() -> Observable<ApiResult<[LWPrivateWalletModel]>> {
         return Observable.create{[weak self] observer in
             self?.manager.loadWallets{data in
                 guard let wallets = (data?.map{$0 as! LWPrivateWalletModel}) else {
@@ -39,10 +39,10 @@ public class LWRxPrivateWalletsManager {
     }
 }
 
-public extension ObservableType where Self.E == ApiResultList<LWPrivateWalletModel> {
+public extension ObservableType where Self.E == ApiResult<[LWPrivateWalletModel]> {
     public func filterSuccess() -> Observable<[LWPrivateWalletModel]> {
         return
-            map{(walletData: ApiResultList<LWPrivateWalletModel>) -> [LWPrivateWalletModel]? in
+            map{(walletData: ApiResult<[LWPrivateWalletModel]>) -> [LWPrivateWalletModel]? in
                 guard case let .success(data) = walletData else {return nil}
                 return data
             }
@@ -51,7 +51,7 @@ public extension ObservableType where Self.E == ApiResultList<LWPrivateWalletMod
     
     public func isLoading() -> Observable<Bool> {
         return
-            map{(walletData: ApiResultList<LWPrivateWalletModel>) -> Bool in
+            map{(walletData: ApiResult<[LWPrivateWalletModel]>) -> Bool in
                 guard case .loading = walletData else {return false}
                 return true
         }

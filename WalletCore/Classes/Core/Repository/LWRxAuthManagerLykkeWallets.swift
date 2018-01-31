@@ -57,7 +57,7 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
         return Result.success(withData: packet.data)
     }
     
-    public func requestNonEmptyWallets() -> Observable<ApiResultList<LWSpotWallet>> {
+    public func requestNonEmptyWallets() -> Observable<ApiResult<[LWSpotWallet]>> {
         return request()
             .map{result in
                 switch result {
@@ -139,7 +139,7 @@ public extension ObservableType where Self.E == ApiResult<LWSpotWallet?> {
 }
 
 
-public extension ObservableType where Self.E == ApiResultList<LWSpotWallet> {
+public extension ObservableType where Self.E == ApiResult<[LWSpotWallet]> {
     public func filterSuccess() -> Observable<[LWSpotWallet]> {
         return map{$0.getSuccess()}.filterNil()
     }

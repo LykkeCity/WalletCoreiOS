@@ -11,14 +11,14 @@ import RxSwift
 public protocol LWRxAuthManagerAssetPairsProtocol {
     func request(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>>
     func request(byId id: String) -> Observable<ApiResult<LWAssetPairModel?>>
-    func request() -> Observable<ApiResultList<LWAssetPairModel>>
+    func request() -> Observable<ApiResult<[LWAssetPairModel]>>
 }
 
 public class LWRxAuthManagerAssetPairs: NSObject,LWRxAuthManagerAssetPairsProtocol{
     
     public typealias Packet = LWPacketAssetPairs
-    public typealias Result = ApiResultList<LWAssetPairModel>
-    public typealias ResultType = LWAssetPairModel
+    public typealias Result = ApiResult<[LWAssetPairModel]>
+    public typealias ResultType = [LWAssetPairModel]
     public typealias RequestParams = Void
     
     override init() {
@@ -85,7 +85,7 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
     }
 }
 
-public extension ObservableType where Self.E == ApiResultList<LWAssetPairModel> {
+public extension ObservableType where Self.E == ApiResult<[LWAssetPairModel]> {
     public func filterSuccess() -> Observable<[LWAssetPairModel]> {
         return map{$0.getSuccess()}.filterNil()
     }

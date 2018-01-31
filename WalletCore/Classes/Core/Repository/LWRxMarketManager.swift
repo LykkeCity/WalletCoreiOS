@@ -12,8 +12,8 @@ import RxSwift
 public class LWRxMarketManager: NSObject  {
     
     public typealias Packet = LWPacketMarket
-    public typealias Result = ApiResultList<LWMarketModel>
-    public typealias ResultType = LWMarketModel
+    public typealias Result = ApiResult<[LWMarketModel]>
+    public typealias ResultType = [LWMarketModel]
     public typealias RequestParams = Void
     
     override init() {
@@ -45,7 +45,7 @@ extension LWRxMarketManager: AuthManagerProtocol {
     }
 }
 
-public extension ObservableType where Self.E == ApiResultList<LWMarketModel> {
+public extension ObservableType where Self.E == ApiResult<[LWMarketModel]> {
     public func filterSuccess() -> Observable<[LWMarketModel]> {
         return map{$0.getSuccess()}.filterNil()
     }

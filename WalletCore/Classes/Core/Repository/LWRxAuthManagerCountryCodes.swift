@@ -13,8 +13,8 @@ import RxSwift
 public class LWRxAuthManagerCountryCodes: NSObject{
     
     public typealias Packet = LWPacketCountryCodes
-    public typealias Result = ApiResultList<LWCountryModel>
-    public typealias ResultType = LWCountryModel
+    public typealias Result = ApiResult<[LWCountryModel]>
+    public typealias ResultType = [LWCountryModel]
     public typealias RequestParams = Void
     
     override init() {
@@ -45,7 +45,7 @@ extension LWRxAuthManagerCountryCodes: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResultList<LWCountryModel> {
+public extension ObservableType where Self.E == ApiResult<[LWCountryModel]> {
     public func filterSuccess() -> Observable<[LWCountryModel]> {
         return map{$0.getSuccess()}.filterNil()
     }

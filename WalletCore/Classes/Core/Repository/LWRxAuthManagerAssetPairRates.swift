@@ -10,20 +10,20 @@ import Foundation
 import RxSwift
 
 public protocol LWRxAuthManagerAssetPairRatesProtocol {
-    func request() -> Observable<ApiResultList<LWAssetPairRateModel>>
+    func request() -> Observable<ApiResult<[LWAssetPairRateModel]>>
     
     /// <#Description#>
     ///
     /// - Parameter params: Ignore base asset
     /// - Returns: <#return value description#>
-    func request(withParams params: Bool) -> Observable<ApiResultList<LWAssetPairRateModel>>
+    func request(withParams params: Bool) -> Observable<ApiResult<[LWAssetPairRateModel]>>
 }
 
 public class LWRxAuthManagerAssetPairRates: NSObject, LWRxAuthManagerAssetPairRatesProtocol  {
     
     public typealias Packet = LWPacketAssetPairRates
-    public typealias Result = ApiResultList<LWAssetPairRateModel>
-    public typealias ResultType = LWAssetPairRateModel
+    public typealias Result = ApiResult<[LWAssetPairRateModel]>
+    public typealias ResultType = [LWAssetPairRateModel]
     public typealias RequestParams = (Bool)
     
     override init() {
@@ -67,7 +67,7 @@ extension LWRxAuthManagerAssetPairRates: AuthManagerProtocol {
     }
 }
 
-public extension ObservableType where Self.E == ApiResultList<LWAssetPairRateModel> {
+public extension ObservableType where Self.E == ApiResult<[LWAssetPairRateModel]> {
     public func filterSuccess() -> Observable<[LWAssetPairRateModel]> {
         return map{$0.getSuccess()}.filterNil()
     }

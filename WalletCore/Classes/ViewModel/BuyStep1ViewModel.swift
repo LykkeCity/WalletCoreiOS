@@ -183,7 +183,7 @@ fileprivate extension ObservableType where Self.E == BuyStep1ViewModel.CurrencyT
 
 
 // MARK: - Binings
-fileprivate extension ObservableType where Self.E == ApiResultList<LWAssetPairModel> {
+fileprivate extension ObservableType where Self.E == ApiResult<[LWAssetPairModel]> {
     
     /// Bind asset pairs to viewModels as filtering by base asset
     ///
@@ -195,9 +195,9 @@ fileprivate extension ObservableType where Self.E == ApiResultList<LWAssetPairMo
     /// - Returns: Disposable as a result from the binding
     func bind(
         toViewModels viewModels: Variable<[BuyStep1CellViewModel]>,
-        assetPairRates: Observable<ApiResultList<LWAssetPairRateModel>>,
-        assetPairs: Observable<ApiResultList<LWAssetPairModel>>,
-        market: Observable<ApiResultList<LWMarketModel>>,
+        assetPairRates: Observable<ApiResult<[LWAssetPairRateModel]>>,
+        assetPairs: Observable<ApiResult<[LWAssetPairModel]>>,
+        market: Observable<ApiResult<[LWMarketModel]>>,
         dependency: BuyStep1ViewModel.Dependency
     ) -> Disposable {
             return filterSuccess()
