@@ -24,8 +24,6 @@ class SettingsBaseAssetTableViewController: UITableViewController {
     
     fileprivate let rows = Variable([SingleAssetViewModel]())
     
-    private let selectedRow = PublishSubject<SingleAssetViewModel>()
-    
     fileprivate let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -42,12 +40,7 @@ class SettingsBaseAssetTableViewController: UITableViewController {
 
         let rowSelected = tableView.rx
             .modelSelected(SingleAssetViewModel.self)
-        
-        rowSelected
-            .subscribe(onNext: { [weak self] selection in
-                self?.selectedRow.onNext(selection)
-            })
-            .disposed(by: disposeBag)
+            .observeOn(MainScheduler.asyncInstance)
         
         rowSelected
             .subscribe(onNext: { [weak self] _ in
@@ -58,7 +51,7 @@ class SettingsBaseAssetTableViewController: UITableViewController {
             .disposed(by: disposeBag)
 
         // Update the base asset for the current user on the server
-        let setBaseAssetRequest = selectedRow.asObserver()
+        let setBaseAssetRequest = rowSelected
             .flatMap { assetViewModel in
                 LWRxAuthManager.instance.baseAssetSet.request(withParams: assetViewModel.asset.value.identity)
             }
