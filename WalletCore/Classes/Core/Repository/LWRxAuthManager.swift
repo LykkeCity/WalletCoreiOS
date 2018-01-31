@@ -13,6 +13,7 @@ import RxOptional
 
 public protocol LWRxAuthManagerProtocol {
     var baseAsset: LWRxAuthManagerBaseAssetProtocol { get }
+    var baseAssets: LWRxAuthManagerBaseAssetsProtocol { get }
     var allAssets: LWRxAuthManagerAllAssetsProtocol { get }
     var assetPairRates: LWRxAuthManagerAssetPairRatesProtocol { get }
     var assetPairs: LWRxAuthManagerAssetPairsProtocol { get }
@@ -42,6 +43,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var allAssets: LWRxAuthManagerAllAssetsProtocol             = { LWRxAuthManagerAllAssets() }()
     public lazy var assetPairRates: LWRxAuthManagerAssetPairRatesProtocol   = { LWRxAuthManagerAssetPairRates() }()
     public lazy var baseAsset: LWRxAuthManagerBaseAssetProtocol             = { LWRxAuthManagerBaseAsset() }()
+    public lazy var baseAssets: LWRxAuthManagerBaseAssetsProtocol           = { LWRxAuthManagerBaseAssets() }()
     public lazy var assetPairs: LWRxAuthManagerAssetPairsProtocol           = {LWRxAuthManagerAssetPairs()}()
     
     public lazy var countryCodes        = {LWRxAuthManagerCountryCodes()}()
