@@ -35,14 +35,8 @@ class CashOutSelectAssetViewController: UIViewController {
     
     private lazy var kycNeededViewModel: KycNeededViewModel = {
         let selectedAsset = self.collectionView.rx.modelSelected(Variable<Asset>.self)
-            .map{ $0.value.wallet?.asset }
-            .filterNil()
-            .flatMap{
-                Observable
-                    .just(ApiResult.success(withData: $0))
-                    .startWith(.loading)
-            }
-        
+            .mapToApiResultObservable()
+
         return KycNeededViewModel(forAsset: selectedAsset)
     }()
     
@@ -167,5 +161,17 @@ fileprivate extension ObservableType where Self.E == [Variable<Asset>] {
                 asset.value.wallet?.asset.swiftWithdraw ?? false
             }
         }
+    }
+}
+
+fileprivate extension ObservableType where Self.E == Variable<Asset> {
+    func mapToApiResultObservable() -> Observable<ApiResult<LWAssetModel>> {
+        return map{ $0.value.wallet?.asset }
+            .filterNil()
+            .flatMap{
+                Observable
+                    .just(ApiResult.success(withData: $0))
+                    .startWith(.loading)
+            }
     }
 }
