@@ -51,25 +51,3 @@ extension LWPacketSendBlockchainEmail {
         self.address = params.address
     }
 }
-
-public extension ObservableType where Self.E == ApiResult<LWPacketSendBlockchainEmail> {
-    public func filterSuccess() -> Observable<LWPacketSendBlockchainEmail> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable<[AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func filterNotAuthorized() -> Observable<Bool> {
-        return filter{$0.notAuthorized}.map{_ in true}
-    }
-    
-    public func filterForbidden() -> Observable<Void> {
-        return filter{$0.isForbidden}.map{_ in Void()}
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}

@@ -38,22 +38,3 @@ public class LWRxPrivateWalletsManager {
         .shareReplay(1)
     }
 }
-
-public extension ObservableType where Self.E == ApiResult<[LWPrivateWalletModel]> {
-    public func filterSuccess() -> Observable<[LWPrivateWalletModel]> {
-        return
-            map{(walletData: ApiResult<[LWPrivateWalletModel]>) -> [LWPrivateWalletModel]? in
-                guard case let .success(data) = walletData else {return nil}
-                return data
-            }
-            .filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return
-            map{(walletData: ApiResult<[LWPrivateWalletModel]>) -> Bool in
-                guard case .loading = walletData else {return false}
-                return true
-        }
-    }
-}

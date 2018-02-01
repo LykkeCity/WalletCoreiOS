@@ -676,6 +676,7 @@
 		CCEAA9611F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEAA9601F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift */; };
 		F5007E94200E2B6000956CF5 /* CashOutToAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */; };
 		F5007E96200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */; };
+		F556C7582023527300144A58 /* ObservableType+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F556C7572023527300144A58 /* ObservableType+Filters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1371,6 +1372,7 @@
 		CCEAA9601F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientFullNameSetViewModel.swift; sourceTree = "<group>"; };
 		F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashOutToAddressViewModel.swift; sourceTree = "<group>"; };
 		F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCashOut.swift; sourceTree = "<group>"; };
+		F556C7572023527300144A58 /* ObservableType+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Filters.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2438,6 +2440,7 @@
 				C12CC0391F91106900904A8C /* String+Extensions.swift */,
 				46B583701F94C3CF00B475DB /* UIImage+Extension.swift */,
 				4649C6331FACB8AC00765579 /* Array+Extensions.swift */,
+				F556C7572023527300144A58 /* ObservableType+Filters.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3224,6 +3227,7 @@
 				46C9AF361F417BD800B83CCB /* LWPacketSaveBackupState.m in Sources */,
 				467C20671FB452F7002A90AE /* SignUpRegistrationViewModel.swift in Sources */,
 				46C9AEE41F417BD700B83CCB /* LWPacketGetMainScreenInfo.m in Sources */,
+				F556C7582023527300144A58 /* ObservableType+Filters.swift in Sources */,
 				614214171F727E4200E2F524 /* KycNeededViewModel.swift in Sources */,
 				46C9B0291F417C1B00B83CCB /* BuyStep1ViewModel.swift in Sources */,
 				46E5D0E21F5DD7ED00D78692 /* LWRxAuthManagerEmailVerificationPin.swift in Sources */,

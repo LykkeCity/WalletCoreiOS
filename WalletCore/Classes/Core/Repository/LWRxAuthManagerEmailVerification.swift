@@ -41,20 +41,6 @@ extension LWRxAuthManagerEmailVerification: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketEmailVerificationSet> {
-    public func filterSuccess() -> Observable<LWPacketEmailVerificationSet> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketEmailVerificationSet {
     convenience init(observer: Any, data: String) {
         self.init()

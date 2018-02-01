@@ -41,16 +41,6 @@ extension LWRxAuthManagerAccountExist: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketAccountExist> {
-    public func filterSuccess() -> Observable<LWPacketAccountExist> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketAccountExist {
     convenience init(observer: Any, email: String) {
         self.init()

@@ -39,20 +39,6 @@ extension LWRxAuthManagerPinSecurityGet: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketPinSecurityGet> {
-    public func filterSuccess() -> Observable<LWPacketPinSecurityGet> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketPinSecurityGet {
     convenience init(observer: Any, data: String) {
         self.init()

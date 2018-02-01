@@ -45,16 +45,6 @@ extension LWRxAuthManagerTransactions: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWTransactionsModel> {
-    public func filterSuccess() -> Observable<LWTransactionsModel> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketTransactions {
     convenience init(observer: Any, assetId: String?) {
         self.init()

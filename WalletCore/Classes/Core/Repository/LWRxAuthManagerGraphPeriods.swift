@@ -41,13 +41,3 @@ extension LWRxAuthManagerGraphPeriods: AuthManagerProtocol{
         return Packet(observer: observer)
     }
 }
-
-public extension ObservableType where Self.E == ApiResult<LWPacketGraphPeriods> {
-    public func filterSuccess() -> Observable<LWPacketGraphPeriods> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}

@@ -41,20 +41,6 @@ extension LWRxAuthManagerAppSettings: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketAppSettings> {
-    public func filterSuccess() -> Observable<LWPacketAppSettings> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketAppSettings {
     convenience init(observer: Any) {
         self.init()

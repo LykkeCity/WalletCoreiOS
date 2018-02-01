@@ -41,28 +41,6 @@ extension LWRxAuthManagerPostClientCodes: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketPostClientCodes> {
-    public func filterSuccess() -> Observable<LWPacketPostClientCodes> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterNotAuthorized() -> Observable<Bool> {
-        return filter{$0.notAuthorized}.map{_ in true}
-    }
-    
-    public func filterForbidden() -> Observable<Void> {
-        return filter{$0.isForbidden}.map{_ in Void()}
-    }
-    
-    public func filterError() -> Observable<[AnyHashable: Any]> {
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketPostClientCodes {
     convenience init(observer: Any, codeSms: String) {
         self.init()

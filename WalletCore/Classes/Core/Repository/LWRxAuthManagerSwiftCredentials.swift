@@ -50,30 +50,6 @@ extension LWRxAuthManagerSwiftCredentials: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketSwiftCredential> {
-    public func filterSuccess() -> Observable<LWPacketSwiftCredential> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
-public extension ObservableType where Self.E == ApiResult<LWSwiftCredentialsModel> {
-    public func filterSuccess() -> Observable<LWSwiftCredentialsModel> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable<[AnyHashable: Any]> {
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketSwiftCredential {
     convenience init(observer: Any, assetId: String) {
         self.init()
