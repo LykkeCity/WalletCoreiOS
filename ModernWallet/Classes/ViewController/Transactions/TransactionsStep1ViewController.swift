@@ -140,8 +140,9 @@ fileprivate extension TransactionsViewModel {
                 .bind(to: vc.rx.loading),
             
             transactionsAsCsv
+                .asObservable()
                 .filterSuccess()
-                .drive(onNext: {[weak vc] path in vc?.creatCSV(path)}),
+                .bind(onNext: {[weak vc] path in vc?.creatCSV(path)}),
             
             sortBy.asDriver()
                 .map{ $0.asImage() }

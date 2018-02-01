@@ -108,11 +108,11 @@ class AddMoneyCryptocurrencyStep2ViewController: UIViewController {
 fileprivate extension SendEmailWithAddressViewModel {
     func bind(toViewController vc: AddMoneyCryptocurrencyStep2ViewController) -> [Disposable] {
         return [
-            emailSent.isLoading().asObservable()
+            emailSent.asObservable().isLoading()
                 .bind(to: vc.rx.loading),
             
-            emailSent.filterSuccess()
-                .drive(onNext: {[weak vc] in
+            emailSent.asObservable().filterSuccess()
+                .bind(onNext: { [weak vc] in
                     vc?.view.makeToast(Localize("wallets.bitcoin.sendemail"))
                 })
         ]
