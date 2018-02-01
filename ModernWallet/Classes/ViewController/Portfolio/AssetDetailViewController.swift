@@ -33,7 +33,7 @@ class AssetDetailViewController: UIViewController {
     
     fileprivate lazy var transactionsViewModel: TransactionsViewModel = {
         return TransactionsViewModel(
-            downloadCsv: Observable.empty(),
+            downloadCsv: self.messageButton.rx.tap.asObservable(),
             dependency: (
                 currencyExcancher: self.currencyExchanger,
                 authManager: LWRxAuthManager.instance,
@@ -51,20 +51,10 @@ class AssetDetailViewController: UIViewController {
         
         transactionsTable.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
-        transactionsViewModel.transactions.asObservable()
-            .filter(byAsset: asset.value)
-            .bind(
-                to: transactionsTable.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell",
-                                                   cellType: PortfolioCurrencyTableViewCell.self)
-            ){ (row, element, cell) in
-                cell.bind(toTransaction: element)
-            }
+        transactionsViewModel
+            .bind(toViewController: self)
             .disposed(by: disposeBag)
-
-        transactionsViewModel.loading.isLoading
-            .bind(to: rx.loading)
-            .disposed(by: disposeBag)
-
+        
         assetBalanceViewModel
             .bind(toAsset: assetAmount, baseAsset: baseAssetAmount)
             .disposed(by: disposeBag)
@@ -118,8 +108,31 @@ class AssetDetailViewController: UIViewController {
         }
     }
 
+    func creatCSV(_ path: URL) -> Void {
+        let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
+        present(vc, animated: true, completion: nil)
+    }
 }
 
+fileprivate extension TransactionsViewModel {
+    func bind(toViewController vc: AssetDetailViewController) -> [Disposable] {
+        return [
+            transactions.asObservable()
+                .filter(byAsset: vc.asset.value)
+                .bind(
+                    to: vc.transactionsTable.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell",
+                                                   cellType: PortfolioCurrencyTableViewCell.self)
+                ){ (row, element, cell) in
+                    cell.bind(toTransaction: element)
+                },
+            loading.isLoading
+                .bind(to: vc.rx.loading),
+            transactionsAsCsv
+                .filterSuccess()
+                .drive(onNext: {[weak vc] path in vc?.creatCSV(path)})
+        ]
+    }
+}
 extension ObservableType where Self.E == [TransactionViewModel] {
     func filter(byAsset asset: Asset) -> Observable<[TransactionViewModel]> {
         return map{ transactions in
