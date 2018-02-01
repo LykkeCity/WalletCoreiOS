@@ -23,6 +23,11 @@ open class TransactionsViewModel {
         case desc
     }
     
+    public struct DateRangeFilter {
+        public var startDate: Date? = nil
+        public var endDate: Date? = nil
+    }
+    
     typealias that = TransactionsViewModel
     
     /// History Transactions
@@ -36,6 +41,9 @@ open class TransactionsViewModel {
     
     /// Filter transactions by title
     public let filter = Variable<String?>(nil)
+    
+    /// Filter transactions by date range
+    public let dateRange = Variable<DateRangeFilter>(DateRangeFilter())
     
     /// Loading indicator
     public let loading: LoadingViewModel
@@ -85,6 +93,25 @@ open class TransactionsViewModel {
                 
                 return transactionModels.value.filter {
                     [$0.localizedString, $0.asset].contains{ $0.localizedCaseInsensitiveContains(filter) }
+                }
+            }
+            .bind(to: transactionsToDisplay)
+            .disposed(by: disposeBag)
+        
+        dateRange.asObservable()
+            .map { [transactionsToDisplay] range in
+                return transactionsToDisplay.value.filter { transaction in
+                    switch (range.startDate, range.endDate) {
+                    case (.some(let startValue), .some(let endValue)):
+                        return startValue < transaction.dateTime
+                            && endValue > transaction.dateTime
+                    case (.none, .some(let endValue)):
+                        return endValue > transaction.dateTime
+                    case (.some(let startValue), .none):
+                        return startValue < transaction.dateTime
+                    default:
+                        return true
+                    }
                 }
             }
             .bind(to: transactionsToDisplay)
