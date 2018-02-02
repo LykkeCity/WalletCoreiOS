@@ -75,8 +75,6 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
     }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
         // change selected bar color
         settings.style.buttonBarBackgroundColor = .clear
         settings.style.buttonBarItemBackgroundColor = .clear
@@ -180,6 +178,8 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
         cameraButton.rx.tap.bind{ [weak self] in
             self?.present(imagePicker, animated: true, completion: nil)
         }.disposed(by: disposeBag)
+        
+        super.viewDidLoad()
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {

@@ -70,6 +70,7 @@ class SignUpShakeViewController: UIViewController {
                 resultObservable.filterError().filter{ $0.isCodeOne }.map{ _ in Void() },
                 resultObservable.filterSuccess().map{ _ in () }
             )
+            .delay(0.011, scheduler: MainScheduler.instance) // dirty hack:  delay with more than loading view model delays
             .subscribe { [weak self] _ in
                 SignUpStep.resetInstance()
                 UserDefaults.standard.isLoggedIn = true
