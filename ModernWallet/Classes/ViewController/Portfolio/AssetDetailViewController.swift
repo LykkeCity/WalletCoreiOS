@@ -51,6 +51,14 @@ class AssetDetailViewController: UIViewController {
         
         transactionsTable.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
+        transactionsViewModel.transactionsAsCsv = self.messageButton.rx.tap
+            .asObservable()
+            .mapToCSVURL(transactions: transactionsViewModel
+                                        .transactions
+                                        .asObservable()
+                                        .filter(byAsset: asset.value))
+            .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
+        
         transactionsViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
@@ -128,8 +136,9 @@ fileprivate extension TransactionsViewModel {
             loading.isLoading
                 .bind(to: vc.rx.loading),
             transactionsAsCsv
+                .asObservable()
                 .filterSuccess()
-                .drive(onNext: {[weak vc] path in vc?.creatCSV(path)})
+                .bind(onNext: {[weak vc] path in vc?.creatCSV(path)})
         ]
     }
 }
