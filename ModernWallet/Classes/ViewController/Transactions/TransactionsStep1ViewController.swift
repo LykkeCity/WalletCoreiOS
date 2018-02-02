@@ -108,9 +108,6 @@ extension TransactionsStep1ViewController: UISearchResultsUpdating {
                 fatalError("Unable to instatiate a SearchResultsViewController from the storyboard.")
         }
         
-        if let viewModel = viewModel {
-            searchResultsController.transactionsViewModel = viewModel
-        }
         
         searchResultsController.isTableHeaderHidden = true
         searchResultsController.shouldAddBackgroundImage = true
