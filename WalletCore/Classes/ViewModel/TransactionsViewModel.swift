@@ -26,6 +26,13 @@ open class TransactionsViewModel {
     public struct DateRangeFilter {
         public var startDate: Date? = nil
         public var endDate: Date? = nil
+        
+        public init() {}
+        
+        public init(startDate: Date?, endDate: Date?) {
+            self.startDate = startDate
+            self.endDate = endDate
+        }
     }
     
     typealias that = TransactionsViewModel
