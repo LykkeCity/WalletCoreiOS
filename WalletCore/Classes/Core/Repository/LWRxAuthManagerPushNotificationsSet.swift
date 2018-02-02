@@ -41,20 +41,6 @@ extension LWRxAuthManagerPushNotificationsSet: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketPushSettingsSet> {
-    public func filterSuccess() -> Observable<LWPacketPushSettingsSet> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketPushSettingsSet {
     convenience init(observer: Any, on: Bool) {
         self.init()

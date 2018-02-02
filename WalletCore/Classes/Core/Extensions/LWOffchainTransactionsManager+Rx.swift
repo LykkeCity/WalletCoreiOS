@@ -62,18 +62,3 @@ public extension Reactive where Base : LWOffchainTransactionsManager {
             .shareReplay(1)
     }
 }
-
-
-public extension ObservableType where Self.E == ApiResult<[AnyHashable: Any]> {
-    public func filterSuccess() -> Observable<[AnyHashable: Any]> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable<[AnyHashable: Any]> {
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}

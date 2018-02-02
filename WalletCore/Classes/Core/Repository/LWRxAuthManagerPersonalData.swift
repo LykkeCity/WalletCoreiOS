@@ -54,24 +54,6 @@ extension LWRxAuthManagerPersonalData: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketPersonalData> {
-    public func filterSuccess() -> Observable<LWPacketPersonalData> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func filterNotAuthorized() -> Observable<Bool> {
-        return filter{$0.notAuthorized}.map{_ in true}
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketPersonalData {
     convenience init(observer: Any) {
         self.init()

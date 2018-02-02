@@ -75,26 +75,6 @@ extension LWRxAuthManagerMainInfo: AuthManagerProtocol {
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketGetMainScreenInfo> {
-    public func filterSuccess() -> Observable<LWPacketGetMainScreenInfo> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
-public extension ObservableType where Self.E == ApiResult<(mainInfo: LWPacketGetMainScreenInfo, asset: LWAssetModel)> {
-    public func filterSuccess() -> Observable<(mainInfo: LWPacketGetMainScreenInfo, asset: LWAssetModel)> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketGetMainScreenInfo {
     convenience init(observer: Any, assetId: String) {
         self.init()

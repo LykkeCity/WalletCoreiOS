@@ -44,13 +44,3 @@ extension LWRxMarketManager: AuthManagerProtocol {
         return Result.success(withData: packet.marketAssetPairs.map{$0 as! LWMarketModel})
     }
 }
-
-public extension ObservableType where Self.E == ApiResult<[LWMarketModel]> {
-    public func filterSuccess() -> Observable<[LWMarketModel]> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}

@@ -45,16 +45,6 @@ extension LWRxAuthManagerEmailWalletAddress: AuthManagerProtocol {
     }
 }
 
-public extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, Self.E == ApiResult<Void> {
-    public func filterSuccess() -> Driver<Void> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Driver<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketEmailPrivateWalletAddress {
     convenience init(observer: Any, wallet: LWPrivateWalletModel) {
         self.init()

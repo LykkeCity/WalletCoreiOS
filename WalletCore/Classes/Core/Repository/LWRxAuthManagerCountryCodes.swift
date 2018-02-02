@@ -44,14 +44,3 @@ extension LWRxAuthManagerCountryCodes: AuthManagerProtocol{
         return Result.success(withData: packet.countries.map{$0 as! LWCountryModel})
     }
 }
-
-public extension ObservableType where Self.E == ApiResult<[LWCountryModel]> {
-    public func filterSuccess() -> Observable<[LWCountryModel]> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-

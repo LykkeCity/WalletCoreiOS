@@ -67,17 +67,6 @@ extension LWRxAuthManagerAssetPairRates: AuthManagerProtocol {
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<[LWAssetPairRateModel]> {
-    public func filterSuccess() -> Observable<[LWAssetPairRateModel]> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
-
 extension LWPacketAssetPairRates {
     convenience init(observer: Any, ignoreBase: Bool) {
         self.init()

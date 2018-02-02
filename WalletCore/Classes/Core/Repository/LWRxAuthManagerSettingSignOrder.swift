@@ -41,20 +41,6 @@ extension LWRxAuthManagerSettingSignOrder: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketSettingSignOrder> {
-    public func filterSuccess() -> Observable<LWPacketSettingSignOrder> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketSettingSignOrder {
     convenience init(observer: Any, shouldSign: Bool) {
         self.init()

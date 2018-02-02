@@ -40,20 +40,6 @@ extension LWRxAuthManagerEmailVerificationPin: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketEmailVerificationGet> {
-    public func filterSuccess() -> Observable<LWPacketEmailVerificationGet> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketEmailVerificationGet {
     convenience init(observer: Any, email: String, pin: String) {
         self.init()

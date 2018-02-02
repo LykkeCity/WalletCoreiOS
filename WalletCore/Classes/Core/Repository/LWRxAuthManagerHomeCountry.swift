@@ -40,20 +40,3 @@ extension LWRxAuthManagerHomeCountry: AuthManagerProtocol{
         return Packet(observer: observer)
     }
 }
-
-
-public extension ObservableType where Self.E == ApiResult<LWPacketCountryCodes> {
-    public func filterSuccess() -> Observable<LWPacketCountryCodes> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func filterError() -> Observable< [AnyHashable : Any]>{
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
-

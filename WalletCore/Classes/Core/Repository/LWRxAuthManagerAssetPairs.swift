@@ -84,24 +84,3 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
         return Result.success(withData: rates.map{$0 as! LWAssetPairModel})
     }
 }
-
-public extension ObservableType where Self.E == ApiResult<[LWAssetPairModel]> {
-    public func filterSuccess() -> Observable<[LWAssetPairModel]> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
-
-public extension ObservableType where Self.E == ApiResult<LWAssetPairModel?> {
-    public func filterSuccess() -> Observable<LWAssetPairModel?> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}

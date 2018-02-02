@@ -105,31 +105,6 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWAssetModel?> {
-    public func filterSuccess() -> Observable<LWAssetModel?> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
-//TODO: Make this code to use generics
-public extension ObservableType where Self.E == ApiResult<[LWAssetModel]> {
-    public func filterError() -> Observable<[AnyHashable : Any]> {
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func filterSuccess() -> Observable<[LWAssetModel]> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacket {
     convenience init(observer: Any) {
         self.init()

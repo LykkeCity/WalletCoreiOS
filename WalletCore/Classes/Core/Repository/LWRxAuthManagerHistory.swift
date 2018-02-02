@@ -53,16 +53,6 @@ extension LWRxAuthManagerHistory: AuthManagerProtocol {
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<[LWBaseHistoryItemType]> {
-    public func filterSuccess() -> Observable<[LWBaseHistoryItemType]> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketGetHistory {
     convenience init(observer: Any, assetId: String?) {
         self.init()

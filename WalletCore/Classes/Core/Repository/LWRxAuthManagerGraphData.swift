@@ -41,27 +41,6 @@ extension LWRxAuthManagerGraphData: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketGraphData> {
-    public func filterSuccess() -> Observable<LWPacketGraphData> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
-public extension ObservableType where Self.E == (apiResult: ApiResult<LWPacketGraphData>, interval: Bool) {
-    public func filterSuccess() -> Observable<LWPacketGraphData> {
-        return map{$0.apiResult.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return filter{!$0.interval}.map{$0.apiResult.isLoading}
-    }
-}
-
-
 
 extension LWPacketGraphData {
     convenience init(observer: Any, period: LWGraphPeriodModel, assetPairId: String, points: Int32) {

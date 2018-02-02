@@ -39,20 +39,6 @@ extension LWAuthManagerPacketGetPaymentUrl: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketGetPaymentUrl> {
-    public func filterError() -> Observable<[AnyHashable : Any]> {
-        return map{$0.getError()}.filterNil()
-    }
-    
-    public func filterSuccess() -> Observable<LWPacketGetPaymentUrl> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketGetPaymentUrl {
     convenience init(observer: Any, params: LWPacketGetPaymentUrlParams) {
         self.init()

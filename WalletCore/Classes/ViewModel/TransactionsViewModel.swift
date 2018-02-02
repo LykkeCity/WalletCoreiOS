@@ -62,7 +62,7 @@ open class TransactionsViewModel {
         
         self.loading = LoadingViewModel([
             transactionsObservable.isLoading(),
-            self.transactionsAsCsv.isLoading().asObservable()
+            self.transactionsAsCsv.asObservable().isLoading()
         ])
         
         transactionModels.asObservable()
@@ -196,16 +196,6 @@ fileprivate extension ObservableType where Self.E == String {
                 return .error(withData: ["error": error])
             }
         }
-    }
-}
-
-public extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, Self.E == ApiResult<URL> {
-    public func filterSuccess() -> Driver<URL> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Driver<Bool> {
-        return map{$0.isLoading}
     }
 }
 

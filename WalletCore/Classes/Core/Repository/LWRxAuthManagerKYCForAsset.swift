@@ -40,16 +40,6 @@ extension LWRxAuthManagerKYCForAsset: AuthManagerProtocol{
     }
 }
 
-public extension ObservableType where Self.E == ApiResult<LWPacketKYCForAsset> {
-    public func filterSuccess() -> Observable<LWPacketKYCForAsset> {
-        return map{$0.getSuccess()}.filterNil()
-    }
-    
-    public func isLoading() -> Observable<Bool> {
-        return map{$0.isLoading}
-    }
-}
-
 extension LWPacketKYCForAsset {
     convenience init(observer: Any, assetId: String) {
         self.init()
