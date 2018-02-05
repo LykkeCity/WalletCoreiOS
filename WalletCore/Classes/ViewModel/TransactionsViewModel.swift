@@ -29,7 +29,7 @@ open class TransactionsViewModel {
     public let transactions: Driver<[TransactionViewModel]>
     
     /// Transactions represented as CSV
-    public let transactionsAsCsv: Driver<ApiResult<URL>>
+    public var transactionsAsCsv: Driver<ApiResult<URL>>
     
     /// Once the value of this Variable is changed there will be created an event with sorted TransactionsViewModel.transactions according SortType
     public let sortBy = Variable<SortType>(SortType.asc)
@@ -116,7 +116,7 @@ fileprivate extension ObservableType where Self.E == TransactionsViewModel.SortT
     }
 }
 
-fileprivate extension ObservableType where Self.E == Void {
+public extension ObservableType where Self.E == Void {
     
     /// Map collection of TransactionViewModel to URL to generated CSV file
     ///
