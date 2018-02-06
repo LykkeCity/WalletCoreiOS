@@ -14,6 +14,7 @@ import Toast
 import PushKit
 import RxSwift
 import Firebase
+import Siren
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -103,6 +104,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let coverView = self.window?.viewWithTag(blurViewTag) {
             coverView.removeFromSuperview()
         }
+        
+        Siren.shared.checkVersion(checkType: .immediately)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -111,6 +114,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let coverView = self.window?.viewWithTag(blurViewTag) {
             coverView.removeFromSuperview()
         }
+        
+        Siren.shared.checkVersion(checkType: .daily)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
