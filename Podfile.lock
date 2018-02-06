@@ -89,6 +89,7 @@ PODS:
   - RxSwiftExt/Core (2.5.1):
     - RxSwift (~> 3.4)
   - SideMenu (3.1.5)
+  - Siren (2.0.8)
   - SocketRocket (0.5.1)
   - SwiftReorder (2.0.2)
   - SwiftSpinner (1.5.0)
@@ -123,6 +124,7 @@ DEPENDENCIES:
   - QRCodeReader.swift (~> 7.5.0)
   - RxDataSources (~> 1.0)
   - SideMenu
+  - Siren (from `https://github.com/ArtSabintsev/Siren.git`, branch `swift3.2`)
   - SwiftReorder (~> 2.0)
   - SwiftSpinner (from `https://github.com/StanevPrime/SwiftSpinner`, branch `show-spinner-during-hide-transition`)
   - SWTableViewCell
@@ -132,6 +134,9 @@ DEPENDENCIES:
   - XLPagerTabStrip (~> 7.0)
 
 EXTERNAL SOURCES:
+  Siren:
+    :branch: swift3.2
+    :git: https://github.com/ArtSabintsev/Siren.git
   SwiftSpinner:
     :branch: show-spinner-during-hide-transition
     :git: https://github.com/StanevPrime/SwiftSpinner
@@ -139,6 +144,9 @@ EXTERNAL SOURCES:
     :path: ../WalletCoreiOS
 
 CHECKOUT OPTIONS:
+  Siren:
+    :commit: f6590001df279b76ac05ea3d06ab347e44559441
+    :git: https://github.com/ArtSabintsev/Siren.git
   SwiftSpinner:
     :commit: bd0702ff74bb6c2d6ca744d0bbeddba7b94c648d
     :git: https://github.com/StanevPrime/SwiftSpinner
@@ -172,6 +180,7 @@ SPEC CHECKSUMS:
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   RxSwiftExt: ec25c6df68d15ad6fe326792d60452b52e83d606
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
+  Siren: 4269fa935d0d890ba57ca7cce0569cc285456ca9
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SwiftReorder: 92630efd492828601e837f1e3204d68708a2981c
   SwiftSpinner: f0fafbbc554ba45d2aa78e52879184a9ac045747
@@ -183,6 +192,6 @@ SPEC CHECKSUMS:
   WalletCore: 68e73dcf36e9031687d674267bf8d0899c9f33de
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
-PODFILE CHECKSUM: 1a88ab4c7a39970119fc65f0614bf441f4e4dfd5
+PODFILE CHECKSUM: af341f62d5ca2067b18fb09b8d1b8c191881578c
 
 COCOAPODS: 1.3.1
