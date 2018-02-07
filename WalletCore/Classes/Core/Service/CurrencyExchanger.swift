@@ -33,6 +33,7 @@ public protocol CurrencyExchangerProtocol {
 public class CurrencyExchanger: CurrencyExchangerProtocol {
     public let authManager: LWRxAuthManagerProtocol
     public let pairRates: Variable<[LWAssetPairRateModel]> = Variable([])
+    public let pairs: Variable<[LWAssetPairModel]> = Variable([])
     private let disposeBag = DisposeBag()
     
     public init(refresh: Observable<Void>, authManager: LWRxAuthManagerProtocol = LWRxAuthManager.instance) {
@@ -42,6 +43,16 @@ public class CurrencyExchanger: CurrencyExchangerProtocol {
         refresh
             .flatMap{_ in authManager.assetPairRates.request(withParams: true).filterSuccess()}
             .bind(to: pairRates)
+            .disposed(by: disposeBag)
+
+        refresh
+            .flatMap{_ -> Observable<[LWAssetPairModel]> in
+                guard let pairs = LWCache.instance().allAssetPairs else {
+                    return authManager.assetPairs.request().filterSuccess()
+                }
+                return Observable<[LWAssetPairModel]>.just(pairs as! [LWAssetPairModel])
+            }
+            .bind(to: pairs)
             .disposed(by: disposeBag)
     }
     

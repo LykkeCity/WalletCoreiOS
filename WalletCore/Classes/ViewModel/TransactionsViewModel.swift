@@ -50,9 +50,6 @@ open class TransactionsViewModel {
     public init(downloadCsv: Observable<Void>, dependency: Dependency) {
         let transactionsObservable = dependency.authManager.history.request()
         
-        let pairsObserver = dependency.authManager.assetPairs.request()
-        let pairs = pairsObserver.filterSuccess()
-        
         let transactions = transactionsToDisplay.asObservable()
             .map{ $0.map{ TransactionViewModel(item: $0, dependency: dependency) } }
         
@@ -65,7 +62,6 @@ open class TransactionsViewModel {
         
         self.loading = LoadingViewModel([
             transactionsObservable.isLoading(),
-            pairsObserver.isLoading(),
             self.transactionsAsCsv.asObservable().isLoading()
         ])
         
