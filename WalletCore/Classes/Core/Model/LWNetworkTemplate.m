@@ -139,7 +139,7 @@
   }
   
   NSString *device = DeviceType.IS_IPHONE ? @"iPhone" : @"iPad";
-  NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@;AppVersion=%@", device, [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]];
+  NSString *userAgent=[NSString stringWithFormat:@"DeviceType=%@", device];
   [request addValue:userAgent forHTTPHeaderField:@"User-Agent"];
   
   return request;
