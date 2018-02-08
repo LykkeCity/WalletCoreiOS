@@ -508,10 +508,10 @@
             </objects>
             <point key="canvasLocation" x="6993" y="-118"/>
         </scene>
-        <!--Settings Base Asset Table View Controller-->
+        <!--Asset Picker Table View Controller-->
         <scene sceneID="CXe-kb-22D">
             <objects>
-                <tableViewController id="fBA-0U-sIh" customClass="SettingsBaseAssetTableViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="assetPickerViewController" id="fBA-0U-sIh" customClass="AssetPickerTableViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RFQ-mc-dYl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

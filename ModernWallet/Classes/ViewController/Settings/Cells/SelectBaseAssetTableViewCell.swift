@@ -14,6 +14,7 @@ class SelectBaseAssetTableViewCell: UITableViewCell {
     
     @IBOutlet weak var assetTitleLabel: UILabel!
     
+    var displayBaseAssetAsSelected = false
     var disposeBag = DisposeBag()
     
     var isSelectedBaseAsset: Bool {
