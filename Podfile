@@ -22,6 +22,7 @@ pod 'XLPagerTabStrip', '~> 7.0'
 pod 'WalletCore', :path => '../WalletCoreiOS'
 pod 'SwiftSpinner', :git => 'https://github.com/StanevPrime/SwiftSpinner', :branch => 'show-spinner-during-hide-transition'
 pod 'QRCodeReader.swift', '~> 7.5.0'
+pod 'Koyomi', :git => 'https://github.com/whoislyuboanyway/Koyomi', :branch => 'show-border-instead-of-filled-background'
 pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift3.2'
 end
 

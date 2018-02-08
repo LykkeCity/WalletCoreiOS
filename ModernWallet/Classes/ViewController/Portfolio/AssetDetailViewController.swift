@@ -23,6 +23,13 @@ class AssetDetailViewController: UIViewController {
     @IBOutlet weak var transactionsTable: UITableView!
     @IBOutlet weak var messageButton: UIButton!
     
+    @IBOutlet weak var filterDescriptionView: UIStackView!
+    @IBOutlet weak var filterDescriptionLabel: UILabel!
+    @IBOutlet weak var filterDescriptionClearButton: UIButton!
+    @IBOutlet weak var headerHeight: NSLayoutConstraint!
+
+    private var filterViewController: TransactionPickDateRangeViewController?
+    
     fileprivate lazy var assetBalanceViewModel: AssetBalanceViewModel = {
         return AssetBalanceViewModel(asset: self.asset.asObservable())
     }()
@@ -41,7 +48,7 @@ class AssetDetailViewController: UIViewController {
             )
         )
     } ()
-    
+
     private let disposeBag = DisposeBag()
     
     var asset: Variable<Asset>!
@@ -62,7 +69,11 @@ class AssetDetailViewController: UIViewController {
         transactionsViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
-        
+
+        transactionsViewModel.loading.isLoading
+            .bind(to: rx.loading)
+            .disposed(by: disposeBag)
+
         assetBalanceViewModel
             .bind(toAsset: assetAmount, baseAsset: baseAssetAmount)
             .disposed(by: disposeBag)
@@ -85,6 +96,24 @@ class AssetDetailViewController: UIViewController {
         
         assetAmount.configure(fontSize: 30)
         baseAssetAmount.configure(fontSize: 12)
+
+        // Table header and filter content bindings
+        transactionsViewModel.filterViewModel.filterDescription
+            .drive(filterDescriptionLabel.rx.attributedText)
+            .disposed(by: disposeBag)
+        
+        transactionsViewModel.filterViewModel.filterDatePair.asObservable()
+            .map { return $0.start == nil && $0.end == nil }
+            .startWith(true)
+            .asDriver(onErrorJustReturn: true)
+            .drive(filterDescriptionView.rx.isHidden)
+            .disposed(by: disposeBag)
+
+        filterDescriptionClearButton.rx.tap.asObservable()
+            .throttle(1.0, scheduler: MainScheduler.instance)
+            .map({ return (start: nil, end: nil) })
+            .bind(to: transactionsViewModel.filterViewModel.filterDatePair)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Navigation
@@ -111,6 +140,26 @@ class AssetDetailViewController: UIViewController {
         case "SendAsset":
             guard let sendVC = segue.destination as? SendToWalletViewController else { return }
             sendVC.asset = asset
+        case "ShowFilterPopover":
+            guard let filterNavigationController = segue.destination as? UINavigationController,
+                let filterViewController = filterNavigationController.topViewController as? TransactionPickDateRangeViewController else { return }
+            
+            filterNavigationController.modalPresentationStyle = UIModalPresentationStyle.popover
+            filterNavigationController.preferredContentSize = CGSize(width: transactionsTable.bounds.width, height: 280)
+
+            if let filterPopover = filterNavigationController.popoverPresentationController {
+                // Calculate the offset for the popover depending on the screen size
+                let popoverOffset: CGFloat = UIScreen.isSmallScreen ? -16 : 16
+
+                filterPopover.backgroundColor = #colorLiteral(red: 0, green: 0.431372549, blue: 0.3411764706, alpha: 1)
+                filterPopover.permittedArrowDirections = UIScreen.isSmallScreen ? .down : .up
+                filterPopover.sourceView = self.filterButton
+                filterPopover.delegate = self
+                filterPopover.sourceRect = CGRect(x: self.filterButton.bounds.midX, y: self.filterButton.bounds.midY + popoverOffset, width: 0,height: 0)
+            }
+            
+            filterViewController.filterViewModel = transactionsViewModel.filterViewModel
+            
         default:
             break
         }
@@ -144,6 +193,12 @@ fileprivate extension TransactionsViewModel {
         ]
     }
 }
+extension AssetDetailViewController: UIPopoverPresentationControllerDelegate {
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+            return .none
+    }
+}
+
 extension ObservableType where Self.E == [TransactionViewModel] {
     func filter(byAsset asset: Asset) -> Observable<[TransactionViewModel]> {
         return map{ transactions in
