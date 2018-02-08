@@ -23,18 +23,6 @@ open class TransactionsViewModel {
         case desc
     }
     
-    public struct DateRangeFilter {
-        public var startDate: Date? = nil
-        public var endDate: Date? = nil
-        
-        public init() {}
-        
-        public init(startDate: Date?, endDate: Date?) {
-            self.startDate = startDate
-            self.endDate = endDate
-        }
-    }
-    
     typealias that = TransactionsViewModel
     
     /// History Transactions
@@ -49,8 +37,8 @@ open class TransactionsViewModel {
     /// Filter transactions by title
     public let filter = Variable<String?>(nil)
     
-    /// Filter transactions by date range
-    public let dateRange = Variable<DateRangeFilter>(DateRangeFilter())
+    /// Filter view model
+    public let filterViewModel: TransactionFilterViewModel
     
     /// Loading indicator
     public let loading: LoadingViewModel
@@ -63,6 +51,9 @@ open class TransactionsViewModel {
     private let disposeBag = DisposeBag()
     
     public init(downloadCsv: Observable<Void>, dependency: Dependency) {
+        
+        filterViewModel = TransactionFilterViewModel(formatter: TransactionFilterFormatter.instance)
+        
         let transactionsObservable = dependency.authManager.history.request()
         
         let transactions = transactionsToDisplay.asObservable()
@@ -105,17 +96,18 @@ open class TransactionsViewModel {
             .bind(to: transactionsToDisplay)
             .disposed(by: disposeBag)
         
-        dateRange.asObservable()
-            .map { [transactionsToDisplay] range in
-                return transactionsToDisplay.value.filter { transaction in
-                    switch (range.startDate, range.endDate) {
-                    case (.some(let startValue), .some(let endValue)):
-                        return startValue < transaction.dateTime
-                            && endValue > transaction.dateTime
+        filterViewModel.filterDatePair.asObservable()
+            .map { [transactionModels] range in
+                return transactionModels.value.filter { transaction in
+                    switch (range.start, range.end) {
+                    case (.some(let startValue), .some(let endValue)) where startValue <= endValue:
+                        return startValue <= transaction.dateTime && endValue >= transaction.dateTime
+                    case (.some(let startValue), .some(let endValue)) where startValue > endValue:
+                        return startValue >= transaction.dateTime && endValue <= transaction.dateTime
                     case (.none, .some(let endValue)):
-                        return endValue > transaction.dateTime
+                        return endValue >= transaction.dateTime
                     case (.some(let startValue), .none):
-                        return startValue < transaction.dateTime
+                        return startValue <= transaction.dateTime
                     default:
                         return true
                     }
