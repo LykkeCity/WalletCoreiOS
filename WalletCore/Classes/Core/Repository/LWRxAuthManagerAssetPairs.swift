@@ -46,10 +46,20 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
     }
     
     public func request() -> Observable<Result> {
+        if let pairs = LWCache.instance().allAssetPairs {
+            return Observable<ApiResult<[LWAssetPairModel]>>
+                .just(ApiResult.success(withData: pairs as! [LWAssetPairModel]))
+                .startWith(ApiResult.loading)
+        }
         return self.request(withParams: ())
     }
     
     public func request(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>> {
+        if let pair = LWCache.assetPair(forAssetId: baseAsset.identity, otherAssetId: quotingAsset.identity) {
+            return Observable<ApiResult<LWAssetPairModel?>>
+                .just(ApiResult.success(withData: pair))
+                .startWith(ApiResult.loading)
+        }
         return request(withParams: ())
             .filterSuccess()
             .map{ pairs in
@@ -64,6 +74,11 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
     }
     
     public func request(byId id: String) -> Observable<ApiResult<LWAssetPairModel?>> {
+        if let pair = LWCache.assetPair(byId: id) {
+            return Observable<ApiResult<LWAssetPairModel?>>
+                .just(ApiResult.success(withData: pair))
+                .startWith(ApiResult.loading)
+        }
         return request(withParams: ()).map{ result -> ApiResult<LWAssetPairModel?> in
             switch result {
                 case .error(let data): return .error(withData: data)
