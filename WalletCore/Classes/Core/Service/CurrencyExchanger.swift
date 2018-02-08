@@ -33,7 +33,6 @@ public protocol CurrencyExchangerProtocol {
 public class CurrencyExchanger: CurrencyExchangerProtocol {
     public let authManager: LWRxAuthManagerProtocol
     public let pairRates: Variable<[LWAssetPairRateModel]> = Variable([])
-    public let pairs: Variable<[LWAssetPairModel]> = Variable([])
     private let disposeBag = DisposeBag()
     
     public init(refresh: Observable<Void>, authManager: LWRxAuthManagerProtocol = LWRxAuthManager.instance) {
@@ -41,19 +40,11 @@ public class CurrencyExchanger: CurrencyExchangerProtocol {
         self.authManager = authManager
         
         refresh
+            .flatMap{_ in authManager.assetPairs.request().filterSuccess()}
             .flatMap{_ in authManager.assetPairRates.request(withParams: true).filterSuccess()}
             .bind(to: pairRates)
             .disposed(by: disposeBag)
 
-        refresh
-            .flatMap{_ -> Observable<[LWAssetPairModel]> in
-                guard let pairs = LWCache.instance().allAssetPairs else {
-                    return authManager.assetPairs.request().filterSuccess()
-                }
-                return Observable<[LWAssetPairModel]>.just(pairs as! [LWAssetPairModel])
-            }
-            .bind(to: pairs)
-            .disposed(by: disposeBag)
     }
     
     /// Convert an asset's amount into a value of another asset
@@ -69,13 +60,13 @@ public class CurrencyExchanger: CurrencyExchangerProtocol {
             return Observable.just(amount)
         }
         
-        let pair = LWCache.assetPair(forAssetId: from.identity, otherAssetId: to.identity)
+        let pairObserver =  authManager.assetPairs
+            .request(baseAsset: from, quotingAsset: to)
+            .filterSuccess()
         
-        let reversed = pair?.quotingAsset == from
-        
-        return pairRates.asObservable()
-            .map{rates -> (pairModel: LWAssetPairRateModel?, reversed: Bool) in
-                return (pairModel: rates.find(byPair: pair?.identity ?? ""), reversed: reversed)
+        return Observable.combineLatest(pairRates.asObservable(),pairObserver)
+            .map{ rates, pair in
+                return (pairModel: rates.find(byPair: pair?.identity ?? ""), reversed: pair?.quotingAsset == from)
             }
             .map{
                 guard let rate = (bid ? $0.pairModel?.bid : $0.pairModel?.ask)?.decimalValue else { return nil }
