@@ -167,6 +167,7 @@
 		AB29EEF81FEB0C000006F43F /* LWNetworkClient+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */; };
 		AB6752DB20076BF1008A44F2 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6752DA20076BF1008A44F2 /* SelectCountryViewController.swift */; };
 		AB9EA05B20081A9900900058 /* SelectCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EA05A20081A9900900058 /* SelectCountryTableViewCell.swift */; };
+		BE53DFD9202C538100D03C3F /* AddMoneyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53DFD8202C538100D03C3F /* AddMoneyBaseViewController.swift */; };
 		C1DF9EF41FE02ADD00D15A72 /* SendToWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF9EF31FE02ADD00D15A72 /* SendToWalletViewController.swift */; };
 		C506BD562018866800070E13 /* AssetPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506BD552018866800070E13 /* AssetPickerTableViewController.swift */; };
 		C506BD582018B21300070E13 /* SelectBaseAssetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506BD572018B21300070E13 /* SelectBaseAssetTableViewCell.swift */; };
@@ -361,6 +362,7 @@
 		AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWNetworkClient+Extension.swift"; sourceTree = "<group>"; };
 		AB6752DA20076BF1008A44F2 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		AB9EA05A20081A9900900058 /* SelectCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryTableViewCell.swift; sourceTree = "<group>"; };
+		BE53DFD8202C538100D03C3F /* AddMoneyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyBaseViewController.swift; sourceTree = "<group>"; };
 		C1DF9EF31FE02ADD00D15A72 /* SendToWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToWalletViewController.swift; sourceTree = "<group>"; };
 		C506BD552018866800070E13 /* AssetPickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerTableViewController.swift; sourceTree = "<group>"; };
 		C506BD572018B21300070E13 /* SelectBaseAssetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBaseAssetTableViewCell.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				463FC5AC1F94DBB8005930DD /* BankAccount */,
 				463FC5AB1F94DBA0005930DD /* CreditCard */,
 				463FC5AA1F94DB7F005930DD /* CryptoCurrency */,
+				BE53DFD8202C538100D03C3F /* AddMoneyBaseViewController.swift */,
 				CC9458801F03DC4F00676249 /* StartViewController.swift */,
 				CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */,
 				66EE6F6C1FC879D600F56E4D /* EmptyWalletViewController.swift */,
@@ -1277,6 +1280,7 @@
 				6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */,
 				870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */,
 				66C83D441FC3089600428527 /* BackupPrivateKeyViewController.swift in Sources */,
+				BE53DFD9202C538100D03C3F /* AddMoneyBaseViewController.swift in Sources */,
 				612E59201F7A93EB0018476B /* KYCDocumentStatus+Extensions.swift in Sources */,
 				6197A3BB1EE99AB1008ECF5A /* StrokePieChartRenderer.swift in Sources */,
 				668E68031FCD9AFD004552BD /* SignInPasswordFormController.swift in Sources */,

@@ -13,7 +13,7 @@ import RxCocoa
 import TextFieldEffects
 import RxKeyboard
 
-class AddMoneyCCStep1ViewController: UIViewController {
+class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
     
     @IBOutlet weak var assetCode: UILabel!
     @IBOutlet weak var assetSymbol: UILabel!
@@ -32,7 +32,8 @@ class AddMoneyCCStep1ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
         
     private lazy var creditCardViewModel:CreditCardBaseInfoViewModel = {
-        return CreditCardBaseInfoViewModel(submit: self.submitButton.rx.tap.asObservable())
+        return CreditCardBaseInfoViewModel(submit: self.submitButton.rx.tap.asObservable(),
+                                           assetToAdd: self.аssetObservable())
     }()
     
     fileprivate var selectedCountry: LWCountryModel? {

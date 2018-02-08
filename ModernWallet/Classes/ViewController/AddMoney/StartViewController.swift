@@ -64,10 +64,10 @@ class StartViewController: UIViewController {
             .disposed(by: disposeBag)
         
         kycNeededViewModel.ok
-            .map{ [weak self] in self?.instantiatedViewController }
-            .filterNil()
-            .subscribe(onNext: {[weak self] controller in
-                self?.navigationController?.pushViewController(controller, animated: true)
+            .subscribe(onNext: {[weak self] in
+                if let vc = self?.addMoneyViaActionVC {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
             })
             .disposed(by: disposeBag)
         
@@ -81,29 +81,64 @@ class StartViewController: UIViewController {
     
     @IBAction func bankAccountAction(_ sender: UIButton) {
         action = .bankAccount
-        requestBaseAsset()
+        askForAssetType()
     }
     
     @IBAction func creditCardAction(_ sender: UIButton) {
         action = .creditCard
-        requestBaseAsset()
+        askForAssetType()
     }
     
-    private var instantiatedViewController: UIViewController? {
-        guard let action = action else { return nil }
+    private func askForAssetType() {
+        guard let vc = pickCurrencyToAdd else {
+            return
+        }
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
+        vc.assetPicked.bind { [weak self] (asset) in
+            self?.asset.value = ApiResult<LWAssetModel>.success(withData: asset)
+        }.disposed(by: disposeBag)
+    }
+    
+    private var pickCurrencyToAdd: AssetPickerTableViewController? {
+        guard let action = action else {
+            return nil
+        }
+        
+        let vc = AssetPickerTableViewController.instantiateViewController()
         
         switch action {
-            case .bankAccount:
-                return storyboard?.instantiateViewController(withIdentifier: "bankInfo")
-            case .creditCard:
-                return storyboard?.instantiateViewController(withIdentifier: "addMoneyCCstep1VC")
+        case .bankAccount:
+            vc.showOnlyAssetsWithSwiftTransfer()
+            break
+        case .creditCard:
+            vc.showOnlyVisaDepositableAssets()
+            break
         }
+        
+        return vc
     }
     
-    private func requestBaseAsset() {
-        LWRxAuthManager.instance.baseAsset.request()
-            .bind(to: asset)
-            .disposed(by: disposeBag)
+    private var addMoneyViaActionVC: UIViewController? {
+        guard let action = action else { return nil }
+        
+        var vc: UIViewController! = nil
+        switch action {
+            case .bankAccount:
+                vc = storyboard?.instantiateViewController(withIdentifier: "bankInfo")
+            case .creditCard:
+                vc = storyboard?.instantiateViewController(withIdentifier: "addMoneyCCstep1VC")
+        }
+        
+        if let vc = vc as? AddMoneyBaseViewController,
+            let asset = self.asset.value?.getSuccess() {
+            vc.assetToAdd = asset
+        } else {
+            let msg = "Could not pass transfer asset(\(String(describing: self.asset.value)) to vc: \(vc)"
+            assertionFailure(msg)
+        }
+        
+        return vc
     }
-    
 }

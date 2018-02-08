@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import WalletCore
 
-class BankInfoViewController: UIViewController {
+class BankInfoViewController: AddMoneyBaseViewController {
 
     @IBOutlet weak var emailButton: UIButton!
     
@@ -30,13 +30,7 @@ class BankInfoViewController: UIViewController {
         
         emailButton.setTitle(Localize("addMoney.newDesign.bankaccount.emailMe"), for: UIControlState.normal)
         
-        //get user's base asset and assign it to the view model
-        LWRxAuthManager.instance.baseAsset.request()
-            .filterSuccess()
-            .map{ $0.identity ?? "" }
-            .bind(to: currencyDepositViewModel.assetId)
-            .disposed(by: disposeBag)
-        
+        currencyDepositViewModel.assetId.value = assetToAdd.identity
         currencyDepositViewModel.balanceChange.value = 100
 
         currencyDepositViewModel
@@ -65,7 +59,9 @@ fileprivate extension CurrencyDepositViewModel {
     func bind(toViewController vc: BankInfoViewController) -> [Disposable] {
         return [
             loadingViewModel.isLoading.bind(to: vc.rx.loading),
-            result.drive(onNext: { [weak vc] _ in vc?.performSegue(withIdentifier: "showWireBankEmailSent", sender: nil) }),
+            result.drive(onNext: { [weak vc] _ in
+                vc?.performSegue(withIdentifier: "showWireBankEmailSent", sender: nil)
+            }),
             errors.bind(to: vc.rx.error)
         ]
     }
