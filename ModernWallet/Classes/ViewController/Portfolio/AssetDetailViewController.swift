@@ -56,6 +56,8 @@ class AssetDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        transactionsTable.contentInset = UIEdgeInsetsMake(0, 0, 44, 0)
+
         transactionsTable.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
         
         transactionsViewModel.transactionsAsCsv = self.messageButton.rx.tap
