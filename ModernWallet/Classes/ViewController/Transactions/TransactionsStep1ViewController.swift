@@ -143,7 +143,9 @@ fileprivate extension TransactionsViewModel {
             
             sortBy.asDriver()
                 .map{ $0.asImage() }
-                .drive(vc.sortIcon.rx.image)
+                .drive(vc.sortIcon.rx.image),
+            
+            errors.drive(vc.rx.error)
         ]
     }
 }
