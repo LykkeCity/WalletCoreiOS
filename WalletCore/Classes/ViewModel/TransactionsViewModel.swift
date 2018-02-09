@@ -99,15 +99,18 @@ open class TransactionsViewModel {
         filterViewModel.filterDatePair.asObservable()
             .map { [transactionModels] range in
                 return transactionModels.value.filter { transaction in
+                    // Strip the clock values from the transaction date
+                    let components = Calendar.current.dateComponents([.day, .month, .year], from: transaction.dateTime)
+                    guard let transactionDate = Calendar.current.date(from: components) else { return false }
                     switch (range.start, range.end) {
                     case (.some(let startValue), .some(let endValue)) where startValue <= endValue:
-                        return startValue <= transaction.dateTime && endValue >= transaction.dateTime
+                        return startValue <= transactionDate && endValue >= transactionDate
                     case (.some(let startValue), .some(let endValue)) where startValue > endValue:
-                        return startValue >= transaction.dateTime && endValue <= transaction.dateTime
+                        return startValue >= transactionDate && endValue <= transactionDate
                     case (.none, .some(let endValue)):
-                        return endValue >= transaction.dateTime
+                        return endValue >= transactionDate
                     case (.some(let startValue), .none):
-                        return startValue <= transaction.dateTime
+                        return startValue <= transactionDate
                     default:
                         return true
                     }
