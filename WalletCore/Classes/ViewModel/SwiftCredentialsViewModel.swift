@@ -21,16 +21,14 @@ public class SwiftCredentialsViewModel {
     public let loadingViewModel: LoadingViewModel
     public let errors: Driver<[AnyHashable: Any]>
     
-    public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
-        let baseAsset = authManager.baseAsset.request()
+    public init(credentialsForAsset asset: LWAssetModel,
+                authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         
-        let swiftCredentials = baseAsset
-            .filterSuccess()
-            .flatMap{ authManager.swiftCredentials.request(withParams: $0.identity) }
+        let swiftCredentials = authManager.swiftCredentials
+            .request(withParams: asset.identity)
             .shareReplay(1)
         
         loadingViewModel = LoadingViewModel([
-            baseAsset.isLoading(),
             swiftCredentials.isLoading()
         ])
         
