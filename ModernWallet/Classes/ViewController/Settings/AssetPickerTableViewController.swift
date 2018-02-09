@@ -37,8 +37,8 @@ class AssetPickerTableViewController: UITableViewController {
         tableView.backgroundView = BackgroundView(frame: tableView.bounds)
         
         rows.asObservable()
-        .bind(to: tableView.rx.items(cellIdentifier: "BaseAssetCell",
-                                     cellType: SelectBaseAssetTableViewCell.self)) { [weak self] (row, element, cell) in
+        .bind(to: tableView.rx.items(cellIdentifier: "PickAssetCell",
+                                     cellType: AssetPickTableViewCell.self)) { [weak self] (row, element, cell) in
             cell.displayBaseAssetAsSelected = self?.displayBaseAssetAsSelected ?? false
             cell.setBaseAssetData(element)
         }.disposed(by: disposeBag)
@@ -115,7 +115,7 @@ extension AssetPickerTableViewController {
     }
 }
 
-extension SelectBaseAssetTableViewCell {
+extension AssetPickTableViewCell {
     func setBaseAssetData(_ assetInfo: SingleAssetViewModel) {
         assetInfo.title
             .drive(assetTitleLabel.rx.text)

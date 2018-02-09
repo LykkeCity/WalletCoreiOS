@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SelectBaseAssetTableViewCell: UITableViewCell {
+class AssetPickTableViewCell: UITableViewCell {
     
     @IBOutlet weak var assetTitleLabel: UILabel!
     
