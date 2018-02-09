@@ -31,7 +31,7 @@ class TransactionPickDateRangeViewController: UIViewController {
 
         // Show calendar screen after tapping any of the buttons
         startDateButton.rx.tap
-            .flatMap { [weak filterViewModel] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: filterViewModel?.startDate.value) }
+            .flatMap { [weak self] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: self?.filterViewModel?.startDate.value) }
             .do(onNext: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
@@ -39,7 +39,7 @@ class TransactionPickDateRangeViewController: UIViewController {
             .disposed(by: disposeBag)
         
         endDateButton.rx.tap
-            .flatMap { [weak filterViewModel] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: filterViewModel?.endDate.value) }
+            .flatMap { [weak self] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: self?.filterViewModel?.endDate.value) }
             .do(onNext: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })

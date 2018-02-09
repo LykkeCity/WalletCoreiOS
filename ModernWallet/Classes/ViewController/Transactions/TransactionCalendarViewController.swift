@@ -46,7 +46,7 @@ class TransactionCalendarViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     /// Push view controller and expose an Observable<Date?>
-    static func pushCalendarViewController(from viewController: UIViewController, withDate date: Date?) -> Observable<Date?> {
+    static func pushCalendarViewController(from viewController: UIViewController?, withDate date: Date?) -> Observable<Date?> {
         guard let calendarViewController = UIStoryboard(name: "Transactions", bundle: nil)
                 .instantiateViewController(withIdentifier: "CalendarViewController") as? TransactionCalendarViewController else {
             return Observable.never()
@@ -54,7 +54,7 @@ class TransactionCalendarViewController: UIViewController {
         
         calendarViewController.inputDate = date
         
-        viewController.navigationController?.pushViewController(calendarViewController, animated: true)
+        viewController?.navigationController?.pushViewController(calendarViewController, animated: true)
         return calendarViewController.selectedDate.asObservable()
             .shareReplay(1)
     }

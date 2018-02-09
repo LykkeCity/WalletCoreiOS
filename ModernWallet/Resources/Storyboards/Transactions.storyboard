@@ -532,67 +532,57 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="w6Y-VR-KC7">
-                                        <rect key="frame" x="0.0" y="61" width="335" height="94"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="w6Y-VR-KC7">
+                                        <rect key="frame" x="0.0" y="56" width="335" height="104"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UH9-UH-URs">
-                                                <rect key="frame" x="112.5" y="0.0" width="110" height="32"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UH9-UH-URs">
+                                                <rect key="frame" x="116" y="0.0" width="103" height="42"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FROM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vb-94-azC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="10"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="103" height="10"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="10"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="pRF-TF-xBf" userLabel="Transactions Stack View">
-                                                        <rect key="frame" x="0.0" y="18" width="110" height="14"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="M4e-84-hVg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="21" height="14"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="20.899999999999999" id="8bh-NA-XTM"/>
-                                                                    <constraint firstAttribute="height" constant="14.199999999999999" id="kTs-Ad-HbG"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeW-80-AJh">
-                                                                <rect key="frame" x="27" y="0.0" width="83" height="14"/>
-                                                                <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
-                                                                <state key="normal" title="Aug 1st, 2017">
-                                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </state>
-                                                            </button>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeW-80-AJh">
+                                                        <rect key="frame" x="0.0" y="10" width="103" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="qd7-cB-9pZ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
+                                                        <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="Aug 1st, 2017" image="transactionsIcon">
+                                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <state key="highlighted">
+                                                            <color key="titleColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q2w-17-xYy">
-                                                <rect key="frame" x="110" y="62" width="115" height="32"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Q2w-17-xYy">
+                                                <rect key="frame" x="113.5" y="62" width="108" height="42"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQj-FI-K6n">
-                                                        <rect key="frame" x="0.0" y="0.0" width="115" height="10"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="108" height="10"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="10"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-gy-o1O" userLabel="Transactions Stack View">
-                                                        <rect key="frame" x="0.0" y="18" width="115" height="14"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Bxi-p9-zhL">
-                                                                <rect key="frame" x="0.0" y="0.0" width="21" height="14"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="20.899999999999999" id="f5e-ni-kij"/>
-                                                                    <constraint firstAttribute="height" constant="14.199999999999999" id="zq8-by-EAZ"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3m1-Ao-fBT">
-                                                                <rect key="frame" x="27" y="0.0" width="88" height="14"/>
-                                                                <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
-                                                                <state key="normal" title="Aug 7th, 2017">
-                                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </state>
-                                                            </button>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3m1-Ao-fBT">
+                                                        <rect key="frame" x="0.0" y="10" width="108" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="VdZ-Rf-Pcb"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
+                                                        <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="Aug 7th, 2017" image="transactionsIcon">
+                                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <state key="highlighted">
+                                                            <color key="titleColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
