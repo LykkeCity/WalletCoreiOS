@@ -153,7 +153,7 @@ class AssetDetailViewController: UIViewController {
                 // Calculate the offset for the popover depending on the screen size
                 let popoverOffset: CGFloat = UIScreen.isSmallScreen ? -16 : 16
 
-                filterPopover.backgroundColor = #colorLiteral(red: 0, green: 0.431372549, blue: 0.3411764706, alpha: 1)
+                filterPopover.backgroundColor = Colors.darkGreen
                 filterPopover.permittedArrowDirections = UIScreen.isSmallScreen ? .down : .up
                 filterPopover.sourceView = self.filterButton
                 filterPopover.delegate = self
