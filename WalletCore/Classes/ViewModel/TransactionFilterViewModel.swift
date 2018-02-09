@@ -51,12 +51,12 @@ open class TransactionFilterViewModel {
         
         // update the `startDate` and `endDate` Variables depending on the date pair
         filterDatePairObservable
-            .map({ return $0.start })
+            .map({ $0.start })
             .bind(to: startDate)
             .disposed(by: disposeBag)
         
         filterDatePairObservable
-            .map({ return $0.end })
+            .map({ $0.end })
             .bind(to: endDate)
             .disposed(by: disposeBag)
     }
@@ -76,16 +76,16 @@ public extension ObservableType where Self.E == (start: Date?, end: Date?) {
     func mapCombination(withFormatter formatter: TransactionFilterFormatterProtocol) -> Observable<NSAttributedString> {
         return map { value in
             
-            let descriptionKeyAttributes = [
+            let descriptionKeyAttributes: [String: Any] = [
                 NSForegroundColorAttributeName: UIColor.white,
-                NSFontAttributeName: UIFont(name: "Geomanist-Light", size: 12.0)
+                NSFontAttributeName: UIFont(name: "Geomanist-Light", size: 12.0) ?? UIFont.systemFont(ofSize: 12.0)
             ]
-            let descriptionValueAttributes = [
+            let descriptionValueAttributes: [String: Any] = [
                 NSForegroundColorAttributeName: UIColor.white,
-                NSFontAttributeName: UIFont(name: "Geomanist", size: 12.0)
+                NSFontAttributeName: UIFont(name: "Geomanist", size: 12.0) ?? UIFont.systemFont(ofSize: 12.0)
             ]
             
-            var description = NSMutableAttributedString()
+            let description = NSMutableAttributedString()
             
             if let start = value.start.value {
                 let startKey = NSAttributedString(string: "From ",
