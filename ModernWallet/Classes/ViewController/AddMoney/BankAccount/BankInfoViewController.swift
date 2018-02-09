@@ -31,7 +31,7 @@ class BankInfoViewController: AddMoneyBaseViewController {
         emailButton.setTitle(Localize("addMoney.newDesign.bankaccount.emailMe"), for: UIControlState.normal)
         
         currencyDepositViewModel.assetId.value = assetToAdd.identity
-        currencyDepositViewModel.balanceChange.value = 100
+        currencyDepositViewModel.balanceChange.value = 1
 
         currencyDepositViewModel
             .bind(toViewController: self)
@@ -44,15 +44,14 @@ class BankInfoViewController: AddMoneyBaseViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showSwiftCredentials",
+            let vc = segue.destination as? AddMoneyBaseViewController {
+            vc.assetModel.value = self.assetModel.value
+        }
     }
-    */
 }
 
 fileprivate extension CurrencyDepositViewModel {
