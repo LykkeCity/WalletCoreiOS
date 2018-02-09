@@ -121,7 +121,9 @@ class StartViewController: UIViewController {
     }
     
     private var addMoneyViaActionVC: UIViewController? {
-        guard let action = action else { return nil }
+        guard let action = action else {
+            return nil
+        }
         
         var vc: UIViewController! = nil
         switch action {
@@ -131,7 +133,7 @@ class StartViewController: UIViewController {
                 vc = storyboard?.instantiateViewController(withIdentifier: "addMoneyCCstep1VC")
         }
         
-        if let vc = vc as? AddMoneyBaseViewController,
+        if let vc = vc as? AddMoneyTransfer,
             let asset = self.asset.value?.getSuccess() {
             vc.assetToAdd = asset
         } else {

@@ -31,6 +31,9 @@ class BankInfoViewController: AddMoneyBaseViewController {
         emailButton.setTitle(Localize("addMoney.newDesign.bankaccount.emailMe"), for: UIControlState.normal)
         
         currencyDepositViewModel.assetId.value = assetToAdd.identity
+        // !!!: For VM to work properly it needs balance value, but currently
+        // we have no UI for the amount so we set it to 1
+        // In the sent email the user sees 1 as transfer amount
         currencyDepositViewModel.balanceChange.value = 1
 
         currencyDepositViewModel
@@ -48,8 +51,8 @@ class BankInfoViewController: AddMoneyBaseViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSwiftCredentials",
-            let vc = segue.destination as? AddMoneyBaseViewController {
-            vc.assetModel.value = self.assetModel.value
+            let transferVC = segue.destination as? AddMoneyTransfer {
+            transferVC.assetToAdd = self.assetModel.value
         }
     }
 }

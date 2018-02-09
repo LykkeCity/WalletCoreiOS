@@ -10,7 +10,7 @@ import UIKit
 import WalletCore
 import RxSwift
 
-protocol AddMoneyTransfer {
+protocol AddMoneyTransfer: class {
     var assetToAdd: LWAssetModel { get set }
 }
 
