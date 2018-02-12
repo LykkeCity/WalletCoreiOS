@@ -37,6 +37,9 @@ open class TransactionsViewModel {
     /// Filter transactions by title
     public let filter = Variable<String?>(nil)
     
+    /// Filter view model
+    public let filterViewModel: TransactionFilterViewModel
+    
     /// Loading indicator
     public let loading: LoadingViewModel
     
@@ -50,6 +53,9 @@ open class TransactionsViewModel {
     private let disposeBag = DisposeBag()
     
     public init(downloadCsv: Observable<Void>, dependency: Dependency) {
+        
+        filterViewModel = TransactionFilterViewModel(formatter: TransactionFilterFormatter.instance)
+        
         let transactionsObservable = dependency.authManager.history.request()
         
         let transactions = transactionsToDisplay.asObservable()
@@ -93,6 +99,29 @@ open class TransactionsViewModel {
                 
                 return transactionModels.value.filter {
                     [$0.localizedString, $0.asset].contains{ $0.localizedCaseInsensitiveContains(filter) }
+                }
+            }
+            .bind(to: transactionsToDisplay)
+            .disposed(by: disposeBag)
+        
+        filterViewModel.filterDatePair.asObservable()
+            .map { [transactionModels] range in
+                return transactionModels.value.filter { transaction in
+                    // Strip the clock values from the transaction date
+                    let components = Calendar.current.dateComponents([.day, .month, .year], from: transaction.dateTime)
+                    guard let transactionDate = Calendar.current.date(from: components) else { return false }
+                    switch (range.start, range.end) {
+                    case (.some(let startValue), .some(let endValue)) where startValue <= endValue:
+                        return startValue <= transactionDate && endValue >= transactionDate
+                    case (.some(let startValue), .some(let endValue)) where startValue > endValue:
+                        return startValue >= transactionDate && endValue <= transactionDate
+                    case (.none, .some(let endValue)):
+                        return endValue >= transactionDate
+                    case (.some(let startValue), .none):
+                        return startValue <= transactionDate
+                    default:
+                        return true
+                    }
                 }
             }
             .bind(to: transactionsToDisplay)
