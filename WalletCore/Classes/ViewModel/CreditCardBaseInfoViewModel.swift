@@ -39,9 +39,10 @@ open class CreditCardBaseInfoViewModel {
     private let disposeBag = DisposeBag()
     private let countryCodes = Variable<[LWCountryModel]>([])
     
-    public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
+    public init(submit: Observable<Void>,
+                assetToAdd: Observable<LWAssetModel>,
+                authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         let personalData =  authManager.prevCardPayment.request()
-        let baseAsset    =  authManager.baseAsset.request()
         let countryCodes =  authManager.countryCodes.request()
         
         paymentUrlResult = submit
@@ -49,7 +50,6 @@ open class CreditCardBaseInfoViewModel {
             .mapToPaymentUrl(input: input, countries: self.countryCodes, authManager: authManager)
         
         loadingViewModel = LoadingViewModel([
-            baseAsset.isLoading(),
             paymentUrlResult.isLoading(),
             personalData.isLoading()
         ])
@@ -64,8 +64,7 @@ open class CreditCardBaseInfoViewModel {
             .mapToDisplayId()
             .asDriver(onErrorJustReturn: "")
      
-        baseAsset.filterSuccess()
-            .bind(to: input.asset)
+        assetToAdd.bind(to: input.asset)
             .disposed(by: disposeBag)
         
         personalData.filterSuccess()
