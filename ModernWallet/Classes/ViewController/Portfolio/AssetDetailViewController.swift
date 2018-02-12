@@ -57,7 +57,7 @@ class AssetDetailViewController: UIViewController {
                                         .transactions
                                         .asObservable()
                                         .filter(byAsset: asset.value))
-            .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
+
         
         transactionsViewModel
             .bind(toViewController: self)
@@ -138,7 +138,9 @@ fileprivate extension TransactionsViewModel {
             transactionsAsCsv
                 .asObservable()
                 .filterSuccess()
-                .bind(onNext: {[weak vc] path in vc?.creatCSV(path)})
+                .bind(onNext: {[weak vc] path in vc?.creatCSV(path)}),
+            
+            errors.drive(vc.rx.error)
         ]
     }
 }
