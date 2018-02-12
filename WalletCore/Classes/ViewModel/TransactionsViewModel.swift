@@ -29,7 +29,7 @@ open class TransactionsViewModel {
     public let transactions: Driver<[TransactionViewModel]>
     
     /// Transactions represented as CSV
-    public var transactionsAsCsv: Driver<ApiResult<URL>>
+    public var transactionsAsCsv: Observable<ApiResult<URL>>
     
     /// Once the value of this Variable is changed there will be created an event with sorted TransactionsViewModel.transactions according SortType
     public let sortBy = Variable<SortType>(SortType.asc)
@@ -44,7 +44,9 @@ open class TransactionsViewModel {
     private let transactionModels = Variable<[LWBaseHistoryItemType]>([])
     
     private let transactionsToDisplay = Variable<[LWBaseHistoryItemType]>([])
-
+   
+    public let errors: Driver<[AnyHashable: Any]>
+    
     private let disposeBag = DisposeBag()
     
     public init(downloadCsv: Observable<Void>, dependency: Dependency) {
@@ -58,7 +60,13 @@ open class TransactionsViewModel {
         
         self.transactionsAsCsv = downloadCsv
             .mapToCSVURL(transactions: transactions)
-            .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
+            .observeOn(MainScheduler.instance)
+            .catchErrorJustReturn(ApiResult.error(withData: ["Message": Localize("errors.server.problems")]))
+            .share()
+        
+        errors = transactionsAsCsv
+            .filterError()
+            .asDriver(onErrorJustReturn: [:])
         
         self.loading = LoadingViewModel([
             transactionsObservable.isLoading(),
@@ -125,7 +133,7 @@ public extension ObservableType where Self.E == Void {
     func mapToCSVURL(transactions: Observable<[TransactionViewModel]>) -> Observable<ApiResult<URL>> {
         guard let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("Transactions.csv") else {
             return Observable
-                .just(.error(withData: ["msg": "Can't create file"]))
+                .just(.error(withData: ["Message": Localize("errors.server.problems")]))
                 .startWith(.loading)
         }
         
