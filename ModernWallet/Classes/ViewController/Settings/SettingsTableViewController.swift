@@ -33,7 +33,7 @@ class SettingsTableViewController: UITableViewController {
     
     fileprivate var viewModel = SettingsViewModel()
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     
     private var rows = Variable([RowInfo]())
     
@@ -93,20 +93,35 @@ class SettingsTableViewController: UITableViewController {
             vc.viewModel = viewModel
             
         case "BaseAssetSelection":
-            let vc = segue.destination as! SettingsBaseAssetTableViewController
-            vc.viewModel = viewModel
-            vc.delegate = self
-            
+            let vc = segue.destination as! AssetPickerTableViewController
+            bindAssetPickerForBaseCurrencyChange(vc)
         default:
             break
         }
     }
 }
 
-extension SettingsTableViewController: SettingsBaseAssetDelegate {
-    func didUpdateBaseAsset() {
-        // Update the Settings table view
-        viewModel.performRefreshSettings()
+extension SettingsTableViewController {
+    
+    func bindAssetPickerForBaseCurrencyChange(_ vc: AssetPickerTableViewController) {
+        
+        vc.displayBaseAssetAsSelected = true
+        
+        let setBaseAsset = vc.assetPicked.flatMap { picked in
+            LWRxAuthManager.instance.baseAssetSet.request(withParams: picked.identity)
+        }
+        
+        setBaseAsset.filterError()
+        .bind(to: rx.error)
+        .disposed(by: disposeBag)
+        
+        setBaseAsset.filterSuccess()
+        .observeOn(MainScheduler.instance)
+        .subscribe(onNext: { [weak self, weak vc] _ in
+            self?.viewModel.performRefreshSettings()
+            vc?.dismissViewController()
+        })
+        .disposed(by: disposeBag)
     }
 }
 

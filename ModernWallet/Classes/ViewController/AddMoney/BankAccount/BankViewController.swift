@@ -11,7 +11,7 @@ import WalletCore
 import RxSwift
 import RxCocoa
 
-class BankViewController: UIViewController {
+class BankViewController: AddMoneyBaseViewController {
     
     @IBOutlet weak var bicLabel: UILabel!
     @IBOutlet weak var accountNumberLabel: UILabel!
@@ -30,7 +30,7 @@ class BankViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     
     lazy var swiftCredentialsViewModel: SwiftCredentialsViewModel = {
-        return SwiftCredentialsViewModel()
+        return SwiftCredentialsViewModel(credentialsForAsset: self.assetModel.value)
     }()
     
     let disposeBag = DisposeBag()

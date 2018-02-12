@@ -388,7 +388,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="pYg-Xb-OcF">
-                                                <rect key="frame" x="32" y="257" width="311" height="36"/>
+                                                <rect key="frame" x="32" y="256" width="311" height="36"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="6k1-o1-kEw"/>
@@ -398,7 +398,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mS6-ja-jGo">
-                                                <rect key="frame" x="32" y="293" width="311" height="1"/>
+                                                <rect key="frame" x="32" y="292" width="311" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="Ox8-cC-tA3"/>
@@ -508,16 +508,16 @@
             </objects>
             <point key="canvasLocation" x="6993" y="-118"/>
         </scene>
-        <!--Settings Base Asset Table View Controller-->
+        <!--Asset Picker Table View Controller-->
         <scene sceneID="CXe-kb-22D">
             <objects>
-                <tableViewController id="fBA-0U-sIh" customClass="SettingsBaseAssetTableViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="assetPickerViewController" id="fBA-0U-sIh" customClass="AssetPickerTableViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RFQ-mc-dYl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BaseAssetCell" id="0Yp-cA-1D3" customClass="SelectBaseAssetTableViewCell" customModule="ModernMoney" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickAssetCell" id="0Yp-cA-1D3" customClass="AssetPickTableViewCell" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Yp-cA-1D3" id="Lwm-yf-FLp">
@@ -530,12 +530,22 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGl-t8-zX7" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="50" width="335" height="2"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="2" id="Wgu-CF-AUD"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="UGl-t8-zX7" firstAttribute="leading" secondItem="Lwm-yf-FLp" secondAttribute="leading" constant="20" id="H4p-oq-Yoz"/>
+                                        <constraint firstAttribute="bottom" secondItem="UGl-t8-zX7" secondAttribute="bottom" constant="8" id="NYT-9u-qRh"/>
                                         <constraint firstItem="bqy-C6-K3O" firstAttribute="trailing" secondItem="Lwm-yf-FLp" secondAttribute="trailingMargin" id="o3D-w9-grp"/>
                                         <constraint firstItem="bqy-C6-K3O" firstAttribute="centerY" secondItem="Lwm-yf-FLp" secondAttribute="centerY" id="qcZ-Q0-H9m"/>
                                         <constraint firstItem="bqy-C6-K3O" firstAttribute="leading" secondItem="Lwm-yf-FLp" secondAttribute="leading" constant="40" id="xkf-Gj-zOM"/>
+                                        <constraint firstAttribute="trailing" secondItem="UGl-t8-zX7" secondAttribute="trailing" constant="20" id="ytJ-ml-gbj"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

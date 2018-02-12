@@ -379,7 +379,7 @@
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="hUz-FU-4Rj" kind="show" id="Bcp-Wg-Cre"/>
+                                                    <segue destination="hUz-FU-4Rj" kind="show" identifier="showSwiftCredentials" id="Bcp-Wg-Cre"/>
                                                 </connections>
                                             </button>
                                         </subviews>

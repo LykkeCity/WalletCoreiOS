@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import WalletCore
 
-class BankInfoViewController: UIViewController {
+class BankInfoViewController: AddMoneyBaseViewController {
 
     @IBOutlet weak var emailButton: UIButton!
     
@@ -30,14 +30,11 @@ class BankInfoViewController: UIViewController {
         
         emailButton.setTitle(Localize("addMoney.newDesign.bankaccount.emailMe"), for: UIControlState.normal)
         
-        //get user's base asset and assign it to the view model
-        LWRxAuthManager.instance.baseAsset.request()
-            .filterSuccess()
-            .map{ $0.identity ?? "" }
-            .bind(to: currencyDepositViewModel.assetId)
-            .disposed(by: disposeBag)
-        
-        currencyDepositViewModel.balanceChange.value = 100
+        currencyDepositViewModel.assetId.value = assetToAdd.identity
+        // !!!: For VM to work properly it needs balance value, but currently
+        // we have no UI for the amount so we set it to 1
+        // In the sent email the user sees 1 as transfer amount
+        currencyDepositViewModel.balanceChange.value = 1
 
         currencyDepositViewModel
             .bind(toViewController: self)
@@ -50,22 +47,23 @@ class BankInfoViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showSwiftCredentials",
+            let transferVC = segue.destination as? AddMoneyTransfer {
+            transferVC.assetToAdd = self.assetModel.value
+        }
     }
-    */
 }
 
 fileprivate extension CurrencyDepositViewModel {
     func bind(toViewController vc: BankInfoViewController) -> [Disposable] {
         return [
             loadingViewModel.isLoading.bind(to: vc.rx.loading),
-            result.drive(onNext: { [weak vc] _ in vc?.performSegue(withIdentifier: "showWireBankEmailSent", sender: nil) }),
+            result.drive(onNext: { [weak vc] _ in
+                vc?.performSegue(withIdentifier: "showWireBankEmailSent", sender: nil)
+            }),
             errors.bind(to: vc.rx.error)
         ]
     }
