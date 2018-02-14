@@ -30,6 +30,17 @@ class StartViewController: UIViewController {
     
     private var action: ActionType?
     
+    public var selectedPaymentMethod: String {
+        guard let action = action else { return "" }
+        switch action {
+        case .bankAccount:
+            return Localize("addMoney.newDesign.bankAccount")
+            
+        case .creditCard:
+            return Localize("addMoney.newDesign.creditCard")
+        }
+    }
+    
     func presentPendingViewController() {
         let pendingViewController = UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPendingVC")
         navigationController?.present(pendingViewController, animated: true, completion: nil)
