@@ -212,8 +212,8 @@ fileprivate extension ObservableType where Self.E == [(date: String, amountInBas
     func mapToCsvContent() -> Observable<String> {
         return map { (transactions: E) -> String in
             return transactions
-                .map{"\($0.title.csvValue),\($0.amount.csvNumberValue),\($0.amountInBase.csvNumberValue),\($0.date.csvValue)\n"}
-                .reduce("Title,Amount,Amount in Base Asset,Transaction Date\n") {$0 + $1}
+                .map{"\($0.title.csvValue),\($0.amount.csvNumberValue),\($0.date.csvValue)\n"}
+                .reduce("Title,Amount,Transaction Date\n") {$0 + $1}
         }
     }
 }
