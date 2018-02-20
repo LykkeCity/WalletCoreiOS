@@ -156,4 +156,5 @@ Pod::Spec.new do |s|
   s.dependency 'Valet'
   s.dependency 'BlocksKit'
   s.dependency 'EasyMapping'
+  s.dependency 'ReachabilitySwift'
 end
