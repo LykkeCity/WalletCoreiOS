@@ -69,6 +69,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
         FirebaseApp.configure()
+        
+        ReachabilityService.instance
+            .reachabilityStatus
+            .filter{!$0}
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] value in
+                let noConnectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoConnection")
+                noConnectionViewController.modalTransitionStyle = .crossDissolve
+                if !(self?.visibleViewController is NoConnectionViewController) {
+                    self?.visibleViewController?.present(noConnectionViewController, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
 
         return true
     }

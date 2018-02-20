@@ -8,6 +8,7 @@
 
 import UIKit
 import WalletCore
+import RxSwift
 
 class NoConnectionViewController: UIViewController {
     
@@ -15,6 +16,8 @@ class NoConnectionViewController: UIViewController {
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var reloadButton: UIButton!
 
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +38,15 @@ class NoConnectionViewController: UIViewController {
             name: NSNotification.Name(rawValue: kNotificationGDXNetAdapterDidReceiveResponse),
             object: nil
         )
+        
+        ReachabilityService.instance
+            .reachabilityStatus
+            .filter{$0}
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] value in
+                self?.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     deinit {
