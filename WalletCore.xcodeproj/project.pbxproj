@@ -655,6 +655,7 @@
 		AB6752DD2007746E008A44F2 /* SelectCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6752DC2007746E008A44F2 /* SelectCountryViewModel.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
 		C1985A5C1FCC602B00CCD0D7 /* PersonalDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1985A5B1FCC602B00CCD0D7 /* PersonalDataViewModel.swift */; };
+		C527B53C2036D0D100E7BB4C /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527B53B2036D0D100E7BB4C /* ReachabilityService.swift */; };
 		C52B92F6201F1E120001B5F1 /* SingleAssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B92F5201F1E110001B5F1 /* SingleAssetViewModel.swift */; };
 		C52B92F8201F1E2A0001B5F1 /* AssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B92F7201F1E2A0001B5F1 /* AssetsViewModel.swift */; };
 		C59B28332029DD7C00AA2E39 /* TransactionFilterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */; };
@@ -1353,6 +1354,7 @@
 		B2D803A07289BA7B1909DDA3 /* Pods-WalletCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.xcconfig"; sourceTree = "<group>"; };
 		C12CC0391F91106900904A8C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C1985A5B1FCC602B00CCD0D7 /* PersonalDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataViewModel.swift; sourceTree = "<group>"; };
+		C527B53B2036D0D100E7BB4C /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		C52B92F5201F1E110001B5F1 /* SingleAssetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleAssetViewModel.swift; sourceTree = "<group>"; };
 		C52B92F7201F1E2A0001B5F1 /* AssetsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsViewModel.swift; sourceTree = "<group>"; };
 		C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterFormatter.swift; sourceTree = "<group>"; };
@@ -2353,6 +2355,7 @@
 				465805C21F98E5D900FFFA0A /* OffchainService.swift */,
 				66CE48781FAA244600AAB98F /* CashOutService.swift */,
 				25377DE72017994200E2B511 /* SpreadService.swift */,
+				C527B53B2036D0D100E7BB4C /* ReachabilityService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2977,6 +2980,7 @@
 				"${BUILT_PRODUCTS_DIR}/GHODictionary/GHODictionary.framework",
 				"${BUILT_PRODUCTS_DIR}/MDWamp/MDWamp.framework",
 				"${BUILT_PRODUCTS_DIR}/MPMessagePack/MPMessagePack.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxKeyboard/RxKeyboard.framework",
 				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
@@ -2997,6 +3001,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GHODictionary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDWamp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MPMessagePack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxKeyboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
@@ -3105,6 +3110,7 @@
 				467C20711FB452F7002A90AE /* PinSetViewModel.swift in Sources */,
 				467C206C1FB452F7002A90AE /* SignUpEnterPinViewModel.swift in Sources */,
 				465805C11F98DA3900FFFA0A /* LWRxAuthManagerOffchainRequests.swift in Sources */,
+				C527B53C2036D0D100E7BB4C /* ReachabilityService.swift in Sources */,
 				46C9AEDE1F417BD700B83CCB /* LWPacketGetEthereumContract.m in Sources */,
 				46C9AFD11F417BD800B83CCB /* LWUtils.m in Sources */,
 				46FB360D1F4A25A300D327D6 /* Operators.swift in Sources */,

@@ -40,13 +40,19 @@ public protocol AuthManagerProtocol: NSObjectProtocol {
 public extension AuthManagerProtocol where Result == ApiResult<ResultType> {
     
     func defaultRequestImplementation(with params: RequestParams) -> Observable<Result> {
-        return Observable<Result>.create { observer in
-                let pack = self.createPacket(withObserver: observer, params: params)
-                GDXNet.instance().send(pack, userInfo: nil, method: .REST)
-            
-                return Disposables.create {}
+        
+        return ReachabilityService.instance.reachabilityStatus
+            .filter {$0}
+            .flatMapLatest {_ in
+                return Observable<Result>.create { observer in
+                    let pack = self.createPacket(withObserver: observer, params: params)
+                    GDXNet.instance().send(pack, userInfo: nil, method: .REST)
+                    
+                    return Disposables.create {}
+                }
+                .startWith(ApiResult.loading)
             }
-            .startWith(ApiResult<ResultType>.loading)
+            .observeOn(MainScheduler.instance)
             .shareReplay(1)
     }
     
