@@ -73,6 +73,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - QRCodeReader.swift (7.5.1)
+  - ReachabilitySwift (4.1.0)
   - RxCocoa (3.6.1):
     - RxSwift (~> 3.6)
   - RxDataSources (1.0.4):
@@ -104,6 +105,7 @@ PODS:
     - BlocksKit
     - EasyMapping
     - MDWamp
+    - ReachabilitySwift
     - RxCocoa (~> 3.6.1)
     - RxKeyboard (~> 0.6.2)
     - RxOptional (~> 3.1)
@@ -182,6 +184,7 @@ SPEC CHECKSUMS:
   MPMessagePack: 6dc3a4b93bfdc7cdafcb64de62e2adc50cd99880
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   QRCodeReader.swift: 686aa64b260327b8b0c976d8104dec2b088fd493
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxDataSources: b3389acc5fe2eefb8fcd81a2b76a876ad08bc82a
   RxKeyboard: 09e6bd45070888cd9701e941b2324a49cc974a1b
@@ -198,7 +201,7 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   UIDeviceIdentifier: 9281343882e24460235f00a0d7d2fc04a65688c6
   Valet: 14463ef24fab8fd5809044ecedb61484b799fdd6
-  WalletCore: 68e73dcf36e9031687d674267bf8d0899c9f33de
+  WalletCore: e1ee5e3f8406e0fc73be4868beb8b6917dc11ed7
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
 PODFILE CHECKSUM: 242daf0dd6753200008223363cffa448048bd749
