@@ -426,37 +426,48 @@ Please check and try again.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIO-QG-Nj2" customClass="SubmitButton" customModule="ModernMoney" customModuleProvider="target">
-                                <rect key="frame" x="32" y="669" width="311" height="69"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mg1-v9-vcm">
+                                <rect key="frame" x="105.33333333333333" y="714" width="164.66666666666669" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting to reconnect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbh-v0-gx7">
+                                        <rect key="frame" x="0.0" y="0.0" width="136.66666666666666" height="24"/>
+                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="g2h-Aq-851">
+                                        <rect key="frame" x="144.66666666666669" y="0.0" width="20" height="24"/>
+                                    </activityIndicatorView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="SoT-3Q-Dg7"/>
+                                    <constraint firstItem="gbh-v0-gx7" firstAttribute="top" secondItem="mg1-v9-vcm" secondAttribute="top" id="4bI-rc-HFB"/>
+                                    <constraint firstAttribute="bottom" secondItem="gbh-v0-gx7" secondAttribute="bottom" id="KJ3-S0-1Ga"/>
+                                    <constraint firstAttribute="height" constant="24" id="VMB-lW-Zci"/>
+                                    <constraint firstAttribute="bottom" secondItem="g2h-Aq-851" secondAttribute="bottom" id="VQi-JI-fby"/>
+                                    <constraint firstItem="gbh-v0-gx7" firstAttribute="leading" secondItem="mg1-v9-vcm" secondAttribute="leading" id="a57-cj-7Ki"/>
+                                    <constraint firstAttribute="trailing" secondItem="g2h-Aq-851" secondAttribute="trailing" id="h8T-4D-fbV"/>
+                                    <constraint firstItem="g2h-Aq-851" firstAttribute="top" secondItem="mg1-v9-vcm" secondAttribute="top" id="kWI-Qs-77S"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="reloadTapped" destination="n4b-YM-gbg" eventType="touchUpInside" id="S1I-Gr-BFP"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hRJ-sr-2P0" firstAttribute="top" secondItem="mg1-v9-vcm" secondAttribute="bottom" constant="40" id="4sd-js-6EG"/>
                             <constraint firstItem="i9S-0d-fE2" firstAttribute="top" secondItem="RtW-P4-yom" secondAttribute="bottom" constant="8" id="9HM-NA-DzR"/>
                             <constraint firstItem="RtW-P4-yom" firstAttribute="centerX" secondItem="knE-cw-49e" secondAttribute="centerX" id="A3l-EI-SyE"/>
                             <constraint firstItem="eTd-9s-vBz" firstAttribute="centerX" secondItem="knE-cw-49e" secondAttribute="centerX" id="BWo-wG-07r"/>
-                            <constraint firstItem="XIO-QG-Nj2" firstAttribute="leading" secondItem="knE-cw-49e" secondAttribute="leading" constant="32" id="FCt-9P-mHs"/>
                             <constraint firstItem="SLh-7s-8bF" firstAttribute="top" secondItem="EGh-88-xNm" secondAttribute="bottom" constant="8" id="OfJ-tO-ytM"/>
                             <constraint firstItem="RtW-P4-yom" firstAttribute="top" secondItem="eTd-9s-vBz" secondAttribute="bottom" constant="30" id="SLZ-Q2-QhW"/>
                             <constraint firstItem="RtW-P4-yom" firstAttribute="centerY" secondItem="knE-cw-49e" secondAttribute="centerY" constant="42" id="TdO-oT-yzE"/>
-                            <constraint firstAttribute="trailing" secondItem="XIO-QG-Nj2" secondAttribute="trailing" constant="32" id="XE8-yi-TLk"/>
                             <constraint firstItem="SLh-7s-8bF" firstAttribute="centerX" secondItem="knE-cw-49e" secondAttribute="centerX" id="ak8-lC-isd"/>
                             <constraint firstItem="i9S-0d-fE2" firstAttribute="leading" secondItem="RtW-P4-yom" secondAttribute="leading" id="ny7-Aw-HJj"/>
                             <constraint firstItem="i9S-0d-fE2" firstAttribute="trailing" secondItem="RtW-P4-yom" secondAttribute="trailing" id="sbS-oe-sdd"/>
-                            <constraint firstItem="hRJ-sr-2P0" firstAttribute="top" secondItem="XIO-QG-Nj2" secondAttribute="bottom" constant="40" id="twX-r4-TCV"/>
                             <constraint firstItem="RtW-P4-yom" firstAttribute="leading" secondItem="knE-cw-49e" secondAttribute="leading" constant="32" id="z84-ma-6db"/>
+                            <constraint firstItem="mg1-v9-vcm" firstAttribute="centerX" secondItem="knE-cw-49e" secondAttribute="centerX" id="zBp-1C-sot"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="reloadButton" destination="XIO-QG-Nj2" id="8Po-b2-Ows"/>
                         <outlet property="subtitleLabel" destination="i9S-0d-fE2" id="brq-xf-iOq"/>
                         <outlet property="titleLabel" destination="RtW-P4-yom" id="oXC-8f-dML"/>
                     </connections>
