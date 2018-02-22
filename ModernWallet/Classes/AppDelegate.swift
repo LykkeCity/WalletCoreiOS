@@ -77,7 +77,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .subscribe(onNext: { [weak self] value in
                 let noConnectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoConnection")
                 noConnectionViewController.modalTransitionStyle = .crossDissolve
-                if !(self?.visibleViewController is NoConnectionViewController) {
+                
+                // Don't show the NoConnectionViewController if the PinViewController is about to be presented
+                if !(self?.visibleViewController is NoConnectionViewController)
+                    && !(self?.visibleViewController is PinViewController) {
                     self?.visibleViewController?.present(noConnectionViewController, animated: true)
                 }
             })
