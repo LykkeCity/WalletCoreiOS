@@ -38,13 +38,15 @@ class PortfolioViewController: UIViewController {
         ]
     }
     
+    private let reloadTrigger = ReloadTrigger.instance.trigger(interval: 10).shareReplay(1)
+    
     fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
-        return TotalBalanceViewModel(refresh: ReloadTrigger.instance.trigger(interval: 10))
+        return TotalBalanceViewModel(refresh: self.reloadTrigger)
     }()
     
     fileprivate lazy var walletsViewModel: WalletsViewModel = {
         return WalletsViewModel(
-            refreshWallets: Observable.just(Void()),
+            refreshWallets: self.reloadTrigger,
             mainInfo: self.totalBalanceViewModel.observables.mainInfo.filterSuccess()
         )
     }()
@@ -52,7 +54,7 @@ class PortfolioViewController: UIViewController {
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
             self.totalBalanceViewModel.loading.isLoading,
-            self.walletsViewModel.loadingViewModel.isLoading
+            self.walletsViewModel.loadingViewModel.isLoading.take(2) // prevent the loading indicator on the refresh of this request
         ])
     }()
     
