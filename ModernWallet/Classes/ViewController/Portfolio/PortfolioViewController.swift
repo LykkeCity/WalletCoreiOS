@@ -54,7 +54,7 @@ class PortfolioViewController: UIViewController {
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
             self.totalBalanceViewModel.loading.isLoading,
-            self.walletsViewModel.loadingViewModel.isLoading.take(2) // prevent the loading indicator on the refresh of this request
+            self.walletsViewModel.loadingViewModel.isLoading.take(2) // prevent the loading indicator to appear when this request is refreshed
         ])
     }()
     
