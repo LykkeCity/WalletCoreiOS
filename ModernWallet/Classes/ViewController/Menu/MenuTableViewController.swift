@@ -16,7 +16,7 @@ class MenuTableViewController: UITableViewController {
 
     let selectedCellBGColor = UIColor.red
     let notSelectedCellBGColor = UIColor.clear
-    static let commingSoonColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.4)
+    static let comingSoonColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.4)
     
     private struct MenuItem {
         
@@ -53,10 +53,12 @@ class MenuTableViewController: UITableViewController {
             viewController.tradeType = .sell
         },
         MenuItem(title: Localize("menu.newDesign.cashOut"), image: #imageLiteral(resourceName: "CASH OUT"), storyboardName: "CashOut"),
+        /* Dev Note: Updated for LMW-445 , please uncomment this code when the features are implemented
         MenuItem(title: Localize("menu.newDesign.checkPrices"), image: #imageLiteral(resourceName: "CHECK PRICES"),
-                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
+                 viewControllerIdentifier: "comingSoonVC", storyboardName: "Main", color: MenuTableViewController.comingSoonColor),
         MenuItem(title: Localize("menu.newDesign.internalTransfer"), image: #imageLiteral(resourceName: "INTERNAL TRANSFER"),
-                 viewControllerIdentifier: "commingSoonVC", storyboardName: "Main", color: MenuTableViewController.commingSoonColor),
+                 viewControllerIdentifier: "comingSoonVC", storyboardName: "Main", color: MenuTableViewController.comingSoonColor),
+        */
         MenuItem(title: Localize("menu.newDesign.portfolio"), image: #imageLiteral(resourceName: "PORTFOLIO"), viewControllerIdentifier: "Portfolio"),
         MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"), storyboardName: "Settings"),
         MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), storyboardName: "Transactions"),

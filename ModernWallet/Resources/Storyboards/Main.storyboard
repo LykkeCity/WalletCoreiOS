@@ -976,7 +976,7 @@ Please check and try again.</string>
         <!--View Controller-->
         <scene sceneID="zec-zB-bD6">
             <objects>
-                <viewController storyboardIdentifier="commingSoonVC" id="Jdr-Bc-Kq4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="comingSoonVC" id="Jdr-Bc-Kq4" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9mg-hU-XVu"/>
                         <viewControllerLayoutGuide type="bottom" id="4QU-b6-mV6"/>
@@ -986,13 +986,13 @@ Please check and try again.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-gZ-usr">
-                                <rect key="frame" x="74.666666666666686" y="290.66666666666669" width="227" height="231.00000000000006"/>
+                                <rect key="frame" x="88.333333333333329" y="290.66666666666669" width="199.66666666666669" height="231.00000000000006"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="V18-eG-6Hb">
-                                        <rect key="frame" x="0.0" y="0.0" width="227" height="179"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="199.66666666666666" height="179"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
-                                        <rect key="frame" x="0.0" y="199" width="227" height="32"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
+                                        <rect key="frame" x="0.0" y="199" width="199.66666666666666" height="32"/>
                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>

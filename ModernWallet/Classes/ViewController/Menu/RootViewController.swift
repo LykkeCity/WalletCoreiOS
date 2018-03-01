@@ -22,6 +22,8 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         
         chatButton.setTitle(Localize("newDesign.chatNow"), for: .normal)
+        // Dev note: Updated for LMW-445 , please remove the following line when the feature is implemented
+        chatButton.isHidden = true
     }
 
     func embed(viewController: UIViewController, animated: Bool) {
