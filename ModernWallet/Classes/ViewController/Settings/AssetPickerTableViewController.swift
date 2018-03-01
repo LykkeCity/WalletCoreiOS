@@ -107,11 +107,11 @@ extension AssetPickerTableViewController {
     }
     
     func showOnlyAssetsWithSwiftTransfer() {
-        applyFilter { $0.swiftDeposit }
+        applyFilter { $0.swiftDeposit && $0.isFiat }
     }
     
     func showOnlyVisaDepositableAssets() {
-        applyFilter { $0.visaDeposit  }
+        applyFilter { $0.visaDeposit && $0.isFiat }
     }
 }
 
