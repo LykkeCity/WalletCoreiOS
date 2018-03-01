@@ -96,6 +96,12 @@ class PortfolioViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        // Bind the totalBalanceViewModel loading to the table's `isHidden` property
+        self.totalBalanceViewModel.loading.isLoading.asObservable()
+            .startWith(true)
+            .bind(to: tableView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
         bindViewModels()
     }
     
