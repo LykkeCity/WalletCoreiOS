@@ -113,7 +113,7 @@ extension UITextField {
     
     fileprivate func setAttributedTextAndPreserveState(_ attributedText: NSAttributedString) {
         let selectedTextRange = self.selectedTextRange
-        let bounds = self.textInputView.superview!.bounds
+        guard let bounds = self.textInputView.superview?.bounds else { return }
         self.attributedText = attributedText
         self.textInputView.superview?.bounds = bounds
         self.selectedTextRange = selectedTextRange

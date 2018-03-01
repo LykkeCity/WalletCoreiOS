@@ -78,8 +78,8 @@
 "register.USA.info.gotit" = "OK, GOT IT";
 
 "register.generateKey.title" = "Generate a private key";
-"register.generateKey.text.iphone" = "Shake your iPhone to generate the private key to your Lykke Wallet";
-"register.generateKey.text.ipad" = "Shake your iPad to generate the private key to your Lykke Wallet";
+"register.generateKey.text.iphone" = "Shake your iPhone to generate the private key to your Modern money";
+"register.generateKey.text.ipad" = "Shake your iPad to generate the private key to your Modern money";
 
 "privateWallets.coldstorage.generateKey.text.iphone" = "Shake your iPhone to generate the private key to your Cold Storage Wallet. This key will be immediately deleted after backup.";
 "privateWallets.coldstorage.generateKey.text.ipad" = "Shake your iPad to generate the private key to your Cold Storage Wallet. This key will be immediately deleted after backup.";
@@ -103,7 +103,7 @@
 "backup.words.submit" = "SUBMIT";
 
 "backup.success.title" = "YOUR BACKUP IS COMPLETE";
-"backup.success.text" = "Keep your list of 12 words safe. Use it to restore your account when you install Lykke Wallet on another device (or reinstall Lykke Wallet on this device).";
+"backup.success.text" = "Keep your list of 12 words safe. Use it to restore your account when you install Modern money on another device (or reinstall Modern money on this device).";
 "backup.success.userAgreement" = "User agreement";
 "backup.success.getstarted" = "GET STARTED!";
 
@@ -181,14 +181,14 @@
 "kyc.later.button" = "GREAT!";
 
 "camera.message1.title" = "CAMERA DISCONNECTED";
-"camera.message1.text" = "Lykke Wallet requests access to your camera. Do the following:";
+"camera.message1.text" = "Modern money requests access to your camera. Do the following:";
 "camera.message1.settings" = "Go to Settings";
 "camera.message1.lykkeApp" = "Tap the Lykke app";
 "camera.message1.slider" = "Set the Camera slider to On";
 "camera.message1.button" = "OKAY, I UNDERSTAND";
 
 "camera.message2.title" = "CAMERA DISCONNECTED";
-"camera.message2.text" = "Lykke Wallet requests access to your camera. Allow to do it?";
+"camera.message2.text" = "Modern money requests access to your camera. Allow to do it?";
 "camera.message2.yes" = "YES";
 "camera.message2.no" = "NO";
 
@@ -204,7 +204,7 @@
 "kyc.invalidDocuments.button" = "GO BACK AND RESHOOT";
 
 "kyc.restricted.header" = "OOPS!";
-"kyc.restricted" = "Dear %@, we're terribly sorry, but Lykke Wallet can't be created based on the KYC information that you have provided.";
+"kyc.restricted" = "Dear %@, we're terribly sorry, but Modern money can't be created based on the KYC information that you have provided.";
 
 "kyc.success.header" = "YOUR DOCUMENTS ARE IN ORDER";
 "kyc.success" = "Now you can trade FX along with bitcoins and colored coins";
@@ -652,7 +652,7 @@
 
 "wallets.private.create.address.title" = "Wallet address";
 "wallets.private.create.address.titleNotDefined" = "Wallet address is not defined";
-"wallets.private.create.external.description" = "Already have a wallet? Great! To make transactions with the Lykke Wallet app, enter the wallet’s existing private key. We will create an encrypted, server-side backup of the key (as long as it’s encrypted with your master private key).";
+"wallets.private.create.external.description" = "Already have a wallet? Great! To make transactions with the Modern money app, enter the wallet’s existing private key. We will create an encrypted, server-side backup of the key (as long as it’s encrypted with your master private key).";
 "wallets.private.create.internal.description" = "To create a new deterministic wallet whose private key derived from a twelve-word seed, please enter a name for the wallet.";
 
 "wallets.private.create.cold" = "Your private key for the cold storage wallet will not be saved. The wallet’s public address will be saved to be able to receive coins only. You can’t spend coins from the wallet address until you enter the correct 12-word seed. So please keep it safe.";
@@ -765,7 +765,7 @@
 //"register.password" = "Password (min 6 symbols)";
 //"register.passwordConfirm" = "Confirm Password (min 6 symbols)";
 //"register.submit" = "Submit";
-//"register.camera.requestaccess"="Selfie photo should be provided to get access to the Lykke Wallet. Provide access to camera?";
+//"register.camera.requestaccess"="Selfie photo should be provided to get access to the Modern money. Provide access to camera?";
 //"register.camera.title.selfie" = "Take a selfie";
 //"register.camera.title.idCard" = "Take a photo of your passport or other ID";
 //"register.camera.title.proofOfAddress" = "Take a photo of your utility bill or other proof of address";
@@ -845,7 +845,7 @@
 "auth.newDesign.phoneNumber" = "Phone number";
 "auth.newDesign.submit" = "SUBMIT";
 "auth.newDesign.generateKeysTitle" = "Generate a private key";
-"auth.newDesign.generateKeysInstructions" = "Shake your iPhone to generate the private key to your Lykke Wallet";
+"auth.newDesign.generateKeysInstructions" = "Shake your iPhone to generate the private key to your Modern money";
 "auth.newDesign.generateKeysDetails" = "It takes 3 times to shake the phone in order to create private key";
 
 "menu.newDesign.addMoney" = "ADD MONEY";
@@ -999,7 +999,7 @@
 "backup.newDesign.nextWord" = "NEXT";
 "backup.newDesign.wordPageFmt" = "%d OF %d";
 "backup.newDesign.completeTitle" = "YOUR BACKUP IS COMPLETE";
-"backup.newDesign.completeMessage" = "Keep your list of 12 words safe. Use it to restore your account when you install Lykke Wallet on another device (or reinstall Lykke Wallet on this device)";
+"backup.newDesign.completeMessage" = "Keep your list of 12 words safe. Use it to restore your account when you install Modern money on another device (or reinstall Modern money on this device)";
 
 "noNetwork.newDesign.title" = "NO CONNECTION";
 "noNetwork.newDesign.subtitle" = "You are not connected to the internet.\nPlease check and try again.";
