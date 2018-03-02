@@ -171,6 +171,11 @@ class PinViewController: UIViewController {
                 touchIdTapped()
             }
         }
+
+        // Hide the close button action if the view controller is presented due to inactivity
+        if isPresentedForInactivity {
+            closeButton.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -187,16 +192,8 @@ class PinViewController: UIViewController {
                 self?.present(noConnectionViewController, animated: true)
             })
             .disposed(by: disposeBag)
-        reset()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
-        guard let backgroundView = closeButton.superview as? BackgroundView else {
-            return
-        }
-        closeButton.isHidden = backgroundView.frame.minY > 10
+        reset()
     }
     
     // MARK: - IBActions
@@ -227,10 +224,7 @@ class PinViewController: UIViewController {
     }
     
     @IBAction private func closeTapped() {
-        // Disable the close button action if the view controller is presented due to inactivity
-        if !isPresentedForInactivity {
-            dismiss(animated: true)
-        }
+        dismiss(animated: true)
     }
     
     // MARK: Private
