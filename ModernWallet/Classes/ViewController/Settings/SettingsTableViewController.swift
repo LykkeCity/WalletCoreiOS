@@ -109,7 +109,7 @@ extension SettingsTableViewController {
         
         let setBaseAsset = vc.assetPicked.flatMap { picked in
             LWRxAuthManager.instance.baseAssetSet.request(withParams: picked.identity)
-        }
+        }.shareReplay(1)
         
         setBaseAsset.filterError()
         .bind(to: rx.error)
