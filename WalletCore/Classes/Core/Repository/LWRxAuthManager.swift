@@ -99,4 +99,5 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var cashOut                  = { LWRxAuthManagerCashOut() }()
     public lazy var applicationInfo          = { LWRxAuthManagerApplicationInfo() }()
     public lazy var settingSignOrder         = { LWRxAuthManagerSettingSignOrder() }()
+    public lazy var marketCap                = { LWRxAuthManagerMarketCap() }()
 }
