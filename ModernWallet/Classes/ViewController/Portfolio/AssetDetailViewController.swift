@@ -58,7 +58,7 @@ class AssetDetailViewController: UIViewController {
         
         transactionsTable.contentInset = UIEdgeInsetsMake(0, 0, 44, 0)
 
-        transactionsTable.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
+        transactionsTable.register(UINib(nibName: "AssetInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "AssetInfoTableViewCell")
         
         transactionsViewModel.transactionsAsCsv = self.messageButton.rx.tap
             .asObservable()
@@ -179,8 +179,8 @@ fileprivate extension TransactionsViewModel {
             transactions.asObservable()
                 .filter(byAsset: vc.asset.value)
                 .bind(
-                    to: vc.transactionsTable.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell",
-                                                   cellType: PortfolioCurrencyTableViewCell.self)
+                    to: vc.transactionsTable.rx.items(cellIdentifier: "AssetInfoTableViewCell",
+                                                   cellType: AssetInfoTableViewCell.self)
                 ){ (row, element, cell) in
                     cell.bind(toTransaction: element)
                 },

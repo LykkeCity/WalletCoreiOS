@@ -75,7 +75,7 @@ class PortfolioViewController: UIViewController {
             return
         }
         
-        tableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
+        tableView.register(UINib(nibName: "AssetInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "AssetInfoTableViewCell")
         
         //Bind table
         tableView.rx
@@ -155,7 +155,7 @@ fileprivate extension AssetsFilterViewModel {
     private func bind(toTableView tableView: UITableView) -> Disposable {
         return filteredAssets.asObservable()
             .map{ $0.sorted{ $0.0.value.percent > $0.1.value.percent } }
-            .bind(to: tableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell", cellType: PortfolioCurrencyTableViewCell.self)) { (row, element, cell) in
+            .bind(to: tableView.rx.items(cellIdentifier: "AssetInfoTableViewCell", cellType: AssetInfoTableViewCell.self)) { (row, element, cell) in
                 cell.bind(toAsset: AssetCellViewModel(element))
             }
     }

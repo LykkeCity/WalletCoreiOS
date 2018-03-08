@@ -51,7 +51,7 @@ class TransactionsStep1ViewController: UIViewController {
         
         localize()
         
-        transactionsTableView.register(UINib(nibName: "PortfolioCurrencyTableViewCell", bundle: nil), forCellReuseIdentifier: "PortfolioCurrencyTableViewCell")
+        transactionsTableView.register(UINib(nibName: "AssetInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "AssetInfoTableViewCell")
         
         filterTransactionBtn.rx.tap.asObservable()
             .map{[transactionsViewModel] in transactionsViewModel.sortBy.value.reversed }
@@ -132,8 +132,8 @@ fileprivate extension TransactionsViewModel {
     func bind(toViewController vc: TransactionsStep1ViewController) -> [Disposable] {
         return [
             transactions.asObservable()
-                .bind(to: vc.transactionsTableView.rx.items(cellIdentifier: "PortfolioCurrencyTableViewCell",
-                                                            cellType: PortfolioCurrencyTableViewCell.self)
+                .bind(to: vc.transactionsTableView.rx.items(cellIdentifier: "AssetInfoTableViewCell",
+                                                            cellType: AssetInfoTableViewCell.self)
                 ){ (row, element, cell) in cell.bind(toTransaction: element) },
             
             loading.isLoading

@@ -57,8 +57,8 @@
 		6140E32A1F14E9C900D8885B /* TransactionsStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6140E3291F14E9C900D8885B /* TransactionsStep1ViewController.swift */; };
 		6140EA471F1CE51C00B05A97 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6140EA461F1CE51C00B05A97 /* SeparatorView.swift */; };
 		6141FEA51EE585F9004F50FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6141FEA41EE585F9004F50FF /* Main.storyboard */; };
-		6141FEB01EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6141FEAE1EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift */; };
-		6141FEB11EE597D8004F50FF /* PortfolioCurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6141FEAF1EE597D8004F50FF /* PortfolioCurrencyTableViewCell.xib */; };
+		6141FEB01EE597D8004F50FF /* AssetInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6141FEAE1EE597D8004F50FF /* AssetInfoTableViewCell.swift */; };
+		6141FEB11EE597D8004F50FF /* AssetInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6141FEAF1EE597D8004F50FF /* AssetInfoTableViewCell.xib */; };
 		614214191F78F9C400E2F524 /* KYCProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614214181F78F9C400E2F524 /* KYCProtocols.swift */; };
 		615052AC1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615052AB1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift */; };
 		615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615052AF1F29D06800AFB6FC /* UIViewController+Extensions.swift */; };
@@ -168,6 +168,8 @@
 		AB6752DB20076BF1008A44F2 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6752DA20076BF1008A44F2 /* SelectCountryViewController.swift */; };
 		AB9EA05B20081A9900900058 /* SelectCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EA05A20081A9900900058 /* SelectCountryTableViewCell.swift */; };
 		BE53DFD9202C538100D03C3F /* AddMoneyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53DFD8202C538100D03C3F /* AddMoneyBaseViewController.swift */; };
+		C182E29220497CC7005772C2 /* MarketCapTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C182E29120497CC7005772C2 /* MarketCapTableViewController.swift */; };
+		C182E29420497D84005772C2 /* MarketCap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C182E29320497D84005772C2 /* MarketCap.storyboard */; };
 		C1DF9EF41FE02ADD00D15A72 /* SendToWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF9EF31FE02ADD00D15A72 /* SendToWalletViewController.swift */; };
 		C506BD562018866800070E13 /* AssetPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506BD552018866800070E13 /* AssetPickerTableViewController.swift */; };
 		C510B0E52031CDC20084C98E /* AssetPickTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510B0E42031CDC20084C98E /* AssetPickTableViewCell.swift */; };
@@ -251,8 +253,8 @@
 		6140E3291F14E9C900D8885B /* TransactionsStep1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsStep1ViewController.swift; sourceTree = "<group>"; };
 		6140EA461F1CE51C00B05A97 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		6141FEA41EE585F9004F50FF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		6141FEAE1EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioCurrencyTableViewCell.swift; sourceTree = "<group>"; };
-		6141FEAF1EE597D8004F50FF /* PortfolioCurrencyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortfolioCurrencyTableViewCell.xib; sourceTree = "<group>"; };
+		6141FEAE1EE597D8004F50FF /* AssetInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetInfoTableViewCell.swift; sourceTree = "<group>"; };
+		6141FEAF1EE597D8004F50FF /* AssetInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetInfoTableViewCell.xib; sourceTree = "<group>"; };
 		614214181F78F9C400E2F524 /* KYCProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCProtocols.swift; sourceTree = "<group>"; };
 		615052AB1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationWizzardProtocol.swift; sourceTree = "<group>"; };
 		615052AF1F29D06800AFB6FC /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -363,6 +365,8 @@
 		AB6752DA20076BF1008A44F2 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		AB9EA05A20081A9900900058 /* SelectCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryTableViewCell.swift; sourceTree = "<group>"; };
 		BE53DFD8202C538100D03C3F /* AddMoneyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyBaseViewController.swift; sourceTree = "<group>"; };
+		C182E29120497CC7005772C2 /* MarketCapTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCapTableViewController.swift; sourceTree = "<group>"; };
+		C182E29320497D84005772C2 /* MarketCap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MarketCap.storyboard; sourceTree = "<group>"; };
 		C1DF9EF31FE02ADD00D15A72 /* SendToWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToWalletViewController.swift; sourceTree = "<group>"; };
 		C506BD552018866800070E13 /* AssetPickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerTableViewController.swift; sourceTree = "<group>"; };
 		C510B0E42031CDC20084C98E /* AssetPickTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetPickTableViewCell.swift; sourceTree = "<group>"; };
@@ -419,6 +423,7 @@
 				46B5837D1F94CD6800B475DB /* Buy */,
 				66529DC81F8D19490059786B /* CashOut */,
 				46B5837A1F94CAFA00B475DB /* KYC */,
+				C182E29020497994005772C2 /* MarketCap */,
 				46B583801F94DA7900B475DB /* Menu */,
 				46B5837F1F94CE8E00B475DB /* Portfolio */,
 				463FC5AD1F94DBE9005930DD /* Signup */,
@@ -546,6 +551,7 @@
 				667D404A1F8C95EE00457698 /* CashOut.storyboard */,
 				66D68FC31FBB22A000C437D9 /* Settings.storyboard */,
 				6618C4DD1FD9852900808572 /* SendReceive.storyboard */,
+				C182E29320497D84005772C2 /* MarketCap.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -553,8 +559,8 @@
 		46B5836C1F94C1C500B475DB /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
-				6141FEAF1EE597D8004F50FF /* PortfolioCurrencyTableViewCell.xib */,
-				6141FEAE1EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift */,
+				6141FEAF1EE597D8004F50FF /* AssetInfoTableViewCell.xib */,
+				6141FEAE1EE597D8004F50FF /* AssetInfoTableViewCell.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -855,6 +861,14 @@
 			path = Scripts;
 			sourceTree = "<group>";
 		};
+		C182E29020497994005772C2 /* MarketCap */ = {
+			isa = PBXGroup;
+			children = (
+				C182E29120497CC7005772C2 /* MarketCapTableViewController.swift */,
+			);
+			path = MarketCap;
+			sourceTree = "<group>";
+		};
 		CF21DC721C17590E00D2399E = {
 			isa = PBXGroup;
 			children = (
@@ -1044,7 +1058,7 @@
 				A1207FDE1E88C6E3000F612A /* ButtonOKInactive.png in Resources */,
 				665988511F8E4E5000073703 /* AssetCollectionViewCell.xib in Resources */,
 				66529DD11F8E38F10059786B /* Geomanist-Regular.otf in Resources */,
-				6141FEB11EE597D8004F50FF /* PortfolioCurrencyTableViewCell.xib in Resources */,
+				6141FEB11EE597D8004F50FF /* AssetInfoTableViewCell.xib in Resources */,
 				461C6F8D1F8B4E9000C5E8B3 /* BuyAssetListView.xib in Resources */,
 				46A48F831FA9B07500843775 /* EmptyPortfolioView.xib in Resources */,
 				CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */,
@@ -1059,6 +1073,7 @@
 				A10FBA431ED54EC300341F09 /* EnglishLocale.txt in Resources */,
 				CCDB25791EF42B2E000D590F /* SignIn.storyboard in Resources */,
 				469DA7191F6C0C69000B904C /* KYC.storyboard in Resources */,
+				C182E29420497D84005772C2 /* MarketCap.storyboard in Resources */,
 				469DA7201F6C14C5000B904C /* KYCTabCollectionViewCell.xib in Resources */,
 				A12DB5511D741C2300319EA7 /* Proxima Nova Regular.otf in Resources */,
 				A1165D401CF6CF940017A725 /* DisclosureIndicator.png in Resources */,
@@ -1236,6 +1251,7 @@
 				4671C9D01F824130002C2F25 /* KYCPhotoFailedViewController.swift in Sources */,
 				4655386C1FB5B5B7007CF395 /* AppDelegate.swift in Sources */,
 				CC9458881F05310300676249 /* AddMoneyCCStep2ViewController.swift in Sources */,
+				C182E29220497CC7005772C2 /* MarketCapTableViewController.swift in Sources */,
 				614214191F78F9C400E2F524 /* KYCProtocols.swift in Sources */,
 				CC9458841F0400A000676249 /* AddMoneyCCStep1ViewController.swift in Sources */,
 				615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */,
@@ -1245,7 +1261,7 @@
 				CCED3BF11EE9811900535EE8 /* MenuTableViewCell.swift in Sources */,
 				6140E32A1F14E9C900D8885B /* TransactionsStep1ViewController.swift in Sources */,
 				87C6CDF71FA5AB2F0069CC38 /* CashOutConfirmationViewController.swift in Sources */,
-				6141FEB01EE597D8004F50FF /* PortfolioCurrencyTableViewCell.swift in Sources */,
+				6141FEB01EE597D8004F50FF /* AssetInfoTableViewCell.swift in Sources */,
 				466720071F864481004A4782 /* BuyOptimizedViewController.swift in Sources */,
 				6179434E1F0530690009597C /* Notification+Extensions.swift in Sources */,
 				87C6CDFC1FA5BBEC0069CC38 /* CashOutTotalTableViewCell.swift in Sources */,
