@@ -20,4 +20,6 @@ public struct LWModelMarketCapResult {
         self.marketCap = json["market_cap_usd"] as? Decimal ?? 0.00
         self.percentChange = json["percent_change_24h"] as? Double ?? 0.00
     }
+    
+    static let empty = LWModelMarketCapResult(withJSON: [:])
 }

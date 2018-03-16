@@ -12,8 +12,8 @@ import RxSwift
 public class LWRxAuthManagerMarketCap: NSObject {
     
     public typealias Packet = LWPacketMarketCap
-    public typealias Result = ApiResult<LWModelMarketCapResult>
-    public typealias ResultType = LWModelMarketCapResult
+    public typealias Result = ApiResult<[LWModelMarketCapResult]>
+    public typealias ResultType = [LWModelMarketCapResult]
     public typealias RequestParams = LWPacketMarketCap.Body
     
     override init() {
@@ -41,6 +41,6 @@ extension LWRxAuthManagerMarketCap: AuthManagerProtocol {
     }
     
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet.model!)
+        return Result.success(withData: packet.models)
     }
 }

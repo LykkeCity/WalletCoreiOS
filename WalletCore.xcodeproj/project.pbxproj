@@ -653,6 +653,7 @@
 		AB1D63651FEB0289000495E7 /* LWOperationTransferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1D63641FEB0288000495E7 /* LWOperationTransferModel.swift */; };
 		AB418E601FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB418E5F1FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift */; };
 		AB6752DD2007746E008A44F2 /* SelectCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6752DC2007746E008A44F2 /* SelectCountryViewModel.swift */; };
+		C1239C6C205191F5009EDFE5 /* MarketCapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1239C6B205191F5009EDFE5 /* MarketCapViewModel.swift */; };
 		C123A775204FE87D00F8A0D3 /* LWRxAuthManagerMarketCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C123A774204FE87D00F8A0D3 /* LWRxAuthManagerMarketCap.swift */; };
 		C12CC03A1F91106900904A8C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12CC0391F91106900904A8C /* String+Extensions.swift */; };
 		C14376CC204EB53700C50994 /* LWPacketMarketCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14376CB204EB53700C50994 /* LWPacketMarketCap.swift */; };
@@ -1355,6 +1356,7 @@
 		AB418E5F1FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWMarketOrdersManager+Rx.swift"; sourceTree = "<group>"; };
 		AB6752DC2007746E008A44F2 /* SelectCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryViewModel.swift; sourceTree = "<group>"; };
 		B2D803A07289BA7B1909DDA3 /* Pods-WalletCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore.release.xcconfig"; sourceTree = "<group>"; };
+		C1239C6B205191F5009EDFE5 /* MarketCapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCapViewModel.swift; sourceTree = "<group>"; };
 		C123A774204FE87D00F8A0D3 /* LWRxAuthManagerMarketCap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerMarketCap.swift; sourceTree = "<group>"; };
 		C12CC0391F91106900904A8C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C14376CB204EB53700C50994 /* LWPacketMarketCap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketMarketCap.swift; sourceTree = "<group>"; };
@@ -2279,6 +2281,7 @@
 		46C9B00C1F417BF100B83CCB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C1239C6A205191E0009EDFE5 /* MarketCap */,
 				460843C01FBF1C1100F14A5A /* AddMoney */,
 				464BAA691FBC77A700F473FA /* Portfolio */,
 				467C205F1FB452F7002A90AE /* BaseAssetSetViewModel.swift */,
@@ -2577,6 +2580,14 @@
 				874FA6751FAD880E004E233F /* LWModelCashOutSwiftResult.swift */,
 			);
 			path = CashOut;
+			sourceTree = "<group>";
+		};
+		C1239C6A205191E0009EDFE5 /* MarketCap */ = {
+			isa = PBXGroup;
+			children = (
+				C1239C6B205191F5009EDFE5 /* MarketCapViewModel.swift */,
+			);
+			path = MarketCap;
 			sourceTree = "<group>";
 		};
 		C14376CA204EB51400C50994 /* MarketCap */ = {
@@ -3490,6 +3501,7 @@
 				469DA7161F6BFA91000B904C /* LWRxAuthManagerClientKeys.swift in Sources */,
 				25377DE82017994200E2B511 /* SpreadService.swift in Sources */,
 				46C9AE801F417BD700B83CCB /* LWOffchainTransactionsManager.m in Sources */,
+				C1239C6C205191F5009EDFE5 /* MarketCapViewModel.swift in Sources */,
 				46C08DB31F98C2690059BDD3 /* LWModelOffchainChannelKey.swift in Sources */,
 				465805BD1F98DA0900FFFA0A /* LWRxAuthManagerOffchainProcessChannel.swift in Sources */,
 				C5E67BBE201731B600686006 /* LWRxAuthManagerBaseAssets.swift in Sources */,

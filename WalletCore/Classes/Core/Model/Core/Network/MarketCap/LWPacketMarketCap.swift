@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class LWPacketMarketCap: LWAuthorizePacket {
+public class LWPacketMarketCap: LWPacket {
     
     public struct Body {
         let startIndex: Int
@@ -16,7 +16,7 @@ public class LWPacketMarketCap: LWAuthorizePacket {
     }
     
     public var body: Body
-    public var model: LWModelMarketCapResult? = nil
+    public var models: [LWModelMarketCapResult] = []
     
     public init(body: Body, observer: Any) {
         self.body = body
@@ -29,7 +29,13 @@ public class LWPacketMarketCap: LWAuthorizePacket {
     }
     
     override public func parseResponse(_ response: Any!, error: Error!) {
-        super.parseResponse(response, error: error)
+        //super.parseResponse(response, error: error)
+        
+        guard error == nil else { return }
+        
+        guard let array = response as? [[AnyHashable: Any]] else { return }
+
+        models = array.map{ LWModelMarketCapResult(withJSON: $0) }
     }
     
     override public var urlBase: String! {
