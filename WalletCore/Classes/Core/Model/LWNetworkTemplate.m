@@ -45,20 +45,20 @@
       // REQUEST_ERROR_SHOULD_PROCESS_OFFCHAIN_REQUEST: need to call offchain/requests
       // REQUEST_ERROR_NO_DATA: duplicated request of offchain/requestTransfer (do nothing)
       // REQUEST_ERROR_NO_OFFCHAIN_LIQUIDITY: (Not enough money on ME to create channel) need to skip this request and continue with next
-      BOOL isOffchainError = [@[@(REQUEST_ERROR_SHOULD_PROCESS_OFFCHAIN_REQUEST),
-                                @(REQUEST_ERROR_NO_DATA),
-                                @(REQUEST_ERROR_NO_OFFCHAIN_LIQUIDITY)]
+      BOOL isOffchainError = [@[@(LWNetworkErrorTypeShouldProcessOffchainRequest),
+                                @(LWNetworkErrorTypeNoData),
+                                @(LWNetworkErrorTypeNoOffchainLiquidity)]
                               containsObject:@(errorCode)];
       
-      BOOL isBackupError = [@[@(REQUEST_ERROR_BACKUP_WARNING),
-                              @(REQUEST_ERROR_BACKUP_REQUIRED)]
+      BOOL isBackupError = [@[@(LWNetworkErrorTypeBackupWarning),
+                              @(LWNetworkErrorTypeBackupRequired)]
                             containsObject:@(errorCode)];
       
-      BOOL isKycError = [@[@(REQUEST_ERROR_INCONSISTENT_DATA)]
+      BOOL isKycError = [@[@(LWNetworkErrorTypeInconsistentData)]
                          containsObject:@(errorCode)];
       
       if (isBackupError) {
-        [self showBackupView:errorCode == REQUEST_ERROR_BACKUP_WARNING message:errorMessage];
+        [self showBackupView:errorCode == LWNetworkErrorTypeBackupWarning message:errorMessage];
       }
       
       if (isKycError) {
@@ -71,7 +71,7 @@
       }
       error = [NSError errorWithDomain:[request.URL absoluteString] code:errorCode userInfo:userInfo];
       
-      if ((isOffchainError && ([self showOffchainErrors] || (errorCode == REQUEST_ERROR_NO_OFFCHAIN_LIQUIDITY && self.shouldShowOffchainLiquidityError))) ||
+      if ((isOffchainError && ([self showOffchainErrors] || (errorCode == LWNetworkErrorTypeNoOffchainLiquidity && self.shouldShowOffchainLiquidityError))) ||
           (isKycError && [self showKycErrors]) ||
           (!isOffchainError && !isKycError && !isBackupError)) {
         [self showReleaseError:error request:request];
