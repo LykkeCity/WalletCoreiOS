@@ -20,28 +20,25 @@ public class MarketCapViewModel {
         
     private let disposeBag = DisposeBag()
     
-    /// The limit of assets to retrieve
-    private static let limit = 20
-    
     /// - Parameters:
-    /// - trigger    : An observable to trigger getting the market cap data
-    /// - startIndex : the index of an asset to start parsing from, as listed on coinmarketcap.com
-    /// - authManager: AuthManager instance
-    public init(trigger: Observable<Void>, startIndex: Int, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
-        let marketCapResult = authManager.marketCap.request(
-            withParams: LWPacketMarketCap.Body(startIndex: startIndex, limit: MarketCapViewModel.limit)
-        ).shareReplay(1)
+    /// - trigger    : A trigger to start the request
+    /// - startIndex : A start index to fetch the items from as ranked at coinmarketcap.com
+    /// - limt       : A limit of items to fetch
+    /// - authManager: An AuthManager instance
+    public init(trigger: Observable<Void>, startIndex: Int, limit: Int, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
+        let marketCapResultObservable = trigger.flatMapLatest{ _ in
+            authManager.marketCap.request(withParams: LWPacketMarketCap.Body(startIndex: startIndex, limit: limit))
+        }.shareReplay(1)
         
         loadingViewModel = LoadingViewModel([
-            marketCapResult.map{ $0.isLoading }
+            marketCapResultObservable.map{ $0.isLoading }
             ])
         
-        success = marketCapResult
-            .asObservable()
+        success = marketCapResultObservable
             .filterSuccess()
             .asDriver(onErrorJustReturn: [LWModelMarketCapResult.empty])
         
-        errors = marketCapResult
+        errors = marketCapResultObservable
             .map{ $0.getError() }
             .filterNil()
             .asDriver(onErrorJustReturn: [:])

@@ -13,6 +13,11 @@ public class LWPacketMarketCap: LWPacket {
     public struct Body {
         let startIndex: Int
         let limit: Int
+        
+        public init(startIndex: Int, limit: Int) {
+            self.startIndex = startIndex
+            self.limit = limit
+        }
     }
     
     public var body: Body
@@ -29,8 +34,6 @@ public class LWPacketMarketCap: LWPacket {
     }
     
     override public func parseResponse(_ response: Any!, error: Error!) {
-        //super.parseResponse(response, error: error)
-        
         guard error == nil else { return }
         
         guard let array = response as? [[AnyHashable: Any]] else { return }
@@ -38,6 +41,7 @@ public class LWPacketMarketCap: LWPacket {
         models = array.map{ LWModelMarketCapResult(withJSON: $0) }
     }
     
+    //TODO: Move to constants
     override public var urlBase: String! {
         return "https://api.coinmarketcap.com/v1/ticker/"
     }
@@ -47,6 +51,6 @@ public class LWPacketMarketCap: LWPacket {
     }
     
     override public var type: GDXRESTPacketType {
-        return .POST
+        return .GET
     }
 }
