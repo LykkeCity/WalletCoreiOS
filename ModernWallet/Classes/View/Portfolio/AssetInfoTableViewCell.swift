@@ -124,6 +124,29 @@ class AssetInfoTableViewCell: UITableViewCell {
         return self
     }
     
+    @discardableResult
+    func bind(toMarketCapItem marketCapItem: MarketCapCellViewModel) -> Self {
+        self.disposeBag = DisposeBag()
+        
+        marketCapItem.symbol
+            .drive(topLeftLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        marketCapItem.price
+            .drive(topRightLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        marketCapItem.marketCap
+            .drive(bottomLeftLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        marketCapItem.percentChange
+            .drive(bottomRightLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        return self
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
