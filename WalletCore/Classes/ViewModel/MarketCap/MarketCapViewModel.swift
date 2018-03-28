@@ -1,8 +1,8 @@
 //
-//  MarketCapViewModel.swift
+//  MarketCapCellViewModel.swift
 //  WalletCore
 //
-//  Created by Vasil Garov on 8.03.18.
+//  Created by Vasil Garov on 21.03.18.
 //  Copyright © 2018 Lykke. All rights reserved.
 //
 
@@ -12,36 +12,32 @@ import RxCocoa
 
 public class MarketCapViewModel {
     
-    public let loadingViewModel: LoadingViewModel
+    public let symbol: Driver<String>
+    public let price: Driver<String>
+    public let marketCap: Driver<String>
+    public let percentChange: Driver<String>
+    public let imgUrl: Driver<URL?>
     
-    public let success: Driver<[LWModelMarketCapResult]>
+    public let marketCapResult: LWModelMarketCapResult
     
-    public let errors: Driver<[AnyHashable: Any]>
+    public init(_ marketCapResult: LWModelMarketCapResult) {
         
-    private let disposeBag = DisposeBag()
-    
-    /// - Parameters:
-    /// - trigger    : A trigger to start the request
-    /// - startIndex : A start index to fetch the items from as ranked at coinmarketcap.com
-    /// - limt       : A limit of items to fetch
-    /// - authManager: An AuthManager instance
-    public init(trigger: Observable<Void>, startIndex: Int, limit: Int, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
-        let marketCapResultObservable = trigger.flatMapLatest{ _ in
-            authManager.marketCap.request(withParams: LWPacketMarketCap.Body(startIndex: startIndex, limit: limit))
-        }.shareReplay(1)
+        self.marketCapResult = marketCapResult
+
+        self.symbol = Driver.just(marketCapResult.symbol)
         
-        loadingViewModel = LoadingViewModel([
-            marketCapResultObservable.map{ $0.isLoading }
-            ])
+        self.price = Driver
+            .just(marketCapResult.price)
+            .map{ $0.convertAsCurrency(code: "USD", symbol: "$", accuracy: 2) }
         
-        success = marketCapResultObservable
-            .filterSuccess()
-            .asDriver(onErrorJustReturn: [LWModelMarketCapResult.empty])
+        self.marketCap = Driver
+            .just(marketCapResult.marketCap)
+            .map{ $0.convertAsCurrency(code: "USD", symbol: "$", accuracy: 2) }
         
-        errors = marketCapResultObservable
-            .map{ $0.getError() }
-            .filterNil()
-            .asDriver(onErrorJustReturn: [:])
+        self.percentChange = Driver
+            .just(marketCapResult.percentChange)
+            .map{ "\($0)%" }
+        
+        self.imgUrl = Driver.never()
     }
-    
 }

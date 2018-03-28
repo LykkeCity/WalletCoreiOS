@@ -36,11 +36,22 @@ public class LWRxAuthManagerMarketCap: NSObject {
 
 extension LWRxAuthManagerMarketCap: AuthManagerProtocol {
     
+    public func request(withParams params: RequestParams) -> Observable<Result> {
+        if let marketCaps = LWCache.instance().marketCaps as? [LWModelMarketCapResult] {
+            return Observable
+                .just(ApiResult.success(withData: marketCaps))
+                .startWith(ApiResult.loading)
+        }
+        
+        return defaultRequestImplementation(with: params)
+    }
+    
     public func createPacket(withObserver observer: Any, params: LWPacketMarketCap.Body) -> LWPacketMarketCap {
         return Packet(body: params, observer: observer)
     }
     
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
+        LWCache.instance().marketCaps = packet.models
         return Result.success(withData: packet.models)
     }
 }

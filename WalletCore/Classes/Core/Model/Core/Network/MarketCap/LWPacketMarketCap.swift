@@ -34,20 +34,25 @@ public class LWPacketMarketCap: LWPacket {
     }
     
     override public func parseResponse(_ response: Any!, error: Error!) {
-        guard error == nil else { return }
         
-        guard let array = response as? [[AnyHashable: Any]] else { return }
-
+        guard error == nil, let array = response as? [[AnyHashable: Any]] else { return }
         models = array.map{ LWModelMarketCapResult(withJSON: $0) }
     }
     
     //TODO: Move to constants
     override public var urlBase: String! {
-        return "https://api.coinmarketcap.com/v1/ticker/"
+        return "https://api.coinmarketcap.com/"
     }
     
-    override public var urlRelative: String! {
-        return "?start=\(body.startIndex)&limit=\(body.limit)"
+    public override var urlRelative: String {
+        return "v1/ticker/"
+    }
+    
+    public override var params: [AnyHashable : Any] {
+        return [
+            "start": body.startIndex,
+            "limit": body.limit
+        ]
     }
     
     override public var type: GDXRESTPacketType {

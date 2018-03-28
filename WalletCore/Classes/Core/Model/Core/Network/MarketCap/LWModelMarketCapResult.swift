@@ -17,14 +17,44 @@ public struct LWModelMarketCapResult {
     // The market capitalization of an asset in USD
     public let marketCap: Decimal
     // The change in price of an asset for the last 24 hours displayed in percentage
-    public let percentChange: Double
+    public let percentChange: Decimal
     
     init(withJSON json: [AnyHashable: Any]) {
-        self.symbol = json["symbol"] as? String ?? ""
-        self.price = json["price_usd"] as? Decimal ?? 0.00
-        self.marketCap = json["market_cap_usd"] as? Decimal ?? 0.00
-        self.percentChange = json["percent_change_24h"] as? Double ?? 0.00
+        self.symbol = json.symbol
+        self.price = json.priceUsd
+        self.marketCap = json.marketCapUsd
+        self.percentChange = json.percentChange24h
     }
     
     static let empty = LWModelMarketCapResult(withJSON: [:])
+}
+
+fileprivate extension Dictionary where Key == AnyHashable {
+    var symbol: String {
+        return self["symbol"] as? String ?? ""
+    }
+    
+    var priceUsd: Decimal {
+        guard let price = self["price_usd"] as? String, let priceDecimal = price.decimalValue else {
+            return 0.0
+        }
+        
+        return priceDecimal
+    }
+    
+    var marketCapUsd: Decimal {
+        guard let marketCapUsd = self["market_cap_usd"] as? String, let marketCapUsdDecimal = marketCapUsd.decimalValue else {
+            return 0.0
+        }
+        
+        return marketCapUsdDecimal
+    }
+    
+    var percentChange24h: Decimal {
+        guard let percentChange24h = self["percent_change_24h"] as? String, let percentChange24Decimal = percentChange24h.decimalValue else {
+            return 0.0
+        }
+        
+        return percentChange24Decimal
+    }
 }
