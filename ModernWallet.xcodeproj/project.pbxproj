@@ -168,7 +168,7 @@
 		AB6752DB20076BF1008A44F2 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6752DA20076BF1008A44F2 /* SelectCountryViewController.swift */; };
 		AB9EA05B20081A9900900058 /* SelectCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9EA05A20081A9900900058 /* SelectCountryTableViewCell.swift */; };
 		BE53DFD9202C538100D03C3F /* AddMoneyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE53DFD8202C538100D03C3F /* AddMoneyBaseViewController.swift */; };
-		C182E29220497CC7005772C2 /* MarketCapTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C182E29120497CC7005772C2 /* MarketCapTableViewController.swift */; };
+		C182E29220497CC7005772C2 /* MarketCapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C182E29120497CC7005772C2 /* MarketCapViewController.swift */; };
 		C182E29420497D84005772C2 /* MarketCap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C182E29320497D84005772C2 /* MarketCap.storyboard */; };
 		C1DF9EF41FE02ADD00D15A72 /* SendToWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF9EF31FE02ADD00D15A72 /* SendToWalletViewController.swift */; };
 		C506BD562018866800070E13 /* AssetPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506BD552018866800070E13 /* AssetPickerTableViewController.swift */; };
@@ -365,7 +365,7 @@
 		AB6752DA20076BF1008A44F2 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		AB9EA05A20081A9900900058 /* SelectCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCountryTableViewCell.swift; sourceTree = "<group>"; };
 		BE53DFD8202C538100D03C3F /* AddMoneyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyBaseViewController.swift; sourceTree = "<group>"; };
-		C182E29120497CC7005772C2 /* MarketCapTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCapTableViewController.swift; sourceTree = "<group>"; };
+		C182E29120497CC7005772C2 /* MarketCapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCapViewController.swift; sourceTree = "<group>"; };
 		C182E29320497D84005772C2 /* MarketCap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MarketCap.storyboard; sourceTree = "<group>"; };
 		C1DF9EF31FE02ADD00D15A72 /* SendToWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToWalletViewController.swift; sourceTree = "<group>"; };
 		C506BD552018866800070E13 /* AssetPickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerTableViewController.swift; sourceTree = "<group>"; };
@@ -864,7 +864,7 @@
 		C182E29020497994005772C2 /* MarketCap */ = {
 			isa = PBXGroup;
 			children = (
-				C182E29120497CC7005772C2 /* MarketCapTableViewController.swift */,
+				C182E29120497CC7005772C2 /* MarketCapViewController.swift */,
 			);
 			path = MarketCap;
 			sourceTree = "<group>";
@@ -1251,7 +1251,7 @@
 				4671C9D01F824130002C2F25 /* KYCPhotoFailedViewController.swift in Sources */,
 				4655386C1FB5B5B7007CF395 /* AppDelegate.swift in Sources */,
 				CC9458881F05310300676249 /* AddMoneyCCStep2ViewController.swift in Sources */,
-				C182E29220497CC7005772C2 /* MarketCapTableViewController.swift in Sources */,
+				C182E29220497CC7005772C2 /* MarketCapViewController.swift in Sources */,
 				614214191F78F9C400E2F524 /* KYCProtocols.swift in Sources */,
 				CC9458841F0400A000676249 /* AddMoneyCCStep1ViewController.swift in Sources */,
 				615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */,

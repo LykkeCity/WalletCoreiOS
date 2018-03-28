@@ -26,7 +26,6 @@ class AssetInfoTableViewCell: UITableViewCell {
     
     @discardableResult
     func bind(toAsset asset: AssetCellViewModel) -> Self {
-        self.disposeBag = DisposeBag()
         
         asset.name
             .drive(topLeftLabel.rx.text)
@@ -53,7 +52,6 @@ class AssetInfoTableViewCell: UITableViewCell {
     
     @discardableResult
     func bind(toCurrency currency: CryptoCurrencyCellViewModel) -> Self {
-        self.disposeBag = DisposeBag()
         
         currency.name
             .drive(topLeftLabel.rx.text)
@@ -79,7 +77,6 @@ class AssetInfoTableViewCell: UITableViewCell {
     }
     @discardableResult
     func bindCrypto(toCurrency currency: CryptoCurrencyCellViewModel) -> Self {
-        self.disposeBag = DisposeBag()
         
         currency.name
             .drive(topLeftLabel.rx.text)
@@ -99,8 +96,7 @@ class AssetInfoTableViewCell: UITableViewCell {
     
     @discardableResult
     func bind(toTransaction transaction: TransactionViewModel) -> Self {
-        self.disposeBag = DisposeBag()
-        
+    
         transaction.title
             .drive(topLeftLabel.rx.text)
             .disposed(by: disposeBag)
@@ -125,8 +121,7 @@ class AssetInfoTableViewCell: UITableViewCell {
     }
     
     @discardableResult
-    func bind(toMarketCapItem marketCapItem: MarketCapCellViewModel) -> Self {
-        self.disposeBag = DisposeBag()
+    func bind(toMarketCapItem marketCapItem: MarketCapViewModel) -> Self {
         
         marketCapItem.symbol
             .drive(topLeftLabel.rx.text)
@@ -143,8 +138,20 @@ class AssetInfoTableViewCell: UITableViewCell {
         marketCapItem.percentChange
             .drive(bottomRightLabel.rx.text)
             .disposed(by: disposeBag)
+
+        iconImageView.isHidden = true
+        iconHeightConstraint.constant = 0.0
+//        marketCapItem.imgUrl
+//            .drive(iconImageView.rx.afImage)
+//            .disposed(by: disposeBag)
         
         return self
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.disposeBag = DisposeBag()
     }
     
     override func awakeFromNib() {
