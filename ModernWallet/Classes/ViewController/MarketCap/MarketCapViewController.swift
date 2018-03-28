@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import WalletCore
+import UIScrollView_InfiniteScroll
 
 class MarketCapViewController: UIViewController {
     
@@ -33,6 +34,9 @@ class MarketCapViewController: UIViewController {
             .bind(toViewController: self)
             .disposed(by: disposeBag)
         
+        tableView.addInfiniteScroll{ [nextTrigger] tableView in
+            nextTrigger.onNext(())
+        }
     }
 }
 
@@ -44,12 +48,17 @@ fileprivate extension MarketCapsViewModel {
                 .bind(to: viewController.tableView.rx.items(cellIdentifier: "AssetInfoTableViewCell", cellType: AssetInfoTableViewCell.self)) { (row, element, cell) in
                     cell.bind(toMarketCapItem: element)
                 },
+            
+            success.drive(onNext: {[weak viewController]_ in
+                viewController?.tableView.finishInfiniteScroll()
+            }),
+            
             loadingViewModel
                 .isLoading
+                .take(2) // take just first loading (true/false).All further loading indicators will be provided by UIScrollView_InfiniteScroll
                 .bind(to: viewController.rx.loading),
             
             errors.asObservable()
-                .debug("MarketCap")
                 .bind(to: viewController.rx.error)
         ]
     }

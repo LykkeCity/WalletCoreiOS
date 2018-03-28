@@ -24,6 +24,7 @@ pod 'SwiftSpinner', :git => 'https://github.com/StanevPrime/SwiftSpinner', :bran
 pod 'QRCodeReader.swift', '~> 7.5.0'
 pod 'Koyomi', :git => 'https://github.com/whoislyuboanyway/Koyomi', :branch => 'show-border-instead-of-filled-background'
 pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift3.2'
+pod 'UIScrollView-InfiniteScroll', '~> 1.0.0'
 end
 
 post_install do |installer_representation|
