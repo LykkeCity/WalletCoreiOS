@@ -31,7 +31,6 @@ public class MarketCapsViewModel {
                 authManager.marketCap.request(withParams: LWPacketMarketCap.Body(startIndex: marketCaps.value.count, limit: limit))
             }
             .shareReplay(1)
-            .debug("market cap")
         
         self.loadingViewModel = LoadingViewModel([
             marketCapResultObservable.isLoading()
@@ -48,6 +47,7 @@ public class MarketCapsViewModel {
         /// MARK: Bindings
         marketCapResultObservable
             .filterSuccess()
+            .map{ [marketCaps] fetchedMarketCaps in [marketCaps.value, fetchedMarketCaps].flatMap{ $0 } }
             .bind(to: marketCaps)
             .disposed(by: disposeBag)
     }
