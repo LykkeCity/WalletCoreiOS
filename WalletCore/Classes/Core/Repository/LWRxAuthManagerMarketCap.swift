@@ -16,6 +16,8 @@ public class LWRxAuthManagerMarketCap: NSObject {
     public typealias ResultType = [LWModelMarketCapResult]
     public typealias RequestParams = LWPacketMarketCap.Body
     
+    fileprivate let cache = LWCache.instance()!
+    
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
@@ -37,10 +39,10 @@ public class LWRxAuthManagerMarketCap: NSObject {
 extension LWRxAuthManagerMarketCap: AuthManagerProtocol {
     
     public func request(withParams params: RequestParams) -> Observable<Result> {
-        if let marketCaps = LWCache.instance().marketCaps as? [LWModelMarketCapResult] {
+        if let marketCaps = cache.fetchMarketCaps(byParams: params) {
             return Observable
-                .just(ApiResult.success(withData: marketCaps))
-                .startWith(ApiResult.loading)
+                .just(.success(withData: marketCaps))
+                .startWith(.loading)
         }
         
         return defaultRequestImplementation(with: params)
@@ -51,7 +53,7 @@ extension LWRxAuthManagerMarketCap: AuthManagerProtocol {
     }
     
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
-        LWCache.instance().marketCaps = packet.models
+        cache.addMarketCaps(withPacket: packet)
         return Result.success(withData: packet.models)
     }
 }

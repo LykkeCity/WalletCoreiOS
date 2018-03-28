@@ -59,3 +59,13 @@ public class LWPacketMarketCap: LWPacket {
         return .GET
     }
 }
+
+extension LWPacketMarketCap.Body: Hashable {
+    public var hashValue: Int {
+        return Int("\(self.startIndex)\(limit)") ?? 0
+    }
+    
+    public static func ==(lhs: LWPacketMarketCap.Body, rhs: LWPacketMarketCap.Body) -> Bool {
+        return lhs.limit == rhs.limit && lhs.startIndex == rhs.startIndex
+    }
+}

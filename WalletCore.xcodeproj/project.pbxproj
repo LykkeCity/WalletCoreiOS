@@ -586,6 +586,8 @@
 		614214201F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */; };
 		6148359220089FC600099057 /* TransactionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6148359120089FC600099057 /* TransactionFormatter.swift */; };
 		6163A9441FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */; };
+		61A19350206BD94C00100CE8 /* LWCache+MarketCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A1934F206BD94C00100CE8 /* LWCache+MarketCap.swift */; };
+		61A19352206BD9F700100CE8 /* NSDate+CalculateDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A19351206BD9F700100CE8 /* NSDate+CalculateDifference.swift */; };
 		61DC8ABD1FFD1E84009BC942 /* CurrencyExchangerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */; };
 		61DC8ABF1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */; };
 		61DC8AC21FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC8AC11FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift */; };
@@ -1284,6 +1286,8 @@
 		6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KycUploadDocumentsViewModel.swift; sourceTree = "<group>"; };
 		6148359120089FC600099057 /* TransactionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFormatter.swift; sourceTree = "<group>"; };
 		6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWSpotWallet+Extensions.swift"; sourceTree = "<group>"; };
+		61A1934F206BD94C00100CE8 /* LWCache+MarketCap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWCache+MarketCap.swift"; sourceTree = "<group>"; };
+		61A19351206BD9F700100CE8 /* NSDate+CalculateDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+CalculateDifference.swift"; sourceTree = "<group>"; };
 		61DC8ABC1FFD1E84009BC942 /* CurrencyExchangerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangerMock.swift; sourceTree = "<group>"; };
 		61DC8ABE1FFD1ED2009BC942 /* LWRxAuthManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerMock.swift; sourceTree = "<group>"; };
 		61DC8AC11FFD1F3F009BC942 /* LWRxAuthManagerBaseAssetMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerBaseAssetMock.swift; sourceTree = "<group>"; };
@@ -1679,6 +1683,7 @@
 				46C9AC901F417BD700B83CCB /* LWCache.m */,
 				46C9AC911F417BD700B83CCB /* LWImageDownloader.h */,
 				46C9AC921F417BD700B83CCB /* LWImageDownloader.m */,
+				61A1934F206BD94C00100CE8 /* LWCache+MarketCap.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -1690,6 +1695,7 @@
 				46C9AC981F417BD700B83CCB /* NSDate+String.m */,
 				46C9AC991F417BD700B83CCB /* NSString+Date.h */,
 				46C9AC9A1F417BD700B83CCB /* NSString+Date.m */,
+				61A19351206BD9F700100CE8 /* NSDate+CalculateDifference.swift */,
 			);
 			path = Date;
 			sourceTree = "<group>";
@@ -3423,11 +3429,13 @@
 				46C9B0091F417BD800B83CCB /* GDXNetContext+Protected.m in Sources */,
 				46C9AEA41F417BD700B83CCB /* LWPacketBaseAssetSet.m in Sources */,
 				66833E051FC5C4E800716719 /* BackupPrivateKeyViewModel.swift in Sources */,
+				61A19352206BD9F700100CE8 /* NSDate+CalculateDifference.swift in Sources */,
 				6656BB321FEAA29B006CAD5D /* LWLimitHistoryItemType.m in Sources */,
 				6656BB2A1FEAA07B006CAD5D /* LWPacketSendVerificationCode.m in Sources */,
 				46C9B0011F417BD800B83CCB /* GDXNetAdapter.m in Sources */,
 				AB1D63631FEB01DE000495E7 /* LWOperationModel.swift in Sources */,
 				6656BAEC1FEA95DC006CAD5D /* HotWalletNetworkClient.swift in Sources */,
+				61A19350206BD94C00100CE8 /* LWCache+MarketCap.swift in Sources */,
 				464BAA6B1FBC77CB00F473FA /* AssetBalanceViewModel.swift in Sources */,
 				46C9AE921F417BD700B83CCB /* LWPacketAssetPair.m in Sources */,
 				46C9AF0E1F417BD800B83CCB /* LWPacketMarket.m in Sources */,
