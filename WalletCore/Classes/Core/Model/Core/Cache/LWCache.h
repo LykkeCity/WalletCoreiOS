@@ -117,6 +117,8 @@ SINGLETON_DECLARE
 @property (assign, nonatomic) BOOL icoIsEnabled;
 @property (assign, nonatomic) BOOL icoShowBanner;
 
+@property (strong) NSDictionary *marketCaps;
+
 - (BOOL)isMultisigAvailable;
 
 + (BOOL)shouldHidePlusForAssetId:(NSString *)assetID;

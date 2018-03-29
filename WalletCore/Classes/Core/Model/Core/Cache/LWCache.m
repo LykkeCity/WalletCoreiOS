@@ -36,6 +36,7 @@ SINGLETON_INIT {
     self.cachedBuyOrders = [NSMutableDictionary new];
     self.cachedSellOrders = [NSMutableDictionary new];
     self.showMyLykkeTab = NO;
+    self.marketCaps = [NSMutableDictionary new];
     
     self.smsRetriesLeft = 3;
     
