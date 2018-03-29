@@ -53,7 +53,7 @@ public class SelectCountryViewModel {
             .map { data -> [LWCountryModel] in
                 let (countries, searchText) = data
                 guard searchText.count > 0 else { return [] }
-                return countries.filter { $0.name.hasPrefix(searchText) }
+                return countries.filter { $0.name.lowercased().hasPrefix(searchText.lowercased())}
             }
             .bind(to: searchResult)
             .disposed(by: disposeBag)
