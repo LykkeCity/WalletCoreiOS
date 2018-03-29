@@ -861,6 +861,7 @@
 "menu.newDesign.transactions" = "TRANSACTIONS";
 "menu.newDesign.withdraw" = "WITHDRAW";
 "menu.newDesign.logout" = "LOGOUT";
+"menu.newDesign.marketCap" = "MARKET CAP";
 
 
 "addMoney.newDesign.wireMoneyFromBank" = "WIRE MONEY FROM BANK ACCOUNT";

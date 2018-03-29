@@ -62,6 +62,7 @@ class MenuTableViewController: UITableViewController {
         MenuItem(title: Localize("menu.newDesign.portfolio"), image: #imageLiteral(resourceName: "PORTFOLIO"), viewControllerIdentifier: "Portfolio"),
         MenuItem(title: Localize("menu.newDesign.settings"), image: #imageLiteral(resourceName: "SETTINGS"), storyboardName: "Settings"),
         MenuItem(title: Localize("menu.newDesign.transactions"), image: #imageLiteral(resourceName: "TRANSACTIONS"), storyboardName: "Transactions"),
+        MenuItem(title: Localize("menu.newDesign.marketCap"), image: #imageLiteral(resourceName: "CHECK PRICES"), storyboardName: "MarketCap"),
         MenuItem(title: Localize("menu.newDesign.logout"), image: #imageLiteral(resourceName: "LogoutIcon"), viewControllerIdentifier: nil, color: nil,
                  onSelect: MenuTableViewController.logout)
     ]

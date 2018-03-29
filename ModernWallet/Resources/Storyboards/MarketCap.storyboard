@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6kk-Pu-xTM">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Market Cap View Controller-->
+        <scene sceneID="ymI-IM-wQu">
+            <objects>
+                <viewController id="6kk-Pu-xTM" customClass="MarketCapViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lPJ-Eu-XLl" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dn7-p9-5k6">
+                                <rect key="frame" x="0.0" y="44" width="375" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRICES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLL-iK-mvr">
+                                        <rect key="frame" x="158.66666666666666" y="4.6666666666666643" width="58" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KxN-XN-eDN" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="2"/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="yRt-4d-Eoo"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="KxN-XN-eDN" secondAttribute="trailing" id="1gx-Bf-uWO"/>
+                                    <constraint firstItem="KxN-XN-eDN" firstAttribute="leading" secondItem="Dn7-p9-5k6" secondAttribute="leading" id="Afr-l9-zIc"/>
+                                    <constraint firstAttribute="bottom" secondItem="KxN-XN-eDN" secondAttribute="bottom" id="W70-9L-vgs"/>
+                                    <constraint firstItem="DLL-iK-mvr" firstAttribute="centerX" secondItem="Dn7-p9-5k6" secondAttribute="centerX" id="hIJ-k1-65J"/>
+                                    <constraint firstItem="DLL-iK-mvr" firstAttribute="centerY" secondItem="Dn7-p9-5k6" secondAttribute="centerY" id="kZt-T9-x5o"/>
+                                    <constraint firstAttribute="height" constant="30" id="wEh-Y5-CeP"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="54" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nVX-Ua-gWG">
+                                <rect key="frame" x="0.0" y="74" width="375" height="738"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Dn7-p9-5k6" firstAttribute="top" secondItem="EB6-GR-nHw" secondAttribute="top" id="0zM-K7-NXO"/>
+                            <constraint firstItem="nVX-Ua-gWG" firstAttribute="leading" secondItem="EB6-GR-nHw" secondAttribute="leading" id="8o9-cT-aq0"/>
+                            <constraint firstItem="Dn7-p9-5k6" firstAttribute="leading" secondItem="EB6-GR-nHw" secondAttribute="leading" id="9gE-KC-hmi"/>
+                            <constraint firstItem="nVX-Ua-gWG" firstAttribute="trailing" secondItem="EB6-GR-nHw" secondAttribute="trailing" id="SCR-D7-Tp1"/>
+                            <constraint firstAttribute="bottom" secondItem="nVX-Ua-gWG" secondAttribute="bottom" id="acO-nU-Aqg"/>
+                            <constraint firstItem="nVX-Ua-gWG" firstAttribute="top" secondItem="Dn7-p9-5k6" secondAttribute="bottom" id="dR0-JR-hVV"/>
+                            <constraint firstItem="Dn7-p9-5k6" firstAttribute="trailing" secondItem="EB6-GR-nHw" secondAttribute="trailing" id="nvr-hY-XLf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EB6-GR-nHw"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="nVX-Ua-gWG" id="hOP-8T-EVc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AFq-po-hzi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="932" y="44.527736131934034"/>
+        </scene>
+    </scenes>
+</document>

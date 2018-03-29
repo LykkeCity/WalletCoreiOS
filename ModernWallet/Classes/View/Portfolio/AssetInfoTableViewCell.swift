@@ -1,5 +1,5 @@
 //
-//  PortfolioCurrencyTableViewCell.swift
+//  AssetInfoTableViewCell.swift
 //  ModernWallet
 //
 //  Created by Georgi Stanev on 6/5/17.
@@ -13,35 +13,34 @@ import Alamofire
 import AlamofireImage
 import WalletCore
 
-class PortfolioCurrencyTableViewCell: UITableViewCell {
+class AssetInfoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var iconHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var cryptoNameLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var cryptoValueLabel: UILabel!
-    @IBOutlet weak var percentLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var topLeftLabel: UILabel!
+    @IBOutlet weak var topRightLabel: UILabel!
+    @IBOutlet weak var bottomLeftLabel: UILabel!
+    @IBOutlet weak var bottomRightLabel: UILabel!
     
     var disposeBag = DisposeBag()
     
     @discardableResult
     func bind(toAsset asset: AssetCellViewModel) -> Self {
-        self.disposeBag = DisposeBag()
         
         asset.name
-            .drive(cryptoNameLabel.rx.text)
+            .drive(topLeftLabel.rx.text)
             .disposed(by: disposeBag)
         
         asset.cryptoValue
-            .drive(cryptoValueLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        asset.realValue
-            .drive(valueLabel.rx.text)
+            .drive(topRightLabel.rx.text)
             .disposed(by: disposeBag)
         
         asset.percent
-            .drive(percentLabel.rx.text)
+            .drive(bottomLeftLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        asset.realValue
+            .drive(bottomRightLabel.rx.text)
             .disposed(by: disposeBag)
         
         asset.imgURL
@@ -53,22 +52,21 @@ class PortfolioCurrencyTableViewCell: UITableViewCell {
     
     @discardableResult
     func bind(toCurrency currency: CryptoCurrencyCellViewModel) -> Self {
-        self.disposeBag = DisposeBag()
         
         currency.name
-            .drive(cryptoNameLabel.rx.text)
+            .drive(topLeftLabel.rx.text)
             .disposed(by: disposeBag)
         
         currency.capitalization
-            .drive(percentLabel.rx.text)
+            .drive(bottomLeftLabel.rx.text)
             .disposed(by: disposeBag)
         
         currency.variance
-            .drive(cryptoValueLabel.rx.text)
+            .drive(topRightLabel.rx.text)
             .disposed(by: disposeBag)
         
         currency.percentVariance
-            .drive(valueLabel.rx.text)
+            .drive(bottomRightLabel.rx.text)
             .disposed(by: disposeBag)
         
         currency.imgUrl
@@ -79,14 +77,13 @@ class PortfolioCurrencyTableViewCell: UITableViewCell {
     }
     @discardableResult
     func bindCrypto(toCurrency currency: CryptoCurrencyCellViewModel) -> Self {
-        self.disposeBag = DisposeBag()
         
         currency.name
-            .drive(cryptoNameLabel.rx.text)
+            .drive(topLeftLabel.rx.text)
             .disposed(by: disposeBag)
         
         currency.capitalization
-            .drive(percentLabel.rx.text)
+            .drive(bottomLeftLabel.rx.text)
             .disposed(by: disposeBag)
         
         
@@ -99,36 +96,62 @@ class PortfolioCurrencyTableViewCell: UITableViewCell {
     
     @discardableResult
     func bind(toTransaction transaction: TransactionViewModel) -> Self {
-        self.disposeBag = DisposeBag()
-        
+    
         transaction.title
-            .drive(cryptoNameLabel.rx.text)
+            .drive(topLeftLabel.rx.text)
             .disposed(by: disposeBag)
         
         transaction.amount
-            .drive(cryptoValueLabel.rx.text)
+            .drive(topRightLabel.rx.text)
             .disposed(by: disposeBag)
         
         transaction.amountInBase
-            .drive(valueLabel.rx.text)
+            .drive(bottomRightLabel.rx.text)
             .disposed(by: disposeBag)
         
         transaction.date
-            .drive(percentLabel.rx.text)
+            .drive(bottomLeftLabel.rx.text)
             .disposed(by: disposeBag)
         
         transaction.icon
             .drive(iconImageView.rx.image)
             .disposed(by: disposeBag)
         
+        return self
+    }
+    
+    @discardableResult
+    func bind(toMarketCapItem marketCapItem: MarketCapViewModel) -> Self {
         
-//        let height = CGFloat(0.0)
-//        
-//        if iconHeightConstraint.constant != height {
-//            iconHeightConstraint.constant = height
-//        }
+        marketCapItem.symbol
+            .drive(topLeftLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        marketCapItem.price
+            .drive(topRightLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        marketCapItem.marketCap
+            .drive(bottomLeftLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        marketCapItem.percentChange
+            .drive(bottomRightLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        iconImageView.isHidden = true
+        iconHeightConstraint.constant = 0.0
+//        marketCapItem.imgUrl
+//            .drive(iconImageView.rx.afImage)
+//            .disposed(by: disposeBag)
         
         return self
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.disposeBag = DisposeBag()
     }
     
     override func awakeFromNib() {

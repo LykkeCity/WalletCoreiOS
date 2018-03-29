@@ -49,20 +49,20 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN RECEIVING ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjy-mw-FOO">
-                                        <rect key="frame" x="57" y="60" width="196" height="15"/>
+                                        <rect key="frame" x="47" y="60" width="216.5" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hgh-W5-01g">
-                                        <rect key="frame" x="74.5" y="105" width="160" height="160"/>
+                                        <rect key="frame" x="74.5" y="107.5" width="160" height="160"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="160" id="1SX-8S-dGH"/>
                                             <constraint firstAttribute="width" constant="160" id="j9a-5x-uXa"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3cgTHy6yuJK8y7900hGy7mnb98iU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="8EH-r0-JtH">
-                                        <rect key="frame" x="30" y="295" width="250" height="16"/>
+                                        <rect key="frame" x="30" y="297.5" width="250" height="19"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -172,7 +172,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT WALLET FOR TRANSFER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V44-MH-ktJ">
-                                                <rect key="frame" x="54.5" y="20" width="266.5" height="21"/>
+                                                <rect key="frame" x="32" y="20" width="311.5" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="e4Y-uW-ZgB"/>
                                                 </constraints>
@@ -245,10 +245,10 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QiX-3u-8P4">
-                                                <rect key="frame" x="99.5" y="281" width="176.5" height="50"/>
+                                                <rect key="frame" x="92" y="281" width="191.5" height="59"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" placeholder="00.00" textAlignment="right" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="Smt-DD-bxi" userLabel="Amount">
-                                                        <rect key="frame" x="0.0" y="0.0" width="121.5" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="129.5" height="59"/>
                                                         <color key="textColor" red="0.99211162328720093" green="0.99215096235275269" blue="0.99634915590286255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="50"/>
                                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
@@ -265,7 +265,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Da-qM-a4c" userLabel="Currency Code">
-                                                        <rect key="frame" x="131.5" y="18.5" width="45" height="25"/>
+                                                        <rect key="frame" x="139.5" y="24" width="52" height="29.5"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="25"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
