@@ -92,14 +92,12 @@ class SignUpEmailFormController: FormController {
             .bind(to: loading)
             .disposed(by: disposeBag)
         
-        let resultObservable = viewModel.result.asObservable()
-        
-        resultObservable
+        viewModel.result
             .filterError()
             .bind(to: error)
             .disposed(by: disposeBag)
         
-        resultObservable
+        viewModel.result
             .filterSuccess()
             .map { _ in return () }
             .bind(to: nextTrigger)
