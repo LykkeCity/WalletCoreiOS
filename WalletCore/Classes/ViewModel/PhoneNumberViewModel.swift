@@ -20,7 +20,7 @@ open class PhoneNumberViewModel {
     public let loadingSaveChanges: Observable<Bool>
     public let countryCodesResult: Driver<ApiResult<LWPacketCountryCodes>>
     
-    public let saveSettingsResult: Driver<ApiResult<LWPacketPhoneVerificationSet>>
+    public let saveSettingsResult: Observable<ApiResult<LWPacketPhoneVerificationSet>>
     
     public init(saveSubmit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
@@ -34,7 +34,6 @@ open class PhoneNumberViewModel {
         saveSettingsResult = saveSubmit
             .throttle(1, scheduler: MainScheduler.instance)
             .mapPhoneNumber(phone: phonenumber, authManager: authManager)
-            .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
         loadingSaveChanges = saveSettingsResult.asObservable().isLoading()
         
@@ -56,11 +55,8 @@ fileprivate extension ObservableType where Self.E == Void {
     func mapPhoneNumber(
         phone: Variable<String>,
         authManager: LWRxAuthManager
-        ) -> Observable<ApiResult<LWPacketPhoneVerificationSet>> {
-        
-        return flatMapLatest{authData in
-            authManager.setPhoneNumber.request(withParams: phone.value)
-            }
-            .shareReplay(1)
+    ) -> Observable<ApiResult<LWPacketPhoneVerificationSet>> {
+        return flatMapLatest{authData in authManager.setPhoneNumber.request(withParams: phone.value)}
+            .share()
     }
 }
