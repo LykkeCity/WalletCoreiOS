@@ -79,14 +79,12 @@ class SignUpFillPhoneFormController: FormController {
             .bind(to: loading)
             .disposed(by: disposeBag)
 
-        let saveResultObservable = viewModel.saveSettingsResult.asObservable()
-            
-        saveResultObservable
+        viewModel.saveSettingsResult
             .filterError()
             .bind(to: error)
             .disposed(by: disposeBag)
         
-        saveResultObservable
+        viewModel.saveSettingsResult
             .filterSuccess()
             .map { _ in return () }
             .bind(to: nextTrigger)
