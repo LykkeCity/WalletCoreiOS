@@ -60,7 +60,7 @@ class SignInConfirmPhoneFormController: FormController {
     }()
     
     var canGoBack: Bool {
-        return false
+        return !signIn
     }
     
     var buttonTitle: String? {
