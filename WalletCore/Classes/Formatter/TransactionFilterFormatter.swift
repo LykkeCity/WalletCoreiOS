@@ -18,7 +18,7 @@ public extension TransactionFilterFormatterProtocol {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         formatter.timeZone = TimeZone.current
-        formatter.locale = Locale.current
+        formatter.locale = NSLocale.autoupdatingCurrent
 
         return "\(formatter.string(from: date)) "
     }
