@@ -19,7 +19,7 @@ class AddMoneyViewController: UIViewController {
     @IBOutlet weak var pageIndicatorBtn2: UIButton!
     @IBOutlet weak var pageIndicatorBtn3: UIButton!
     @IBOutlet weak var startView: UIView!
-    @IBOutlet weak var addMoneyLable: UILabel!
+    @IBOutlet weak var addMoneyLabel: UILabel!
     @IBOutlet weak var pageIndicatorConstraint: NSLayoutConstraint!
     
     var navController: UINavigationController? {
@@ -28,6 +28,10 @@ class AddMoneyViewController: UIViewController {
     
     var pageIndicators: [UIButton] {
         return [pageIndicatorBtn1, pageIndicatorBtn2, pageIndicatorBtn3]
+    }
+    
+    var moneyLabel: UILabel! {
+        return addMoneyLabel
     }
     
     var bankAccountSel : Bool = false
@@ -77,6 +81,7 @@ class AddMoneyViewController: UIViewController {
 }
 
 extension AddMoneyViewController: NavigationWizzardProtocol, UINavigationControllerDelegate {
+    
     func getMaxIndicatorCount(_ navigationController: UINavigationController, willShow viewController: UIViewController) -> Int {
         return (navigationController.childViewControllers.filter{$0 is AddMoneyCCStep1ViewController}).isNotEmpty
             ? 3 : 2
@@ -85,18 +90,7 @@ extension AddMoneyViewController: NavigationWizzardProtocol, UINavigationControl
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         manageBackButtonVisibility(navigationController, willShow: viewController)
         managePageIndicators(navigationController, willShow: viewController)
-        addMoneyLable.text = getLabelText(navigationController: navigationController)
-    }
-    
-    func getLabelText(navigationController: UINavigationController) -> String {
-        guard var baseLabelString = Localize("addMoney.newDesign.addMoneyFrom") else {return ""}
-        baseLabelString = baseLabelString.appending(" ")
-        
-        if let startViewController = navigationController.childViewControllers.first as? StartViewController {
-            return baseLabelString.appending(startViewController.selectedPaymentMethod)
-        }
-        
-        return baseLabelString
+        manageAddMoneyLabel(navigationController, willShow: viewController)
     }
 }
 

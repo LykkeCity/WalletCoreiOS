@@ -119,7 +119,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addMoneyLable" destination="Bzr-PJ-lmk" id="nR5-Sl-J2W"/>
+                        <outlet property="addMoneyLabel" destination="Bzr-PJ-lmk" id="4bB-gc-7v5"/>
                         <outlet property="backButton" destination="FQw-ge-W3y" id="MNw-hF-FhY"/>
                         <outlet property="pageIndicatorBtn1" destination="aaY-8G-jPl" id="Rm0-lQ-Ick"/>
                         <outlet property="pageIndicatorBtn2" destination="yI8-fa-J6c" id="0MV-UA-skw"/>
