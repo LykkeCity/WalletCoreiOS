@@ -56,6 +56,17 @@
       
       BOOL isKycError = [@[@(LWNetworkErrorTypeInconsistentData)]
                          containsObject:@(errorCode)];
+        
+        
+      BOOL isPendingDisclaimer = [@[@(LWNetworkErrorTypePendingDisclaimer)]
+                       containsObject:@(errorCode)];
+        
+        NSMutableDictionary *userInfo = @{}.mutableCopy;
+        if (errorMessage) {
+            userInfo[@"Message"] = errorMessage;
+        }
+        error = [NSError errorWithDomain:[request.URL absoluteString] code:errorCode userInfo:userInfo];
+        
       
       if (isBackupError) {
         [self showBackupView:errorCode == LWNetworkErrorTypeBackupWarning message:errorMessage];
@@ -64,12 +75,11 @@
       if (isKycError) {
         [self showKycView];
       }
-      
-      NSMutableDictionary *userInfo = @{}.mutableCopy;
-      if (errorMessage) {
-        userInfo[@"Message"] = errorMessage;
+        
+       if (isPendingDisclaimer) {
+        [self showPendingDisclaimer];
+        return error;
       }
-      error = [NSError errorWithDomain:[request.URL absoluteString] code:errorCode userInfo:userInfo];
       
       if ((isOffchainError && ([self showOffchainErrors] || (errorCode == LWNetworkErrorTypeNoOffchainLiquidity && self.shouldShowOffchainLiquidityError))) ||
           (isKycError && [self showKycErrors]) ||
@@ -251,6 +261,10 @@
 //      [UIView setAnimationsEnabled:true];
 //    });
 //  });
+}
+
+- (void)showPendingDisclaimer {
+    assert("Implement this method as extenstion in your project!!!");
 }
 
 - (void)showBackupView:(BOOL)isOptional message:(NSString *)message {
