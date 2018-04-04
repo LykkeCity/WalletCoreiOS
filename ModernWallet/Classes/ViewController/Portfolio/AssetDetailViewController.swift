@@ -116,6 +116,10 @@ class AssetDetailViewController: UIViewController {
             .map({ return (start: nil, end: nil) })
             .bind(to: transactionsViewModel.filterViewModel.filterDatePair)
             .disposed(by: disposeBag)
+        
+        transactionsViewModel.isDownloadButtonEnabled
+            .bind(to: messageButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Navigation

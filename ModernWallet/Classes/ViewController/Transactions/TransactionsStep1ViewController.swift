@@ -61,6 +61,10 @@ class TransactionsStep1ViewController: UIViewController {
         transactionsViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
+        
+        transactionsViewModel.isDownloadButtonEnabled
+            .bind(to: downloadCSV.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
