@@ -14,6 +14,8 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Lykke Wallet requests access to your photo library to save а selfie, scan documents or QR codes.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
