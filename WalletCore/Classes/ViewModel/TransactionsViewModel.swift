@@ -49,7 +49,7 @@ open class TransactionsViewModel {
     private let transactionsToDisplay = Variable<[LWBaseHistoryItemType]>([])
     
     //enable download buttons
-    public var isDownloadButtonEnabled: Observable<Bool>
+    public var isDownloadButtonEnabled: Driver<Bool>
    
     public let errors: Driver<[AnyHashable: Any]>
     
@@ -86,9 +86,8 @@ open class TransactionsViewModel {
             .bind(to: transactionsToDisplay)
             .disposed(by: disposeBag)
         
-        isDownloadButtonEnabled = transactionsToDisplay.asObservable()
-            .map { item -> Bool in
-                item != []}
+        isDownloadButtonEnabled = transactionsToDisplay.asDriver()
+            .map{ !$0.isEmpty }
      
         //Reorder transactionModels according sortBy events
         sortBy.asObservable()
