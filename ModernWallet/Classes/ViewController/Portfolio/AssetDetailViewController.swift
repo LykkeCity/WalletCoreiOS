@@ -118,7 +118,7 @@ class AssetDetailViewController: UIViewController {
             .disposed(by: disposeBag)
         
         transactionsViewModel.isDownloadButtonEnabled
-            .bind(to: messageButton.rx.isEnabled)
+            .drive(messageButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
     

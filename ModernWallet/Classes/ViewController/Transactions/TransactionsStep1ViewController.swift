@@ -63,7 +63,7 @@ class TransactionsStep1ViewController: UIViewController {
             .disposed(by: disposeBag)
         
         transactionsViewModel.isDownloadButtonEnabled
-            .bind(to: downloadCSV.rx.isEnabled)
+            .drive(downloadCSV.rx.isEnabled)
             .disposed(by: disposeBag)
     }
 
