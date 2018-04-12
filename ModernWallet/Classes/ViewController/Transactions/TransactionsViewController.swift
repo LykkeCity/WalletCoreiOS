@@ -85,6 +85,12 @@ class TransactionsViewController: UIViewController {
             (drawerController.mainViewController as? RootViewController)?.embed(viewController: portfolioVC, animated: true)
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        self.searchContainer?.searchController.isActive = false
+        
+    }
 }
 
 extension TransactionsViewController: UISearchControllerDelegate {
