@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import WalletCore
 
 protocol NavigationWizzardProtocol {
     var backButton: UIButton!{get}
     var pageIndicators: [UIButton]{get}
+    var moneyLabel: UILabel!{get}
     
     func managePageIndicators(_ navigationController: UINavigationController, willShow viewController: UIViewController)
     func manageBackButtonVisibility(_ navigationController: UINavigationController, willShow viewController: UIViewController)
@@ -20,6 +22,23 @@ protocol NavigationWizzardProtocol {
 extension NavigationWizzardProtocol {
     func manageBackButtonVisibility(_ navigationController: UINavigationController, willShow viewController: UIViewController) {
         backButton.isHidden = navigationController.childViewControllers.count <= 1
+    }
+    
+    func manageAddMoneyLabel(_ navigationController: UINavigationController, willShow viewController: UIViewController) {
+        if navigationController.childViewControllers.count <= 1{
+            moneyLabel.text = Localize("addMoney.newDesign.addMoneyFrom")
+        }
+            
+        else {
+            
+            if var baseLabelString = Localize("addMoney.newDesign.addMoneyFrom") {
+                baseLabelString = baseLabelString.appending(" ")
+                if let startViewController = navigationController.childViewControllers.first as? StartViewController {
+                    baseLabelString = baseLabelString.appending(startViewController.selectedPaymentMethod)
+                    moneyLabel.text = baseLabelString
+                }
+            }
+        }
     }
     
     func managePageIndicators(_ navigationController: UINavigationController, willShow viewController: UIViewController) {
