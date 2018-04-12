@@ -158,9 +158,9 @@ fileprivate extension ObservableType where Self.E == SettingsTableViewController
             }
             else if let indexPath = vc.tableView.indexPathForSelectedRow {
                 vc.tableView.deselectRow(at: indexPath, animated: true)
-                if rowInfo.title == "REFUND" {
+                if rowInfo.title == Localize("settings.newDesign.refundAddress") {
                     UIPasteboard.general.string = rowInfo.subtitle
-                    vc.view.makeToast("Copied")
+                    vc.view.makeToast(Localize("receive.newDesign.copyToast"))
                 }
             }
         })
