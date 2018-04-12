@@ -15,7 +15,7 @@ class StartViewController: UIViewController {
     @IBOutlet weak var bankAccountLabel: UILabel!
     @IBOutlet weak var creditCardLabel: UILabel!
     @IBOutlet weak var receiveCryptoLabel: UILabel!
-
+    
     private let disposeBag = DisposeBag()
     
     private let asset = Variable<ApiResult<LWAssetModel>?>(nil)
@@ -26,18 +26,21 @@ class StartViewController: UIViewController {
     private enum ActionType {
         case bankAccount
         case creditCard
+        case cryptoCurrency
     }
     
     private var action: ActionType?
     
     public var selectedPaymentMethod: String {
         guard let action = action else { return "" }
+        
         switch action {
         case .bankAccount:
             return Localize("addMoney.newDesign.bankAccount")
-            
         case .creditCard:
             return Localize("addMoney.newDesign.creditCard")
+        case .cryptoCurrency:
+            return Localize("addMoney.newDesign.cryptoCurrency")
         }
     }
     
@@ -100,6 +103,10 @@ class StartViewController: UIViewController {
         askForAssetType()
     }
     
+    @IBAction func cryptoCurrencyAction(_ sender: UIButton) {
+        action = .cryptoCurrency
+    }
+
     private func askForAssetType() {
         guard let vc = pickCurrencyToAdd else {
             return
@@ -109,7 +116,7 @@ class StartViewController: UIViewController {
         
         vc.assetPicked.bind { [weak self] (asset) in
             self?.asset.value = ApiResult<LWAssetModel>.success(withData: asset)
-        }.disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
     }
     
     private var pickCurrencyToAdd: AssetPickerTableViewController? {
@@ -126,6 +133,8 @@ class StartViewController: UIViewController {
         case .creditCard:
             vc.showOnlyVisaDepositableAssets()
             break
+        case .cryptoCurrency:
+            break
         }
         
         return vc
@@ -138,10 +147,12 @@ class StartViewController: UIViewController {
         
         var vc: UIViewController! = nil
         switch action {
-            case .bankAccount:
-                vc = storyboard?.instantiateViewController(withIdentifier: "bankInfo")
-            case .creditCard:
-                vc = storyboard?.instantiateViewController(withIdentifier: "addMoneyCCstep1VC")
+        case .bankAccount:
+            vc = storyboard?.instantiateViewController(withIdentifier: "bankInfo")
+        case .creditCard:
+            vc = storyboard?.instantiateViewController(withIdentifier: "addMoneyCCstep1VC")
+        case .cryptoCurrency:
+            vc = nil
         }
         
         if let vc = vc as? AddMoneyTransfer,

@@ -838,6 +838,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o82-P2-7kv">
                                                 <rect key="frame" x="0.0" y="1" width="200" height="135.33333333333334"/>
                                                 <connections>
+                                                    <action selector="cryptoCurrencyAction:" destination="1Fv-iS-Z5H" eventType="touchUpInside" id="xJm-ga-m38"/>
                                                     <segue destination="mFa-N3-wog" kind="show" id="IEM-Jr-Qks"/>
                                                 </connections>
                                             </button>

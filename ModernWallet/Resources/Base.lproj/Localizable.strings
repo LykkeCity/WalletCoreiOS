@@ -868,7 +868,7 @@
 "addMoney.newDesign.lykkeBankDetails" = "LYKKE BANK ACCOUNT DETAILS";
 "addMoney.newDesign.bankAccount" = "BANK ACCOUNT";
 "addMoney.newDesign.creditCard" = "CREDIT CARD";
-"addMoeny.newDesign.cryptoCurrency" = "CRYPTO CURRENCY";
+"addMoney.newDesign.cryptoCurrency" = "CRYPTOCURRENCY";
 "addMoney.newDesign.addMoneyFrom" = "ADD MONEY FROM";
 "addMoney.newDesign.receiveCrypto" = "RECEIVE CRYPTOCURRENCY";
 
