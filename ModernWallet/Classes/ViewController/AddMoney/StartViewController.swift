@@ -40,7 +40,7 @@ class StartViewController: UIViewController {
         case .creditCard:
             return Localize("addMoney.newDesign.creditCard")
         case .cryptoCurrency:
-            return String(Localize("addMoney.newDesign.receiveCrypto").suffix(14))
+            return Localize("addMoney.newDesign.cryptoCurrency")
         }
     }
     
