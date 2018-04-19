@@ -122,13 +122,6 @@ fileprivate extension ObservableType where Self.E == LWPersonalDataModel {
     ) {
         let combinedObservable = Observable.combineLatest(self, countries){(personal: $0, countries: $1)}
         
-//        map{$0.amount}
-//            .filterNil()
-//            .filter{ $0 != 0.0 }
-//            .map{String(describing: $0)}
-//            .bind(to: input.amount)
-//            .disposed(by: disposeBag)
-        
         map{$0.firstName}
             .bind(to: input.firstName)
             .disposed(by: disposeBag)
