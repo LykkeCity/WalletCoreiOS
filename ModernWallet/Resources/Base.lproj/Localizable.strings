@@ -455,6 +455,7 @@
 "history.cell.incomingtransfer" = "Incoming Transfer";
 "history.cell.outgoingtransfer" = "Outgoing Transfer";
 "history.cell.settle" = "Settle";
+"history.cell.limit" = "Limit";
 
 "exchange.blockchain.close" = "CLOSE";
 "exchange.blockchain.title" = "BLOCKCHAIN EXPLORER";
