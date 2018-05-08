@@ -67,7 +67,7 @@ class CashOutEnterAmountViewController: UIViewController {
         baseAssetAmountView.amountFont = UIFont(name: "Geomanist-Light", size: 14.0)
         
         walletViewModel.assetIconUrl
-            .distinctUntilChanged()
+            .distinctUntilChanged{ $0 == $1 }
             .drive(assetImageView.rx.afImage)
             .disposed(by: disposeBag)
         
