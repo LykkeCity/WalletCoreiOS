@@ -20,6 +20,7 @@
 		463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A51F94DB17005930DD /* MenuTableViewController.swift */; };
 		46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */; };
 		464BAA661FBC444000F473FA /* AssetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BAA651FBC444000F473FA /* AssetDetailViewController.swift */; };
+		4650B01020A4E6B30025DBB4 /* AssetDisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650B00F20A4E6B30025DBB4 /* AssetDisclaimerViewController.swift */; };
 		4651CFB61FA32448009BFA45 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */; };
 		4651CFB81FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */; };
 		4651CFBA1FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */; };
@@ -218,6 +219,7 @@
 		463FC5A51F94DB17005930DD /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+PlaceholderColor.swift"; sourceTree = "<group>"; };
 		464BAA651FBC444000F473FA /* AssetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailViewController.swift; sourceTree = "<group>"; };
+		4650B00F20A4E6B30025DBB4 /* AssetDisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDisclaimerViewController.swift; sourceTree = "<group>"; };
 		4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
 		4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyExchanger+Extensions.swift"; sourceTree = "<group>"; };
 		4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TotalBalanceViewModel+Extensions.swift"; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 		11DA9332840C7BEB86E841E1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4650B00E20A4E6940025DBB4 /* DimViewController */,
 				61968D7820A4833D00445ABF /* DimPresentation */,
 				463FC5A91F94DB5C005930DD /* AddMoney */,
 				46B5837D1F94CD6800B475DB /* Buy */,
@@ -531,6 +534,14 @@
 				6667F0AA1FD93F74000737CC /* FinalizePendingRequestsTrigger.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		4650B00E20A4E6940025DBB4 /* DimViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4650B00F20A4E6B30025DBB4 /* AssetDisclaimerViewController.swift */,
+			);
+			path = DimViewController;
 			sourceTree = "<group>";
 		};
 		468CB73F1F9501540066272F /* Fonts */ = {
@@ -1318,6 +1329,7 @@
 				664676D61FCEFD5C006FC340 /* SignUpShakeViewController.swift in Sources */,
 				CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */,
 				C54A01922028B4640030CCE4 /* UIScreen+Extensions.swift in Sources */,
+				4650B01020A4E6B30025DBB4 /* AssetDisclaimerViewController.swift in Sources */,
 				467C20741FB47BEC002A90AE /* DrawerController.swift in Sources */,
 				66512F3D1FE030A800D7B63B /* UIView+Extensions.swift in Sources */,
 				66D83A281FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift in Sources */,
