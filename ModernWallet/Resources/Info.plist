@@ -23,7 +23,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>631</string>
+	<string>632</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -35,6 +35,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Lykke Wallet requests access to your camera to take а selfie, scan documents or QR codes.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Lykke Wallet requests access to your photo library to save а selfie, scan documents or QR codes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Lykke Wallet requests access to your camera to take а selfie, scan documents or QR codes.</string>
 	<key>TestEnvironmentDefinition</key>
