@@ -43,7 +43,7 @@ open class GraphDataViewModel {
         let selectedPeriod = Variable<LWGraphPeriodModel?>(nil)
         let selectedPeriodObservable = selectedPeriod
             .asObservable()
-            .distinctUntilChanged()
+            .distinctUntilChanged{ $0 == $1 } 
             .shareReplay(1)
         
         self.selectedPeriod = selectedPeriod
