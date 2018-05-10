@@ -1042,6 +1042,38 @@ Please check and try again.</string>
             </objects>
             <point key="canvasLocation" x="673" y="1175"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="1hu-9K-UMr">
+            <objects>
+                <viewController storyboardIdentifier="dimViewController" id="pnT-Lb-Qbd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KK6-Vv-GlY"/>
+                        <viewControllerLayoutGuide type="bottom" id="cFY-za-7Um"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7dm-5d-Cmd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3S7-SC-dQH">
+                                <rect key="frame" x="16" y="490" width="343" height="288"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="288" id="3bi-dk-74K"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3S7-SC-dQH" firstAttribute="leading" secondItem="7dm-5d-Cmd" secondAttribute="leadingMargin" id="760-zd-keb"/>
+                            <constraint firstItem="cFY-za-7Um" firstAttribute="top" secondItem="3S7-SC-dQH" secondAttribute="bottom" id="Acv-iD-goD"/>
+                            <constraint firstItem="3S7-SC-dQH" firstAttribute="trailing" secondItem="7dm-5d-Cmd" secondAttribute="trailingMargin" id="D2D-Ao-P9h"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccV-hL-ha1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530.4000000000001" y="1169.7044334975369"/>
+        </scene>
         <!--Empty Wallet View Controller-->
         <scene sceneID="Q9O-hN-V6N">
             <objects>
@@ -1139,6 +1171,7 @@ Please check and try again.</string>
         <image name="filtericon" width="16" height="15"/>
         <image name="list" width="24" height="21"/>
         <image name="listSelected" width="25" height="22"/>
+        <image name="mailIcon" width="17" height="11"/>
         <image name="portfolioRecieveIcon" width="16" height="13"/>
         <image name="sellIcon" width="15" height="15"/>
         <image name="sendIcon" width="14" height="15"/>

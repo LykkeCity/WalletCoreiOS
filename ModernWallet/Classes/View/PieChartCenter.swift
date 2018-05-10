@@ -50,15 +50,3 @@ class PieChartCenter: UIView {
     }
 
 }
-
-
-extension UIView {
-    func loadViewFromNib(_ nimName: String) -> UIView {
-        
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: nimName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        
-        return view
-    }
-}

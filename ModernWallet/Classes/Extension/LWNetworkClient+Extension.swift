@@ -52,8 +52,13 @@ extension LWNetworkTemplate: LWAuthManagerDelegate {
                 return
             }
             
-            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
-            let backupVC = storyboard.instantiateViewController(withIdentifier: "BackupPrivateKey")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let backupVC = storyboard.instantiateViewController(withIdentifier: "dimViewController")
+            
+            backupVC.transitioningDelegate = DimPresentationManager.shared
+            backupVC.modalPresentationStyle = .custom
+//            backupVC.dialogMessage = "Reset Filters"
+            
             visibleVC.present(backupVC, animated: true)
         }
     }
