@@ -1131,6 +1131,12 @@ Please check and try again.</string>
                                             <constraint firstAttribute="height" constant="60" id="akp-CH-HfH"/>
                                         </constraints>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqE-PB-hAl">
+                                        <rect key="frame" x="12" y="68.999999999999972" width="351" height="17"/>
+                                        <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1141,6 +1147,7 @@ Please check and try again.</string>
                                     <constraint firstItem="cn1-u4-U7P" firstAttribute="top" secondItem="Wey-D2-dBf" secondAttribute="bottom" constant="8" id="D0A-fx-DVT"/>
                                     <constraint firstItem="OCV-IZ-hnZ" firstAttribute="top" secondItem="cn1-u4-U7P" secondAttribute="bottom" constant="8" id="DZE-86-u4g"/>
                                     <constraint firstAttribute="trailing" secondItem="SRI-XG-qx6" secondAttribute="trailing" constant="8" id="E3k-dG-0Sh"/>
+                                    <constraint firstItem="lqE-PB-hAl" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="12" id="J5G-pJ-D9s"/>
                                     <constraint firstItem="8Si-lq-j5n" firstAttribute="centerX" secondItem="3S7-SC-dQH" secondAttribute="centerX" id="Jyd-Ze-Mq4"/>
                                     <constraint firstItem="Ax0-5c-WaC" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" id="K5i-tE-K9N"/>
                                     <constraint firstAttribute="trailing" secondItem="Wey-D2-dBf" secondAttribute="trailing" constant="8" id="LQC-bs-0K3"/>
@@ -1151,6 +1158,8 @@ Please check and try again.</string>
                                     <constraint firstAttribute="bottom" secondItem="Ax0-5c-WaC" secondAttribute="bottom" id="lKN-iJ-25R"/>
                                     <constraint firstItem="Wey-D2-dBf" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="8" id="lSs-oe-V43"/>
                                     <constraint firstAttribute="trailing" secondItem="OCV-IZ-hnZ" secondAttribute="trailing" constant="12" id="oiU-Ey-61D"/>
+                                    <constraint firstAttribute="trailing" secondItem="lqE-PB-hAl" secondAttribute="trailing" constant="12" id="rN0-g6-Y9g"/>
+                                    <constraint firstItem="lqE-PB-hAl" firstAttribute="top" secondItem="SRI-XG-qx6" secondAttribute="bottom" constant="12" id="we8-UU-IOy"/>
                                     <constraint firstItem="OCV-IZ-hnZ" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="12" id="wvE-J5-LOC"/>
                                 </constraints>
                             </view>
@@ -1167,6 +1176,7 @@ Please check and try again.</string>
                         <outlet property="acceptedButton" destination="gkM-3S-8BH" id="9Mb-qO-bUw"/>
                         <outlet property="cancel" destination="P8t-oc-N00" id="wco-Kw-65T"/>
                         <outlet property="continue" destination="b7e-Nc-75u" id="Uxr-zN-G1E"/>
+                        <outlet property="disclaimerLabel" destination="lqE-PB-hAl" id="Ixn-9n-DcX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccV-hL-ha1" userLabel="First Responder" sceneMemberID="firstResponder"/>

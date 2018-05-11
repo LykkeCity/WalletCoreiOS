@@ -67,6 +67,7 @@
 		61968D7A20A4835500445ABF /* DimPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7920A4835500445ABF /* DimPresentationManager.swift */; };
 		61968D7C20A4836D00445ABF /* DimPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7B20A4836D00445ABF /* DimPresentationController.swift */; };
 		61968D7E20A4837E00445ABF /* DimPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7D20A4837E00445ABF /* DimPresentationAnimator.swift */; };
+		61968D9920A594B400445ABF /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D9820A594B400445ABF /* UILabel+Extensions.swift */; };
 		6197A3BB1EE99AB1008ECF5A /* StrokePieChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3BA1EE99AB1008ECF5A /* StrokePieChartRenderer.swift */; };
 		6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */; };
 		6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */; };
@@ -268,6 +269,7 @@
 		61968D7920A4835500445ABF /* DimPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationManager.swift; sourceTree = "<group>"; };
 		61968D7B20A4836D00445ABF /* DimPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationController.swift; sourceTree = "<group>"; };
 		61968D7D20A4837E00445ABF /* DimPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationAnimator.swift; sourceTree = "<group>"; };
+		61968D9820A594B400445ABF /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		6197A3BA1EE99AB1008ECF5A /* StrokePieChartRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokePieChartRenderer.swift; sourceTree = "<group>"; };
 		6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieValueFormatter.swift; sourceTree = "<group>"; };
 		6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartCenter.swift; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */,
 				C56FD0D52023E93D00596709 /* Koyomi+Rx.swift */,
 				C54A01912028B4640030CCE4 /* UIScreen+Extensions.swift */,
+				61968D9820A594B400445ABF /* UILabel+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1269,6 +1272,7 @@
 				4655386C1FB5B5B7007CF395 /* AppDelegate.swift in Sources */,
 				CC9458881F05310300676249 /* AddMoneyCCStep2ViewController.swift in Sources */,
 				C182E29220497CC7005772C2 /* MarketCapViewController.swift in Sources */,
+				61968D9920A594B400445ABF /* UILabel+Extensions.swift in Sources */,
 				614214191F78F9C400E2F524 /* KYCProtocols.swift in Sources */,
 				CC9458841F0400A000676249 /* AddMoneyCCStep1ViewController.swift in Sources */,
 				615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */,

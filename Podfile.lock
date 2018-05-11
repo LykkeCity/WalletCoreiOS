@@ -140,7 +140,7 @@ DEPENDENCIES:
   - XLPagerTabStrip (~> 7.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - Alamofire
     - AlamofireImage
@@ -250,4 +250,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 660296f5824a72d4a26d530dfc3b6635ed984e91
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
