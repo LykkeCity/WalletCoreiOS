@@ -64,5 +64,4 @@ public class LWPacketCashOutSwift: LWAuthorizePacket {
     override public var type: GDXRESTPacketType {
         return .POST
     }
-
 }

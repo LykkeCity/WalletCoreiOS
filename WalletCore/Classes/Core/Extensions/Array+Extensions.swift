@@ -46,3 +46,10 @@ extension Sequence {
         return result
     }
 }
+
+extension Collection {
+    
+    subscript (opt index: Index) -> Element? {
+        return self.indices.contains(index) ? self[index] : nil
+    }
+}
