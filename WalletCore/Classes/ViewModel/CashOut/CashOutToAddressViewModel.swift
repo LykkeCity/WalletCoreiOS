@@ -50,4 +50,12 @@ public class CashOutToAddressViewModel {
             .filterNil()
             .asDriver(onErrorJustReturn: [:])
     }
+    
+    public var isValidAddressAndAmount : Observable<Bool>{
+        return Observable.combineLatest( self.address.asObservable() , self.amount.asObservable(), resultSelector:
+            {(address, amount) -> Bool in
+                return address.characters.count > 0
+                    && amount > 0
+        })
+    }
 }
