@@ -134,6 +134,9 @@ fileprivate extension CashOutToAddressViewModel {
                 .filterNil()
                 .bind(to: assetId),
             
+            isValidAddressAndAmount
+                .bind(to: vc.submitButton.rx.isEnabled),
+            
             vc.submitButton.rx.tap
                 .flatMap { _ in return PinViewController.presentOrderPinViewController(from: vc, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
                 .bind(to: vc.confirmTrading),
