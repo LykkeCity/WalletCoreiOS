@@ -64,6 +64,7 @@ class SignUpFillPhoneFormController: FormController {
             .disposed(by: disposeBag)
         
         button.rx.tap
+            .throttle(1.0, scheduler: MainScheduler.instance)
             .bind(to: sendPhoneTrigger)
             .disposed(by: disposeBag)
         
