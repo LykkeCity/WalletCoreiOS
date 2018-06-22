@@ -122,9 +122,13 @@ fileprivate extension CashOutToAddressViewModel {
     func bind(toViewController vc: SendToWalletViewController) -> [Disposable] {
         return [
             vc.amountTextField.rx.text.asObservable()
-                .replaceNilWith("0.0")
-                .map{ $0.decimalValue }
-                .filterNil()
+                .map{
+                    guard let value = $0?.decimalValue else {
+                        return 0.0
+                    }
+                    
+                    return value
+                }
                 .bind(to: amount),
             
             vc.walletAddressTextField.rx.textInput <-> address,
@@ -135,7 +139,8 @@ fileprivate extension CashOutToAddressViewModel {
                 .bind(to: assetId),
             
             isValidAddressAndAmount
-                .bind(to: vc.submitButton.rx.isEnabled),
+                .asDriver(onErrorJustReturn: false)
+                .drive(vc.submitButton.rx.isEnabled),
             
             vc.submitButton.rx.tap
                 .flatMap { _ in return PinViewController.presentOrderPinViewController(from: vc, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
