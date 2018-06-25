@@ -143,6 +143,7 @@ SINGLETON_DECLARE
 + (NSString *)displayIdForAssetId:(NSString *)assetId;
 
 +(LWAssetModel *) assetById:(NSString *) assetId;
++ (LWAssetModel *)assetByName:(NSString *)assetName;
 + (NSNumber *)accuracyForAssetWithId:(NSString *)identity;
 
 + (LWSpotWallet *)walletForAssetId:(NSString *)assetId;

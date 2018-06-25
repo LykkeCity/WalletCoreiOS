@@ -227,6 +227,15 @@ SINGLETON_INIT {
   return nil;
 }
 
++ (LWAssetModel *)assetByName:(NSString *)assetName {
+    for(LWAssetModel *m in [LWCache instance].allAssets) {
+        if([m.name isEqualToString:assetName] || [m.identity isEqualToString:assetName]) {
+            return m;
+        }
+    }
+    return nil;
+}
+
 + (NSNumber *)accuracyForAssetWithId:(NSString *)identity {
   for (LWAssetModel *asset in [LWCache instance].allAssets) {
     if ([asset.identity isEqualToString:identity]) {
