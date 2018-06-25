@@ -23,16 +23,6 @@ public class LWPacketAssetDisclaimersApprove: LWAuthorizePacket {
         fatalError("init(json:) has not been implemented")
     }
     
-    override public func parseResponse(_ response: Any!, error: Error!) {
-        super.parseResponse(response, error: error)
-        
-        guard !isRejected else { return }
-        
-        if let result = self.getResut() {
-            
-        }
-    }
-    
     override public var urlRelative: String! {
         return "AssetDisclaimers/\(disclaimerId)/approve"
     }
