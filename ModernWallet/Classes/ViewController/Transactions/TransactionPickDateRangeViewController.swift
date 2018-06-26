@@ -38,11 +38,16 @@ class TransactionPickDateRangeViewController: UIViewController {
             .bind(to: filterViewModel.startDate)
             .disposed(by: disposeBag)
         
+        self.filterViewModel?.isEnableEndDateButton
+            .drive(endDateButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
         endDateButton.rx.tap
             .flatMap { [weak self] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: self?.filterViewModel?.endDate.value) }
             .do(onNext: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
+            .filter{date in return date?.compare((self.filterViewModel?.startDate.value)!) != ComparisonResult.orderedAscending }
             .bind(to: filterViewModel.endDate)
             .disposed(by: disposeBag)
 
