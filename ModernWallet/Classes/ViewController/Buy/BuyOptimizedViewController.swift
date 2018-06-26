@@ -187,8 +187,8 @@ class BuyOptimizedViewController: UIViewController {
                 guard success else { return }
                 FinalizePendingRequestsTrigger.instance.finalizeNow()
                 guard let vc = self else { return }
-                vc.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
-                vc.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
+                vc.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
+                vc.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
                 vc.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
             })
             .disposed(by: disposeBag)
@@ -292,8 +292,8 @@ fileprivate extension OffchainTradeViewModel {
         return [
             errors.asObservable().bind(to: vc.rx.error),
             success.drive(onNext: {[weak vc] _ in
-                vc?.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
-                vc?.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "")
+                vc?.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
+                vc?.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
             }),
             success.drive(onNext: {[weak vc] _ in
                 FinalizePendingRequestsTrigger.instance.finalizeNow()
