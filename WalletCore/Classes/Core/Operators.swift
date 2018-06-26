@@ -80,7 +80,7 @@ public func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variab
             let nonMarkedTextValue = nonMarkedText(base)
             
             if let nonMarkedTextValue = nonMarkedTextValue, nonMarkedTextValue != variable.value.value {
-                variable.value = BuyOptimizedViewModel.Amount(autoUpdated: false, value: nonMarkedTextValue)
+                variable.value = BuyOptimizedViewModel.Amount(autoUpdated: false, value: nonMarkedTextValue, showErrorMsg: true)
             }
             }, onCompleted:  {
                 bindToUIDisposable.dispose()
