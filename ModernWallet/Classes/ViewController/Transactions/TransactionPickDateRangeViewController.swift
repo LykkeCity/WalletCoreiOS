@@ -35,11 +35,11 @@ class TransactionPickDateRangeViewController: UIViewController {
             .do(onNext: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
+            .filterNil()
+            .filter{date in
+                return self.compareDates(isStartDate: true, date: date)
+            }
             .bind(to: filterViewModel.startDate)
-            .disposed(by: disposeBag)
-        
-        self.filterViewModel?.isEnableEndDateButton
-            .drive(endDateButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         endDateButton.rx.tap
@@ -47,7 +47,10 @@ class TransactionPickDateRangeViewController: UIViewController {
             .do(onNext: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
-            .filter{date in return date?.compare((self.filterViewModel?.startDate.value)!) != ComparisonResult.orderedAscending }
+            .filterNil()
+            .filter{date in
+                return self.compareDates(isStartDate: false, date: date)
+            }
             .bind(to: filterViewModel.endDate)
             .disposed(by: disposeBag)
 
@@ -64,6 +67,27 @@ class TransactionPickDateRangeViewController: UIViewController {
             })
             .bind(to: filterViewModel.filterDatePair)
             .disposed(by: disposeBag)
+    }
+    
+    func compareDates(isStartDate: Bool, date: Date) -> Bool  {
+
+        var check: Bool
+        if (isStartDate) {
+            guard let endDate = (self.filterViewModel?.endDate.value) else { return true}
+            check = date.compare(endDate) != ComparisonResult.orderedDescending
+            if(!check) {
+                self.view.makeToast(Localize("filter.newDesign.toast.message.startDate"))
+            }
+        }
+        
+        else {
+            guard let startDate = (self.filterViewModel?.startDate.value) else { return true}
+            check = date.compare(startDate) != ComparisonResult.orderedAscending
+            if(!check) {
+                self.view.makeToast(Localize("filter.newDesign.toast.message.endDate"))
+            }
+        }
+        return check
     }
 }
 

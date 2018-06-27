@@ -1041,3 +1041,6 @@
 "send.newDesign.paste" = "PASTE";
 "send.newDesign.navigationTitle" = "TRANSFER";
 "send.newDesign.confirm.message" = "Cashout completed";
+
+"filter.newDesign.toast.message.startDate" = "Start date should be before end date";
+"filter.newDesign.toast.message.endDate" = "End date should be after start date";
