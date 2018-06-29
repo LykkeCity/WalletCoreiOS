@@ -230,7 +230,7 @@ extension AddMoneyCCStep1ViewController: InputForm {
             addressField,
             cityField,
             zipField,
-            codeField,
+//            codeField,
             phoneField
         ]
     }
