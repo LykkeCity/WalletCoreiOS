@@ -89,7 +89,7 @@ public class OffchainService {
     }
     
     public func cashOutSwift(amount: Decimal, fromAsset asset: LWAssetModel, toBank bankName: String,
-                             iban: String, bic: String, accountHolder: String, accountHolderAddress: String) -> Observable<ApiResult<LWModelOffchainResult>> {
+                             iban: String, bic: String, accountHolder: String, accountHolderAddress: String, accountHolderCountry: String, accountHolderCountryCode: String, accountHolderZipCode: String, accountHolderCity: String) -> Observable<ApiResult<LWModelOffchainResult>> {
         
         //1. get channel key for asset
         let offchainChannelKey = dependency.authManager.offchainChannelKey.request(withParams: asset.identity)
@@ -110,6 +110,10 @@ public class OffchainService {
                 bic: bic,
                 accountHolder: accountHolder,
                 accountHolderAddress: accountHolderAddress,
+                accountHolderCountry: accountHolderCountry,
+                accountHolderCountryCode: accountHolderCountryCode,
+                accountHolderZipCode: accountHolderZipCode,
+                accountHolderCity: accountHolderCity,
                 prevTempPrivateKey: decryptedKey)}
             .flatMapLatest { [dependency] data in
                 return dependency.authManager.offchainCashOutSwift.request(withParams: data)

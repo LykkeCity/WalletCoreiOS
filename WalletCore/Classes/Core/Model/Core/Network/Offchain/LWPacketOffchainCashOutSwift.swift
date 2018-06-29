@@ -18,6 +18,10 @@ public class LWPacketOffchainCashOutSwift: LWAuthorizePacket {
         let bic: String
         let accountHolder: String
         let accountHolderAddress: String
+        let accountHolderCountry: String
+        let accountHolderCountryCode: String
+        let accountHolderZipCode: String
+        let accountHolderCity: String
         let prevTempPrivateKey: String
     }
     
@@ -52,6 +56,10 @@ public class LWPacketOffchainCashOutSwift: LWAuthorizePacket {
             "AccName": body.accountHolder,
             "BankName": body.bankName,
             "AccHolderAddress": body.accountHolderAddress,
+            "AccHolderCountry": body.accountHolderCountry,
+            "AccHolderCountryCode": body.accountHolderCountryCode,
+            "AccHolderZipCode": body.accountHolderZipCode,
+            "AccHolderCity": body.accountHolderCity,
             "PrevTempPrivateKey": body.prevTempPrivateKey
         ]
     }

@@ -19,6 +19,10 @@ public class CashOutService {
         public let bic: String
         public let accountHolder: String
         public let accountHolderAddress: String
+        public let accountHolderCountry: String
+        public let accountHolderCountryCode: String
+        public let accountHolderZipCode: String
+        public let accountHolderCity: String
         public let reason: String
         public let notes: String
     }
@@ -51,7 +55,11 @@ public class CashOutService {
                                             iban: data.iban,
                                             bic: data.bic,
                                             accountHolder: data.accountHolder,
-                                            accountHolderAddress: data.accountHolderAddress)
+                                            accountHolderAddress: data.accountHolderAddress,
+                                            accountHolderCountry: data.accountHolderCountry,
+                                            accountHolderCountryCode: data.accountHolderCountryCode,
+                                            accountHolderZipCode: data.accountHolderZipCode,
+                                            accountHolderCity: data.accountHolderCity)
             .mapToCashOutSwiftResult(withData: data)
     }
     
@@ -143,7 +151,11 @@ fileprivate extension LWModelCashOutSwiftResult {
                   bankName: data.bankName,
                   iban: data.iban,
                   bic: data.bic,
-                  accountHolder: data.accountHolder)
+                  accountHolder: data.accountHolder,
+                  accountHolderCountry: data.accountHolderCountry,
+                  accountHolderCountryCode: data.accountHolderCountryCode,
+                  accountHolderZipCode: data.accountHolderZipCode,
+                  accountHolderCity: data.accountHolderCity)
     }
     
 }

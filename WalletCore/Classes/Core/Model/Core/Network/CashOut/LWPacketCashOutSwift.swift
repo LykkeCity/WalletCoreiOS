@@ -18,6 +18,10 @@ public class LWPacketCashOutSwift: LWAuthorizePacket {
         let bic: String
         let accountHolder: String
         let accountHolderAddress: String
+        let accountHolderCountry: String
+        let accountHolderCountryCode: String
+        let accountHolderZipCode: String
+        let accountHolderCity: String
     }
     
     public var body: Body
@@ -45,7 +49,11 @@ public class LWPacketCashOutSwift: LWAuthorizePacket {
             "AccName": body.accountHolder,
             "Amount": body.amount,
             "BankName": body.bankName,
-            "AccHolderAddress": body.accountHolderAddress
+            "AccHolderAddress": body.accountHolderAddress,
+            "AccHolderCountry": body.accountHolderCountry,
+            "AccHolderCountryCode": body.accountHolderCountryCode,
+            "AccHolderZipCode": body.accountHolderZipCode,
+            "AccHolderCity": body.accountHolderCity
         ]
     }
     

@@ -76,6 +76,10 @@ public class CashOutViewModel {
                                                   bic: bankAccountViewModel.bic.value,
                                                   accountHolder: bankAccountViewModel.accountHolder.value,
                                                   accountHolderAddress: bankAccountViewModel.accountHolderAddress.value,
+                                                  accountHolderCountry: bankAccountViewModel.accountHolderCountry.value,
+                                                  accountHolderCountryCode: bankAccountViewModel.accountHolderCountryCode.value,
+                                                  accountHolderZipCode: bankAccountViewModel.accountHolderZipCode.value,
+                                                  accountHolderCity: bankAccountViewModel.accountHolderCity.value,
                                                   reason: generalViewModel.transactionReason.value,
                                                   notes: generalViewModel.additionalNotes.value)
             }
