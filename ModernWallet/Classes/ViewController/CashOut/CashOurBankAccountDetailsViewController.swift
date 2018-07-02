@@ -141,7 +141,6 @@ extension CashOurBankAccountDetailsViewController: InputForm {
             bicTextField,
             accountHolderTextField,
             currencyTextField,
-            accountHolderCountryTextField,
             accountHolderCountryCodeTextField,
             accountHolderZipCodeTextField,
             accountHolderCityTextField
