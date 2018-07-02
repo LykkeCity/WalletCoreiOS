@@ -16,9 +16,9 @@ class TransactionPickDateRangeViewController: UIViewController {
     @IBOutlet weak var startDateButton: UIButton!
     @IBOutlet weak var endDateButton: UIButton!
     @IBOutlet weak var setFilterButton: UIButton!
-
+    
     var filterViewModel: TransactionFilterViewModel?
-
+    
     private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -28,66 +28,35 @@ class TransactionPickDateRangeViewController: UIViewController {
         
         filterViewModel.bind(toVC: self)
             .disposed(by: disposeBag)
-
+        
         // Show calendar screen after tapping any of the buttons
         startDateButton.rx.tap
-            .flatMap { [weak self] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: self?.filterViewModel?.startDate.value) }
+            .flatMap { [weak self] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: self?.filterViewModel?.startDateValue) }
             .do(onNext: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
-            .filterNil()
-            .filter{date in
-                return self.compareDates(isStartDate: true, date: date)
+            .bind{ [filterViewModel] date in
+                filterViewModel.startDateValue = date
             }
-            .bind(to: filterViewModel.startDate)
             .disposed(by: disposeBag)
         
         endDateButton.rx.tap
-            .flatMap { [weak self] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: self?.filterViewModel?.endDate.value) }
+            .flatMap { [weak self] in return TransactionCalendarViewController.pushCalendarViewController(from: self, withDate: self?.filterViewModel?.endDateValue) }
             .do(onNext: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
-            .filterNil()
-            .filter{date in
-                return self.compareDates(isStartDate: false, date: date)
+            .bind{ [filterViewModel] date in
+                filterViewModel.endDateValue = date
             }
-            .bind(to: filterViewModel.endDate)
             .disposed(by: disposeBag)
-
-        let datesObservable = Observable.combineLatest(filterViewModel.startDate
-                                                        .asObservable()
-                                                        .startWith(nil),
-                                                       filterViewModel.endDate
-                                                        .asObservable()
-                                                        .startWith(nil)) { (start: $0, end: $1 ) }
-        setFilterButton.rx.tap
-            .withLatestFrom(datesObservable)
+        
+        setFilterButton.rx.tap.asObservable()
+            .map{ [filterViewModel] in (start: filterViewModel.startDateValue, end: filterViewModel.endDateValue)}
             .do(onNext: { [weak self] _ in
                 self?.navigationController?.dismiss(animated: true)
             })
             .bind(to: filterViewModel.filterDatePair)
             .disposed(by: disposeBag)
-    }
-    
-    func compareDates(isStartDate: Bool, date: Date) -> Bool  {
-
-        var check: Bool
-        if (isStartDate) {
-            guard let endDate = (self.filterViewModel?.endDate.value) else { return true}
-            check = date.compare(endDate) != ComparisonResult.orderedDescending
-            if(!check) {
-                self.view.makeToast(Localize("filter.newDesign.toast.message.startDate"))
-            }
-        }
-        
-        else {
-            guard let startDate = (self.filterViewModel?.startDate.value) else { return true}
-            check = date.compare(startDate) != ComparisonResult.orderedAscending
-            if(!check) {
-                self.view.makeToast(Localize("filter.newDesign.toast.message.endDate"))
-            }
-        }
-        return check
     }
 }
 
@@ -95,7 +64,8 @@ extension TransactionFilterViewModel {
     func bind(toVC viewController: TransactionPickDateRangeViewController) -> [Disposable] {
         return [
             startButton.drive(viewController.startDateButton.rx.title),
-            endButton.drive(viewController.endDateButton.rx.title)
+            endButton.drive(viewController.endDateButton.rx.title),
+            errors.drive(viewController.rx.error)
         ]
     }
 }

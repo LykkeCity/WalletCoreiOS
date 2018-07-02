@@ -1042,5 +1042,5 @@
 "send.newDesign.navigationTitle" = "TRANSFER";
 "send.newDesign.confirm.message" = "Cashout completed";
 
-"filter.newDesign.toast.message.startDate" = "Start date should be before end date";
-"filter.newDesign.toast.message.endDate" = "End date should be after start date";
+"filter.newDesign.error.message.startDate" = "Start date should be before end date";
+"filter.newDesign.error.message.endDate" = "End date should be after start date";
