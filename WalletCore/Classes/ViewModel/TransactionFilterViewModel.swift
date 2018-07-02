@@ -12,10 +12,10 @@ import RxCocoa
 open class TransactionFilterViewModel {
     
     /// Starting date to filter (X < transaction dates)
-    public let startDate = Variable<Date?>(nil)
+    fileprivate let startDate = Variable<Date?>(nil)
     
     /// End date to filter (transaction dates < X)
-    public let endDate = Variable<Date?>(nil)
+    fileprivate let endDate = Variable<Date?>(nil)
     
     /// Update the `from` button's title
     public let startButton: Driver<String>
@@ -31,12 +31,16 @@ open class TransactionFilterViewModel {
     
     private let disposeBag = DisposeBag()
     
+    fileprivate let errorsSubject = PublishSubject<[AnyHashable: Any]>()
+    
+    public let errors: Driver<[AnyHashable: Any]>
+    
     public init(formatter: TransactionFilterFormatterProtocol) {
         
         let startDateObservable = startDate.asObservable().share()
         let endDateObservable = endDate.asObservable().share()
         let filterDatePairObservable = filterDatePair.asObservable().share()
-
+        
         self.startButton = startDateObservable
             .mapDate(withFormatter: formatter)
             .asDriver(onErrorJustReturn: "")
@@ -44,7 +48,7 @@ open class TransactionFilterViewModel {
         self.endButton = endDateObservable
             .mapDate(withFormatter: formatter)
             .asDriver(onErrorJustReturn: "")
-
+        
         self.filterDescription = filterDatePair.asObservable()
             .mapCombination(withFormatter: formatter)
             .asDriver(onErrorJustReturn: NSAttributedString(string: ""))
@@ -59,6 +63,59 @@ open class TransactionFilterViewModel {
             .map({ $0.end })
             .bind(to: endDate)
             .disposed(by: disposeBag)
+        
+        self.errors = errorsSubject.asDriver(onErrorJustReturn: [:])
+    }
+}
+
+public extension TransactionFilterViewModel {
+    var startDateValue: Date? {
+        
+        get {
+            return startDate.value
+        }
+        
+        set {
+            var check = self.compareDate(startDate: newValue, withDate:endDateValue)
+            
+            if(check) {
+                startDate.value = newValue
+            }
+            else {
+                self.errorsSubject.onNext(["Message": Localize("filter.newDesign.error.message.startDate")])
+            }
+        }
+    }
+    
+    var endDateValue: Date? {
+        
+        get {
+            return endDate.value
+        }
+        
+        set {
+            var check = self.compareDate(startDate: startDateValue, withDate: newValue)
+            
+            if(check) {
+                endDate.value = newValue
+            }
+            else {
+                self.errorsSubject.onNext(["Message": Localize("filter.newDesign.error.message.endDate")])
+            }
+            
+        }
+    }
+}
+
+//Date validation
+public extension TransactionFilterViewModel {
+    
+    func compareDate(startDate: Date?, withDate endDate:Date?) -> Bool {
+        
+        guard let start = (startDate.value) else { return true}
+        guard let end = (endDate.value) else { return true}
+        
+        return start.compare(end) != ComparisonResult.orderedDescending
     }
 }
 
