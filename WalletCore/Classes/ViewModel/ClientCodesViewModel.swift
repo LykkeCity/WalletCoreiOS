@@ -33,19 +33,19 @@ open class ClientCodesViewModel {
     ) {
         let getClientCodeObservable = triggerForSMSCode
             .flatMapLatest{_ in dependency.authManager.getClientCodes.request()}
-            .shareReplay(1)
+            .share()
 
         let postClientCodesObservable = smsCodeForRetrieveKey
             .flatMapLatest{smsCode in
                 dependency.authManager.postClientCodes.request(withParams: smsCode)
             }
-            .shareReplay(1)
+            .share()
         
         let encodeMainKeyObservable = postClientCodesObservable.filterSuccess()
             .flatMapLatest {result in
                 dependency.authManager.encodeMainKey.request(withParams: result.accessToken)
             }
-            .shareReplay(1)
+            .share()
         
         //call pin security and then retry getting main key
         let validatePin = encodeMainKeyObservable
@@ -53,14 +53,14 @@ open class ClientCodesViewModel {
             .flatMap{
                 dependency.authManager.pinget.request(withParams: dependency.keychainManager.pin() ?? "")
             }
-            .shareReplay(1)
+            .share()
         
         let retriedEncodeMainKey = validatePin.filterSuccess()
             .withLatestFrom(postClientCodesObservable.filterSuccess())
             .flatMap{result in
                 dependency.authManager.encodeMainKey.request(withParams: result.accessToken)
             }
-            .shareReplay(1)
+            .share()
         
         self.encodeMainKeyObservable = Observable.merge(
             encodeMainKeyObservable.filterSuccess(),
