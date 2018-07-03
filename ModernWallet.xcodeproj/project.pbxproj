@@ -191,6 +191,7 @@
 		CCDB25791EF42B2E000D590F /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCDB25781EF42B2D000D590F /* SignIn.storyboard */; };
 		CCED3BF11EE9811900535EE8 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCED3BEF1EE9811900535EE8 /* MenuTableViewCell.swift */; };
 		CF66327B1C1768B0004353F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF66327D1C1768B0004353F5 /* Localizable.strings */; };
+		E704F76320EB4BF100D121B1 /* LimitedHoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E704F76220EB4BF100D121B1 /* LimitedHoshiTextField.swift */; };
 		EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */; };
 		EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6632431C175B54004353F5 /* Assets.xcassets */; };
 		EC9C947D1C899019006FD46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */; };
@@ -392,6 +393,7 @@
 		CF6632431C175B54004353F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF6632441C175B54004353F5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF66327C1C1768B0004353F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E704F76220EB4BF100D121B1 /* LimitedHoshiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedHoshiTextField.swift; sourceTree = "<group>"; };
 		EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -926,6 +928,7 @@
 				663628601FD066E10041CDE3 /* IconOverTextButton.swift */,
 				66C83D401FC2DC1600428527 /* SubmitButton.swift */,
 				66A229391FC31E2500C4D38A /* BackgroundView.swift */,
+				E704F76220EB4BF100D121B1 /* LimitedHoshiTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1298,6 +1301,7 @@
 				66448AFD1FCEB59200978535 /* SignInConfirmPhoneFormController.swift in Sources */,
 				6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */,
 				870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */,
+				E704F76320EB4BF100D121B1 /* LimitedHoshiTextField.swift in Sources */,
 				66C83D441FC3089600428527 /* BackupPrivateKeyViewController.swift in Sources */,
 				BE53DFD9202C538100D03C3F /* AddMoneyBaseViewController.swift in Sources */,
 				612E59201F7A93EB0018476B /* KYCDocumentStatus+Extensions.swift in Sources */,

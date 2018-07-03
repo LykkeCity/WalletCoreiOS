@@ -163,19 +163,19 @@
                                         <rect key="frame" x="0.0" y="2" width="414" height="665"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0IX-cQ-nkx">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="268.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="RHc-Hs-cYX">
-                                                        <rect key="frame" x="36" y="25.999999999999986" width="342" height="216.66666666666663"/>
+                                                        <rect key="frame" x="36" y="26" width="342" height="198"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lTV-It-B9i">
-                                                                <rect key="frame" x="133.33333333333334" y="0.0" width="75.666666666666657" height="68.666666666666671"/>
+                                                                <rect key="frame" x="139.33333333333334" y="0.0" width="63.666666666666657" height="66"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="enP-NW-86i">
-                                                                        <rect key="frame" x="0.33333333333334281" y="0.0" width="75.666666666666671" height="38"/>
+                                                                        <rect key="frame" x="0.33333333333333925" y="0.0" width="63.666666666666657" height="38"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="SUCCESS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HI-kC-8ly" userLabel="SUCCESS">
-                                                                        <rect key="frame" x="0.33333333333334281" y="50" width="75.666666666666671" height="18.666666666666671"/>
+                                                                        <rect key="frame" x="0.33333333333333925" y="50" width="63.666666666666657" height="16"/>
                                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -183,13 +183,13 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Lykke bank account details have been sent to your email address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQh-4h-ccr">
-                                                                <rect key="frame" x="0.0" y="86.666666666666671" width="342" height="37.333333333333329"/>
+                                                                <rect key="frame" x="5.3333333333333428" y="84" width="331.33333333333326" height="32"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eK2-tv-gqR">
-                                                                <rect key="frame" x="16" y="142" width="310" height="74.666666666666686"/>
+                                                                <rect key="frame" x="16" y="134" width="310" height="64"/>
                                                                 <string key="text">Once you have instructed your bank to wire money to the Lykke Bank then please allow 3-5 working days for your %s bank transfer to appear in your Lykke Wallet.</string>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -635,13 +635,13 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AOF-5q-lXp">
-                                                <rect key="frame" x="182.33333333333334" y="25" width="50.666666666666657" height="20"/>
+                                                <rect key="frame" x="184.33333333333334" y="25" width="46.666666666666657" height="20"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backArrow" translatesAutoresizingMaskIntoConstraints="NO" id="iEd-Ae-0TS">
                                                         <rect key="frame" x="0.0" y="0.0" width="10" height="20"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="BACK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VY-ah-P67">
-                                                        <rect key="frame" x="17.999999999999996" y="0.0" width="32.666666666666657" height="20"/>
+                                                        <rect key="frame" x="18" y="0.0" width="28.666666666666671" height="20"/>
                                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="12"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -969,7 +969,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IBa-27-DfJ" userLabel="First Last Name">
                                                         <rect key="frame" x="0.0" y="0.0" width="314" height="42.666666666666664"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="FIRST NAME" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="jip-Il-jSZ" userLabel="First Name" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="FIRST NAME" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="jip-Il-jSZ" userLabel="First Name" customClass="LimitedHoshiTextField" customModule="ModernMoney" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="78.666666666666671" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050283845803" green="1" blue="0.94993412857724202" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -989,12 +989,15 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
                                                                         <real key="value" value="0.59999999999999998"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                                        <integer key="value" value="40"/>
+                                                                    </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="DWh-4p-WB8" id="Sq9-7a-PWQ"/>
                                                                 </connections>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="LAST NAME" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="erd-Ox-0e6" userLabel="LAST NAME" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="LAST NAME" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="erd-Ox-0e6" userLabel="LAST NAME" customClass="LimitedHoshiTextField" customModule="ModernMoney" customModuleProvider="target">
                                                                 <rect key="frame" x="82.666666666666643" y="0.0" width="231.33333333333337" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1027,7 +1030,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="TJP-aM-txk" userLabel="Address">
                                                         <rect key="frame" x="0.0" y="50.666666666666671" width="314" height="43"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ADDRESS" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Ja9-WX-bHS" userLabel="ADDRESS" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ADDRESS" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Ja9-WX-bHS" userLabel="ADDRESS" customClass="LimitedHoshiTextField" customModule="ModernMoney" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="314" height="43"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1047,6 +1050,9 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
                                                                         <real key="value" value="0.59999999999999998"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                                        <integer key="value" value="110"/>
+                                                                    </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="DWh-4p-WB8" id="Ncj-qo-O9H"/>
@@ -1057,7 +1063,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="lmR-Vx-gRv" userLabel="City Zip Country">
                                                         <rect key="frame" x="0.0" y="101.66666666666667" width="314" height="42.666666666666671"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CITY" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="x3i-Jj-aRz" userLabel="City" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CITY" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="x3i-Jj-aRz" userLabel="City" customClass="LimitedHoshiTextField" customModule="ModernMoney" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="149.66666666666666" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1077,12 +1083,15 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
                                                                         <real key="value" value="0.59999999999999998"/>
                                                                     </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                                        <integer key="value" value="50"/>
+                                                                    </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="DWh-4p-WB8" id="Tbr-Rp-gOl"/>
                                                                 </connections>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ZIP" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="G3h-X6-3Cb" userLabel="Zip" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ZIP" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="G3h-X6-3Cb" userLabel="Zip" customClass="LimitedHoshiTextField" customModule="ModernMoney" customModuleProvider="target">
                                                                 <rect key="frame" x="153.66666666666666" y="0.0" width="78.333333333333343" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1101,6 +1110,9 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
                                                                         <real key="value" value="0.59999999999999998"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                                        <integer key="value" value="50"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
@@ -1143,7 +1155,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="avY-fI-zpN" userLabel="Phone">
                                                         <rect key="frame" x="0.0" y="152.33333333333337" width="314" height="42.666666666666657"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8ub-nM-XMB" userLabel="Code" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="8ub-nM-XMB" userLabel="Code" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                                 <rect key="frame" x="0.0" y="0.0" width="78.666666666666671" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1168,7 +1180,7 @@
                                                                     <outlet property="delegate" destination="DWh-4p-WB8" id="Vco-rv-wj1"/>
                                                                 </connections>
                                                             </textField>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="aUu-ao-n07" userLabel="Phone" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="aUu-ao-n07" userLabel="Phone" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                                 <rect key="frame" x="82.666666666666643" y="0.0" width="231.33333333333337" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
