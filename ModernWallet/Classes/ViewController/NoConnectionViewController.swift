@@ -26,12 +26,14 @@ class NoConnectionViewController: UIViewController {
         
         ReachabilityService.instance
             .reachabilityStatus
-            .filter{$0}
             .observeOn(MainScheduler.instance)
+            .distinctUntilChanged()
+            .share()
+            .filter{$0}
+            .share()
             .subscribe(onNext: { [weak self] value in
-                self?.dismiss(animated: true)
-            })
+                self?.dismiss(animated: true, completion: nil)
+                })
             .disposed(by: disposeBag)
     }
-
 }

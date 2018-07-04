@@ -192,24 +192,6 @@ class PinViewController: UIViewController {
     
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Show the NoNetworkViewController on top of the modal PinViewController
-        ReachabilityService.instance
-            .reachabilityStatus
-            .filter{!$0}
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] value in
-                let noConnectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoConnection")
-                noConnectionViewController.modalTransitionStyle = .crossDissolve
-                self?.present(noConnectionViewController, animated: true)
-            })
-            .disposed(by: disposeBag)
-        
-        reset()
-    }
-    
     // MARK: - IBActions
     
     @IBAction private func digitTapped(_ digitButton: UIButton) {

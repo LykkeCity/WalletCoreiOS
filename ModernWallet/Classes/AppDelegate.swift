@@ -79,10 +79,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let noConnectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NoConnection")
                 noConnectionViewController.modalTransitionStyle = .crossDissolve
                 
-                // Don't show the NoConnectionViewController if the PinViewController is about to be presented
                 if !(self?.visibleViewController is NoConnectionViewController)
-                    && !(self?.visibleViewController is PinViewController) {
-                    self?.visibleViewController?.present(noConnectionViewController, animated: true)
+                     {
+                    self?.visibleViewController?.present(noConnectionViewController, animated: true, completion: nil)
                 }
             })
             .disposed(by: disposeBag)

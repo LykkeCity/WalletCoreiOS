@@ -141,7 +141,9 @@ extension AppDelegate {
         inactivitySubscription = inactivityTimer
             .take(1)
             .subscribe(onNext: { [weak self] _ in
-                if self?.visibleViewController is PinViewController { return }
+                
+                //Don't show PinViewController if the device has no internet connection - the NoConnectionViewController is visible
+                if ((self?.visibleViewController is PinViewController) || (self?.visibleViewController is NoConnectionViewController )) { return }
                 
                 let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
                 
