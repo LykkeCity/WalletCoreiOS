@@ -229,11 +229,13 @@ fileprivate extension ObservableType where Self.E == Void {
             .flatMapLatest{params -> Observable<ApiResult<LWPacketGetPaymentUrl>> in
                 let validInput = creditCardInputValidator.validate(input: params)
                 
-                guard validInput.isError else {
-                    return authManager.paymentUrl.request(withParams: params)
+                guard validInput.isSuccess else {
+                    return Observable
+                        .just(validInput)
+                        .startWith(ApiResult.loading)
                 }
                 
-                return Observable.just(validInput)
+                return authManager.paymentUrl.request(withParams: params)
             }
             .shareReplay(1)
             
