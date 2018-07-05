@@ -83,8 +83,7 @@ class AddMoneyViewController: UIViewController {
 extension AddMoneyViewController: NavigationWizzardProtocol, UINavigationControllerDelegate {
     
     func getMaxIndicatorCount(_ navigationController: UINavigationController, willShow viewController: UIViewController) -> Int {
-        return (navigationController.childViewControllers.filter{$0 is AddMoneyCCStep1ViewController}).isNotEmpty
-            ? 3 : 2
+        return 2
     }
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
