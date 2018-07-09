@@ -21,6 +21,12 @@ class PinViewController: UIViewController {
         return viewController
     }
     
+    static var createPinViewControllerWithoutCloseButton: PinViewController {
+        let viewController = createPinViewController
+        viewController.hideCloseButton = true
+        return viewController
+    }
+    
     static func enterPinViewController(title: String?, isTouchIdEnabled: Bool) -> PinViewController {
         let viewController = PinViewController(nibName: "PinViewController", bundle: nil)
         viewController.mode = .enterPin(isTouchIdEnabled: isTouchIdEnabled)
@@ -71,6 +77,8 @@ class PinViewController: UIViewController {
     var permitedTriesCount = 3
     
     var isPresentedForInactivity: Bool = false
+    
+    var hideCloseButton: Bool = false
     
     let complete = PublishSubject<Bool>()
 
@@ -176,6 +184,12 @@ class PinViewController: UIViewController {
         if isPresentedForInactivity {
             closeButton.isHidden = true
         }
+        
+        //Hide the close button
+        if hideCloseButton {
+            closeButton.isHidden = true
+        }
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {

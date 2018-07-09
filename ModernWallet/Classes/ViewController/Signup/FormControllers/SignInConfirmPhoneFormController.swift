@@ -168,6 +168,7 @@ class SignInConfirmPhoneFormController: FormController {
             .disposed(by: disposeBag)
         
         button.rx.tap
+            .throttle(1.0, scheduler: MainScheduler.instance)
             .bind(to: checkPinTrigger)
             .disposed(by: disposeBag)
         
@@ -191,8 +192,13 @@ class SignInConfirmPhoneFormController: FormController {
                      forceShowPin.asObservable(),
                      smsCodePassed.map{ _ in () }
                 )
-                .map { _ in return PinViewController.createPinViewController }
+                .map { _ in return PinViewController.createPinViewControllerWithoutCloseButton }
                 .shareReplay(1)
+        
+        signUpConfirmPhoneViewModel.loadingViewModel.isLoading
+            .observeOn(MainScheduler.instance)
+            .bind(to: loading)
+            .disposed(by: disposeBag)
         
         pinViewControllerObservable
             .bind(to: pinTrigger)
