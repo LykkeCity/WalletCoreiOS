@@ -16,7 +16,7 @@ open class SignUpPhoneConfirmPinViewModel {
     public let phone = Variable<String>("")
     let fake = Variable<String>("")
     
-    public let loading: Observable<Bool>
+    public let loadingViewModel: LoadingViewModel
     public let resultConfirmPin: Driver<ApiResult<LWPacketPhoneVerificationGet>>
     public let resultResendPin: Driver<ApiResult<LWPacketPhoneVerificationSet>>
     
@@ -34,8 +34,10 @@ open class SignUpPhoneConfirmPinViewModel {
             .mapResendPin(phone: phone, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
-        let m = Observable.merge([self.resultConfirmPin.asObservable().isLoading(), self.resultResendPin.asObservable().isLoading()])
-        loading = m
+        loadingViewModel = LoadingViewModel([
+            self.resultConfirmPin.asObservable().isLoading(),
+            self.resultResendPin.asObservable().isLoading()
+            ])
     }
     
     
