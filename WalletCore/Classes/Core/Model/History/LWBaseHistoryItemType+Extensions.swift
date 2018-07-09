@@ -22,6 +22,15 @@ extension LWBaseHistoryItemType {
         }
     }
     
+    var displayName: String {
+        guard let assetName = self.asset
+            else { return ""}
+        let asset = LWCache.asset(byName: assetName)
+        guard let displayName = asset?.displayId
+            else { return ""}
+        return displayName
+    }
+    
     func asImage() -> UIImage? {
         let volume = Double(self.volume ?? 00)
         

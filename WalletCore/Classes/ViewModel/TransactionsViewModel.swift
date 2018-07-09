@@ -104,7 +104,7 @@ open class TransactionsViewModel {
                 }
                 
                 return transactionModels.value.filter {
-                    [$0.localizedString, $0.asset].contains{ $0.localizedCaseInsensitiveContains(filter) }
+                    [$0.displayName].contains{ $0.localizedCaseInsensitiveContains(filter) }
                 }
             }
             .bind(to: transactionsToDisplay)
