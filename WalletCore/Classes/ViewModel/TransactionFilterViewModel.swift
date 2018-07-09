@@ -76,9 +76,8 @@ public extension TransactionFilterViewModel {
         }
         
         set {
-            var check = self.compareDate(startDate: newValue, withDate:endDateValue)
-            
-            if(check) {
+            guard let endDate = endDateValue else { return startDate.value = newValue}
+            if((newValue?.isBefore(date: endDate))!){
                 startDate.value = newValue
             }
             else {
@@ -94,28 +93,14 @@ public extension TransactionFilterViewModel {
         }
         
         set {
-            var check = self.compareDate(startDate: startDateValue, withDate: newValue)
-            
-            if(check) {
+            guard let startDate = startDateValue else { return endDate.value = newValue}
+            if(!(newValue?.isBefore(date: startDate))!) {
                 endDate.value = newValue
             }
             else {
                 self.errorsSubject.onNext(["Message": Localize("filter.newDesign.error.message.endDate")])
             }
-            
         }
-    }
-}
-
-//Date validation
-public extension TransactionFilterViewModel {
-    
-    func compareDate(startDate: Date?, withDate endDate:Date?) -> Bool {
-        
-        guard let start = (startDate.value) else { return true}
-        guard let end = (endDate.value) else { return true}
-        
-        return start.compare(end) != ComparisonResult.orderedDescending
     }
 }
 
