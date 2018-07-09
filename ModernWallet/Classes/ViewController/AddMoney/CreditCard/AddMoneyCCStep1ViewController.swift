@@ -20,11 +20,11 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
     @IBOutlet weak var amountTextField: UITextField!
     @IBOutlet weak var ccContainerView: UIView!
     @IBOutlet weak var amauntField: UITextField!
-    @IBOutlet weak var firstNameField: HoshiTextField!
-    @IBOutlet weak var lastNameField: HoshiTextField!
-    @IBOutlet weak var addressField: HoshiTextField!
-    @IBOutlet weak var cityField: HoshiTextField!
-    @IBOutlet weak var zipField: HoshiTextField!
+    @IBOutlet weak var firstNameField: LimitedHoshiTextField!
+    @IBOutlet weak var lastNameField: LimitedHoshiTextField!
+    @IBOutlet weak var addressField: LimitedHoshiTextField!
+    @IBOutlet weak var cityField: LimitedHoshiTextField!
+    @IBOutlet weak var zipField: LimitedHoshiTextField!
     @IBOutlet weak var countryField: HoshiTextField!
     @IBOutlet weak var codeField: HoshiTextField!
     @IBOutlet weak var phoneField: HoshiTextField!
@@ -230,8 +230,7 @@ extension AddMoneyCCStep1ViewController: InputForm {
             addressField,
             cityField,
             zipField,
-            codeField,
-            phoneField
+
         ]
     }
     
