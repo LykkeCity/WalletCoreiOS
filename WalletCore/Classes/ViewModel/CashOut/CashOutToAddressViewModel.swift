@@ -19,6 +19,8 @@ public class CashOutToAddressViewModel {
     
     public let loadingViewModel: LoadingViewModel
     
+    public var isValidAddressAndAmount : Driver<Bool>
+    
     public let errors: Driver<[AnyHashable: Any]>
 
     public let success: Driver<String>
@@ -37,6 +39,12 @@ public class CashOutToAddressViewModel {
         self.loadingViewModel = LoadingViewModel([
             cashOutResultObservable.map{ $0.isLoading }
         ])
+        
+        isValidAddressAndAmount = Driver
+            .combineLatest( self.address.asDriver() , self.amount.asDriver())
+            {(address, amount) in
+                return !address.isEmpty && amount > 0
+            }
         
         success = cashOutResultObservable
             .map{ $0.getSuccess() }
