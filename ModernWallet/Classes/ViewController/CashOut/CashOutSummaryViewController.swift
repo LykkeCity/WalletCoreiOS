@@ -38,6 +38,12 @@ class CashOutSummaryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        localize()
+        
+        setResultToLabels()
+    }
+    
+    private func localize() {
         successLabel.text = Localize("cashOut.newDesign.success")
         detailsLabel.text = Localize("cashOut.newDesign.transactionDetails")
         waitMessageLabel.text = Localize("cashOut.newDesign.waitMessage")
@@ -50,7 +56,9 @@ class CashOutSummaryViewController: UIViewController {
         accountHolderZipCodeTitleLabel.text = Localize("cashOut.newDesign.accHolderZipCode")
         accountHolderCityTitleLabel.text = Localize("cashOut.newDesign.accHolderCity")
         button.setTitle(Localize("cashOut.newDesign.backToPortfolio"), for: .normal)
-        
+    }
+    
+    private func setResultToLabels() {
         amountView.amount = result.amount
         amountView.code = result.asset
         bankNameLabel.text = result.bankName

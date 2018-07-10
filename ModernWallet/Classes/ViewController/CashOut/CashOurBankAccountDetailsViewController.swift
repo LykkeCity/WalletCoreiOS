@@ -30,7 +30,7 @@ class CashOurBankAccountDetailsViewController: UIViewController {
     
     var cashOutViewModel: CashOutViewModel!
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
 
     fileprivate var selectedCountry: LWCountryModel? {
         didSet {
@@ -46,6 +46,14 @@ class CashOurBankAccountDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        localize()
+        
+        cashOutViewModel.bankAccountViewModel.bind(self)
+        
+        setupFormUX(disposedBy: disposeBag)
+    }
+    
+    private func localize(){
         subtitleLabel.text = Localize("cashOut.newDesign.inputBankAccountDetails")
         accountNameTextField.placeholder = Localize("cashOut.newDesign.bankName")
         ibanTextField.placeholder = Localize("cashOut.newDesign.iban")
@@ -57,43 +65,6 @@ class CashOurBankAccountDetailsViewController: UIViewController {
         accountHolderZipCodeTextField.placeholder = Localize("cashOut.newDesign.accountHolderZipCode")
         accountHolderCityTextField.placeholder = Localize("cashOut.newDesign.accountHolderCity")
         nextButton.setTitle(Localize("newDesign.next"), for: .normal)
-        
-        let bankDetailsViewModel = cashOutViewModel.bankAccountViewModel
-        
-        (accountNameTextField.rx.textInput <-> bankDetailsViewModel.bankName)
-            .disposed(by: disposeBag)
-        
-        (ibanTextField.rx.textInput <-> bankDetailsViewModel.iban)
-            .disposed(by: disposeBag)
-        
-        (bicTextField.rx.textInput <-> bankDetailsViewModel.bic)
-            .disposed(by: disposeBag)
-        
-        (accountHolderTextField.rx.textInput <-> bankDetailsViewModel.accountHolder)
-            .disposed(by: disposeBag)
-        
-        (currencyTextField.rx.textInput <-> bankDetailsViewModel.accountHolderAddress)
-            .disposed(by: disposeBag)
-        
-        (accountHolderCountryTextField.rx.textInput <-> bankDetailsViewModel.accountHolderCountry)
-            .disposed(by: disposeBag)
-        
-        (accountHolderCountryCodeTextField.rx.textInput <-> bankDetailsViewModel.accountHolderCountryCode)
-            .disposed(by: disposeBag)
-        
-        (accountHolderZipCodeTextField.rx.textInput <-> bankDetailsViewModel.accountHolderZipCode)
-            .disposed(by: disposeBag)
-        
-        (accountHolderCityTextField.rx.textInput <-> bankDetailsViewModel.accountHolderCity)
-            .disposed(by: disposeBag)
-        
-        let isFormValidDriver = bankDetailsViewModel.isValid.asDriver(onErrorJustReturn: false)
-        
-        isFormValidDriver
-            .drive(nextButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        setupFormUX(disposedBy: disposeBag)
     }
 
     // MARK: - Navigation
@@ -117,6 +88,43 @@ class CashOurBankAccountDetailsViewController: UIViewController {
         }
     }
 
+}
+
+fileprivate extension CashOutBankAccountViewModel {
+    func bind(_ viewController: CashOurBankAccountDetailsViewController) {
+        (viewController.accountNameTextField.rx.textInput <-> bankName)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.ibanTextField.rx.textInput <-> iban)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.bicTextField.rx.textInput <-> bic)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderTextField.rx.textInput <-> accountHolder)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.currencyTextField.rx.textInput <-> accountHolderAddress)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderCountryTextField.rx.textInput <-> accountHolderCountry)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderCountryCodeTextField.rx.textInput <-> accountHolderCountryCode)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderZipCodeTextField.rx.textInput <-> accountHolderZipCode)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderCityTextField.rx.textInput <-> accountHolderCity)
+            .disposed(by: viewController.disposeBag)
+        
+        let isFormValidDriver = isValid.asDriver(onErrorJustReturn: false)
+        
+        isFormValidDriver
+            .drive(viewController.nextButton.rx.isEnabled)
+            .disposed(by: viewController.disposeBag)
+    }
 }
 
 extension CashOurBankAccountDetailsViewController: SelectCountryViewControllerDelegate {
