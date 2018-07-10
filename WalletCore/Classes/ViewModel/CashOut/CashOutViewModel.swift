@@ -38,8 +38,6 @@ public class CashOutViewModel {
     
     private let disposeBag = DisposeBag()
     
-    private let countryCodes = Variable<[LWCountryModel]>([])
-    
     public init(
         amountViewModel: CashOutAmountViewModel,
         generalViewModel: CashOutGeneralViewModel,
@@ -69,11 +67,6 @@ public class CashOutViewModel {
         
         totalObservable = walletAndAmountObservable
             .mapToAmountCodePairInBase(currencyExchanger: currencyExchanger)
-        
-        countryCodes
-            .filterSuccess()
-            .bind(to: self.countryCodes)
-            .disposed(by: disposeBag)
         
         let cashOutResultObservable = trigger.asObservable()
             .withLatestFrom(walletAndAmountObservable)

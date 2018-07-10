@@ -43,16 +43,14 @@ public class CashOutBankAccountViewModel {
             accountHolderZipCode.asObservable(),
             accountHolderCity.asObservable()]
             )
-            .map { return
-                $0[0].isNotEmpty &&
-                    $0[1].isNotEmpty &&
-                    $0[2].isNotEmpty &&
-                    $0[3].isNotEmpty &&
-                    $0[4].isNotEmpty &&
-                    $0[5].isNotEmpty &&
-                    $0[6].isNotEmpty &&
-                    $0[7].isNotEmpty &&
-                    $0[8].isNotEmpty
+            .map {
+                for value in $0 {
+                    if value.isEmpty {
+                        return false
+                    }
+                }
+                
+                return true
         }
     }
     
