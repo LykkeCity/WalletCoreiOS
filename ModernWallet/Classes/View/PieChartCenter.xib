@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Geomanist Regular.otf">
-            <string>Geomanist-Regular</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PieChartCenter" customModule="ModernMoney" customModuleProvider="target">
             <connections>
@@ -33,18 +28,21 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="eXt-hG-y9b">
+                <stackView opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="eXt-hG-y9b">
                     <rect key="frame" x="65.5" y="69.5" width="76" height="35"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-dx-HdW">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-dx-HdW">
                             <rect key="frame" x="0.0" y="0.0" width="58.5" height="35"/>
                             <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="30"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BNO-o0-WjS">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BNO-o0-WjS">
                             <rect key="frame" x="58.5" y="21" width="17.5" height="10"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="17.5" id="R0Q-GP-4Qs"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -64,7 +62,6 @@
                 <constraint firstItem="pDG-ql-9rg" firstAttribute="top" secondItem="eXt-hG-y9b" secondAttribute="bottom" constant="8" id="0B3-Xl-637"/>
                 <constraint firstItem="eXt-hG-y9b" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0QC-kF-Ez6"/>
                 <constraint firstItem="eXt-hG-y9b" firstAttribute="top" secondItem="LVx-FD-ESL" secondAttribute="bottom" id="7Op-lc-mVr"/>
-                <constraint firstItem="wA0-dx-HdW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fKW-L9-Tix"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eXt-hG-y9b" secondAttribute="trailing" id="qtO-rQ-2KH"/>
                 <constraint firstItem="pDG-ql-9rg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tdA-cC-Oyo"/>
                 <constraint firstItem="LVx-FD-ESL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zJk-Ah-g9B"/>
