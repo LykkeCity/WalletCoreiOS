@@ -76,12 +76,14 @@ public extension TransactionFilterViewModel {
         }
         
         set {
-            guard let endDate = endDateValue else { return startDate.value = newValue}
-            if((newValue?.isBefore(date: endDate))!){
-                startDate.value = newValue
-            }
-            else {
-                self.errorsSubject.onNext(["Message": Localize("filter.newDesign.error.message.startDate")])
+            guard let endDate = endDateValue else { return startDate.value = newValue} //check if 'endDate' is not set - directly set the 'newValue' for 'startDate' without validation
+            if let newValue = newValue {
+                if(newValue.isBefore(date: endDate)){
+                    startDate.value = newValue
+                }
+                else {
+                    self.errorsSubject.onNext(["Message": Localize("filter.newDesign.error.message.startDate")])
+                }
             }
         }
     }
@@ -93,12 +95,14 @@ public extension TransactionFilterViewModel {
         }
         
         set {
-            guard let startDate = startDateValue else { return endDate.value = newValue}
-            if(!(newValue?.isBefore(date: startDate))!) {
-                endDate.value = newValue
-            }
-            else {
-                self.errorsSubject.onNext(["Message": Localize("filter.newDesign.error.message.endDate")])
+            guard let startDate = startDateValue else { return endDate.value = newValue} //check if 'startDate' is not set - directly set the 'newValue' for 'endDate' without validation
+            if let newValue = newValue {
+                if(!(newValue.isBefore(date: startDate))) {
+                    endDate.value = newValue
+                }
+                else {
+                    self.errorsSubject.onNext(["Message": Localize("filter.newDesign.error.message.endDate")])
+                }
             }
         }
     }
