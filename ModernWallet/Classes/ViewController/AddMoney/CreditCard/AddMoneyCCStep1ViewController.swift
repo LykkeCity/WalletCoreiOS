@@ -45,8 +45,6 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
         }
     }
     
-//    var confirmTrading = PublishSubject<Void>()
-    
     private let selectCountryViewModel = SelectCountryViewModel()
     
     fileprivate let disposeBag = DisposeBag()
