@@ -32,7 +32,7 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
         
     private lazy var creditCardViewModel:CreditCardBaseInfoViewModel = {
-        return CreditCardBaseInfoViewModel(submit: self.confirmTrading,
+        return CreditCardBaseInfoViewModel(submit: self.submitButton.rx.tap.confirm(vc: self),
                                            assetToAdd: self.аssetObservable())
     }()
     
@@ -45,7 +45,7 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
         }
     }
     
-    var confirmTrading = PublishSubject<Void>()
+//    var confirmTrading = PublishSubject<Void>()
     
     private let selectCountryViewModel = SelectCountryViewModel()
     
@@ -72,14 +72,6 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
         
         creditCardViewModel.loadingViewModel.isLoading.map{!$0}
             .bind(to: submitButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        submitButton.rx.tap
-            .flatMap { [weak self] _ -> Observable<Void> in
-                guard let `self` = self else { return Observable<Void>.never() }
-                return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
-            }
-            .bind(to: confirmTrading)
             .disposed(by: disposeBag)
         
         //add buttons above of the keyboard for these type of keyboards that don't have return button, 
@@ -248,4 +240,16 @@ extension AddMoneyCCStep1ViewController: InputForm {
         return goToTextField(after: textField)
     }
 
+}
+
+fileprivate extension ObservableType where Self.E == Void {
+    
+    func confirm(vc: UIViewController?
+        ) -> Observable<Void> {
+        
+        return flatMap{ [weak vc] _  -> Observable<Void> in
+            guard let vc = vc else { return Observable<Void>.never() }
+            return PinViewController.presentOrderPinViewController(from: vc, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+        }
+    }
 }
