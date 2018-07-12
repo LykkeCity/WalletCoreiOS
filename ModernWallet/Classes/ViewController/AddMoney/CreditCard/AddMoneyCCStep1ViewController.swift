@@ -32,7 +32,7 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
         
     private lazy var creditCardViewModel:CreditCardBaseInfoViewModel = {
-        return CreditCardBaseInfoViewModel(submit: self.submitButton.rx.tap.asObservable(),
+        return CreditCardBaseInfoViewModel(submit: self.confirmTrading,
                                            assetToAdd: self.аssetObservable())
     }()
     
@@ -44,6 +44,8 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
             creditCardViewModel.input.country.value = country.name
         }
     }
+    
+    var confirmTrading = PublishSubject<Void>()
     
     private let selectCountryViewModel = SelectCountryViewModel()
     
@@ -70,6 +72,14 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
         
         creditCardViewModel.loadingViewModel.isLoading.map{!$0}
             .bind(to: submitButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        submitButton.rx.tap
+            .flatMap { [weak self] _ -> Observable<Void> in
+                guard let `self` = self else { return Observable<Void>.never() }
+                return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+            }
+            .bind(to: confirmTrading)
             .disposed(by: disposeBag)
         
         //add buttons above of the keyboard for these type of keyboards that don't have return button, 
