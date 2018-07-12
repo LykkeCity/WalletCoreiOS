@@ -928,6 +928,14 @@
 "addMoney.newDesign.ccExpiry" = "EXPIRY";
 "addMoney.newDesign.cvcNumber" = "CVC NUMBER";
 "addMoney.newDesign.walletBalanceDescription" = "Trading wallet balance will be updated after transaction is confirmed in the blockchain";
+"addMoney.newDesign.emptyAmountField" = "Please fill in the Amount field.";
+"addMoney.newDesign.emptyFirstNameField" = "Please fill in the First Name field.";
+"addMoney.newDesign.emptyLastNameField" = "Please fill in the Last Name field.";
+"addMoney.newDesign.emptyAddressField" = "Please fill in the Address field.";
+"addMoney.newDesign.emptyCityField" = "Please fill in the City field.";
+"addMoney.newDesign.emptyZipField" = "Please fill in the Zip field.";
+"addMoney.newDesign.emptyCountryField" = "Please fill in the Country field.";
+"addMoney.newDesign.emptyCodeAndPhoneField" = "Please fill in the Code and Phone field.";
 
 "transaction.newDesign.transactionTitle" = "TRANSACTIONS";
 "transaction.newDesign.findTransaction" = "Find Transaction";
