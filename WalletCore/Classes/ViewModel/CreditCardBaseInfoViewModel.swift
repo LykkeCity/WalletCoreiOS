@@ -41,13 +41,14 @@ open class CreditCardBaseInfoViewModel {
     
     public init(submit: Observable<Void>,
                 assetToAdd: Observable<LWAssetModel>,
-                authManager: LWRxAuthManager = LWRxAuthManager.instance) {
+                authManager: LWRxAuthManager = LWRxAuthManager.instance,
+                creditCardInputValidator: CreditCardInputValidator = CreditCardInputValidator()) {
         let personalData =  authManager.prevCardPayment.request()
         let countryCodes =  authManager.countryCodes.request()
         
         paymentUrlResult = submit
             .throttle(1, scheduler: MainScheduler.instance)
-            .mapToPaymentUrl(input: input, countries: self.countryCodes, authManager: authManager)
+            .mapToPaymentUrl(input: input, countries: self.countryCodes, authManager: authManager, creditCardInputValidator: creditCardInputValidator)
         
         loadingViewModel = LoadingViewModel([
             paymentUrlResult.isLoading(),
@@ -218,26 +219,23 @@ extension ObservableType where Self.E == LWAssetModel {
 
 fileprivate extension ObservableType where Self.E == Void {
     
-    func mapToPaymentUrl(input: CreditCardBaseInfoViewModel.Input, countries: Variable<[LWCountryModel]>, authManager: LWRxAuthManager)
+    func mapToPaymentUrl(input: CreditCardBaseInfoViewModel.Input, countries: Variable<[LWCountryModel]>, authManager: LWRxAuthManager, creditCardInputValidator: CreditCardInputValidator)
         -> Observable<ApiResult<LWPacketGetPaymentUrl>> {
-        return map{
+            return map{ () -> LWPacketGetPaymentUrlParams in
                 let country = countries.value.first{country in country.name == input.country.value}
             
-                return LWPacketGetPaymentUrlParams(
-                    amount: input.amount.value,
-                    firstName: input.firstName.value,
-                    lastName: input.lastName.value,
-                    city: input.city.value,
-                    zip: input.zip.value,
-                    address: input.address.value,
-                    country: country?.iso2 ?? "",
-                    email: input.email.value,
-                    phone: "\(input.phoneCode.value)\(input.phone.value)",
-                    assetId: input.asset.value?.identity ?? ""
-                )
+                return LWPacketGetPaymentUrlParams(input: input, country: country)
             }
-            .flatMapLatest{params in
-                authManager.paymentUrl.request(withParams: params)
+            .flatMapLatest{params -> Observable<ApiResult<LWPacketGetPaymentUrl>> in
+                let validInput = creditCardInputValidator.validate(input: params)
+                
+                guard validInput.isSuccess else {
+                    return Observable
+                        .just(validInput)
+                        .startWith(ApiResult.loading)
+                }
+                
+                return authManager.paymentUrl.request(withParams: params)
             }
             .shareReplay(1)
             
@@ -275,5 +273,21 @@ fileprivate extension ObservableType where Self.E == [AnyHashable: Any] {
             return $0["Message"] as? String
         }
         .asDriver(onErrorJustReturn: "")
+    }
+}
+
+extension LWPacketGetPaymentUrlParams {
+    fileprivate init(input: CreditCardBaseInfoViewModel.Input, country: LWCountryModel?){
+        amount = input.amount.value
+        firstName = input.firstName.value
+        lastName = input.lastName.value
+        city = input.city.value
+        zip = input.zip.value
+        address = input.address.value
+        self.country = country?.iso2 ?? ""
+        email = input.email.value
+        phone = "\(input.phoneCode.value)\(input.phone.value)"
+        assetId = input.asset.value?.identity ?? ""
+        
     }
 }

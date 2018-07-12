@@ -684,6 +684,7 @@
 		CC83DDAF1F4AE3FD008BA5C2 /* LWRxAuthManagerGetClientCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC83DDAE1F4AE3FD008BA5C2 /* LWRxAuthManagerGetClientCodes.swift */; };
 		CC83DDB11F4AF3FC008BA5C2 /* ClientCodesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC83DDB01F4AF3FC008BA5C2 /* ClientCodesViewModel.swift */; };
 		CCEAA9611F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEAA9601F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift */; };
+		E704F76720ECF8D200D121B1 /* CreditCardInputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E704F76520ECF7A800D121B1 /* CreditCardInputValidator.swift */; };
 		F5007E94200E2B6000956CF5 /* CashOutToAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */; };
 		F5007E96200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */; };
 		F556C7582023527300144A58 /* ObservableType+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F556C7572023527300144A58 /* ObservableType+Filters.swift */; };
@@ -1390,6 +1391,7 @@
 		CC83DDAE1F4AE3FD008BA5C2 /* LWRxAuthManagerGetClientCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerGetClientCodes.swift; sourceTree = "<group>"; };
 		CC83DDB01F4AF3FC008BA5C2 /* ClientCodesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientCodesViewModel.swift; sourceTree = "<group>"; };
 		CCEAA9601F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientFullNameSetViewModel.swift; sourceTree = "<group>"; };
+		E704F76520ECF7A800D121B1 /* CreditCardInputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardInputValidator.swift; sourceTree = "<group>"; };
 		F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashOutToAddressViewModel.swift; sourceTree = "<group>"; };
 		F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCashOut.swift; sourceTree = "<group>"; };
 		F556C7572023527300144A58 /* ObservableType+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Filters.swift"; sourceTree = "<group>"; };
@@ -2369,6 +2371,7 @@
 		46C9B0451F42C81A00B83CCB /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E704F76420ECF76E00D121B1 /* Validator */,
 				46C9B0461F42C82300B83CCB /* CurrencyExchanger.swift */,
 				465805C21F98E5D900FFFA0A /* OffchainService.swift */,
 				66CE48781FAA244600AAB98F /* CashOutService.swift */,
@@ -2628,6 +2631,14 @@
 				CC6805A01F67DA5B0079CB05 /* SignUpPinSetViewModel.swift */,
 			);
 			name = SignIn/SignUp;
+			sourceTree = "<group>";
+		};
+		E704F76420ECF76E00D121B1 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				E704F76520ECF7A800D121B1 /* CreditCardInputValidator.swift */,
+			);
+			path = Validator;
 			sourceTree = "<group>";
 		};
 		ECA69C86C6588D589E30713C /* Pods */ = {
@@ -2909,7 +2920,6 @@
 				46C9A8AE1F417AC300B83CCB /* Frameworks */,
 				46C9A8AF1F417AC300B83CCB /* Headers */,
 				46C9A8B01F417AC300B83CCB /* Resources */,
-				B2E0896087D7786570CC24B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2929,7 +2939,6 @@
 				46C9A8B81F417AC300B83CCB /* Frameworks */,
 				46C9A8B91F417AC300B83CCB /* Resources */,
 				267C1195D691572AB847C661 /* [CP] Embed Pods Frameworks */,
-				7F7A759946B57A16365697DD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3088,36 +3097,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7F7A759946B57A16365697DD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalletCoreTests/Pods-WalletCoreTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B2E0896087D7786570CC24B3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalletCore/Pods-WalletCore-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3125,6 +3104,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E704F76720ECF8D200D121B1 /* CreditCardInputValidator.swift in Sources */,
 				46C9AE701F417BD700B83CCB /* LWImageDownloader.m in Sources */,
 				CC0A16B51F4C446500CC40C3 /* LWRxAuthManagerPostClientCodes.swift in Sources */,
 				46C9B0401F417C1B00B83CCB /* WalletsViewModel.swift in Sources */,
