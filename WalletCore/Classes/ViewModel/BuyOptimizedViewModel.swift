@@ -12,13 +12,13 @@ import RxSwift
 
 public class BuyOptimizedViewModel {
     
-    public typealias Amount = (autoUpdated: Bool, value: String)
+    public typealias Amount = (autoUpdated: Bool, value: String, showErrorMsg: Bool)
     public typealias Asset = (autoUpdated: Bool, asset: LWAssetModel)
     public typealias Wallet = (autoUpdated: Bool, wallet: LWSpotWallet)
     typealias ExchangeData = (from: LWAssetModel, to: LWAssetModel, amount: Decimal, bid: Bool)
     
-    public let buyAmount       = Variable<Amount>(Amount(autoUpdated: false, value: ""))
-    public let payWithAmount   = Variable<Amount>(Amount(autoUpdated: false, value: ""))
+    public let buyAmount       = Variable<Amount>(Amount(autoUpdated: false, value: "", showErrorMsg: false))
+    public let payWithAmount   = Variable<Amount>(Amount(autoUpdated: false, value: "", showErrorMsg: false))
     public let buyAsset        = Variable<Asset?>(nil)
     public let payWithWallet   = Variable<Wallet?>(nil)
     public let bid             = Variable<Bool?>(nil)
@@ -171,7 +171,6 @@ public class BuyOptimizedViewModel {
         isValidPayWithAmount = Observable
             .combineLatest(payWithAmount.asObservable(), payWithWallet.asObservable())
             .validate()
-            .skip(2) //skip 2 because payWithAmount and payWithWallet have initial values
         
         //MARK: two way amount bindings
         payWithWallet.asObservable()
@@ -214,15 +213,15 @@ fileprivate extension ObservableType where Self.E == (BuyOptimizedViewModel.Amou
                 let (amount, wallet) = data
                 
                 guard let amountValue = amount.value.decimalValue, amountValue > 0 else {
-                    return .error(withData: ["Message": "Amount can't be zero or empty."])
+                    return .error(withData: amount.showErrorMsg ? ["Message": "Amount can't be zero or empty."] : [:])
                 }
                 
                 guard let walletAmount = wallet?.wallet.balance.decimalValue else {
-                    return .error(withData: ["Message": "Wallet amount is zero"])
+                    return .error(withData: amount.showErrorMsg ? ["Message": "Wallet amount is zero"] : [:])
                 }
                 
                 guard amountValue <= walletAmount else {
-                    return .error(withData: ["Message": "Please fill lower amount."])
+                    return .error(withData: amount.showErrorMsg ? ["Message": "Please fill lower amount."] : [:])
                 }
                 
                 return .success(withData: Void())
@@ -248,7 +247,7 @@ fileprivate extension ObservableType where Self.E == BuyOptimizedViewModel.Excha
                 
                 return String(format: "%.\(accuracy)f", amount.doubleValue).replaceDotWithDecimalSeparator()
             }
-            .map{BuyOptimizedViewModel.Amount(autoUpdated: true, value: $0)}
+            .map{BuyOptimizedViewModel.Amount(autoUpdated: true, value: $0, showErrorMsg: true)}
             .take(1)
         }
     }
