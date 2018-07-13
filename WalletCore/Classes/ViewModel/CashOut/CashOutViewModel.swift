@@ -51,9 +51,12 @@ public class CashOutViewModel {
         self.bankAccountViewModel = bankAccountViewModel
         self.cashOutService = cashOutService
         
+        let countryCodes =  authManager.countryCodes.request()
+        
         let walletAndAmountObservable = Observable.combineLatest(
             amountViewModel.walletObservable,
-            amountViewModel.amount.asObservable()
+            amountViewModel.amount.asObservable(),
+            countryCodes.filterSuccess()
         )
         
         amountObservable = walletAndAmountObservable
@@ -68,7 +71,9 @@ public class CashOutViewModel {
         let cashOutResultObservable = trigger.asObservable()
             .withLatestFrom(walletAndAmountObservable)
             .map { data in
-                let (wallet, amount) = data
+                let (wallet, amount, counties) = data
+                let country = counties.first{country in country.name == bankAccountViewModel.accountHolderCountry.value}
+
                 return CashOutService.CashOutData(amount: amount,
                                                   asset: wallet.asset,
                                                   bankName: bankAccountViewModel.bankName.value,
@@ -76,6 +81,10 @@ public class CashOutViewModel {
                                                   bic: bankAccountViewModel.bic.value,
                                                   accountHolder: bankAccountViewModel.accountHolder.value,
                                                   accountHolderAddress: bankAccountViewModel.accountHolderAddress.value,
+                                                  accountHolderCountry: country?.iso2 ?? "",
+                                                  accountHolderCountryCode: bankAccountViewModel.accountHolderCountryCode.value,
+                                                  accountHolderZipCode: bankAccountViewModel.accountHolderZipCode.value,
+                                                  accountHolderCity: bankAccountViewModel.accountHolderCity.value,
                                                   reason: generalViewModel.transactionReason.value,
                                                   notes: generalViewModel.additionalNotes.value)
             }
@@ -95,12 +104,12 @@ public class CashOutViewModel {
     
 }
 
-extension Observable where Element == (LWSpotWallet, Decimal) {
+extension Observable where Element == (LWSpotWallet, Decimal, [LWCountryModel]) {
     
     func mapToAmountCodePair() -> Observable<AmountCodePair> {
         return self
             .map {
-                let (wallet, amount) = $0
+                let (wallet, amount, _) = $0
                 return (amount: amount.convertAsCurrencyWithSymbol(asset: wallet.asset), code: wallet.asset.displayName)
             }
     }
@@ -108,7 +117,7 @@ extension Observable where Element == (LWSpotWallet, Decimal) {
     func mapToAmountCodePairInBase(currencyExchanger: CurrencyExchanger) -> Observable<AmountCodePair> {
         return self
             .flatMap { (data) -> Observable<(baseAsset: LWAssetModel, amount: Decimal)?> in
-                let (wallet, amount) = data
+                let (wallet, amount, _) = data
                 return currencyExchanger.exchangeToBaseAsset(amount: amount, from: wallet.asset, bid: false)
             }
             .filterNil()

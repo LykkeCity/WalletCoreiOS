@@ -21,20 +21,36 @@ public class CashOutBankAccountViewModel {
     
     public let accountHolderAddress = Variable("")
     
+    public let accountHolderCountry = Variable("")
+
+    public let accountHolderCountryCode = Variable("")
+
+    public let accountHolderZipCode = Variable("")
+    
+    public let accountHolderCity = Variable("")
+    
     public let isValid: Observable<Bool>
     
     public init() {
-        isValid = Observable.combineLatest(
+        isValid = Observable.combineLatest([
             bankName.asObservable(),
             iban.asObservable(),
             bic.asObservable(),
-            accountHolder.asObservable()
+            accountHolder.asObservable(),
+            accountHolderAddress.asObservable(),
+            accountHolderCountry.asObservable(),
+            accountHolderCountryCode.asObservable(),
+            accountHolderZipCode.asObservable(),
+            accountHolderCity.asObservable()]
             )
-            .map { return
-                $0.0.isNotEmpty &&
-                    $0.1.isNotEmpty &&
-                    $0.2.isNotEmpty &&
-                    $0.3.isNotEmpty
+            .map {
+                for value in $0 {
+                    if value.isEmpty {
+                        return false
+                    }
+                }
+                
+                return true
         }
     }
     

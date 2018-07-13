@@ -15,6 +15,10 @@ public struct LWModelCashOutSwiftResult {
     public let iban: String
     public let bic: String
     public let accountHolder: String
+    public let accountHolderCountry: String
+    public let accountHolderCountryCode: String
+    public let accountHolderZipCode: String
+    public let accountHolderCity: String
     
-    static let empty = LWModelCashOutSwiftResult(amount: "", asset: "", bankName: "", iban: "", bic: "", accountHolder: "")
+    static let empty = LWModelCashOutSwiftResult(amount: "", asset: "", bankName: "", iban: "", bic: "", accountHolder: "", accountHolderCountry: "", accountHolderCountryCode: "", accountHolderZipCode: "", accountHolderCity: "")
 }
