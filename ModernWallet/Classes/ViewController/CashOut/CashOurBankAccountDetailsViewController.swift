@@ -21,48 +21,50 @@ class CashOurBankAccountDetailsViewController: UIViewController {
     @IBOutlet fileprivate weak var bicTextField: UITextField!
     @IBOutlet fileprivate weak var accountHolderTextField: UITextField!
     @IBOutlet fileprivate weak var currencyTextField: UITextField!
+    @IBOutlet fileprivate weak var accountHolderCountryTextField: UITextField!
+    @IBOutlet fileprivate weak var accountHolderCountryCodeTextField: UITextField!
+    @IBOutlet fileprivate weak var accountHolderZipCodeTextField: UITextField!
+    @IBOutlet fileprivate weak var accountHolderCityTextField: UITextField!
 
     @IBOutlet fileprivate weak var nextButton: UIButton!
     
     var cashOutViewModel: CashOutViewModel!
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
 
+    fileprivate var selectedCountry: LWCountryModel? {
+        didSet {
+            guard let country = selectedCountry else {
+                return
+            }
+            cashOutViewModel.bankAccountViewModel.accountHolderCountry.value = country.name
+        }
+    }
+    
+    private let selectCountryViewModel = SelectCountryViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        localize()
+        
+        cashOutViewModel.bankAccountViewModel.bind(self)
+        
+        setupFormUX(disposedBy: disposeBag)
+    }
+    
+    private func localize(){
         subtitleLabel.text = Localize("cashOut.newDesign.inputBankAccountDetails")
         accountNameTextField.placeholder = Localize("cashOut.newDesign.bankName")
         ibanTextField.placeholder = Localize("cashOut.newDesign.iban")
         bicTextField.placeholder = Localize("cashOut.newDesign.bic")
         accountHolderTextField.placeholder = Localize("cashOut.newDesign.accountHolder")
         currencyTextField.placeholder = Localize("cashOut.newDesign.accountHolderAddress")
+        accountHolderCountryTextField.placeholder = Localize("cashOut.newDesign.accountHolderCountry")
+        accountHolderCountryCodeTextField.placeholder = Localize("cashOut.newDesign.accountHolderCountryCode")
+        accountHolderZipCodeTextField.placeholder = Localize("cashOut.newDesign.accountHolderZipCode")
+        accountHolderCityTextField.placeholder = Localize("cashOut.newDesign.accountHolderCity")
         nextButton.setTitle(Localize("newDesign.next"), for: .normal)
-        
-        let bankDetailsViewModel = cashOutViewModel.bankAccountViewModel
-        
-        (accountNameTextField.rx.textInput <-> bankDetailsViewModel.bankName)
-            .disposed(by: disposeBag)
-        
-        (ibanTextField.rx.textInput <-> bankDetailsViewModel.iban)
-            .disposed(by: disposeBag)
-        
-        (bicTextField.rx.textInput <-> bankDetailsViewModel.bic)
-            .disposed(by: disposeBag)
-        
-        (accountHolderTextField.rx.textInput <-> bankDetailsViewModel.accountHolder)
-            .disposed(by: disposeBag)
-        
-        (currencyTextField.rx.textInput <-> bankDetailsViewModel.accountHolderAddress)
-            .disposed(by: disposeBag)
-        
-        let isFormValidDriver = bankDetailsViewModel.isValid.asDriver(onErrorJustReturn: false)
-        
-        isFormValidDriver
-            .drive(nextButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        setupFormUX(disposedBy: disposeBag)
     }
 
     // MARK: - Navigation
@@ -72,8 +74,66 @@ class CashOurBankAccountDetailsViewController: UIViewController {
             guard let vc = segue.destination as? CashOutConfirmationViewController else { return }
             vc.cashOutViewModel = cashOutViewModel
         }
+        
+        if segue.identifier == "SelectCountry" {
+            guard
+                let navController = segue.destination as? UINavigationController,
+                let vc = navController.viewControllers.first as? SelectCountryViewController
+                else {
+                    return
+            }
+            vc.viewModel = selectCountryViewModel
+            vc.selectedCountry = selectedCountry ?? selectCountryViewModel.countryBy(name: accountHolderCountryTextField.text)
+            vc.delegate = self
+        }
     }
 
+}
+
+fileprivate extension CashOutBankAccountViewModel {
+    func bind(_ viewController: CashOurBankAccountDetailsViewController) {
+        (viewController.accountNameTextField.rx.textInput <-> bankName)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.ibanTextField.rx.textInput <-> iban)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.bicTextField.rx.textInput <-> bic)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderTextField.rx.textInput <-> accountHolder)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.currencyTextField.rx.textInput <-> accountHolderAddress)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderCountryTextField.rx.textInput <-> accountHolderCountry)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderCountryCodeTextField.rx.textInput <-> accountHolderCountryCode)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderZipCodeTextField.rx.textInput <-> accountHolderZipCode)
+            .disposed(by: viewController.disposeBag)
+        
+        (viewController.accountHolderCityTextField.rx.textInput <-> accountHolderCity)
+            .disposed(by: viewController.disposeBag)
+        
+        let isFormValidDriver = isValid.asDriver(onErrorJustReturn: false)
+        
+        isFormValidDriver
+            .drive(viewController.nextButton.rx.isEnabled)
+            .disposed(by: viewController.disposeBag)
+    }
+}
+
+extension CashOurBankAccountDetailsViewController: SelectCountryViewControllerDelegate {
+    
+    func controller(_ controller: SelectCountryViewController, didSelectCountry country: LWCountryModel) {
+        self.selectedCountry = country
+        controller.dismiss(animated: true)
+    }
+    
 }
 
 extension CashOurBankAccountDetailsViewController: InputForm {
@@ -88,7 +148,10 @@ extension CashOurBankAccountDetailsViewController: InputForm {
             ibanTextField,
             bicTextField,
             accountHolderTextField,
-            currencyTextField
+            currencyTextField,
+            accountHolderCountryCodeTextField,
+            accountHolderZipCodeTextField,
+            accountHolderCityTextField
         ]
     }
     
