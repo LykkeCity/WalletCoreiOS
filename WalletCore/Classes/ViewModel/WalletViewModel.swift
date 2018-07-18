@@ -22,6 +22,8 @@ public class WalletViewModel {
     
     public let assetObservable: Observable<LWSpotWallet>
     public let baseAssetObservable: Observable<LWAssetModel>
+    
+    public let isAssetPairExist: Observable<Bool>
 
     public init(
         refresh: Observable<Void>,
@@ -40,6 +42,9 @@ public class WalletViewModel {
             .shareReplay(1)
         
         assetObservable = wallet
+        
+        isAssetPairExist = assetObservable
+            .map{return $0.assetPairId == nil}
         
         baseAssetObservable = baseAssetResponseObservable.filterSuccess()
         
