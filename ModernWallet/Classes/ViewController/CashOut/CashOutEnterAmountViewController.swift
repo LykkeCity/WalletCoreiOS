@@ -71,21 +71,19 @@ class CashOutEnterAmountViewController: UIViewController {
             .drive(assetImageView.rx.afImage)
             .disposed(by: disposeBag)
         
-        let isAssetPairExistDriver = walletViewModel.isAssetPairExist.asDriver(onErrorJustReturn: false)
-        
-        isAssetPairExistDriver
+        walletViewModel.isAssetPairNull
             .drive(percentLabel.rx.isHidden)
             .disposed(by: disposeBag)
         
-        isAssetPairExistDriver
+        walletViewModel.isAssetPairNull
             .drive(baseAssetAmountView.rx.isHidden)
             .disposed(by: disposeBag)
         
-        isAssetPairExistDriver
+        walletViewModel.isAssetPairNull
             .drive(baseAssetCodeLabel.rx.isHidden)
             .disposed(by: disposeBag)
         
-        isAssetPairExistDriver
+        walletViewModel.isAssetPairNull
             .drive(baseAmountTextField.rx.isHidden)
             .disposed(by: disposeBag)
         
