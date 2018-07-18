@@ -23,7 +23,7 @@ public class WalletViewModel {
     public let assetObservable: Observable<LWSpotWallet>
     public let baseAssetObservable: Observable<LWAssetModel>
     
-    public let isAssetPairExist: Observable<Bool>
+    public let isAssetPairNull: Driver<Bool>
 
     public init(
         refresh: Observable<Void>,
@@ -43,8 +43,9 @@ public class WalletViewModel {
         
         assetObservable = wallet
         
-        isAssetPairExist = assetObservable
+        isAssetPairNull = assetObservable
             .map{return $0.assetPairId == nil}
+            .asDriver(onErrorJustReturn: false)
         
         baseAssetObservable = baseAssetResponseObservable.filterSuccess()
         
