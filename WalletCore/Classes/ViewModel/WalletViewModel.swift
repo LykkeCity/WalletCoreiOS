@@ -22,6 +22,8 @@ public class WalletViewModel {
     
     public let assetObservable: Observable<LWSpotWallet>
     public let baseAssetObservable: Observable<LWAssetModel>
+    
+    public let isAssetPairNull: Driver<Bool>
 
     public init(
         refresh: Observable<Void>,
@@ -40,6 +42,10 @@ public class WalletViewModel {
             .shareReplay(1)
         
         assetObservable = wallet
+        
+        isAssetPairNull = assetObservable
+            .map{return $0.assetPairId == nil}
+            .asDriver(onErrorJustReturn: false)
         
         baseAssetObservable = baseAssetResponseObservable.filterSuccess()
         

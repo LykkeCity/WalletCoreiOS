@@ -38,10 +38,12 @@ open class AssetCollectionCellViewModel {
             .asDriver(onErrorJustReturn: "")
         
         self.realAmount = asset.asObservable()
+            .filter{($0.wallet?.assetPairId != nil)}
             .mapToRealAmount()
             .asDriver(onErrorJustReturn: "")
         
         self.realCode = asset.asObservable()
+            .filter{($0.wallet?.assetPairId != nil)}
             .mapToRealCode()
             .asDriver(onErrorJustReturn: "")
         
