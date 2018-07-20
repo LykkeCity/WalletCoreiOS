@@ -10,14 +10,15 @@ import UIKit
 import RxCocoa
 import RxSwift
 import WalletCore
+import WebKit
 
-class AssetDisclaimerViewController: UIViewController {
+class AssetDisclaimerViewController: UIViewController, UIWebViewDelegate {
 
     
     @IBOutlet weak var acceptedButton: UIButton!
     @IBOutlet weak var `continue`: UIButton!
     @IBOutlet weak var cancel: UIButton!
-    @IBOutlet weak var disclaimerLabel: UILabel!
+    @IBOutlet weak var disclaimerWebView: UIWebView!
     
     // move this variable to a dedicated view model
     let accepted = Variable(false)
@@ -66,6 +67,20 @@ class AssetDisclaimerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func openURL(_ url: String) {
+        let correctUrlString = url.hasPrefix("http") ? url : "https://\(url)"
+        UIApplication.shared.openURL(URL(string: correctUrlString)!)
+    }
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if navigationType == .linkClicked {
+            openURL(request.url!.absoluteString)
+            return false
+        }
+        
+        return true
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -85,7 +100,7 @@ fileprivate extension AssetDisclaimerViewModel {
             loadingViewModel.isLoading.bind(to: vc.rx.loading),
             disclaimer.drive(vc.currentDisclaimer),
             vc.currentDisclaimer.asDriver().filterNil().drive(onNext: { [weak vc] disclaimer in
-                vc?.disclaimerLabel.setHTML(html: disclaimer.text)
+                vc?.disclaimerWebView.loadHTMLString(disclaimer.text.replacingOccurrences(of: "#0096fb", with: "##0000FF"), baseURL: URL(string: "https://"))
             }),
             vc.accepted.asDriver().drive(vc.continue.rx.isEnabled)
         ]

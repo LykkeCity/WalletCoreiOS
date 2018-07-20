@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ecW-eI-HdK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ecW-eI-HdK">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -13,13 +13,14 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="Geomanist-Book.otf">
+            <string>Geomanist</string>
             <string>Geomanist-Book</string>
         </array>
         <array key="Geomanist-Light.otf">
             <string>Geomanist-Light</string>
         </array>
-        <array key="Geomanist-Regular.otf">
-            <string>Geomanist</string>
+        <array key="GillSans.ttc">
+            <string>GillSans-Light</string>
         </array>
     </customFonts>
     <scenes>
@@ -240,7 +241,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD MONEY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XlH-ia-xii">
-                                            <rect key="frame" x="56" y="21.666666666666668" width="61" height="11.000000000000004"/>
+                                            <rect key="frame" x="56" y="21.666666666666668" width="61.666666666666657" height="11.000000000000004"/>
                                             <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="11"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -568,13 +569,13 @@ Please check and try again.</string>
                                                 <rect key="frame" x="107.66666666666669" y="71.333333333333314" width="160" height="119"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
-                                                        <rect key="frame" x="48.333333333333329" y="0.0" width="63.666666666666671" height="11"/>
+                                                        <rect key="frame" x="48.333333333333329" y="0.3333333333333357" width="63.666666666666671" height="11"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="11"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1MM-5Y-eOM" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="14.999999999999993" width="160" height="50.000000000000007"/>
+                                                        <rect key="frame" x="0.0" y="15.333333333333329" width="160" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -586,7 +587,7 @@ Please check and try again.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tF3-il-4Jb" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="69" width="160" height="50"/>
+                                                        <rect key="frame" x="0.0" y="69.333333333333329" width="160" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -833,14 +834,14 @@ Please check and try again.</string>
                                                         <rect key="frame" x="257" y="0.0" width="60" height="60"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloadIcon" translatesAutoresizingMaskIntoConstraints="NO" id="U5Z-Sr-bBg">
-                                                                <rect key="frame" x="0.0" y="20" width="10" height="16"/>
+                                                                <rect key="frame" x="-5" y="22" width="10" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="0Hm-TX-2lA"/>
                                                                     <constraint firstAttribute="width" constant="10" id="MGf-sq-Wbu"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download CSV" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4A0-GO-iB8">
-                                                                <rect key="frame" x="15" y="20" width="48" height="27"/>
+                                                                <rect key="frame" x="10" y="16.666666666666629" width="48" height="27"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="48" id="cIP-Wr-oFn"/>
                                                                     <constraint firstAttribute="height" constant="27" id="fFy-ff-LQn"/>
@@ -1017,13 +1018,13 @@ Please check and try again.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-gZ-usr">
-                                <rect key="frame" x="89.000000000000014" y="290.66666666666669" width="198.33333333333337" height="231.00000000000006"/>
+                                <rect key="frame" x="88.666666666666671" y="290.66666666666669" width="199.66666666666663" height="231.00000000000006"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="V18-eG-6Hb">
-                                        <rect key="frame" x="0.0" y="0.0" width="198.33333333333334" height="179"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="199.66666666666666" height="179"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvC-CJ-cmE">
-                                        <rect key="frame" x="0.0" y="199" width="198.33333333333334" height="32"/>
+                                        <rect key="frame" x="0.0" y="199" width="199.66666666666666" height="32"/>
                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="32"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1131,35 +1132,38 @@ Please check and try again.</string>
                                             <constraint firstAttribute="height" constant="60" id="akp-CH-HfH"/>
                                         </constraints>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqE-PB-hAl">
-                                        <rect key="frame" x="12" y="68.999999999999972" width="351" height="17"/>
-                                        <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <webView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A4q-sR-OX4">
+                                        <rect key="frame" x="12" y="64" width="347" height="287"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="pnT-Lb-Qbd" id="MnL-oq-qZR"/>
+                                        </connections>
+                                    </webView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="SRI-XG-qx6" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="8" id="0Kh-DO-43U"/>
+                                    <constraint firstItem="A4q-sR-OX4" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="16" id="6G6-w7-6zA"/>
+                                    <constraint firstItem="Wey-D2-dBf" firstAttribute="top" secondItem="A4q-sR-OX4" secondAttribute="bottom" constant="7" id="7Md-qV-nBX"/>
                                     <constraint firstItem="8Si-lq-j5n" firstAttribute="top" secondItem="3S7-SC-dQH" secondAttribute="top" constant="23" id="7u6-IZ-Y2u"/>
                                     <constraint firstAttribute="bottom" secondItem="OCV-IZ-hnZ" secondAttribute="bottom" constant="12" id="9ml-tH-I5W"/>
                                     <constraint firstItem="SRI-XG-qx6" firstAttribute="top" secondItem="8Si-lq-j5n" secondAttribute="bottom" constant="12" id="BbW-WB-gWd"/>
                                     <constraint firstItem="cn1-u4-U7P" firstAttribute="top" secondItem="Wey-D2-dBf" secondAttribute="bottom" constant="8" id="D0A-fx-DVT"/>
                                     <constraint firstItem="OCV-IZ-hnZ" firstAttribute="top" secondItem="cn1-u4-U7P" secondAttribute="bottom" constant="8" id="DZE-86-u4g"/>
                                     <constraint firstAttribute="trailing" secondItem="SRI-XG-qx6" secondAttribute="trailing" constant="8" id="E3k-dG-0Sh"/>
-                                    <constraint firstItem="lqE-PB-hAl" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="12" id="J5G-pJ-D9s"/>
                                     <constraint firstItem="8Si-lq-j5n" firstAttribute="centerX" secondItem="3S7-SC-dQH" secondAttribute="centerX" id="Jyd-Ze-Mq4"/>
                                     <constraint firstItem="Ax0-5c-WaC" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" id="K5i-tE-K9N"/>
                                     <constraint firstAttribute="trailing" secondItem="Wey-D2-dBf" secondAttribute="trailing" constant="8" id="LQC-bs-0K3"/>
                                     <constraint firstItem="Ax0-5c-WaC" firstAttribute="top" secondItem="3S7-SC-dQH" secondAttribute="top" id="Oyi-bt-2IS"/>
+                                    <constraint firstAttribute="trailing" secondItem="A4q-sR-OX4" secondAttribute="trailing" constant="16" id="U2t-Xv-Rm9"/>
                                     <constraint firstAttribute="trailing" secondItem="Ax0-5c-WaC" secondAttribute="trailing" id="arp-i7-Aua"/>
                                     <constraint firstItem="cn1-u4-U7P" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="16" id="dY5-D6-vqx"/>
                                     <constraint firstAttribute="trailing" secondItem="cn1-u4-U7P" secondAttribute="trailing" constant="16" id="jmK-2B-gdt"/>
                                     <constraint firstAttribute="bottom" secondItem="Ax0-5c-WaC" secondAttribute="bottom" id="lKN-iJ-25R"/>
                                     <constraint firstItem="Wey-D2-dBf" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="8" id="lSs-oe-V43"/>
                                     <constraint firstAttribute="trailing" secondItem="OCV-IZ-hnZ" secondAttribute="trailing" constant="12" id="oiU-Ey-61D"/>
-                                    <constraint firstAttribute="trailing" secondItem="lqE-PB-hAl" secondAttribute="trailing" constant="12" id="rN0-g6-Y9g"/>
-                                    <constraint firstItem="lqE-PB-hAl" firstAttribute="top" secondItem="SRI-XG-qx6" secondAttribute="bottom" constant="12" id="we8-UU-IOy"/>
+                                    <constraint firstItem="A4q-sR-OX4" firstAttribute="top" secondItem="SRI-XG-qx6" secondAttribute="bottom" constant="7" id="qQx-aX-rX2"/>
                                     <constraint firstItem="OCV-IZ-hnZ" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="12" id="wvE-J5-LOC"/>
                                 </constraints>
                             </view>
@@ -1176,12 +1180,12 @@ Please check and try again.</string>
                         <outlet property="acceptedButton" destination="gkM-3S-8BH" id="9Mb-qO-bUw"/>
                         <outlet property="cancel" destination="P8t-oc-N00" id="wco-Kw-65T"/>
                         <outlet property="continue" destination="b7e-Nc-75u" id="Uxr-zN-G1E"/>
-                        <outlet property="disclaimerLabel" destination="lqE-PB-hAl" id="Ixn-9n-DcX"/>
+                        <outlet property="disclaimerWebView" destination="A4q-sR-OX4" id="3XF-3I-cDf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccV-hL-ha1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1530.4000000000001" y="1169.7044334975369"/>
+            <point key="canvasLocation" x="1529.5" y="1169"/>
         </scene>
         <!--Empty Wallet View Controller-->
         <scene sceneID="Q9O-hN-V6N">
@@ -1282,7 +1286,6 @@ Please check and try again.</string>
         <image name="filtericon" width="16" height="15"/>
         <image name="list" width="24" height="21"/>
         <image name="listSelected" width="25" height="22"/>
-        <image name="mailIcon" width="17" height="11"/>
         <image name="portfolioRecieveIcon" width="16" height="13"/>
         <image name="sellIcon" width="15" height="15"/>
         <image name="sendIcon" width="14" height="15"/>
