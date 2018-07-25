@@ -29,6 +29,8 @@ open class CreditCardBaseInfoViewModel {
     
     public let errors: Errors
     
+    public let errorForDisclaimer: Driver<[AnyHashable: Any]>
+    
     public let loadingViewModel: LoadingViewModel
     
     /// <#Description#>
@@ -76,6 +78,11 @@ open class CreditCardBaseInfoViewModel {
             .bind(to: self.countryCodes)
             .disposed(by: disposeBag)
         
+        errorForDisclaimer = paymentUrlResult
+            .filterError()
+            .filterDisclaimerError(isDisclaimer: true)
+            .asDriver(onErrorJustReturn: [:])
+        
         errors = Errors(withPacket: paymentUrlResult, input: input)
     }
     
@@ -95,7 +102,7 @@ open class CreditCardBaseInfoViewModel {
         
         fileprivate init(withPacket packet: Observable<ApiResult<LWPacketGetPaymentUrl>>, input: Input) {
             let error = Observable.merge(
-                packet.filterError(),
+                packet.filterError().filterDisclaimerError(isDisclaimer: false),
                 packet.filterSuccess().map{_ -> [AnyHashable: Any] in [:]}
             )
             
@@ -273,6 +280,17 @@ fileprivate extension ObservableType where Self.E == [AnyHashable: Any] {
             return $0["Message"] as? String
         }
         .asDriver(onErrorJustReturn: "")
+    }
+    
+    func filterDisclaimerError(isDisclaimer: Bool) -> Observable<[AnyHashable: Any]> {
+        return filter{
+            var check = false
+            guard let codeError = $0["Code"] as? Int else { return !isDisclaimer }
+            if codeError == 70 { check = true }
+            else {check = false}
+            if (isDisclaimer) {return check}
+            else {return !check}
+        }
     }
 }
 
