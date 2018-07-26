@@ -10,37 +10,37 @@ import Foundation
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerCountryCodes: NSObject{
-    
+public class LWRxAuthManagerCountryCodes: NSObject {
+
     public typealias Packet = LWPacketCountryCodes
     public typealias Result = ApiResult<[LWCountryModel]>
     public typealias ResultType = [LWCountryModel]
     public typealias RequestParams = Void
-    
+
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
     }
-    
+
     deinit {
         unsubscribe(observer: self)
     }
-    
+
     @objc func successSelector(_ notification: NSNotification) {
         onSuccess(notification)
     }
-    
+
     @objc func errorSelector(_ notification: NSNotification) {
         onError(notification)
     }
 }
 
-extension LWRxAuthManagerCountryCodes: AuthManagerProtocol{
+extension LWRxAuthManagerCountryCodes: AuthManagerProtocol {
     public func createPacket(withObserver observer: Any, params: Void) -> LWPacketCountryCodes {
         return Packet(observer: observer)
     }
-    
+
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet.countries.map{$0 as! LWCountryModel})
+        return Result.success(withData: packet.countries.map {$0 as! LWCountryModel})
     }
 }

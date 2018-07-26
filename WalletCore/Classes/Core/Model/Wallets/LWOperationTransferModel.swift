@@ -21,14 +21,14 @@ public class LWOperationTransferModel: LWJSONObject {
   public var sourceWalletId: String?
   public var walletId: String?
   public var transferType: LWOperationTransferType = .unknown
-  
+
   public override class func objectMapping() -> EKObjectMapping {
     let mapping = EKObjectMapping(objectClass: self)
     mapping.mapPropertiesFromArray(toPascalCase: ["assetId",
                                                   "amount",
                                                   "sourceWalletId",
                                                   "walletId"])
-	mapping.mapKeyPath("TransferType", toProperty: "transferType", withValueBlock: { (key, value) -> LWOperationTransferType.RawValue in
+	mapping.mapKeyPath("TransferType", toProperty: "transferType", withValueBlock: { (_, value) -> LWOperationTransferType.RawValue in
 		var result: LWOperationTransferType = .unknown
 		if let value = value as? String {
 			switch value {
@@ -44,7 +44,7 @@ public class LWOperationTransferModel: LWJSONObject {
 		}
 		return result.rawValue
 	}, reverse: { _ in return "" })
-	
+
     return mapping
   }
 }

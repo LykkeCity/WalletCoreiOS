@@ -14,37 +14,37 @@ public protocol LWRxAuthManagerAssetPairsProtocol {
     func request() -> Observable<ApiResult<[LWAssetPairModel]>>
 }
 
-public class LWRxAuthManagerAssetPairs: NSObject,LWRxAuthManagerAssetPairsProtocol{
-    
+public class LWRxAuthManagerAssetPairs: NSObject, LWRxAuthManagerAssetPairsProtocol {
+
     public typealias Packet = LWPacketAssetPairs
     public typealias Result = ApiResult<[LWAssetPairModel]>
     public typealias ResultType = [LWAssetPairModel]
     public typealias RequestParams = Void
-    
+
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
     }
-    
+
     deinit {
         unsubscribe(observer: self)
     }
-    
+
     @objc func successSelector(_ notification: NSNotification) {
         onSuccess(notification)
     }
-    
+
     @objc func errorSelector(_ notification: NSNotification) {
         onError(notification)
     }
 }
 
 extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
-    
+
     public func createPacket(withObserver observer: Any, params: Void) -> LWPacketAssetPairs {
         return Packet(observer: observer)
     }
-    
+
     public func request() -> Observable<Result> {
         if let pairs = LWCache.instance().allAssetPairs {
             return Observable<ApiResult<[LWAssetPairModel]>>
@@ -53,7 +53,7 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
         }
         return self.request(withParams: ())
     }
-    
+
     public func request(baseAsset: LWAssetModel, quotingAsset: LWAssetModel) -> Observable<ApiResult<LWAssetPairModel?>> {
         if let pair = LWCache.assetPair(forAssetId: baseAsset.identity, otherAssetId: quotingAsset.identity) {
             return Observable<ApiResult<LWAssetPairModel?>>
@@ -62,40 +62,40 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
         }
         return request(withParams: ())
             .filterSuccess()
-            .map{ pairs in
+            .map { pairs in
                 pairs.first { (model: LWAssetPairModel) in
                     (model.baseAssetId == baseAsset.identity && model.quotingAssetId == quotingAsset.identity) ||
                     (model.baseAssetId == quotingAsset.identity && model.quotingAssetId == baseAsset.identity)
                 }
             }
-            .map{ ApiResult.success(withData: $0) }
+            .map { ApiResult.success(withData: $0) }
             .startWith(.loading)
             .shareReplay(1)
     }
-    
+
     public func request(byId id: String) -> Observable<ApiResult<LWAssetPairModel?>> {
         if let pair = LWCache.assetPair(byId: id) {
             return Observable<ApiResult<LWAssetPairModel?>>
                 .just(ApiResult.success(withData: pair))
                 .startWith(ApiResult.loading)
         }
-        return request(withParams: ()).map{ result -> ApiResult<LWAssetPairModel?> in
+        return request(withParams: ()).map { result -> ApiResult<LWAssetPairModel?> in
             switch result {
                 case .error(let data): return .error(withData: data)
                 case .loading: return .loading
                 case .notAuthorized: return .notAuthorized
                 case .forbidden: return .forbidden
-                case .success(let data): return .success(withData: data.first{pairModel in
+                case .success(let data): return .success(withData: data.first {pairModel in
                     return pairModel.identity == id
                 })
             }
         }
     }
-    
+
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
         guard let rates = packet.assetPairs else {
             return Result.success(withData: [])
         }
-        return Result.success(withData: rates.map{$0 as! LWAssetPairModel})
+        return Result.success(withData: rates.map {$0 as! LWAssetPairModel})
     }
 }

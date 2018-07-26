@@ -17,29 +17,24 @@ open class RegisterSendPinEmailViewModel {
     public let loading: Observable<Bool>
     public let resultConfirmPin: Driver<ApiResult<LWPacketEmailVerificationGet>>
     public let resultResendPin: Driver<ApiResult<LWPacketEmailVerificationSet>>
-    
-    public init(submitConfirmPin: Observable<Void>, submitResendPin: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
-    {
+
+    public init(submitConfirmPin: Observable<Void>, submitResendPin: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         resultConfirmPin = submitConfirmPin
             .throttle(1, scheduler: MainScheduler.instance)
             .mapToPack(pin: pin, email: email, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        
-        
-        
+
         resultResendPin = submitResendPin
             .throttle(1, scheduler: MainScheduler.instance)
             .mapResendPin(email: email, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        
+
         let m = Observable.merge([self.resultConfirmPin.asObservable().isLoading(), self.resultResendPin.asObservable().isLoading()])
         loading = m
     }
-    
-    
-    public var isValid : Observable<Bool>{
-        return Observable.combineLatest(self.fake.asObservable(), self.pin.asObservable()  , resultSelector:
-            {(fake,pin1) -> Bool in
+
+    public var isValid: Observable<Bool> {
+        return Observable.combineLatest(self.fake.asObservable(), self.pin.asObservable(), resultSelector: {(_, pin1) -> Bool in
                 return pin1.characters.count > 3
         })
     }
@@ -51,8 +46,8 @@ fileprivate extension ObservableType where Self.E == Void {
         email: Variable<String>,
         authManager: LWRxAuthManager
         ) -> Observable<ApiResult<LWPacketEmailVerificationGet>> {
-        
-        return flatMapLatest{authData in
+
+        return flatMapLatest {_ in
             authManager.pinvalidation.request(withParams: (
                 email: email.value,
                 pin: pin.value
@@ -60,17 +55,15 @@ fileprivate extension ObservableType where Self.E == Void {
         }
         .shareReplay(1)
     }
-    
+
     func mapResendPin(
         email: Variable<String>,
         authManager: LWRxAuthManager
         ) -> Observable<ApiResult<LWPacketEmailVerificationSet>> {
-        
-        return flatMapLatest{authData in
+
+        return flatMapLatest {_ in
             authManager.emailverification.request(withParams: email.value)
         }
         .shareReplay(1)
     }
 }
-
-

@@ -6,7 +6,6 @@
 //
 //
 
-
 import Foundation
 import RxSwift
 import RxCocoa
@@ -18,17 +17,15 @@ open class ClientKeysViewModel {
 
     public let loading: Observable<Bool>
     public let result: Driver<ApiResult<LWPacketClientKeys>>
-    
-    public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
-    {
+
+    public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         result = submit
             .throttle(1, scheduler: MainScheduler.instance)
-            .mapClientKeys(pubKey: pubKey, encodedPrivateKey: encodedPrivateKey,  authManager: authManager)
+            .mapClientKeys(pubKey: pubKey, encodedPrivateKey: encodedPrivateKey, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        
+
         loading = result.asObservable().isLoading()
     }
-    
 
 }
 
@@ -38,8 +35,8 @@ fileprivate extension ObservableType where Self.E == Void {
         encodedPrivateKey: Variable<String>,
         authManager: LWRxAuthManager
         ) -> Observable<ApiResult<LWPacketClientKeys>> {
-        
-        return flatMapLatest{authData in
+
+        return flatMapLatest {_ in
             authManager.pubKeys.request(withParams: (
                 pubKey: pubKey.value,
                 encodedPrivateKey: encodedPrivateKey.value
@@ -48,4 +45,3 @@ fileprivate extension ObservableType where Self.E == Void {
         .shareReplay(1)
     }
 }
-

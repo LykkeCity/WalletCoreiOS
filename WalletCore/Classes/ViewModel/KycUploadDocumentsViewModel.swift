@@ -11,20 +11,19 @@ import RxSwift
 import RxCocoa
 
 public class KycUploadDocumentsViewModel {
-    
+
     /// A driver with the taken image, it receives events when the api returns successful response
     public let image: Driver<UIImage?>
-    
+
     /// A driver with errors dictionary
-    public let error: Driver<[AnyHashable : Any]>
-    
+    public let error: Driver<[AnyHashable: Any]>
+
     /// A driver with success data
-    public let success: Driver<[AnyHashable : Any]>
-    
+    public let success: Driver<[AnyHashable: Any]>
+
     /// Loading indicator
     public let loadingViewModel: LoadingViewModel
-    
-    
+
     ///
     /// - Parameters:
     ///   - image: Taken image
@@ -37,33 +36,33 @@ public class KycUploadDocumentsViewModel {
     ) {
         let uploadImageObservable = image
             .filterNil()
-            .flatMap{image -> Observable<(result: LWRxKYCManager.Result, image: UIImage)> in
-                guard let type = type.value else{return Observable.never()}
+            .flatMap {image -> Observable<(result: LWRxKYCManager.Result, image: UIImage)> in
+                guard let type = type.value else {return Observable.never()}
                 return kycManager
                     .saveWithResult(image: image, for: type)
-                    .map{(
+                    .map {(
                         result: $0,
                         image: image
                     )}
             }
             .shareReplay(1)
-        
+
         self.error = uploadImageObservable
-            .map{$0.result}
+            .map {$0.result}
             .filterError()
             .asDriver(onErrorJustReturn: [:])
-        
+
         self.success = uploadImageObservable
-            .map{$0.result}
+            .map {$0.result}
             .filterSuccess()
             .asDriver(onErrorJustReturn: [:])
-        
+
         self.image = uploadImageObservable
-            .map{$0.result.isSuccess ? $0.image : nil}
+            .map {$0.result.isSuccess ? $0.image : nil}
             .asDriver(onErrorJustReturn: nil)
-        
+
         self.loadingViewModel = LoadingViewModel([
-            uploadImageObservable.map{$0.result}.isLoading()
+            uploadImageObservable.map {$0.result}.isLoading()
         ])
     }
 }

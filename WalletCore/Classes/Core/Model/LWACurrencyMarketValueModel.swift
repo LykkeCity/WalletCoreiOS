@@ -9,12 +9,12 @@
 import Foundation
 public class LWACurrencyMarketValueModel {
     public typealias Variance = (currency: Asset.Currency, percent: Double)
-    
+
     let name: String
     let capitalization: Asset.Currency
     let variance: Variance
     public let imgUrl: URL?
-    
+
     public init(name: String, capitalization: Asset.Currency, variance: Variance) {
         self.name = name
         self.capitalization = capitalization
@@ -27,5 +27,5 @@ public class LWACurrencyMarketValueModel {
         self.variance = variance
         self.imgUrl = imageUrl
     }
-    
+
 }

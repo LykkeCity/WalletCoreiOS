@@ -10,8 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
-open class PhoneNumberPinViewModel{
+open class PhoneNumberPinViewModel {
     public let pin1 = Variable<String>("")
     public let pin2 = Variable<String>("")
     public let pin3 = Variable<String>("")
@@ -20,29 +19,24 @@ open class PhoneNumberPinViewModel{
     public let loading: Observable<Bool>
     public let resultConfirmPin: Driver<ApiResult<LWPacketPhoneVerificationGet>>
     public let resultResendPin: Driver<ApiResult<LWPacketPhoneVerificationSet>>
-    
-    public init(submitConfirmPin: Observable<Void>, submitResendPin: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
-    {
+
+    public init(submitConfirmPin: Observable<Void>, submitResendPin: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         resultConfirmPin = submitConfirmPin
             .throttle(1, scheduler: MainScheduler.instance)
-            .mapToPack(pin1: pin1, pin2: pin2, pin3: pin3, pin4:pin4, phone: phone, authManager: authManager)
+            .mapToPack(pin1: pin1, pin2: pin2, pin3: pin3, pin4: pin4, phone: phone, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        
-        
-        
+
         resultResendPin = submitResendPin
             .throttle(1, scheduler: MainScheduler.instance)
             .mapResendPin(phone: phone, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
-        
+
         let m = Observable.merge([self.resultConfirmPin.asObservable().isLoading(), self.resultResendPin.asObservable().isLoading()])
         loading = m
     }
-    
-    
-    public var isValid : Observable<Bool>{
-        return Observable.combineLatest( self.pin1.asObservable() , self.pin2.asObservable() , self.pin3.asObservable() ,self.pin4.asObservable() , resultSelector:
-            {(pin1, pin2,pin3,pin4) -> Bool in
+
+    public var isValid: Observable<Bool> {
+        return Observable.combineLatest( self.pin1.asObservable(), self.pin2.asObservable(), self.pin3.asObservable(), self.pin4.asObservable(), resultSelector: {(pin1, pin2, pin3, pin4) -> Bool in
                 return pin1.characters.count > 0
                     && pin2.characters.count > 0
                     && pin3.characters.count > 0
@@ -60,8 +54,8 @@ fileprivate extension ObservableType where Self.E == Void {
         phone: Variable<String>,
         authManager: LWRxAuthManager
         ) -> Observable<ApiResult<LWPacketPhoneVerificationGet>> {
-        
-        return flatMapLatest{authData in
+
+        return flatMapLatest {_ in
             authManager.setPhoneNumberPin.request(withParams: (
                 phone: phone.value,
                 pin: pin1.value+pin2.value+pin3.value+pin4.value
@@ -69,13 +63,13 @@ fileprivate extension ObservableType where Self.E == Void {
         }
         .shareReplay(1)
     }
-    
+
     func mapResendPin(
         phone: Variable<String>,
         authManager: LWRxAuthManager
         ) -> Observable<ApiResult<LWPacketPhoneVerificationSet>> {
-        
-        return flatMapLatest{authData in
+
+        return flatMapLatest {_ in
             authManager.setPhoneNumber.request(withParams: phone.value)
         }
         .shareReplay(1)

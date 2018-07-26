@@ -11,22 +11,22 @@ import RxSwift
 import RxCocoa
 
 open class BuyStep3ViewModel {
-    
+
     typealias that = BuyStep3ViewModel
     typealias CombinedObservable = Observable<(asset: LWAssetModel, units: Decimal, wallet: LWSpotWallet, bid: Bool)>
     typealias AssetUnitsObservable = Observable<(asset: LWAssetModel, units: Decimal, bid: Bool)>
-    
+
     public typealias Input = (
-        units:      Observable<Decimal>,
-        asset:      Observable<LWAssetModel>,
-        wallet:     Observable<LWSpotWallet>,
-        bid:        Observable<Bool>,
-        submit:     Observable<Void>
+        units: Observable<Decimal>,
+        asset: Observable<LWAssetModel>,
+        wallet: Observable<LWSpotWallet>,
+        bid: Observable<Bool>,
+        submit: Observable<Void>
     )
-    
+
     private let input: Input
-    
-    //MARK:- output properties
+
+    // MARK: - output properties
     public let assetName: Driver<String>
     public let unitsInBaseAsset: Driver<String>
     public let walletAssetCode: Driver<String>
@@ -39,7 +39,7 @@ open class BuyStep3ViewModel {
     public let nonEmptyWallets: Observable<[LWSpotWallet]>
     public let loadingViewModel: LoadingViewModel
     public let tradeResult: Observable<ApiResult<[AnyHashable: Any]>>
-    
+
     public init(
         input: Input,
         dependency: (
@@ -50,82 +50,82 @@ open class BuyStep3ViewModel {
         )
     ) {
         self.input = input
-        
+
         let combinedObservable =
-            Observable.combineLatest(input.asset, input.units, input.wallet, input.bid){(asset: $0, units: $1, wallet: $2, bid: $3)}
+            Observable.combineLatest(input.asset, input.units, input.wallet, input.bid) {(asset: $0, units: $1, wallet: $2, bid: $3)}
                 .shareReplay(1)
-        
+
         let assetUnitsObservable =
-            Observable.combineLatest(input.asset, input.units, input.bid){(asset: $0, units: $1, bid: $2)}
+            Observable.combineLatest(input.asset, input.units, input.bid) {(asset: $0, units: $1, bid: $2)}
                 .shareReplay(1)
-        
+
         self.unitsInBaseAsset = assetUnitsObservable
             .mapToUnitsInBase(currencyExchanger: dependency.currencyExchanger)
             .asDriver(onErrorJustReturn: "")
-        
+
         self.walletAssetCode = input.wallet
             .mapToWalletAssetCode()
             .asDriver(onErrorJustReturn: "")
-        
+
         self.price = combinedObservable
             .mapToPrice(currencyExchanger: dependency.currencyExchanger)
             .asDriver(onErrorJustReturn: "")
-        
+
         self.priceInBaseAsset = combinedObservable
             .mapToPriceInBase(currencyExchanger: dependency.currencyExchanger)
             .asDriver(onErrorJustReturn: "")
-        
+
         self.walletTotal = input.wallet
             .mapToTotal()
             .asDriver(onErrorJustReturn: "")
-        
+
         self.walletTotalAv = input.wallet
             .mapToTotalAv()
             .asDriver(onErrorJustReturn: "")
-        
+
         self.walletTotalInBaseAsset = input.wallet
             .mapToTotalInBase(authManager: dependency.authManager)
             .asDriver(onErrorJustReturn: "")
-        
+
         self.currentPriceCurrencyInBaseAsset = combinedObservable
             .mapToPriceInBase(currencyExchanger: dependency.currencyExchanger, amount: 1.0, baseAsset: false)
             .asDriver(onErrorJustReturn: "")
-        
+
         self.nonEmptyWallets = Observable.combineLatest(
             dependency.authManager.lykkeWallets.requestNonEmptyWallets().filterSuccess(),
             input.asset,
             dependency.authManager.assetPairs.request().filterSuccess()
         )
-        .map{(wallets, buyAsset, assetPairs) in
-            return wallets.filter{(wallet: LWSpotWallet) in
+        .map {(wallets, buyAsset, assetPairs) in
+            return wallets.filter {(wallet: LWSpotWallet) in
                 let assetPairId = "\(buyAsset.identity!)\(wallet.asset.identity!)"
-                return assetPairs.contains{$0.identity == assetPairId}
+                return assetPairs.contains {$0.identity == assetPairId}
             }
         }
-        
+
         self.assetName = input.asset
             .mapToFullName()
             .asDriver(onErrorJustReturn: "")
-        
+
         let ethTransaction = input.submit
-            .flatMapLatest{combinedObservable.take(1)}
+            .flatMapLatest {combinedObservable.take(1)}
             .filter(includeEthereum: true)
             .flatMapToAssetPairs(withAuthManager: dependency.authManager)
             .flatMapTrade(withEthereumManager: dependency.ethereumManager)
             .shareReplay(1)
-        
+
         let offchainTransaction = input.submit
-            .flatMapLatest{combinedObservable.take(1)}
+            .flatMapLatest {combinedObservable.take(1)}
             .filter(includeEthereum: false)
             .flatMapToAssetPairs(withAuthManager: dependency.authManager)
             .flatMapTrade(withOffchainManager: dependency.offchainManager)
             .shareReplay(1)
-        
+
         self.loadingViewModel = LoadingViewModel([
             ethTransaction.isLoading(),
             offchainTransaction.isLoading()
         ])
-        
+
         self.tradeResult = Observable.merge(ethTransaction, offchainTransaction)
     }
 
@@ -134,12 +134,12 @@ open class BuyStep3ViewModel {
         combinedObservable: CombinedObservable,
         currencyExchanger: CurrencyExchanger
     ) -> Driver<String> {
-        
+
         return combinedObservable
-            .flatMapLatest{combinedData in currencyExchanger.exchangeToBaseAsset(
+            .flatMapLatest {combinedData in currencyExchanger.exchangeToBaseAsset(
                 amount: totalCurrency, from: combinedData.wallet.asset, bid: combinedData.bid
             )}
-            .map{ data -> String? in
+            .map { data -> String? in
                 guard let data = data else {return nil}
                 return data.amount.convertAsCurrency(asset: data.baseAsset)
             }
@@ -151,16 +151,16 @@ open class BuyStep3ViewModel {
 
 extension ObservableType where Self.E == LWAssetModel {
     func mapToFullName() -> Observable<String> {
-        return map{$0.name}.replaceNilWith("")
+        return map {$0.name}.replaceNilWith("")
     }
-    
+
     func mapToIconUrl(withAuthManager authManager: LWRxAuthManagerProtocol) -> Observable<URL?> {
-        return flatMapLatest{asset in
+        return flatMapLatest {asset in
             return authManager.allAssets
                 .request(byId: asset.identity ?? "")
                 .filterSuccess()
                 .filterNil()
-                .map{$0.iconUrl}
+                .map {$0.iconUrl}
         }
     }
 }
@@ -168,10 +168,10 @@ extension ObservableType where Self.E == LWAssetModel {
 extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, bid: Bool) {
     func mapToUnitsInBase(currencyExchanger: CurrencyExchangerProtocol) -> Observable<String> {
         return
-            flatMapLatest{ assetUnits in currencyExchanger.exchangeToBaseAsset(
+            flatMapLatest { assetUnits in currencyExchanger.exchangeToBaseAsset(
                 amount: assetUnits.units, from: assetUnits.asset, bid: assetUnits.bid
             )}
-            .map{data -> String? in
+            .map {data -> String? in
                 guard let data = data else {return nil}
                 return data.amount.convertAsCurrency(asset: data.baseAsset, withCode: false)
             }
@@ -179,31 +179,30 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, b
     }
 }
 
-
 extension ObservableType where Self.E == LWSpotWallet {
     func mapToWalletAssetCode() -> Observable<String> {
         return
-            map{$0.asset.identity}
+            map {$0.asset.identity}
             .replaceNilWith("Not Available")
     }
-    
+
     func mapToTotal() -> Observable<String> {
-        return map{$0.balance.decimalValue.convertAsCurrencyStrip(asset: $0.asset)}
+        return map {$0.balance.decimalValue.convertAsCurrencyStrip(asset: $0.asset)}
     }
-    
+
     func mapToTotalAv() -> Observable<String> {
-        return map{$0.balance.decimalValue.convertAsCurrencyStrip(asset: $0.asset) + " AV"}
+        return map {$0.balance.decimalValue.convertAsCurrencyStrip(asset: $0.asset) + " AV"}
     }
-    
+
     func mapToTotalInBase(authManager: LWRxAuthManager) -> Observable<String> {
         return
-            flatMapLatest{wallet in
+            flatMapLatest {wallet in
                 authManager.baseAsset
                     .request()
                     .filterSuccess()
-                    .map{(wallet: wallet, baseAsset: $0)}
+                    .map {(wallet: wallet, baseAsset: $0)}
             }
-            .map{
+            .map {
                 $0.wallet.amountInBase.decimalValue.convertAsCurrency(asset: $0.baseAsset)
             }
     }
@@ -212,7 +211,7 @@ extension ObservableType where Self.E == LWSpotWallet {
 extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, wallet: LWSpotWallet, bid: Bool) {
     func mapToPrice(currencyExchanger: CurrencyExchanger) -> Observable<String> {
         return
-            flatMapLatest{combinedData in
+            flatMapLatest {combinedData in
                 currencyExchanger
                     .exchange(
                         amount: combinedData.units,
@@ -220,16 +219,15 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, w
                         to: combinedData.wallet.asset,
                         bid: combinedData.bid
                     )
-                    .map{(amount: $0, asset: combinedData.wallet.asset)}
+                    .map {(amount: $0, asset: combinedData.wallet.asset)}
             }
-            .map{ data -> String? in
+            .map { data -> String? in
                 guard let amount = data.amount else {return nil}
                 return amount.convertAsCurrencyStrip(asset: data.asset)
             }
             .replaceNilWith("Not Available")
     }
-    
-    
+
     /// <#Description#>
     ///
     /// - Parameters:
@@ -239,31 +237,31 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, w
     /// - Returns: <#return value description#>
     func mapToPriceInBase(currencyExchanger: CurrencyExchanger, amount: Decimal? = nil, baseAsset: Bool = true) -> Observable<String> {
         return
-            flatMapLatest{combinedData in currencyExchanger.exchangeToBaseAsset(
+            flatMapLatest {combinedData in currencyExchanger.exchangeToBaseAsset(
                 amount: amount ?? combinedData.units,
                 from: baseAsset ? combinedData.asset : combinedData.wallet.asset,
                 bid: combinedData.bid
             )}
-            .map{ data -> String? in
+            .map { data -> String? in
                 guard let data = data else {return nil}
                 return data.amount.convertAsCurrency(asset: data.baseAsset)
             }
             .replaceNilWith("Not Available")
     }
-    
+
     func filter(includeEthereum: Bool) -> Observable<(asset: LWAssetModel, units: Decimal, wallet: LWSpotWallet, bid: Bool)> {
-        return filter{data in
+        return filter {data in
             [data.asset.blockchainType, data.asset.blockchainType].contains(.ethereum) == includeEthereum
         }
     }
-    
+
     func flatMapToAssetPairs(withAuthManager manager: LWRxAuthManager) -> Observable<(baseAsset: LWAssetModel, pair: LWAssetPairModel?, addressTo: String, volume: Decimal)> {
         return
-            flatMapLatest{data in
+            flatMapLatest {data in
                 manager.assetPairs
                     .request(byId: "\(data.asset.identity ?? "")\(data.wallet.asset.identity ?? "")")
                     .filterSuccess()
-                    .map{(
+                    .map {(
                         baseAsset: data.asset,
                         pair: $0,
                         addressTo: "",
@@ -275,11 +273,11 @@ extension ObservableType where Self.E == (asset: LWAssetModel, units: Decimal, w
 
 extension ObservableType where Self.E == (baseAsset: LWAssetModel, pair: LWAssetPairModel?, addressTo: String, volume: Decimal) {
     func flatMapTrade(withEthereumManager manager: LWEthereumTransactionsManager) -> Observable<ApiResult<[AnyHashable: Any]>> {
-        return flatMapLatest{data -> Observable<ApiResult<[AnyHashable: Any]>> in
+        return flatMapLatest {data -> Observable<ApiResult<[AnyHashable: Any]>> in
             guard let pair = data.pair else {
                 return Observable.just(.error(withData: ["Field": "pair", "Message": "Pair is missing"]))
             }
-            
+
             return manager.rx.requestTrade(
                 forBaseAsset: data.baseAsset,
                 pair: pair,
@@ -287,13 +285,13 @@ extension ObservableType where Self.E == (baseAsset: LWAssetModel, pair: LWAsset
             )
         }.shareReplay(1)
     }
-    
+
     func flatMapTrade(withOffchainManager manager: LWOffchainTransactionsManager) -> Observable<ApiResult<[AnyHashable: Any]>> {
-        return flatMapLatest{data -> Observable<ApiResult<[AnyHashable: Any]>> in
+        return flatMapLatest {data -> Observable<ApiResult<[AnyHashable: Any]>> in
             guard let pair = data.pair else {
                 return Observable.just(.error(withData: ["Field": "pair", "Message": "Pair is missing"]))
             }
-            
+
             return manager.rx.sendSwapRequest(forAsset: data.baseAsset, pair: pair, volume: data.volume)
         }.shareReplay(1)
     }

@@ -20,14 +20,14 @@ import EasyMapping
 			mapping.mapProperties(from: ["total", "trading", "privatee", "margin"])
 		})
 	}
-	
+
 	override init() {
 		super.init()
 	}
-	
+
 	init(total: String?, trading: String?, privatee: String?, margin: String) {
 		super.init()
-		
+
 		self.total = total
 		self.trading = trading
 		self.privatee = privatee

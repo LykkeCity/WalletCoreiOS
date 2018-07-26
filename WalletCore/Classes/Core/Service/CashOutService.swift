@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 public class CashOutService {
-    
+
     public struct CashOutData {
         public let amount: Decimal
         public let asset: LWAssetModel
@@ -26,17 +26,17 @@ public class CashOutService {
         public let reason: String
         public let notes: String
     }
-    
+
     private let authManager: LWRxAuthManager
     private let cache: LWCache
     private let offchainService: OffchainService
-    
+
     public static let instance: CashOutService = {
         return CashOutService(authManager: LWRxAuthManager.instance,
                               cache: LWCache.instance(),
                               offchainService: OffchainService.instance)
     }()
-    
+
     private init(
         authManager: LWRxAuthManager,
         cache: LWCache,
@@ -46,7 +46,7 @@ public class CashOutService {
         self.cache = cache
         self.offchainService = offchainService
     }
-    
+
     public func swiftCashOut(withData data: CashOutData
     ) -> Observable<ApiResult<LWModelCashOutSwiftResult>> {
         return offchainService.cashOutSwift(amount: data.amount,
@@ -62,12 +62,12 @@ public class CashOutService {
                                             accountHolderCity: data.accountHolderCity)
             .mapToCashOutSwiftResult(withData: data)
     }
-    
+
     public func cashout(to address: String, assetId: String, amount: Decimal) -> Observable<ApiResult<Bool>> {
         guard let asset = LWCache.asset(byId: assetId) else {
             return Observable.just(ApiResult.error(withData: ["Message": "Please specify asset."]))
         }
-        
+
         return Observable.create { (observer) -> Disposable in
             if asset.isErc20 || asset.isTrusted {
                 HotWalletNetworkClient.cachout(to: address,
@@ -94,7 +94,7 @@ public class CashOutService {
                                                                         observer.onCompleted()
                 })
             }
-            
+
             return Disposables.create {}
         }
             .startWith(.loading)
@@ -144,7 +144,7 @@ fileprivate extension Observable where Element == ApiResult<LWModelOffchainResul
 }
 
 fileprivate extension LWModelCashOutSwiftResult {
-    
+
     init(data: CashOutService.CashOutData) {
         self.init(amount: data.amount.convertAsCurrencyStrip(asset: data.asset),
                   asset: data.asset.identity,
@@ -157,5 +157,5 @@ fileprivate extension LWModelCashOutSwiftResult {
                   accountHolderZipCode: data.accountHolderZipCode,
                   accountHolderCity: data.accountHolderCity)
     }
-    
+
 }

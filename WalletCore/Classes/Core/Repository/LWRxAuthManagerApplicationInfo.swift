@@ -9,33 +9,33 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerApplicationInfo:  NSObject{
-    
+public class LWRxAuthManagerApplicationInfo: NSObject {
+
     public typealias Packet = LWPacketApplicationInfo
     public typealias Result = ApiResult<LWPacketApplicationInfo>
     public typealias ResultType = LWPacketApplicationInfo
     public typealias RequestParams = Void
-    
+
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
     }
-    
+
     deinit {
         unsubscribe(observer: self)
     }
-    
+
     @objc func successSelector(_ notification: NSNotification) {
         onSuccess(notification)
     }
-    
+
     @objc func errorSelector(_ notification: NSNotification) {
         onError(notification)
     }
 }
 
-extension LWRxAuthManagerApplicationInfo: AuthManagerProtocol{
-    
+extension LWRxAuthManagerApplicationInfo: AuthManagerProtocol {
+
     public func createPacket(withObserver observer: Any, params: Void) -> LWPacketApplicationInfo {
         return Packet(observer: observer)
     }

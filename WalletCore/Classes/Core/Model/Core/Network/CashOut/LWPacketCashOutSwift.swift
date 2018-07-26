@@ -9,7 +9,7 @@
 import UIKit
 
 public class LWPacketCashOutSwift: LWAuthorizePacket {
-    
+
     public struct Body {
         let amount: Decimal
         let asset: String
@@ -23,25 +23,25 @@ public class LWPacketCashOutSwift: LWAuthorizePacket {
         let accountHolderZipCode: String
         let accountHolderCity: String
     }
-    
+
     public var body: Body
-    public var model: LWModelOffchainResult? = nil
-    
+    public var model: LWModelOffchainResult?
+
     public init(body: Body, observer: Any) {
         self.body = body
         super.init()
         self.observer = observer
     }
-    
+
     required public init!(json: Any!) {
         fatalError("init(json:) has not been implemented")
     }
-    
+
     override public func parseResponse(_ response: Any!, error: Error!) {
         super.parseResponse(response, error: error)
     }
-    
-    override public var params: [AnyHashable : Any]! {
+
+    override public var params: [AnyHashable: Any]! {
         return [
             "Bic": body.bic,
             "AssetId": body.asset,
@@ -56,11 +56,11 @@ public class LWPacketCashOutSwift: LWAuthorizePacket {
             "AccHolderCity": body.accountHolderCity
         ]
     }
-    
+
     override public var urlRelative: String! {
         return "CashOutSwiftRequest"
     }
-    
+
     override public var type: GDXRESTPacketType {
         return .POST
     }

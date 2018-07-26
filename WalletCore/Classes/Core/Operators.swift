@@ -17,36 +17,36 @@ infix operator <-> : DefaultPrecedence
 func nonMarkedText(_ textInput: UITextInput) -> String? {
     let start = textInput.beginningOfDocument
     let end = textInput.endOfDocument
-    
+
     guard let rangeAll = textInput.textRange(from: start, to: end),
         let text = textInput.text(in: rangeAll) else {
             return nil
     }
-    
+
     guard let markedTextRange = textInput.markedTextRange else {
         return text
     }
-    
+
     guard let startRange = textInput.textRange(from: start, to: markedTextRange.start),
         let endRange = textInput.textRange(from: markedTextRange.end, to: end) else {
             return text
     }
-    
+
     return (textInput.text(in: startRange) ?? "") + (textInput.text(in: endRange) ?? "")
 }
 
 public func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variable<String>) -> Disposable {
     let bindToUIDisposable = variable.asObservable()
         .bind(to: textInput.text)
-    
+
     let bindToVariable = textInput.text
-        .subscribe(onNext: { [weak base = textInput.base] n in
+        .subscribe(onNext: { [weak base = textInput.base] _ in
             guard let base = base else {
                 return
             }
-            
+
             let nonMarkedTextValue = nonMarkedText(base)
-            
+
             /**
              In some cases `textInput.textRangeFromPosition(start, toPosition: end)` will return nil even though the underlying
              value is not nil. This appears to be an Apple bug. If it's not, and we are doing something wrong, please let us know.
@@ -61,31 +61,31 @@ public func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variab
             if let nonMarkedTextValue = nonMarkedTextValue, nonMarkedTextValue != variable.value {
                 variable.value = nonMarkedTextValue
             }
-            }, onCompleted:  {
+            }, onCompleted: {
                 bindToUIDisposable.dispose()
         })
-    
+
     return Disposables.create(bindToUIDisposable, bindToVariable)
 }
 
 public func <-> <Base: UITextInput>(textInput: TextInput<Base>, variable: Variable<BuyOptimizedViewModel.Amount>) -> Disposable {
-    
+
     let bindToUIDisposable = variable.asObservable().mapToValue()
         .bind(to: textInput.text)
-    
+
     let bindToVariable = textInput.text
-        .subscribe(onNext: { [weak base = textInput.base] n in
+        .subscribe(onNext: { [weak base = textInput.base] _ in
             guard let base = base else {return}
-            
+
             let nonMarkedTextValue = nonMarkedText(base)
-            
+
             if let nonMarkedTextValue = nonMarkedTextValue, nonMarkedTextValue != variable.value.value {
                 variable.value = BuyOptimizedViewModel.Amount(autoUpdated: false, value: nonMarkedTextValue, showErrorMsg: true)
             }
-            }, onCompleted:  {
+            }, onCompleted: {
                 bindToUIDisposable.dispose()
         })
-    
+
     return Disposables.create(bindToUIDisposable, bindToVariable)
 }
 
@@ -99,16 +99,16 @@ public func <-> <T>(property: ControlProperty<T>, variable: Variable<T>) -> Disp
             )
         #endif
     }
-    
+
     let bindToUIDisposable = variable.asObservable()
         .bind(to: property)
     let bindToVariable = property
         .subscribe(onNext: { n in
             variable.value = n
-        }, onCompleted:  {
+        }, onCompleted: {
             bindToUIDisposable.dispose()
         })
-    
+
     return Disposables.create(bindToUIDisposable, bindToVariable)
 }
 

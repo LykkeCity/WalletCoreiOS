@@ -11,28 +11,28 @@ import RxSwift
 import RxCocoa
 
 public class SelectCountryViewModel {
-    
+
     public struct CountrySection {
         public let sectionName: String
         public let countries: [LWCountryModel]
     }
-    
+
     public let sections = Variable<[CountrySection]>([])
-    
+
     public let searchText = Variable("")
-    
+
     public let searchResult = Variable<[LWCountryModel]>([])
-    
+
     private let countries = Variable<[LWCountryModel]>([])
-    
+
     private let disposeBag = DisposeBag()
-    
+
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         authManager.countryCodes.request()
             .filterSuccess()
             .bind(to: countries)
             .disposed(by: disposeBag)
-        
+
         countries.asObservable()
             .map { allCountries in
                 var sections = [CountrySection]()
@@ -48,7 +48,7 @@ public class SelectCountryViewModel {
             }
             .bind(to: sections)
             .disposed(by: disposeBag)
-        
+
         Observable.combineLatest(countries.asObservable(), searchText.asObservable())
             .map { data -> [LWCountryModel] in
                 let (countries, searchText) = data
@@ -58,7 +58,7 @@ public class SelectCountryViewModel {
             .bind(to: searchResult)
             .disposed(by: disposeBag)
     }
-    
+
     public func countryBy(name: String?) -> LWCountryModel? {
         guard let name = name else {
             return nil

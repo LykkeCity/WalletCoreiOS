@@ -11,35 +11,35 @@ import RxSwift
 import RxCocoa
 
 open class AssetsViewModel {
-    
+
     public typealias Dependency = (
         authManager: LWRxAuthManager,
         formatter: SingleAssetFormatterProtocol
     )
-    
+
     public typealias AssetsList = Observable<ApiResult<[LWAssetModel]>>
     public typealias SelectedAsset = Observable<ApiResult<LWAssetModel>>
-    
+
     /// Collection of view models fetched and transformed
     public let assets: Driver<[SingleAssetViewModel]>
-    
+
     /// Selected asset (if present)
     public let selectedAsset = Variable<LWAssetModel?>(nil)
-    
+
     /// Standart loading view model
     public let loadingViewModel: LoadingViewModel
-    
+
     /// Standart error driver
     public let errors: Driver<[AnyHashable: Any]>
-    
+
     let disposeBag = DisposeBag()
-    
+
     public init(withAssets assetsToFetch: AssetsList, dependency: Dependency) {
-        
+
         self.assets = assetsToFetch
             .mapToViewModels(dependency: dependency)
             .asDriver(onErrorJustReturn: [])
-        
+
         // Update the view models to update the selected one
         Observable.combineLatest(self.selectedAsset.asObservable(), self.assets.asObservable()) { (current: $0, all: $1) }
             .do(onNext: { data in
@@ -51,10 +51,10 @@ open class AssetsViewModel {
             .filterNil()
             .subscribe(onNext: { viewModel in viewModel.isSelected.value = true })
             .disposed(by: disposeBag)
-        
+
         // Simple loading (all assets)
         loadingViewModel = LoadingViewModel([assetsToFetch.isLoading()])
-        
+
         // Simple error handling (all assets)
         errors = assetsToFetch.filterError()
             .asDriver(onErrorJustReturn: [:])
@@ -62,7 +62,7 @@ open class AssetsViewModel {
 }
 
 fileprivate extension ObservableType where Self.E == ApiResult<[LWAssetModel]> {
-    
+
     /// Transform asset model objects to `SingleAssetViewModel`
     ///
     /// - Parameter dependency: Dependency
@@ -70,7 +70,7 @@ fileprivate extension ObservableType where Self.E == ApiResult<[LWAssetModel]> {
     func mapToViewModels(dependency: AssetsViewModel.Dependency) -> Observable<[SingleAssetViewModel]> {
         return
             filterSuccess()
-            .map{ data in
+            .map { data in
                 data.map { SingleAssetViewModel(
                     withAsset: Variable<LWAssetModel>($0),
                     formatter: dependency.formatter)
@@ -78,11 +78,3 @@ fileprivate extension ObservableType where Self.E == ApiResult<[LWAssetModel]> {
             }
     }
 }
-
-
-
-
-
-
-
-

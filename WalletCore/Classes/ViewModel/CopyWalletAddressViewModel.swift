@@ -16,7 +16,7 @@ open class CopyWalletAddressViewModel {
     public init(tap: Driver<Void>, wallet: Variable<LWPrivateWalletModel?>) {
         self.tap = tap
                 .throttle(1)
-                .map{wallet.value?.address}
+                .map {wallet.value?.address}
                 .filterNil()
     }
 }

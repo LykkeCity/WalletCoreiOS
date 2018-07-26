@@ -8,14 +8,13 @@
 
 import Foundation
 
-
 public extension DateFormatter {
     public static let mediumStyle: DateFormatter = {
         let formatter = DateFormatter()
-        
+
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        
+
         return formatter
     }()
 }

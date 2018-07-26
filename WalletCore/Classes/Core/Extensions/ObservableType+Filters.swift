@@ -9,51 +9,51 @@
 import Foundation
 import RxSwift
 
-// MARK: -  Default unwrapped implementation
+// MARK: - Default unwrapped implementation
 public extension ObservableType {
-    
+
     func filterSuccess<T>() -> Observable<T> where Self.E == ApiResult<T> {
         return map { $0.getSuccess() }
             .filterNil()
     }
-    
-    public func filterError<T>() -> Observable<[AnyHashable : Any]> where Self.E == ApiResult<T>{
+
+    public func filterError<T>() -> Observable<[AnyHashable: Any]> where Self.E == ApiResult<T> {
         return map { $0.getError() }
             .filterNil()
     }
-    
+
     public func filterNotAuthorized<T>() -> Observable<Bool> where Self.E == ApiResult<T> {
         return filter { $0.notAuthorized }
             .map { _ in true }
     }
-    
+
     public func isLoading<T>() -> Observable<Bool> where Self.E == ApiResult<T> {
         return map { $0.isLoading }
     }
-    
+
     public func filterForbidden<T>() -> Observable<Void> where Self.E == ApiResult<T> {
         return filter { $0.isForbidden }
-            .map{ _ in () }
+            .map { _ in () }
     }
 }
 
 // MARK: - Concrecte implementations
 public extension ObservableType where Self.E == ApiResult<LWSpotWallet?> {
-    
+
     public func filterSuccess() -> Observable<LWSpotWallet?> {
-        return filter{ $0.isSuccess }
+        return filter { $0.isSuccess }
             .map { return $0.getSuccess() ?? nil }
     }
 }
 
 public extension ObservableType where Self.E == (apiResult: ApiResult<LWPacketGraphData>, interval: Bool) {
-    
+
     public func filterSuccess() -> Observable<LWPacketGraphData> {
         return map { $0.apiResult.getSuccess() }
             .filterNil()
     }
-    
+
     public func isLoading() -> Observable<Bool> {
-        return filter{!$0.interval}.map{$0.apiResult.isLoading}
+        return filter {!$0.interval}.map {$0.apiResult.isLoading}
     }
 }

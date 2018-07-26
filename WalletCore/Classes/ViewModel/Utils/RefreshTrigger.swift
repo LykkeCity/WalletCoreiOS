@@ -11,12 +11,12 @@ import Foundation
 public enum RefreshTrigger {
     case showLoading
     case refresh
-    
+
     public var shouldShowLoading: Bool {
         if case .showLoading = self {
             return true
         }
-        
+
         return false
     }
 }

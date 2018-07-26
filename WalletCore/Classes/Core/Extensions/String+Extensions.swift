@@ -12,17 +12,17 @@ public extension String {
     var decimalValue: Decimal? {
         return Decimal(string: replaceDecimalSeparator())
     }
-    
+
     func replaceDecimalSeparator(with: String = ".") -> String {
         let decimalSeparator = Locale.current.decimalSeparator ?? ""
         return replacingOccurrences(of: decimalSeparator, with: with)
     }
-    
+
     func replaceDotWithDecimalSeparator() -> String {
         let decimalSeparator = Locale.current.decimalSeparator ?? ""
         return replacingOccurrences(of: ".", with: decimalSeparator)
     }
-    
+
     func removeGroupingSeparator() -> String {
         let groupingSeparator = Locale.current.groupingSeparator ?? ""
         return replacingOccurrences(of: groupingSeparator, with: "")

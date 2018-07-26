@@ -13,15 +13,15 @@ import RxCocoa
 public class PersonalDataViewModel {
     public let email: Driver<String>
     public let loading: LoadingViewModel
-    
+
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         let personalData = authManager.settings.request()
-        
+
         self.email = personalData
             .filterSuccess()
-            .map{ $0.data.email }
+            .map { $0.data.email }
             .asDriver(onErrorJustReturn: "")
-        
+
         self.loading = LoadingViewModel([personalData.isLoading()])
     }
 }

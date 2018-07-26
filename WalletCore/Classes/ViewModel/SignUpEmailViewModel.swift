@@ -15,18 +15,16 @@ open class SignUpEmailViewModel {
     let fake = Variable<String>("")
     public let loading: Observable<Bool>
     public let result: Observable<ApiResult<LWPacketEmailVerificationSet>>
-    
-    public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
-    {
+
+    public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         result = submit
             .throttle(1, scheduler: MainScheduler.instance)
             .mapToPack(email: email, authManager: authManager)
-        
+
         loading = result.asObservable().isLoading()
     }
-    public var isValid : Observable<Bool>{
-        return Observable.combineLatest(self.fake.asObservable(), self.email.asObservable(), resultSelector:
-            {(fake, email) -> Bool in
+    public var isValid: Observable<Bool> {
+        return Observable.combineLatest(self.fake.asObservable(), self.email.asObservable(), resultSelector: {(_, email) -> Bool in
                 return email.characters.count > 0 && LWValidator.validateEmail(self.email.value)
         })
     }
@@ -37,8 +35,8 @@ fileprivate extension ObservableType where Self.E == Void {
         email: Variable<String>,
         authManager: LWRxAuthManager
         ) -> Observable<ApiResult<LWPacketEmailVerificationSet>> {
-        
-        return flatMapLatest{authData in
+
+        return flatMapLatest {_ in
                 authManager.emailverification.request(withParams: email.value)
             }
             .share()

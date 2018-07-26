@@ -18,11 +18,11 @@ public class LWOperationModel: LWJSONObject {
 	public var identity: String?
 	public var type: LWOperationType = .unknown
 	public var transfer: LWOperationTransferModel?
-	
+
 	public override class func objectMapping() -> EKObjectMapping {
 		let mapping = EKObjectMapping(objectClass: self)
 		mapping.mapProperties(from: ["Id": "identity"])
-		mapping.mapKeyPath("Type", toProperty: "type", withValueBlock: { (key, value) -> LWOperationType.RawValue in
+		mapping.mapKeyPath("Type", toProperty: "type", withValueBlock: { (_, value) -> LWOperationType.RawValue in
 			var result: LWOperationType = .unknown
 			if let value = value as? String {
 				switch value {

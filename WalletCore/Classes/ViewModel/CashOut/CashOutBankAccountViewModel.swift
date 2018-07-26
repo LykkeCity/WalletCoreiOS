@@ -10,27 +10,27 @@ import Foundation
 import RxSwift
 
 public class CashOutBankAccountViewModel {
-    
+
     public let bankName = Variable("")
-    
+
     public let iban = Variable("")
-    
+
     public let bic = Variable("")
-    
+
     public let accountHolder = Variable("")
-    
+
     public let accountHolderAddress = Variable("")
-    
+
     public let accountHolderCountry = Variable("")
 
     public let accountHolderCountryCode = Variable("")
 
     public let accountHolderZipCode = Variable("")
-    
+
     public let accountHolderCity = Variable("")
-    
+
     public let isValid: Observable<Bool>
-    
+
     public init() {
         isValid = Observable.combineLatest([
             bankName.asObservable(),
@@ -49,9 +49,9 @@ public class CashOutBankAccountViewModel {
                         return false
                     }
                 }
-                
+
                 return true
         }
     }
-    
+
 }

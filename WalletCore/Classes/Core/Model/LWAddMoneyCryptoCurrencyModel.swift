@@ -11,7 +11,7 @@ public class LWAddMoneyCryptoCurrencyModel {
     public let name: String
     public let address: String?
     public var imgUrl: URL?
-    
+
     public init(name: String, address: String?) {
         self.name = name
         self.address = address
@@ -22,5 +22,5 @@ public class LWAddMoneyCryptoCurrencyModel {
         self.address = address
         self.imgUrl = imageUrl
     }
-    
+
 }

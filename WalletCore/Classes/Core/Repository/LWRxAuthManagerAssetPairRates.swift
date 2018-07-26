@@ -11,7 +11,7 @@ import RxSwift
 
 public protocol LWRxAuthManagerAssetPairRatesProtocol {
     func request() -> Observable<ApiResult<[LWAssetPairRateModel]>>
-    
+
     /// <#Description#>
     ///
     /// - Parameter params: Ignore base asset
@@ -19,38 +19,37 @@ public protocol LWRxAuthManagerAssetPairRatesProtocol {
     func request(withParams params: Bool) -> Observable<ApiResult<[LWAssetPairRateModel]>>
 }
 
-public class LWRxAuthManagerAssetPairRates: NSObject, LWRxAuthManagerAssetPairRatesProtocol  {
-    
+public class LWRxAuthManagerAssetPairRates: NSObject, LWRxAuthManagerAssetPairRatesProtocol {
+
     public typealias Packet = LWPacketAssetPairRates
     public typealias Result = ApiResult<[LWAssetPairRateModel]>
     public typealias ResultType = [LWAssetPairRateModel]
     public typealias RequestParams = (Bool)
-    
+
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
     }
-    
+
     deinit {
         unsubscribe(observer: self)
     }
-    
+
     @objc func successSelector(_ notification: NSNotification) {
         onSuccess(notification)
     }
-    
+
     @objc func errorSelector(_ notification: NSNotification) {
         onError(notification)
     }
 }
 
 extension LWRxAuthManagerAssetPairRates: AuthManagerProtocol {
-    
+
     public func request() -> Observable<Result> {
         return request(withParams: false)
     }
-    
-    
+
     /// <#Description#>
     ///
     /// - Parameter params: Ignore base asset
@@ -58,12 +57,12 @@ extension LWRxAuthManagerAssetPairRates: AuthManagerProtocol {
     public func createPacket(withObserver observer: Any, params: (Bool)) -> LWPacketAssetPairRates {
         return Packet(observer: observer, ignoreBase: params)
     }
-    
+
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
         guard let rates = packet.assetPairRates else {
             return Result.success(withData: [])
         }
-        return Result.success(withData: rates.map{$0 as! LWAssetPairRateModel})
+        return Result.success(withData: rates.map {$0 as! LWAssetPairRateModel})
     }
 }
 
