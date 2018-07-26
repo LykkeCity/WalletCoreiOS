@@ -81,11 +81,11 @@ extension LWRxAuthManagerAssetPairs: AuthManagerProtocol {
         }
         return request(withParams: ()).map { result -> ApiResult<LWAssetPairModel?> in
             switch result {
-                case .error(let data): return .error(withData: data)
-                case .loading: return .loading
-                case .notAuthorized: return .notAuthorized
-                case .forbidden: return .forbidden
-                case .success(let data): return .success(withData: data.first {pairModel in
+            case .error(let data): return .error(withData: data)
+            case .loading: return .loading
+            case .notAuthorized: return .notAuthorized
+            case .forbidden: return .forbidden
+            case .success(let data): return .success(withData: data.first {pairModel in
                     return pairModel.identity == id
                 })
             }

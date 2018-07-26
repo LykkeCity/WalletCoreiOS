@@ -61,15 +61,15 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
         return request()
             .map {result in
                 switch result {
-                    case .error(let data): return .error(withData: data)
-                    case .loading: return .loading
-                    case .notAuthorized: return .notAuthorized
-                    case .forbidden: return .forbidden
-                    case .success(let data): return .success(withData:
-                        (data.lykkeData.wallets ?? [])
-                            .map { $0 as? LWSpotWallet }
-                            .flatMap { $0 }
-                            .filter { $0.balance.doubleValue > 0.0 }
+                case .error(let data): return .error(withData: data)
+                case .loading: return .loading
+                case .notAuthorized: return .notAuthorized
+                case .forbidden: return .forbidden
+                case .success(let data): return .success(withData:
+                    (data.lykkeData.wallets ?? [])
+                        .map { $0 as? LWSpotWallet }
+                        .flatMap { $0 }
+                        .filter { $0.balance.doubleValue > 0.0 }
                     )
                 }
             }

@@ -10,7 +10,7 @@ import UIKit
 
 public class LWMarketOrdersManager: NSObject {
 
-    public class func createOrder(assetPair: LWAssetPairModel, assetId: String, isSell: Bool, volume: String, completion: @escaping (LWAssetDealModel?)->Void) {
+    public class func createOrder(assetPair: LWAssetPairModel, assetId: String, isSell: Bool, volume: String, completion: @escaping (LWAssetDealModel?) -> Void) {
         let anotherAssetId = assetPair.baseAssetId == assetId ? assetPair.quotingAssetId : assetPair.baseAssetId
 
         let asset = LWCache.asset(byId: assetId)

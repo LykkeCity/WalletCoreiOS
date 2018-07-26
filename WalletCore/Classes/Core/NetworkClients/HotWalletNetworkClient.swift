@@ -22,7 +22,7 @@ class HotWalletNetworkClient: LWNetworkTemplate, LWNetworkClient {
     return request
   }
 
-  class func createMarketOrder(for assetPairId: String, assetId: String, volume: NSDecimalNumber, completion: @escaping ([AnyHashable: Any]?)->Void) {
+  class func createMarketOrder(for assetPairId: String, assetId: String, volume: NSDecimalNumber, completion: @escaping ([AnyHashable: Any]?) -> Void) {
     LWSignatureVerificationTokenHelper.networkClient(shared, requestVerificationTokenFor: LWKeychainManager.instance().login, success: { (token) in
       let params: [AnyHashable: Any] = ["AssetPair": assetPairId,
                                         "AssetId": assetId,
@@ -37,14 +37,14 @@ class HotWalletNetworkClient: LWNetworkTemplate, LWNetworkClient {
           completion(nil)
         }
       }
-    }) { (_) in
+    }, failure: { (_) in
       DispatchQueue.main.async {
         completion(nil)
       }
-    }
+    })
   }
 
-  class func createLimitOrder(for assetPairId: String, assetId: String, volume: String, price: String, completion: @escaping (Bool)->Void) {
+  class func createLimitOrder(for assetPairId: String, assetId: String, volume: String, price: String, completion: @escaping (Bool) -> Void) {
     LWSignatureVerificationTokenHelper.networkClient(shared, requestVerificationTokenFor: LWKeychainManager.instance().login, success: { (token) in
       let params: [AnyHashable: Any] = ["AssetPair": assetPairId,
                                         "AssetId": assetId,
@@ -55,14 +55,14 @@ class HotWalletNetworkClient: LWNetworkTemplate, LWNetworkClient {
       DispatchQueue.main.async {
         completion(response is [AnyHashable: Any])
       }
-    }) { (_) in
+    }, failure: { (_) in
       DispatchQueue.main.async {
         completion(false)
       }
-    }
+    })
   }
 
-  class func cachout(to destinationAddress: String, assetId: String, volume: NSDecimalNumber, completion: @escaping (Bool)->Void) {
+  class func cachout(to destinationAddress: String, assetId: String, volume: NSDecimalNumber, completion: @escaping (Bool) -> Void) {
     LWSignatureVerificationTokenHelper.networkClient(shared, requestVerificationTokenFor: LWKeychainManager.instance().login, success: { (token) in
       let params: [String: Any] = ["DestinationAddress": destinationAddress,
                                         "AssetId": assetId,
@@ -74,11 +74,11 @@ class HotWalletNetworkClient: LWNetworkTemplate, LWNetworkClient {
       } else {
         completion(true)
       }
-    }) { (_) in
+    }, failure: { (_) in
       DispatchQueue.main.async {
         completion(false)
       }
-    }
+    })
   }
 
 	override func showKycErrors() -> Bool {

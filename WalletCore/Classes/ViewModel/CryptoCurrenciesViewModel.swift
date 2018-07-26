@@ -19,22 +19,22 @@ open class CryptoCurrenciesViewModel {
         let allWallets = authManager.lykkeWallets.request()
 
         isLoading = allWallets.isLoading()
-        
+
         self.walletsData = allWallets
             .filterSuccess()
             .map { data in
                 return data.lykkeData.wallets.filter { wallet in
                     guard let spotWallet = wallet as? LWSpotWallet else { return false }
-                    
+
                     return spotWallet.asset.blockchainDepositAddress != nil
                 }
                 .map { wallet -> Variable<LWAddMoneyCryptoCurrencyModel>? in
                     guard let spotWallet = wallet as? LWSpotWallet else { return nil }
-                    
+
                     let model = LWAddMoneyCryptoCurrencyModel(name: spotWallet.name,
                                                               address: spotWallet.asset.blockchainDepositAddress,
                                                               imageUrl: spotWallet.asset.iconUrl)
-                    
+
                     return Variable(model)
                 }
                 .flatMap {$0}

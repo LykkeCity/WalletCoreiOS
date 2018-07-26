@@ -48,11 +48,11 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol {
     public func request(byIds ids: [String]) -> Observable<ApiResult<[LWAssetModel]>> {
         return request(withParams: ()).map { result -> ApiResult<[LWAssetModel]> in
             switch result {
-                case .error(let data): return .error(withData: data)
-                case .loading: return .loading
-                case .notAuthorized: return .notAuthorized
-                case .forbidden: return .forbidden
-                case .success(let data): return .success(withData: data.filter {ids.contains($0.identity)})
+            case .error(let data): return .error(withData: data)
+            case .loading: return .loading
+            case .notAuthorized: return .notAuthorized
+            case .forbidden: return .forbidden
+            case .success(let data): return .success(withData: data.filter {ids.contains($0.identity)})
             }
         }
     }
@@ -73,11 +73,11 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol {
 
         return request(withParams: ()).map { result -> ApiResult<LWAssetModel?> in
                 switch result {
-                    case .error(let data): return .error(withData: data)
-                    case .loading: return .loading
-                    case .notAuthorized: return .notAuthorized
-                    case .forbidden: return .forbidden
-                    case .success(let data): return .success(withData: data.filter {$0.identity == id}.first)
+                case .error(let data): return .error(withData: data)
+                case .loading: return .loading
+                case .notAuthorized: return .notAuthorized
+                case .forbidden: return .forbidden
+                case .success(let data): return .success(withData: data.filter {$0.identity == id}.first)
                 }
             }
     }

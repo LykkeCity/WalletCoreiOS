@@ -65,7 +65,7 @@ extension LWPacketMarketCap.Body: Hashable {
         return Int("\(self.startIndex)\(limit)") ?? 0
     }
 
-    public static func ==(lhs: LWPacketMarketCap.Body, rhs: LWPacketMarketCap.Body) -> Bool {
+    public static func == (lhs: LWPacketMarketCap.Body, rhs: LWPacketMarketCap.Body) -> Bool {
         return lhs.limit == rhs.limit && lhs.startIndex == rhs.startIndex
     }
 }

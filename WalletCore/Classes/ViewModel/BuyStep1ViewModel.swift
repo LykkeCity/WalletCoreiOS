@@ -105,9 +105,9 @@ fileprivate extension Array where Element == BuyStep1CellViewModel {
             guard let asset = (assets.first {$0.identity == viewModel.mainAssetId}) else {return false}
 
             switch type {
-                case .crypto: return asset.blockchainDeposit
-                case .fiat: return !asset.blockchainDeposit
-                case .all: return true
+            case .crypto: return asset.blockchainDeposit
+            case .fiat: return !asset.blockchainDeposit
+            case .all: return true
             }
         }
     }

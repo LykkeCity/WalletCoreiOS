@@ -175,8 +175,8 @@ extension Observable where E == Bool {
         return map { _ -> LWPrivateKeyManager? in
             guard
                 let privateKeyManager = LWPrivateKeyManager.shared(),
-                let _ = privateKeyManager.wifPrivateKeyLykke,
-                let _ = privateKeyManager.encryptedKeyLykke
+                privateKeyManager.wifPrivateKeyLykke != nil,
+                privateKeyManager.encryptedKeyLykke != nil
                 else {
                     return nil
             }
