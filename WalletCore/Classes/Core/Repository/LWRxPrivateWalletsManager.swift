@@ -22,7 +22,7 @@ public class LWRxPrivateWalletsManager {
     public func loadWallets() -> Observable<ApiResult<[LWPrivateWalletModel]>> {
         return Observable.create {[weak self] observer in
             self?.manager.loadWallets {data in
-                guard let wallets = (data?.map {$0 as! LWPrivateWalletModel}) else {
+                guard let wallets = (data?.map {$0 as? LWPrivateWalletModel}.flatMap {$0}) else {
                     observer.onNext(.error(withData: [:]))
                     observer.onCompleted()
                     return

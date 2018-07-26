@@ -12,7 +12,7 @@ import RxCocoa
 
 open class BuyStep3ViewModel {
 
-    typealias that = BuyStep3ViewModel
+    typealias That = BuyStep3ViewModel
     typealias CombinedObservable = Observable<(asset: LWAssetModel, units: Decimal, wallet: LWSpotWallet, bid: Bool)>
     typealias AssetUnitsObservable = Observable<(asset: LWAssetModel, units: Decimal, bid: Bool)>
 

@@ -23,7 +23,7 @@ open class TransactionsViewModel {
         case desc
     }
 
-    typealias that = TransactionsViewModel
+    typealias That = TransactionsViewModel
 
     /// History Transactions
     public let transactions: Driver<[TransactionViewModel]>

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 open class BuyStep1CellViewModel {
-    typealias that = BuyStep1CellViewModel
+    typealias That = BuyStep1CellViewModel
     public typealias Dependency = (authManager: LWRxAuthManager, currencyExchanger: CurrencyExchanger)
 
     public let model: LWAssetPairModel

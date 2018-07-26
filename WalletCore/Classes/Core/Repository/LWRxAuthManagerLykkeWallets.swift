@@ -67,7 +67,8 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
                     case .forbidden: return .forbidden
                     case .success(let data): return .success(withData:
                         (data.lykkeData.wallets ?? [])
-                            .map { $0 as! LWSpotWallet }
+                            .map { $0 as? LWSpotWallet }
+                            .flatMap { $0 }
                             .filter { $0.balance.doubleValue > 0.0 }
                     )
                 }
@@ -84,7 +85,8 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
                 return self.request().map { result in
                     result.asSpotWalletResult { data in
                         (data.lykkeData.wallets ?? [])
-                            .map { $0 as! LWSpotWallet }
+                            .map { $0 as? LWSpotWallet }
+                            .flatMap { $0 }
                             .first { $0.name == assetName }
                     }
                 }
@@ -111,7 +113,8 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
         return request().map {result in
             result.asSpotWalletResult { data in
                 (data.lykkeData.wallets ?? [])
-                    .map { $0 as! LWSpotWallet }
+                    .map { $0 as? LWSpotWallet }
+                    .flatMap { $0 }
                     .first { $0.identity == assetId }
             }
         }

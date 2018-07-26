@@ -36,9 +36,9 @@ public enum PendingActionType: String {
 		identity = dict["Id"] as? String
 		title = dict["Caption"] as? String
 		text = dict["Text"] as? String
-		iconType = PendingActionType(rawValue: dict["Type"] as! String)
+		iconType = PendingActionType(rawValue: (dict["Type"] as? String) ?? "NoTypeProvided")
 
-		let buttonsDicts = dict["Buttons"] as! [[String: Any]]
+        let buttonsDicts = (dict["Buttons"] as? [[String: Any]]) ?? [[:]]
 
 		buttons = buttonsDicts.map { LWDialogsButtonModel(json: $0) }
 	}

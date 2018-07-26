@@ -56,6 +56,6 @@ extension LWRxAuthManagerBaseAssets: AuthManagerProtocol {
     }
 
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: LWCache.instance().allAssets.map {$0 as! LWAssetModel})
+        return Result.success(withData: LWCache.instance().allAssets.map {$0 as? LWAssetModel}.flatMap {$0})
     }
 }

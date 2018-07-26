@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 open class GraphDataViewModel {
-    typealias that = GraphDataViewModel
+    typealias That = GraphDataViewModel
 
     public var buy: Driver<String>
     public var sell: Driver<String>
@@ -50,7 +50,7 @@ open class GraphDataViewModel {
         self.assetPairModel = assetPairModel
         self.graphViewPoints = graphViewPoints
 
-        let intervalObservable = that.getIntervalObservable(keyChainManager: keyChainManager)
+        let intervalObservable = That.getIntervalObservable(keyChainManager: keyChainManager)
 
         self.assetPairData = intervalObservable
             .flatMap {_ in authManager.assetPairRate.request(withParams: assetPairModel.identity)}

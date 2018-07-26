@@ -89,7 +89,7 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol {
     public func request(withParams: RequestParams) -> Observable<Result> {
         if let allAssets = LWCache.instance().allAssets, allAssets.isNotEmpty {
             return Observable
-                .just(.success(withData: allAssets.map {$0 as! LWAssetModel}))
+                .just(.success(withData: allAssets.map {$0 as? LWAssetModel}.flatMap {$0}))
                 .startWith(.loading)
         }
 
@@ -101,7 +101,7 @@ extension LWRxAuthManagerAllAssets: AuthManagerProtocol {
     }
 
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: LWCache.instance().allAssets.map {$0 as! LWAssetModel})
+        return Result.success(withData: LWCache.instance().allAssets.map {$0 as? LWAssetModel}.flatMap {$0})
     }
 }
 

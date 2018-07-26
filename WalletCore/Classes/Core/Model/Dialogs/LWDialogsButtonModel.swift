@@ -26,7 +26,7 @@ public class LWDialogsButtonModel: LWJSONObject {
 		}
 
 		identity = dict["Id"] as? String
-		pinRequired = dict["PinRequired"] as! Bool
+		pinRequired = (dict["PinRequired"] as? Bool) ?? false
 		text = dict["Text"] as? String
 	}
 }

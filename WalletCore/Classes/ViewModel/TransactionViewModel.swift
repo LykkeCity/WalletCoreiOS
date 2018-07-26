@@ -12,7 +12,7 @@ import RxCocoa
 import RxOptional
 
 open class TransactionViewModel {
-    typealias that = TransactionViewModel
+    typealias That = TransactionViewModel
 
     /// Transaction due date.Example: "July 21, 2017"
     public let date: Driver<String>

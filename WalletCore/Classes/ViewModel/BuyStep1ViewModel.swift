@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 open class BuyStep1ViewModel {
-    typealias that = BuyStep1ViewModel
+    typealias That = BuyStep1ViewModel
     public typealias Dependency = (authManager: LWRxAuthManager, currencyExchanger: CurrencyExchanger)
 
     /// Filtered collection of view models according currency filter

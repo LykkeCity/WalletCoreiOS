@@ -62,7 +62,7 @@ extension LWRxAuthManagerAssetPairRates: AuthManagerProtocol {
         guard let rates = packet.assetPairRates else {
             return Result.success(withData: [])
         }
-        return Result.success(withData: rates.map {$0 as! LWAssetPairRateModel})
+        return Result.success(withData: rates.map {$0 as? LWAssetPairRateModel}.flatMap {$0})
     }
 }
 

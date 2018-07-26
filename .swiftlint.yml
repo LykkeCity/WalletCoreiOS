@@ -1,14 +1,8 @@
 disabled_rules:
-#  - line_length # NOTE: Devs, if possible, break the long lines into multiple short ones
-#  - file_length
-#  - function_body_length
-#  - identifier_name # NOTE: Disable the violation for `rx_*` variables & constants
-#  - large_tuple # NOTE: Devs, this rule is disabled because of the Rx tuple usage. If possible, create custom struct to store the values
-#  - control_statement # NOTE: Many control statements are included in parentheses (old school style, probably adopted from the Objective-C control flow)
-#  - type_name # NOTE: Some classes have long names to be more descriptive about what is their purpose
+  - line_length # NOTE: Devs, if possible, break the long lines into multiple short ones
+  - function_parameter_count
+  - identifier_name # NOTE: Disable the violation for `rx_*` variables & constants
+  - large_tuple # NOTE: Devs, this rule is disabled because of the Rx tuple usage. If possible, create custom struct to store the values
 
 excluded:
   - Pods
-
-#cyclomatic_complexity:
-#  warning: 15 # NOTE: the default value is 10, but there are a bit more complex methods in the project, so 15 is the healthy limit

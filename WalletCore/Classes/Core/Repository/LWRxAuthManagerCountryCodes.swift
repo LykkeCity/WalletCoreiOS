@@ -41,6 +41,6 @@ extension LWRxAuthManagerCountryCodes: AuthManagerProtocol {
     }
 
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet.countries.map {$0 as! LWCountryModel})
+        return Result.success(withData: packet.countries.map {$0 as? LWCountryModel}.flatMap {$0})
     }
 }

@@ -41,6 +41,6 @@ extension LWRxMarketManager: AuthManagerProtocol {
     }
 
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
-        return Result.success(withData: packet.marketAssetPairs.map {$0 as! LWMarketModel})
+        return Result.success(withData: packet.marketAssetPairs.map {$0 as? LWMarketModel}.flatMap {$0})
     }
 }

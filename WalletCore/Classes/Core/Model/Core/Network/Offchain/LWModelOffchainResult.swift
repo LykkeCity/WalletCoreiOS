@@ -17,7 +17,7 @@ public struct LWModelOffchainResult {
     init(withJSON json: [AnyHashable: Any]) {
         self.transferId = json["TransferId"] as? String ?? ""
         self.transactionHex = json["TransactionHex"] as? String ?? ""
-        self.operationResult = json["OperationResult"] as! Int
+        self.operationResult = json["OperationResult"] as? Int ?? -1
 
         if let orderJson = json["Order"] as? [AnyHashable: Any] {
             self.order = LWModelOffchainOrder(withJSON: orderJson)

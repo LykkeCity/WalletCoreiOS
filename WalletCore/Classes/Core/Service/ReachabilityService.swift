@@ -39,7 +39,7 @@ public class ReachabilityService {
 
     @objc func reachabilityChanged(_ notification: Notification) {
 
-        let reachability = notification.object as! Reachability
+        guard let reachability = notification.object as? Reachability else { return }
 
         switch reachability.connection {
         case .wifi, .cellular:
