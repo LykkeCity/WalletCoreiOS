@@ -9,16 +9,16 @@
 import Foundation
 
 public extension NumberFormatter {
-    
+
     public static let instance: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencyCode = ""
         formatter.currencySymbol = ""
-        
+
         return formatter
     }()
-    
+
     public static let percentInstanceWithSign: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -28,10 +28,10 @@ public extension NumberFormatter {
         formatter.positivePrefix = "+"
         formatter.negativeSuffix = "%"
         formatter.positiveSuffix = "%"
-        
+
         return formatter
     }()
-    
+
     public static let percentInstance: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -40,7 +40,7 @@ public extension NumberFormatter {
         formatter.negativePrefix = "-"
         formatter.negativeSuffix = "%"
         formatter.positiveSuffix = "%"
-        
+
         return formatter
     }()
 
@@ -52,10 +52,10 @@ public extension NumberFormatter {
         formatter.negativePrefix = "-"
         formatter.negativeSuffix = "%"
         formatter.positiveSuffix = "%"
-        
+
         return formatter
     }()
-    
+
     public static func currencyInstance(accuracy: Int) -> NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -63,7 +63,7 @@ public extension NumberFormatter {
         formatter.currencySymbol = ""
         formatter.minimumFractionDigits = accuracy
         formatter.maximumFractionDigits = accuracy
-        
+
         return formatter
     }
 }

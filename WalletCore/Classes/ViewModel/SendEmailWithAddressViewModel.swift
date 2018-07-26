@@ -11,16 +11,16 @@ import RxCocoa
 import RxSwift
 
 open class SendEmailWithAddressViewModel {
-    
+
     public let emailSent: Driver<ApiResult<Void>>
-    
+
     public init(sendObservable: Observable<Void>, wallet: Variable<LWPrivateWalletModel?>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         emailSent =
             sendObservable
                 .throttle(2, scheduler: MainScheduler.instance)
-                .map{wallet.value}
+                .map {wallet.value}
                 .filterNil()
-                .flatMap{wallet in authManager.emailWalletAddress.request(withParams: wallet)}
+                .flatMap {wallet in authManager.emailWalletAddress.request(withParams: wallet)}
                 .asDriver(onErrorJustReturn: .error(withData: [:]))
     }
 }

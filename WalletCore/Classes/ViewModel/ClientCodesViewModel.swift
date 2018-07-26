@@ -12,13 +12,13 @@ import RxSwift
 import RxCocoa
 
 open class ClientCodesViewModel {
-    
+
     /// Observable of LWPacketEncodedMainKey that receive events only after encoded main keys is retrieved, decoded && cached
-    public let encodeMainKeyObservable : Observable<LWPacketEncodedMainKey>
-    
+    public let encodeMainKeyObservable: Observable<LWPacketEncodedMainKey>
+
     /// Errors observalbe that accumulates errors from all http calls made in this view model
     public let errors: Observable<[AnyHashable: Any]>
-    
+
     /// Loading view model that merge all http calls
     public let loadingViewModel: LoadingViewModel
 
@@ -32,50 +32,50 @@ open class ClientCodesViewModel {
         dependency: (authManager: LWRxAuthManager, keychainManager: LWKeychainManager)
     ) {
         let getClientCodeObservable = triggerForSMSCode
-            .flatMapLatest{_ in dependency.authManager.getClientCodes.request()}
+            .flatMapLatest {_ in dependency.authManager.getClientCodes.request()}
             .shareReplay(1)
 
         let postClientCodesObservable = smsCodeForRetrieveKey
-            .flatMapLatest{smsCode in
+            .flatMapLatest {smsCode in
                 dependency.authManager.postClientCodes.request(withParams: smsCode)
             }
             .shareReplay(1)
-        
+
         let encodeMainKeyObservable = postClientCodesObservable.filterSuccess()
             .flatMapLatest {result in
                 dependency.authManager.encodeMainKey.request(withParams: result.accessToken)
             }
             .shareReplay(1)
-        
+
         //call pin security and then retry getting main key
         let validatePin = encodeMainKeyObservable
             .filterForbidden()
-            .flatMap{
+            .flatMap {
                 dependency.authManager.pinget.request(withParams: dependency.keychainManager.pin() ?? "")
             }
             .shareReplay(1)
-        
+
         let retriedEncodeMainKey = validatePin.filterSuccess()
             .withLatestFrom(postClientCodesObservable.filterSuccess())
-            .flatMap{result in
+            .flatMap {result in
                 dependency.authManager.encodeMainKey.request(withParams: result.accessToken)
             }
             .shareReplay(1)
-        
+
         self.encodeMainKeyObservable = Observable.merge(
             encodeMainKeyObservable.filterSuccess(),
             retriedEncodeMainKey.filterSuccess()
         )
-        
+
         self.errors = Observable.merge(
             getClientCodeObservable.filterError(),
             postClientCodesObservable.filterError(),
             encodeMainKeyObservable.filterError(),
-            getClientCodeObservable.filterForbidden().map{["Message": "Getting client got is forbidden."]},
-            postClientCodesObservable.filterForbidden().map{["Message": "Post client codes is forbidden."]},
-            retriedEncodeMainKey.filterForbidden().map{["Message": "Getting main key is forbidden"]}
+            getClientCodeObservable.filterForbidden().map {["Message": "Getting client got is forbidden."]},
+            postClientCodesObservable.filterForbidden().map {["Message": "Post client codes is forbidden."]},
+            retriedEncodeMainKey.filterForbidden().map {["Message": "Getting main key is forbidden"]}
         )
-        
+
         loadingViewModel = LoadingViewModel([
             getClientCodeObservable.isLoading(),
             postClientCodesObservable.isLoading(),

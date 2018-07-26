@@ -11,17 +11,17 @@ import RxSwift
 @testable import WalletCore
 
 class LWRxAuthManagerMock: LWRxAuthManagerProtocol {
-    
+
     let assetPairRates: LWRxAuthManagerAssetPairRatesProtocol
     let baseAsset: LWRxAuthManagerBaseAssetProtocol
     let allAssets: LWRxAuthManagerAllAssetsProtocol
     let assetPairs: LWRxAuthManagerAssetPairsProtocol
-    
+
     init(
         baseAsset: LWRxAuthManagerBaseAssetMock = LWRxAuthManagerBaseAssetMock(asset: LWAssetModel(assetId: "USD")),
         allAssets: LWRxAuthManagerAllAssetsMock = LWRxAuthManagerAllAssetsMock(),
-        assetPairRates:LWRxAuthManagerAssetPairRatesMock = LWRxAuthManagerAssetPairRatesMock(data: []),
-        assetPairs:LWRxAuthManagerAssetPairsMock = LWRxAuthManagerAssetPairsMock(data: [])
+        assetPairRates: LWRxAuthManagerAssetPairRatesMock = LWRxAuthManagerAssetPairRatesMock(data: []),
+        assetPairs: LWRxAuthManagerAssetPairsMock = LWRxAuthManagerAssetPairsMock(data: [])
 
     ) {
         self.baseAsset = baseAsset

@@ -11,51 +11,51 @@ import RxSwift
 import RxCocoa
 
 open class TotalBalanceViewModel {
-    
+
     /// Loading indicator
     public let loading: LoadingViewModel
-    
+
     /// Currency name from base asset.Example USD
     public let currencyName: Driver<String>
-    
+
     /// User balance based on base asset and main info.It includes trading, private balances
     public let balance: Driver<String>
-    
+
     public let isEmpty: Driver<Bool>
-    
+
     public let observables: (
         baseAsset: Observable<ApiResult<LWAssetModel>>,
         mainInfo: Observable<ApiResult<(mainInfo: LWPacketGetMainScreenInfo, asset: LWAssetModel)>>
     )
-    
+
     public init(refresh: Observable<Void>,
-                authManager:LWRxAuthManager = LWRxAuthManager.instance,
+                authManager: LWRxAuthManager = LWRxAuthManager.instance,
                 keyChainManager: LWKeychainManager = LWKeychainManager.instance()) {
-        
+
         let baseAssetObservable = authManager.baseAsset.request()
         let mainInfoObservable = refresh
             .throttle(2.0, scheduler: MainScheduler.instance)
-            .flatMapLatest{_ in authManager.mainInfo.request(withAssetObservable: baseAssetObservable)}
+            .flatMapLatest {_ in authManager.mainInfo.request(withAssetObservable: baseAssetObservable)}
             .shareReplay(1)
-        
+
         loading = LoadingViewModel([
             mainInfoObservable.isLoading().distinctUntilChanged().take(2), //take just first loading true and false
             baseAssetObservable.isLoading()
         ])
-        
+
         observables = (
             baseAsset: baseAssetObservable,
             mainInfo: mainInfoObservable
         )
-        
+
         currencyName = baseAssetObservable
             .mapToName()
             .asDriver(onErrorJustReturn: "")
-        
+
         balance = mainInfoObservable
             .mapToCurrency()
             .asDriver(onErrorJustReturn: "")
-        
+
         isEmpty = mainInfoObservable
             .filterSuccess()
             .map { $0.mainInfo.totalBalance == Decimal(0) }
@@ -76,7 +76,7 @@ open class TotalBalanceViewModel {
 fileprivate extension ObservableType where Self.E == ApiResult<LWAssetModel> {
     func mapToName() -> Observable<String> {
         return filterSuccess()
-            .map{$0.name ?? ""}
+            .map {$0.name ?? ""}
             .startWith("")
     }
 }
@@ -85,12 +85,12 @@ fileprivate extension ObservableType where Self.E == ApiResult<(mainInfo: LWPack
     func mapToCurrency() -> Observable<String> {
         return
             filterSuccess()
-            .map{(
+            .map {(
                 amount: $0.mainInfo.totalBalance,
                 symbol: $0.asset.symbol ?? "",
                 accuracy: $0.asset.accuracy
             )}
-            .map{
+            .map {
                 $0.amount.convertAsCurrency(code: "", symbol: $0.symbol, accuracy: Int($0.accuracy))
             }
             .startWith("")

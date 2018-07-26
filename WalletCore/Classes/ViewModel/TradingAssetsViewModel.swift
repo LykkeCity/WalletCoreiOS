@@ -13,9 +13,9 @@ public class TradingAssetsViewModel {
     public let availableToBuy: Observable<[LWAssetModel]>
     public let availableToSell: Observable<[LWSpotWallet]>
     public let loadingViewModel: LoadingViewModel
-    
+
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
-        
+
         let nonEmptyWallets =  authManager.lykkeWallets.requestNonEmptyWallets()
         let allAssets = authManager.allAssets.request()
         let assetPairs = authManager.assetPairs.request()
@@ -26,12 +26,12 @@ public class TradingAssetsViewModel {
             allAssets.isLoading(),
             assetPairs.isLoading()
         ])
-        
+
         availableToSell = nonEmptyWallets.filterSuccess()
-        
+
         availableToBuy =
             Observable.combineLatest(nonEmptyWallets.filterSuccess(), allAssets.filterSuccess(), assetPairs.filterSuccess(), assetPairRates.filterSuccess())
-                .map{wallets, assets, pairs, pairRates in
+                .map {wallets, assets, pairs, pairRates in
                     let pairRatesSet = Set(pairRates.map { $0.identity })
                     let pairsWithRates = pairs.filter { pairRatesSet.contains($0.identity) }
                     return assets.filter { asset in wallets.contains(withAsset: asset, assetPairs: pairsWithRates) }

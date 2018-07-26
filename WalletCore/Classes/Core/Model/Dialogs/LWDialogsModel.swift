@@ -21,28 +21,28 @@ public enum PendingActionType: String {
 	public var text: String?
 	public var iconType: PendingActionType?
 	public var buttons: [LWDialogsButtonModel]?
-	
+
 	override convenience init() {
 		self.init(json: [:])
 	}
-	
+
 	public override init!(json: Any!) {
 		super.init(json: json)
-		
+
 		guard let dict = json as? [String: Any] else {
 			return
 		}
-		
+
 		identity = dict["Id"] as? String
 		title = dict["Caption"] as? String
 		text = dict["Text"] as? String
-		iconType = PendingActionType(rawValue: dict["Type"] as! String)
-		
-		let buttonsDicts = dict["Buttons"] as! [[String: Any]]
-		
+		iconType = PendingActionType(rawValue: (dict["Type"] as? String) ?? "NoTypeProvided")
+
+        let buttonsDicts = (dict["Buttons"] as? [[String: Any]]) ?? [[:]]
+
 		buttons = buttonsDicts.map { LWDialogsButtonModel(json: $0) }
 	}
-	
+
 	public func image() -> UIImage {
 		switch iconType! {
 		case .info:
@@ -53,5 +53,5 @@ public enum PendingActionType: String {
 			return #imageLiteral(resourceName: "action_dialog")
 		}
 	}
-	
+
 }

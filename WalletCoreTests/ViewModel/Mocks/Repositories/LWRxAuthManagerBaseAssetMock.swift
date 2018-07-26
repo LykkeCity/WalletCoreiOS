@@ -11,18 +11,17 @@ import RxSwift
 @testable import WalletCore
 
 class LWRxAuthManagerBaseAssetMock: LWRxAuthManagerBaseAssetProtocol {
-    
+
     var asset: LWAssetModel
-    
+
     init(asset: LWAssetModel) {
         self.asset = asset
     }
-    
+
     func request() -> Observable<ApiResult<LWAssetModel>> {
         return Observable<ApiResult<LWAssetModel>>
             .just(ApiResult.success(withData: asset))
             .startWith(ApiResult.loading)
     }
-    
 
 }

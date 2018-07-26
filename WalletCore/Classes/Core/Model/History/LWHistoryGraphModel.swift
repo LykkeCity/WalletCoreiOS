@@ -11,7 +11,7 @@ import Foundation
 public struct LWHistoryGraphModel {
     public let baseValue: Asset.Currency
     public let value: Asset.Currency
-    
+
     public init(baseValue: Asset.Currency, value: Asset.Currency) {
         self.baseValue = baseValue
         self.value = value

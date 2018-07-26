@@ -22,7 +22,7 @@ public protocol LWRxAuthManagerProtocol {
 public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public static let instance = LWRxAuthManager()
     init() {}
-    
+
     public func triggerSaveCache(baseAssetId: String = "USD") -> [Disposable] {
 
         return [
@@ -31,7 +31,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
             baseAssetSet
                 .request(withParams: baseAssetId)
                 .filterSuccess()
-                .flatMap{[baseAsset] _ in
+                .flatMap {[baseAsset] _ in
                     baseAsset.request().filterSuccess()
                 }
                 .subscribe(onNext: {
@@ -39,20 +39,20 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
                 })
         ]
     }
-    
+
     public lazy var allAssets: LWRxAuthManagerAllAssetsProtocol             = { LWRxAuthManagerAllAssets() }()
     public lazy var assetPairRates: LWRxAuthManagerAssetPairRatesProtocol   = { LWRxAuthManagerAssetPairRates() }()
     public lazy var baseAsset: LWRxAuthManagerBaseAssetProtocol             = { LWRxAuthManagerBaseAsset() }()
     public lazy var baseAssets: LWRxAuthManagerBaseAssetsProtocol           = { LWRxAuthManagerBaseAssets() }()
     public lazy var assetPairs: LWRxAuthManagerAssetPairsProtocol           = {LWRxAuthManagerAssetPairs()}()
-    
+
     public lazy var countryCodes        = {LWRxAuthManagerCountryCodes()}()
     public lazy var prevCardPayment     = {LWAuthManagerPacketPrevCardPayment()}()
     public lazy var paymentUrl          = {LWAuthManagerPacketGetPaymentUrl()}()
     public lazy var lykkeWallets        = {LWRxAuthManagerLykkeWallets()}()
     public lazy var mainInfo            = {LWRxAuthManagerMainInfo()}()
     public lazy var emailWalletAddress  = {LWRxAuthManagerEmailWalletAddress()}()
-    
+
     public lazy var assetPairRate       = {LWRxAuthManagerAssetPairRate()}()
     public lazy var graphPeriods        = {LWRxAuthManagerGraphPeriods()}()
     public lazy var graphData           = {LWRxAuthManagerGraphData()}()

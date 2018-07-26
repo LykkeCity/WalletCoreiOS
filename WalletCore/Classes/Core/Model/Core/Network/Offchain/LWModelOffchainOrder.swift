@@ -19,7 +19,7 @@ public struct LWModelOffchainOrder {
     public let totalCost: Decimal
     public let remainingVolume: Decimal
     public let remainingOtherVolume: Decimal
-    
+
     public init(withJSON json: [AnyHashable: Any]) {
         self.id = json["Id"] as? String ?? ""
         self.dateTime = json["DateTime"] as? String ?? ""

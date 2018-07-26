@@ -665,6 +665,7 @@
 		C527B53C2036D0D100E7BB4C /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527B53B2036D0D100E7BB4C /* ReachabilityService.swift */; };
 		C52B92F6201F1E120001B5F1 /* SingleAssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B92F5201F1E110001B5F1 /* SingleAssetViewModel.swift */; };
 		C52B92F8201F1E2A0001B5F1 /* AssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B92F7201F1E2A0001B5F1 /* AssetsViewModel.swift */; };
+		C55335BE2109F02E00AAFBD8 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55335BD2109F02E00AAFBD8 /* Date+Extension.swift */; };
 		C59B28332029DD7C00AA2E39 /* TransactionFilterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */; };
 		C59B28352029DD9500AA2E39 /* TransactionFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */; };
 		C5E67BBC20172D2C00686006 /* BaseAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */; };
@@ -1372,6 +1373,7 @@
 		C527B53B2036D0D100E7BB4C /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		C52B92F5201F1E110001B5F1 /* SingleAssetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleAssetViewModel.swift; sourceTree = "<group>"; };
 		C52B92F7201F1E2A0001B5F1 /* AssetsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsViewModel.swift; sourceTree = "<group>"; };
+		C55335BD2109F02E00AAFBD8 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterFormatter.swift; sourceTree = "<group>"; };
 		C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterViewModel.swift; sourceTree = "<group>"; };
 		C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAssetsViewModel.swift; sourceTree = "<group>"; };
@@ -2461,6 +2463,7 @@
 		46C9B0801F42D7EF00B83CCB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C55335BD2109F02E00AAFBD8 /* Date+Extension.swift */,
 				612B7BCC1F6904930085F692 /* LWOffchainTransactionsManager+Rx.swift */,
 				612B7BCA1F69048D0085F692 /* LWEthereumTransactionsManager+Rx.swift */,
 				AB418E5F1FEBF8DE00159B26 /* LWMarketOrdersManager+Rx.swift */,
@@ -2916,6 +2919,7 @@
 			buildConfigurationList = 46C9A8C61F417AC300B83CCB /* Build configuration list for PBXNativeTarget "WalletCore" */;
 			buildPhases = (
 				6CAF67B5E9115C46C883439B /* [CP] Check Pods Manifest.lock */,
+				C55335BC2109E7C600AAFBD8 /* Perform SwiftLint check operation */,
 				46C9A8AD1F417AC300B83CCB /* Sources */,
 				46C9A8AE1F417AC300B83CCB /* Frameworks */,
 				46C9A8AF1F417AC300B83CCB /* Headers */,
@@ -3096,6 +3100,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C55335BC2109E7C600AAFBD8 /* Perform SwiftLint check operation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Perform SwiftLint check operation";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n    echo \"SwiftLint pod not installed, run `pod install` in the project directory.\"\n    exit 1\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3325,6 +3343,7 @@
 				46C9AF9E1F417BD800B83CCB /* LWKYCDocumentsModel.m in Sources */,
 				46C9AFA41F417BD800B83CCB /* LWMWHistoryTransferElement.m in Sources */,
 				46C9AE901F417BD700B83CCB /* LWPacketAppSettings.m in Sources */,
+				C55335BE2109F02E00AAFBD8 /* Date+Extension.swift in Sources */,
 				46C9AEB01F417BD700B83CCB /* LWPacketBuySellAsset.m in Sources */,
 				665960561FA354A600DB3D62 /* CashOutGeneralViewModel.swift in Sources */,
 				46C9AF981F417BD800B83CCB /* LWAssetMarketConvertedModel.m in Sources */,

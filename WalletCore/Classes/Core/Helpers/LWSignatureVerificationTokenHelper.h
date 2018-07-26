@@ -22,6 +22,6 @@
 
 + (void)networkClient:(id<LWNetworkClient>)client requestVerificationTokenFor:(NSString *)email
               success:(void (^)(NSString *signatureVerificationToken))success
-               failur:(void (^)(NSError *error))failur;
+               failure:(void (^)(NSError *error))failure;
 
 @end

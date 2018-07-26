@@ -11,18 +11,18 @@ import RxSwift
 import RxCocoa
 
 open class AccountExistViewModel {
-    
-    public let accountExistObservable : Observable<LWPacketAccountExist>
+
+    public let accountExistObservable: Observable<LWPacketAccountExist>
     public let isLoading: Observable<Bool>
-    
-    public init(email: Observable<String>, authManager:LWRxAuthManager = LWRxAuthManager.instance) {
+
+    public init(email: Observable<String>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         let observable = email
             .throttle(0.5, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .filter{ LWValidator.validateEmail($0) }
-            .flatMapLatest{email in authManager.accountExist.request(withParams: email)}
+            .filter { LWValidator.validateEmail($0) }
+            .flatMapLatest {email in authManager.accountExist.request(withParams: email)}
             .shareReplay(1)
-        
+
         accountExistObservable = observable.filterSuccess()
         isLoading = observable.isLoading()
     }

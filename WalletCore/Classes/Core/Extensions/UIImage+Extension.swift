@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public extension UIImage {
-    
+
     /// Generate qr code UIImage with transperant background
     ///
     /// - Parameters:
@@ -19,26 +19,26 @@ public extension UIImage {
     /// - Returns: QR Code image
     public static func generateQRCode(fromString string: String, withSize size: CGSize, color: UIColor) -> UIImage? {
         guard let data = string.data(using: String.Encoding.ascii) else { return nil }
-        
+
         //QR Filter
         guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
         qrFilter.setDefaults()
         qrFilter.setValue(data, forKey: "inputMessage")
         qrFilter.setValue("M", forKey: "inputCorrectionLevel")
-        
+
         // Color code and background
         guard let colorFilter = CIFilter(name: "CIFalseColor") else { return nil }
         colorFilter.setDefaults()
         colorFilter.setValue(qrFilter.outputImage, forKey: "inputImage")
         colorFilter.setValue(CIColor(color: color), forKey: "inputColor0")
         colorFilter.setValue(CIColor(color: UIColor.clear), forKey: "inputColor1")
-        
+
         return colorFilter.outputImage?.nonInterpolatedImage(withSize: size)
     }
 }
 
 fileprivate extension CIImage {
-    
+
     /// Creates an `UIImage` with interpolation disabled and scaled given a scale property
     ///
     /// - parameter withScale:  a given scale using to resize the result image
@@ -51,15 +51,14 @@ fileprivate extension CIImage {
         UIGraphicsBeginImageContext(CGSize(width: size.width, height: size.height))
         guard let context: CGContext = UIGraphicsGetCurrentContext() else { return nil }
         context.interpolationQuality = .none
-        
+
         context.draw(cgImage, in: context.boundingBoxOfClipPath)
         guard let preImage = UIGraphicsGetImageFromCurrentImageContext() else {return nil}
         //Cleaning up .
         UIGraphicsEndImageContext()
-        
+
         guard let preCIImage = preImage.cgImage else { return nil }
-        
+
         return UIImage(cgImage: preCIImage, scale: preImage.scale, orientation: .right)
     }
 }
-

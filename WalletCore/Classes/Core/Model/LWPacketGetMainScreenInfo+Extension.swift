@@ -9,7 +9,7 @@
 import Foundation
 
 extension LWPacketGetMainScreenInfo {
-    
+
     /// Sum of trading and private balance
     var totalBalance: Decimal {
         return Decimal(tradingBalance + privateBalance)

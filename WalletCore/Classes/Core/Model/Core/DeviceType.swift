@@ -8,16 +8,14 @@
 
 import Foundation
 
-struct ScreenSize
-{
+struct ScreenSize {
 	static let SCREEN_WIDTH         = UIScreen.main.bounds.size.width
 	static let SCREEN_HEIGHT        = UIScreen.main.bounds.size.height
 	static let SCREEN_MAX_LENGTH    = max(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
 	static let SCREEN_MIN_LENGTH    = min(ScreenSize.SCREEN_WIDTH, ScreenSize.SCREEN_HEIGHT)
 }
 
-@objc public class DeviceType: NSObject
-{
+@objc public class DeviceType: NSObject {
 	public static let IS_IPHONE            = UIDevice.current.userInterfaceIdiom == .phone
 	public static let IS_IPHONE_4_OR_LESS  = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH < 568.0
 	public static let IS_IPHONE_5          = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.SCREEN_MAX_LENGTH == 568.0
@@ -30,8 +28,7 @@ struct ScreenSize
 	public static let IS_IPAD_PRO_12_9     = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.SCREEN_MAX_LENGTH == 1366.0
 }
 
-@objc public class Version: NSObject
-{
+@objc public class Version: NSObject {
 	public static let SYS_VERSION_FLOAT = (UIDevice.current.systemVersion as NSString).floatValue
 	public static let iOS7 = (Version.SYS_VERSION_FLOAT < 8.0 && Version.SYS_VERSION_FLOAT >= 7.0)
 	public static let iOS8 = (Version.SYS_VERSION_FLOAT >= 8.0 && Version.SYS_VERSION_FLOAT < 9.0)

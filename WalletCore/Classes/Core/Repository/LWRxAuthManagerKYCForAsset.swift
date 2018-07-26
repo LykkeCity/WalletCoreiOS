@@ -8,33 +8,33 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerKYCForAsset : NSObject{
-    
+public class LWRxAuthManagerKYCForAsset: NSObject {
+
     public typealias Packet = LWPacketKYCForAsset
     public typealias Result = ApiResult<LWPacketKYCForAsset>
     public typealias ResultType = LWPacketKYCForAsset
     public typealias RequestParams = (String)
-    
+
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
     }
-    
+
     deinit {
         unsubscribe(observer: self)
     }
-    
+
     @objc func successSelector(_ notification: NSNotification) {
         onSuccess(notification)
     }
-    
+
     @objc func errorSelector(_ notification: NSNotification) {
         onError(notification)
     }
 }
 
-extension LWRxAuthManagerKYCForAsset: AuthManagerProtocol{
-    
+extension LWRxAuthManagerKYCForAsset: AuthManagerProtocol {
+
     public func createPacket(withObserver observer: Any, params: (String)) -> LWPacketKYCForAsset {
         return Packet(observer: observer, assetId: params)
     }

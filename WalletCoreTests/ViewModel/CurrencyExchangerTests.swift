@@ -13,16 +13,16 @@ import RxTest
 @testable import WalletCore
 
 class CurrencyExchangerTests: XCTestCase {
-    
+
     var scheduler: TestScheduler!
     private let disposeBag = DisposeBag()
-    
+
     override func setUp() {
         super.setUp()
         scheduler = TestScheduler(initialClock: 0)
-        
+
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -38,7 +38,7 @@ class CurrencyExchangerTests: XCTestCase {
         ),
         expectedResult: Decimal
     )
-    
+
     func testExchangeUSDEURAsk() {
         driveOnScheduler(scheduler) { [weak self] in
             self?.exchangeAssert(withData: (
@@ -55,7 +55,7 @@ class CurrencyExchangerTests: XCTestCase {
             ))
         }
     }
-    
+
     func testExchangeUSDEURBid() {
         driveOnScheduler(scheduler) { [weak self] in
             self?.exchangeAssert(withData: (
@@ -72,7 +72,7 @@ class CurrencyExchangerTests: XCTestCase {
             ))
         }
     }
-    
+
     func testExchangeReversedPair() {
         driveOnScheduler(scheduler) { [weak self] in
             self?.exchangeAssert(withData: (
@@ -89,19 +89,19 @@ class CurrencyExchangerTests: XCTestCase {
             ))
         }
     }
-    
+
     func exchangeAssert(withData data: TestExchangeData) {
         //1. arrange
         let trigger = scheduler.createColdObservable([next(1, Void())]).asObservable()
         let authManager = LWRxAuthManagerMock(assetPairRates: LWRxAuthManagerAssetPairRatesMock(data: data.rates))
         let currencyExchanger = CurrencyExchanger(refresh: trigger, authManager: authManager)
-        
+
         //2. execute
         let results = scheduler.createObserver(Optional<Decimal>.self)
-        
+
         let subscription = scheduler.createColdObservable([next(2, data)]).asObservable()
             .observeOn(scheduler)
-            .flatMap{ element in
+            .flatMap { element in
                 currencyExchanger.exchange(
                     amount: element.input.amaunt,
                     from: element.input.from,
@@ -110,10 +110,10 @@ class CurrencyExchangerTests: XCTestCase {
                 )
             }
             .bind(to: results)
-        
+
         scheduler.scheduleAt(3000) { subscription.dispose() }
         scheduler.start()
-        
+
         //3. assert
         XCTAssertEqual(results.events[0].value.element!, data.expectedResult)
     }

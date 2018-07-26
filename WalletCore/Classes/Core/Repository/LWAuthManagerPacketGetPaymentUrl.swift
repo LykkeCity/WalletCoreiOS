@@ -8,32 +8,32 @@
 import Foundation
 import RxSwift
 
-public class LWAuthManagerPacketGetPaymentUrl:  NSObject{
-    
+public class LWAuthManagerPacketGetPaymentUrl: NSObject {
+
     public typealias Packet = LWPacketGetPaymentUrl
     public typealias Result = ApiResult<LWPacketGetPaymentUrl>
     public typealias ResultType = LWPacketGetPaymentUrl
     public typealias RequestParams = (LWPacketGetPaymentUrlParams)
-    
+
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
     }
-    
+
     deinit {
         unsubscribe(observer: self)
     }
-    
+
     @objc func successSelector(_ notification: NSNotification) {
         onSuccess(notification)
     }
-    
+
     @objc func errorSelector(_ notification: NSNotification) {
         onError(notification)
     }
 }
 
-extension LWAuthManagerPacketGetPaymentUrl: AuthManagerProtocol{
+extension LWAuthManagerPacketGetPaymentUrl: AuthManagerProtocol {
     public func createPacket(withObserver observer: Any, params: (LWPacketGetPaymentUrlParams)) -> LWPacketGetPaymentUrl {
         return Packet(observer: observer, params: params)
     }
@@ -62,7 +62,7 @@ public struct LWPacketGetPaymentUrlParams {
 
 fileprivate extension LWPacketGetPaymentUrlParams {
     func toDictionaty() -> [AnyHashable: Any] {
-        
+
         return [
             "Amount": Decimal(string: amount) ?? 0.0,
             "FirstName": firstName,

@@ -16,7 +16,7 @@ class LWRxAuthManagerAllAssetsMock: LWRxAuthManagerAllAssetsProtocol {
             .just(ApiResult.success(withData: LWAssetModel()))
             .startWith(.loading)
     }
-    
+
     func request() -> Observable<ApiResult<[LWAssetModel]>> {
         return Observable<ApiResult<[LWAssetModel]>>
             .just(ApiResult.success(withData: [

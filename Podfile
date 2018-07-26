@@ -18,6 +18,7 @@ target 'WalletCore' do
   pod 'BlocksKit'
   pod 'EasyMapping'
   pod 'ReachabilitySwift'
+  pod 'SwiftLint'
 
   target 'WalletCoreTests' do
     inherit! :search_paths

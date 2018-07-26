@@ -9,33 +9,33 @@
 import Foundation
 import RxSwift
 
-public class LWRxAuthManagerTransactions: NSObject{
-    
+public class LWRxAuthManagerTransactions: NSObject {
+
     public typealias Packet = LWPacketTransactions
     public typealias Result = ApiResult<LWTransactionsModel>
     public typealias ResultType = LWTransactionsModel
     public typealias RequestParams = (String?)
-    
+
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
     }
-    
+
     deinit {
         unsubscribe(observer: self)
     }
-    
+
     @objc func successSelector(_ notification: NSNotification) {
         onSuccess(notification)
     }
-    
+
     @objc func errorSelector(_ notification: NSNotification) {
         onError(notification)
     }
 }
 
-extension LWRxAuthManagerTransactions: AuthManagerProtocol{
-    
+extension LWRxAuthManagerTransactions: AuthManagerProtocol {
+
     public func createPacket(withObserver observer: Any, params: (String?)) -> LWPacketTransactions {
         return Packet(observer: observer, assetId: params)
     }
@@ -48,11 +48,11 @@ extension LWRxAuthManagerTransactions: AuthManagerProtocol{
 extension LWPacketTransactions {
     convenience init(observer: Any, assetId: String?) {
         self.init()
-        
+
         if let assetId = assetId {
             self.assetId = NSString(string: assetId)
         }
-        
+
         self.observer = observer
     }
 }

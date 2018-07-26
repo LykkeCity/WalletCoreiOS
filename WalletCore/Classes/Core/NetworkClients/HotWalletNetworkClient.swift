@@ -9,20 +9,20 @@
 import UIKit
 
 class HotWalletNetworkClient: LWNetworkTemplate, LWNetworkClient {
-  
+
   private static let shared = HotWalletNetworkClient()
-  
+
   override func showOffchainErrors() -> Bool {
     return true
   }
-  
-  func postRequest(withAPI apiMethod: String!, signatureVerification token: String, params: [AnyHashable : Any]!) -> NSMutableURLRequest! {
+
+  func postRequest(withAPI apiMethod: String!, signatureVerification token: String, params: [AnyHashable: Any]!) -> NSMutableURLRequest! {
     let request = super.postRequest(withAPI: apiMethod, params: params)!
     request.addValue(token, forHTTPHeaderField: "SignatureVerificationToken")
     return request
   }
-  
-  class func createMarketOrder(for assetPairId: String, assetId: String, volume: NSDecimalNumber, completion: @escaping ([AnyHashable: Any]?)->()) {
+
+  class func createMarketOrder(for assetPairId: String, assetId: String, volume: NSDecimalNumber, completion: @escaping ([AnyHashable: Any]?) -> Void) {
     LWSignatureVerificationTokenHelper.networkClient(shared, requestVerificationTokenFor: LWKeychainManager.instance().login, success: { (token) in
       let params: [AnyHashable: Any] = ["AssetPair": assetPairId,
                                         "AssetId": assetId,
@@ -37,14 +37,14 @@ class HotWalletNetworkClient: LWNetworkTemplate, LWNetworkClient {
           completion(nil)
         }
       }
-    }) { (error) in
+    }, failure: { (_) in
       DispatchQueue.main.async {
         completion(nil)
       }
-    }
+    })
   }
-  
-  class func createLimitOrder(for assetPairId: String, assetId: String, volume: String, price: String, completion: @escaping (Bool)->()) {
+
+  class func createLimitOrder(for assetPairId: String, assetId: String, volume: String, price: String, completion: @escaping (Bool) -> Void) {
     LWSignatureVerificationTokenHelper.networkClient(shared, requestVerificationTokenFor: LWKeychainManager.instance().login, success: { (token) in
       let params: [AnyHashable: Any] = ["AssetPair": assetPairId,
                                         "AssetId": assetId,
@@ -55,14 +55,14 @@ class HotWalletNetworkClient: LWNetworkTemplate, LWNetworkClient {
       DispatchQueue.main.async {
         completion(response is [AnyHashable: Any])
       }
-    }) { (error) in
+    }, failure: { (_) in
       DispatchQueue.main.async {
         completion(false)
       }
-    }
+    })
   }
-  
-  class func cachout(to destinationAddress: String, assetId: String, volume: NSDecimalNumber, completion: @escaping (Bool)->()) {
+
+  class func cachout(to destinationAddress: String, assetId: String, volume: NSDecimalNumber, completion: @escaping (Bool) -> Void) {
     LWSignatureVerificationTokenHelper.networkClient(shared, requestVerificationTokenFor: LWKeychainManager.instance().login, success: { (token) in
       let params: [String: Any] = ["DestinationAddress": destinationAddress,
                                         "AssetId": assetId,
@@ -74,13 +74,13 @@ class HotWalletNetworkClient: LWNetworkTemplate, LWNetworkClient {
       } else {
         completion(true)
       }
-    }) { (error) in
+    }, failure: { (_) in
       DispatchQueue.main.async {
         completion(false)
       }
-    }
+    })
   }
-	
+
 	override func showKycErrors() -> Bool {
 		return false
 	}
