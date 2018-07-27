@@ -22,13 +22,13 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         let views = ["pinnedView": self]
-        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "|-0-[pinnedView]-0-|",
+        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "|[pinnedView]|",
                                                         options: .alignAllCenterY,
                                                         metrics: nil,
                                                         views: views)
         NSLayoutConstraint.activate(horizontal)
         
-        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[pinnedView]-0-|",
+        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[pinnedView]|",
                                                       options: .alignAllCenterX,
                                                       metrics: nil, views: views)
         NSLayoutConstraint.activate(vertical)

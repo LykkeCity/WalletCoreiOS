@@ -12,13 +12,15 @@ import RxSwift
 import WalletCore
 import WebKit
 
-class AssetDisclaimerViewController: UIViewController, UIWebViewDelegate {
+class AssetDisclaimerViewController: UIViewController, WKNavigationDelegate {
 
     
     @IBOutlet weak var acceptedButton: UIButton!
     @IBOutlet weak var `continue`: UIButton!
     @IBOutlet weak var cancel: UIButton!
-    @IBOutlet weak var disclaimerWebView: UIWebView!
+    @IBOutlet weak var containerView: UIView!
+    
+    var disclaimerWebView: WKWebView!
     
     // move this variable to a dedicated view model
     let accepted = Variable(false)
@@ -59,7 +61,27 @@ class AssetDisclaimerViewController: UIViewController, UIWebViewDelegate {
             .drive(accepted)
             .disposed(by: disposeBag)
         
+        addWebView()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func addWebView() {
+        let webConfiguration = WKWebViewConfiguration()
+        let customFrame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: self.containerView.bounds.size.width, height: self.containerView.bounds.size.height))
+        disclaimerWebView = WKWebView(frame: customFrame, configuration: webConfiguration)
+        disclaimerWebView.translatesAutoresizingMaskIntoConstraints = false
+        disclaimerWebView.isOpaque = false
+        
+        containerView.addSubview(disclaimerWebView)
+        
+        disclaimerWebView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        disclaimerWebView.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        disclaimerWebView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        disclaimerWebView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        disclaimerWebView.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
+        
+        disclaimerWebView.navigationDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,18 +89,35 @@ class AssetDisclaimerViewController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func openURL(_ url: String) {
-        let correctUrlString = url.hasPrefix("http") ? url : "https://\(url)"
-        UIApplication.shared.openURL(URL(string: correctUrlString)!)
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated  {
+            if let url = navigationAction.request.url,
+                UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.openURL(url)
+                decisionHandler(.cancel)
+            } else {
+                decisionHandler(.allow)
+            }
+        } else {
+            decisionHandler(.allow)
+        }
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == .linkClicked {
-            openURL(request.url!.absoluteString)
-            return false
+    func addCSSToHtml(html: String) -> String {
+        let newHtml = """
+        <style>
+        body {
+        font-size: 4.5vw;
+        color: white;
         }
+        a {
+        color: #E4E4E4;
+        }
+        </style>
+        """
+            + html
         
-        return true
+        return newHtml
     }
     
 
@@ -100,7 +139,10 @@ fileprivate extension AssetDisclaimerViewModel {
             loadingViewModel.isLoading.bind(to: vc.rx.loading),
             disclaimer.drive(vc.currentDisclaimer),
             vc.currentDisclaimer.asDriver().filterNil().drive(onNext: { [weak vc] disclaimer in
-                vc?.disclaimerWebView.loadHTMLString(disclaimer.text.replacingOccurrences(of: "#0096fb", with: "##0000FF"), baseURL: URL(string: "https://"))
+                let page = vc?.addCSSToHtml(html: disclaimer.text)
+                if let openHtml = page {
+                vc?.disclaimerWebView.loadHTMLString(openHtml, baseURL: URL(string: "https://"))
+                }
             }),
             vc.accepted.asDriver().drive(vc.continue.rx.isEnabled)
         ]

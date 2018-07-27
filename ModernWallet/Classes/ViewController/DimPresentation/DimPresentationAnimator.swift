@@ -10,7 +10,7 @@ import UIKit
 
 class DimPresentationAnimator: NSObject {
     let isPresenting: Bool
-    var duration: TimeInterval = 0.7
+    fileprivate var duration: TimeInterval = 0.7
     
     init(isPresenting: Bool) {
         self.isPresenting = isPresenting
