@@ -83,7 +83,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var kycForAsset         = {LWRxAuthManagerKYCForAsset()}()
     public lazy var kycDocuments        = {LWRxAuthManagerKYCDocuments()}()
     public lazy var checkPendingActions      = {LWRxAuthManagerCheckPendingActions()}()
-    public lazy var offchainTrade       = {LWRxAuthManagerOffchainTrade()}()
+    public lazy var offchainTrade            = {LWRxAuthManagerOffchainTrade()}()
     public lazy var offchainFanilazeTransfer = {LWRxAuthManagerOffchainFinalizetransfer()}()
     public lazy var offchainProcessChannel   = {LWRxAuthManagerOffchainProcessChannel()}()
     public lazy var offchainChannelKey       = {LWRxAuthManagerOffchainChannelKey()}()
@@ -100,4 +100,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var applicationInfo          = { LWRxAuthManagerApplicationInfo() }()
     public lazy var settingSignOrder         = { LWRxAuthManagerSettingSignOrder() }()
     public lazy var marketCap                = { LWRxAuthManagerMarketCap() }()
+    public lazy var assetDisclaimers         = { LWRxAuthManagerAssetDisclaimersGet() }()
+    public lazy var assetDisclaimerAccept    = { LWRxAuthManagerAssetDisclaimersApprove() }()
+    public lazy var assetDisclaimerDecline   = { LWRxAuthManagerAssetDisclaimersDecline() }()
 }
