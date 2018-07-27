@@ -12,10 +12,6 @@ import RxCocoa
 
 public class AssetDisclaimerViewModel {
     
-    private let accept: Driver<AssetDisclaimerId>
-    private let decline: Driver<AssetDisclaimerId>
-    private let acceptEnabled: Driver<Bool>
-    
     public var disclaimer: Driver<LWModelAssetDisclaimer>
     public let loadingViewModel: LoadingViewModel
     public let dismissViewController: Driver<Void>
@@ -31,10 +27,6 @@ public class AssetDisclaimerViewModel {
     ) {
         
         /// Properties
-        self.accept = accept
-        self.decline = decline
-        self.acceptEnabled = acceptEnabled
-        
         let disclaimerRequest = authManager.assetDisclaimers.request()
         
         let disclaimerAcceptRequest = accept.asObservable()
