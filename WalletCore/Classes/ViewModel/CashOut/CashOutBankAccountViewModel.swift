@@ -66,7 +66,7 @@ public class CashOutBankAccountViewModel {
         
         isValidBIC = bic.asObservable()
             .map { bic in
-                bic.isValidBic()
+                bic.isValidBicOrSwift()
         }
         
         isValid = Observable.combineLatest([
