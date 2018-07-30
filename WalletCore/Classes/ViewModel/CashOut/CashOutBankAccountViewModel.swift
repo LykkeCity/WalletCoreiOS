@@ -49,40 +49,20 @@ public class CashOutBankAccountViewModel {
             accountHolderZipCode.asObservable(),
             accountHolderCity.asObservable()
             ])
-            .map {
-                for value in $0 {
-                    if value.isEmpty {
-                        return false
-                    }
-                }
-                
-                return true
-        }
+            .map { return $0.index(where: { $0.isEmpty }) == nil }
         
         isValidIBAN = iban.asObservable()
-            .map { iban in
-                iban.isValidIban()
-        }
+            .map { $0.isValidIban() }
         
         isValidBIC = bic.asObservable()
-            .map { bic in
-                bic.isValidBicOrSwift()
-        }
+            .map { $0.isValidBicOrSwift() }
         
         isValid = Observable.combineLatest([
             isValidFields,
             isValidIBAN,
             isValidBIC
             ])
-            .map {
-                for value in $0 {
-                    if !value {
-                        return false
-                    }
-                }
-                
-                return true
-        }
+            .map { return $0.index(where: { !$0 }) == nil }
     }
     
 }
