@@ -52,7 +52,7 @@ public class CashOutBankAccountViewModel {
             .map { return $0.index(where: { $0.isEmpty }) == nil }
         
         isValidIBAN = iban.asObservable()
-            .map { $0.isValidIban() }
+            .map { $0.isValidIbanOrAccountNumber() }
         
         isValidBIC = bic.asObservable()
             .map { $0.isValidBicOrSwift() }

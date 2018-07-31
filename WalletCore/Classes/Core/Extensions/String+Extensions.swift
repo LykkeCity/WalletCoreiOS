@@ -49,7 +49,7 @@ public extension String {
         return self.matches("^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$")
     }
     
-    func isValidIban() -> Bool {
+    func isValidIbanOrAccountNumber() -> Bool {
         
         let countryCodes = ["AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AZ",
                             "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV", "BR",
@@ -69,10 +69,10 @@ public extension String {
                             "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF",
                             "EH", "YE", "ZM", "ZW"]
         
-        let startLikeIban = self.matches("^(" + countryCodes.joined(separator: "|") + ")([a-zA-Z0-9])*$")
+        let startLikeIban = self.matches("^(" + countryCodes.joined(separator: "|") + ")([A-Z0-9])*$")
         
-        //If the string is not beginning like an IBAN it's possible to be a US bank account number. The bank account number have to be at least 8 characters at length.
-        if !startLikeIban && self.count >= 8 {
+        //If the string is not beginning like an IBAN it's possible to be a US bank account number. The bank account number have to contain between 4 and 17 digits.
+        if !startLikeIban && self.matches("^[0-9]{4,17}$") {
             return true
         }
         
