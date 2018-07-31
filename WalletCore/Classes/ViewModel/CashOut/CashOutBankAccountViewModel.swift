@@ -31,14 +31,8 @@ public class CashOutBankAccountViewModel {
     
     public let isValid: Observable<Bool>
     
-    private let isValidFields: Observable<Bool>
-    
-    private let isValidIBAN: Observable<Bool>
-
-    private let isValidBIC: Observable<Bool>
-    
     public init() {
-        isValidFields = Observable.combineLatest([
+        let isValidFields = Observable.combineLatest([
             bankName.asObservable(),
             iban.asObservable(),
             bic.asObservable(),
@@ -51,10 +45,10 @@ public class CashOutBankAccountViewModel {
             ])
             .map { return $0.index(where: { $0.isEmpty }) == nil }
         
-        isValidIBAN = iban.asObservable()
+        let isValidIBAN = iban.asObservable()
             .map { $0.isValidIbanOrAccountNumber() }
         
-        isValidBIC = bic.asObservable()
+        let isValidBIC = bic.asObservable()
             .map { $0.isValidBicOrSwift() }
         
         isValid = Observable.combineLatest([
