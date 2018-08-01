@@ -28,7 +28,7 @@ public class KycGetStatusViewModel {
             .filter { kycStatus in
                 kycStatus.status == "Ok"
             }
-            .map{_ in Void()}
+            .map{ _ in () }
         
         self.loadingViewModel = LoadingViewModel([
             kycStatusGet.isLoading()
