@@ -69,10 +69,6 @@ public class AssetDisclaimerViewModel {
 
 fileprivate extension ObservableType where Self.E == LWRxAuthManagerAssetDisclaimersApprove.Result {
     
-    /// 
-    ///
-    /// - Parameter disclaimers:
-    /// - Returns:
     func mapToNextDisclaimer(fromDisclaimers disclaimers: [LWModelAssetDisclaimer]) -> Observable<LWModelAssetDisclaimer?> {
         return filterSuccess().map{ disclaimer -> LWModelAssetDisclaimer? in
             guard let indexOfAcceptedDisclaimer = (disclaimers.index{ $0.id == disclaimer }) else {
@@ -86,12 +82,6 @@ fileprivate extension ObservableType where Self.E == LWRxAuthManagerAssetDisclai
 
 fileprivate extension ObservableType where Self.E == AssetDisclaimerId {
     
-    /// <#Description#>
-    ///
-    /// - Parameters:
-    ///   - acceptEnabled: <#acceptEnabled description#>
-    ///   - authManager: <#authManager description#>
-    /// - Returns: <#return value description#>
     func accept(isAcceptEnabled acceptEnabled: Driver<Bool>, authManager: LWRxAuthManager) -> Observable<LWRxAuthManagerAssetDisclaimersApprove.Result>  {
         return
             withLatestFrom(acceptEnabled) { (disclaimer: $0, enabled: $1) }
@@ -106,9 +96,6 @@ fileprivate extension ObservableType where Self.E == AssetDisclaimerId {
 
 fileprivate extension ObservableType where Self.E == [LWModelAssetDisclaimer] {
     
-    /// <#Description#>
-    ///
-    /// - Returns: <#return value description#>
     func mapToFirst() -> Driver<LWModelAssetDisclaimer> {
         return map{ $0.first }
             .asDriver(onErrorJustReturn: nil)
