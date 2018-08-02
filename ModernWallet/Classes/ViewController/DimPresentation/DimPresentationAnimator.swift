@@ -10,7 +10,7 @@ import UIKit
 
 class DimPresentationAnimator: NSObject {
     let isPresenting: Bool
-    fileprivate var duration: TimeInterval = 0.7
+    fileprivate let duration: TimeInterval = 0.7
     
     init(isPresenting: Bool) {
         self.isPresenting = isPresenting
@@ -25,7 +25,9 @@ extension DimPresentationAnimator: UIViewControllerAnimatedTransitioning {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let key = isPresenting ? UITransitionContextViewControllerKey.to : UITransitionContextViewControllerKey.from
-        let controller = transitionContext.viewController(forKey: key)!
+        guard let controller = transitionContext.viewController(forKey: key) else {
+            return
+        }
         
         slideTransition(transitionContext, controller: controller)
     }

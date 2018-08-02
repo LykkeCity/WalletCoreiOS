@@ -38,9 +38,12 @@ extension UIView {
         
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: nibName, bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        
-        return view
+        if let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView {
+            return view
+        }
+        else {
+            return UIView()
+        }
     }
     
     func cornerRadius(heightPercent: CGFloat) {

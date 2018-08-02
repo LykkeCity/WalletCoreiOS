@@ -44,6 +44,9 @@ class DimPresentationController: UIPresentationController {
     }
     
     override var frameOfPresentedViewInContainerView: CGRect {
-        return containerView!.bounds
+        guard let bounds = containerView?.bounds else {
+            return CGRect()
+        }
+        return bounds
     }
 }

@@ -24,11 +24,10 @@ class DimPresentationManager: NSObject {
 
 extension DimPresentationManager: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        let presentationController = DimPresentationController(presentedVc: presented,
-                                                               presenting: presenting,
-                                                               duration: duration,
-                                                               dimColor: dimColor)
-        return presentationController
+        return DimPresentationController(presentedVc: presented,
+                                         presenting: presenting,
+                                         duration: duration,
+                                         dimColor: dimColor)
     }
     
     func animationController(forPresented presented: UIViewController,

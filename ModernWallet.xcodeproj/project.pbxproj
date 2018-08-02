@@ -67,7 +67,6 @@
 		61968D7A20A4835500445ABF /* DimPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7920A4835500445ABF /* DimPresentationManager.swift */; };
 		61968D7C20A4836D00445ABF /* DimPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7B20A4836D00445ABF /* DimPresentationController.swift */; };
 		61968D7E20A4837E00445ABF /* DimPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7D20A4837E00445ABF /* DimPresentationAnimator.swift */; };
-		61968D9920A594B400445ABF /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D9820A594B400445ABF /* UILabel+Extensions.swift */; };
 		6197A3BB1EE99AB1008ECF5A /* StrokePieChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3BA1EE99AB1008ECF5A /* StrokePieChartRenderer.swift */; };
 		6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */; };
 		6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */; };
@@ -200,6 +199,8 @@
 		EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */; };
 		EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6632431C175B54004353F5 /* Assets.xcassets */; };
 		EC9C947D1C899019006FD46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */; };
+		F74D288C2112DE6B007B6E65 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74D288B2112DE6B007B6E65 /* String+Extensions.swift */; };
+		F7CBFA16210B68EA00788799 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CBFA15210B68EA00788799 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -269,7 +270,6 @@
 		61968D7920A4835500445ABF /* DimPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationManager.swift; sourceTree = "<group>"; };
 		61968D7B20A4836D00445ABF /* DimPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationController.swift; sourceTree = "<group>"; };
 		61968D7D20A4837E00445ABF /* DimPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationAnimator.swift; sourceTree = "<group>"; };
-		61968D9820A594B400445ABF /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		6197A3BA1EE99AB1008ECF5A /* StrokePieChartRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokePieChartRenderer.swift; sourceTree = "<group>"; };
 		6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieValueFormatter.swift; sourceTree = "<group>"; };
 		6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartCenter.swift; sourceTree = "<group>"; };
@@ -406,6 +406,8 @@
 		E7A1BF9F20F797B30058AC7B /* LimitedHoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitedHoshiTextField.swift; sourceTree = "<group>"; };
 		EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F74D288B2112DE6B007B6E65 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		F7CBFA15210B68EA00788799 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -542,6 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				4650B00F20A4E6B30025DBB4 /* AssetDisclaimerViewController.swift */,
+				F7CBFA15210B68EA00788799 /* WebView.swift */,
 			);
 			path = DimViewController;
 			sourceTree = "<group>";
@@ -615,9 +618,9 @@
 				C5B982EB1FE974F100D1A642 /* UIImageEffects.h */,
 				C5B982EC1FE974F200D1A642 /* UIImageEffects.m */,
 				AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */,
+				F74D288B2112DE6B007B6E65 /* String+Extensions.swift */,
 				C56FD0D52023E93D00596709 /* Koyomi+Rx.swift */,
 				C54A01912028B4640030CCE4 /* UIScreen+Extensions.swift */,
-				61968D9820A594B400445ABF /* UILabel+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1272,7 +1275,6 @@
 				4655386C1FB5B5B7007CF395 /* AppDelegate.swift in Sources */,
 				CC9458881F05310300676249 /* AddMoneyCCStep2ViewController.swift in Sources */,
 				C182E29220497CC7005772C2 /* MarketCapViewController.swift in Sources */,
-				61968D9920A594B400445ABF /* UILabel+Extensions.swift in Sources */,
 				614214191F78F9C400E2F524 /* KYCProtocols.swift in Sources */,
 				CC9458841F0400A000676249 /* AddMoneyCCStep1ViewController.swift in Sources */,
 				615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */,
@@ -1344,6 +1346,7 @@
 				464BAA661FBC444000F473FA /* AssetDetailViewController.swift in Sources */,
 				4671C9BF1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift in Sources */,
 				87C6CDFA1FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift in Sources */,
+				F74D288C2112DE6B007B6E65 /* String+Extensions.swift in Sources */,
 				469DA71F1F6C14C5000B904C /* KYCTabCollectionViewCell.swift in Sources */,
 				C527C41420235F86003A390F /* TransactionPickDateRangeViewController.swift in Sources */,
 				66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */,
@@ -1354,6 +1357,7 @@
 				61BAB0E01F0F72F600212E16 /* FakeData.swift in Sources */,
 				664676D41FCEF260006FC340 /* SignUpFillPhoneFormController.swift in Sources */,
 				668E68081FCDC449004552BD /* PinViewController.swift in Sources */,
+				F7CBFA16210B68EA00788799 /* WebView.swift in Sources */,
 				AB29EEF81FEB0C000006F43F /* LWNetworkClient+Extension.swift in Sources */,
 				469DA7251F6C1FBF000B904C /* KYCStep2ViewController.swift in Sources */,
 				66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */,

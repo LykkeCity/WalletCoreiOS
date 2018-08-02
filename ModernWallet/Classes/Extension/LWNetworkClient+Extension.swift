@@ -57,7 +57,6 @@ extension LWNetworkTemplate: LWAuthManagerDelegate {
             
             backupVC.transitioningDelegate = DimPresentationManager.shared
             backupVC.modalPresentationStyle = .custom
-//            backupVC.dialogMessage = "Reset Filters"
             
             visibleVC.present(backupVC, animated: true)
         }
