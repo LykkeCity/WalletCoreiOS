@@ -46,6 +46,22 @@ extension LWNetworkTemplate: LWAuthManagerDelegate {
         }
     }
     
+    func showPendingDisclaimer() {
+        DispatchQueue.main.async {
+            guard let visibleVC = (UIApplication.shared.delegate as? AppDelegate)?.visibleViewController else {
+                return
+            }
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let backupVC = storyboard.instantiateViewController(withIdentifier: "dimViewController")
+            
+            backupVC.transitioningDelegate = DimPresentationManager.shared
+            backupVC.modalPresentationStyle = .custom
+            
+            visibleVC.present(backupVC, animated: true)
+        }
+    }
+    
     func showKycView() {
         guard
             let visibleVC = (UIApplication.shared.delegate as? AppDelegate)?.visibleViewController,

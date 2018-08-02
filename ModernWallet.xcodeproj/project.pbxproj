@@ -20,6 +20,7 @@
 		463FC5A71F94DB17005930DD /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463FC5A51F94DB17005930DD /* MenuTableViewController.swift */; };
 		46427FAA1F8CA6D1009359AE /* UITextField+PlaceholderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */; };
 		464BAA661FBC444000F473FA /* AssetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BAA651FBC444000F473FA /* AssetDetailViewController.swift */; };
+		4650B01020A4E6B30025DBB4 /* AssetDisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650B00F20A4E6B30025DBB4 /* AssetDisclaimerViewController.swift */; };
 		4651CFB61FA32448009BFA45 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */; };
 		4651CFB81FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */; };
 		4651CFBA1FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */; };
@@ -63,6 +64,9 @@
 		615052AC1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615052AB1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift */; };
 		615052B01F29D06800AFB6FC /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615052AF1F29D06800AFB6FC /* UIViewController+Extensions.swift */; };
 		6179434E1F0530690009597C /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6179434D1F0530690009597C /* Notification+Extensions.swift */; };
+		61968D7A20A4835500445ABF /* DimPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7920A4835500445ABF /* DimPresentationManager.swift */; };
+		61968D7C20A4836D00445ABF /* DimPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7B20A4836D00445ABF /* DimPresentationController.swift */; };
+		61968D7E20A4837E00445ABF /* DimPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D7D20A4837E00445ABF /* DimPresentationAnimator.swift */; };
 		6197A3BB1EE99AB1008ECF5A /* StrokePieChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3BA1EE99AB1008ECF5A /* StrokePieChartRenderer.swift */; };
 		6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */; };
 		6197A3C11EEA8FFC008ECF5A /* PieChartCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */; };
@@ -195,6 +199,8 @@
 		EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */; };
 		EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6632431C175B54004353F5 /* Assets.xcassets */; };
 		EC9C947D1C899019006FD46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */; };
+		F74D288C2112DE6B007B6E65 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74D288B2112DE6B007B6E65 /* String+Extensions.swift */; };
+		F7CBFA16210B68EA00788799 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CBFA15210B68EA00788799 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,6 +221,7 @@
 		463FC5A51F94DB17005930DD /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		46427FA91F8CA6D1009359AE /* UITextField+PlaceholderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+PlaceholderColor.swift"; sourceTree = "<group>"; };
 		464BAA651FBC444000F473FA /* AssetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailViewController.swift; sourceTree = "<group>"; };
+		4650B00F20A4E6B30025DBB4 /* AssetDisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDisclaimerViewController.swift; sourceTree = "<group>"; };
 		4651CFB51FA32448009BFA45 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
 		4651CFB71FA343DF009BFA45 /* CurrencyExchanger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyExchanger+Extensions.swift"; sourceTree = "<group>"; };
 		4651CFB91FA3455F009BFA45 /* TotalBalanceViewModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TotalBalanceViewModel+Extensions.swift"; sourceTree = "<group>"; };
@@ -260,6 +267,9 @@
 		615052AB1F28E36E00AFB6FC /* NavigationWizzardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationWizzardProtocol.swift; sourceTree = "<group>"; };
 		615052AF1F29D06800AFB6FC /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		6179434D1F0530690009597C /* Notification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
+		61968D7920A4835500445ABF /* DimPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationManager.swift; sourceTree = "<group>"; };
+		61968D7B20A4836D00445ABF /* DimPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationController.swift; sourceTree = "<group>"; };
+		61968D7D20A4837E00445ABF /* DimPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimPresentationAnimator.swift; sourceTree = "<group>"; };
 		6197A3BA1EE99AB1008ECF5A /* StrokePieChartRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokePieChartRenderer.swift; sourceTree = "<group>"; };
 		6197A3BD1EEA7505008ECF5A /* PieValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieValueFormatter.swift; sourceTree = "<group>"; };
 		6197A3C01EEA8FFC008ECF5A /* PieChartCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartCenter.swift; sourceTree = "<group>"; };
@@ -396,6 +406,8 @@
 		E7A1BF9F20F797B30058AC7B /* LimitedHoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitedHoshiTextField.swift; sourceTree = "<group>"; };
 		EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F74D288B2112DE6B007B6E65 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		F7CBFA15210B68EA00788799 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +433,8 @@
 		11DA9332840C7BEB86E841E1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4650B00E20A4E6940025DBB4 /* DimViewController */,
+				61968D7820A4833D00445ABF /* DimPresentation */,
 				463FC5A91F94DB5C005930DD /* AddMoney */,
 				46B5837D1F94CD6800B475DB /* Buy */,
 				66529DC81F8D19490059786B /* CashOut */,
@@ -526,6 +540,15 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		4650B00E20A4E6940025DBB4 /* DimViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4650B00F20A4E6B30025DBB4 /* AssetDisclaimerViewController.swift */,
+				F7CBFA15210B68EA00788799 /* WebView.swift */,
+			);
+			path = DimViewController;
+			sourceTree = "<group>";
+		};
 		468CB73F1F9501540066272F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +618,7 @@
 				C5B982EB1FE974F100D1A642 /* UIImageEffects.h */,
 				C5B982EC1FE974F200D1A642 /* UIImageEffects.m */,
 				AB29EEF71FEB0C000006F43F /* LWNetworkClient+Extension.swift */,
+				F74D288B2112DE6B007B6E65 /* String+Extensions.swift */,
 				C56FD0D52023E93D00596709 /* Koyomi+Rx.swift */,
 				C54A01912028B4640030CCE4 /* UIScreen+Extensions.swift */,
 			);
@@ -729,6 +753,16 @@
 			);
 			name = PieChart;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		61968D7820A4833D00445ABF /* DimPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				61968D7920A4835500445ABF /* DimPresentationManager.swift */,
+				61968D7B20A4836D00445ABF /* DimPresentationController.swift */,
+				61968D7D20A4837E00445ABF /* DimPresentationAnimator.swift */,
+			);
+			path = DimPresentation;
 			sourceTree = "<group>";
 		};
 		66529DC81F8D19490059786B /* CashOut */ = {
@@ -1255,6 +1289,7 @@
 				6179434E1F0530690009597C /* Notification+Extensions.swift in Sources */,
 				87C6CDFC1FA5BBEC0069CC38 /* CashOutTotalTableViewCell.swift in Sources */,
 				66DA84CD1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift in Sources */,
+				61968D7E20A4837E00445ABF /* DimPresentationAnimator.swift in Sources */,
 				66907BA31FD010CF00FAD801 /* ReloadTrigger.swift in Sources */,
 				CC94588A1F06630900676249 /* AddMoneyCCStep3ViewController.swift in Sources */,
 				25A41843201A0233004F63BD /* SettingsTermsOfUseViewController.swift in Sources */,
@@ -1300,15 +1335,18 @@
 				664676D61FCEFD5C006FC340 /* SignUpShakeViewController.swift in Sources */,
 				CC94587D1F03D44E00676249 /* EndBankViewController.swift in Sources */,
 				C54A01922028B4640030CCE4 /* UIScreen+Extensions.swift in Sources */,
+				4650B01020A4E6B30025DBB4 /* AssetDisclaimerViewController.swift in Sources */,
 				467C20741FB47BEC002A90AE /* DrawerController.swift in Sources */,
 				66512F3D1FE030A800D7B63B /* UIView+Extensions.swift in Sources */,
 				66D83A281FC428F40071D705 /* BackupPrivateKeyWordsViewController.swift in Sources */,
 				66C83D3F1FC2D18400428527 /* BackupPrivateKeyStartViewController.swift in Sources */,
 				4671C9D21F8272BF002C2F25 /* KYCPhotoFailedTableViewCell.swift in Sources */,
+				61968D7C20A4836D00445ABF /* DimPresentationController.swift in Sources */,
 				66385DE61FCEDE88002DC70B /* SignUpSetPasswordFormController.swift in Sources */,
 				464BAA661FBC444000F473FA /* AssetDetailViewController.swift in Sources */,
 				4671C9BF1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift in Sources */,
 				87C6CDFA1FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift in Sources */,
+				F74D288C2112DE6B007B6E65 /* String+Extensions.swift in Sources */,
 				469DA71F1F6C14C5000B904C /* KYCTabCollectionViewCell.swift in Sources */,
 				C527C41420235F86003A390F /* TransactionPickDateRangeViewController.swift in Sources */,
 				66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */,
@@ -1319,6 +1357,7 @@
 				61BAB0E01F0F72F600212E16 /* FakeData.swift in Sources */,
 				664676D41FCEF260006FC340 /* SignUpFillPhoneFormController.swift in Sources */,
 				668E68081FCDC449004552BD /* PinViewController.swift in Sources */,
+				F7CBFA16210B68EA00788799 /* WebView.swift in Sources */,
 				AB29EEF81FEB0C000006F43F /* LWNetworkClient+Extension.swift in Sources */,
 				469DA7251F6C1FBF000B904C /* KYCStep2ViewController.swift in Sources */,
 				66F6A2C91F9F712D00303E3B /* CashOutPersonalDetailsViewController.swift in Sources */,
@@ -1327,6 +1366,7 @@
 				61A3E3001F61548E00666A56 /* TextFieldEffects+Rx.swift in Sources */,
 				6100D8DC1F1F334B00EB40A5 /* UIStackView+Hint.swift in Sources */,
 				CC94587F1F03DB8E00676249 /* BankViewController.swift in Sources */,
+				61968D7A20A4835500445ABF /* DimPresentationManager.swift in Sources */,
 				CC9458811F03DC4F00676249 /* StartViewController.swift in Sources */,
 				66907BA51FD0130900FAD801 /* NoConnectionViewController.swift in Sources */,
 				C510B0E52031CDC20084C98E /* AssetPickTableViewCell.swift in Sources */,

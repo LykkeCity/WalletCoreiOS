@@ -18,4 +18,34 @@ extension UIView {
         viewLayer.shadowOffset = offset
     }
     
+    func pinToSuperview() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views = ["pinnedView": self]
+        let horizontal = NSLayoutConstraint.constraints(withVisualFormat: "|[pinnedView]|",
+                                                        options: .alignAllCenterY,
+                                                        metrics: nil,
+                                                        views: views)
+        NSLayoutConstraint.activate(horizontal)
+        
+        let vertical = NSLayoutConstraint.constraints(withVisualFormat: "V:|[pinnedView]|",
+                                                      options: .alignAllCenterX,
+                                                      metrics: nil, views: views)
+        NSLayoutConstraint.activate(vertical)
+    }
+    
+    func loadViewFromNib(_ nibName: String) -> UIView {
+        
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        guard let view = nib.instantiate(withOwner: self, options: nil)[0] as? UIView
+            else {
+                return UIView()
+        }
+        return view
+    }
+    
+    func cornerRadius(heightPercent: CGFloat) {
+        layer.cornerRadius = layer.bounds.height * heightPercent
+    }
 }

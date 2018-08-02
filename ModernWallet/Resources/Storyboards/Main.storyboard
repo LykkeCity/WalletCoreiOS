@@ -305,7 +305,7 @@
                                         <rect key="frame" x="109.66666666666669" y="11" width="155" height="24"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLj-NN-jgj" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
-                                        <rect key="frame" x="294" y="1" width="73" height="44"/>
+                                        <rect key="frame" x="323.33333333333331" y="1" width="43.666666666666686" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="9N1-LK-uVA"/>
                                         </constraints>
@@ -564,17 +564,17 @@ Please check and try again.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdX-4x-Q2r" userLabel="Balance Container">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="221.33333333333334"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-p9-w07" userLabel="Asset Balance">
-                                                <rect key="frame" x="107.66666666666669" y="71.333333333333314" width="160" height="119"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-p9-w07" userLabel="Asset Balance">
+                                                <rect key="frame" x="107.66666666666669" y="71.333333333333329" width="160" height="78.999999999999986"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
-                                                        <rect key="frame" x="48.333333333333329" y="0.0" width="63.666666666666671" height="11"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
+                                                        <rect key="frame" x="48.333333333333329" y="0.3333333333333286" width="63.666666666666671" height="11"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="11"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1MM-5Y-eOM" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="14.999999999999993" width="160" height="50.000000000000007"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1MM-5Y-eOM" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="15.333333333333329" width="160" height="30"/>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -585,8 +585,8 @@ Please check and try again.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tF3-il-4Jb" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="69" width="160" height="50"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tF3-il-4Jb" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="49.333333333333329" width="160" height="30"/>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -801,7 +801,7 @@ Please check and try again.</string>
                                                         <rect key="frame" x="60" y="0.0" width="197" height="60"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-D9-gM2" userLabel="Transactions Stack View">
-                                                                <rect key="frame" x="34.333333333333329" y="23.666666666666629" width="129.66666666666669" height="14"/>
+                                                                <rect key="frame" x="34" y="23.666666666666629" width="129.66666666666666" height="14"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transactionsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bvp-5i-wvn">
                                                                         <rect key="frame" x="0.0" y="0.0" width="21" height="14"/>
@@ -833,14 +833,14 @@ Please check and try again.</string>
                                                         <rect key="frame" x="257" y="0.0" width="60" height="60"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloadIcon" translatesAutoresizingMaskIntoConstraints="NO" id="U5Z-Sr-bBg">
-                                                                <rect key="frame" x="0.0" y="20" width="10" height="16"/>
+                                                                <rect key="frame" x="-5" y="22" width="10" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="0Hm-TX-2lA"/>
                                                                     <constraint firstAttribute="width" constant="10" id="MGf-sq-Wbu"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download CSV" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4A0-GO-iB8">
-                                                                <rect key="frame" x="15" y="20" width="48" height="27"/>
+                                                                <rect key="frame" x="10" y="16.666666666666629" width="48" height="27"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="48" id="cIP-Wr-oFn"/>
                                                                     <constraint firstAttribute="height" constant="27" id="fFy-ff-LQn"/>
@@ -1017,7 +1017,7 @@ Please check and try again.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZiR-gZ-usr">
-                                <rect key="frame" x="89.000000000000014" y="290.66666666666669" width="198.33333333333337" height="231.00000000000006"/>
+                                <rect key="frame" x="88.333333333333329" y="290.66666666666669" width="198.33333333333337" height="231.00000000000006"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comingSoonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="V18-eG-6Hb">
                                         <rect key="frame" x="0.0" y="0.0" width="198.33333333333334" height="179"/>
@@ -1041,6 +1041,146 @@ Please check and try again.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kiM-O2-TYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="673" y="1175"/>
+        </scene>
+        <!--Asset Disclaimer View Controller-->
+        <scene sceneID="1hu-9K-UMr">
+            <objects>
+                <viewController storyboardIdentifier="dimViewController" id="pnT-Lb-Qbd" customClass="AssetDisclaimerViewController" customModule="ModernMoney" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KK6-Vv-GlY"/>
+                        <viewControllerLayoutGuide type="bottom" id="cFY-za-7Um"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7dm-5d-Cmd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3S7-SC-dQH">
+                                <rect key="frame" x="0.0" y="250.33333333333331" width="375" height="527.66666666666674"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Ax0-5c-WaC">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="527.66666666666663"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Si-lq-j5n">
+                                        <rect key="frame" x="143.33333333333334" y="22.999999999999972" width="88.333333333333343" height="20"/>
+                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="20"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRI-XG-qx6" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="54.999999999999972" width="359" height="2"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="snp-Bp-PSS"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wey-D2-dBf" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="377.66666666666663" width="359" height="2"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="6B6-bZ-1a0"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cn1-u4-U7P" userLabel="Aggreement container">
+                                        <rect key="frame" x="16" y="387.66666666666663" width="343" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I hereby accept these terms and regulations" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="saj-1W-uJx">
+                                                <rect key="frame" x="0.0" y="13" width="283" height="34"/>
+                                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="17"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkM-3S-8BH">
+                                                <rect key="frame" x="283" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="6fi-CR-93d"/>
+                                                    <constraint firstAttribute="height" constant="60" id="ZEf-fb-WzM"/>
+                                                </constraints>
+                                                <state key="normal" image="CheckboxUnchecked"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="OCV-IZ-hnZ" userLabel="Button Container">
+                                        <rect key="frame" x="12" y="455.66666666666663" width="351" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7e-Nc-75u">
+                                                <rect key="frame" x="0.0" y="0.0" width="169.66666666666666" height="60"/>
+                                                <state key="normal" title="CONTINUE"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8t-oc-N00">
+                                                <rect key="frame" x="181.66666666666663" y="0.0" width="169.33333333333337" height="60"/>
+                                                <state key="normal" title="CANCEL"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="akp-CH-HfH"/>
+                                        </constraints>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccf-0w-LCt" customClass="WebView" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="64.999999999999972" width="343" height="305"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="SRI-XG-qx6" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="8" id="0Kh-DO-43U"/>
+                                    <constraint firstItem="8Si-lq-j5n" firstAttribute="top" secondItem="3S7-SC-dQH" secondAttribute="top" constant="23" id="7u6-IZ-Y2u"/>
+                                    <constraint firstAttribute="bottom" secondItem="OCV-IZ-hnZ" secondAttribute="bottom" constant="12" id="9ml-tH-I5W"/>
+                                    <constraint firstItem="SRI-XG-qx6" firstAttribute="top" secondItem="8Si-lq-j5n" secondAttribute="bottom" constant="12" id="BbW-WB-gWd"/>
+                                    <constraint firstItem="cn1-u4-U7P" firstAttribute="top" secondItem="Wey-D2-dBf" secondAttribute="bottom" constant="8" id="D0A-fx-DVT"/>
+                                    <constraint firstItem="OCV-IZ-hnZ" firstAttribute="top" secondItem="cn1-u4-U7P" secondAttribute="bottom" constant="8" id="DZE-86-u4g"/>
+                                    <constraint firstAttribute="trailing" secondItem="SRI-XG-qx6" secondAttribute="trailing" constant="8" id="E3k-dG-0Sh"/>
+                                    <constraint firstItem="8Si-lq-j5n" firstAttribute="centerX" secondItem="3S7-SC-dQH" secondAttribute="centerX" id="Jyd-Ze-Mq4"/>
+                                    <constraint firstItem="Ax0-5c-WaC" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" id="K5i-tE-K9N"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wey-D2-dBf" secondAttribute="trailing" constant="8" id="LQC-bs-0K3"/>
+                                    <constraint firstItem="Ax0-5c-WaC" firstAttribute="top" secondItem="3S7-SC-dQH" secondAttribute="top" id="Oyi-bt-2IS"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ccf-0w-LCt" secondAttribute="trailing" constant="16" id="P0R-Ou-2WG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ax0-5c-WaC" secondAttribute="trailing" id="arp-i7-Aua"/>
+                                    <constraint firstItem="cn1-u4-U7P" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="16" id="dY5-D6-vqx"/>
+                                    <constraint firstAttribute="trailing" secondItem="cn1-u4-U7P" secondAttribute="trailing" constant="16" id="jmK-2B-gdt"/>
+                                    <constraint firstItem="Wey-D2-dBf" firstAttribute="top" secondItem="Ccf-0w-LCt" secondAttribute="bottom" constant="8" id="l1l-fq-Qh9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ax0-5c-WaC" secondAttribute="bottom" id="lKN-iJ-25R"/>
+                                    <constraint firstItem="Wey-D2-dBf" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="8" id="lSs-oe-V43"/>
+                                    <constraint firstItem="Ccf-0w-LCt" firstAttribute="top" secondItem="SRI-XG-qx6" secondAttribute="bottom" constant="8" id="led-Tr-ZA7"/>
+                                    <constraint firstAttribute="trailing" secondItem="OCV-IZ-hnZ" secondAttribute="trailing" constant="12" id="oiU-Ey-61D"/>
+                                    <constraint firstItem="OCV-IZ-hnZ" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="12" id="wvE-J5-LOC"/>
+                                    <constraint firstItem="Ccf-0w-LCt" firstAttribute="leading" secondItem="3S7-SC-dQH" secondAttribute="leading" constant="16" id="zj7-HM-cWg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3S7-SC-dQH" secondAttribute="trailing" id="Y4s-7j-S3x"/>
+                            <constraint firstItem="3S7-SC-dQH" firstAttribute="height" secondItem="7dm-5d-Cmd" secondAttribute="height" multiplier="0.65" id="gfF-YB-N8e"/>
+                            <constraint firstItem="cFY-za-7Um" firstAttribute="top" secondItem="3S7-SC-dQH" secondAttribute="bottom" id="jv9-ZN-OqH"/>
+                            <constraint firstItem="3S7-SC-dQH" firstAttribute="leading" secondItem="7dm-5d-Cmd" secondAttribute="leading" id="lDK-iH-sAj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="acceptedButton" destination="gkM-3S-8BH" id="9Mb-qO-bUw"/>
+                        <outlet property="cancel" destination="P8t-oc-N00" id="wco-Kw-65T"/>
+                        <outlet property="continueButton" destination="b7e-Nc-75u" id="RKy-Ul-Lrs"/>
+                        <outlet property="disclaimerWebView" destination="Ccf-0w-LCt" id="eUN-to-h0D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccV-hL-ha1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1527.2" y="1167.4876847290641"/>
         </scene>
         <!--Empty Wallet View Controller-->
         <scene sceneID="Q9O-hN-V6N">
@@ -1123,7 +1263,9 @@ Please check and try again.</string>
     </scenes>
     <resources>
         <image name="ADD MONEY" width="44" height="44"/>
+        <image name="Background" width="414" height="736"/>
         <image name="ChatIcon" width="29" height="24"/>
+        <image name="CheckboxUnchecked" width="16" height="16"/>
         <image name="EmptyWallet" width="123" height="159"/>
         <image name="MenuIcon" width="28" height="20"/>
         <image name="ModernMoneyLogoTitle" width="155" height="24"/>
