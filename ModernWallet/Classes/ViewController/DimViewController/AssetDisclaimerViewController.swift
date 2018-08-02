@@ -16,12 +16,11 @@ class AssetDisclaimerViewController: UIViewController, WKNavigationDelegate {
     
     
     @IBOutlet weak var acceptedButton: UIButton!
-    @IBOutlet weak var `continue`: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var cancel: UIButton!
     @IBOutlet weak var disclaimerWebView: WebView!
     
-    // move this variable to a dedicated view model
-    let accepted = Variable(false)
+    fileprivate let accepted = Variable(false)
     
     fileprivate let currentDisclaimer = Variable<LWModelAssetDisclaimer?>(nil)
     
@@ -31,7 +30,7 @@ class AssetDisclaimerViewController: UIViewController, WKNavigationDelegate {
         let currentDisclaimer = self.currentDisclaimer
         
         return AssetDisclaimerViewModel(
-            accept: self.continue.rx.tap.asDriver().map{ currentDisclaimer.value?.id }.filterNil(),
+            accept: self.continueButton.rx.tap.asDriver().map{ currentDisclaimer.value?.id }.filterNil(),
             decline: self.cancel.rx.tap.asDriver().map{ currentDisclaimer.value?.id }.filterNil(),
             acceptEnabled: self.accepted.asDriver()
         )
@@ -105,7 +104,7 @@ fileprivate extension AssetDisclaimerViewModel {
                 openHtml.addDiscaimerStyle(html: disclaimer.text)
                 vc?.disclaimerWebView.loadHTMLString(openHtml, baseURL: URL(string: "https://"))
             }),
-            vc.accepted.asDriver().drive(vc.continue.rx.isEnabled)
+            vc.accepted.asDriver().drive(vc.continueButton.rx.isEnabled)
         ]
     }
 }
