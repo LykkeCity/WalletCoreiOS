@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    mutating func addCSSToHtml(html: String){
+    mutating func addDiscaimerStyle(html: String){
         self = """
         <style>
         body {

@@ -102,7 +102,7 @@ fileprivate extension AssetDisclaimerViewModel {
             disclaimer.drive(vc.currentDisclaimer),
             vc.currentDisclaimer.asDriver().filterNil().drive(onNext: { [weak vc] disclaimer in
                 var openHtml = String()
-                openHtml.addCSSToHtml(html: disclaimer.text)
+                openHtml.addDiscaimerStyle(html: disclaimer.text)
                 vc?.disclaimerWebView.loadHTMLString(openHtml, baseURL: URL(string: "https://"))
             }),
             vc.accepted.asDriver().drive(vc.continue.rx.isEnabled)
