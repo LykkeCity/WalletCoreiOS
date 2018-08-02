@@ -72,6 +72,10 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
             .bind(to: submitButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        creditCardViewModel.errorForDisclaimer
+            .drive(rx.error)
+            .disposed(by: disposeBag)
+        
         //add buttons above of the keyboard for these type of keyboards that don't have return button, 
         //and call textFieldShouldReturn on button tap
         setupFormUX(disposedBy: disposeBag)
