@@ -26,7 +26,6 @@ public class AssetDisclaimerViewModel {
         authManager: LWRxAuthManager = LWRxAuthManager.instance
     ) {
         
-        /// Properties
         let disclaimerRequest = authManager.assetDisclaimers.request()
         
         let disclaimerAcceptRequest = accept.asObservable()
@@ -70,10 +69,10 @@ public class AssetDisclaimerViewModel {
 
 fileprivate extension ObservableType where Self.E == LWRxAuthManagerAssetDisclaimersApprove.Result {
     
-    /// <#Description#>
+    /// 
     ///
-    /// - Parameter disclaimers: <#disclaimers description#>
-    /// - Returns: <#return value description#>
+    /// - Parameter disclaimers:
+    /// - Returns:
     func mapToNextDisclaimer(fromDisclaimers disclaimers: [LWModelAssetDisclaimer]) -> Observable<LWModelAssetDisclaimer?> {
         return filterSuccess().map{ disclaimer -> LWModelAssetDisclaimer? in
             guard let indexOfAcceptedDisclaimer = (disclaimers.index{ $0.id == disclaimer }) else {

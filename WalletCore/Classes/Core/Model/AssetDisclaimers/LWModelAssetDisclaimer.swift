@@ -14,7 +14,7 @@ public struct LWModelAssetDisclaimer {
     public let text: String
     
     init(withJSON json: [AnyHashable: Any]) {
-        self.id = json["Id"] as? String ?? ""
+        self.id = json["Id"] as? AssetDisclaimerId ?? ""
         self.text = json["Text"] as? String ?? ""
     }
 }
