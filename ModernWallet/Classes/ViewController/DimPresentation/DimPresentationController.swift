@@ -24,6 +24,7 @@ class DimPresentationController: UIPresentationController {
         dimmingView.translatesAutoresizingMaskIntoConstraints = false
         dimmingView.backgroundColor = dimColor
         self.dimmingView = dimmingView
+        self.dimmingView.tag = 22
         
         super.init(presentedViewController: presentedVc, presenting: presentingVc)
     }

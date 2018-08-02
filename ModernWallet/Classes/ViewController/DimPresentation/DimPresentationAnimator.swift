@@ -57,9 +57,9 @@ extension DimPresentationAnimator: UIViewControllerAnimatedTransitioning {
         }) { (finished) in
             context.completeTransition(finished)
         }
-        
-        let dimView = context.containerView.subviews[0]
-        fadeView(dimView, maxAlpha: 1, context: context)
+        if let dimView = context.containerView.viewWithTag(22){
+            fadeView(dimView, maxAlpha: 1, context: context)
+        }
     }
     
     func fadeView(_ view: UIView, maxAlpha: CGFloat, context: UIViewControllerContextTransitioning) {
