@@ -1044,3 +1044,5 @@
 
 "filter.newDesign.error.message.startDate" = "Start date should be before end date";
 "filter.newDesign.error.message.endDate" = "End date should be after start date";
+
+"sendToWallet.newDesign.error.address" = "Wallet address is not valid";
