@@ -285,8 +285,8 @@ fileprivate extension ObservableType where Self.E == [AnyHashable: Any] {
     func filterDisclaimerError(isDisclaimer: Bool) -> Observable<[AnyHashable: Any]> {
         return filter{
             var check = false
-            guard let codeError = $0["Code"] as? Int else { return !isDisclaimer }
-            if codeError == 70 { check = true }
+            guard let errorCode = $0["Code"] as? Int else { return !isDisclaimer }
+            if errorCode == 70 { check = true }
             else {check = false}
             if (isDisclaimer) {return check}
             else {return !check}
