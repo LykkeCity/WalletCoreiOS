@@ -29,8 +29,8 @@
 -(NSDictionary *) params
 {
     return @{
-             @"Email":self.email,
-             @"PartnerId": WalletCoreConfig.partnerId
+             @"PartnerId": WalletCoreConfig.partnerId,
+             @"Email":self.email             
              };
 }
 

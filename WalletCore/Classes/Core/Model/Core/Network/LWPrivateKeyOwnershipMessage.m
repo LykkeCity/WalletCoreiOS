@@ -28,9 +28,9 @@
 -(NSDictionary *) params
 {
     if(self.signature)
-        return @{@"Email":self.email, @"SignedOwnershipMsg":self.signature, @"PartnerId": WalletCoreConfig.partnerId};
+        return @{@"PartnerId": WalletCoreConfig.partnerId, @"Email":self.email, @"SignedOwnershipMsg":self.signature };
     else
-        return @{@"email":self.email, @"partnerId": WalletCoreConfig.partnerId};
+        return @{@"PartnerId": WalletCoreConfig.partnerId, @"Email":self.email };
 }
 
 - (GDXRESTPacketType)type {

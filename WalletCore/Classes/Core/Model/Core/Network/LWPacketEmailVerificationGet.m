@@ -16,29 +16,28 @@
 
 - (void)parseResponse:(id)response error:(NSError *)error {
     [super parseResponse:response error:error];
-
+    
     if (self.isRejected) {
         return;
     }
     
     _isPassed = [result[@"Passed"] boolValue];
-
-}
-
-- (NSString *)urlRelative {
-    return @"EmailVerification";
+    
 }
 
 - (NSDictionary *)params {
-    return @{
-             @"email": self.email,
-             @"code": self.code,
-             @"partnerId": WalletCoreConfig.partnerId
+    return @{@"Email": self.email,
+             @"Code": self.code,
+             @"PartnerId": WalletCoreConfig.partnerId
              };
 }
 
+- (NSString *)urlRelative {
+    return @"EmailVerification/verifyEmail";
+}
+
 - (GDXRESTPacketType)type {
-    return GDXRESTPacketTypeGET;
+    return GDXRESTPacketTypePOST;
 }
 
 @end
