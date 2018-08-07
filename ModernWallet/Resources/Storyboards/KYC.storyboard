@@ -485,7 +485,7 @@ Image should be well lit and in focus.</string>
                         <viewControllerLayoutGuide type="top" id="lmK-lv-O2m"/>
                         <viewControllerLayoutGuide type="bottom" id="Kyg-xn-zoK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Yi9-Vt-6k3" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Yi9-Vt-6k3" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -496,8 +496,14 @@ Image should be well lit and in focus.</string>
                                     <constraint firstAttribute="height" constant="170" id="d4F-qR-t03"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dear Linda, your informaiton is being revired by our KYC team.As soon as this process is complete, we'll inform you by email." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohj-xB-ons">
-                                <rect key="frame" x="20" y="348" width="335" height="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPW-CI-b1e">
+                                <rect key="frame" x="36" y="320" width="303" height="20"/>
+                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dear Linda, your informaiton is being revired by our KYC team.As soon as this process is complete, we'll inform you by email." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohj-xB-ons">
+                                <rect key="frame" x="20" y="348" width="335" height="30"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -524,12 +530,6 @@ Image should be well lit and in focus.</string>
                                     <action selector="onClose:" destination="Td7-gP-wY1" eventType="touchUpInside" id="iz3-75-x17"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPW-CI-b1e">
-                                <rect key="frame" x="36" y="320" width="303" height="20"/>
-                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

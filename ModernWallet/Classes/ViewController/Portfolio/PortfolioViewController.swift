@@ -51,9 +51,14 @@ class PortfolioViewController: UIViewController {
         )
     }()
     
+    fileprivate lazy var kycGetStatusViewModel: KycGetStatusViewModel = {
+        return KycGetStatusViewModel()
+    }()
+    
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
             self.totalBalanceViewModel.loading.isLoading,
+            self.kycGetStatusViewModel.loadingViewModel.isLoading,
             self.walletsViewModel.loadingViewModel.isLoading.take(2) // prevent the loading indicator to appear when this request is refreshed
             ])
     }()
@@ -224,6 +229,40 @@ fileprivate extension TotalBalanceViewModel {
     }
 }
 
+// MARK: - KycGetStatusViewModel binder to PortfolioViewController {
+fileprivate extension KycGetStatusViewModel {
+    private var kycSaveKey: String {
+        return "KycApprovalScreenShownToUser"
+    }
+    
+    func bind(toViewController viewController: PortfolioViewController) -> Disposable {
+        return UserDefaults.standard.rx
+            .observe(String.self, kycSaveKey)
+            .map { storedValue in
+                guard let storedValue = storedValue else {
+                    // No value yet added to UserDefaults (fresh install)
+                    return true
+                }
+                
+                return storedValue != LWKeychainManager.instance().login
+            }
+            .debug(kycSaveKey)
+            .filter { $0 }
+            .flatMapLatest { _ in return self.kycStatusОк }
+            .subscribe(onNext: { [weak self] _ in
+                
+                guard let strongSelf = self,
+                    let kycFinishedViewController = UIStoryboard(name: "KYC", bundle: nil)
+                        .instantiateViewController(withIdentifier: "kycFinishedVC")
+                            as? KYCFinishedViewController else { return }
+                
+                viewController.present(kycFinishedViewController, animated: true, completion: {
+                    UserDefaults.standard.set(LWKeychainManager.instance().login, forKey: strongSelf.kycSaveKey)
+                })
+            })
+    }
+}
+
 // MARK: - PortfolioViewController view model binder
 fileprivate extension PortfolioViewController {
     func bindViewModels() {
@@ -239,6 +278,10 @@ fileprivate extension PortfolioViewController {
             .bind(toViewController: self)
             .disposed(by: disposeBag)
         
+        kycGetStatusViewModel
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
+
         loadingViewModel.isLoading
             .asDriver(onErrorJustReturn: false)
             .drive(rx.loading)
