@@ -25,9 +25,7 @@ public class KycGetStatusViewModel {
         
         self.kycStatusОк = kycStatusGet
             .filterSuccess()
-            .filter { kycStatus in
-                kycStatus.status == "Ok"
-            }
+            .filter { $0.status.lowercased() == "ok" }
             .map{ _ in () }
         
         self.loadingViewModel = LoadingViewModel([
