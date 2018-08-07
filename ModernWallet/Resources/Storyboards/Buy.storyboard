@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Gem-Pk-ggK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Gem-Pk-ggK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Geomanist Regular.otf">
-            <string>Geomanist-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Buy Optimized View Controller-->
         <scene sceneID="oGv-2f-Vnh">
@@ -32,73 +27,92 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0SK-te-Hsh" userLabel="Scroll View Content">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="506"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIT-kc-8qD">
-                                                <rect key="frame" x="0.0" y="78" width="375" height="220"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zzg-GJ-hml">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="506"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="JQG-nu-uBX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIT-kc-8qD">
+                                                        <rect key="frame" x="20" y="20" width="335" height="220"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sGa-Xa-hKp" customClass="BuyAssetListView" customModule="ModernMoney" customModuleProvider="target">
-                                                                <rect key="frame" x="30" y="0.0" width="315" height="104"/>
-                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="420-ab-gKm" customClass="BuyAssetListView" customModule="ModernMoney" customModuleProvider="target">
-                                                                <rect key="frame" x="30" y="116" width="315" height="104"/>
-                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            </view>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="JQG-nu-uBX">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="220"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sGa-Xa-hKp" customClass="BuyAssetListView" customModule="ModernMoney" customModuleProvider="target">
+                                                                        <rect key="frame" x="10" y="0.0" width="315" height="104"/>
+                                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="420-ab-gKm" customClass="BuyAssetListView" customModule="ModernMoney" customModuleProvider="target">
+                                                                        <rect key="frame" x="10" y="116" width="315" height="104"/>
+                                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    </view>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="420-ab-gKm" secondAttribute="trailing" constant="30" id="8xv-Jj-Va4"/>
+                                                                    <constraint firstItem="sGa-Xa-hKp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JQG-nu-uBX" secondAttribute="leading" constant="4" id="A02-Tq-DGn"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sGa-Xa-hKp" secondAttribute="trailing" constant="4" id="Aeb-Sn-TcS"/>
+                                                                    <constraint firstItem="sGa-Xa-hKp" firstAttribute="leading" relation="lessThanOrEqual" secondItem="JQG-nu-uBX" secondAttribute="leading" constant="30" id="Hji-cu-gxV"/>
+                                                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="sGa-Xa-hKp" secondAttribute="trailing" constant="30" id="TAl-pH-LaF"/>
+                                                                    <constraint firstItem="420-ab-gKm" firstAttribute="height" secondItem="sGa-Xa-hKp" secondAttribute="height" id="TKZ-RR-8np"/>
+                                                                    <constraint firstItem="420-ab-gKm" firstAttribute="leading" relation="lessThanOrEqual" secondItem="JQG-nu-uBX" secondAttribute="leading" constant="30" id="rKX-cK-M8Z"/>
+                                                                    <constraint firstItem="420-ab-gKm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JQG-nu-uBX" secondAttribute="leading" constant="4" id="vYN-fU-56t"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="420-ab-gKm" secondAttribute="trailing" constant="4" id="y7g-l6-bxi"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="JQG-nu-uBX" secondAttribute="bottom" id="NVv-Od-vqO"/>
+                                                            <constraint firstItem="JQG-nu-uBX" firstAttribute="leading" secondItem="iIT-kc-8qD" secondAttribute="leading" id="VWe-c8-bmf"/>
+                                                            <constraint firstItem="JQG-nu-uBX" firstAttribute="top" secondItem="iIT-kc-8qD" secondAttribute="top" id="jLe-V9-zTg"/>
+                                                            <constraint firstAttribute="trailing" secondItem="JQG-nu-uBX" secondAttribute="trailing" id="qSj-en-rXO"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CoG-Vi-kl7">
+                                                        <rect key="frame" x="100" y="280" width="175" height="60"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEM-Hz-Vz2">
+                                                                <rect key="frame" x="72" y="0.0" width="31.5" height="17.5"/>
+                                                                <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="16"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXX-cW-GJc">
+                                                                <rect key="frame" x="75" y="21.5" width="25" height="17"/>
+                                                                <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="16"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Buyers to sellers Spread" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSN-iW-fBj">
+                                                                <rect key="frame" x="0.0" y="42.5" width="175" height="17.5"/>
+                                                                <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="16"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="420-ab-gKm" secondAttribute="trailing" constant="30" id="8xv-Jj-Va4"/>
-                                                            <constraint firstItem="sGa-Xa-hKp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JQG-nu-uBX" secondAttribute="leading" constant="4" id="A02-Tq-DGn"/>
-                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sGa-Xa-hKp" secondAttribute="trailing" constant="4" id="Aeb-Sn-TcS"/>
-                                                            <constraint firstItem="sGa-Xa-hKp" firstAttribute="leading" relation="lessThanOrEqual" secondItem="JQG-nu-uBX" secondAttribute="leading" constant="30" id="Hji-cu-gxV"/>
-                                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="sGa-Xa-hKp" secondAttribute="trailing" constant="30" id="TAl-pH-LaF"/>
-                                                            <constraint firstItem="420-ab-gKm" firstAttribute="leading" relation="lessThanOrEqual" secondItem="JQG-nu-uBX" secondAttribute="leading" constant="30" id="rKX-cK-M8Z"/>
-                                                            <constraint firstItem="420-ab-gKm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JQG-nu-uBX" secondAttribute="leading" constant="4" id="vYN-fU-56t"/>
-                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="420-ab-gKm" secondAttribute="trailing" constant="4" id="y7g-l6-bxi"/>
+                                                            <constraint firstAttribute="height" constant="60" id="rSb-U7-Fj3"/>
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="JQG-nu-uBX" secondAttribute="bottom" id="NVv-Od-vqO"/>
-                                                    <constraint firstItem="JQG-nu-uBX" firstAttribute="leading" secondItem="iIT-kc-8qD" secondAttribute="leading" id="VWe-c8-bmf"/>
-                                                    <constraint firstItem="JQG-nu-uBX" firstAttribute="top" secondItem="iIT-kc-8qD" secondAttribute="top" id="jLe-V9-zTg"/>
-                                                    <constraint firstAttribute="trailing" secondItem="JQG-nu-uBX" secondAttribute="trailing" id="qSj-en-rXO"/>
+                                                    <constraint firstItem="iIT-kc-8qD" firstAttribute="leading" secondItem="Zzg-GJ-hml" secondAttribute="leading" constant="20" id="4SZ-J1-l6x"/>
+                                                    <constraint firstItem="CoG-Vi-kl7" firstAttribute="centerX" secondItem="Zzg-GJ-hml" secondAttribute="centerX" id="5Gf-Ue-bCE"/>
+                                                    <constraint firstAttribute="bottom" secondItem="CoG-Vi-kl7" secondAttribute="bottom" constant="20" id="Nje-Rh-ilm"/>
+                                                    <constraint firstItem="iIT-kc-8qD" firstAttribute="top" secondItem="Zzg-GJ-hml" secondAttribute="top" constant="20" id="X8j-gA-eJP"/>
+                                                    <constraint firstItem="iIT-kc-8qD" firstAttribute="centerX" secondItem="Zzg-GJ-hml" secondAttribute="centerX" id="gj6-gE-OWu"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iIT-kc-8qD" secondAttribute="trailing" constant="20" id="oTf-BK-u8f"/>
+                                                    <constraint firstItem="CoG-Vi-kl7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iIT-kc-8qD" secondAttribute="bottom" constant="40" id="qIi-Bl-F00"/>
+                                                    <constraint firstItem="iIT-kc-8qD" firstAttribute="leading" secondItem="Zzg-GJ-hml" secondAttribute="leading" constant="20" id="s9T-Wc-enZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="iIT-kc-8qD" secondAttribute="trailing" constant="20" id="ti4-4S-3P2"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CoG-Vi-kl7">
-                                                <rect key="frame" x="100.5" y="338" width="175" height="65"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEM-Hz-Vz2">
-                                                        <rect key="frame" x="72" y="0.0" width="31.5" height="19"/>
-                                                        <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="16"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXX-cW-GJc">
-                                                        <rect key="frame" x="75" y="23" width="25" height="19"/>
-                                                        <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="16"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buyers to sellers Spread" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSN-iW-fBj">
-                                                        <rect key="frame" x="0.0" y="46" width="175" height="19"/>
-                                                        <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="16"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="iIT-kc-8qD" secondAttribute="trailing" id="7y2-Eo-Z4t"/>
-                                            <constraint firstItem="iIT-kc-8qD" firstAttribute="leading" secondItem="0SK-te-Hsh" secondAttribute="leading" id="BNW-zX-hg8"/>
-                                            <constraint firstItem="CoG-Vi-kl7" firstAttribute="centerX" secondItem="0SK-te-Hsh" secondAttribute="centerX" id="LH5-qI-mya"/>
-                                            <constraint firstItem="iIT-kc-8qD" firstAttribute="centerY" secondItem="0SK-te-Hsh" secondAttribute="centerY" constant="-65" id="XVS-48-0u0"/>
-                                            <constraint firstItem="iIT-kc-8qD" firstAttribute="centerX" secondItem="0SK-te-Hsh" secondAttribute="centerX" id="amH-aS-Bqm"/>
-                                            <constraint firstItem="CoG-Vi-kl7" firstAttribute="top" secondItem="iIT-kc-8qD" secondAttribute="bottom" constant="40" id="ts0-jz-rQ0"/>
+                                            <constraint firstAttribute="trailing" secondItem="Zzg-GJ-hml" secondAttribute="trailing" id="SLn-4y-cNR"/>
+                                            <constraint firstItem="Zzg-GJ-hml" firstAttribute="top" secondItem="0SK-te-Hsh" secondAttribute="top" id="bp5-gL-03w"/>
+                                            <constraint firstAttribute="bottom" secondItem="Zzg-GJ-hml" secondAttribute="bottom" id="kj9-QI-ajA"/>
+                                            <constraint firstItem="Zzg-GJ-hml" firstAttribute="leading" secondItem="0SK-te-Hsh" secondAttribute="leading" id="zqg-1K-Ld9"/>
                                         </constraints>
                                     </view>
                                 </subviews>
