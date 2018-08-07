@@ -19,7 +19,7 @@ open class LogInViewModel {
     public let loading: Observable<Bool>
     public let result: Driver<ApiResult<LWPacketAuthentication>>
     
-    public init(submit: Observable<Void>, forgotPassword: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
+    public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
         result = submit
             .throttle(1, scheduler: MainScheduler.instance)

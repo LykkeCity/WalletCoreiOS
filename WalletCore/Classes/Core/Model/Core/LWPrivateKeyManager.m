@@ -361,7 +361,7 @@
     
     NSData *seedData=keyData;
 
-    NSLog(@"%@", seedData);
+//    NSLog(@"%@", seedData);
     
     // Calculate the sha256 hash to use with a checksum
     NSMutableData *hash = [NSMutableData dataWithLength:CC_SHA256_DIGEST_LENGTH];

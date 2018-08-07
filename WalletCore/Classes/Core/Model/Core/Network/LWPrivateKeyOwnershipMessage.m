@@ -22,7 +22,10 @@
 }
 
 - (NSString *)urlRelative {
-    return @"PrivateKeyOwnershipMsg";
+    if(self.signature)
+        return @"PrivateKeyOwnershipMsg";
+    else
+        return @"PrivateKeyOwnershipMsg/privateKeyOwnerShipMsg";
 }
 
 -(NSDictionary *) params
@@ -34,10 +37,7 @@
 }
 
 - (GDXRESTPacketType)type {
-    if(!self.signature)
-        return GDXRESTPacketTypeGET;
-    else
-        return GDXRESTPacketTypePOST;
+    return GDXRESTPacketTypePOST;
 }
 
 

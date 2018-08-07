@@ -107,7 +107,10 @@ FOUNDATION_EXPORT const unsigned char WalletCoreVersionString[];
 #import <WalletCore/LWPacketWalletMigration.h>
 #import <WalletCore/LWWalletMigrationModel.h>
 #import <WalletCore/LWPacketSaveBackupState.h>
+#import <WalletCore/LWPrivateKeyOwnershipMessage.h>
 #import <WalletCore/LWPacketGetBlockchainAddress.h>
+#import <WalletCore/LWRecoveryPasswordModel.h>
+#import <WalletCore/LWPacketChangePinAndPassword.h>
 #import <WalletCore/LWPacketSendBlockchainEmail.h>
 #import <WalletCore/LWPacketCashOut.h>
 #import <WalletCore/LWPacketApplicationInfo.h>
