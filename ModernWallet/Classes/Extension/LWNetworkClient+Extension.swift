@@ -31,7 +31,7 @@ extension LWNetworkTemplate: LWAuthManagerDelegate {
                 message = "Unknown server error"
             }
             
-            if error.domain.hasSuffix("HotWallet/cashout") && error.code == 0
+            if error.domain.lowercased().hasSuffix("hotwallet/cashout") && error.code == 0
             {
                 message = Localize("sendToWallet.newDesign.error.address")
             }
