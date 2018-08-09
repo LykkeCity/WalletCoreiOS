@@ -65,6 +65,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var encodeMainKey       = {LWRxAuthManagerEncodeMainKey()}()
     public lazy var auth                = {LWRxAuthManagerAuth()}()
     public lazy var emailverification   = {LWRxAuthManagerEmailVerification()}()
+    public lazy var emailverificationSms   = {LWRxAuthManagerEmailVerificationSMS()}()
     public lazy var pinset              = {LWRxAuthManagerPinSecuritySet()}()
     public lazy var pinget              = {LWRxAuthManagerPinSecurityGet()}()
     public lazy var pinvalidation       = {LWRxAuthManagerEmailVerificationPin()}()
