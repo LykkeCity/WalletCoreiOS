@@ -30,6 +30,11 @@ extension LWNetworkTemplate: LWAuthManagerDelegate {
             if message == nil {
                 message = "Unknown server error"
             }
+            
+            if error.domain.lowercased().hasSuffix("hotwallet/cashout") && error.code == 0
+            {
+                message = Localize("sendToWallet.newDesign.error.address")
+            }
             viewController.show(errorMessage: message)
         }
     }
