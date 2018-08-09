@@ -11,14 +11,16 @@ import RxSwift
 
 public class ValidateSeedWordsViewModel {
     
+    public typealias SignatureData = (signature: String, isConfirmed: Bool)
+    
     /// Seed words
     public let typedText = Variable("")
 
     /// Verify that the words are entered correctly (this enables the SUBMIT button)
     public let areSeedWordsCorrect: Observable<Bool>
     
-    /// Is ownership confirmed (value from the API)
-    public let isOwnershipConfirmed: Observable<Bool>
+    /// Ownership data from the API to be used both in the view controller and in the parent view model
+    public let ownershipData: Observable<SignatureData>
     
     /// Triggered when SUBMIT button is tapped
     public let checkTrigger = PublishSubject<Void>()
@@ -28,17 +30,19 @@ public class ValidateSeedWordsViewModel {
 
     private let disposeBag = DisposeBag()
     
-    public init(email: String, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
+    public init(withEmail email: Observable<String>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         areSeedWordsCorrect = typedText.asObservable()
             .mapToSeparateWords()
             .mapToAreAllWordsEnteredCorrectly()
-        
+
         // Process ownership message
         // Step 1: get the `ownershipMessage` from the API
         // Step 2: generate signature
         // Step 3: return `confirmedOwnership` from the API
         let ownershipRequest = checkTrigger
-            .flatMapLatest { _ in
+            .withLatestFrom(email)
+            .filter { $0.isNotEmpty }
+            .flatMapLatest { email in
                 return authManager.ownershipMessage.request(withParams: (email: email, signature: ""))
                     .filterSuccess()
                     .map { LWPrivateKeyManager.shared().signatureForMessage(withLykkeKey: $0.ownershipMessage) }
@@ -46,8 +50,8 @@ public class ValidateSeedWordsViewModel {
             }
             .shareReplay(1)
         
-        isOwnershipConfirmed = ownershipRequest.filterSuccess()
-            .map { $0.confirmedOwnership }
+        ownershipData = ownershipRequest.filterSuccess()
+            .map { (signature: $0.signature, isConfirmed: $0.confirmedOwnership) }
         
         self.loadingViewModel = LoadingViewModel([
             ownershipRequest.isLoading()

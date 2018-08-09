@@ -94,6 +94,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var cashOutSwift             = { LWRxAuthManagerCashOutSwift() }()
     public lazy var currencyDeposit          = { LWRxAuthManagerCurrencyDeposit() }()
     public lazy var ownershipMessage         = { LWRxAuthManagerOwnershipMessage() }()
+    public lazy var recoverySmsConfirmation  = { LWRxAuthManagerReoverySmsConfirmation() }()
     public lazy var walletMigration          = { LWRxAuthManagerWalletMigration() }()
     public lazy var walletBackupComplete     = { LWRxAuthManagerWalletBackupComplete() }()
     public lazy var getBlockchainAddress     = { LWRxAuthManagerGetBlockchainAddress() }()
