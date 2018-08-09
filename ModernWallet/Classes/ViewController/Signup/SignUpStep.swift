@@ -97,20 +97,20 @@ extension SignUpStep {
             return (formController: SignUpSetPasswordFormController(email: email), viewController: nil, showPin: false)
             
         case .fillProfile:
-            return (formController: SignUpFillProfileFormController(), viewController: nil, showPin: false)
+            return (formController: SignUpFillProfileFormController(email: email), viewController: nil, showPin: false)
             
         case .setPhone:
-            return (formController: SignUpFillPhoneFormController(), viewController: nil, showPin: false)
+            return (formController: SignUpFillPhoneFormController(email: email), viewController: nil, showPin: false)
             
         case .confirmPhone:
             guard let phone = phone else {
-                return (formController: SignUpFillPhoneFormController(), viewController: nil, showPin: false)
+                return (formController: SignUpFillPhoneFormController(email: email), viewController: nil, showPin: false)
             }
             
-            return (formController: SignInConfirmPhoneFormController(signIn: false, phone: phone), viewController: nil, showPin: false)
+            return (formController: SignInConfirmPhoneFormController(signIn: false, phone: phone, email: email), viewController: nil, showPin: false)
             
         case .setPin:
-            return (formController: SignInConfirmPhoneFormController(signIn: false, phone: phone ?? ""), viewController: nil, showPin: true)
+            return (formController: SignInConfirmPhoneFormController(signIn: false, phone: phone ?? "", email: email), viewController: nil, showPin: true)
             
         case .generateWallet:
             let shakeViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "signUpShake")

@@ -13,6 +13,12 @@ import WalletCore
 
 class SignUpFillPhoneFormController: FormController {
     
+    let email: String
+    
+    init(email: String) {
+        self.email = email
+    }
+    
     lazy var formViews: [UIView] = {
         return [
             self.titleLabel(title: Localize("auth.newDesign.phoneTitle")),
@@ -36,7 +42,7 @@ class SignUpFillPhoneFormController: FormController {
     }
     
     var next: FormController? {
-        return SignInConfirmPhoneFormController(signIn: false, phone: phoneNumberTextField.text!)
+        return SignInConfirmPhoneFormController(signIn: false, phone: phoneNumberTextField.text!, email: self.email)
     }
     
     var segueIdentifier: String? {

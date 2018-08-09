@@ -50,7 +50,7 @@ class SignUpPasswordHintFormController: FormController {
     }
     
     var next: FormController? {
-        return SignUpFillProfileFormController()
+        return SignUpFillProfileFormController(email: self.email)
     }
     
     var segueIdentifier: String? {
