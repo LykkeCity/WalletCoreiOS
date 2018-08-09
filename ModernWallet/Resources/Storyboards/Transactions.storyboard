@@ -357,6 +357,7 @@
                         <outlet property="filterTransactionBtn" destination="JYx-DP-qJ4" id="ic1-f6-W1I"/>
                         <outlet property="filterTransactionLbl" destination="KUe-Qo-hx4" id="Hp6-UC-AFr"/>
                         <outlet property="findTransactionBtn" destination="boT-aF-v5z" id="VUv-Jz-4kT"/>
+                        <outlet property="findTransactionImg" destination="DKu-Rh-v4m" id="QXD-zd-XCd"/>
                         <outlet property="findTransactionLbl" destination="DsD-mQ-ubF" id="v1X-aR-mjk"/>
                         <outlet property="sortIcon" destination="mBZ-lt-tOU" id="F2m-SN-tAU"/>
                         <outlet property="tableHeader" destination="gv0-zQ-GPk" id="wDJ-ft-DJE"/>
