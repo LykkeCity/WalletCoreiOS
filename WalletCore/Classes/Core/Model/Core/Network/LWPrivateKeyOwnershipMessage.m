@@ -27,10 +27,18 @@
 
 -(NSDictionary *) params
 {
-    if(self.signature)
-        return @{@"PartnerId": WalletCoreConfig.partnerId, @"Email":self.email, @"SignedOwnershipMsg":self.signature };
-    else
-        return @{@"PartnerId": WalletCoreConfig.partnerId, @"Email":self.email };
+    if(self.signature) {
+        return @{
+                 @"PartnerId": WalletCoreConfig.partnerId,
+                 @"Email":self.email,
+                 @"SignedOwnershipMsg":self.signature
+                 };
+    } else {
+        return @{
+                 @"PartnerId": WalletCoreConfig.partnerId,
+                 @"Email":self.email
+                 };
+    }
 }
 
 - (GDXRESTPacketType)type {
