@@ -18,14 +18,18 @@ public class ChangePasswordViewModel {
     
     public let pin = Variable<String>("")
     
+    public let hint = Variable<String>("")
+    
     public init(){}
     
     public lazy var isValid: Observable<Bool> = {
-        return Observable.combineLatest( self.password.asObservable(), self.confirmPassword.asObservable())
-            { (password, confirmPassword) -> Bool in
+        return Observable.combineLatest( self.password.asObservable(), self.confirmPassword.asObservable(), self.hint.asObservable())
+            { (password, confirmPassword, hint) -> Bool in
                 return password.count > 5
                     && confirmPassword.count > 5
                     && self.password.value == self.confirmPassword.value
+                    && hint.count > 2
         }
     }()
+    
 }

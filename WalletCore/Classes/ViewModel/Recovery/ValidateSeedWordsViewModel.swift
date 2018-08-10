@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 public class ValidateSeedWordsViewModel {
     
@@ -27,6 +28,8 @@ public class ValidateSeedWordsViewModel {
     
     /// Loading
     public let loadingViewModel: LoadingViewModel
+    
+    public let error: Driver<[AnyHashable: Any]>
 
     private let disposeBag = DisposeBag()
     
@@ -39,23 +42,32 @@ public class ValidateSeedWordsViewModel {
         // Step 1: get the `ownershipMessage` from the API
         // Step 2: generate signature
         // Step 3: return `confirmedOwnership` from the API
-        let ownershipRequest = checkTrigger
+        
+        let ownershipMessageRequest = checkTrigger
             .withLatestFrom(email)
             .filter { $0.isNotEmpty }
-            .flatMapLatest { email in
-                return authManager.ownershipMessage.request(withParams: (email: email, signature: ""))
-                    .filterSuccess()
-                    .map { LWPrivateKeyManager.shared().signatureForMessage(withLykkeKey: $0.ownershipMessage) }
-                    .flatMapLatest { authManager.ownershipMessage.request(withParams: (email: email, signature: $0)) }
-            }
+            .flatMapLatest { authManager.ownershipMessage.request(withParams: (email: $0, signature: "")) }
             .shareReplay(1)
         
-        ownershipData = ownershipRequest.filterSuccess()
+        let ownershipMessageWithSignatureRequest = ownershipMessageRequest.filterSuccess()
+            .map { LWPrivateKeyManager.shared().signatureForMessage(withLykkeKey: $0.ownershipMessage) }
+            .withLatestFrom(email) { (email: $1, signature: $0) }
+            .flatMapLatest { authManager.ownershipMessage.request(withParams: $0) }
+            .shareReplay(1)
+        
+        self.ownershipData = ownershipMessageWithSignatureRequest.filterSuccess()
             .map { (signature: $0.signature, isConfirmed: $0.confirmedOwnership) }
         
+        self.error = Observable.merge([
+            ownershipMessageRequest.filterError(),
+            ownershipMessageWithSignatureRequest.filterError()
+            ])
+            .asDriver(onErrorJustReturn: [:])
+        
         self.loadingViewModel = LoadingViewModel([
-            ownershipRequest.isLoading()
-        ])
+            ownershipMessageRequest.isLoading(),
+            ownershipMessageWithSignatureRequest.isLoading()
+            ])
     }
 }
 
@@ -78,6 +90,9 @@ extension Observable where E == [String] {
                 guard let _ = LWPrivateKeyManager.keyData(fromSeedWords: data) else {
                     return false
                 }
+                
+                //set the private key from seed words !
+                LWPrivateKeyManager.shared().savePrivateKeyLykke(fromSeedWords: data)
                 
                 return true
             }

@@ -689,6 +689,9 @@
 		E70664D12119E645001D8501 /* RecoveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70664D02119E645001D8501 /* RecoveryViewModel.swift */; };
 		E70DD0B621118FA90061CF3F /* ValidateSeedWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DD0B521118FA90061CF3F /* ValidateSeedWordsViewModel.swift */; };
 		E70DD0B82111C6F20061CF3F /* LWRxAuthManagerOwnershipMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70DD0B72111C6F20061CF3F /* LWRxAuthManagerOwnershipMessage.swift */; };
+		E73FBDC4211C639900823820 /* LWSMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E73FBDC2211C639800823820 /* LWSMSTimerView.m */; };
+		E73FBDC5211C639900823820 /* LWSMSTimerView.h in Headers */ = {isa = PBXBuildFile; fileRef = E73FBDC3211C639800823820 /* LWSMSTimerView.h */; };
+		E74EA482211D758300CCB627 /* LWRxAuthManagerRequestVoiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74EA481211D758300CCB627 /* LWRxAuthManagerRequestVoiceCall.swift */; };
 		E78031CA2114944100CC84B1 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78031C92114944100CC84B1 /* Date+Extension.swift */; };
 		E7BF3CFD2119DB5300F3001C /* LWRxAuthManagerReoverySmsConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BF3CFC2119DB5300F3001C /* LWRxAuthManagerReoverySmsConfirmation.swift */; };
 		E7E6BC8E2118377D00FA8C9B /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E6BC8D2118377D00FA8C9B /* ChangePasswordViewModel.swift */; };
@@ -1403,6 +1406,9 @@
 		E70664D02119E645001D8501 /* RecoveryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewModel.swift; sourceTree = "<group>"; };
 		E70DD0B521118FA90061CF3F /* ValidateSeedWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateSeedWordsViewModel.swift; sourceTree = "<group>"; };
 		E70DD0B72111C6F20061CF3F /* LWRxAuthManagerOwnershipMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOwnershipMessage.swift; sourceTree = "<group>"; };
+		E73FBDC2211C639800823820 /* LWSMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWSMSTimerView.m; sourceTree = "<group>"; };
+		E73FBDC3211C639800823820 /* LWSMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWSMSTimerView.h; sourceTree = "<group>"; };
+		E74EA481211D758300CCB627 /* LWRxAuthManagerRequestVoiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerRequestVoiceCall.swift; sourceTree = "<group>"; };
 		E78031C92114944100CC84B1 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		E7BF3CFC2119DB5300F3001C /* LWRxAuthManagerReoverySmsConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerReoverySmsConfirmation.swift; sourceTree = "<group>"; };
 		E7E6BC8D2118377D00FA8C9B /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
@@ -2183,6 +2189,8 @@
 		46C9AE241F417BD700B83CCB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E73FBDC3211C639800823820 /* LWSMSTimerView.h */,
+				E73FBDC2211C639800823820 /* LWSMSTimerView.m */,
 				46C9AE251F417BD700B83CCB /* LWEthereumSignManager.h */,
 				46C9AE261F417BD700B83CCB /* LWEthereumSignManager.m */,
 			);
@@ -2465,6 +2473,7 @@
 				E70DD0B72111C6F20061CF3F /* LWRxAuthManagerOwnershipMessage.swift */,
 				E703595A21142A30004E45F8 /* LWRxAuthManagerChangePinAndPassword.swift */,
 				E7BF3CFC2119DB5300F3001C /* LWRxAuthManagerReoverySmsConfirmation.swift */,
+				E74EA481211D758300CCB627 /* LWRxAuthManagerRequestVoiceCall.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -2901,6 +2910,7 @@
 				46C9AEA11F417BD700B83CCB /* LWPacketBaseAssets.h in Headers */,
 				46C9AFF11F417BD800B83CCB /* ABPadLockScreenView.h in Headers */,
 				46C9AF3F1F417BD800B83CCB /* LWPacketSetMarginTermsStatus.h in Headers */,
+				E73FBDC5211C639900823820 /* LWSMSTimerView.h in Headers */,
 				46C9AFBF1F417BD800B83CCB /* LWMarginalWalletsDataManager.h in Headers */,
 				46C9AE8B1F417BD700B83CCB /* LWPacketAllAssets.h in Headers */,
 				46C9AEE71F417BD700B83CCB /* LWPacketGetNews.h in Headers */,
@@ -3169,6 +3179,7 @@
 				46C9AFE71F417BD800B83CCB /* LWSpotWallet.m in Sources */,
 				46C9AF841F417BD800B83CCB /* LWHistoryManager.m in Sources */,
 				46C9AEE81F417BD700B83CCB /* LWPacketGetNews.m in Sources */,
+				E73FBDC4211C639900823820 /* LWSMSTimerView.m in Sources */,
 				46C9AF001F417BD700B83CCB /* LWPacketKYCStatusGet.m in Sources */,
 				46C9AEDA1F417BD700B83CCB /* LWPacketGetCFDWatchLists.m in Sources */,
 				46C9AF6E1F417BD800B83CCB /* LWColorizer.m in Sources */,
@@ -3201,6 +3212,7 @@
 				46C9AF461F417BD800B83CCB /* LWPacketSettingSignOrder.m in Sources */,
 				46C9AED41F417BD700B83CCB /* LWPacketEncodedPrivateKey.m in Sources */,
 				46C9AF441F417BD800B83CCB /* LWPacketSetRevertedPair.m in Sources */,
+				E74EA482211D758300CCB627 /* LWRxAuthManagerRequestVoiceCall.swift in Sources */,
 				C106D9752062AE5300CC298F /* MarketCapViewModel.swift in Sources */,
 				46C08DC11F98CFA30059BDD3 /* LWModelOffchainOrder.swift in Sources */,
 				46C9AEF61F417BD700B83CCB /* LWPacketGraphPeriods.m in Sources */,

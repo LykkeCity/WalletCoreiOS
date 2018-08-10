@@ -76,6 +76,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var accountExist        = {LWRxAuthManagerAccountExist()}()
     public lazy var setPhoneNumberPin   = {LWRxAuthManagerPhoneVerificationPin()}()
     public lazy var changePinAndPassword = {LWRxAuthManagerChangePinAndPassword()}()
+    public lazy var requestVoiceCall    = {LWRxAuthManagerRequestVoiceCall()}()
     public lazy var appSettings         = {LWRxAuthManagerAppSettings()}()
     public lazy var baseAssetSet        = {LWRxAuthManagerBaseAssetSet()}()
     public lazy var pushNotGet          = {LWRxAuthManagerPushNotificationsGet()}()

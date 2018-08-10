@@ -33,7 +33,7 @@
     if(self.signature)
         return @{@"Email":self.email, @"SignedOwnershipMsg":self.signature, @"PartnerId": WalletCoreConfig.partnerId};
     else
-        return @{@"email":self.email, @"partnerId": WalletCoreConfig.partnerId};
+        return @{@"Email":self.email, @"PartnerId": WalletCoreConfig.partnerId};
 }
 
 - (GDXRESTPacketType)type {

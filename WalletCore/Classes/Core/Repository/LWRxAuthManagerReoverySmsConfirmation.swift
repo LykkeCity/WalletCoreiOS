@@ -48,10 +48,13 @@ extension LWPacketRecoverySMSConfirmation {
     
     convenience init(observer: Any, email: String, signature: String) {
         self.init()
-        self.recModel.email = email
-        self.recModel.signature1 = signature
-        
         self.observer = observer
+
+        let recModel = LWRecoveryPasswordModel()
+        recModel.email = email
+        recModel.signature1 = signature
+        
+        self.recModel = recModel
     }
     
 }

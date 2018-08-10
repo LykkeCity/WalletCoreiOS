@@ -18,7 +18,8 @@ public class RecoveryViewModel {
         ownershipMsg,
         smsCode,
         newPin,
-        newPassword: String
+        newPassword,
+        newHint: String
         
         /// Validate data
         func isDataValid() -> Bool {
@@ -34,59 +35,42 @@ public class RecoveryViewModel {
     public let smsCode = Variable<String>("")
     public let newPin = Variable<String>("")
     public let newPassword = Variable<String>("")
+    public let newHint = Variable<String>("")
+    public let phoneNumber = Variable<String>("")
     
+    /// IN: call when SMS resend is invoked
     public let resendSmsTrigger = PublishSubject<Void>()
     
-    public let changePinAndPasswordTrigger = PublishSubject<Void>()
+    /// OUT: The phone number to which the SMS is sent
+    public let resendSmsData: Driver<String>
 
-    public let resendSmsData: Observable<(phone: String, signedOwnershipMessage: String)>
-    
-    public let success: Observable<Void>
-    
-    public let errors: Observable<[AnyHashable: Any]>
+//    public let voiceCallTrigger = PublishSubject<Void>()
+//
+//    public let changePinAndPasswordTrigger = PublishSubject<Void>()
+
+//    public let voiceCallData: Observable<Void>
+//
+//    public let success: Observable<Void>
+//
+//    public let errors: Observable<[AnyHashable: Any]>
     
     /// Loading
-    public let loadingViewModel: LoadingViewModel
+//    public let loadingViewModel: LoadingViewModel
     
-    public lazy var isValidSmsCode: Observable<Bool> = {
-        return self.smsCode.asObservable()
-            .map { $0.count >= 4 }
-            .debug()
-    }()
+    /// Determine the validity of the SMS code to enable/disable the CONFIRM button
+    public let isValidSmsCode: Observable<Bool>
     
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
-        
-        let recoverySmsRequest = Observable.combineLatest(
-            email.asObservable(),
-            signedOwnershipMessage.asObservable())
-            .debug("req")
-            .filter { !$0.0.isEmpty && !$0.1.isEmpty }
-            .debug("req filter")
-            .flatMapLatest { data in
-                authManager.recoverySmsConfirmation.request(withParams: data)
-        }
-            .debug("after req")
-            .shareReplay(1)
-
-         resendSmsData = resendSmsTrigger
-            .debug("TRIGGER")
-            .flatMapLatest { _ in return recoverySmsRequest }
-            .filterSuccess()
-            .map( { data in
-                return (phone: data.recModel.phoneNumber, signedOwnershipMessage: data.recModel.securityMessage2)
-            })
-            .shareReplay(1)
-        
         
         let recoveryData: Observable<LWRecoveryPasswordModel> = Observable.combineLatest(
             email.asObservable(),
             signedOwnershipMessage.asObservable(),
             smsCode.asObservable(),
             newPin.asObservable(),
-            newPassword.asObservable()
-        ) { RecoveryData(email: $0, ownershipMsg: $1, smsCode: $2, newPin: $3, newPassword: $4) }
+            newPassword.asObservable(),
+            newHint.asObservable()
+        ) { RecoveryData(email: $0, ownershipMsg: $1, smsCode: $2, newPin: $3, newPassword: $4, newHint: $5) }
             .filter { $0.isDataValid() }
-            .debug("Recovery data")
             .map { data in
                 let model = LWRecoveryPasswordModel()
                 model.email = data.email
@@ -94,30 +78,74 @@ public class RecoveryViewModel {
                 model.smsCode = data.smsCode
                 model.pin = data.newPin
                 model.password = data.newPassword
+                model.hint = data.newHint
                 
                 return model
             }
             .shareReplay(1)
-            
-        let changePinAndPasswordData = changePinAndPasswordTrigger.withLatestFrom(recoveryData)
-            .flatMapLatest { authManager.changePinAndPassword.request(withParams: $0) }
-            .debug("DATA IS HERE !")
+        
+        let recoverySmsRequest = Observable.combineLatest(email.asObservable(), signedOwnershipMessage.asObservable()) { (email: $0, signature: $1) }
+            .flatMapLatest { authManager.recoverySmsConfirmation.request(withParams: $0) }
             .shareReplay(1)
         
-        success = changePinAndPasswordData.asObservable()
-            .debug("Pre success")
-            .filterSuccess()
-            .map { _ in return () }
+        self.resendSmsData = resendSmsTrigger
+            .withLatestFrom(recoverySmsRequest.filterSuccess())
+            .map { $0.recModel.phoneNumber }
+            .asDriver(onErrorJustReturn: "")
         
-        errors = Observable.merge([
-            changePinAndPasswordData.filterError(),
-            recoverySmsRequest.filterError()
-            ])
+        self.isValidSmsCode = self.smsCode.asObservable()
+            .map { $0.count >= 4 }
         
-        self.loadingViewModel = LoadingViewModel([
-            changePinAndPasswordData.isLoading(),
-            changePinAndPasswordData.isLoading()
-            ])
+//
+//        let recoverySmsRequest = Observable.combineLatest(email.asObservable(), signedOwnershipMessage.asObservable()) { (email: $0, signature: $1) }
+//            .filter { $0.email.isNotEmpty && $0.signature.isNotEmpty }
+//            .flatMapLatest { params in
+//                authManager.recoverySmsConfirmation.request(withParams: params)
+//            }
+//            .shareReplay(1)
+//
+//         resendSmsData = resendSmsTrigger
+//            .flatMapLatest { recoverySmsRequest }
+//            .filterSuccess()
+//            .map( { data in
+//                return (phone: data.recModel.phoneNumber, signedOwnershipMessage: data.recModel.securityMessage2)
+//            })
+//            .shareReplay(1)
+//
+//        let changePinAndPasswordData = changePinAndPasswordTrigger
+//            .withLatestFrom(recoveryData)
+//            .flatMapLatest { authManager.changePinAndPassword.request(withParams: $0) }
+//            .shareReplay(1)
+//
+//        let voiceCallRequest = Observable.combineLatest(phoneNumber.asObservable(), email.asObservable()) { (phoneNumber: $0, email: $1) }
+//            .filter { $0.phoneNumber.isNotEmpty && $0.email.isNotEmpty }
+//            .flatMapLatest { params in
+//                authManager.requestVoiceCall.request(withParams: params)
+//            }
+//            .shareReplay(1)
+//
+//        voiceCallData = voiceCallTrigger
+//            .withLatestFrom(voiceCallRequest)
+//            .map { data in
+//                return data.isSuccess
+//            }
+//            .shareReplay(1)
+//
+//
+//        success = changePinAndPasswordData.filterSuccess()
+//            .map { _ in return () }
+//
+//        errors = Observable.merge([
+//            changePinAndPasswordData.filterError(),
+//            recoverySmsRequest.filterError(),
+//            voiceCallRequest.filterError()
+//            ])
+//
+//        self.loadingViewModel = LoadingViewModel([
+//            changePinAndPasswordData.isLoading().debug("changePinAndPasswordData"),
+//            recoverySmsRequest.isLoading().debug("recoverySmsRequest"),
+//            voiceCallRequest.isLoading()
+//            ])
     }
     
     public func reset() {
