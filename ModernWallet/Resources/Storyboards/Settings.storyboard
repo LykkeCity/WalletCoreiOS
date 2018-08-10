@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7LL-fE-0ge">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7LL-fE-0ge">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="Geomanist-Book.otf">
-            <string>Geomanist</string>
             <string>Geomanist-Book</string>
         </array>
         <array key="Geomanist-Light.otf">
             <string>Geomanist-Light</string>
+        </array>
+        <array key="Geomanist-Regular.otf">
+            <string>Geomanist</string>
         </array>
     </customFonts>
     <scenes>
@@ -153,13 +155,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xYj-5l-QV4">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xYj-5l-QV4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xYj-5l-QV4" firstAttribute="bottom" secondItem="CZK-Q3-J0T" secondAttribute="bottom" id="9O3-qN-vdf"/>
+                            <constraint firstItem="xYj-5l-QV4" firstAttribute="top" secondItem="epl-8Q-sje" secondAttribute="top" id="dDa-PO-bzx"/>
+                            <constraint firstItem="xYj-5l-QV4" firstAttribute="leading" secondItem="CZK-Q3-J0T" secondAttribute="leading" id="kYL-7g-gG8"/>
+                            <constraint firstItem="xYj-5l-QV4" firstAttribute="trailing" secondItem="CZK-Q3-J0T" secondAttribute="trailing" id="smd-bU-FoW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CZK-Q3-J0T"/>
                     </view>
                     <connections>
@@ -315,7 +322,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 OF 12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eF7-jH-Ket">
-                                <rect key="frame" x="165.5" y="510.5" width="44.5" height="15"/>
+                                <rect key="frame" x="166" y="510.5" width="44" height="15"/>
                                 <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
