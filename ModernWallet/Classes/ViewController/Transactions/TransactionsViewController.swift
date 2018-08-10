@@ -30,10 +30,10 @@ class TransactionsViewController: UIViewController {
                     animations: { self.searchContainer?.searchController.searchBar.alpha = 0.0 },
                     completion: { _ in self.searchContainer?.searchController.searchBar.removeFromSuperview() }
                 )
-                transactionsController?.findTransactionImg.image = UIImage(named: "searchIcon.png")
+                transactionsController?.findTransactionImg.image = #imageLiteral(resourceName: "searchIcon")
             }
             else {
-                transactionsController?.findTransactionImg.image = UIImage(named: "searchIconSelected.png")
+                transactionsController?.findTransactionImg.image = #imageLiteral(resourceName: "searchIconSelected")
             }
         }
         
