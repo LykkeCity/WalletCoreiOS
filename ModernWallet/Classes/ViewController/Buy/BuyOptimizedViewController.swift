@@ -92,7 +92,7 @@ class BuyOptimizedViewController: UIViewController {
         
         firstAssetList.itemPicker.picker.backgroundColor = #colorLiteral(red: 0, green: 0.431372549, blue: 0.3411764706, alpha: 1)
         secondAssetList.itemPicker.picker.backgroundColor = #colorLiteral(red: 0, green: 0.431372549, blue: 0.3411764706, alpha: 1)
-
+        
         setupUX()
         
         buyOptimizedViewModel.bid.value = tradeType.isSell
@@ -147,23 +147,19 @@ class BuyOptimizedViewController: UIViewController {
             .bind(to: assetListView.itemPicker.picker.rx.itemAttributedTitles) { (_, asset) in return NSAttributedString(string: asset.displayId, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)]) }
             .disposed(by: disposeBag)
         
-        submitButton.rx.tap
-            .flatMap { [weak self] _ -> Observable<Void> in
-                guard let `self` = self else { return Observable<Void>.never() }
-                return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+        let assetPairObservable = buyOptimizedViewModel.confirm.asObservable()
+            .filter { $0 }
+            .map { [buyOptimizedViewModel] _ -> (baseAsset: LWAssetModel, quotingAsset: LWAssetModel)? in
+                guard let baseAsset = buyOptimizedViewModel.mainAsset,
+                    let quotingAsset = buyOptimizedViewModel.quotingAsset else { return nil }
+                return (baseAsset: baseAsset, quotingAsset: quotingAsset)
             }
-            .bind(to: confirmTrading)
-            .disposed(by: disposeBag)
-        
-        let assetPairObservable = confirmTrading.asObserver()
-            .map { [buyOptimizedViewModel] _ in (buyOptimizedViewModel.mainAsset, buyOptimizedViewModel.quotingAsset) }
-            .filter { $0.0 != nil && $0.1 != nil }
-            .flatMap { LWRxAuthManager.instance.assetPairs.request(baseAsset: $0.0!, quotingAsset: $0.1!) }
+            .filterNil()
+            .flatMap { LWRxAuthManager.instance.assetPairs.request(baseAsset: $0.baseAsset, quotingAsset: $0.quotingAsset) }
             .shareReplay(1)
         
         assetPairObservable
-            .filter { $0.getError() != nil }
-            .map { _ -> [AnyHashable: Any] in ["Message": "Unable to take asset pair"] }
+            .filterError()
             .asDriver(onErrorJustReturn: [:])
             .drive(rx.error)
             .disposed(by: disposeBag)
@@ -179,27 +175,27 @@ class BuyOptimizedViewController: UIViewController {
             .shareReplay(1)
         
         tradingObservable
-            .map { $0.getSuccess() }
+            .filterSuccess()
             .filterNil()
-            .map { $0 != nil }
+            .map { _ in return true }
             .asDriver(onErrorJustReturn: false)
             .drive(onNext: {[weak self] success in
                 guard success else { return }
                 FinalizePendingRequestsTrigger.instance.finalizeNow()
-                guard let vc = self else { return }
-                vc.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
-                vc.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
-                vc.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
+                guard let viewController = self else { return }
+                viewController.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
+                viewController.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
+                viewController.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
             })
             .disposed(by: disposeBag)
-
+        
         loadingViewModel = LoadingViewModel([
             buyOptimizedViewModel.loadingViewModel.isLoading,
             tradingAssetsViewModel.loadingViewModel.isLoading,
             payWithAssetListViewModel.loadingViewModel.isLoading,
             assetPairObservable.isLoading(),
             tradingObservable.isLoading()
-        ])
+            ])
         
         loadingViewModel.isLoading
             .bind(to: rx.loading)
@@ -238,6 +234,27 @@ class BuyOptimizedViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowSummaryConfirmation" {
+            guard let viewController = segue.destination as? ConfirmationViewController else { return }
+            guard let amountFirst = firstAssetList.amount.text,
+                let assetCodeFirst = firstAssetList.assetCode.text,
+                let amountSecond = secondAssetList.amount.text,
+                let assetCodeSecond = secondAssetList.assetCode.text,
+                let firstLabel = firstAssetList.label.text,
+                let secondLabel = secondAssetList.label.text
+                else {
+                    return
+            }
+            viewController.first = "\(amountFirst) \(assetCodeFirst)"
+            viewController.second = "\(amountSecond) \(assetCodeSecond)"
+            viewController.firstLabell = firstLabel
+            viewController.secondLabell = secondLabel
+            
+            viewController.delegate = self
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -258,6 +275,14 @@ class BuyOptimizedViewController: UIViewController {
     
 }
 
+extension BuyOptimizedViewController: ConfirmationDelegate {
+    func didConfirm(withViewController viewController: ConfirmationViewController) {
+        viewController.dismiss(animated: true) {
+            self.buyOptimizedViewModel.confirm.value = true
+        }
+    }
+}
+
 extension Observable where Element == ApiResult<LWAssetDealModel?> {
     
     func isLoading() -> Observable<Bool> {
@@ -265,7 +290,7 @@ extension Observable where Element == ApiResult<LWAssetDealModel?> {
             map { result -> Bool in
                 if case .loading = result { return true }
                 else { return false }
-            }
+        }
     }
     
 }
@@ -280,24 +305,24 @@ fileprivate extension ObservableType where Self.E == Void {
             guard let forAsset = viewModel.quotingAsset else { return nil }
             
             return OffchainTradeViewModel.TradeParams(amount: viewModel.tradeAmount, asset: asset, forAsset: forAsset)
-        }
-        .filterNil()
+            }
+            .filterNil()
     }
     
 }
 
 fileprivate extension OffchainTradeViewModel {
     
-    func bind(toViewController vc: BuyOptimizedViewController) -> [Disposable] {
+    func bind(toViewController viewController: BuyOptimizedViewController) -> [Disposable] {
         return [
-            errors.asObservable().bind(to: vc.rx.error),
-            success.drive(onNext: {[weak vc] _ in
-                vc?.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
-                vc?.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
+            errors.asObservable().bind(to: viewController.rx.error),
+            success.drive(onNext: {[weak viewController] _ in
+                viewController?.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
+                viewController?.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
             }),
-            success.drive(onNext: {[weak vc] _ in
+            success.drive(onNext: {[weak viewController] _ in
                 FinalizePendingRequestsTrigger.instance.finalizeNow()
-                vc?.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
+                viewController?.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
             })
         ]
     }
@@ -305,22 +330,22 @@ fileprivate extension OffchainTradeViewModel {
 
 fileprivate extension BuyOptimizedViewModel {
     
-    func bind(toViewController vc: BuyOptimizedViewController) -> [Disposable] {
+    func bind(toViewController viewController: BuyOptimizedViewController) -> [Disposable] {
         return [
             isValidPayWithAmount
                 .filterError()
                 .map{ $0["Message"] as? String }
                 .filterNil()
-                .subscribe(onNext: { [weak vc] message in
-                    vc?.view.makeToast(message, duration: 2.0, position: CSToastPositionTop)
+                .subscribe(onNext: { [weak viewController] message in
+                    viewController?.view.makeToast(message, duration: 2.0, position: CSToastPositionTop)
                 }),
-            isValidPayWithAmount.map{ $0.isSuccess }.bind(to: vc.submitButton.rx.isEanbledWithBorderColor),
-            spreadPercent.drive(vc.spreadPercent.rx.text),
-            spreadAmount.drive(vc.spreadAmount.rx.text),
-            bid.asDriver().filterNil().map{ $0 ? "SELL" : "PAY WITH" }.drive(vc.walletListView.label.rx.text),
-            bid.asDriver().filterNil().map{ $0 ? "RECEIVE" : "BUY" }.drive(vc.assetListView.label.rx.text),
-            bid.asDriver().filterNil().map{ $0 ? "SELL" : "BUY" }.drive(onNext: {[weak vc] in
-                vc?.submitButton.setTitle($0, for: .normal)
+            isValidPayWithAmount.map{ $0.isSuccess }.bind(to: viewController.submitButton.rx.isEanbledWithBorderColor),
+            spreadPercent.drive(viewController.spreadPercent.rx.text),
+            spreadAmount.drive(viewController.spreadAmount.rx.text),
+            bid.asDriver().filterNil().map{ $0 ? "SELL" : "PAY WITH" }.drive(viewController.walletListView.label.rx.text),
+            bid.asDriver().filterNil().map{ $0 ? "RECEIVE" : "BUY" }.drive(viewController.assetListView.label.rx.text),
+            bid.asDriver().filterNil().map{ $0 ? "SELL" : "BUY" }.drive(onNext: {[weak viewController] in
+                viewController?.submitButton.setTitle($0, for: .normal)
             })
         ]
     }
@@ -342,7 +367,7 @@ fileprivate extension BuyOptimizedViewModel {
         buyAssetCode
             .drive(view.assetCode.rx.text)
             .disposed(by: disposeBag)
-
+        
         (view.amount.rx.textInput <-> buyAmount)
             .disposed(by: disposeBag)
         

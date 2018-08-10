@@ -1046,3 +1046,5 @@
 "filter.newDesign.error.message.endDate" = "End date should be after start date";
 
 "sendToWallet.newDesign.error.address" = "Wallet address is not valid";
+
+"confirm.newDesign.labelInfo" = "Trade price may exceed the specific limit due to the rounding";
