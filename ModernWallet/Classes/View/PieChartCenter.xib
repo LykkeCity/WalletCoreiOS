@@ -22,23 +22,23 @@
             <rect key="frame" x="0.0" y="0.0" width="188" height="173"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVx-FD-ESL">
-                    <rect key="frame" x="56.5" y="55.5" width="75" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVx-FD-ESL">
+                    <rect key="frame" x="4" y="55.5" width="180" height="14"/>
                     <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11.699999809265137"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleAspectFill" ambiguous="YES" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="eXt-hG-y9b">
-                    <rect key="frame" x="65.5" y="69.5" width="76" height="35"/>
+                <stackView opaque="NO" contentMode="scaleAspectFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="eXt-hG-y9b">
+                    <rect key="frame" x="56.5" y="69.5" width="76" height="35"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-dx-HdW">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wA0-dx-HdW">
                             <rect key="frame" x="0.0" y="0.0" width="58.5" height="35"/>
                             <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="30"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BNO-o0-WjS">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BNO-o0-WjS">
                             <rect key="frame" x="58.5" y="21" width="17.5" height="10"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17.5" id="R0Q-GP-4Qs"/>
@@ -61,11 +61,14 @@
             <constraints>
                 <constraint firstItem="pDG-ql-9rg" firstAttribute="top" secondItem="eXt-hG-y9b" secondAttribute="bottom" constant="8" id="0B3-Xl-637"/>
                 <constraint firstItem="eXt-hG-y9b" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0QC-kF-Ez6"/>
+                <constraint firstAttribute="trailing" secondItem="LVx-FD-ESL" secondAttribute="trailing" constant="4" id="4nD-f8-Gp3"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eXt-hG-y9b" secondAttribute="trailing" constant="2" id="4vj-hR-RqF"/>
                 <constraint firstItem="eXt-hG-y9b" firstAttribute="top" secondItem="LVx-FD-ESL" secondAttribute="bottom" id="7Op-lc-mVr"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eXt-hG-y9b" secondAttribute="trailing" id="qtO-rQ-2KH"/>
+                <constraint firstItem="LVx-FD-ESL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="UT6-p3-MVW"/>
+                <constraint firstItem="eXt-hG-y9b" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="W7M-hU-zpP"/>
+                <constraint firstItem="eXt-hG-y9b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="gXY-OM-B1T"/>
                 <constraint firstItem="pDG-ql-9rg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tdA-cC-Oyo"/>
                 <constraint firstItem="LVx-FD-ESL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zJk-Ah-g9B"/>
-                <constraint firstItem="eXt-hG-y9b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" id="zh7-4B-JiZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="48" y="47.5"/>
