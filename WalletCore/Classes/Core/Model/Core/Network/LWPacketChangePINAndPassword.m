@@ -36,14 +36,14 @@
                                                         
                                                         
     NSDictionary *params=@{
+                           @"PartnerId": WalletCoreConfig.partnerId,
                            @"Email":self.recModel.email,
                            @"SignedOwnershipMsg":self.recModel.signature2,
                            @"SmsCode":self.recModel.smsCode,
                            @"NewPin":self.recModel.pin,
                            @"NewPassword": pass,
                            @"NewHint":self.recModel.hint,
-                           @"EncodedPrivateKey":[[LWPrivateKeyManager shared] encryptKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke password:self.recModel.password],
-                           @"PartnerId": WalletCoreConfig.partnerId
+                           @"EncodedPrivateKey":[[LWPrivateKeyManager shared] encryptKey:[LWPrivateKeyManager shared].wifPrivateKeyLykke password:self.recModel.password]
                            };
     NSLog(@"%@", params);
     return params;

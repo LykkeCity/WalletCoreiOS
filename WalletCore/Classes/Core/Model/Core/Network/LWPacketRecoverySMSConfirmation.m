@@ -29,9 +29,9 @@
 -(NSDictionary *) params
 {
     return @{
+             @"PartnerId": WalletCoreConfig.partnerId,
              @"Email":self.recModel.email,
-             @"SignedOwnershipMsg":self.recModel.signature1,
-             @"PartnerId": WalletCoreConfig.partnerId
+             @"SignedOwnershipMsg":self.recModel.signature1
              };
 }
 
