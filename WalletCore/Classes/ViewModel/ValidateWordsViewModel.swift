@@ -50,13 +50,8 @@ public class ValidateWordsViewModel {
             .shareReplay(1)
         
         let ownershipMessageWithSignatureRequest = ownershipMessageRequest.filterSuccess()
-            .debug("Allegra")
-            .do(onNext: { value in
-                print("value.signature = \(value.signature)")
-                print("value.confirmedOwnership = \(value.confirmedOwnership)")
-            })
             .map { LWPrivateKeyManager.shared().signatureForMessage(withLykkeKey: $0.ownershipMessage) }
-            .withLatestFrom(email.asObservable()) { (email: $0, signature: $1) }
+            .withLatestFrom(email.asObservable()) { (email: $1, signature: $0) }
             .flatMapLatest { authManager.ownershipMessage.request(withParams: $0) }
             .shareReplay(1)
         
@@ -69,7 +64,7 @@ public class ValidateWordsViewModel {
             ])
             .asDriver(onErrorJustReturn: [:])
         
-        self.loadingViewModel = LoadingViewModel([
+        self.loadingViewModel = LoadingViewModel([    
             ownershipMessageRequest.isLoading(),
             ownershipMessageWithSignatureRequest.isLoading()
             ])
@@ -94,6 +89,9 @@ extension Observable where E == [String] {
                 guard let _ = LWPrivateKeyManager.keyData(fromSeedWords: data) else {
                     return false
                 }
+                
+                //set the private key from seed words !
+                LWPrivateKeyManager.shared().savePrivateKeyLykke(fromSeedWords: data)
                 
                 return true
             }
