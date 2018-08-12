@@ -23,10 +23,17 @@ protocol FormController {
     
     var segueIdentifier: String? { get }
     
-    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>)
+    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, recoveryTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>)
     
     func unbind()
 
+}
+
+// Extension to the `FormController` to handle the password recovery
+// procedure described here:
+// https://lykkex.zendesk.com/hc/en-us/articles/115002540005-How-do-I-reset-my-PIN-
+protocol RecoveryController: FormController {
+    var recoveryStep: RecoveryController? { get }
 }
 
 extension FormController {

@@ -107,7 +107,7 @@ class SignInConfirmPhoneFormController: FormController {
     
     let forceShowPin = PublishSubject<Void>()
     
-    func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+    func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, recoveryTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
         smsCodeTextField.rx.text.asObservable().replaceNilWith("")

@@ -29,6 +29,8 @@ class SignUpFormViewController: UIViewController {
     
     private var nextTrigger = PublishSubject<Void>()
     
+    private var recoveryTrigger = PublishSubject<Void>()
+    
     private var pinTrigger = PublishSubject<PinViewController?>()
     
     private var disposeBag = DisposeBag()
@@ -43,6 +45,12 @@ class SignUpFormViewController: UIViewController {
         nextTrigger.asDriver(onErrorJustReturn: ())
             .drive(onNext: { [weak self] _ in
                 self?.gotoNext()
+            })
+            .disposed(by: disposeBag)
+        
+        recoveryTrigger.asDriver(onErrorJustReturn: ())
+            .drive(onNext: { [weak self] _ in
+                self?.goToRecovery()
             })
             .disposed(by: disposeBag)
         
@@ -111,6 +119,18 @@ class SignUpFormViewController: UIViewController {
         }
     }
     
+    func goToRecovery() {
+        guard let formController = forms.last else {
+            return
+        }
+        
+        if let recoveryFormController = (formController as? RecoveryController)?.recoveryStep {
+            push(formController: recoveryFormController, animated: true)
+        } else {
+            navigationController?.dismiss(animated: true)
+        }
+    }
+    
     // MARK: - Push methods
     private func willPush() {
         registerButton.isHidden = forms.isNotEmpty
@@ -150,7 +170,7 @@ class SignUpFormViewController: UIViewController {
         if let previuosFormController = forms.last {
             previuosFormController.unbind()
         }
-        formController.bind(button: submitButton, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
+        formController.bind(button: submitButton, nextTrigger: nextTrigger, recoveryTrigger: recoveryTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
         submitButton.setTitle(formController.buttonTitle, for: .normal)
         forms.append(formController)
         
@@ -207,7 +227,7 @@ class SignUpFormViewController: UIViewController {
             })
         }
         currentFormContrller.unbind()
-        previousFormController.bind(button: submitButton, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
+        previousFormController.bind(button: submitButton, nextTrigger: nextTrigger, recoveryTrigger: recoveryTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
         submitButton.setTitle(previousFormController.buttonTitle, for: .normal)
         
         didPop()

@@ -129,7 +129,7 @@
 "backup.template.cancel.yes" = "Yes";
 "backup.template.cancel.no" = "No";
 
-"restore.form.placeholder" = "Words";
+"restore.form.placeholder" = "Secret Words";
 "restore.form.pageTitle.reset" = "RESET PASSWORD";
 "restore.form.pageTitle.cold" = "DEFROST COLD WALLET";
 "restore.form.wrongseed.title" = "ERROR";

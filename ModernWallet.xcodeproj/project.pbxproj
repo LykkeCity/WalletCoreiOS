@@ -181,6 +181,8 @@
 		C554C6F521109A7F005F0DD3 /* KYCFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C554C6F421109A7F005F0DD3 /* KYCFinishedViewController.swift */; };
 		C56FD0D42023DDEF00596709 /* TransactionCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56FD0D32023DDEF00596709 /* TransactionCalendarViewController.swift */; };
 		C56FD0D62023E93D00596709 /* Koyomi+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56FD0D52023E93D00596709 /* Koyomi+Rx.swift */; };
+		C5A8F4EA212087170012CE11 /* RecoverySeedWordsFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4E9212087170012CE11 /* RecoverySeedWordsFormController.swift */; };
+		C5A8F4EC2120934C0012CE11 /* RecoverySetPasswordFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4EB2120934C0012CE11 /* RecoverySetPasswordFormController.swift */; };
 		C5B982ED1FE974F300D1A642 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B982EC1FE974F200D1A642 /* UIImageEffects.m */; };
 		CC48AB581F0E802A0081AF27 /* Buy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC48AB571F0E802A0081AF27 /* Buy.storyboard */; };
 		CC8A99AA1EF7BAB80078E6B0 /* AddMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A99A91EF7BAB80078E6B0 /* AddMoneyViewController.swift */; };
@@ -387,6 +389,8 @@
 		C554C6F421109A7F005F0DD3 /* KYCFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCFinishedViewController.swift; sourceTree = "<group>"; };
 		C56FD0D32023DDEF00596709 /* TransactionCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCalendarViewController.swift; sourceTree = "<group>"; };
 		C56FD0D52023E93D00596709 /* Koyomi+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Koyomi+Rx.swift"; sourceTree = "<group>"; };
+		C5A8F4E9212087170012CE11 /* RecoverySeedWordsFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverySeedWordsFormController.swift; sourceTree = "<group>"; };
+		C5A8F4EB2120934C0012CE11 /* RecoverySetPasswordFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverySetPasswordFormController.swift; sourceTree = "<group>"; };
 		C5B982EB1FE974F100D1A642 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
 		C5B982EC1FE974F200D1A642 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		CC48AB571F0E802A0081AF27 /* Buy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Buy.storyboard; sourceTree = "<group>"; };
@@ -823,6 +827,8 @@
 				669B6A551FCD84B5003227AF /* SingInEmailFormController.swift */,
 				668E68021FCD9AFD004552BD /* SignInPasswordFormController.swift */,
 				66448AFC1FCEB59200978535 /* SignInConfirmPhoneFormController.swift */,
+				C5A8F4E9212087170012CE11 /* RecoverySeedWordsFormController.swift */,
+				C5A8F4EB2120934C0012CE11 /* RecoverySetPasswordFormController.swift */,
 				66385DE11FCEDE42002DC70B /* SignUpEmailFormController.swift */,
 				66385DE31FCEDE71002DC70B /* SignUpEmailCodeFormController.swift */,
 				66385DE51FCEDE88002DC70B /* SignUpSetPasswordFormController.swift */,
@@ -1272,6 +1278,7 @@
 				611248ED1F06856D005DE4E6 /* AddMoneyCryptocurrencyStep1ViewController.swift in Sources */,
 				661C030E1FE15E2D003178B3 /* InputForm+Extensions.swift in Sources */,
 				61FC79CF1F714016002A78CE /* KYCPhotoPlaceholderView.swift in Sources */,
+				C5A8F4EA212087170012CE11 /* RecoverySeedWordsFormController.swift in Sources */,
 				66806BA11F9E3BC8001E49E5 /* AssetAmountView+Rx.swift in Sources */,
 				66806B9F1F9E0A3F001E49E5 /* CashOutEnterAmountViewController.swift in Sources */,
 				462878731F433A710006BE45 /* GraphProtocol.swift in Sources */,
@@ -1397,6 +1404,7 @@
 				4671C9C11F7CE840002C2F25 /* UIButton+Rx.swift in Sources */,
 				61BE16351F1CEBE20034D27A /* TransactionsGraphViewController.swift in Sources */,
 				611248F01F069392005DE4E6 /* AddMoneyCryptocurrencyStep2ViewController.swift in Sources */,
+				C5A8F4EC2120934C0012CE11 /* RecoverySetPasswordFormController.swift in Sources */,
 				66C83D411FC2DC1600428527 /* SubmitButton.swift in Sources */,
 				11DA99157D1096C1AE2DAB86 /* PortfolioViewController.swift in Sources */,
 				469DA7231F6C1FB1000B904C /* KYCStep1ViewController.swift in Sources */,
