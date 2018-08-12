@@ -17,7 +17,7 @@ static WalletCoreTestingServer _testingServer = WalletCoreTestingServerDevelop;
 
 + (NSString *)partnerId {
     if (_partnerId == nil) {
-        _partnerId = @"LykkeModernMoney";
+        _partnerId = @"";
     }
     return _partnerId;
 }
