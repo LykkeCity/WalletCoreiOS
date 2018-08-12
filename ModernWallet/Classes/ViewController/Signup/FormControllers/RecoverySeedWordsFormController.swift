@@ -15,9 +15,10 @@ class RecoverySeedWordsFormController: RecoveryController {
     
     init(email: String) {
         self.recoveryViewModel.email.value = email
-        seedWordsViewModel.email.value = email
+        self.seedWordsViewModel.email.value = email
     }
     
+    /// Pass this view model across the recovery screens
     lazy var recoveryViewModel: RecoveryViewModel = {
        return RecoveryViewModel()
     }()
@@ -61,6 +62,8 @@ class RecoverySeedWordsFormController: RecoveryController {
         return textField
     }()
     
+    private let isLoading = Variable<Bool>(false)
+    
     private var disposeBag = DisposeBag()
     
     func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, recoveryTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
@@ -92,9 +95,18 @@ class RecoverySeedWordsFormController: RecoveryController {
             .map { _ in return () }
             .bind(to: recoveryTrigger)
             .disposed(by: disposeBag)
+
+        seedWordsViewModel.loadingViewModel.isLoading
+            .bind(to: self.isLoading)
+            .disposed(by: disposeBag)
+        
+        isLoading.asObservable()
+            .bind(to: loading)
+            .disposed(by: disposeBag)
     }
 
     func unbind() {
+        self.isLoading.value = false
         disposeBag = DisposeBag()
     }
 
