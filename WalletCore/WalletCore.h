@@ -125,6 +125,7 @@ FOUNDATION_EXPORT const unsigned char WalletCoreVersionString[];
 #import <WalletCore/LWDeviceInfo.h>
 #import <WalletCore/LWPacketAuthentication.h>
 #import <WalletCore/LWAuthenticationData.h>
+#import <WalletCore/LWPrivateKeyOwnershipMessage.h>
 #import <WalletCore/LWFingerprintHelper.h>
 #import <WalletCore/LWCache.h>
 #import <WalletCore/LWSwiftCredentialsModel.h>

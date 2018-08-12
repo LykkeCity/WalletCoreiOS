@@ -22,30 +22,30 @@
 }
 
 - (NSString *)urlRelative {
+    if(self.signature)
     return @"PrivateKeyOwnershipMsg";
+    else
+    return @"PrivateKeyOwnershipMsg/privateKeyOwnerShipMsg";
 }
 
 -(NSDictionary *) params
-{
-    if(self.signature) {
+    {
+        if(self.signature) {
         return @{
-                 @"PartnerId": WalletCoreConfig.partnerId,
-                 @"Email":self.email,
-                 @"SignedOwnershipMsg":self.signature
+                 @"Email": self.email,
+                 @"SignedOwnershipMsg": self.signature,
+                 @"PartnerId": WalletCoreConfig.partnerId
                  };
-    } else {
+        } else {
         return @{
-                 @"PartnerId": WalletCoreConfig.partnerId,
-                 @"Email":self.email
+                 @"email":self.email,
+                 @"partnerId": WalletCoreConfig.partnerId
                  };
+        }
     }
-}
-
+    
 - (GDXRESTPacketType)type {
-    if(!self.signature)
-        return GDXRESTPacketTypeGET;
-    else
-        return GDXRESTPacketTypePOST;
+    return GDXRESTPacketTypePOST;
 }
 
 
