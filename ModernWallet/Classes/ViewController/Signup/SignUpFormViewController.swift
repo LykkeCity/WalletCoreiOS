@@ -32,6 +32,8 @@ class SignUpFormViewController: UIViewController {
     private var recoveryTrigger = PublishSubject<Void>()
     
     private var pinTrigger = PublishSubject<PinViewController?>()
+
+    private var recoveryPinTrigger = PublishSubject<String>()
     
     private var disposeBag = DisposeBag()
 
@@ -51,6 +53,12 @@ class SignUpFormViewController: UIViewController {
         recoveryTrigger.asDriver(onErrorJustReturn: ())
             .drive(onNext: { [weak self] _ in
                 self?.goToRecovery()
+            })
+            .disposed(by: disposeBag)
+        
+        recoveryPinTrigger.asDriver(onErrorJustReturn: "")
+            .drive(onNext: { [weak self] _ in
+                self?.setRecoveryPin()
             })
             .disposed(by: disposeBag)
         
@@ -120,15 +128,27 @@ class SignUpFormViewController: UIViewController {
     }
     
     func goToRecovery() {
-        guard let formController = forms.last else {
+        guard let formController = forms.last as? RecoveryController else {
             return
         }
         
-        if let recoveryFormController = (formController as? RecoveryController)?.recoveryStep {
+        if let recoveryFormController = formController.recoveryStep {
             push(formController: recoveryFormController, animated: true)
         } else {
             navigationController?.dismiss(animated: true)
         }
+    }
+    
+    func setRecoveryPin() {
+        guard let formController = forms.last as? RecoveryController else {
+            return
+        }
+        
+        PinViewController.presentResetPinController(from: self, title: Localize("awedeebawe"))
+            .filter { $0.complete }
+            .map { $0.pin }
+            .bind(to: recoveryPinTrigger)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Push methods
@@ -170,7 +190,13 @@ class SignUpFormViewController: UIViewController {
         if let previuosFormController = forms.last {
             previuosFormController.unbind()
         }
-        formController.bind(button: submitButton, nextTrigger: nextTrigger, recoveryTrigger: recoveryTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
+        formController.bind(button: submitButton,
+                            nextTrigger: nextTrigger,
+                            recoveryTrigger: recoveryTrigger,
+                            recoveryPinTrigger: recoveryPinTrigger,
+                            pinTrigger: pinTrigger,
+                            loading: rx.loading,
+                            error: rx.error)
         submitButton.setTitle(formController.buttonTitle, for: .normal)
         forms.append(formController)
         
@@ -227,7 +253,13 @@ class SignUpFormViewController: UIViewController {
             })
         }
         currentFormContrller.unbind()
-        previousFormController.bind(button: submitButton, nextTrigger: nextTrigger, recoveryTrigger: recoveryTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
+        previousFormController.bind(button: submitButton,
+                                    nextTrigger: nextTrigger,
+                                    recoveryTrigger: recoveryTrigger,
+                                    recoveryPinTrigger: recoveryPinTrigger,
+                                    pinTrigger: pinTrigger,
+                                    loading: rx.loading,
+                                    error: rx.error)
         submitButton.setTitle(previousFormController.buttonTitle, for: .normal)
         
         didPop()

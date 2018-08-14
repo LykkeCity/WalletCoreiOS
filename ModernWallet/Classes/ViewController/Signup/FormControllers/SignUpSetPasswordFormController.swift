@@ -63,7 +63,13 @@ class SignUpSetPasswordFormController: FormController {
     
     private var disposeBag = DisposeBag()
     
-    func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, recoveryTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+    func bind<T>(button: UIButton,
+                 nextTrigger: PublishSubject<Void>,
+                 recoveryTrigger: PublishSubject<Void>,
+                 recoveryPinTrigger: PublishSubject<String>,
+                 pinTrigger: PublishSubject<PinViewController?>,
+                 loading: UIBindingObserver<T, Bool>,
+                 error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
         passwordTextField.rx.text

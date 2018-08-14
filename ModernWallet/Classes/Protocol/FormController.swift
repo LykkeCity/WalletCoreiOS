@@ -23,7 +23,13 @@ protocol FormController {
     
     var segueIdentifier: String? { get }
     
-    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, recoveryTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>)
+    func bind<T>(button: UIButton,
+                      nextTrigger: PublishSubject<Void>,
+                      recoveryTrigger: PublishSubject<Void>,
+                      recoveryPinTrigger: PublishSubject<String>,
+                      pinTrigger: PublishSubject<PinViewController?>,
+                      loading: UIBindingObserver<T, Bool>,
+                      error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController
     
     func unbind()
 
@@ -34,6 +40,7 @@ protocol FormController {
 // https://lykkex.zendesk.com/hc/en-us/articles/115002540005-How-do-I-reset-my-PIN-
 protocol RecoveryController: FormController {
     var recoveryStep: RecoveryController? { get }
+    var newPin: Variable<String> { get }
 }
 
 extension FormController {
@@ -63,4 +70,11 @@ extension FormController {
         return textField
     }
     
+}
+
+extension RecoveryController {
+    // Default implementation, as it is needed only in one controller
+    var newPin: Variable<String> {
+        return Variable<String>("")
+    }
 }

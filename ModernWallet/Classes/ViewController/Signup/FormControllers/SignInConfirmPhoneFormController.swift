@@ -107,7 +107,13 @@ class SignInConfirmPhoneFormController: FormController {
     
     let forceShowPin = PublishSubject<Void>()
     
-    func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, recoveryTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+    func bind<T>(button: UIButton,
+                 nextTrigger: PublishSubject<Void>,
+                 recoveryTrigger: PublishSubject<Void>,
+                 recoveryPinTrigger: PublishSubject<String>,
+                 pinTrigger: PublishSubject<PinViewController?>,
+                 loading: UIBindingObserver<T, Bool>,
+                 error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
         smsCodeTextField.rx.text.asObservable().replaceNilWith("")
@@ -118,13 +124,25 @@ class SignInConfirmPhoneFormController: FormController {
             .disposed(by: disposeBag)
         
         if signIn {
-            bindSignIn(button: button, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: loading, error: error)
+            bindSignIn(button: button,
+                       nextTrigger: nextTrigger,
+                       pinTrigger: pinTrigger,
+                       loading: loading,
+                       error: error)
         } else {
-            bindSignUp(button: button, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: loading, error: error)
+            bindSignUp(button: button,
+                       nextTrigger: nextTrigger,
+                       pinTrigger: pinTrigger,
+                       loading: loading,
+                       error: error)
         }
     }
     
-    private func bindSignIn<T>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+    private func bindSignIn<T>(button: UIButton,
+                               nextTrigger: PublishSubject<Void>,
+                               pinTrigger: PublishSubject<PinViewController?>,
+                               loading: UIBindingObserver<T, Bool>,
+                               error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         button.rx.tap.asObservable()
             .map{ [smsCodeTextField] in smsCodeTextField.text }
             .replaceNilWith("")
@@ -155,7 +173,11 @@ class SignInConfirmPhoneFormController: FormController {
     }
     
     
-    private func bindSignUp<T>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+    private func bindSignUp<T>(button: UIButton,
+                               nextTrigger: PublishSubject<Void>,
+                               pinTrigger: PublishSubject<PinViewController?>,
+                               loading: UIBindingObserver<T, Bool>,
+                               error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         
         smsCodeTextField.rx.text
             .filterNil()

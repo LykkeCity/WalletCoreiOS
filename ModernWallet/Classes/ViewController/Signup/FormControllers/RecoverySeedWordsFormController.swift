@@ -54,6 +54,10 @@ class RecoverySeedWordsFormController: RecoveryController {
         return RecoverySetPasswordFormController(viewModel: recoveryViewModel)
     }
     
+    var setPinObservable: PublishSubject<(complete: Bool, pin: String)>? {
+        return nil
+    }
+    
     lazy private(set) var seedWordsTextField: UITextField = {
         let textField = self.textField(placeholder: Localize("restore.form.placeholder"))
         textField.autocorrectionType = .no
@@ -64,9 +68,18 @@ class RecoverySeedWordsFormController: RecoveryController {
     
     private let isLoading = Variable<Bool>(false)
     
+    private var checkWordsTrigger = PublishSubject<Void>()
+    
     private var disposeBag = DisposeBag()
     
-    func bind<T>(button: UIButton, nextTrigger: PublishSubject<Void>, recoveryTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+    func bind<T>(button: UIButton,
+                 nextTrigger: PublishSubject<Void>,
+                 recoveryTrigger: PublishSubject<Void>,
+                 recoveryPinTrigger: PublishSubject<String>,
+                 pinTrigger: PublishSubject<PinViewController?>,
+                 loading: UIBindingObserver<T, Bool>,
+                 error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+        disposeBag = DisposeBag()
         
         seedWordsTextField.rx.text
             .orEmpty
@@ -77,7 +90,15 @@ class RecoverySeedWordsFormController: RecoveryController {
             .bind(to: button.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        checkWordsTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
         button.rx.tap
+            .bind(to: checkWordsTrigger)
+            .disposed(by: disposeBag)
+        
+        checkWordsTrigger
             .bind(to: seedWordsViewModel.trigger)
             .disposed(by: disposeBag)
         
