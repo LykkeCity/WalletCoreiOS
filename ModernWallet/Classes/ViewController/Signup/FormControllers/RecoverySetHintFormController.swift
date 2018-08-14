@@ -1,5 +1,5 @@
 //
-//  RecoverySetPasswordFormController.swift
+//  RecoverySetHintFormController.swift
 //  ModernMoney
 //
 //  Created by Lyubomir Marinov on 12.08.18.
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import WalletCore
 
-class RecoverySetPasswordFormController: RecoveryController {
+class RecoverySetHintFormController: RecoveryController {
     
     let viewModel: RecoveryViewModel
     
@@ -19,28 +19,21 @@ class RecoverySetPasswordFormController: RecoveryController {
         self.viewModel = viewModel
     }
     
-    lazy var validationViewModel: ValidatePasswordViewModel = {
-        return ValidatePasswordViewModel()
+    lazy var validationViewModel: ValidateHintViewModel = {
+        return ValidateHintViewModel()
     }()
     
     lazy var formViews: [UIView] = {
         return [
-            self.titleLabel(title: Localize("auth.newDesign.createPassword")),
-            self.passwordTextField,
-            self.repeatPasswordTextField,
+            self.titleLabel(title: Localize("auth.newDesign.hintTitle")),
+            self.hintTextField
         ]
     }()
     
-    private lazy var passwordTextField: UITextField = {
-        let textField = self.textField(placeholder: Localize("auth.newDesign.enterPassword"))
-        textField.isSecureTextEntry = true
-        textField.returnKeyType = .next
-        return textField
-    }()
-    
-    private lazy var repeatPasswordTextField: UITextField = {
-        let textField = self.textField(placeholder: Localize("auth.newDesign.enterAgain"))
-        textField.isSecureTextEntry = true
+    private lazy var hintTextField: UITextField = {
+        let textField = self.textField(placeholder: Localize("auth.newDesign.enterHint"))
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .sentences
         textField.returnKeyType = .next
         return textField
     }()
@@ -62,7 +55,7 @@ class RecoverySetPasswordFormController: RecoveryController {
     }
     
     var recoveryStep: RecoveryController? {
-        return RecoverySetHintFormController(viewModel: self.viewModel)
+        return nil
     }
     
     private var disposeBag = DisposeBag()
@@ -76,29 +69,38 @@ class RecoverySetPasswordFormController: RecoveryController {
                  error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
-        let passwordObservable = passwordTextField.rx.text
+        let hintObservable = hintTextField.rx.text
             .orEmpty
             .shareReplay(1)
         
-        passwordObservable
-            .bind(to: viewModel.newPassword)
-            .disposed(by: disposeBag)
-            
-        passwordObservable
-            .bind(to: validationViewModel.password)
+        hintObservable
+            .bind(to: viewModel.newHint)
             .disposed(by: disposeBag)
         
-        repeatPasswordTextField.rx.text
-            .orEmpty
-            .bind(to: validationViewModel.repeatPassword)
+        hintObservable
+            .bind(to: validationViewModel.hint)
             .disposed(by: disposeBag)
         
-        validationViewModel.arePasswordsValid
+        validationViewModel.isHintValid
             .bind(to: button.rx.isEnabled)
             .disposed(by: disposeBag)
         
         // Bind empty string to `recoveryPinTrigger` to show the pin view controller
         button.rx.tap
+            .map { _ in return "" }
+            .bind(to: recoveryPinTrigger.asObserver())
+            .disposed(by: disposeBag)
+        
+        // Observe `recoveryPinTrigger` to get the pin (if valid)
+        let pinTriggered = recoveryPinTrigger.asObservable()
+            .filter { $0.isNotEmpty }
+            .shareReplay(1)
+        
+        pinTriggered
+            .bind(to: viewModel.newPin)
+            .disposed(by: disposeBag)
+        
+        pinTriggered
             .map { _ in return () }
             .bind(to: recoveryTrigger)
             .disposed(by: disposeBag)
