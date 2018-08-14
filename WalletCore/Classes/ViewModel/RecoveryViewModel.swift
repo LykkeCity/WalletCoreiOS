@@ -16,6 +16,7 @@ public class RecoveryViewModel {
     public let smsCode = Variable<String>("")
     public let newPin = Variable<String>("")
     public let newPassword = Variable<String>("")
+    public let newHint = Variable<String>("")
 
 //    public let resendSmsData: Observable<(phone: String, signedOwnershipMessage: String)>
 //
