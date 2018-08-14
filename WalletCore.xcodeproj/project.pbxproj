@@ -676,6 +676,7 @@
 		C58A8904212B1F8C009B28AC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A8903212B1F8C009B28AC /* Date+Extension.swift */; };
 		C538ED132111E4E9005AE71B /* LWRxAuthManagerKYCStatusGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C538ED122111E4E9005AE71B /* LWRxAuthManagerKYCStatusGet.swift */; };
 		C538ED152111E7A9005AE71B /* KycGetStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C538ED142111E7A9005AE71B /* KycGetStatusViewModel.swift */; };
+		C58D92722120EE5A00968835 /* ValidatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D92712120EE5A00968835 /* ValidatePasswordViewModel.swift */; };
 		C59B28332029DD7C00AA2E39 /* TransactionFilterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */; };
 		C59B28352029DD9500AA2E39 /* TransactionFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */; };
 		C5A8F4EE2120A0AB0012CE11 /* RecoveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4ED2120A0AB0012CE11 /* RecoveryViewModel.swift */; };
@@ -1398,6 +1399,7 @@
 		C58A8903212B1F8C009B28AC /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C538ED122111E4E9005AE71B /* LWRxAuthManagerKYCStatusGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerKYCStatusGet.swift; sourceTree = "<group>"; };
 		C538ED142111E7A9005AE71B /* KycGetStatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KycGetStatusViewModel.swift; sourceTree = "<group>"; };
+		C58D92712120EE5A00968835 /* ValidatePasswordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidatePasswordViewModel.swift; sourceTree = "<group>"; };
 		C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterFormatter.swift; sourceTree = "<group>"; };
 		C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterViewModel.swift; sourceTree = "<group>"; };
 		C5A8F4ED2120A0AB0012CE11 /* RecoveryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewModel.swift; sourceTree = "<group>"; };
@@ -2334,6 +2336,7 @@
 				467C20621FB452F7002A90AE /* LogInViewModel.swift */,
 				C5A8F4ED2120A0AB0012CE11 /* RecoveryViewModel.swift */,
 				C5A8F4EF2120B0890012CE11 /* ValidateWordsViewModel.swift */,
+				C58D92712120EE5A00968835 /* ValidatePasswordViewModel.swift */,
 				467C205A1FB452F6002A90AE /* PhoneNumberPinViewModel.swift */,
 				467C20531FB452F5002A90AE /* PhoneNumberViewModel.swift */,
 				467C20591FB452F6002A90AE /* PinGetViewModel.swift */,
@@ -3199,6 +3202,7 @@
 				46C9AFFA1F417BD800B83CCB /* GDXRESTContext.m in Sources */,
 				665E154A1FC6CD20000973DA /* LWRxAuthManagerWalletBackupComplete.swift in Sources */,
 				46C9AFE11F417BD800B83CCB /* LWPrivateWalletHistoryCellModel.m in Sources */,
+				C58D92722120EE5A00968835 /* ValidatePasswordViewModel.swift in Sources */,
 				46C9AF661F417BD800B83CCB /* LWKeychainManager.m in Sources */,
 				614214201F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift in Sources */,
 				46E5D0DD1F5DD7ED00D78692 /* LWRxAuthManagerPushNotificationsGet.swift in Sources */,
