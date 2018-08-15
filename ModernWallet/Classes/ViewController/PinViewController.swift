@@ -87,7 +87,8 @@ class PinViewController: UIViewController {
     @IBOutlet private weak var keyboardView: UIStackView!
     @IBOutlet private var keyboardButtons: [UIButton]!
     @IBOutlet private weak var touchIdButton: UIButton!
-    
+    @IBOutlet private weak var forgottenPinButton: UIButton!
+
     var permitedTriesCount = 3
     
     var isPresentedForInactivity: Bool = false
@@ -184,6 +185,7 @@ class PinViewController: UIViewController {
         case .createPin, .resetPin:
             titleLabel.text = Localize("pin.create.new.title")
             touchIdButton.alpha = 0.0
+            forgottenPinButton.isHidden = true
         case .enterPin(var isTouchIdEnabled):
             titleLabel.text = title
             isTouchIdEnabled = isTouchIdEnabled && LWFingerprintHelper.isFingerprintAvailable()

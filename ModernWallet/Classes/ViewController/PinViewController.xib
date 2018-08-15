@@ -23,6 +23,7 @@
             <connections>
                 <outlet property="closeButton" destination="NYd-jc-qbw" id="FzP-oM-s3M"/>
                 <outlet property="dotsView" destination="IkV-7f-Jfy" id="3Vw-4J-5EH"/>
+                <outlet property="forgottenPinButton" destination="iMv-iw-B3w" id="qqi-Mw-OqG"/>
                 <outlet property="keyboardView" destination="Ge5-M4-EBx" id="zaa-aF-98c"/>
                 <outlet property="titleLabel" destination="Fp1-kG-UZZ" id="pdD-9M-hlK"/>
                 <outlet property="touchIdButton" destination="c8n-F4-4Hg" id="Qff-N3-Ngf"/>
