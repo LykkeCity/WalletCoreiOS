@@ -59,11 +59,6 @@ class ConfirmationViewController: UIViewController {
         updateUI()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func updateUI(){
         
         firstAsset.text = first
