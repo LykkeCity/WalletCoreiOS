@@ -42,7 +42,7 @@ class SignInPasswordFormController: FormController {
     }
     
     var next: FormController? {
-        return SignInConfirmPhoneFormController(signIn: true, phone: LWKeychainManager.instance()?.personalData()?.phone ?? "")
+        return SignInConfirmPhoneFormController(signIn: true, phone: LWKeychainManager.instance()?.personalData()?.phone ?? "", email: self.email)
     }
     
     var segueIdentifier: String? {

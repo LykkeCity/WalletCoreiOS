@@ -17,9 +17,12 @@ class SignInConfirmPhoneFormController: FormController {
     
     let phone: String
     
-    init(signIn: Bool, phone: String) {
+    let email: String
+    
+    init(signIn: Bool, phone: String, email: String) {
         self.signIn = signIn
         self.phone = phone
+        self.email = email
         UserDefaults.standard.tempPhone = phone
         UserDefaults.standard.synchronize()
     }
@@ -90,6 +93,7 @@ class SignInConfirmPhoneFormController: FormController {
     /// view model for login
     lazy var clientCodesViewModel: ClientCodesViewModel = {
         return ClientCodesViewModel(
+            email: self.email,
             smsCodeForRetrieveKey: self.smsCodeForRetrieveKey.asObservable(),
             triggerForSMSCode: self.resendSmsButton.rx.tap.asObservable().startWith(()),
             dependency: (
