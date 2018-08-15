@@ -22,6 +22,7 @@ class TransactionsStep1ViewController: UIViewController {
     @IBOutlet weak var findTransactionLbl: UILabel!
     @IBOutlet weak var filterTransactionLbl: UILabel!
     @IBOutlet weak var downloadCSVLbl: UILabel!
+    @IBOutlet weak var findTransactionImg: UIImageView!
     
     var isTableHeaderHidden = false
     var shouldAddBackgroundImage = false
