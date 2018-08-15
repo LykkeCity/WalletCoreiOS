@@ -4,8 +4,8 @@ inhibit_all_warnings!
 target 'ModernMoney' do
 use_frameworks!
 
-pod 'Fabric', '~> 1.7.2'
-pod 'Crashlytics', '~> 3.9.3'
+pod 'Fabric'
+pod 'Crashlytics'
 pod 'MBProgressHUD'
 pod 'Toast'
 pod 'SWTableViewCell'

@@ -36,12 +36,12 @@ PODS:
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
   - CocoaAsyncSocket (7.6.2)
-  - Crashlytics (3.9.3):
-    - Fabric (~> 1.7.2)
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
   - EasyMapping (0.21.2):
     - EasyMapping/Core (= 0.21.2)
   - EasyMapping/Core (0.21.2)
-  - Fabric (1.7.2)
+  - Fabric (1.7.11)
   - Firebase/Core (4.8.0):
     - FirebaseAnalytics (= 4.0.5)
     - FirebaseCore (= 4.0.13)
@@ -120,8 +120,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.1)
   - Charts (= 3.0.2)
-  - Crashlytics (~> 3.9.3)
-  - Fabric (~> 1.7.2)
+  - Crashlytics
+  - Fabric
   - Firebase/Core
   - Koyomi (from `https://github.com/whoislyuboanyway/Koyomi`, branch `show-border-instead-of-filled-background`)
   - KYDrawerController
@@ -131,7 +131,7 @@ DEPENDENCIES:
   - SideMenu
   - Siren (from `https://github.com/ArtSabintsev/Siren.git`, branch `swift3.2`)
   - SwiftReorder (~> 2.0)
-  - SwiftSpinner (from `https://github.com/StanevPrime/SwiftSpinner`, branch `show-spinner-during-hide-transition`)
+  - SwiftSpinner (from `https://github.com/StoykovPrime/SwiftSpinner`, branch `endless-loading-during-hide-transition`)
   - SWTableViewCell
   - TextFieldEffects (~> 1.3)
   - Toast
@@ -140,7 +140,7 @@ DEPENDENCIES:
   - XLPagerTabStrip (~> 7.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - Alamofire
     - AlamofireImage
@@ -188,8 +188,8 @@ EXTERNAL SOURCES:
     :branch: swift3.2
     :git: https://github.com/ArtSabintsev/Siren.git
   SwiftSpinner:
-    :branch: show-spinner-during-hide-transition
-    :git: https://github.com/StanevPrime/SwiftSpinner
+    :branch: endless-loading-during-hide-transition
+    :git: https://github.com/StoykovPrime/SwiftSpinner
   WalletCore:
     :path: "../WalletCoreiOS"
 
@@ -201,8 +201,8 @@ CHECKOUT OPTIONS:
     :commit: f6590001df279b76ac05ea3d06ab347e44559441
     :git: https://github.com/ArtSabintsev/Siren.git
   SwiftSpinner:
-    :commit: bd0702ff74bb6c2d6ca744d0bbeddba7b94c648d
-    :git: https://github.com/StanevPrime/SwiftSpinner
+    :commit: dc6bf20d9533fe85a9949f7d87cd4450350f0a17
+    :git: https://github.com/StoykovPrime/SwiftSpinner
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -211,9 +211,9 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   CocoaAsyncSocket: 3541e024f48c54b251638ef72d51dd42808de932
-  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   EasyMapping: 93c1f054da1bc5dff6aa332477b040bea7767841
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   Firebase: 710decbbc6d9d48530e9a5dba3209740c3532e05
   FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
   FirebaseCore: 3c02ec652db3d03fdc8bc6d9154af3e20d64b6f5
@@ -248,6 +248,6 @@ SPEC CHECKSUMS:
   WalletCore: 95d4cbb9e4672f6425850cf6be13de91fdd97fd1
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
-PODFILE CHECKSUM: 660296f5824a72d4a26d530dfc3b6635ed984e91
+PODFILE CHECKSUM: a5316707bbea12101701f5327e5782ac2542a949
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.0

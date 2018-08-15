@@ -1012,7 +1012,7 @@
 				CF21DC771C17590E00D2399E /* Sources */,
 				CF21DC781C17590E00D2399E /* Frameworks */,
 				CF21DC791C17590E00D2399E /* Resources */,
-				CDECDC2F1C178C2B005AF96F /* ShellScript */,
+				CDECDC2F1C178C2B005AF96F /* Run Fabric script */,
 				4714FD13A95B6EB3AABECD0A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1037,7 +1037,7 @@
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = SPFVYM4YAV;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1234,18 +1234,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CDECDC2F1C178C2B005AF96F /* ShellScript */ = {
+		CDECDC2F1C178C2B005AF96F /* Run Fabric script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Fabric script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/Fabric/run";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" f64e7b9a868533d9c0aae6e7587a65d18eaf811e f958c3668866bdbeb2d6a31a33f99733aadb5553994cea914f4bcc0e46b03240";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1513,7 +1514,7 @@
 				CODE_SIGN_ENTITLEMENTS = ModernWallet/ModernWallet.Test.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -1538,8 +1539,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
+				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1554,9 +1555,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ModernWallet/ModernWallet.Test.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = SPFVYM4YAV;
@@ -1580,8 +1581,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
+				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1650,7 +1651,7 @@
 				CODE_SIGN_ENTITLEMENTS = ModernWallet/ModernWallet.Test.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -1676,8 +1677,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
+				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1737,9 +1738,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ModernWallet/ModernWallet.Test.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = SPFVYM4YAV;
@@ -1764,8 +1765,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
+				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
