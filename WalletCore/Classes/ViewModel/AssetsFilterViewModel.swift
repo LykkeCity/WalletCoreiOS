@@ -24,11 +24,23 @@ public class AssetsFilterViewModel {
     /// On each filter event filteredAssets will be updated accordingly
     public let filter = Variable<FilterType>(.all)
     
+    public let filteredSum = Variable<Decimal>(0.0)
+    
     public init(assetsToFilter: Observable<[Variable<Asset>]>) {
         filteredAssets = Observable
             .combineLatest(assetsToFilter, filter.asObservable())
             .filterByType()
             .asDriver(onErrorJustReturn: [])
+        
+        filteredAssets.asObservable()
+            .map({ assets in
+                var result: Decimal = 0.0
+                for asset in assets {
+                    result += asset.value.realCurrency.value
+                }
+                return result
+                })
+            .bind(to: filteredSum)
     }
 }
 
