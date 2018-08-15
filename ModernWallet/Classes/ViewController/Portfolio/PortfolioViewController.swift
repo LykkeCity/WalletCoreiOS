@@ -15,12 +15,12 @@ import KYDrawerController
 import WalletCore
 
 class PortfolioViewController: UIViewController {
-
+    
     @IBOutlet weak var filterContainer: UIStackView!
     @IBOutlet weak var fiatFilterButton: IconOverTextButton!
     @IBOutlet weak var allFilterButton: IconOverTextButton!
     @IBOutlet weak var cryptoFilterButton: IconOverTextButton!
-
+    
     @IBOutlet weak var tableHeader: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pieChartView: PieChartView!
@@ -55,7 +55,7 @@ class PortfolioViewController: UIViewController {
         return LoadingViewModel([
             self.totalBalanceViewModel.loading.isLoading,
             self.walletsViewModel.loadingViewModel.isLoading.take(2) // prevent the loading indicator to appear when this request is refreshed
-        ])
+            ])
     }()
     
     fileprivate lazy var assetsFilterViewModel = {
@@ -126,7 +126,7 @@ class PortfolioViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let assetViewController = segue.destination as? AssetDetailViewController,
-           let asset = sender as? Variable<Asset>
+            let asset = sender as? Variable<Asset>
         {
             assetViewController.asset = asset
         }
@@ -142,7 +142,7 @@ fileprivate extension AssetsFilterViewModel {
         let pieChartValueFormatter = viewController.pieChartValueFormatter
         
         return Driver
-            .merge(filteredAssets.mapToPieChartDataSet(), filteredAssets.mapToEmptyChart())
+            .merge(filteredAssets.mapToPieChartDataSet(filteredSum: self.filteredSum), filteredAssets.mapToEmptyChart())
             .drive(onNext: { dataSet in
                 
                 dataSet.colors = [UIColor.clear]
@@ -157,7 +157,7 @@ fileprivate extension AssetsFilterViewModel {
             .map{ $0.sorted{ $0.0.value.percent > $0.1.value.percent } }
             .bind(to: tableView.rx.items(cellIdentifier: "AssetInfoTableViewCell", cellType: AssetInfoTableViewCell.self)) { (row, element, cell) in
                 cell.bind(toAsset: AssetCellViewModel(element))
-            }
+        }
     }
     
     private func bindFilter(toViewController viewController: PortfolioViewController) -> Disposable {
@@ -249,13 +249,16 @@ fileprivate extension PortfolioViewController {
 
 // MARK: - RX custom operators
 fileprivate extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, Self.E == [Variable<Asset>] {
-    func mapToPieChartDataSet() -> Driver<PieChartDataSet> {
+    func mapToPieChartDataSet(filteredSum: Variable<Decimal>) -> Driver<PieChartDataSet> {
         
         return
             filter{ $0.isNotEmpty }
-            .map{ $0.filter{$0.value.percent > 0} }
-            .map{ $0.map{ PieChartDataEntry(value: $0.value.percent, data: $0.value) } }
-            .map{ PieChartDataSet(values: $0, label: nil) }
+                .map{ $0.filter{$0.value.percent > 0} }
+                .map{
+                    $0.map{
+                        let percentFilter = ($0.value.realCurrency.value / filteredSum.value).doubleValue * 100
+                        return PieChartDataEntry(value: percentFilter, data: $0.value) } }
+                .map{ PieChartDataSet(values: $0, label: nil) }
     }
     
     func mapToEmptyChart() -> Driver<PieChartDataSet> {
@@ -265,7 +268,7 @@ fileprivate extension SharedSequenceConvertibleType where SharingStrategy == Dri
                 PieChartDataEntry(value: 20.0, data: "0%" as AnyObject),
                 PieChartDataEntry(value: 30.0, data: "0%" as AnyObject),
                 PieChartDataEntry(value: 40.0, data: "0%" as AnyObject)
-            ]}
+                ]}
             .map{PieChartDataSet(values: $0, label: nil)}
     }
 }
