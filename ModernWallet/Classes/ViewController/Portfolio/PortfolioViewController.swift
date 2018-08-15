@@ -230,34 +230,17 @@ fileprivate extension TotalBalanceViewModel {
 }
 
 // MARK: - KycGetStatusViewModel binder to PortfolioViewController {
-fileprivate extension KycGetStatusViewModel {
-    private var kycSaveKey: String {
-        return "KycApprovalScreenShownToUser"
-    }
-    
+fileprivate extension KycGetStatusViewModel {    
     func bind(toViewController viewController: PortfolioViewController) -> Disposable {
-        return UserDefaults.standard.rx
-            .observe(String.self, kycSaveKey)
-            .map { storedValue in
-                guard let storedValue = storedValue else {
-                    // No value yet added to UserDefaults (fresh install)
-                    return true
-                }
+        return kycStatusОк
+            .subscribe(onNext: { [weak viewController] _ in
                 
-                return storedValue != LWKeychainManager.instance().login
-            }
-            .debug(kycSaveKey)
-            .filter { $0 }
-            .flatMapLatest { _ in return self.kycStatusОк }
-            .subscribe(onNext: { [weak self] _ in
-                
-                guard let strongSelf = self,
-                    let kycFinishedViewController = UIStoryboard(name: "KYC", bundle: nil)
+                guard let kycFinishedViewController = UIStoryboard(name: "KYC", bundle: nil)
                         .instantiateViewController(withIdentifier: "kycFinishedVC")
                             as? KYCFinishedViewController else { return }
                 
-                viewController.present(kycFinishedViewController, animated: true, completion: {
-                    UserDefaults.standard.set(LWKeychainManager.instance().login, forKey: strongSelf.kycSaveKey)
+                viewController?.present(kycFinishedViewController, animated: true, completion: {
+                    UserDefaults.standard.set(LWKeychainManager.instance().login, forKey: KycGetStatusViewModel.kycSaveKey)
                 })
             })
     }

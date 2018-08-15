@@ -120,8 +120,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.1)
   - Charts (= 3.0.2)
-  - Crashlytics (~> 3.9.3)
-  - Fabric (~> 1.7.2)
+  - Crashlytics
+  - Fabric
   - Firebase/Core
   - Koyomi (from `https://github.com/whoislyuboanyway/Koyomi`, branch `show-border-instead-of-filled-background`)
   - KYDrawerController
@@ -140,7 +140,7 @@ DEPENDENCIES:
   - XLPagerTabStrip (~> 7.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - Alamofire
     - AlamofireImage
@@ -248,6 +248,6 @@ SPEC CHECKSUMS:
   WalletCore: 95d4cbb9e4672f6425850cf6be13de91fdd97fd1
   XLPagerTabStrip: 9be80a66c6b7d60306b2c0a6004965016d68f813
 
-PODFILE CHECKSUM: 4580573210e7c0946c2dce1e7ea887cf8cc549fd
+PODFILE CHECKSUM: a5316707bbea12101701f5327e5782ac2542a949
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.0
