@@ -52,11 +52,11 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="398"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPC-xR-bUp" customClass="PieChartCenter" customModule="ModernMoney" customModuleProvider="target">
-                                                            <rect key="frame" x="107.66666666666669" y="119" width="160" height="160"/>
+                                                            <rect key="frame" x="117.66666666666669" y="129" width="140" height="140"/>
                                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="HPC-xR-bUp" secondAttribute="height" multiplier="1:1" id="7V5-Pi-JXl"/>
-                                                                <constraint firstAttribute="height" constant="160" id="d8d-rf-OJR"/>
+                                                                <constraint firstAttribute="height" constant="140" id="d8d-rf-OJR"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -305,7 +305,7 @@
                                         <rect key="frame" x="109.66666666666669" y="11" width="155" height="24"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLj-NN-jgj" customClass="IconOverTextButton" customModule="ModernMoney" customModuleProvider="target">
-                                        <rect key="frame" x="323.33333333333331" y="1" width="43.666666666666686" height="44"/>
+                                        <rect key="frame" x="294" y="1" width="73" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="9N1-LK-uVA"/>
                                         </constraints>
@@ -564,17 +564,17 @@ Please check and try again.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdX-4x-Q2r" userLabel="Balance Container">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="221.33333333333334"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-p9-w07" userLabel="Asset Balance">
-                                                <rect key="frame" x="107.66666666666669" y="71.333333333333329" width="160" height="78.999999999999986"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-p9-w07" userLabel="Asset Balance">
+                                                <rect key="frame" x="107.66666666666669" y="71.333333333333314" width="160" height="119"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
-                                                        <rect key="frame" x="48.333333333333329" y="0.3333333333333286" width="63.666666666666671" height="11"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TOTAL VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf8-j1-Q4T">
+                                                        <rect key="frame" x="48.333333333333329" y="0.3333333333333357" width="63.666666666666671" height="11"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="11"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1MM-5Y-eOM" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="15.333333333333329" width="160" height="30"/>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1MM-5Y-eOM" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="15.333333333333329" width="160" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -585,8 +585,8 @@ Please check and try again.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tF3-il-4Jb" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="49.333333333333329" width="160" height="30"/>
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tF3-il-4Jb" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="69.333333333333329" width="160" height="50"/>
                                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
