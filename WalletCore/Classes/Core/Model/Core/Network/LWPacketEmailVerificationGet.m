@@ -27,7 +27,9 @@
 
 - (NSDictionary *)params {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"email": self.email,
-                                                                                  @"code": self.code}];
+                                                                                  @"code": self.code,
+                                                                                  @"PartnerId": WalletCoreConfig.partnerId
+                                                                                  }];
     if (self.accessToken != nil) {
         params[@"Token"] = self.accessToken;
     }
