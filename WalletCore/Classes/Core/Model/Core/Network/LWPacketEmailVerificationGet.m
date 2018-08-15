@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketEmailVerificationGet.h"
+#import "WalletCoreConfig.h"
 
 
 @implementation LWPacketEmailVerificationGet
@@ -26,18 +27,20 @@
 }
 
 - (NSDictionary *)params {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"email": self.email,
-                                                                                  @"code": self.code,
-                                                                                  @"PartnerId": WalletCoreConfig.partnerId
-                                                                                  }];
-    if (self.accessToken != nil) {
-        params[@"Token"] = self.accessToken;
-    }
-    return params;
-}
-
-- (NSString *)urlRelative {
-    return @"EmailVerification/verifyEmail";
+    
+    return @{@"Email": self.email,
+             @"Code": self.code,
+             @"PartnerId": WalletCoreConfig.partnerId
+             };
+    
+//    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"email": self.email,
+//                                                                                  @"code": self.code,
+//                                                                                  @"PartnerId": WalletCoreConfig.partnerId
+//                                                                                  }];
+//    if (self.accessToken != nil) {
+//        params[@"Token"] = self.accessToken;
+//    }
+//    return params;
 }
 
 - (NSString *)urlRelative {
