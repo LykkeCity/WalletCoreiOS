@@ -55,7 +55,7 @@ class RecoverySetHintFormController: RecoveryController {
     }
     
     var recoveryStep: RecoveryController? {
-        return nil
+        return RecoverySMSFormController(viewModel: self.viewModel)
     }
     
     private var disposeBag = DisposeBag()

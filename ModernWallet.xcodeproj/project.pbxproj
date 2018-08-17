@@ -203,6 +203,7 @@
 		EC25A6921C331F0B00F223FF /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */; };
 		EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6632431C175B54004353F5 /* Assets.xcassets */; };
 		EC9C947D1C899019006FD46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */; };
+		F729155F2126E9DF003211FC /* RecoverySMSFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729155E2126E9DF003211FC /* RecoverySMSFormController.swift */; };
 		F74D288C2112DE6B007B6E65 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74D288B2112DE6B007B6E65 /* String+Extensions.swift */; };
 		F797E064211B0B3B000740CA /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F797E063211B0B3B000740CA /* ConfirmationViewController.swift */; };
 		F7CBFA16210B68EA00788799 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CBFA15210B68EA00788799 /* WebView.swift */; };
@@ -415,6 +416,7 @@
 		E7A1BF9F20F797B30058AC7B /* LimitedHoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitedHoshiTextField.swift; sourceTree = "<group>"; };
 		EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F729155E2126E9DF003211FC /* RecoverySMSFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverySMSFormController.swift; sourceTree = "<group>"; };
 		F74D288B2112DE6B007B6E65 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		F797E063211B0B3B000740CA /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		F7CBFA15210B68EA00788799 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -832,6 +834,7 @@
 				C5A8F4E9212087170012CE11 /* RecoverySeedWordsFormController.swift */,
 				C5A8F4EB2120934C0012CE11 /* RecoverySetPasswordFormController.swift */,
 				C5DBA5A1212327890069B43E /* RecoverySetHintFormController.swift */,
+				F729155E2126E9DF003211FC /* RecoverySMSFormController.swift */,
 				66385DE11FCEDE42002DC70B /* SignUpEmailFormController.swift */,
 				66385DE31FCEDE71002DC70B /* SignUpEmailCodeFormController.swift */,
 				66385DE51FCEDE88002DC70B /* SignUpSetPasswordFormController.swift */,
@@ -1309,6 +1312,7 @@
 				66DA84CD1FA7499B00049EDE /* CashOutSectionHeaderTableViewCell.swift in Sources */,
 				61968D7E20A4837E00445ABF /* DimPresentationAnimator.swift in Sources */,
 				66907BA31FD010CF00FAD801 /* ReloadTrigger.swift in Sources */,
+				F729155F2126E9DF003211FC /* RecoverySMSFormController.swift in Sources */,
 				CC94588A1F06630900676249 /* AddMoneyCCStep3ViewController.swift in Sources */,
 				25A41843201A0233004F63BD /* SettingsTermsOfUseViewController.swift in Sources */,
 				66385DE81FCEDEAF002DC70B /* SignUpPasswordHintFormController.swift in Sources */,
