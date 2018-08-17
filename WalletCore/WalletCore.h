@@ -141,3 +141,4 @@ FOUNDATION_EXPORT const unsigned char WalletCoreVersionString[];
 #import <WalletCore/LWEthereumTransactionsManager.h>
 #import <WalletCore/NSObject+GDXObserver.h>
 #import <WalletCore/LWSignatureVerificationTokenHelper.h>
+#import <WalletCore/LWPacketRecoverySMSConfirmation.h>
