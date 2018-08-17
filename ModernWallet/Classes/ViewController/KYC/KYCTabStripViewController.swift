@@ -76,10 +76,11 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
     
     override func viewDidLoad() {
         // change selected bar color
+        guard let font = UIFont(name: "Geomanist-Book", size: 14) else {return}
         settings.style.buttonBarBackgroundColor = .clear
         settings.style.buttonBarItemBackgroundColor = .clear
         settings.style.selectedBarBackgroundColor = .white
-        settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 14)
+        settings.style.buttonBarItemFont = font
         settings.style.selectedBarHeight = 2.0
         settings.style.buttonBarMinimumLineSpacing = 0
         settings.style.buttonBarItemTitleColor = .white

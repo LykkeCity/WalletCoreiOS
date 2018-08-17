@@ -295,6 +295,7 @@
                                             <constraint firstAttribute="height" constant="44" id="2EN-6u-Feq"/>
                                             <constraint firstAttribute="width" constant="44" id="py9-u4-fnC"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="10"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="MenuIcon"/>
                                         <connections>
@@ -845,7 +846,7 @@ Please check and try again.</string>
                                                                     <constraint firstAttribute="width" constant="48" id="cIP-Wr-oFn"/>
                                                                     <constraint firstAttribute="height" constant="27" id="fFy-ff-LQn"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" name="GillSans-Light" family="Gill Sans" pointSize="8"/>
+                                                                <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -1103,7 +1104,8 @@ Please check and try again.</string>
                                         <rect key="frame" x="12" y="455.66666666666663" width="351" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7e-Nc-75u">
-                                                <rect key="frame" x="0.0" y="0.0" width="169.66666666666666" height="60"/>
+                                                <rect key="frame" x="2" y="5.6843418860808015e-14" width="169.66666666666666" height="60"/>
+                                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="15"/>
                                                 <state key="normal" title="CONTINUE"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -1116,6 +1118,7 @@ Please check and try again.</string>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8t-oc-N00">
                                                 <rect key="frame" x="181.66666666666663" y="0.0" width="169.33333333333337" height="60"/>
+                                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="15"/>
                                                 <state key="normal" title="CANCEL"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
