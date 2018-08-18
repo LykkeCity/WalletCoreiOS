@@ -1,5 +1,5 @@
 //
-//  LWRxAuthManagerRecoverySmsConfirmation.swift
+//  LWRxAuthManagerChangePinAndPassword.swift
 //  WalletCore
 //
 //  Created by Lyubomir Marinov on 15.08.18.
@@ -9,11 +9,11 @@
 import UIKit
 import RxSwift
 
-public class LWRxAuthManagerRecoverySmsConfirmation: NSObject {
+public class LWRxAuthManagerChangePinAndPassword: NSObject {
     
-    public typealias Packet = LWPacketRecoverySMSConfirmation
-    public typealias Result = ApiResult<LWPacketRecoverySMSConfirmation>
-    public typealias ResultType = LWPacketRecoverySMSConfirmation
+    public typealias Packet = LWPacketChangePINAndPassword
+    public typealias Result = ApiResult<LWPacketChangePINAndPassword>
+    public typealias ResultType = LWPacketChangePINAndPassword
     public typealias RequestParams = (LWRecoveryPasswordModel)
     
     override init() {
@@ -36,15 +36,15 @@ public class LWRxAuthManagerRecoverySmsConfirmation: NSObject {
 }
 
 
-extension LWRxAuthManagerRecoverySmsConfirmation: AuthManagerProtocol {
+extension LWRxAuthManagerChangePinAndPassword: AuthManagerProtocol {
     
-    public func createPacket(withObserver observer: Any, params: RequestParams) -> LWPacketRecoverySMSConfirmation {
+    public func createPacket(withObserver observer: Any, params: RequestParams) -> LWPacketChangePINAndPassword {
         return Packet(observer: observer, recModel: params)
     }
 }
 
 
-extension LWPacketRecoverySMSConfirmation {
+extension LWPacketChangePINAndPassword {
     
     convenience init(observer: Any, recModel: LWRecoveryPasswordModel) {
         self.init()

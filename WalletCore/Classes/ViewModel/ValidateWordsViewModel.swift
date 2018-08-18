@@ -12,8 +12,6 @@ import RxCocoa
 
 public class ValidateWordsViewModel {
     
-    public typealias SignatureData = (signature: String, isConfirmed: Bool)
-    
     // IN:
     /// Users email
     public let email = Variable<String>("")
@@ -26,7 +24,7 @@ public class ValidateWordsViewModel {
     public let areSeedWordsValid: Observable<Bool>
     
     /// Ownership data from the API
-    public let ownershipData: Observable<SignatureData>
+    public let isOwnershipConfirmed: Observable<Bool>
     
     /// Triggered when SUBMIT button is tapped
     public let trigger = PublishSubject<Void>()
@@ -55,8 +53,8 @@ public class ValidateWordsViewModel {
             .flatMapLatest { authManager.ownershipMessage.request(withParams: $0) }
             .shareReplay(1)
         
-        self.ownershipData = ownershipMessageWithSignatureRequest.filterSuccess()
-            .map { (signature: $0.signature, isConfirmed: $0.confirmedOwnership) }
+        self.isOwnershipConfirmed = ownershipMessageWithSignatureRequest.filterSuccess()
+            .map { $0.confirmedOwnership }
 
         self.error = Observable.merge([
             ownershipMessageRequest.filterError(),
