@@ -19,10 +19,10 @@ class RecoverySMSFormController: RecoveryController {
         self.viewModel = viewModel
     }
     
-    lazy var smsProcessViewModel: SmsProcessViewModel = {
-        return SmsProcessViewModel(email: self.viewModel.email, signedOwnershipMessage: self.viewModel.signedOwnershipMessage)
+    lazy var validationViewModel: ValidateSmsCodeViewModel = {
+        return ValidateSmsCodeViewModel()
     }()
-    
+
     lazy var formViews: [UIView] = {
         return [
             self.titleLabel(title: Localize("auth.newDesign.signUpConfirmPhone")),
@@ -89,7 +89,21 @@ class RecoverySMSFormController: RecoveryController {
                  error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
-        smsProcessViewModel.smsTrigger.value = ()
+        let smsCodeObservable = smsCodeTextField.rx.text
+            .orEmpty
+            .shareReplay(1)
+        
+        smsCodeObservable
+            .bind(to: viewModel.smsCode)
+            .disposed(by: disposeBag)
+        
+        smsCodeObservable
+            .bind(to: validationViewModel.smsCode)
+            .disposed(by: disposeBag)
+        
+        validationViewModel.isSmsCodeValid
+            .bind(to: button.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
     
     func unbind() {

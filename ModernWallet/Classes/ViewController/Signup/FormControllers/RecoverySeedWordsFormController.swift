@@ -102,16 +102,7 @@ class RecoverySeedWordsFormController: RecoveryController {
             .bind(to: seedWordsViewModel.trigger)
             .disposed(by: disposeBag)
         
-        let ownershipData = seedWordsViewModel.ownershipData
-            .shareReplay(1)
-        
-        ownershipData
-            .map { $0.signature }
-            .bind(to: recoveryViewModel.signedOwnershipMessage)
-            .disposed(by: disposeBag)
-        
-        ownershipData
-            .map { $0.isConfirmed }
+        seedWordsViewModel.isOwnershipConfirmed
             .filter { $0 }
             .map { _ in return () }
             .bind(to: recoveryTrigger)

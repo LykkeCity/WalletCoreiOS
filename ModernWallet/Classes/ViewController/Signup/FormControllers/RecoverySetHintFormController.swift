@@ -74,7 +74,7 @@ class RecoverySetHintFormController: RecoveryController {
             .shareReplay(1)
         
         hintObservable
-            .bind(to: viewModel.newHint)
+            .bind(to: viewModel.hint)
             .disposed(by: disposeBag)
         
         hintObservable
@@ -97,7 +97,7 @@ class RecoverySetHintFormController: RecoveryController {
             .shareReplay(1)
         
         pinTriggered
-            .bind(to: viewModel.newPin)
+            .bind(to: viewModel.pin)
             .disposed(by: disposeBag)
         
         pinTriggered

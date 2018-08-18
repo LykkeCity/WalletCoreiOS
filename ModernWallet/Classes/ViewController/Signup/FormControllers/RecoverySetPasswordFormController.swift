@@ -79,10 +79,6 @@ class RecoverySetPasswordFormController: RecoveryController {
         let passwordObservable = passwordTextField.rx.text
             .orEmpty
             .shareReplay(1)
-        
-        passwordObservable
-            .bind(to: viewModel.newPassword)
-            .disposed(by: disposeBag)
             
         passwordObservable
             .bind(to: validationViewModel.password)
