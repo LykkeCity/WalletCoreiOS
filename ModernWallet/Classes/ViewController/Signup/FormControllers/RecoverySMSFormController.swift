@@ -13,14 +13,30 @@ import WalletCore
 
 class RecoverySMSFormController: RecoveryController {
     
-    let viewModel: RecoveryViewModel
+    let recoveryModel: LWRecoveryPasswordModel
     
-    init(viewModel: RecoveryViewModel) {
-        self.viewModel = viewModel
+    private lazy var recoveryModelObservable: Observable<LWRecoveryPasswordModel> = {
+       return Observable.just(self.recoveryModel)
+    }()
+    
+    init(recoveryModel: LWRecoveryPasswordModel) {
+        self.recoveryModel = recoveryModel
     }
     
     lazy var validationViewModel: ValidateSmsCodeViewModel = {
         return ValidateSmsCodeViewModel()
+    }()
+    
+    lazy var sendSmsViewModel: SendSmsViewModel = {
+        return SendSmsViewModel(inputRecoveryModel: self.recoveryModelObservable)
+    }()
+    
+    lazy var confirmSmsViewModel: ConfirmSmsViewModel = {
+        return ConfirmSmsViewModel()
+    }()
+    
+    lazy var changePinViewModel: ChangePinViewModel = {
+        return ChangePinViewModel()
     }()
 
     lazy var formViews: [UIView] = {
@@ -78,6 +94,8 @@ class RecoverySMSFormController: RecoveryController {
         return nil
     }
     
+    private var smsCheckTrigger = PublishSubject<Void>()
+    
     private var disposeBag = DisposeBag()
     
     func bind<T>(button: UIButton,
@@ -94,7 +112,7 @@ class RecoverySMSFormController: RecoveryController {
             .shareReplay(1)
         
         smsCodeObservable
-            .bind(to: viewModel.smsCode)
+            .bind(to: recoveryModel.rx.smsCode)
             .disposed(by: disposeBag)
         
         smsCodeObservable
@@ -103,6 +121,43 @@ class RecoverySMSFormController: RecoveryController {
         
         validationViewModel.isSmsCodeValid
             .bind(to: button.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        resendSmsButton.rx.tap
+            .bind(to: sendSmsViewModel.smsSendTrigger)
+            .disposed(by: disposeBag)
+        
+        sendSmsViewModel.outputRecoveryModel
+            .bind(to: confirmSmsViewModel.inputRecoveryModel)
+            .disposed(by: disposeBag)
+        
+        smsCheckTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
+        button.rx.tap
+            .bind(to: smsCheckTrigger)
+            .disposed(by: disposeBag)
+            
+        smsCheckTrigger
+            .withLatestFrom(confirmSmsViewModel.outputRecoveryModel)
+            .bind(to: changePinViewModel.recoveryModel)
+            .disposed(by: disposeBag)
+        
+        changePinViewModel.isChangeConfirmed
+            .bind(to: nextTrigger)
+            .disposed(by: disposeBag)
+        
+        Observable.merge([
+            self.sendSmsViewModel.loadingViewModel.isLoading,
+            self.confirmSmsViewModel.loadingViewModel.isLoading,
+            self.changePinViewModel.loadingViewModel.isLoading
+        ])
+        .bind(to: loading)
+        .disposed(by: disposeBag)
+        
+        changePinViewModel.errors
+            .bind(to: error)
             .disposed(by: disposeBag)
     }
     

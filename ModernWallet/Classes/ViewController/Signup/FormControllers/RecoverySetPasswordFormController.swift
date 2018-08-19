@@ -13,10 +13,10 @@ import WalletCore
 
 class RecoverySetPasswordFormController: RecoveryController {
     
-    let viewModel: RecoveryViewModel
+    let recoveryModel: LWRecoveryPasswordModel
     
-    init(viewModel: RecoveryViewModel) {
-        self.viewModel = viewModel
+    init(recoveryModel: LWRecoveryPasswordModel) {
+        self.recoveryModel = recoveryModel
     }
     
     lazy var validationViewModel: ValidatePasswordViewModel = {
@@ -62,8 +62,10 @@ class RecoverySetPasswordFormController: RecoveryController {
     }
     
     var recoveryStep: RecoveryController? {
-        return RecoverySetHintFormController(viewModel: self.viewModel)
+        return RecoverySetHintFormController(recoveryModel: self.recoveryModel)
     }
+    
+    private var passwordTrigger = PublishSubject<Void>()
     
     private var disposeBag = DisposeBag()
     
@@ -79,6 +81,10 @@ class RecoverySetPasswordFormController: RecoveryController {
         let passwordObservable = passwordTextField.rx.text
             .orEmpty
             .shareReplay(1)
+        
+        passwordObservable
+            .bind(to: recoveryModel.rx.password)
+            .disposed(by: disposeBag)
             
         passwordObservable
             .bind(to: validationViewModel.password)
@@ -95,7 +101,14 @@ class RecoverySetPasswordFormController: RecoveryController {
         
         // Bind empty string to `recoveryPinTrigger` to show the pin view controller
         button.rx.tap
-            .map { _ in return () }
+            .bind(to: passwordTrigger)
+            .disposed(by: disposeBag)
+        
+        passwordTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
+        passwordTrigger.asObservable()
             .bind(to: recoveryTrigger)
             .disposed(by: disposeBag)
     }

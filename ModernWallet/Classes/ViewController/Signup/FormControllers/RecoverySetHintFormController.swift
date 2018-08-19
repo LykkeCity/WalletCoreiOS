@@ -13,10 +13,10 @@ import WalletCore
 
 class RecoverySetHintFormController: RecoveryController {
     
-    let viewModel: RecoveryViewModel
+    let recoveryModel: LWRecoveryPasswordModel
     
-    init(viewModel: RecoveryViewModel) {
-        self.viewModel = viewModel
+    init(recoveryModel: LWRecoveryPasswordModel) {
+        self.recoveryModel = recoveryModel
     }
     
     lazy var validationViewModel: ValidateHintViewModel = {
@@ -55,8 +55,10 @@ class RecoverySetHintFormController: RecoveryController {
     }
     
     var recoveryStep: RecoveryController? {
-        return RecoverySMSFormController(viewModel: self.viewModel)
+        return RecoverySMSFormController(recoveryModel: self.recoveryModel)
     }
+    
+    private var hintTrigger = PublishSubject<Void>()
     
     private var disposeBag = DisposeBag()
     
@@ -74,7 +76,7 @@ class RecoverySetHintFormController: RecoveryController {
             .shareReplay(1)
         
         hintObservable
-            .bind(to: viewModel.hint)
+            .bind(to: recoveryModel.rx.hint)
             .disposed(by: disposeBag)
         
         hintObservable
@@ -97,12 +99,20 @@ class RecoverySetHintFormController: RecoveryController {
             .shareReplay(1)
         
         pinTriggered
-            .bind(to: viewModel.pin)
+            .bind(to: recoveryModel.rx.pin)
             .disposed(by: disposeBag)
         
         pinTriggered
             .map { _ in return () }
+            .bind(to: hintTrigger)
+            .disposed(by: disposeBag)
+        
+        hintTrigger
             .bind(to: recoveryTrigger)
+            .disposed(by: disposeBag)
+
+        hintTrigger
+            .bindToResignFirstResponder(views: formViews)
             .disposed(by: disposeBag)
     }
     

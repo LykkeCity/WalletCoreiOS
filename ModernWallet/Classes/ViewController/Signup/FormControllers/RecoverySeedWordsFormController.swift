@@ -14,13 +14,12 @@ import WalletCore
 class RecoverySeedWordsFormController: RecoveryController {
     
     init(email: String) {
-        self.recoveryViewModel.email.value = email
         self.seedWordsViewModel.email.value = email
+        recoveryModel.email = email
     }
     
-    /// Pass this view model across the recovery screens
-    lazy var recoveryViewModel: RecoveryViewModel = {
-       return RecoveryViewModel()
+    lazy var recoveryModel: LWRecoveryPasswordModel = {
+        return LWRecoveryPasswordModel()
     }()
     
     lazy var seedWordsViewModel: ValidateWordsViewModel = {
@@ -51,7 +50,7 @@ class RecoverySeedWordsFormController: RecoveryController {
     }
 
     var recoveryStep: RecoveryController? {
-        return RecoverySetPasswordFormController(viewModel: recoveryViewModel)
+        return RecoverySetPasswordFormController(recoveryModel: self.recoveryModel)
     }
     
     var setPinObservable: PublishSubject<(complete: Bool, pin: String)>? {
@@ -113,6 +112,11 @@ class RecoverySeedWordsFormController: RecoveryController {
             .disposed(by: disposeBag)
         
         isLoading.asObservable()
+            .bind(to: loading)
+            .disposed(by: disposeBag)
+        
+        seedWordsViewModel.loadingViewModel
+            .isLoading
             .bind(to: loading)
             .disposed(by: disposeBag)
     }

@@ -116,6 +116,21 @@ class SignUpFormViewController: UIViewController {
         guard let formController = forms.last else {
             return
         }
+        
+        if formController is RecoveryController {
+            let alertController = UIAlertController(title: Localize("restore.success.title"),
+                                                    message: Localize("restore.success.text"),
+                                                    preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: Localize("restore.success.button"), style: .default) { _ in
+                self.navigationController?.dismiss(animated: true)
+            }
+            alertController.addAction(okAction)
+            
+            navigationController?.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
         if let nextFormController = formController.next {
             push(formController: nextFormController, animated: true)
         }
