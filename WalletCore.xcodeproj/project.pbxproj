@@ -680,9 +680,12 @@
 		C5999A8E21280E2F00CB5B8B /* LWRxAuthManagerRecoverySmsConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5999A8D21280E2E00CB5B8B /* LWRxAuthManagerRecoverySmsConfirmation.swift */; };
 		C5999A902128460B00CB5B8B /* LWRxAuthManagerChangePinAndPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5999A8F2128460B00CB5B8B /* LWRxAuthManagerChangePinAndPassword.swift */; };
 		C5999A9221285D5300CB5B8B /* ValidateSmsCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5999A9121285D5300CB5B8B /* ValidateSmsCodeViewModel.swift */; };
+		C5999A9421286D4600CB5B8B /* SendSmsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5999A9321286D4600CB5B8B /* SendSmsViewModel.swift */; };
+		C5999A96212872C900CB5B8B /* ConfirmSmsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5999A95212872C900CB5B8B /* ConfirmSmsViewModel.swift */; };
+		C5999A9821287DB600CB5B8B /* LWRecoveryPasswordModel+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5999A9721287DB600CB5B8B /* LWRecoveryPasswordModel+Rx.swift */; };
+		C5999A9A2128C7B000CB5B8B /* ChangePinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5999A992128C7B000CB5B8B /* ChangePinViewModel.swift */; };
 		C59B28332029DD7C00AA2E39 /* TransactionFilterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */; };
 		C59B28352029DD9500AA2E39 /* TransactionFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */; };
-		C5A8F4EE2120A0AB0012CE11 /* RecoveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4ED2120A0AB0012CE11 /* RecoveryViewModel.swift */; };
 		C5A8F4F02120B0890012CE11 /* ValidateWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4EF2120B0890012CE11 /* ValidateWordsViewModel.swift */; };
 		C5A8F4F22120B5350012CE11 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4F12120B5350012CE11 /* Date+Extension.swift */; };
 		C5A8F4F42120BA0D0012CE11 /* LWRxAuthManagerOwnershipMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4F32120BA0D0012CE11 /* LWRxAuthManagerOwnershipMessage.swift */; };
@@ -1407,9 +1410,12 @@
 		C5999A8D21280E2E00CB5B8B /* LWRxAuthManagerRecoverySmsConfirmation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerRecoverySmsConfirmation.swift; sourceTree = "<group>"; };
 		C5999A8F2128460B00CB5B8B /* LWRxAuthManagerChangePinAndPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerChangePinAndPassword.swift; sourceTree = "<group>"; };
 		C5999A9121285D5300CB5B8B /* ValidateSmsCodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateSmsCodeViewModel.swift; sourceTree = "<group>"; };
+		C5999A9321286D4600CB5B8B /* SendSmsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendSmsViewModel.swift; sourceTree = "<group>"; };
+		C5999A95212872C900CB5B8B /* ConfirmSmsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSmsViewModel.swift; sourceTree = "<group>"; };
+		C5999A9721287DB600CB5B8B /* LWRecoveryPasswordModel+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWRecoveryPasswordModel+Rx.swift"; sourceTree = "<group>"; };
+		C5999A992128C7B000CB5B8B /* ChangePinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePinViewModel.swift; sourceTree = "<group>"; };
 		C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterFormatter.swift; sourceTree = "<group>"; };
 		C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterViewModel.swift; sourceTree = "<group>"; };
-		C5A8F4ED2120A0AB0012CE11 /* RecoveryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryViewModel.swift; sourceTree = "<group>"; };
 		C5A8F4EF2120B0890012CE11 /* ValidateWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateWordsViewModel.swift; sourceTree = "<group>"; };
 		C5A8F4F12120B5350012CE11 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C5A8F4F32120BA0D0012CE11 /* LWRxAuthManagerOwnershipMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOwnershipMessage.swift; sourceTree = "<group>"; };
@@ -2346,7 +2352,9 @@
 				C58D92712120EE5A00968835 /* ValidatePasswordViewModel.swift */,
 				C5DBA5A32123285F0069B43E /* ValidateHintViewModel.swift */,
 				C5999A9121285D5300CB5B8B /* ValidateSmsCodeViewModel.swift */,
-				C5A8F4ED2120A0AB0012CE11 /* RecoveryViewModel.swift */,
+				C5999A9321286D4600CB5B8B /* SendSmsViewModel.swift */,
+				C5999A95212872C900CB5B8B /* ConfirmSmsViewModel.swift */,
+				C5999A992128C7B000CB5B8B /* ChangePinViewModel.swift */,
 				467C205A1FB452F6002A90AE /* PhoneNumberPinViewModel.swift */,
 				467C20531FB452F5002A90AE /* PhoneNumberViewModel.swift */,
 				467C20591FB452F6002A90AE /* PinGetViewModel.swift */,
@@ -2526,6 +2534,7 @@
 				46B583701F94C3CF00B475DB /* UIImage+Extension.swift */,
 				4649C6331FACB8AC00765579 /* Array+Extensions.swift */,
 				F556C7572023527300144A58 /* ObservableType+Filters.swift */,
+				C5999A9721287DB600CB5B8B /* LWRecoveryPasswordModel+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3176,6 +3185,7 @@
 				CC0A16B51F4C446500CC40C3 /* LWRxAuthManagerPostClientCodes.swift in Sources */,
 				46C9B0401F417C1B00B83CCB /* WalletsViewModel.swift in Sources */,
 				46C9AF741F417BD800B83CCB /* LWValidator.m in Sources */,
+				C5999A96212872C900CB5B8B /* ConfirmSmsViewModel.swift in Sources */,
 				46C9B06D1F42C91B00B83CCB /* LWRxAuthManagerAssetPairRate.swift in Sources */,
 				467C20651FB452F7002A90AE /* TradingWalletViewModel.swift in Sources */,
 				46C9AEA61F417BD700B83CCB /* LWPacketBitcoinAddressValidation.m in Sources */,
@@ -3268,11 +3278,11 @@
 				46C9B0671F42C91B00B83CCB /* LWAuthManagerPacketPrevCardPayment.swift in Sources */,
 				46C9B04E1F42C85200B83CCB /* LWAssetPairModel+Extensions.swift in Sources */,
 				469DA7171F6BFA91000B904C /* LWRxAuthManagerPinSecurityGet.swift in Sources */,
-				C5A8F4EE2120A0AB0012CE11 /* RecoveryViewModel.swift in Sources */,
 				46C08DAD1F989CCC0059BDD3 /* LWRxAuthManagerOffchainTrade.swift in Sources */,
 				46C08DBD1F98CD9E0059BDD3 /* LWPacketOffchainProcessChannel.swift in Sources */,
 				46286F661FC304D2002CAF8D /* InputForm.swift in Sources */,
 				46C9B0271F417C1B00B83CCB /* AssetCellViewModel.swift in Sources */,
+				C5999A9A2128C7B000CB5B8B /* ChangePinViewModel.swift in Sources */,
 				6656BAFC1FEA97D7006CAD5D /* NSURLRequest+ShowError.m in Sources */,
 				665960581FA354CA00DB3D62 /* CashOutBankAccountViewModel.swift in Sources */,
 				66BD6AD61F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift in Sources */,
@@ -3395,6 +3405,7 @@
 				46C9B06B1F42C91B00B83CCB /* LWRxMarketManager.swift in Sources */,
 				CC59AB161F4D7F190063AEA4 /* LWRxAuthManagerEncodeMainKey.swift in Sources */,
 				46C9AF281F417BD800B83CCB /* LWPacketPushSettingsGet.m in Sources */,
+				C5999A9821287DB600CB5B8B /* LWRecoveryPasswordModel+Rx.swift in Sources */,
 				874FA6741FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift in Sources */,
 				46C9AECA1F417BD700B83CCB /* LWPacketDicts.m in Sources */,
 				46C9B02A1F417C1B00B83CCB /* BuyStep3ViewModel.swift in Sources */,
@@ -3519,6 +3530,7 @@
 				46C9AE961F417BD700B83CCB /* LWPacketAssetPairRates.m in Sources */,
 				461C6F9C1F8BB54D00C5E8B3 /* TradingAssetsViewModel.swift in Sources */,
 				C59B28352029DD9500AA2E39 /* TransactionFilterViewModel.swift in Sources */,
+				C5999A9421286D4600CB5B8B /* SendSmsViewModel.swift in Sources */,
 				874FA6761FAD880E004E233F /* LWModelCashOutSwiftResult.swift in Sources */,
 				46C9B02B1F417C1B00B83CCB /* CopyWalletAddressViewModel.swift in Sources */,
 				46E5D0E51F5DD7ED00D78692 /* LWRxAuthManagerPhoneVerificationSet.swift in Sources */,

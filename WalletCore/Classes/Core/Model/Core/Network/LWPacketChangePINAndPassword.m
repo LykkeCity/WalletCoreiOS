@@ -29,12 +29,12 @@
 
 -(NSDictionary *) params
 {
-    
+
 //    NSString *pass=[LWCache instance].passwordIsHashed?[LWPrivateKeyManager hashForString:self.recModel.password]:self.recModel.password;
-    
+
     NSString *pass = [LWPrivateKeyManager hashForString:self.recModel.password]; //only hash is allowed for new passwords
-                                                        
-                                                        
+
+
     NSDictionary *params=@{
                            @"PartnerId": WalletCoreConfig.partnerId,
                            @"Email":self.recModel.email,

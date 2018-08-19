@@ -32,6 +32,9 @@ public class ValidateWordsViewModel {
     /// Loading view model
     public let loadingViewModel: LoadingViewModel
     
+    /// Errors occured
+    public let errors: Observable<[AnyHashable: Any]>
+    
     public let error: Driver<[AnyHashable: Any]>
     
     private let disposeBag = DisposeBag()
@@ -65,7 +68,13 @@ public class ValidateWordsViewModel {
         self.loadingViewModel = LoadingViewModel([    
             ownershipMessageRequest.isLoading(),
             ownershipMessageWithSignatureRequest.isLoading()
-            ])
+        ])
+        
+        self.errors = Observable.merge([
+            ownershipMessageRequest.filterError(),
+            ownershipMessageWithSignatureRequest.filterError()
+        ])
+        
     }
 }
 
