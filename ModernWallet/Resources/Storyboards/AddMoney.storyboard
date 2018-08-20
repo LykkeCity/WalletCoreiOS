@@ -12,6 +12,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Geomanist-Book.otf">
+            <string>Geomanist-Book</string>
+        </array>
         <array key="Geomanist-Light.otf">
             <string>Geomanist-Light</string>
         </array>
@@ -370,6 +373,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sV0-vB-roI"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="17"/>
                                                 <state key="normal" title="VIEW THE LYKKE BANK DETAILS">
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -403,6 +407,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="zpg-ok-IrP"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="17"/>
                                 <state key="normal" title="EMAIL ME LYKKE BANK DETAILS">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -1263,6 +1268,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="AO5-kT-u4Y"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="21"/>
                                 <state key="normal" title="SUBMIT">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1483,6 +1489,7 @@ transaction is confirmed in the blockchain</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="sDA-3G-Pic"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="15"/>
                                 <state key="normal" title="EMAIL ME">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
