@@ -24,7 +24,7 @@ public class AssetsFilterViewModel {
     /// On each filter event filteredAssets will be updated accordingly
     public let filter = Variable<FilterType>(.all)
     
-    public let filteredSum = Variable<Decimal>(0.0)
+    public let filteredSum: Driver<Decimal>
     
     public init(assetsToFilter: Observable<[Variable<Asset>]>) {
         filteredAssets = Observable
@@ -32,15 +32,9 @@ public class AssetsFilterViewModel {
             .filterByType()
             .asDriver(onErrorJustReturn: [])
         
-        filteredAssets.asObservable()
-            .map({ assets in
-                var result: Decimal = 0.0
-                for asset in assets {
-                    result += asset.value.realCurrency.value
-                }
-                return result
-                })
-            .bind(to: filteredSum)
+        self.filteredSum = filteredAssets.asObservable()
+            .map { $0.map { $0.value.realCurrency.value }.reduce(0.0, +) }
+            .asDriver(onErrorJustReturn: 0.0)
     }
 }
 
