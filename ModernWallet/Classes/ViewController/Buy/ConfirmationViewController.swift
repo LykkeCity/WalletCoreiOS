@@ -45,8 +45,8 @@ class ConfirmationViewController: UIViewController {
         
         confirmButton.rx.tap.asObservable()
             .flatMap { [weak self] _ -> Observable<Void> in
-                guard let `self` = self else { return Observable<Void>.never() }
-                return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+                guard let strongSelf = self else { return Observable<Void>.never() }
+                return PinViewController.presentOrderPinViewController(from: strongSelf, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
             }
             .subscribe(onNext: { [weak self] _ in
                 guard let strongSelf = self else { return }
