@@ -249,15 +249,17 @@ fileprivate extension PortfolioViewController {
 
 // MARK: - RX custom operators
 fileprivate extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, Self.E == [Variable<Asset>] {
-    func mapToPieChartDataSet(filteredSum: Variable<Decimal>) -> Driver<PieChartDataSet> {
+    func mapToPieChartDataSet(filteredSum: Driver<Decimal>) -> Driver<PieChartDataSet> {
         
         return
             filter{ $0.isNotEmpty }
-                .map{ $0.filter{$0.value.percent > 0} }
-                .map{
-                    $0.map{
-                        let percentFilter = ($0.value.realCurrency.value / filteredSum.value).doubleValue * 100
-                        return PieChartDataEntry(value: percentFilter, data: $0.value) } }
+                .map { $0.filter{$0.value.percent > 0} }
+                .withLatestFrom(filteredSum) { (assets: $0, filteredSum: $1) }
+                .map { value in
+                    value.assets.map {
+                        let percentFilter = ($0.value.realCurrency.value / value.filteredSum).doubleValue * 100
+                        return PieChartDataEntry(value: percentFilter, data: $0.value) }
+                }
                 .map{ PieChartDataSet(values: $0, label: nil) }
     }
     
