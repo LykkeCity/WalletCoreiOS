@@ -185,7 +185,7 @@ class BuyOptimizedViewController: UIViewController {
                 guard let viewController = self else { return }
                 viewController.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
                 viewController.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
-                viewController.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
+                viewController.view.makeToast(Localize("buy.newDesign.sucess"))
             })
             .disposed(by: disposeBag)
         
@@ -249,8 +249,8 @@ class BuyOptimizedViewController: UIViewController {
             }
             viewController.first = "\(amountFirst) \(assetCodeFirst)"
             viewController.second = "\(amountSecond) \(assetCodeSecond)"
-            viewController.firstLabell = firstLabel
-            viewController.secondLabell = secondLabel
+            viewController.firstLabelText = firstLabel
+            viewController.secondLabelText = secondLabel
             
             viewController.delegate = self
         }
@@ -322,7 +322,7 @@ fileprivate extension OffchainTradeViewModel {
             }),
             success.drive(onNext: {[weak viewController] _ in
                 FinalizePendingRequestsTrigger.instance.finalizeNow()
-                viewController?.view.makeToast("Your exchange has been successfuly processed.It will appear in your transaction history soon.")
+                viewController?.view.makeToast(Localize("buy.newDesign.sucess"))
             })
         ]
     }

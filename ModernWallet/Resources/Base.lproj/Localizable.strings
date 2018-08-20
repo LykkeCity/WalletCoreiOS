@@ -914,6 +914,7 @@
 "buy.newDesign.change" = "Change";
 "buy.newDesign.buy" = "BUY";
 "buy.newDesign.sell" = "SELL";
+"buy.newDesign.sucess" = "Your exchange has been successfully processed.It will appear in your transaction history soon.";
 "newDesign.next" = "NEXT";
 "newDesign.done" = "DONE";
 "newDesign.confirm" = "CONFIRM";

@@ -30,8 +30,8 @@ class ConfirmationViewController: UIViewController {
     
     var first: String?
     var second: String?
-    var firstLabell: String?
-    var secondLabell: String?
+    var firstLabelText: String?
+    var secondLabelText: String?
     
     private let disposeBag = DisposeBag()
     
@@ -63,8 +63,8 @@ class ConfirmationViewController: UIViewController {
         
         firstAsset.text = first
         secondAsset.text = second
-        firstLabel.text = firstLabell
-        secondLabel.text = secondLabell
+        firstLabel.text = firstLabelText
+        secondLabel.text = secondLabelText
         infoLabel.text = Localize("confirm.newDesign.labelInfo")
     }
     
