@@ -36,12 +36,12 @@ PODS:
     - Charts/Core (= 3.0.2)
   - Charts/Core (3.0.2)
   - CocoaAsyncSocket (7.6.2)
-  - Crashlytics (3.10.7):
-    - Fabric (~> 1.7.11)
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
   - EasyMapping (0.21.2):
     - EasyMapping/Core (= 0.21.2)
   - EasyMapping/Core (0.21.2)
-  - Fabric (1.7.11)
+  - Fabric (1.7.2)
   - Firebase/Core (4.8.0):
     - FirebaseAnalytics (= 4.0.5)
     - FirebaseCore (= 4.0.13)
@@ -211,9 +211,9 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   Charts: 236d6ccdd0ce6feae151d89e829a7397381a21fd
   CocoaAsyncSocket: 3541e024f48c54b251638ef72d51dd42808de932
-  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   EasyMapping: 93c1f054da1bc5dff6aa332477b040bea7767841
-  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   Firebase: 710decbbc6d9d48530e9a5dba3209740c3532e05
   FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
   FirebaseCore: 3c02ec652db3d03fdc8bc6d9154af3e20d64b6f5

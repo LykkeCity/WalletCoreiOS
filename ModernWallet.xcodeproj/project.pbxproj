@@ -178,6 +178,7 @@
 		C510B0E52031CDC20084C98E /* AssetPickTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510B0E42031CDC20084C98E /* AssetPickTableViewCell.swift */; };
 		C527C41420235F86003A390F /* TransactionPickDateRangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527C41320235F86003A390F /* TransactionPickDateRangeViewController.swift */; };
 		C54A01922028B4640030CCE4 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54A01912028B4640030CCE4 /* UIScreen+Extensions.swift */; };
+		C554C6F521109A7F005F0DD3 /* KYCFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C554C6F421109A7F005F0DD3 /* KYCFinishedViewController.swift */; };
 		C56FD0D42023DDEF00596709 /* TransactionCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56FD0D32023DDEF00596709 /* TransactionCalendarViewController.swift */; };
 		C56FD0D62023E93D00596709 /* Koyomi+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56FD0D52023E93D00596709 /* Koyomi+Rx.swift */; };
 		C5B982ED1FE974F300D1A642 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B982EC1FE974F200D1A642 /* UIImageEffects.m */; };
@@ -383,6 +384,7 @@
 		C510B0E42031CDC20084C98E /* AssetPickTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetPickTableViewCell.swift; sourceTree = "<group>"; };
 		C527C41320235F86003A390F /* TransactionPickDateRangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPickDateRangeViewController.swift; sourceTree = "<group>"; };
 		C54A01912028B4640030CCE4 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
+		C554C6F421109A7F005F0DD3 /* KYCFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCFinishedViewController.swift; sourceTree = "<group>"; };
 		C56FD0D32023DDEF00596709 /* TransactionCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCalendarViewController.swift; sourceTree = "<group>"; };
 		C56FD0D52023E93D00596709 /* Koyomi+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Koyomi+Rx.swift"; sourceTree = "<group>"; };
 		C5B982EB1FE974F100D1A642 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 				469DA7241F6C1FBF000B904C /* KYCStep2ViewController.swift */,
 				469DA7261F6C1FC8000B904C /* KYCStep3ViewController.swift */,
 				4671C9D41F828A5C002C2F25 /* KYCPendingViewController.swift */,
+				C554C6F421109A7F005F0DD3 /* KYCFinishedViewController.swift */,
 				4671C9CF1F824130002C2F25 /* KYCPhotoFailedViewController.swift */,
 			);
 			path = KYC;
@@ -1325,6 +1328,7 @@
 				6197A3BE1EEA7506008ECF5A /* PieValueFormatter.swift in Sources */,
 				870D4DD31FB1036000F23948 /* UIViewController+DrawerController.swift in Sources */,
 				E7A1BFA020F797B30058AC7B /* LimitedHoshiTextField.swift in Sources */,
+				C554C6F521109A7F005F0DD3 /* KYCFinishedViewController.swift in Sources */,
 				66C83D441FC3089600428527 /* BackupPrivateKeyViewController.swift in Sources */,
 				BE53DFD9202C538100D03C3F /* AddMoneyBaseViewController.swift in Sources */,
 				612E59201F7A93EB0018476B /* KYCDocumentStatus+Extensions.swift in Sources */,

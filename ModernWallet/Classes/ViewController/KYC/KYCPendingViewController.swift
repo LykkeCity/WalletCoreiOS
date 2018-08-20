@@ -13,12 +13,14 @@ import RxCocoa
 
 class KYCPendingViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var message: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let fullName = LWKeychainManager.instance()?.fullName() ?? ""
+        titleLabel.text = Localize("kyc.pending.title")
         message.text = String(format: Localize("kyc.pending.text"), fullName)
         // Do any additional setup after loading the view.
     }

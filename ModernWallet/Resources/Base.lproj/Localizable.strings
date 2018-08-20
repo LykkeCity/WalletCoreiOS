@@ -208,7 +208,7 @@
 
 "kyc.success.header" = "YOUR DOCUMENTS ARE IN ORDER";
 "kyc.success" = "Now you can trade FX along with bitcoins and colored coins";
-"kyc.success.okButton" = "Continue";
+"kyc.success.okButton" = "GET STARTED";
 
 "pin.create.title" = "Create a PIN to secure transactions";
 "pin.create.new.title" = "Create a new PIN to secure your transactions";
