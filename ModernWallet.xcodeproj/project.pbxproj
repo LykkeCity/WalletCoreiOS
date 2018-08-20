@@ -200,6 +200,7 @@
 		EC9C947A1C899003006FD46B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF6632431C175B54004353F5 /* Assets.xcassets */; };
 		EC9C947D1C899019006FD46B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */; };
 		F74D288C2112DE6B007B6E65 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74D288B2112DE6B007B6E65 /* String+Extensions.swift */; };
+		F797E064211B0B3B000740CA /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F797E063211B0B3B000740CA /* ConfirmationViewController.swift */; };
 		F7CBFA16210B68EA00788799 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CBFA15210B68EA00788799 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
@@ -407,6 +408,7 @@
 		EC25A6911C331F0B00F223FF /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		EC9C947C1C899019006FD46B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F74D288B2112DE6B007B6E65 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		F797E063211B0B3B000740CA /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		F7CBFA15210B68EA00788799 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -710,6 +712,7 @@
 			children = (
 				46B5837E1F94CD9500B475DB /* BuyAssetListView */,
 				466720061F864481004A4782 /* BuyOptimizedViewController.swift */,
+				F797E063211B0B3B000740CA /* ConfirmationViewController.swift */,
 			);
 			path = Buy;
 			sourceTree = "<group>";
@@ -1376,6 +1379,7 @@
 				66EE6F6D1FC879D600F56E4D /* EmptyWalletViewController.swift in Sources */,
 				C56FD0D62023E93D00596709 /* Koyomi+Rx.swift in Sources */,
 				462B34301F00EC5000374038 /* Colors.swift in Sources */,
+				F797E064211B0B3B000740CA /* ConfirmationViewController.swift in Sources */,
 				469DA7271F6C1FC8000B904C /* KYCStep3ViewController.swift in Sources */,
 				461C6F8F1F8B4EB200C5E8B3 /* BuyAssetListView.swift in Sources */,
 				6667F0AB1FD93F74000737CC /* FinalizePendingRequestsTrigger.swift in Sources */,

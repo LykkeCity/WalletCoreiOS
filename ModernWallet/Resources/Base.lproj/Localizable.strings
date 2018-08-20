@@ -914,6 +914,7 @@
 "buy.newDesign.change" = "Change";
 "buy.newDesign.buy" = "BUY";
 "buy.newDesign.sell" = "SELL";
+"buy.newDesign.success" = "Your exchange has been successfully processed.It will appear in your transaction history soon.";
 "newDesign.next" = "NEXT";
 "newDesign.done" = "DONE";
 "newDesign.confirm" = "CONFIRM";
@@ -1046,3 +1047,5 @@
 "filter.newDesign.error.message.endDate" = "End date should be after start date";
 
 "sendToWallet.newDesign.error.address" = "Wallet address is not valid";
+
+"confirm.newDesign.labelInfo" = "Trade price may exceed the specific limit due to the rounding";
