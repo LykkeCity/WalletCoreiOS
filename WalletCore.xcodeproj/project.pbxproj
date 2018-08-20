@@ -674,6 +674,8 @@
 		C52B92F6201F1E120001B5F1 /* SingleAssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B92F5201F1E110001B5F1 /* SingleAssetViewModel.swift */; };
 		C52B92F8201F1E2A0001B5F1 /* AssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B92F7201F1E2A0001B5F1 /* AssetsViewModel.swift */; };
 		C58A8904212B1F8C009B28AC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58A8903212B1F8C009B28AC /* Date+Extension.swift */; };
+		C538ED132111E4E9005AE71B /* LWRxAuthManagerKYCStatusGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C538ED122111E4E9005AE71B /* LWRxAuthManagerKYCStatusGet.swift */; };
+		C538ED152111E7A9005AE71B /* KycGetStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C538ED142111E7A9005AE71B /* KycGetStatusViewModel.swift */; };
 		C59B28332029DD7C00AA2E39 /* TransactionFilterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */; };
 		C59B28352029DD9500AA2E39 /* TransactionFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */; };
 		C5E67BBC20172D2C00686006 /* BaseAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */; };
@@ -1390,6 +1392,8 @@
 		C52B92F5201F1E110001B5F1 /* SingleAssetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleAssetViewModel.swift; sourceTree = "<group>"; };
 		C52B92F7201F1E2A0001B5F1 /* AssetsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetsViewModel.swift; sourceTree = "<group>"; };
 		C58A8903212B1F8C009B28AC /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C538ED122111E4E9005AE71B /* LWRxAuthManagerKYCStatusGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerKYCStatusGet.swift; sourceTree = "<group>"; };
+		C538ED142111E7A9005AE71B /* KycGetStatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KycGetStatusViewModel.swift; sourceTree = "<group>"; };
 		C59B28322029DD7B00AA2E39 /* TransactionFilterFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterFormatter.swift; sourceTree = "<group>"; };
 		C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFilterViewModel.swift; sourceTree = "<group>"; };
 		C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAssetsViewModel.swift; sourceTree = "<group>"; };
@@ -2448,6 +2452,7 @@
 				CC59AB151F4D7F190063AEA4 /* LWRxAuthManagerEncodeMainKey.swift */,
 				CC0DFAFC1F54493900EBB96E /* LWRxAuthManagerAccountExist.swift */,
 				614214121F7262C000E2F524 /* LWRxAuthManagerKYCForAsset.swift */,
+				C538ED122111E4E9005AE71B /* LWRxAuthManagerKYCStatusGet.swift */,
 				614214141F72659B00E2F524 /* LWRxAuthManagerKYCDocuments.swift */,
 				6142141D1F793D4500E2F524 /* LWRxKYCManager.swift */,
 				46C08DAC1F989CCC0059BDD3 /* LWRxAuthManagerOffchainTrade.swift */,
@@ -2515,6 +2520,7 @@
 			isa = PBXGroup;
 			children = (
 				614214161F727E4200E2F524 /* KycNeededViewModel.swift */,
+				C538ED142111E7A9005AE71B /* KycGetStatusViewModel.swift */,
 				6142141B1F79249600E2F524 /* KYCDocumentsViewModel.swift */,
 				6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */,
 			);
@@ -3214,6 +3220,7 @@
 				46C9AF2A1F417BD800B83CCB /* LWPacketPushSettingsSet.m in Sources */,
 				46C9AE5E1F417BD700B83CCB /* LWAssetPairRateModel.m in Sources */,
 				46C9AF881F417BD800B83CCB /* LWTransactionCashInOutModel.m in Sources */,
+				C538ED132111E4E9005AE71B /* LWRxAuthManagerKYCStatusGet.swift in Sources */,
 				46C9AFA81F417BD800B83CCB /* LWNetworkTemplate.m in Sources */,
 				46FB36131F4ABFD700D327D6 /* LWRxAuthManagerCountryCodes.swift in Sources */,
 				46C9B0681F42C91B00B83CCB /* LWRxAuthManagerProtocol.swift in Sources */,
@@ -3293,6 +3300,7 @@
 				46C9AEB21F417BD700B83CCB /* LWPacketCashOut.m in Sources */,
 				46FB360F1F4A25B000D327D6 /* CreditCardBaseInfoViewModel.swift in Sources */,
 				46C9AF9A1F417BD800B83CCB /* LWHistoryArray.m in Sources */,
+				C538ED152111E7A9005AE71B /* KycGetStatusViewModel.swift in Sources */,
 				46C9AF381F417BD800B83CCB /* LWPacketSaveWatchList.m in Sources */,
 				46C9AF781F417BD800B83CCB /* LWCountryModel.m in Sources */,
 				46C9AF361F417BD800B83CCB /* LWPacketSaveBackupState.m in Sources */,

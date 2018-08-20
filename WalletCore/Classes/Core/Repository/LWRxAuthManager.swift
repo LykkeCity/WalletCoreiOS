@@ -82,6 +82,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var pushNotSet          = {LWRxAuthManagerPushNotificationsSet()}()
     public lazy var pubKeys             = {LWRxAuthManagerClientKeys()}()
     public lazy var kycForAsset         = {LWRxAuthManagerKYCForAsset()}()
+    public lazy var kycStatusGet        = {LWRxAuthManagerKYCStatusGet()}()
     public lazy var kycDocuments        = {LWRxAuthManagerKYCDocuments()}()
     public lazy var checkPendingActions      = {LWRxAuthManagerCheckPendingActions()}()
     public lazy var offchainTrade            = {LWRxAuthManagerOffchainTrade()}()
