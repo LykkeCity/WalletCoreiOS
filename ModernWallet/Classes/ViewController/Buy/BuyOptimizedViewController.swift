@@ -185,7 +185,7 @@ class BuyOptimizedViewController: UIViewController {
                 guard let viewController = self else { return }
                 viewController.buyOptimizedViewModel.buyAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
                 viewController.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
-                viewController.view.makeToast(Localize("buy.newDesign.sucess"))
+                viewController.view.makeToast(Localize("buy.newDesign.success"))
             })
             .disposed(by: disposeBag)
         
@@ -322,7 +322,7 @@ fileprivate extension OffchainTradeViewModel {
             }),
             success.drive(onNext: {[weak viewController] _ in
                 FinalizePendingRequestsTrigger.instance.finalizeNow()
-                viewController?.view.makeToast(Localize("buy.newDesign.sucess"))
+                viewController?.view.makeToast(Localize("buy.newDesign.success"))
             })
         ]
     }
@@ -344,9 +344,7 @@ fileprivate extension BuyOptimizedViewModel {
             spreadAmount.drive(viewController.spreadAmount.rx.text),
             bid.asDriver().filterNil().map{ $0 ? "SELL" : "PAY WITH" }.drive(viewController.walletListView.label.rx.text),
             bid.asDriver().filterNil().map{ $0 ? "RECEIVE" : "BUY" }.drive(viewController.assetListView.label.rx.text),
-            bid.asDriver().filterNil().map{ $0 ? "SELL" : "BUY" }.drive(onNext: {[weak viewController] in
-                viewController?.submitButton.setTitle($0, for: .normal)
-            })
+            bid.asDriver().filterNil().map{ $0 ? "SELL" : "BUY" }.drive(viewController.submitButton.rx.title(for: .normal))
         ]
     }
     
