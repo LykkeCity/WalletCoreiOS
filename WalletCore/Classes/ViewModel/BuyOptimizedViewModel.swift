@@ -40,6 +40,8 @@ public class BuyOptimizedViewModel {
     public let spreadPercent: Driver<String>
     public let spreadAmount: Driver<String>
     
+    public let confirm = Variable<Bool>(false)
+    
     public let loadingViewModel: LoadingViewModel
     
     public var mainAsset: LWAssetModel? {
