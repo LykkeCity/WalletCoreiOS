@@ -78,11 +78,3 @@ fileprivate extension ObservableType where Self.E == ApiResult<[LWAssetModel]> {
             }
     }
 }
-
-
-
-
-
-
-
-
