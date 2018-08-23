@@ -65,13 +65,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fp1-kG-UZZ">
-                            <rect key="frame" x="32" y="52" width="312" height="18"/>
+                            <rect key="frame" x="32" y="52" width="312" height="21"/>
                             <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="IkV-7f-Jfy">
-                            <rect key="frame" x="109" y="197" width="158" height="17"/>
+                            <rect key="frame" x="109" y="194" width="158" height="17"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="SK2-LM-QRC">
                                     <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
@@ -88,7 +88,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ge5-M4-EBx">
-                            <rect key="frame" x="50" y="222" width="275" height="370"/>
+                            <rect key="frame" x="50" y="219" width="275" height="370"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-5M-Gwf">
                                     <rect key="frame" x="0.0" y="0.0" width="275" height="85"/>
@@ -209,8 +209,8 @@
                                 </stackView>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMv-iw-B3w">
-                            <rect key="frame" x="150" y="612" width="75" height="27"/>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMv-iw-B3w">
+                            <rect key="frame" x="147" y="609" width="81" height="30"/>
                             <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                             <state key="normal" title="Forgot PIN?"/>
                             <connections>

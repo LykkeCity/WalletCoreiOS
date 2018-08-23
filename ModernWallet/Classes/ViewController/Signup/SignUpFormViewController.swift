@@ -117,13 +117,15 @@ class SignUpFormViewController: UIViewController {
             return
         }
         
-        if formController is RecoveryController {
+        if formController is RecoverySMSFormController {
             let alertController = UIAlertController(title: Localize("restore.success.title"),
                                                     message: Localize("restore.success.text"),
                                                     preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: Localize("restore.success.button"), style: .default) { _ in
-                self.navigationController?.dismiss(animated: true)
+                //if we use "navigationController.dismiss" we can see for a second the portfolio screen !
+                //Its advisable to use self.presentLoginController in this case
+                self.presentLoginController()
             }
             alertController.addAction(okAction)
             
@@ -155,11 +157,11 @@ class SignUpFormViewController: UIViewController {
     }
     
     func setRecoveryPin() {
-        guard let formController = forms.last as? RecoveryController else {
+        guard let _ = forms.last as? RecoveryController else {
             return
         }
         
-        PinViewController.presentResetPinController(from: self, title: Localize("awedeebawe"))
+        PinViewController.presentResetPinController(from: self, title: "")
             .filter { $0.complete }
             .map { $0.pin }
             .bind(to: recoveryPinTrigger)
