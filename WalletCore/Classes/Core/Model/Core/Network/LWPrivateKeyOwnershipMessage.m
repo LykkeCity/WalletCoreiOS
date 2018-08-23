@@ -38,8 +38,8 @@
                  };
         } else {
         return @{
-                 @"email":self.email,
-                 @"partnerId": WalletCoreConfig.partnerId
+                 @"PartnerId": WalletCoreConfig.partnerId,
+                 @"Email":self.email
                  };
         }
     }

@@ -35,8 +35,6 @@ public class ValidateWordsViewModel {
     /// Errors occured
     public let errors: Observable<[AnyHashable: Any]>
     
-    public let error: Driver<[AnyHashable: Any]>
-    
     private let disposeBag = DisposeBag()
     
     public init(authManager: LWRxAuthManager = LWRxAuthManager.instance) {
@@ -58,12 +56,6 @@ public class ValidateWordsViewModel {
         
         self.isOwnershipConfirmed = ownershipMessageWithSignatureRequest.filterSuccess()
             .map { $0.confirmedOwnership }
-
-        self.error = Observable.merge([
-            ownershipMessageRequest.filterError(),
-            ownershipMessageWithSignatureRequest.filterError()
-            ])
-            .asDriver(onErrorJustReturn: [:])
         
         self.loadingViewModel = LoadingViewModel([    
             ownershipMessageRequest.isLoading(),
