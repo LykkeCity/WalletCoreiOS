@@ -30,7 +30,7 @@ open class TransactionsHeaderViewModel {
     
     public init(
         asset: Variable<ApiResult<LWAssetModel>?>,
-        totalBalanceViewModel: TotalBalanceViewModel,
+        walletsViewModel: WalletsViewModel,
         authManager: LWRxAuthManager = LWRxAuthManager.instance
     ) {
         let assetObservable = asset.asObservable().filterNil().shareReplay(1)
@@ -41,7 +41,7 @@ open class TransactionsHeaderViewModel {
             authManager.mainInfo.request(withAssetObservable: assetObservable)
         
         self.loading = LoadingViewModel([
-            totalBalanceViewModel.observables.mainInfo.isLoading(),
+            walletsViewModel.loadingViewModel.isLoading,
             assetMainInfoObservable.isLoading()
         ])
         
@@ -53,7 +53,7 @@ open class TransactionsHeaderViewModel {
             .mapToShortName()
             .asDriver(onErrorJustReturn: "")
         
-        self.baseAssetBalance = totalBalanceViewModel
+        self.baseAssetBalance = walletsViewModel
             .mapToBaseAssetBalance()
             .asDriver(onErrorJustReturn: "")
         
@@ -81,14 +81,14 @@ fileprivate extension ObservableType where Self.E == ApiResult<LWAssetModel> {
     }
 }
 
-fileprivate extension TotalBalanceViewModel {
+fileprivate extension WalletsViewModel {
     func mapToBaseAssetBalance() -> Observable<String> {
-        return observables.mainInfo
-            .filterSuccess()
-            .map{data in data.mainInfo.totalBalance.convertAsCurrency(
-                code: data.asset.name ?? "",
-                symbol: data.asset.symbol ?? "",
-                accuracy: Int(data.asset.accuracy)
+        return infoData
+            .map {
+                $0.totalBalance.convertAsCurrency(
+                code: $0.asset.name ?? "",
+                symbol: $0.asset.symbol ?? "",
+                accuracy: Int($0.asset.accuracy)
             )}
             .map{"(\($0))"}
             .startWith("")
