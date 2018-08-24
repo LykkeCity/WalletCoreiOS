@@ -50,7 +50,6 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var prevCardPayment     = {LWAuthManagerPacketPrevCardPayment()}()
     public lazy var paymentUrl          = {LWAuthManagerPacketGetPaymentUrl()}()
     public lazy var lykkeWallets        = {LWRxAuthManagerLykkeWallets()}()
-    public lazy var mainInfo            = {LWRxAuthManagerMainInfo()}()
     public lazy var emailWalletAddress  = {LWRxAuthManagerEmailWalletAddress()}()
     
     public lazy var assetPairRate       = {LWRxAuthManagerAssetPairRate()}()
