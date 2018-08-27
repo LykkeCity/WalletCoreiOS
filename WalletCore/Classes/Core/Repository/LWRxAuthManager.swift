@@ -70,6 +70,7 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var pinget              = {LWRxAuthManagerPinSecurityGet()}()
     public lazy var pinvalidation       = {LWRxAuthManagerEmailVerificationPin()}()
     public lazy var registration        = {LWRxAuthManagerRegistration()}()
+    public lazy var ownershipMessage    = { LWRxAuthManagerOwnershipMessage() }()
     public lazy var settings            = {LWRxAuthManagerPersonalData()}()
     public lazy var setFullName         = {LWRxAuthManagerCleintFullNameSet()}()
     public lazy var getHomeCountry      = {LWRxAuthManagerHomeCountry()}()
@@ -105,4 +106,6 @@ public class LWRxAuthManager: LWRxAuthManagerProtocol {
     public lazy var assetDisclaimers         = { LWRxAuthManagerAssetDisclaimersGet() }()
     public lazy var assetDisclaimerAccept    = { LWRxAuthManagerAssetDisclaimersApprove() }()
     public lazy var assetDisclaimerDecline   = { LWRxAuthManagerAssetDisclaimersDecline() }()
+    public lazy var recoverySmsConfirmation  = { LWRxAuthManagerRecoverySmsConfirmation() }()
+    public lazy var changePinAndPassword     = { LWRxAuthManagerChangePinAndPassword() }()
 }
