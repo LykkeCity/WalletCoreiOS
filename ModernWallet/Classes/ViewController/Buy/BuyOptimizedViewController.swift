@@ -67,7 +67,11 @@ class BuyOptimizedViewController: UIViewController {
         return OffchainTradeViewModel(offchainService: OffchainService.instance)
     }()
     
-    private let totalBalanceViewModel = TotalBalanceViewModel()
+    fileprivate lazy var walletsViewModel: WalletsViewModel = {
+        return WalletsViewModel(
+            refreshWallets: Observable<Void>.just(())
+        )
+    }()
     
     //MARK:- Computed properties
     var walletListView: BuyAssetListView {
@@ -201,7 +205,7 @@ class BuyOptimizedViewController: UIViewController {
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
         
-        totalBalanceViewModel.isEmpty
+        walletsViewModel.isEmpty
             .drive(onNext: { [weak self] isEmpty in
                 guard isEmpty, let `self` = self else { return }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)

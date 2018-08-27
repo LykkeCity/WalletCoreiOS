@@ -21,15 +21,13 @@ class CashOutSelectAssetViewController: UIViewController {
     
     @IBOutlet private var collectionView: UICollectionView!
     
-    private let totalBalanceViewModel = TotalBalanceViewModel(refresh: ReloadTrigger.instance.trigger(interval: 10))
     private let disposeBag = DisposeBag()
     
     private let refreshWallets = Variable<Void>(Void())
     
     private lazy var walletsViewModel: WalletsViewModel = {
         return WalletsViewModel(
-            refreshWallets: self.refreshWallets.asObservable(),
-            mainInfo: self.totalBalanceViewModel.observables.mainInfo.filterSuccess()
+            refreshWallets: self.refreshWallets.asObservable()
         )
     }()
     
@@ -43,7 +41,6 @@ class CashOutSelectAssetViewController: UIViewController {
     private lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
             self.walletsViewModel.loadingViewModel.isLoading.filter { !$0 }.startWith(true),
-            self.totalBalanceViewModel.loading.isLoading,
             self.kycNeededViewModel.loadingViewModel.isLoading
         ])
     }()
@@ -59,11 +56,11 @@ class CashOutSelectAssetViewController: UIViewController {
         availableBalanceLabel.text = Localize("cashOut.newDesign.availableBalance")
         selectAssetLabel.text = Localize("cashOut.newDesign.selectAsset")
 
-        totalBalanceViewModel.balance
+        walletsViewModel.totalBalance
             .drive(assetAmountView.rx.amount)
             .disposed(by: disposeBag)
         
-        totalBalanceViewModel.isEmpty
+        walletsViewModel.isEmpty
             .drive(onNext: { [weak self] isEmpty in
                 guard isEmpty, let `self` = self else { return }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -74,7 +71,7 @@ class CashOutSelectAssetViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        totalBalanceViewModel.currencyName
+            walletsViewModel.currencyName
             .drive(assetAmountView.rx.code)
             .disposed(by: disposeBag)
         

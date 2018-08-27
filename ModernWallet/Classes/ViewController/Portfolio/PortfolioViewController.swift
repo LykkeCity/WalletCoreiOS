@@ -40,14 +40,9 @@ class PortfolioViewController: UIViewController {
     
     private let reloadTrigger = ReloadTrigger.instance.trigger(interval: 10).shareReplay(1)
     
-    fileprivate lazy var totalBalanceViewModel: TotalBalanceViewModel = {
-        return TotalBalanceViewModel(refresh: self.reloadTrigger)
-    }()
-    
     fileprivate lazy var walletsViewModel: WalletsViewModel = {
         return WalletsViewModel(
-            refreshWallets: self.reloadTrigger,
-            mainInfo: self.totalBalanceViewModel.observables.mainInfo.filterSuccess()
+            refreshWallets: self.reloadTrigger
         )
     }()
     
@@ -57,7 +52,6 @@ class PortfolioViewController: UIViewController {
     
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
-            self.totalBalanceViewModel.loading.isLoading,
             self.kycGetStatusViewModel.loadingViewModel.isLoading,
             self.walletsViewModel.loadingViewModel.isLoading.take(2) // prevent the loading indicator to appear when this request is refreshed
             ])
@@ -101,8 +95,8 @@ class PortfolioViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        // Bind the totalBalanceViewModel loading to the table's `isHidden` property
-        self.totalBalanceViewModel.loading.isLoading.asObservable()
+        // Bind the walletsViewModel loading to the table's `isHidden` property
+        self.walletsViewModel.loadingViewModel.isLoading.asObservable()
             .startWith(true)
             .bind(to: tableView.rx.isHidden)
             .disposed(by: disposeBag)
@@ -212,19 +206,17 @@ fileprivate extension WalletsViewModel {
             
             wallets.asDriver()
                 .map{ $0.isEmpty }
-                .drive(viewController.filterContainer.rx.isHidden)
-        ]
-    }
-}
-
-
-// MARK: - TotalBalanceViewModel binders to PortfolioViewController
-fileprivate extension TotalBalanceViewModel {
-    func bind(toViewController viewController: PortfolioViewController) -> [Disposable] {
-        return [
-            observables.baseAsset.filterSuccess().subscribe(onNext: {asset in LWCache.instance().baseAssetId = asset.identity}),
-            balance.drive(viewController.pieChartCenterView.balanceLabel.rx.text),
-            currencyName.drive(viewController.pieChartCenterView.currencyName.rx.text)
+                .drive(viewController.filterContainer.rx.isHidden),
+ 
+            infoData
+                .map { $0.asset }
+                .subscribe(onNext: {asset in LWCache.instance().baseAssetId = asset.identity}),
+            
+            totalBalance
+                .drive(viewController.pieChartCenterView.balanceLabel.rx.text),
+            
+            currencyName
+                .drive(viewController.pieChartCenterView.currencyName.rx.text)
         ]
     }
 }
@@ -249,10 +241,6 @@ fileprivate extension KycGetStatusViewModel {
 // MARK: - PortfolioViewController view model binder
 fileprivate extension PortfolioViewController {
     func bindViewModels() {
-        totalBalanceViewModel
-            .bind(toViewController: self)
-            .disposed(by: disposeBag)
-        
         walletsViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
