@@ -80,7 +80,6 @@ open class WalletsViewModel {
         self.loadingViewModel = LoadingViewModel([
             baseAsset.isLoading(),
             allAssets.isLoading(),
-            nonEmptyWallets.isLoading()
             ])
     }
 }
