@@ -36,8 +36,8 @@ public class WalletViewModel {
         let baseAssetResponseObservable = dependency.authManager.baseAsset.request()
             .shareReplay(1)
         
-        let mainInfoObservable = refresh
-            .flatMap{_ in dependency.authManager.mainInfo.request(withAssetObservable: baseAssetResponseObservable)}
+        let nonEmptyWallets = refresh
+            .flatMap { _ in dependency.authManager.lykkeWallets.requestNonEmptyWallets() }
             .filterSuccess()
             .shareReplay(1)
         
@@ -66,9 +66,20 @@ public class WalletViewModel {
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         
-        percent = Observable.combineLatest(wallet, mainInfoObservable) { (assetAmount: $0.amountInBase.doubleValue, totalAmount: $1.mainInfo.totalBalance.doubleValue) }
+        let totalAmountObservable = nonEmptyWallets
+            .map { $0.map { $0.amountInBase.decimalValue }.reduce(0.0, +) }
+            .shareReplay(1)
+        
+        let walletAmountObservable = wallet
+            .map { $0.amountInBase.decimalValue }
+            .shareReplay(1)
+        
+        let percentObservable = Observable.combineLatest(totalAmountObservable, walletAmountObservable) { (totalAmount: $0, assetAmount: $1) }
             .map { $0.totalAmount == 0 ? 0.0 : $0.assetAmount / $0.totalAmount * 100.0 }
-            .map { String(format: "%.2f %%", $0) }
+            .shareReplay(1)
+        
+        percent = percentObservable
+            .map { String(format: "%.2f %%", $0.doubleValue) }
             .asDriver(onErrorJustReturn: "")
             .startWith("")
         

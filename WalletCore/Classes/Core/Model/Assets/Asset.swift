@@ -14,7 +14,7 @@ public class Asset {
     public var percent: Double
     public var wallet: LWSpotWallet?
     
-    public init(wallet: LWSpotWallet, baseAsset: LWAssetModel, mainInfo: LWPacketGetMainScreenInfo) {
+    public init(wallet: LWSpotWallet, baseAsset: LWAssetModel, totalBalance: Decimal) {
         
         self.wallet = wallet
         
@@ -35,7 +35,7 @@ public class Asset {
             sign: baseAsset.symbol ?? ""
         )
         
-        self.percent = mainInfo.totalBalance == 0 ? 0.0 : (self.realCurrency.value / mainInfo.totalBalance).doubleValue * 100
+        self.percent = totalBalance == 0 ? 0.0 : (self.realCurrency.value / totalBalance).doubleValue * 100
     }
     
     public init(cryptoCurrency: Currency, realCurrency: Currency, percent: Double) {
