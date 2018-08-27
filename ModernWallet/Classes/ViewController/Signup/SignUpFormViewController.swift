@@ -157,7 +157,7 @@ class SignUpFormViewController: UIViewController {
     }
     
     func setRecoveryPin() {
-        guard let _ = forms.last as? RecoveryController else {
+        guard forms.last is RecoveryController else {
             return
         }
         
