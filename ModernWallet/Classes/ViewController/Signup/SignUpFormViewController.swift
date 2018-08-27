@@ -29,7 +29,11 @@ class SignUpFormViewController: UIViewController {
     
     private var nextTrigger = PublishSubject<Void>()
     
+    private var recoveryTrigger = PublishSubject<Void>()
+    
     private var pinTrigger = PublishSubject<PinViewController?>()
+
+    private var recoveryPinTrigger = PublishSubject<String>()
     
     private var disposeBag = DisposeBag()
 
@@ -43,6 +47,18 @@ class SignUpFormViewController: UIViewController {
         nextTrigger.asDriver(onErrorJustReturn: ())
             .drive(onNext: { [weak self] _ in
                 self?.gotoNext()
+            })
+            .disposed(by: disposeBag)
+        
+        recoveryTrigger.asDriver(onErrorJustReturn: ())
+            .drive(onNext: { [weak self] _ in
+                self?.goToRecovery()
+            })
+            .disposed(by: disposeBag)
+        
+        recoveryPinTrigger.asDriver(onErrorJustReturn: "")
+            .drive(onNext: { [weak self] _ in
+                self?.setRecoveryPin()
             })
             .disposed(by: disposeBag)
         
@@ -100,6 +116,23 @@ class SignUpFormViewController: UIViewController {
         guard let formController = forms.last else {
             return
         }
+        
+        if formController is RecoverySMSFormController {
+            let alertController = UIAlertController(title: Localize("restore.success.title"),
+                                                    message: Localize("restore.success.text"),
+                                                    preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: Localize("restore.success.button"), style: .default) { _ in
+                //if we use "navigationController.dismiss" we can see for a second the portfolio screen !
+                //Its advisable to use self.presentLoginController in this case
+                self.presentLoginController()
+            }
+            alertController.addAction(okAction)
+            
+            navigationController?.present(alertController, animated: true, completion: nil)
+            return
+        }
+        
         if let nextFormController = formController.next {
             push(formController: nextFormController, animated: true)
         }
@@ -109,6 +142,30 @@ class SignUpFormViewController: UIViewController {
         else {
             navigationController?.dismiss(animated: true)
         }
+    }
+    
+    func goToRecovery() {
+        guard let formController = forms.last as? RecoveryController else {
+            return
+        }
+        
+        if let recoveryFormController = formController.recoveryStep {
+            push(formController: recoveryFormController, animated: true)
+        } else {
+            navigationController?.dismiss(animated: true)
+        }
+    }
+    
+    func setRecoveryPin() {
+        guard forms.last is RecoveryController else {
+            return
+        }
+        
+        PinViewController.presentResetPinController(from: self, title: "")
+            .filter { $0.complete }
+            .map { $0.pin }
+            .bind(to: recoveryPinTrigger)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Push methods
@@ -150,7 +207,13 @@ class SignUpFormViewController: UIViewController {
         if let previuosFormController = forms.last {
             previuosFormController.unbind()
         }
-        formController.bind(button: submitButton, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
+        formController.bind(button: submitButton,
+                            nextTrigger: nextTrigger,
+                            recoveryTrigger: recoveryTrigger,
+                            recoveryPinTrigger: recoveryPinTrigger,
+                            pinTrigger: pinTrigger,
+                            loading: rx.loading,
+                            error: rx.error)
         submitButton.setTitle(formController.buttonTitle, for: .normal)
         forms.append(formController)
         
@@ -207,7 +270,13 @@ class SignUpFormViewController: UIViewController {
             })
         }
         currentFormContrller.unbind()
-        previousFormController.bind(button: submitButton, nextTrigger: nextTrigger, pinTrigger: pinTrigger, loading: rx.loading, error: rx.error)
+        previousFormController.bind(button: submitButton,
+                                    nextTrigger: nextTrigger,
+                                    recoveryTrigger: recoveryTrigger,
+                                    recoveryPinTrigger: recoveryPinTrigger,
+                                    pinTrigger: pinTrigger,
+                                    loading: rx.loading,
+                                    error: rx.error)
         submitButton.setTitle(previousFormController.buttonTitle, for: .normal)
         
         didPop()

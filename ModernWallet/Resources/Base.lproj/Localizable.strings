@@ -129,7 +129,7 @@
 "backup.template.cancel.yes" = "Yes";
 "backup.template.cancel.no" = "No";
 
-"restore.form.placeholder" = "Words";
+"restore.form.placeholder" = "Secret Words";
 "restore.form.pageTitle.reset" = "RESET PASSWORD";
 "restore.form.pageTitle.cold" = "DEFROST COLD WALLET";
 "restore.form.wrongseed.title" = "ERROR";
@@ -145,9 +145,9 @@
 
 "restore.hint.placeholder" = "Hint";
 
-"restore.success.title" = "SUCCESSFUL!";
+"restore.success.title" = "Successful!";
 "restore.success.text" = "Great! Your password and the PIN changed. You can log in to the app.";
-"restore.success.button" = "GO TO LOGIN";
+"restore.success.button" = "Go to login";
 
 "refund.transaction.placeholder" = "Hex encoded bitcoin transaction";
 "refund.transaction.password.placeholder" = "Your password";
@@ -826,6 +826,7 @@
 "auth.newDesign.password" = "Type your password";
 "auth.newDesign.subtitle" = "Modern Money";
 "auth.newDesign.forgotPin" = "Forgot PIN?";
+"auth.newDesign.forgottenPassword" = "I forgot my password";
 "auth.newDesign.enterPin" = "ENTER PIN";
 "auth.newDesign.confirm" = "CONFIRM";
 "auth.newDesign.next" = "NEXT";

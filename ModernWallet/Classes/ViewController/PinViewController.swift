@@ -36,6 +36,21 @@ class PinViewController: UIViewController {
         return viewController
     }
     
+    static func presentResetPinController(from viewController: UIViewController, title: String?) -> Observable<(complete: Bool, pin: String)> {
+        let pinViewController = createPinViewController
+        pinViewController.mode = .resetPin
+        pinViewController.title = title
+        if let navigationController = viewController.navigationController {
+            navigationController.present(pinViewController, animated: true)
+        } else {
+            viewController.present(pinViewController, animated: true)
+        }
+        return Observable.combineLatest(
+            pinViewController.complete,
+            pinViewController.setPinViewModel.pin.asObservable()
+        ) { (complete: $0, pin: $1) }
+    }
+    
     static func presentPinViewController(from viewController: UIViewController, title: String?, isTouchIdEnabled: Bool) -> Observable<Void> {
         let pinViewController = enterPinViewController(title: title, isTouchIdEnabled: isTouchIdEnabled)
         viewController.present(pinViewController, animated: true)
@@ -72,7 +87,7 @@ class PinViewController: UIViewController {
     @IBOutlet private weak var keyboardView: UIStackView!
     @IBOutlet private var keyboardButtons: [UIButton]!
     @IBOutlet private weak var touchIdButton: UIButton!
-    @IBOutlet private weak var forgotPinButton: UIButton!
+    @IBOutlet private weak var forgottenPinButton: UIButton!
 
     var permitedTriesCount = 3
     
@@ -81,10 +96,11 @@ class PinViewController: UIViewController {
     var hideCloseButton: Bool = false
     
     let complete = PublishSubject<Bool>()
-
+    
     private enum Mode {
         case enterPin(isTouchIdEnabled: Bool)
         case createPin
+        case resetPin
     }
     
     private var mode: Mode = .enterPin(isTouchIdEnabled: false)
@@ -127,7 +143,7 @@ class PinViewController: UIViewController {
     }()
     
     private let setPinTrigger = PublishSubject<Void>()
-
+    
     private lazy var setPinViewModel : SignUpPinSetViewModel={
         let result = SignUpPinSetViewModel(submit: self.setPinTrigger.asObservable())
         result.loading.asDriver(onErrorJustReturn: false)
@@ -155,22 +171,21 @@ class PinViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     // MARK: - View controller life cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if case .createPin = mode, SignUpStep.instance?.isNotGenerateWallet ?? false {
             SignUpStep.instance = .setPin
         }
-
-        forgotPinButton.setTitle(Localize("auth.newDesign.forgotPin"), for: UIControlState.normal)
+        
         triesLeftCount = permitedTriesCount
         
         switch mode {
-        case .createPin:
-            forgotPinButton.isHidden = true
+        case .createPin, .resetPin:
             titleLabel.text = Localize("pin.create.new.title")
             touchIdButton.alpha = 0.0
+            forgottenPinButton.isHidden = true
         case .enterPin(var isTouchIdEnabled):
             titleLabel.text = title
             isTouchIdEnabled = isTouchIdEnabled && LWFingerprintHelper.isFingerprintAvailable()
@@ -179,7 +194,7 @@ class PinViewController: UIViewController {
                 touchIdTapped()
             }
         }
-
+        
         // Hide the close button action if the view controller is presented due to inactivity
         if isPresentedForInactivity {
             closeButton.isHidden = true
@@ -189,7 +204,7 @@ class PinViewController: UIViewController {
         if hideCloseButton {
             closeButton.isHidden = true
         }
-    
+        
     }
     
     // MARK: - IBActions
@@ -200,7 +215,7 @@ class PinViewController: UIViewController {
             pinEntered()
         }
     }
-
+    
     @IBAction private func touchIdTapped() {
         LWFingerprintHelper.validateFingerprintTitle(Localize("auth.validation.fingerpring"), ok: {
             self.dismiss(success: true, animated: true)
@@ -217,6 +232,7 @@ class PinViewController: UIViewController {
     }
     
     @IBAction private func forgotPinTapped() {
+        
     }
     
     @IBAction private func closeTapped() {
@@ -233,6 +249,8 @@ class PinViewController: UIViewController {
             checkIfPinsMatch()
         case .enterPin:
             checkIsPinCorrect()
+        case .resetPin:
+            checkIfPinsMatch(setRemotely: false)
         }
     }
     
@@ -254,7 +272,7 @@ class PinViewController: UIViewController {
         }
     }
     
-    private func checkIfPinsMatch() {
+    private func checkIfPinsMatch(setRemotely: Bool = true) {
         guard pins.count == 2 else {
             digits = []
             return
@@ -264,7 +282,13 @@ class PinViewController: UIViewController {
             return
         }
         setPinViewModel.pin.value = pins[0]
-        setPinTrigger.onNext(Void())
+        /// If `true` make the request to the API (for registration)
+        /// If `false` keep the pin and dismiss the view controller, but omit the request (for forgotten password)
+        if setRemotely {
+            setPinTrigger.onNext(Void())
+        } else {
+            self.dismiss(success: true, animated: true)
+        }
     }
     
     private func shakeAndReset() {
@@ -286,7 +310,7 @@ class PinViewController: UIViewController {
         animation.toValue = NSValue(cgPoint: CGPoint(x:keyboardView.center.x + 10, y:keyboardView.center.y))
         keyboardView.layer.add(animation, forKey: "position")
     }
-
+    
     private func reset() {
         digits = []
         pins = []
@@ -333,25 +357,25 @@ class PinAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning 
             view.frame = frame
             containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
             UIView.animate(withDuration: transitionDuration(using: transitionContext),
-                animations: {
-                    view.frame.origin.y = 0
-                    containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
+                           animations: {
+                            view.frame.origin.y = 0
+                            containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
             },
-                completion: { _ in
-                    transitionContext.completeTransition(true)
+                           completion: { _ in
+                            transitionContext.completeTransition(true)
             })
         }
         else {
             guard let view = transitionContext.viewController(forKey: .from)?.view else { return }
             containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
             UIView.animate(withDuration: transitionDuration(using: transitionContext),
-                animations: {
-                    view.frame.origin.y = view.frame.height
-                    containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
-                },
-                completion: { _ in
-                    transitionContext.completeTransition(true)
-                })
+                           animations: {
+                            view.frame.origin.y = view.frame.height
+                            containerView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+            },
+                           completion: { _ in
+                            transitionContext.completeTransition(true)
+            })
         }
     }
 }

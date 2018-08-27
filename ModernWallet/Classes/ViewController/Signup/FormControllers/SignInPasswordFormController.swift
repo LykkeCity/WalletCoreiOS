@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import WalletCore
 
-class SignInPasswordFormController: FormController {
+class SignInPasswordFormController: RecoveryController {
     
     let email: String
     
@@ -22,7 +22,8 @@ class SignInPasswordFormController: FormController {
     lazy var formViews: [UIView] = {
         return [
             self.titleLabel(title: self.email),
-            self.passwordTextField
+            self.passwordTextField,
+            self.forgottenPasswordView
         ]
     }()
     
@@ -32,6 +33,27 @@ class SignInPasswordFormController: FormController {
         textField.returnKeyType = .next
         return textField
     }()
+    
+    private lazy var forgottenPasswordView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        let button = self.forgottenPasswordTextButton
+        view.addSubview(button)
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 60.0))
+        view.addConstraint(NSLayoutConstraint(item: button, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 20.0))
+        view.addConstraint(NSLayoutConstraint(item: button, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        return view
+    }()
+    
+    private lazy var forgottenPasswordTextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle(Localize("auth.newDesign.forgottenPassword"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Geomanist", size: 14.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return button
+    }()
+
     
     var canGoBack: Bool {
         return true
@@ -43,6 +65,10 @@ class SignInPasswordFormController: FormController {
     
     var next: FormController? {
         return SignInConfirmPhoneFormController(signIn: true, phone: LWKeychainManager.instance()?.personalData()?.phone ?? "", email: self.email)
+    }
+    
+    var recoveryStep: RecoveryController? {
+        return RecoverySeedWordsFormController(email: self.email)
     }
     
     var segueIdentifier: String? {
@@ -63,7 +89,13 @@ class SignInPasswordFormController: FormController {
     
     private var disposeBag = DisposeBag()
     
-    func bind<T: UIViewController>(button: UIButton, nextTrigger: PublishSubject<Void>, pinTrigger: PublishSubject<PinViewController?>, loading: UIBindingObserver<T, Bool>, error: UIBindingObserver<T, [AnyHashable: Any]>) {
+    func bind<T>(button: UIButton,
+                 nextTrigger: PublishSubject<Void>,
+                 recoveryTrigger: PublishSubject<Void>,
+                 recoveryPinTrigger: PublishSubject<String>,
+                 pinTrigger: PublishSubject<PinViewController?>,
+                 loading: UIBindingObserver<T, Bool>,
+                 error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
         passwordTextField.rx.returnTap
@@ -81,6 +113,11 @@ class SignInPasswordFormController: FormController {
         passwordTextField.rx.text.asObservable()
             .filterNil()
             .bind(to: loginViewModel.password)
+            .disposed(by: disposeBag)
+        
+        forgottenPasswordTextButton.rx.tap
+            .throttle(1, scheduler: MainScheduler.instance)
+            .bind(to: recoveryTrigger)
             .disposed(by: disposeBag)
 
         loginViewModel.result.asObservable().filterError()

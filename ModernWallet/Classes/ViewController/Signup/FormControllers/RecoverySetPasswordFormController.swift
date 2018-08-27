@@ -1,9 +1,9 @@
 //
-//  SignUpSetPasswordFormController.swift
+//  RecoverySetPasswordFormController.swift
 //  ModernMoney
 //
-//  Created by Nacho Nachev on 29.11.17.
-//  Copyright © 2017 Lykkex. All rights reserved.
+//  Created by Lyubomir Marinov on 12.08.18.
+//  Copyright © 2018 Lykkex. All rights reserved.
 //
 
 import UIKit
@@ -11,19 +11,23 @@ import RxSwift
 import RxCocoa
 import WalletCore
 
-class SignUpSetPasswordFormController: FormController {
+class RecoverySetPasswordFormController: RecoveryController {
     
-    let email: String
+    let recoveryModel: LWRecoveryPasswordModel
     
-    init(email: String) {
-        self.email = email
+    init(recoveryModel: LWRecoveryPasswordModel) {
+        self.recoveryModel = recoveryModel
     }
+    
+    lazy var validationViewModel: ValidatePasswordViewModel = {
+        return ValidatePasswordViewModel()
+    }()
     
     lazy var formViews: [UIView] = {
         return [
             self.titleLabel(title: Localize("auth.newDesign.createPassword")),
             self.passwordTextField,
-            self.reenterPassTextField
+            self.repeatPasswordTextField,
         ]
     }()
     
@@ -34,7 +38,7 @@ class SignUpSetPasswordFormController: FormController {
         return textField
     }()
     
-    private lazy var reenterPassTextField: UITextField = {
+    private lazy var repeatPasswordTextField: UITextField = {
         let textField = self.textField(placeholder: Localize("auth.newDesign.enterAgain"))
         textField.isSecureTextEntry = true
         textField.returnKeyType = .next
@@ -46,20 +50,22 @@ class SignUpSetPasswordFormController: FormController {
     }
     
     var buttonTitle: String? {
-        return Localize("auth.newDesign.next")
+        return Localize("restore.form.next")
     }
     
     var next: FormController? {
-        return SignUpPasswordHintFormController(email: email, password: passwordTextField.text!)
+        return nil
     }
     
     var segueIdentifier: String? {
         return nil
     }
     
-    lazy var viewModel : SignUpRegistrationViewModel={
-        return SignUpRegistrationViewModel(submit: Observable.never() )
-    }()
+    var recoveryStep: RecoveryController? {
+        return RecoverySetHintFormController(recoveryModel: self.recoveryModel)
+    }
+    
+    private var passwordTrigger = PublishSubject<Void>()
     
     private var disposeBag = DisposeBag()
     
@@ -72,38 +78,43 @@ class SignUpSetPasswordFormController: FormController {
                  error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         disposeBag = DisposeBag()
         
-        passwordTextField.rx.text
-            .filterNil()
-            .bind(to: viewModel.password)
+        let passwordObservable = passwordTextField.rx.text
+            .orEmpty
+            .shareReplay(1)
+        
+        passwordObservable
+            .bind(to: recoveryModel.rx.password)
+            .disposed(by: disposeBag)
+            
+        passwordObservable
+            .bind(to: validationViewModel.password)
             .disposed(by: disposeBag)
         
-        passwordTextField.rx.returnTap
-            .subscribe(onNext: { _ in
-                self.reenterPassTextField.becomeFirstResponder()
-            })
+        repeatPasswordTextField.rx.text
+            .orEmpty
+            .bind(to: validationViewModel.repeatPassword)
             .disposed(by: disposeBag)
         
-        reenterPassTextField.rx.text
-            .filterNil()
-            .bind(to: viewModel.reenterPassword)
-            .disposed(by: disposeBag)
-        
-        reenterPassTextField.rx.returnTap
-            .withLatestFrom(viewModel.isValid.asObservable())
-            .filterTrueAndBind(toTrigger: nextTrigger)
-            .disposed(by: disposeBag)
-        
-        viewModel.isValid
+        validationViewModel.arePasswordsValid
             .bind(to: button.rx.isEnabled)
             .disposed(by: disposeBag)
-
+        
+        // Bind empty string to `recoveryPinTrigger` to show the pin view controller
         button.rx.tap
-            .bind(to: nextTrigger)
+            .bind(to: passwordTrigger)
+            .disposed(by: disposeBag)
+        
+        passwordTrigger
+            .bindToResignFirstResponder(views: formViews)
+            .disposed(by: disposeBag)
+        
+        passwordTrigger.asObservable()
+            .bind(to: recoveryTrigger)
             .disposed(by: disposeBag)
     }
     
     func unbind() {
         disposeBag = DisposeBag()
     }
-    
+
 }
