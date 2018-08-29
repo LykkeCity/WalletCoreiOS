@@ -208,7 +208,7 @@ fileprivate extension WalletsViewModel {
                 .map{ $0.isEmpty }
                 .drive(viewController.filterContainer.rx.isHidden),
  
-            infoData
+            walletsInfoData
                 .map { $0.asset }
                 .subscribe(onNext: {asset in LWCache.instance().baseAssetId = asset.identity}),
             
