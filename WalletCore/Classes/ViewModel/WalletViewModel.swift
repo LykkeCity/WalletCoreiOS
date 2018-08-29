@@ -67,7 +67,7 @@ public class WalletViewModel {
             .startWith("")
         
         let totalAmountObservable = nonEmptyWallets
-            .map { $0.map { $0.amountInBase.decimalValue }.reduce(0.0, +) }
+            .map { return $0.calculateTotalBalance() }
             .shareReplay(1)
         
         let walletAmountObservable = wallet

@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public typealias InfoData = (
+public typealias WalletsInfoData = (
     asset: LWAssetModel,
     wallets: [LWSpotWallet],
     assets: [LWAssetModel],
@@ -31,7 +31,7 @@ open class WalletsViewModel {
     public let isEmpty: Driver<Bool>
     
     ///
-    public let infoData: Observable<InfoData>
+    public let walletsInfoData: Observable<WalletsInfoData>
     
     public init(
         refreshWallets: Observable<Void>,
@@ -46,14 +46,15 @@ open class WalletsViewModel {
         
         let allAssets = authManager.allAssets.request()
         
-        let infoObservable = Observable<InfoData>
+        let infoObservable = Observable<WalletsInfoData>
             .combineLatest(baseAsset.filterSuccess(), nonEmptyWallets.filterSuccess(), allAssets.filterSuccess())
             {
-                (
+                return
+                    (
                     asset: $0,
                     wallets: $1,
                     assets: $2,
-                    totalBalance: $1.map { $0.amountInBase.decimalValue }.reduce(0.0, +)
+                    totalBalance: $1.calculateTotalBalance()
                 )
             }
             .shareReplay(1)
@@ -75,7 +76,7 @@ open class WalletsViewModel {
             .map { $0 == 0.0 }
             .asDriver(onErrorJustReturn: true)
         
-        self.infoData = infoObservable
+        self.walletsInfoData = infoObservable
         
         self.loadingViewModel = LoadingViewModel([
             baseAsset.isLoading(),
@@ -92,7 +93,7 @@ fileprivate extension ObservableType where Self.E == ApiResult<LWAssetModel> {
     }
 }
 
-fileprivate extension ObservableType where Self.E == InfoData {
+fileprivate extension ObservableType where Self.E == WalletsInfoData {
     func mapToAssets() -> Observable<[Variable<Asset>]> {
         return map{ data in
             

@@ -53,3 +53,10 @@ extension Collection {
         return self.indices.contains(index) ? self[index] : nil
     }
 }
+
+public extension Array where Element:LWSpotWallet {
+    
+    func calculateTotalBalance() -> Decimal {
+        return self.map { $0.amountInBase.decimalValue }.reduce(0.0, +)
+    }
+}
