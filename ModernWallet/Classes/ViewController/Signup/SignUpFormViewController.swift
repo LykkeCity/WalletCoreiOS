@@ -123,9 +123,8 @@ class SignUpFormViewController: UIViewController {
                                                     preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: Localize("restore.success.button"), style: .default) { _ in
-                //if we use "navigationController.dismiss" we can see for a second the portfolio screen !
-                //Its advisable to use self.presentLoginController in this case
-                self.presentLoginController()
+                //don't animate the dismiss, otherwise the portfolio screen may appear for a second
+                self.navigationController?.dismiss(animated: false, completion: nil)
             }
             alertController.addAction(okAction)
             
