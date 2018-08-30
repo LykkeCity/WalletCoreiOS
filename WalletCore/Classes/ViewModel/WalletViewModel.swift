@@ -39,6 +39,7 @@ public class WalletViewModel {
         let nonEmptyWallets = refresh
             .flatMap { _ in dependency.authManager.lykkeWallets.requestNonEmptyWallets() }
             .filterSuccess()
+            .filterBadRequest()
             .shareReplay(1)
         
         assetObservable = wallet

@@ -59,4 +59,8 @@ public extension Array where Element:LWSpotWallet {
     func calculateTotalBalance() -> Decimal {
         return self.map { $0.amountInBase.decimalValue }.reduce(0.0, +)
     }
+    
+    func calculateBalance() -> Decimal {
+        return self.map { $0.balance.decimalValue }.reduce(0.0, +)
+    }
 }

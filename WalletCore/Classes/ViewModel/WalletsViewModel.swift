@@ -42,15 +42,16 @@ open class WalletsViewModel {
         
         let nonEmptyWallets = refreshWallets
             .flatMapLatest{ _ in authManager.lykkeWallets.requestNonEmptyWallets() }
+            .filterSuccess()
+            .filterBadRequest()
             .shareReplay(1)
         
         let allAssets = authManager.allAssets.request()
         
         let infoObservable = Observable<WalletsInfoData>
-            .combineLatest(baseAsset.filterSuccess(), nonEmptyWallets.filterSuccess(), allAssets.filterSuccess())
+            .combineLatest(baseAsset.filterSuccess(), nonEmptyWallets, allAssets.filterSuccess())
             {
-                return
-                    (
+                (
                     asset: $0,
                     wallets: $1,
                     assets: $2,
@@ -106,5 +107,14 @@ fileprivate extension ObservableType where Self.E == WalletsInfoData {
                 .map{ Asset(wallet: $0, baseAsset: data.asset, totalBalance: data.totalBalance) }
                 .map{ Variable($0) }
             }
+    }
+}
+
+public extension ObservableType where Self.E == [LWSpotWallet] {
+    func filterBadRequest() -> Observable<[LWSpotWallet]> {
+        return filter{ var balance = $0.calculateBalance()
+            var totalBalance = $0.calculateTotalBalance()
+            return !(balance > 0.0 && totalBalance == 0.0)
+        }
     }
 }
