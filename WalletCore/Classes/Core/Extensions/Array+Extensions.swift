@@ -56,11 +56,12 @@ extension Collection {
 
 public extension Array where Element:LWSpotWallet {
     
-    //calculate balance in base according to the base asset
+    /// Calculate balance in base according to the base asset of all wallets in the array
     func calculateBalanceInBase() -> Decimal {
         return self.map { $0.amountInBase.decimalValue }.reduce(0.0, +)
     }
     
+    /// Calculate the total balance of all wallets in the array
     func calculateBalance() -> Decimal {
         return self.map { $0.balance.decimalValue }.reduce(0.0, +)
     }
