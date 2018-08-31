@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public typealias InfoData = (
+private typealias WalletsInfoData = (
     asset: LWAssetModel,
     wallets: [LWSpotWallet],
     assets: [LWAssetModel],
@@ -18,8 +18,8 @@ public typealias InfoData = (
 )
 
 open class WalletsViewModel {
+    /// All non-empty wallets 
     public var wallets: Observable<[Variable<Asset>]>
-    public var loadingViewModel: LoadingViewModel
     
     /// Currency name from base asset.Example USD
     public let currencyName: Driver<String>
@@ -27,38 +27,49 @@ open class WalletsViewModel {
     /// User balance based on all non empty wallets
     public let totalBalance: Driver<String>
     
-    ///Indicate if the total balance is zero
+    /// Indicate if the total balance is zero
     public let isEmpty: Driver<Bool>
     
-    ///
-    public let infoData: Observable<InfoData>
+    /// The current user base asset
+    public let baseAsset: Observable<LWAssetModel>
+    
+    /// Loading view model
+    public var loadingViewModel: LoadingViewModel
     
     public init(
         refreshWallets: Observable<Void>,
         authManager:LWRxAuthManager = LWRxAuthManager.instance
     ) {
-        let baseAsset = authManager.baseAsset.request()
+        let baseAssetRequest = authManager.baseAsset.request()
             .shareReplay(1)
+        
+        let baseAssetResult = baseAssetRequest.filterSuccess()
+            .shareReplay(1)
+        
+        self.baseAsset = baseAssetResult
         
         let nonEmptyWallets = refreshWallets
             .flatMapLatest{ _ in authManager.lykkeWallets.requestNonEmptyWallets() }
+            .filterSuccess()
+            .filterBadRequest()
             .shareReplay(1)
         
-        let allAssets = authManager.allAssets.request()
+        let allAssetsRequest = authManager.allAssets.request()
+            .shareReplay(1)
         
-        let infoObservable = Observable<InfoData>
-            .combineLatest(baseAsset.filterSuccess(), nonEmptyWallets.filterSuccess(), allAssets.filterSuccess())
+        let infoObservable = Observable<WalletsInfoData>
+            .combineLatest(baseAssetResult, nonEmptyWallets, allAssetsRequest.filterSuccess())
             {
                 (
                     asset: $0,
                     wallets: $1,
                     assets: $2,
-                    totalBalance: $1.map { $0.amountInBase.decimalValue }.reduce(0.0, +)
+                    totalBalance: $1.calculateBalanceInBase()
                 )
             }
             .shareReplay(1)
         
-        self.currencyName = baseAsset
+        self.currencyName = baseAssetRequest
             .mapToName()
             .asDriver(onErrorJustReturn: "")
         
@@ -75,11 +86,9 @@ open class WalletsViewModel {
             .map { $0 == 0.0 }
             .asDriver(onErrorJustReturn: true)
         
-        self.infoData = infoObservable
-        
         self.loadingViewModel = LoadingViewModel([
-            baseAsset.isLoading(),
-            allAssets.isLoading(),
+            baseAssetRequest.isLoading(),
+            allAssetsRequest.isLoading(),
             ])
     }
 }
@@ -92,7 +101,7 @@ fileprivate extension ObservableType where Self.E == ApiResult<LWAssetModel> {
     }
 }
 
-fileprivate extension ObservableType where Self.E == InfoData {
+fileprivate extension ObservableType where Self.E == WalletsInfoData {
     func mapToAssets() -> Observable<[Variable<Asset>]> {
         return map{ data in
             
@@ -105,5 +114,15 @@ fileprivate extension ObservableType where Self.E == InfoData {
                 .map{ Asset(wallet: $0, baseAsset: data.asset, totalBalance: data.totalBalance) }
                 .map{ Variable($0) }
             }
+    }
+}
+
+public extension ObservableType where Self.E == [LWSpotWallet] {
+    func filterBadRequest() -> Observable<[LWSpotWallet]> {
+        return filter {
+            let balance = $0.calculateBalance()
+            let totalBalance = $0.calculateBalanceInBase()
+            return !(balance > 0.0 && totalBalance == 0.0)
+        }
     }
 }
