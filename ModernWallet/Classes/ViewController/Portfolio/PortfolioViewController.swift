@@ -208,9 +208,8 @@ fileprivate extension WalletsViewModel {
                 .map{ $0.isEmpty }
                 .drive(viewController.filterContainer.rx.isHidden),
  
-            infoData
-                .map { $0.asset }
-                .subscribe(onNext: {asset in LWCache.instance().baseAssetId = asset.identity}),
+            baseAsset
+                .subscribe(onNext: { LWCache.instance().baseAssetId = $0.identity }),
             
             totalBalance
                 .drive(viewController.pieChartCenterView.balanceLabel.rx.text),
