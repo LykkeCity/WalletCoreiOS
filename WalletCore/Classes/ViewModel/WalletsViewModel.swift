@@ -114,7 +114,7 @@ public extension ObservableType where Self.E == [LWSpotWallet] {
     func filterBadRequest() -> Observable<[LWSpotWallet]> {
         return filter{ var balance = $0.calculateBalance()
             var totalBalance = $0.calculateBalanceInBase()
-            return (balance > 0.0 && totalBalance == 0.0)
+            return !(balance > 0.0 && totalBalance == 0.0)
         }
     }
 }
