@@ -55,7 +55,7 @@ open class WalletsViewModel {
                     asset: $0,
                     wallets: $1,
                     assets: $2,
-                    totalBalance: $1.calculateTotalBalance()
+                    totalBalance: $1.calculateBalanceInBase()
                 )
             }
             .shareReplay(1)
@@ -113,7 +113,7 @@ fileprivate extension ObservableType where Self.E == WalletsInfoData {
 public extension ObservableType where Self.E == [LWSpotWallet] {
     func filterBadRequest() -> Observable<[LWSpotWallet]> {
         return filter{ var balance = $0.calculateBalance()
-            var totalBalance = $0.calculateTotalBalance()
+            var totalBalance = $0.calculateBalanceInBase()
             return (balance > 0.0 && totalBalance == 0.0)
         }
     }
