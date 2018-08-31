@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public typealias WalletsInfoData = (
+private typealias WalletsInfoData = (
     asset: LWAssetModel,
     wallets: [LWSpotWallet],
     assets: [LWAssetModel],
