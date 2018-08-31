@@ -68,7 +68,7 @@ public class WalletViewModel {
             .startWith("")
         
         let totalAmountObservable = nonEmptyWallets
-            .map { return $0.calculateBalanceInBase() }
+            .map { $0.calculateBalanceInBase() }
             .shareReplay(1)
         
         let walletAmountObservable = wallet
