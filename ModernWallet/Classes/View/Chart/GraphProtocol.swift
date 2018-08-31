@@ -53,7 +53,7 @@ extension GraphProtocol  where Self: UIViewController {
             button.period = period
             
             button.frame = CGRect(x:width*CGFloat(index), y: 0, width: width, height: periodsButtonsViewP.bounds.size.height)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
+            button.titleLabel?.font = UIFont(name: "Geomanist-Book", size: 14)
             button.setTitle(period.value, for: .normal)
             button.setTitleColor(UIColor.init(r: 255, g: 255, b: 255, a: 100), for: .normal)
             button.setTitleColor(UIColor.white, for: .selected)

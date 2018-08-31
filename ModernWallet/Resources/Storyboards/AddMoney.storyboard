@@ -12,6 +12,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Geomanist-Book.otf">
+            <string>Geomanist-Book</string>
+        </array>
         <array key="Geomanist-Light.otf">
             <string>Geomanist-Light</string>
         </array>
@@ -370,6 +373,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sV0-vB-roI"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="17"/>
                                                 <state key="normal" title="VIEW THE LYKKE BANK DETAILS">
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -403,6 +407,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="zpg-ok-IrP"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="17"/>
                                 <state key="normal" title="EMAIL ME LYKKE BANK DETAILS">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -463,28 +468,28 @@
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmZ-j4-El9">
-                                        <rect key="frame" x="-4" y="198.33333333333337" width="422" height="269"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="649.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="WrC-bZ-Lxd">
-                                                <rect key="frame" x="20" y="20" width="382" height="229"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="229"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zsi-p4-p4n">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="22"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIC (SWIFT)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYH-XM-sk2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="119.33333333333333" height="13"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="BAL PL 122" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htH-1Y-E6I">
-                                                                <rect key="frame" x="131.33333333333337" y="0.0" width="208.66666666666663" height="13"/>
+                                                                <rect key="frame" x="128.66666666666663" y="0.0" width="203.33333333333337" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgS-Ny-p9W">
-                                                                <rect key="frame" x="352" y="0.0" width="30" height="22"/>
+                                                                <rect key="frame" x="344" y="0.0" width="30" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="6QP-vl-t6S"/>
                                                                     <constraint firstAttribute="height" constant="22" id="DQS-c9-PcC"/>
@@ -494,22 +499,22 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LZV-pt-feg">
-                                                        <rect key="frame" x="0.0" y="34" width="382" height="22"/>
+                                                        <rect key="frame" x="0.0" y="34" width="374" height="22"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXs-Ec-QyK">
-                                                                <rect key="frame" x="0.0" y="0.0" width="119.33333333333333" height="13"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="LI44 0880 1201 4601 0833 3" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtK-hh-P4H">
-                                                                <rect key="frame" x="131.33333333333337" y="0.0" width="208.66666666666663" height="13"/>
+                                                                <rect key="frame" x="128.66666666666663" y="0.0" width="203.33333333333337" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPA-UQ-D73">
-                                                                <rect key="frame" x="352" y="0.0" width="30" height="22"/>
+                                                                <rect key="frame" x="344" y="0.0" width="30" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="E2w-RU-PjP"/>
                                                                     <constraint firstAttribute="width" constant="30" id="XLz-hH-MJJ"/>
@@ -519,22 +524,22 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YNy-Bs-lfA">
-                                                        <rect key="frame" x="0.0" y="67.999999999999972" width="382" height="22"/>
+                                                        <rect key="frame" x="0.0" y="68" width="374" height="22"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT NAME" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Eg-uK-vbl">
-                                                                <rect key="frame" x="0.0" y="0.0" width="119.33333333333333" height="13"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="LYKKE CORP UK LIMITED" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1u-Qt-iQM">
-                                                                <rect key="frame" x="131.33333333333337" y="0.0" width="208.66666666666663" height="13"/>
+                                                                <rect key="frame" x="128.66666666666663" y="0.0" width="203.33333333333337" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIt-oz-dVu">
-                                                                <rect key="frame" x="352" y="0.0" width="30" height="22"/>
+                                                                <rect key="frame" x="344" y="0.0" width="30" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="JTZ-9I-CJ0"/>
                                                                     <constraint firstAttribute="height" constant="22" id="bLL-Ys-p4b"/>
@@ -544,22 +549,22 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="PCp-7h-Wgm">
-                                                        <rect key="frame" x="0.0" y="101.99999999999997" width="382" height="38.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="102" width="374" height="38.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BANK ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFj-pH-nFM">
-                                                                <rect key="frame" x="0.0" y="0.0" width="119.33333333333333" height="13"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="BANK ALPINUM - AUSTRASSE 59 POSFACH 1528, 9490 VADUZ LIECHTENSTEIN" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7k2-fw-thk">
-                                                                <rect key="frame" x="131.33333333333337" y="0.0" width="208.66666666666663" height="38.666666666666664"/>
+                                                                <rect key="frame" x="128.66666666666663" y="0.0" width="203.33333333333337" height="38.666666666666664"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrW-Z0-A8s">
-                                                                <rect key="frame" x="352" y="0.0" width="30" height="22"/>
+                                                                <rect key="frame" x="344" y="0.0" width="30" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="Jhi-KP-DhW"/>
                                                                     <constraint firstAttribute="height" constant="22" id="vTi-Uf-UDF"/>
@@ -569,22 +574,22 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9RY-Ex-5Ox">
-                                                        <rect key="frame" x="0.0" y="152.66666666666666" width="382" height="38.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="152.66666666666666" width="374" height="38.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMPANY ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXj-kS-FHB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="119.33333333333333" height="13"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="13"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="LYKKE CORP UK LIMITED PAUL STREET 86-90 LONDON EC2A 4NE UNITED KINGDOM" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5I-JC-Nk5">
-                                                                <rect key="frame" x="131.33333333333337" y="0.0" width="208.66666666666663" height="38.666666666666664"/>
+                                                                <rect key="frame" x="128.66666666666663" y="0.0" width="203.33333333333337" height="38.666666666666664"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7g-Ce-hQY">
-                                                                <rect key="frame" x="352" y="0.0" width="30" height="22"/>
+                                                                <rect key="frame" x="344" y="0.0" width="30" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="3Ia-3S-kM0"/>
                                                                     <constraint firstAttribute="height" constant="22" id="6IF-Qr-dsz"/>
@@ -594,22 +599,22 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BgS-mW-8cq">
-                                                        <rect key="frame" x="0.0" y="203.33333333333334" width="382" height="25.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="203.33333333333334" width="374" height="25.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PURPOSE OF PAYMENT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5p-el-Knr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="119.33333333333333" height="25.666666666666668"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="25.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="LYKKE SHARES (COINS) PURCHASE USD (EMAIL ADDRESS OF USER)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxv-kZ-EBY">
-                                                                <rect key="frame" x="131.33333333333337" y="0.0" width="208.66666666666663" height="25.666666666666668"/>
+                                                                <rect key="frame" x="128.66666666666663" y="0.0" width="203.33333333333337" height="25.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2t-jJ-Uib">
-                                                                <rect key="frame" x="352" y="0.0" width="30" height="22"/>
+                                                                <rect key="frame" x="344" y="0.0" width="30" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="b5p-fu-foC"/>
                                                                     <constraint firstAttribute="height" constant="22" id="eld-Kp-At4"/>
@@ -1263,6 +1268,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="AO5-kT-u4Y"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="21"/>
                                 <state key="normal" title="SUBMIT">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -1483,6 +1489,7 @@ transaction is confirmed in the blockchain</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="sDA-3G-Pic"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="15"/>
                                 <state key="normal" title="EMAIL ME">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
