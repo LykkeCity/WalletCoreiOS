@@ -54,7 +54,8 @@ public class SpreadService: SpreadServiceProtocol {
         guard let buySellPairRate = buySellPair?.rate else {return nil}
         
         let spread = abs(buySellPairRate.ask.doubleValue - buySellPairRate.bid.doubleValue)
-        let percent = (spread / buySellPairRate.ask.doubleValue) * 100
+        //don't devide by zero. You may get a 'inf' value
+        let percent = buySellPairRate.ask.doubleValue == 0 ? 0 : (spread / buySellPairRate.ask.doubleValue) * 100
         return NumberFormatter.percentInstancePerise.string(from: NSDecimalNumber(decimal: Decimal(percent)))
     }
 }
