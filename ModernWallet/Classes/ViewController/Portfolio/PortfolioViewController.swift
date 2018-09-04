@@ -102,8 +102,6 @@ class PortfolioViewController: UIViewController {
             .disposed(by: disposeBag)
         
         bindViewModels()
-        
-        pieChartView.noDataText = ""
     }
     
     override func didReceiveMemoryWarning() {
@@ -117,6 +115,7 @@ class PortfolioViewController: UIViewController {
     
     /// Add colors, renerer at cetera to pie chart
     private func configurePieChart() {
+        pieChartView.noDataText = ""
         pieChartView.renderer = StrokeChartRenderer(chart: pieChartView, animator: pieChartView.chartAnimator, viewPortHandler: pieChartView.viewPortHandler)
         pieChartView.holeColor = UIColor.clear
         pieChartView.highlightPerTapEnabled = false
