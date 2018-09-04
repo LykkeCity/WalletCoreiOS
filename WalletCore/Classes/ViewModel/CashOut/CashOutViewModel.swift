@@ -28,7 +28,7 @@ public class CashOutViewModel {
     
     public let trigger = PublishSubject<Void>()
     
-    public let errors: Driver<[AnyHashable: Any]>
+    public let errors: Observable<[AnyHashable: Any]>
     
     public let success: Driver<LWModelCashOutSwiftResult>
     
@@ -97,7 +97,8 @@ public class CashOutViewModel {
         
         errors = cashOutResultObservable
             .filterError()
-            .asDriver(onErrorJustReturn: [:])
+            .share()
+            .observeOn(MainScheduler.instance)
         
         loadingViewModel = LoadingViewModel([cashOutResultObservable.isLoading()])
     }
