@@ -20,7 +20,7 @@ class CashOurBankAccountDetailsViewController: UIViewController {
     @IBOutlet fileprivate weak var ibanTextField: UITextField!
     @IBOutlet fileprivate weak var bicTextField: UITextField!
     @IBOutlet fileprivate weak var accountHolderTextField: UITextField!
-    @IBOutlet fileprivate weak var currencyTextField: UITextField!
+    @IBOutlet fileprivate weak var accountHolderAddressTextField: UITextField!
     @IBOutlet fileprivate weak var accountHolderCountryTextField: UITextField!
     @IBOutlet fileprivate weak var accountHolderCountryCodeTextField: UITextField!
     @IBOutlet fileprivate weak var accountHolderZipCodeTextField: UITextField!
@@ -59,7 +59,7 @@ class CashOurBankAccountDetailsViewController: UIViewController {
         ibanTextField.placeholder = Localize("cashOut.newDesign.iban")
         bicTextField.placeholder = Localize("cashOut.newDesign.bic")
         accountHolderTextField.placeholder = Localize("cashOut.newDesign.accountHolder")
-        currencyTextField.placeholder = Localize("cashOut.newDesign.accountHolderAddress")
+        accountHolderAddressTextField.placeholder = Localize("cashOut.newDesign.accountHolderAddress")
         accountHolderCountryTextField.placeholder = Localize("cashOut.newDesign.accountHolderCountry")
         accountHolderCountryCodeTextField.placeholder = Localize("cashOut.newDesign.accountHolderCountryCode")
         accountHolderZipCodeTextField.placeholder = Localize("cashOut.newDesign.accountHolderZipCode")
@@ -104,7 +104,7 @@ fileprivate extension CashOutBankAccountViewModel {
         (viewController.accountHolderTextField.rx.textInput <-> accountHolder)
             .disposed(by: viewController.disposeBag)
         
-        (viewController.currencyTextField.rx.textInput <-> accountHolderAddress)
+        (viewController.accountHolderAddressTextField.rx.textInput <-> accountHolderAddress)
             .disposed(by: viewController.disposeBag)
         
         (viewController.accountHolderCountryTextField.rx.textInput <-> accountHolderCountry)
@@ -148,7 +148,7 @@ extension CashOurBankAccountDetailsViewController: InputForm {
             ibanTextField,
             bicTextField,
             accountHolderTextField,
-            currencyTextField,
+            accountHolderAddressTextField,
             accountHolderCountryCodeTextField,
             accountHolderZipCodeTextField,
             accountHolderCityTextField
