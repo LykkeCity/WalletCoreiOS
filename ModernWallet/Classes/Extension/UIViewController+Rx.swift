@@ -11,22 +11,20 @@ import UIKit
 import WalletCore
 import RxCocoa
 import RxSwift
-import SwiftSpinner
 import Toast
+import SwiftSpinner
 
 extension Reactive where Base: UIViewController {
     
     var loading: UIBindingObserver<Base, Bool> {
         return UIBindingObserver(UIElement: self.base) { vc, value in
             
-            SwiftSpinner.useContainerView(UIApplication.shared.keyWindow ?? UIApplication.shared.windows.first)
-            
             guard value else {
-                SwiftSpinner.hide()
+                vc.hideLoading()
                 return
             }
             
-            SwiftSpinner.show("Loading...")
+            vc.showLoading()
         }
     }
     
