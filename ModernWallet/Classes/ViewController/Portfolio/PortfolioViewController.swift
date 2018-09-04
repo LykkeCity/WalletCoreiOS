@@ -102,6 +102,8 @@ class PortfolioViewController: UIViewController {
             .disposed(by: disposeBag)
         
         bindViewModels()
+        
+        pieChartView.noDataText = ""
     }
     
     override func didReceiveMemoryWarning() {
