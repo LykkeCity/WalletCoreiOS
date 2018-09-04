@@ -35,18 +35,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpG-TA-M8J" customClass="BackgroundView" customModule="ModernMoney" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="AVAILABLE BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-rR-0K7">
-                                        <rect key="frame" x="135.5" y="85" width="105.5" height="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVAILABLE BALANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-rR-0K7">
+                                        <rect key="frame" x="128.5" y="88" width="120" height="14"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hif-Ph-qRU" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="101" width="152" height="30"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hif-Ph-qRU" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="138" y="106" width="100" height="20.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SELECT ASSET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wB8-FE-4rs">
-                                        <rect key="frame" x="134.5" y="241.5" width="107" height="18"/>
+                                        <rect key="frame" x="124" y="238.5" width="128.5" height="21"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -124,8 +124,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRz-lE-6Ok" userLabel="ScrollView Content">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GsC-Kx-PKC">
-                                                <rect key="frame" x="15" y="20" width="345" height="64"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsC-Kx-PKC">
+                                                <rect key="frame" x="15" y="20" width="345" height="45"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lNi-Vn-knu">
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -135,13 +135,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BITCOIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5am-s2-fp1">
-                                                        <rect key="frame" x="50" y="0.0" width="74" height="20"/>
+                                                        <rect key="frame" x="50" y="0.0" width="80" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wAj-7G-Rxr" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                        <rect key="frame" x="191" y="0.0" width="154" height="30"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAj-7G-Rxr" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                                        <rect key="frame" x="243" y="0.0" width="102" height="20.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -153,13 +153,13 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qct-qV-B7t">
-                                                        <rect key="frame" x="50" y="24" width="33" height="14"/>
+                                                        <rect key="frame" x="50" y="27.5" width="34.5" height="16.5"/>
                                                         <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WO-nz-kaD" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                        <rect key="frame" x="191" y="34" width="154" height="30"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3WO-nz-kaD" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                                        <rect key="frame" x="243" y="24.5" width="102" height="20.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -188,22 +188,22 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER AMOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28y-Fm-EZx">
-                                                <rect key="frame" x="124" y="235.5" width="127.5" height="18"/>
+                                                <rect key="frame" x="117.5" y="230" width="140.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wf8-Rs-F5Q">
-                                                <rect key="frame" x="132" y="263.5" width="112.5" height="30"/>
+                                                <rect key="frame" x="127" y="261" width="123" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCg-yg-d4X">
-                                                        <rect key="frame" x="0.0" y="0.0" width="34.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="35"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00" placeholder="0.00" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcv-ef-fB0">
-                                                        <rect key="frame" x="54.5" y="0.0" width="58" height="30"/>
+                                                        <rect key="frame" x="60" y="0.0" width="63" height="35"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="30"/>
@@ -217,16 +217,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zP2-tW-RNb">
-                                                <rect key="frame" x="130.5" y="303.5" width="115" height="30"/>
+                                                <rect key="frame" x="126" y="306" width="124.5" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6c-Iy-XYJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="35"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Book" family="Geomanist" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00" placeholder="0.00" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nH8-Xg-CRF">
-                                                        <rect key="frame" x="57" y="0.0" width="58" height="30"/>
+                                                        <rect key="frame" x="61.5" y="0.0" width="63" height="35"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="30"/>
@@ -239,13 +239,13 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="SLIDE TO RETRIEVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfU-am-kXR">
-                                                <rect key="frame" x="130" y="555" width="118.5" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLIDE TO RETRIEVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfU-am-kXR">
+                                                <rect key="frame" x="119.5" y="552.5" width="140" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <control contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w0l-aV-KzA" customClass="ConfirmSlider" customModule="ModernMoney" customModuleProvider="target">
+                                            <control contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="w0l-aV-KzA" customClass="ConfirmSlider" customModule="ModernMoney" customModuleProvider="target">
                                                 <rect key="frame" x="101" y="578" width="175" height="69"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
@@ -330,13 +330,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INPUT PERSONAL DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1w-iz-SOs">
-                                                <rect key="frame" x="89.5" y="50" width="197.5" height="18"/>
+                                                <rect key="frame" x="74" y="50" width="228.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qsl-g0-Xzl">
-                                                <rect key="frame" x="32" y="128" width="311" height="190"/>
+                                                <rect key="frame" x="32" y="131" width="311" height="190"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="NAME" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGJ-ol-OOn" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="0.0" width="311" height="50"/>
@@ -478,16 +478,16 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5W1-QW-ToJ" userLabel="Scroll View Content">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="830"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="INPUT PERSONAL DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPq-St-jbR">
-                                                <rect key="frame" x="89" y="50" width="197.5" height="18"/>
+                                                <rect key="frame" x="73.5" y="50" width="228.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pce-RF-HRQ">
-                                                <rect key="frame" x="32" y="88" width="311" height="400"/>
+                                                <rect key="frame" x="32" y="91" width="311" height="610"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT NAME" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cn8-2t-EjK" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="0.0" width="311" height="50"/>
@@ -573,9 +573,9 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="SELECT CURRENCY" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NBG-QA-2Vw" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NBG-QA-2Vw" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="280" width="311" height="50"/>
-                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="mCJ-BV-zxm"/>
                                                         </constraints>
@@ -594,7 +594,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT HOLDER COUNTRY" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mdq-6j-tlF" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT HOLDER COUNTRY" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mdq-6j-tlF" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="350" width="311" height="50"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -620,7 +620,7 @@
                                                             <outletCollection property="gestureRecognizers" destination="JrF-4S-yh3" appends="YES" id="VoW-wN-cMZ"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT HOLDER COUNTRY CODE" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7OK-tp-Gte" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT HOLDER COUNTRY CODE" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7OK-tp-Gte" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="420" width="311" height="50"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -642,7 +642,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT HOLDER ZIP CODE" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uKV-ss-kv1" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT HOLDER ZIP CODE" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uKV-ss-kv1" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="490" width="311" height="50"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -664,7 +664,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT HOLDER CITY" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WIe-zS-Pfx" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ACCOUNT HOLDER CITY" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WIe-zS-Pfx" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="560" width="311" height="50"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -688,7 +688,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJX-hO-vbF" customClass="SubmitButton" customModule="ModernMoney" customModuleProvider="target">
-                                                <rect key="frame" x="32" y="578" width="311" height="69"/>
+                                                <rect key="frame" x="32" y="741" width="311" height="69"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="69" id="Hl2-8b-dg5"/>
                                                 </constraints>
@@ -743,6 +743,7 @@
                         <viewLayoutGuide key="safeArea" id="EYn-am-7Eu"/>
                     </view>
                     <connections>
+                        <outlet property="accountHolderAddressTextField" destination="NBG-QA-2Vw" id="VdO-7h-aiY"/>
                         <outlet property="accountHolderCityTextField" destination="WIe-zS-Pfx" id="2kP-gD-ADO"/>
                         <outlet property="accountHolderCountryCodeTextField" destination="7OK-tp-Gte" id="n3h-nM-W5L"/>
                         <outlet property="accountHolderCountryTextField" destination="mdq-6j-tlF" id="cbX-gS-fs5"/>
@@ -750,7 +751,6 @@
                         <outlet property="accountHolderZipCodeTextField" destination="uKV-ss-kv1" id="MR0-Uq-PAH"/>
                         <outlet property="accountNameTextField" destination="Cn8-2t-EjK" id="f4U-vX-iFU"/>
                         <outlet property="bicTextField" destination="5p5-PP-r9A" id="tuK-9J-FSD"/>
-                        <outlet property="currencyTextField" destination="NBG-QA-2Vw" id="VdO-7h-aiY"/>
                         <outlet property="ibanTextField" destination="W5k-Bu-mo1" id="iig-bn-wOG"/>
                         <outlet property="nextButton" destination="ZJX-hO-vbF" id="hBd-h5-eUS"/>
                         <outlet property="scrollView" destination="PNa-4G-Svv" id="7wS-fG-PIl"/>
@@ -845,11 +845,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="33g-bG-anC" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                    <rect key="frame" x="158" y="5" width="152" height="30"/>
+                                                    <rect key="frame" x="158" y="5" width="100" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yK7-kk-vqc" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                    <rect key="frame" x="158" y="36" width="152" height="30"/>
+                                                    <rect key="frame" x="158" y="36" width="100" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
@@ -883,13 +883,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="30" translatesAutoresizingMaskIntoConstraints="NO" id="Fbn-XD-MoP">
-                                                    <rect key="frame" x="20" y="12.5" width="122" height="15"/>
+                                                    <rect key="frame" x="20" y="11.5" width="122" height="17.5"/>
                                                     <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIG-5V-Gwf" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                                    <rect key="frame" x="158" y="5.5" width="152" height="30"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIG-5V-Gwf" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                                    <rect key="frame" x="158" y="5.5" width="100" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
@@ -992,13 +992,13 @@
                                 <rect key="frame" x="151" y="40" width="72" height="72"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRANSACTION SUCCESSFUL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqb-m1-Nja">
-                                <rect key="frame" x="20" y="122" width="335" height="20"/>
+                                <rect key="frame" x="20" y="122" width="335" height="23.5"/>
                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRANSACTION DETAILS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wd-Tg-tm6">
-                                <rect key="frame" x="20" y="182" width="335" height="18"/>
+                                <rect key="frame" x="20" y="185.5" width="335" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="335" id="r3o-Qz-yD8"/>
                                 </constraints>
@@ -1007,17 +1007,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-CE-8eI" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
-                                <rect key="frame" x="20" y="220" width="335" height="2"/>
+                                <rect key="frame" x="20" y="226.5" width="335" height="2"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="HZ0-wE-O55"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B9C-jN-gZh">
-                                <rect key="frame" x="20" y="224" width="335" height="360"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9C-jN-gZh">
+                                <rect key="frame" x="20" y="230.5" width="335" height="353.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please allow 3-5 business days for the transaction to be processed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knd-fI-dw5">
-                                        <rect key="frame" x="0.0" y="28" width="335" height="36"/>
+                                        <rect key="frame" x="0.0" y="28" width="335" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="335" id="MFj-D6-BJb"/>
                                         </constraints>
@@ -1025,110 +1025,110 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c59-08-ee2" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
-                                        <rect key="frame" x="91.5" y="94" width="152" height="30"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c59-08-ee2" customClass="AssetAmountView" customModule="ModernMoney" customModuleProvider="target">
+                                        <rect key="frame" x="117.5" y="100" width="100" height="20.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2qw-vG-efw">
-                                        <rect key="frame" x="0.0" y="154" width="109" height="190"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2qw-vG-efw">
+                                        <rect key="frame" x="0.0" y="150.5" width="109" height="210"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="BANK NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJU-ZD-8Z9">
-                                                <rect key="frame" x="29.5" y="0.0" width="79.5" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BANK NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJU-ZD-8Z9">
+                                                <rect key="frame" x="21" y="0.0" width="88" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="IBAN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTD-hz-bNx">
-                                                <rect key="frame" x="77.5" y="25" width="31.5" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IBAN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTD-hz-bNx">
+                                                <rect key="frame" x="74" y="27.5" width="35" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="BIC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1o-eP-0ED">
-                                                <rect key="frame" x="87.5" y="50" width="21.5" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1o-eP-0ED">
+                                                <rect key="frame" x="84" y="55" width="25" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ACC. HOLDER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yg-RG-X7E">
-                                                <rect key="frame" x="19.5" y="75" width="89.5" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACC. HOLDER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Yg-RG-X7E">
+                                                <rect key="frame" x="8.5" y="82.5" width="100.5" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ACC. HOLDER COUNTRY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI8-Sh-60Y">
-                                                <rect key="frame" x="0.0" y="100" width="109" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACC. HOLDER COUNTRY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI8-Sh-60Y">
+                                                <rect key="frame" x="0.0" y="110" width="109" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ACC. HOLDER COUNTRY CODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFd-wb-lcM">
-                                                <rect key="frame" x="0.0" y="125" width="109" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACC. HOLDER COUNTRY CODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFd-wb-lcM">
+                                                <rect key="frame" x="0.0" y="137.5" width="109" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ACC. HOLDER ZIP CODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQu-bg-tSV">
-                                                <rect key="frame" x="0.0" y="150" width="109" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACC. HOLDER ZIP CODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQu-bg-tSV">
+                                                <rect key="frame" x="0.0" y="165" width="109" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ACC. HOLDER CITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cem-12-DzJ">
-                                                <rect key="frame" x="0.0" y="175" width="109" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACC. HOLDER CITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cem-12-DzJ">
+                                                <rect key="frame" x="0.0" y="192.5" width="109" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="81l-Ky-9BN">
-                                        <rect key="frame" x="129" y="154" width="206" height="190"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="81l-Ky-9BN">
+                                        <rect key="frame" x="129" y="150.5" width="206" height="210"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8e-un-F94">
-                                                <rect key="frame" x="0.0" y="0.0" width="35" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8e-un-F94">
+                                                <rect key="frame" x="0.0" y="0.0" width="37" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3Q-B5-a3z">
-                                                <rect key="frame" x="0.0" y="25" width="35" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3Q-B5-a3z">
+                                                <rect key="frame" x="0.0" y="27.5" width="37" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbq-nL-tth">
-                                                <rect key="frame" x="0.0" y="50" width="35" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbq-nL-tth">
+                                                <rect key="frame" x="0.0" y="55" width="37" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdn-eT-emM">
-                                                <rect key="frame" x="0.0" y="75" width="35" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdn-eT-emM">
+                                                <rect key="frame" x="0.0" y="82.5" width="37" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qF-3d-blf">
-                                                <rect key="frame" x="0.0" y="100" width="35" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qF-3d-blf">
+                                                <rect key="frame" x="0.0" y="110" width="37" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCq-kw-Asi">
-                                                <rect key="frame" x="0.0" y="125" width="35" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCq-kw-Asi">
+                                                <rect key="frame" x="0.0" y="137.5" width="37" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2A-ld-uEt">
-                                                <rect key="frame" x="0.0" y="150" width="35" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2A-ld-uEt">
+                                                <rect key="frame" x="0.0" y="165" width="37" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwh-1q-lkH">
-                                                <rect key="frame" x="0.0" y="175" width="35" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwh-1q-lkH">
+                                                <rect key="frame" x="0.0" y="192.5" width="37" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1252,7 +1252,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xc2-Gb-d9I">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CountryCell" id="SUG-YZ-HFa" customClass="SelectCountryTableViewCell" customModule="ModernMoney" customModuleProvider="target">
@@ -1263,7 +1263,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmb-Bk-mvA">
-                                                    <rect key="frame" x="15" y="13.5" width="384" height="17"/>
+                                                    <rect key="frame" x="15" y="13.5" width="345" height="17"/>
                                                     <fontDescription key="fontDescription" name="Geomanist" family="Geomanist" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
