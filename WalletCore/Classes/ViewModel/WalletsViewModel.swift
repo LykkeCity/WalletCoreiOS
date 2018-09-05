@@ -87,6 +87,7 @@ open class WalletsViewModel {
         self.isEmpty = infoObservable
             .map { $0.totalBalance }
             .map { $0 == 0.0 }
+            .distinctUntilChanged()
             .asDriver(onErrorJustReturn: true)
         
         self.loadingViewModel = LoadingViewModel([
