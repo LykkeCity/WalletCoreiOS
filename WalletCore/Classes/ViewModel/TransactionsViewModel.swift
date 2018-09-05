@@ -31,6 +31,8 @@ open class TransactionsViewModel {
     /// Transactions represented as CSV
     public var transactionsAsCsv: Observable<ApiResult<URL>>
     
+    public let presentEmptyWallet: Driver<Void>
+    
     /// Once the value of this Variable is changed there will be created an event with sorted TransactionsViewModel.transactions according SortType
     public let sortBy = Variable<SortType>(SortType.asc)
     
@@ -62,10 +64,15 @@ open class TransactionsViewModel {
         let transactionsObservable = dependency.authManager.history.request()
         
         let transactions = transactionsToDisplay.asObservable()
+            .skip(1) // skip initial empty array
             .map{ $0.map{ TransactionViewModel(item: $0, dependency: dependency) } }
         
         self.transactions = transactions
             .asDriver(onErrorJustReturn: [])
+        
+        self.presentEmptyWallet = self.transactions
+            .filter{ $0.isEmpty }
+            .map{ _ in () }
         
         self.transactionsAsCsv = downloadCsv
             .mapToCSVURL(transactions: transactions)
