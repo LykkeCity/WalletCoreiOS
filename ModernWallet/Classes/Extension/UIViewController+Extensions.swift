@@ -77,14 +77,41 @@ extension UIViewController {
         let signInStory = UIStoryboard.init(name: "SignIn", bundle: nil)
         let signUpNav = signInStory.instantiateInitialViewController()!// instantiateViewController(withIdentifier: "SignUpNav")
         
-        //show loading indicator to prevent blinking
-        showLoading()
+        presentOnMain(viewController: signUpNav)
+    }
+    
+    
+    /// Present empty wallet view controller
+    ///
+    /// - Parameter message: View controller message
+    func presentEmptyWallet(withMessage message: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let emptyWalletVC = storyboard.instantiateViewController(withIdentifier: "EmptyWallet") as! EmptyWalletViewController
+        emptyWalletVC.message = message
+        rx.loading.onNext(false)
+        navigationController?.setViewControllers([emptyWalletVC], animated: false)
+    }
+    
+    
+    /// Present view controller on the main thread with loading indication
+    ///
+    /// - Parameters:
+    ///   - viewController: The view controller that will be presented
+    ///   - showLoading: Flag that determine, whether shoud be shown loading indication
+    private func presentOnMain(viewController: UIViewController, showLoading: Bool = true) {
+        
+        if showLoading {
+            //show loading indicator to prevent blinking
+            self.showLoading()
+        }
+        
         DispatchQueue.main.async { [weak self] in
-            self?.present(signUpNav, animated: false) {
-                //hide indicator once the login view controller has been presented
-                self?.hideLoading()
+            self?.present(viewController, animated: false) {
+                if showLoading {
+                    //hide indicator once the login view controller has been presented
+                    self?.hideLoading()
+                }
             }
         }
     }
-    
 }
