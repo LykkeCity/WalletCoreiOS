@@ -197,16 +197,14 @@ fileprivate extension WalletsViewModel {
     func bind(toViewController viewController: PortfolioViewController) -> [Disposable] {
         
         return [
-            wallets.asDriver()
-                .map{ $0.isNotEmpty }
+            isEmpty.asDriver()
+                .map{ !$0 }
                 .drive(viewController.emptyPortfolioView.rx.isHidden),
             
-            wallets.asDriver()
-                .map{ $0.isEmpty }
+            isEmpty.asDriver()
                 .drive(viewController.pieChartCenterView.addMoneyButton.rx.isHidden),
             
-            wallets.asDriver()
-                .map{ $0.isEmpty }
+            isEmpty.asDriver()
                 .drive(viewController.filterContainer.rx.isHidden),
  
             baseAsset
