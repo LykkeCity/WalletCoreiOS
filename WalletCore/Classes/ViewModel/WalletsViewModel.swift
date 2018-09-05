@@ -48,8 +48,11 @@ open class WalletsViewModel {
         
         self.baseAsset = baseAssetResult
         
-        let nonEmptyWallets = refreshWallets
+        let nonEmptyWalletsRequest = refreshWallets
             .flatMapLatest{ _ in authManager.lykkeWallets.requestNonEmptyWallets() }
+            .shareReplay(1)
+        
+        let nonEmptyWallets = nonEmptyWalletsRequest
             .filterSuccess()
             .filterBadRequest()
             .shareReplay(1)
@@ -87,9 +90,10 @@ open class WalletsViewModel {
             .asDriver(onErrorJustReturn: true)
         
         self.loadingViewModel = LoadingViewModel([
+            nonEmptyWalletsRequest.isLoading(),
             baseAssetRequest.isLoading(),
-            allAssetsRequest.isLoading(),
-            ])
+            allAssetsRequest.isLoading()
+        ])
     }
 }
 
