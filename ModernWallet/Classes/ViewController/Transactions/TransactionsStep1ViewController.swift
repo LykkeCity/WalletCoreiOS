@@ -141,6 +141,11 @@ fileprivate extension TransactionsViewModel {
                                                             cellType: AssetInfoTableViewCell.self)
                 ){ (row, element, cell) in cell.bind(toTransaction: element) },
             
+            presentEmptyWallet
+                .drive(onNext: { [weak vc] _ in
+                    vc?.presentEmptyWallet(withMessage: Localize("emptyWallet.newDesign.transactionsMessage"))
+                }),
+            
             loading.isLoading
                 .bind(to: vc.rx.loading),
             
