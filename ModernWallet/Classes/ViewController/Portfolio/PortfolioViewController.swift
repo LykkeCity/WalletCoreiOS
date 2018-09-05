@@ -95,11 +95,13 @@ class PortfolioViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        // TODO: Lyubomir Tsekov, please remove the following binding in case it's a workaround for a problem that currently does not exist.
+        // LMW-546
         // Bind the walletsViewModel loading to the table's `isHidden` property
-        self.walletsViewModel.loadingViewModel.isLoading.asObservable()
-            .startWith(true)
-            .bind(to: tableView.rx.isHidden)
-            .disposed(by: disposeBag)
+//        self.walletsViewModel.loadingViewModel.isLoading.asObservable()
+//            .startWith(true)
+//            .bind(to: tableView.rx.isHidden)
+//            .disposed(by: disposeBag)
         
         bindViewModels()
     }
