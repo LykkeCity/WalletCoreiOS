@@ -64,10 +64,10 @@ open class TransactionsViewModel {
         let transactionsObservable = dependency.authManager.history.request()
         
         let transactions = transactionsToDisplay.asObservable()
-            .skip(1) // skip initial empty array
             .map{ $0.map{ TransactionViewModel(item: $0, dependency: dependency) } }
         
         self.transactions = transactions
+            .skip(1) // skip initial empty array
             .asDriver(onErrorJustReturn: [])
         
         self.presentEmptyWallet = self.transactions
@@ -86,7 +86,7 @@ open class TransactionsViewModel {
         
         self.loading = LoadingViewModel([
             transactionsObservable.isLoading(),
-            self.transactionsAsCsv.asObservable().isLoading()
+            transactionsAsCsv.isLoading()
         ])
         
         transactionModels.asObservable()
