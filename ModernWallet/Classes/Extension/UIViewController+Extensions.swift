@@ -11,11 +11,26 @@ import UIKit
 import WalletCore
 import RxSwift
 import RxCocoa
+import SwiftSpinner
 
 extension UIViewController {
     
     @IBAction func swipeToNavigateBack(_ sender: UISwipeGestureRecognizer) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func showLoading() {
+        if UIApplication.shared.keyWindow == nil {
+            let container = UIApplication.shared.windows.first ?? self.view
+            //set container view if keyWindow is nil so that SwiftSpinner can use it as superview
+            SwiftSpinner.useContainerView(container)
+        }
+        
+        SwiftSpinner.show("Loading...")
+    }
+    
+    func hideLoading() {
+        SwiftSpinner.hide()
     }
     
     func show(error dictionary: [AnyHashable : Any]) {
@@ -57,11 +72,19 @@ extension UIViewController {
         present(alertController, animated: true)
     }
     
+    /// Present login view controller in respect of DispatchQueue.async as showing/hiding loading indicator while presenting
     func presentLoginController() {
         let signInStory = UIStoryboard.init(name: "SignIn", bundle: nil)
         let signUpNav = signInStory.instantiateInitialViewController()!// instantiateViewController(withIdentifier: "SignUpNav")
         
-        present(signUpNav, animated: false, completion: nil)
+        //show loading indicator to prevent blinking
+        showLoading()
+        DispatchQueue.main.async { [weak self] in
+            self?.present(signUpNav, animated: false) {
+                //hide indicator once the login view controller has been presented
+                self?.hideLoading()
+            }
+        }
     }
     
 }

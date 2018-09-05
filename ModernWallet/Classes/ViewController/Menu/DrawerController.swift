@@ -1,3 +1,4 @@
+
 //
 //  DrawerController.swift
 //  ModernWallet
@@ -15,11 +16,6 @@ class DrawerController: KYDrawerController {
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.showPortfolio), name: .loggedIn, object: nil)
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
         if UserDefaults.standard.isNotLoggedIn || SignUpStep.instance != nil {
             presentLoginController()
