@@ -67,12 +67,13 @@ open class TransactionsViewModel {
             .map{ $0.map{ TransactionViewModel(item: $0, dependency: dependency) } }
         
         self.transactions = transactions
-            .skip(1) // skip initial empty array
             .asDriver(onErrorJustReturn: [])
         
-        self.presentEmptyWallet = self.transactions
+        self.presentEmptyWallet = transactionsObservable
+            .filterSuccess()
             .filter{ $0.isEmpty }
             .map{ _ in () }
+            .asDriver(onErrorJustReturn: ())
         
         self.transactionsAsCsv = downloadCsv
             .mapToCSVURL(transactions: transactions)
