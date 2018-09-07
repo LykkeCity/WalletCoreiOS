@@ -63,7 +63,8 @@ class SignUpFillPhoneFormController: FormController {
                  recoveryPinTrigger: PublishSubject<String>,
                  pinTrigger: PublishSubject<PinViewController?>,
                  loading: UIBindingObserver<T, Bool>,
-                 error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+                 error: UIBindingObserver<T, [AnyHashable : Any]>,
+                 toast: UIBindingObserver<T, String>) where T : UIViewController {
         disposeBag = DisposeBag()
         
         phoneNumberTextField.rx.text

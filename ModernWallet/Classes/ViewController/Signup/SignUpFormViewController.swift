@@ -207,13 +207,16 @@ class SignUpFormViewController: UIViewController {
         if let previuosFormController = forms.last {
             previuosFormController.unbind()
         }
+        
         formController.bind(button: submitButton,
                             nextTrigger: nextTrigger,
                             recoveryTrigger: recoveryTrigger,
                             recoveryPinTrigger: recoveryPinTrigger,
                             pinTrigger: pinTrigger,
                             loading: rx.loading,
-                            error: rx.error)
+                            error: rx.error,
+                            toast: rx.messageBottom
+                            )
         submitButton.setTitle(formController.buttonTitle, for: .normal)
         forms.append(formController)
         
@@ -276,7 +279,8 @@ class SignUpFormViewController: UIViewController {
                                     recoveryPinTrigger: recoveryPinTrigger,
                                     pinTrigger: pinTrigger,
                                     loading: rx.loading,
-                                    error: rx.error)
+                                    error: rx.error,
+                                    toast: rx.messageBottom)
         submitButton.setTitle(previousFormController.buttonTitle, for: .normal)
         
         didPop()

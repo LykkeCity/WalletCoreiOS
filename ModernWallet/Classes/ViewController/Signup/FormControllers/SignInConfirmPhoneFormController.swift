@@ -113,7 +113,8 @@ class SignInConfirmPhoneFormController: FormController {
                  recoveryPinTrigger: PublishSubject<String>,
                  pinTrigger: PublishSubject<PinViewController?>,
                  loading: UIBindingObserver<T, Bool>,
-                 error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+                 error: UIBindingObserver<T, [AnyHashable : Any]>,
+                 toast: UIBindingObserver<T, String>) where T : UIViewController {
         disposeBag = DisposeBag()
         
         smsCodeTextField.rx.text.asObservable().replaceNilWith("")
@@ -128,7 +129,8 @@ class SignInConfirmPhoneFormController: FormController {
                        nextTrigger: nextTrigger,
                        pinTrigger: pinTrigger,
                        loading: loading,
-                       error: error)
+                       error: error,
+                       toast: toast)
         } else {
             bindSignUp(button: button,
                        nextTrigger: nextTrigger,
@@ -142,7 +144,8 @@ class SignInConfirmPhoneFormController: FormController {
                                nextTrigger: PublishSubject<Void>,
                                pinTrigger: PublishSubject<PinViewController?>,
                                loading: UIBindingObserver<T, Bool>,
-                               error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
+                               error: UIBindingObserver<T, [AnyHashable : Any]>,
+                               toast: UIBindingObserver<T, String>) where T : UIViewController {
         button.rx.tap.asObservable()
             .map{ [smsCodeTextField] in smsCodeTextField.text }
             .replaceNilWith("")
@@ -168,6 +171,11 @@ class SignInConfirmPhoneFormController: FormController {
                 return ()
             }
             .bind(to: nextTrigger)
+            .disposed(by: disposeBag)
+        
+        clientCodesViewModel.sentSMSCode
+            .map{ Localize("register.phone.sms.sent") }
+            .drive(toast)
             .disposed(by: disposeBag)
     }
     
