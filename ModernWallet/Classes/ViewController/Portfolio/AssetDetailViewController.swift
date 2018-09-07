@@ -52,14 +52,10 @@ class AssetDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     var asset: Observable<Asset>!
-    var assetModel: Asset!
+    fileprivate var assetModel: Asset?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        asset
-            .bind{ [weak self] in self?.assetModel = $0 }
-            .disposed(by: disposeBag)
         
         transactionsTable.contentInset = UIEdgeInsetsMake(0, 0, 44, 0)
 
@@ -85,6 +81,10 @@ class AssetDetailViewController: UIViewController {
             .bind(toAsset: assetAmount, baseAsset: baseAssetAmount)
             .disposed(by: disposeBag)
 
+        asset
+            .bind{ [weak self] in self?.assetModel = $0 }
+            .disposed(by: disposeBag)
+        
         asset.mapToCryptoName()
             .asDriver(onErrorJustReturn: "")
             .drive(rx.title)
@@ -130,9 +130,14 @@ class AssetDetailViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let segueIdentifier = segue.identifier else {
+        guard
+            let segueIdentifier = segue.identifier,
+            let assetModel = assetModel
+        else {
+            rx.messageBottom.onNext("No selected asset")
             return
         }
+        
         switch segueIdentifier {
         case "BuyAsset":
             guard let buyVC = segue.destination as? BuyOptimizedViewController else { return }
