@@ -51,10 +51,15 @@ class AssetDetailViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     
-    var asset: Variable<Asset>!
+    var asset: Observable<Asset>!
+    var assetModel: Asset!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        asset
+            .bind{ [weak self] in self?.assetModel = $0 }
+            .disposed(by: disposeBag)
         
         transactionsTable.contentInset = UIEdgeInsetsMake(0, 0, 44, 0)
 
@@ -65,7 +70,7 @@ class AssetDetailViewController: UIViewController {
             .mapToCSVURL(transactions: transactionsViewModel
                                         .transactions
                                         .asObservable()
-                                        .filter(byAsset: asset.value))
+                                        .filter(byAsset: asset))
 
         
         transactionsViewModel
@@ -80,14 +85,14 @@ class AssetDetailViewController: UIViewController {
             .bind(toAsset: assetAmount, baseAsset: baseAssetAmount)
             .disposed(by: disposeBag)
 
-        asset.asObservable()
-            .mapToCryptoName()
+        asset.mapToCryptoName()
             .asDriver(onErrorJustReturn: "")
             .drive(rx.title)
             .disposed(by: disposeBag)
         
-        asset.asDriver()
+        asset
             .map{$0.wallet?.asset.blockchainWithdraw ?? false}
+            .asDriver(onErrorJustReturn: false)
             .drive(sendButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
@@ -132,20 +137,20 @@ class AssetDetailViewController: UIViewController {
         case "BuyAsset":
             guard let buyVC = segue.destination as? BuyOptimizedViewController else { return }
             buyVC.tradeType = .buy
-            buyVC.tradeAssetIdentifier = asset.value.cryptoCurrency.identity
+            buyVC.tradeAssetIdentifier = assetModel.cryptoCurrency.identity
             buyVC.currencyExchanger = currencyExchanger
         case "SellAsset":
             guard let sellVC = segue.destination as? BuyOptimizedViewController else { return }
             sellVC.tradeType = .sell
-            sellVC.tradeAssetIdentifier = asset.value.cryptoCurrency.identity
+            sellVC.tradeAssetIdentifier = assetModel.cryptoCurrency.identity
             sellVC.currencyExchanger = currencyExchanger
         case "ReceiveAddress":
             guard let receiveVC = segue.destination as? ReceiveWalletViewController else { return }
-            receiveVC.asset = asset
+            receiveVC.asset = Variable(assetModel)
             receiveVC.address = assetBalanceViewModel.blockchainAddress.value
         case "SendAsset":
             guard let sendVC = segue.destination as? SendToWalletViewController else { return }
-            sendVC.asset = asset
+            sendVC.asset = Variable(assetModel)
         case "ShowFilterPopover":
             guard let filterNavigationController = segue.destination as? UINavigationController,
                 let filterViewController = filterNavigationController.topViewController as? TransactionPickDateRangeViewController else { return }
@@ -181,7 +186,7 @@ fileprivate extension TransactionsViewModel {
     func bind(toViewController vc: AssetDetailViewController) -> [Disposable] {
         return [
             transactions.asObservable()
-                .filter(byAsset: vc.asset.value)
+                .filter(byAsset: vc.asset)
                 .bind(
                     to: vc.transactionsTable.rx.items(cellIdentifier: "AssetInfoTableViewCell",
                                                    cellType: AssetInfoTableViewCell.self)
@@ -206,12 +211,14 @@ extension AssetDetailViewController: UIPopoverPresentationControllerDelegate {
 }
 
 extension ObservableType where Self.E == [TransactionViewModel] {
-    func filter(byAsset asset: Asset) -> Observable<[TransactionViewModel]> {
-        return map{ transactions in
-            transactions.filter{transaction in
-                transaction.transaction.asset == asset.wallet?.asset.identity
+    func filter(byAsset asset: Observable<Asset>) -> Observable<[TransactionViewModel]> {
+        return
+            withLatestFrom(asset) {(transactions: $0, asset: $1)}
+            .map{ data in
+                data.transactions.filter{transaction in
+                    transaction.transaction.asset == data.asset.wallet?.asset.identity
+                }
             }
-        }
     }
 }
 
