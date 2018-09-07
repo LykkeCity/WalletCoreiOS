@@ -35,6 +35,8 @@ public class KycNeededViewModel {
                 kycForAsset.userKYCStatus == "Ok"
             }
             .map{_ in Void()}
+            .observeOn(MainScheduler.asyncInstance)
+            .shareReplay(1)
         
         self.pending = kycForAsset
             .filterSuccess()
@@ -42,6 +44,8 @@ public class KycNeededViewModel {
                 kycForAsset.userKYCStatus == "Pending"
             }
             .map{_ in Void()}
+            .observeOn(MainScheduler.asyncInstance)
+            .shareReplay(1)
         
         self.needToFillData = kycForAsset
             .filterSuccess()
@@ -49,6 +53,8 @@ public class KycNeededViewModel {
                 kycForAsset.userKYCStatus == "NeedToFillData" // && kycForAsset.kycNeeded
             }
             .map{_ in Void()}
+            .observeOn(MainScheduler.asyncInstance)
+            .shareReplay(1)
         
         self.loadingViewModel = LoadingViewModel([
             asset.isLoading(),
