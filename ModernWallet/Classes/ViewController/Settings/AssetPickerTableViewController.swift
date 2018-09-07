@@ -19,7 +19,9 @@ class AssetPickerTableViewController: UITableViewController {
     
     var displayBaseAssetAsSelected = false
     
-    fileprivate var filter: ((SingleAssetViewModel) -> Bool)? = nil
+    typealias Filter = ((SingleAssetViewModel) -> Bool)
+    
+    fileprivate var filter: Filter? = nil
     
     fileprivate let baseAssetsViewModel = BaseAssetsViewModel()
     
@@ -27,7 +29,7 @@ class AssetPickerTableViewController: UITableViewController {
     
     fileprivate let rows = Variable([SingleAssetViewModel]())
     
-    fileprivate let disposeBag = DisposeBag()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,25 +39,24 @@ class AssetPickerTableViewController: UITableViewController {
         tableView.backgroundView = BackgroundView(frame: tableView.bounds)
         
         rows.asObservable()
-        .bind(to: tableView.rx.items(cellIdentifier: "PickAssetCell",
-                                     cellType: AssetPickTableViewCell.self)) { [weak self] (row, element, cell) in
-            cell.displayBaseAssetAsSelected = self?.displayBaseAssetAsSelected ?? false
-            cell.setBaseAssetData(element)
-        }.disposed(by: disposeBag)
-
-        let rowSelected = tableView.rx
-        .modelSelected(SingleAssetViewModel.self)
-        .observeOn(MainScheduler.asyncInstance)
-        
-        rowSelected
-        .subscribe(onNext: { [weak self] selected in
-            if let indexPath = self?.tableView.indexPathForSelectedRow {
-                self?.tableView.deselectRow(at: indexPath, animated: true)
+            .bind(to: tableView.rx.items(cellIdentifier: "PickAssetCell",
+                                         cellType: AssetPickTableViewCell.self)) { [weak self] (row, element, cell) in
+                cell.displayBaseAssetAsSelected = self?.displayBaseAssetAsSelected ?? false
+                cell.setBaseAssetData(element)
             }
-            
-            self?.assetPickSubject.onNext(selected.asset.value)
-        })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(SingleAssetViewModel.self)
+            .observeOn(MainScheduler.asyncInstance)
+            .do(onNext: { [weak tableView] _ in
+                if let indexPath = tableView?.indexPathForSelectedRow {
+                    tableView?.deselectRow(at: indexPath, animated: true)
+                }
+            })
+            .map{ $0.asset.value }
+            .bind(to: assetPickSubject)
+            .disposed(by: disposeBag)
         
         bindViewModels()
     }
@@ -71,16 +72,29 @@ fileprivate extension BaseAssetsViewModel {
     func bind(toRows rows: Variable<[SingleAssetViewModel]>, inViewController viewController: AssetPickerTableViewController) -> [Disposable] {
         return [
             assetsViewModel.assets
-            .map({ [weak viewController] (assets) -> [SingleAssetViewModel] in
-                if let filter = viewController?.filter {
-                    return assets.filter(filter)
-                } else {
-                    return assets
-                }
-            }).drive(rows),
+                .filterAssets(by: viewController.filter)
+                .drive(rows),
             loadingViewModel.isLoading.bind(to: viewController.rx.loading),
             errors.drive(viewController.rx.error)
         ]
+    }
+}
+
+fileprivate extension SharedSequenceConvertibleType where SharingStrategy == DriverSharingStrategy, Self.E == [SingleAssetViewModel] {
+    
+    /// Filter assets by the given filter
+    ///
+    /// - Parameter filter: Filter that is used for filtering assets
+    /// - Returns: Observable of filtered assets
+    func filterAssets(by filter: AssetPickerTableViewController.Filter?) -> Driver<[SingleAssetViewModel]> {
+        return map({ assets -> [SingleAssetViewModel] in
+            
+            guard let filter = filter else {
+                return assets
+            }
+            
+            return assets.filter(filter)
+        })
     }
 }
 
