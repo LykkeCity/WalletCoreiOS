@@ -80,7 +80,9 @@ open class WalletsViewModel {
         
          self.totalBalance = infoObservable
             .map { value -> String in
-                return value.totalBalance.convertAsCurrency(code: "", symbol: value.asset.symbol, accuracy: Int(value.asset.accuracy))
+                let accuracy = value.asset.accuracy?.intValue ?? 2
+                let symbol = value.asset.symbol ?? ""
+                return value.totalBalance.convertAsCurrency(code: "", symbol: symbol, accuracy: accuracy)
             }
             .asDriver(onErrorJustReturn: "")
         
