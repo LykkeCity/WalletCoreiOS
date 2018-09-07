@@ -166,8 +166,8 @@ fileprivate extension KycNeededViewModel {
                 }),
             
             ok.subscribe(onNext: {[weak vc] in
-                if let vc = vc?.addMoneyViaActionVC {
-                    vc.navigationController?.pushViewController(vc, animated: true)
+                if let addMoneyVC = vc?.addMoneyViaActionVC {
+                    vc?.navigationController?.pushViewController(addMoneyVC, animated: true)
                 }
             }),
             
