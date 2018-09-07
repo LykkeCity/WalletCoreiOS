@@ -21,6 +21,9 @@ open class ClientCodesViewModel {
     
     /// Loading view model that merge all http calls
     public let loadingViewModel: LoadingViewModel
+    
+    /// Emits an event when a sms code is being sent to the user's phone
+    public let sentSMSCode: Driver<Void>
 
     /// - Parameters:
     ///   - smsCodeForRetrieveKey: SMS code sent to the user that he/she should fill in order to get the encoded private key
@@ -87,6 +90,11 @@ open class ClientCodesViewModel {
 //        let verifiedEmail = retriedEncodeMainKey.filterSuccess()
 //            .flatMapLatest { dependency.authManager.emailverification.request() }
         
+        self.sentSMSCode = getClientCodeObservable
+            .filterSuccess()
+            .map{ _ in () }
+            .asDriver(onErrorJustReturn: ())
+        
         self.encodeMainKeyObservable = Observable.merge(
             getEncodedPrivateObservable.filterSuccess(),
             retriedEncodeMainKey.filterSuccess()
@@ -102,7 +110,7 @@ open class ClientCodesViewModel {
         )
         
         loadingViewModel = LoadingViewModel([
-            getClientCodeObservable.isLoading(),
+            getClientCodeObservable.isLoading().skip(2), //skip the initial sms code LMW-551
             postClientCodesObservable.isLoading(),
             getEncodedPrivateObservable.isLoading(),
             validatePin.isLoading(),
