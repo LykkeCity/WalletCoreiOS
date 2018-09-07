@@ -160,7 +160,6 @@ class SignInConfirmPhoneFormController: FormController {
         
         clientCodesViewModel.encodeMainKeyObservable
             .observeOn(MainScheduler.instance)
-            .delay(0.011, scheduler: MainScheduler.instance) // dirty hack:  delay with more than loading view model delays
             .map{ _ in
                 SignUpStep.resetInstance()
                 UserDefaults.standard.isLoggedIn = true
