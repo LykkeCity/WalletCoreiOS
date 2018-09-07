@@ -105,6 +105,8 @@ open class ClientCodesViewModel {
             getClientCodeObservable.isLoading(),
             postClientCodesObservable.isLoading(),
             getEncodedPrivateObservable.isLoading(),
+            emailVerificationObservable.isLoading(),
+            emailVerificationSmsObservable.isLoading(),
             validatePin.isLoading(),
             retriedEncodeMainKey.isLoading()
         ])
