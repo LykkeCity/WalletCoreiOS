@@ -46,11 +46,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Lykke Wallet requests access to your camera to take а selfie, scan documents or QR codes.</string>
+	<string>Modern Money requests access to your camera to take а selfie, scan documents or QR codes.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Lykke Wallet requests access to your photo library to save а selfie, scan documents or QR codes.</string>
+	<string>Modern Money requests access to your photo library to save а selfie, scan documents or QR codes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Lykke Wallet requests access to your camera to take а selfie, scan documents or QR codes.</string>
+	<string>Modern Money requests access to your camera to take а selfie, scan documents or QR codes.</string>
 	<key>TestEnvironmentDefinition</key>
 	<string>$(TEST_ENVIRONMENT)</string>
 	<key>UIAppFonts</key>
@@ -84,6 +84,8 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Modern Money requests access to your Face Id in order to logged you in.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
