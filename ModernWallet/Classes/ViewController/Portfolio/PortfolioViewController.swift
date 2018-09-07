@@ -79,6 +79,10 @@ class PortfolioViewController: UIViewController {
         //Bind table
         tableView.rx
             .modelSelected(Variable<Asset>.self)
+            .map{ [assetsFilterViewModel] selectedAsset in
+                assetsFilterViewModel.filteredAssets.asObservable()
+                    .map(toAsset: selectedAsset)
+            }
             .subscribe(onNext: { [weak self] model in
                 self?.performSegue(withIdentifier: "assetDetail", sender: model)
             })
@@ -128,7 +132,7 @@ class PortfolioViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let assetViewController = segue.destination as? AssetDetailViewController,
-            let asset = sender as? Variable<Asset>
+            let asset = sender as? Observable<Asset>
         {
             assetViewController.asset = asset
         }
@@ -286,6 +290,19 @@ fileprivate extension SharedSequenceConvertibleType where SharingStrategy == Dri
                 PieChartDataEntry(value: 40.0, data: "0%" as AnyObject)
                 ]}
             .map{PieChartDataSet(values: $0, label: nil)}
+    }
+}
+
+fileprivate extension ObservableType where Self.E == [Variable<Asset>] {
+    
+    /// <#Description#>
+    ///
+    /// - Parameter asset: <#asset description#>
+    /// - Returns: <#return value description#>
+    func map(toAsset asset: Variable<Asset>) -> Observable<Asset> {
+        return map{ $0.first{ $0.value.wallet?.identity == asset.value.wallet?.identity  } }
+            .map{ $0?.value }
+            .filterNil()
     }
 }
 
