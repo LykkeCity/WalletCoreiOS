@@ -139,7 +139,8 @@ class SignUpFormViewController: UIViewController {
             performSegue(withIdentifier: segueIdentifier, sender: nil)
         }
         else {
-            navigationController?.dismiss(animated: true)
+            //don't animate the dismiss, otherwise the portfolio screen may appear for a second
+            navigationController?.dismiss(animated: false)
         }
     }
     
