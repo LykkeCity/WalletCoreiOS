@@ -66,30 +66,8 @@ class StartViewController: UIViewController {
         creditCardLabel.text = Localize("addMoney.newDesign.creditCard")
         receiveCryptoLabel.text = Localize("addMoney.newDesign.receiveCrypto")
         
-        kycNeededViewModel.loadingViewModel.isLoading
-            .bind(to: self.rx.loading)
-            .disposed(by: disposeBag)
-        
-        kycNeededViewModel.needToFillData
-            .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycTabNVC")}
-            .subscribe(onNext: {[weak self] controller in
-                self?.navigationController?.present(controller, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
-        
-        kycNeededViewModel.ok
-            .subscribe(onNext: {[weak self] in
-                if let vc = self?.addMoneyViaActionVC {
-                    self?.navigationController?.pushViewController(vc, animated: true)
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        kycNeededViewModel.pending
-            .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPendingVC")}
-            .subscribe(onNext: {[weak self] controller in
-                self?.navigationController?.present(controller, animated: true)
-            })
+        kycNeededViewModel
+            .bind(toViewController: self)
             .disposed(by: disposeBag)
     }
     
@@ -108,15 +86,15 @@ class StartViewController: UIViewController {
     }
 
     private func askForAssetType() {
-        guard let vc = pickCurrencyToAdd else {
-            return
-        }
-        
+        guard let vc = pickCurrencyToAdd else { return }
         navigationController?.pushViewController(vc, animated: true)
         
-        vc.assetPicked.bind { [weak self] (asset) in
-            self?.asset.value = ApiResult<LWAssetModel>.success(withData: asset)
-            }.disposed(by: disposeBag)
+        // use asset picker disposeBag for this binding so that when the view controller gets destroyed
+        // the binding will be disposed
+        vc.assetPicked
+            .mapToApiResult()
+            .bind(to: asset)
+            .disposed(by: vc.disposeBag)
     }
     
     private var pickCurrencyToAdd: AssetPickerTableViewController? {
@@ -140,7 +118,7 @@ class StartViewController: UIViewController {
         return vc
     }
     
-    private var addMoneyViaActionVC: UIViewController? {
+    fileprivate var addMoneyViaActionVC: UIViewController? {
         guard let action = action else {
             return nil
         }
@@ -164,5 +142,40 @@ class StartViewController: UIViewController {
         }
         
         return vc
+    }
+}
+
+fileprivate extension ObservableType where Self.E == LWAssetModel {
+    func mapToApiResult() -> Observable<ApiResult<LWAssetModel>> {
+        return flatMap{ asset in
+            Observable
+                .just(.success(withData: asset))
+                .startWith(.loading)
+        }
+    }
+}
+
+fileprivate extension KycNeededViewModel {
+    func bind(toViewController vc: StartViewController) -> [Disposable] {
+        return [
+            loadingViewModel.isLoading.bind(to: vc.rx.loading),
+            needToFillData
+                .map{ UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycTabNVC") }
+                .subscribe(onNext: {[weak vc] controller in
+                    vc?.navigationController?.present(controller, animated: true, completion: nil)
+                }),
+            
+            ok.subscribe(onNext: {[weak vc] in
+                if let vc = vc?.addMoneyViaActionVC {
+                    vc.navigationController?.pushViewController(vc, animated: true)
+                }
+            }),
+            
+            pending
+                .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPendingVC")}
+                .subscribe(onNext: {[weak vc] controller in
+                    vc?.navigationController?.present(controller, animated: true)
+                }),
+        ]
     }
 }
