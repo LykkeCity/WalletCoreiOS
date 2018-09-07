@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>633</string>
+	<string>635</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -47,6 +47,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Modern Money requests access to your camera to take а selfie, scan documents or QR codes.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Modern Money requests access to your Face Id in order to logged you in.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Modern Money requests access to your photo library to save а selfie, scan documents or QR codes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -84,8 +86,6 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Modern Money requests access to your Face Id in order to logged you in.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
