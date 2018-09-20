@@ -16,7 +16,7 @@ protocol AddMoneyTransfer: class {
 
 class AddMoneyBaseViewController: UIViewController {
 
-    var assetModel = Variable<LWAssetModel!>(nil)
+    var assetModel = Variable<LWAssetModel?>(nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class AddMoneyBaseViewController: UIViewController {
     
     func аssetObservable() -> Observable<LWAssetModel> {
         return assetModel.asObservable().map { (val) -> LWAssetModel in
-            return val
+            return val ?? LWAssetModel()
         }
     }
 }
@@ -33,7 +33,7 @@ class AddMoneyBaseViewController: UIViewController {
 extension AddMoneyBaseViewController: AddMoneyTransfer {
     var assetToAdd: LWAssetModel {
         get {
-            return self.assetModel.value
+            return self.assetModel.value ?? LWAssetModel()
         }
         
         set {

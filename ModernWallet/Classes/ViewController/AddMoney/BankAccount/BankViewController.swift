@@ -29,8 +29,9 @@ class BankViewController: AddMoneyBaseViewController {
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    lazy var swiftCredentialsViewModel: SwiftCredentialsViewModel = {
-        return SwiftCredentialsViewModel(credentialsForAsset: self.assetModel.value)
+    lazy var swiftCredentialsViewModel: SwiftCredentialsViewModel? = {
+        guard let asset = self.assetModel.value else { return nil }
+        return SwiftCredentialsViewModel(credentialsForAsset: asset)
     }()
     
     let disposeBag = DisposeBag()
@@ -43,6 +44,8 @@ class BankViewController: AddMoneyBaseViewController {
         self.view.backgroundColor = UIColor.clear
         
         applyTranslations()
+        
+        guard let swiftCredentialsViewModel = swiftCredentialsViewModel else { return }
         
         swiftCredentialsViewModel
             .bind(toViewController: self)

@@ -51,8 +51,9 @@ class BankInfoViewController: AddMoneyBaseViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSwiftCredentials",
-            let transferVC = segue.destination as? AddMoneyTransfer {
-            transferVC.assetToAdd = self.assetModel.value
+            let transferVC = segue.destination as? AddMoneyTransfer,
+            let asset = self.assetModel.value {
+            transferVC.assetToAdd = asset
         }
     }
 }

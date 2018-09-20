@@ -96,7 +96,8 @@ class SignUpFormViewController: UIViewController {
     @IBAction private func selectTestServerTapped() {
         let keychainManager = LWKeychainManager.instance()
         let currentAddress = keychainManager?.address ?? WalletCoreConfig.testingServer
-        let testServers = ["DEV": kDevelopTestServer,
+        let testServers = ["PROD": kProductionServer,
+                           "DEV": kDevelopTestServer,
                            "TEST": kTestingTestServer,
                            "STAGE": kStagingTestServer]
         let handler: (UIAlertAction) -> () = { action in
