@@ -157,4 +157,19 @@ extension AppDelegate {
                 visibleViewController.present(pinViewController, animated: true)
             })
     }
+    
+    func askForPinIfLoggedIn() {
+        if userDefaults.isLoggedIn && !(visibleViewController is PinViewController) {
+            let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+            
+            guard let visibleViewController = self.visibleViewController else {
+                self.window?.rootViewController = pinViewController
+                self.window?.makeKeyAndVisible()
+                
+                return
+            }
+            
+            visibleViewController.present(pinViewController, animated: false)
+        }
+    }
 }

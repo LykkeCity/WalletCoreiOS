@@ -30,6 +30,8 @@ class PortfolioViewController: UIViewController {
     fileprivate let disposeBag = DisposeBag()
     fileprivate let pieChartValueFormatter = PieValueFormatter()
     
+    var showPinConfirmation: Bool = true
+    
     var filterButtonsMap: [AssetsFilterViewModel.FilterType: IconOverTextButton] {
         return [
             AssetsFilterViewModel.FilterType.all: self.allFilterButton,
@@ -73,6 +75,13 @@ class PortfolioViewController: UIViewController {
         if UserDefaults.standard.isNotLoggedIn || SignUpStep.instance != nil {
             return
         }
+        
+        if showPinConfirmation {
+            let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+            self.present(pinViewController, animated: false)
+            showPinConfirmation = false
+        }
+        
         
         tableView.register(UINib(nibName: "AssetInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "AssetInfoTableViewCell")
         
