@@ -31,7 +31,9 @@ class DrawerController: KYDrawerController {
         let portfolioVC = storyboard!.instantiateViewController(withIdentifier: "Portfolio")
         
         // don't show the pin screen after login or signup
-        (portfolioVC as! PortfolioViewController).showPinConfirmation = false
+        if let portfolioViewController = portfolioVC as? PortfolioViewController {
+            portfolioViewController.showPinConfirmation = false
+        }
         
         (mainViewController as? RootViewController)?.embed(viewController: portfolioVC, animated: false)
         self.setDrawerState(.closed, animated: false)
