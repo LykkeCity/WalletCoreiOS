@@ -128,8 +128,8 @@ class PinViewController: UIViewController {
             .drive(self.rx.loading)
             .disposed(by: self.disposeBag)
         result.result.asObservable().filterError()
-            .map { error in
-                self.shakeAndReset()
+            .map { [weak self] error in
+                self?.shakeAndReset()
 
                 return error
             }
