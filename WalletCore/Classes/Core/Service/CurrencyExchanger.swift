@@ -66,7 +66,7 @@ public class CurrencyExchanger: CurrencyExchangerProtocol {
         
         return Observable.combineLatest(pairRates.asObservable(),pairObserver)
             .map{ rates, pair in
-                return (pairModel: rates.find(byPair: pair?.identity ?? ""), reversed: pair?.quotingAsset == from)
+                return (pairModel: rates.find(byPair: pair?.identity ?? ""), reversed: pair?.quotingAssetId == from.identity)
             }
             .map{
                 guard let rate = (bid ? $0.pairModel?.bid : $0.pairModel?.ask)?.decimalValue else { return nil }

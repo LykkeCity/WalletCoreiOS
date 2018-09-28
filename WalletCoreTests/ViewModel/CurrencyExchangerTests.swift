@@ -30,6 +30,7 @@ class CurrencyExchangerTests: XCTestCase {
 
     typealias TestExchangeData = (
         rates: [LWAssetPairRateModel],
+        assetPairs: [LWAssetPairModel],
         input: (
             amaunt: Decimal,
             from: LWAssetModel,
@@ -44,6 +45,9 @@ class CurrencyExchangerTests: XCTestCase {
             self?.exchangeAssert(withData: (
                 rates: [
                     LWAssetPairRateModel(json: ["Id": "USDEUR", "Bid": 1.45, "Ask": 1.35])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"USDEUR","BaseAssetId":"USD","QuotingAssetId":"EUR"])
                 ],
                 input: (
                     amaunt: Decimal(10.0),
@@ -62,6 +66,9 @@ class CurrencyExchangerTests: XCTestCase {
                 rates: [
                     LWAssetPairRateModel(json: ["Id": "USDEUR", "Bid": 1.45, "Ask": 1.35])
                 ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"USDEUR","BaseAssetId":"USD","QuotingAssetId":"EUR"])
+                ],
                 input: (
                     amaunt: Decimal(10.0),
                     from: LWAssetModel(assetId: "USD"),
@@ -79,6 +86,9 @@ class CurrencyExchangerTests: XCTestCase {
                 rates: [
                     LWAssetPairRateModel(json: ["Id": "EURUSD", "Bid": 1.45, "Ask": 1.35])
                 ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"EURUSD","BaseAssetId":"EUR","QuotingAssetId":"USD"])
+                ],
                 input: (
                     amaunt: Decimal(10.0),
                     from: LWAssetModel(assetId: "USD"),
@@ -90,10 +100,36 @@ class CurrencyExchangerTests: XCTestCase {
         }
     }
     
+    func testExchangeReversedPairEURBTC() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "BTCEUR", "Bid": 5740.948, "Ask": 5746.692])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id": "BTCEUR",
+                        "Name": "test BTC/EUR",
+                        "Accuracy": 3,
+                        "InvertedAccuracy": 8,
+                        "BaseAssetId": "BTC",
+                        "QuotingAssetId": "EUR"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "EUR"),
+                    to: LWAssetModel(assetId: "BTC"),
+                    bid: true
+                ),
+                expectedResult: Decimal(string: "0.0001740131540023373446845593952138")!
+            ))
+        }
+    }
+    
     func exchangeAssert(withData data: TestExchangeData) {
         //1. arrange
         let trigger = scheduler.createColdObservable([next(1, Void())]).asObservable()
-        let authManager = LWRxAuthManagerMock(assetPairRates: LWRxAuthManagerAssetPairRatesMock(data: data.rates))
+        let authManager = LWRxAuthManagerMock(assetPairRates: LWRxAuthManagerAssetPairRatesMock(data: data.rates),
+                                              assetPairs: LWRxAuthManagerAssetPairsMock(data: data.assetPairs))
         let currencyExchanger = CurrencyExchanger(refresh: trigger, authManager: authManager)
         
         //2. execute
