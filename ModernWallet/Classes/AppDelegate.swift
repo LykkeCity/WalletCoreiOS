@@ -125,6 +125,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             coverView.removeFromSuperview()
         }
         
+        askForPinIfLoggedIn()
+        
         Siren.shared.checkVersion(checkType: .immediately)
     }
     

@@ -128,6 +128,11 @@ class PinViewController: UIViewController {
             .drive(self.rx.loading)
             .disposed(by: self.disposeBag)
         result.result.asObservable().filterError()
+            .map { [weak self] error in
+                self?.shakeAndReset()
+
+                return error
+            }
             .subscribe(self.rx.error)
             .disposed(by: self.disposeBag)
         result.result.asObservable().filterSuccess()

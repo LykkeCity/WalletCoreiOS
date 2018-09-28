@@ -30,6 +30,11 @@ class DrawerController: KYDrawerController {
         SignUpStep.instance = nil
         let portfolioVC = storyboard!.instantiateViewController(withIdentifier: "Portfolio")
         
+        // don't show the pin screen after login or signup
+        if let portfolioViewController = portfolioVC as? PortfolioViewController {
+            portfolioViewController.showPinConfirmation = false
+        }
+        
         (mainViewController as? RootViewController)?.embed(viewController: portfolioVC, animated: false)
         self.setDrawerState(.closed, animated: false)
     }
@@ -39,7 +44,6 @@ class DrawerController: KYDrawerController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
