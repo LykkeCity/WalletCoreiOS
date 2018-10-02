@@ -686,6 +686,10 @@
 		C59B28352029DD9500AA2E39 /* TransactionFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B28342029DD9500AA2E39 /* TransactionFilterViewModel.swift */; };
 		C5A8F4F02120B0890012CE11 /* ValidateWordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4EF2120B0890012CE11 /* ValidateWordsViewModel.swift */; };
 		C5A8F4F42120BA0D0012CE11 /* LWRxAuthManagerOwnershipMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8F4F32120BA0D0012CE11 /* LWRxAuthManagerOwnershipMessage.swift */; };
+		C5C28D272163478000AF9E93 /* LWRxAuthManagerEmailCodeSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C28D262163478000AF9E93 /* LWRxAuthManagerEmailCodeSend.swift */; };
+		C5C28D2921634BCB00AF9E93 /* LWRxAuthManagerEmailCodeVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C28D2821634BCB00AF9E93 /* LWRxAuthManagerEmailCodeVerify.swift */; };
+		C5C28D322163B82100AF9E93 /* LWRxAuthManagerPhoneCodeSend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C28D312163B82100AF9E93 /* LWRxAuthManagerPhoneCodeSend.swift */; };
+		C5C28D342163BE1C00AF9E93 /* LWRxAuthManagerPhoneCodeVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C28D332163BE1C00AF9E93 /* LWRxAuthManagerPhoneCodeVerify.swift */; };
 		C5DBA5A42123285F0069B43E /* ValidateHintViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DBA5A32123285F0069B43E /* ValidateHintViewModel.swift */; };
 		C5E67BBC20172D2C00686006 /* BaseAssetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */; };
 		C5E67BBE201731B600686006 /* LWRxAuthManagerBaseAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E67BBD201731B600686006 /* LWRxAuthManagerBaseAssets.swift */; };
@@ -1415,6 +1419,10 @@
 		C5A8F4EF2120B0890012CE11 /* ValidateWordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateWordsViewModel.swift; sourceTree = "<group>"; };
 		C5A8F4F12120B5350012CE11 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C5A8F4F32120BA0D0012CE11 /* LWRxAuthManagerOwnershipMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOwnershipMessage.swift; sourceTree = "<group>"; };
+		C5C28D262163478000AF9E93 /* LWRxAuthManagerEmailCodeSend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerEmailCodeSend.swift; sourceTree = "<group>"; };
+		C5C28D2821634BCB00AF9E93 /* LWRxAuthManagerEmailCodeVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerEmailCodeVerify.swift; sourceTree = "<group>"; };
+		C5C28D312163B82100AF9E93 /* LWRxAuthManagerPhoneCodeSend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerPhoneCodeSend.swift; sourceTree = "<group>"; };
+		C5C28D332163BE1C00AF9E93 /* LWRxAuthManagerPhoneCodeVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerPhoneCodeVerify.swift; sourceTree = "<group>"; };
 		C5DBA5A32123285F0069B43E /* ValidateHintViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateHintViewModel.swift; sourceTree = "<group>"; };
 		C5E67BBB20172D2C00686006 /* BaseAssetsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAssetsViewModel.swift; sourceTree = "<group>"; };
 		C5E67BBD201731B600686006 /* LWRxAuthManagerBaseAssets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerBaseAssets.swift; sourceTree = "<group>"; };
@@ -2496,6 +2504,10 @@
 				874FA6731FAD03C7004E233F /* LWRxAuthManagerOffchainCashOutSwift.swift */,
 				460843BE1FBF161E00F14A5A /* LWRxAuthManagerCurrencyDeposit.swift */,
 				665E15471FC6BEEB000973DA /* LWRxAuthManagerWalletMigration.swift */,
+				C5C28D312163B82100AF9E93 /* LWRxAuthManagerPhoneCodeSend.swift */,
+				C5C28D332163BE1C00AF9E93 /* LWRxAuthManagerPhoneCodeVerify.swift */,
+				C5C28D262163478000AF9E93 /* LWRxAuthManagerEmailCodeSend.swift */,
+				C5C28D2821634BCB00AF9E93 /* LWRxAuthManagerEmailCodeVerify.swift */,
 				665E15491FC6CD20000973DA /* LWRxAuthManagerWalletBackupComplete.swift */,
 				AB1BF0561FDDD346001CB0D2 /* LWRxAuthManagerGetBlockchainAddress.swift */,
 				AB1BF0581FDEC43C001CB0D2 /* LWRxAuthManagerSendBlockchainEmail.swift */,
@@ -3191,6 +3203,7 @@
 				46C9B0401F417C1B00B83CCB /* WalletsViewModel.swift in Sources */,
 				46C9AF741F417BD800B83CCB /* LWValidator.m in Sources */,
 				C5999A96212872C900CB5B8B /* ConfirmSmsViewModel.swift in Sources */,
+				C5C28D322163B82100AF9E93 /* LWRxAuthManagerPhoneCodeSend.swift in Sources */,
 				46C9B06D1F42C91B00B83CCB /* LWRxAuthManagerAssetPairRate.swift in Sources */,
 				467C20651FB452F7002A90AE /* TradingWalletViewModel.swift in Sources */,
 				46C9AEA61F417BD700B83CCB /* LWPacketBitcoinAddressValidation.m in Sources */,
@@ -3245,6 +3258,7 @@
 				46C9AFDB1F417BD800B83CCB /* LWPKBackupModel.m in Sources */,
 				665E15481FC6BEEB000973DA /* LWRxAuthManagerWalletMigration.swift in Sources */,
 				46C9AF4A1F417BD800B83CCB /* LWPacketSetUSAUser.m in Sources */,
+				C5C28D2921634BCB00AF9E93 /* LWRxAuthManagerEmailCodeVerify.swift in Sources */,
 				46C9AF341F417BD800B83CCB /* LWPacketRestrictedCountries.m in Sources */,
 				46C9AEF41F417BD700B83CCB /* LWPacketGraphData.m in Sources */,
 				46C9AFAC1F417BD800B83CCB /* LWOrderBookElementModel.m in Sources */,
@@ -3453,8 +3467,10 @@
 				46C9AFEB1F417BD800B83CCB /* ABPadButton.m in Sources */,
 				46C9AEC61F417BD700B83CCB /* LWPacketCurrencyWithdraw.m in Sources */,
 				46C9AEC81F417BD700B83CCB /* LWPacketDeleteWatchList.m in Sources */,
+				C5C28D272163478000AF9E93 /* LWRxAuthManagerEmailCodeSend.swift in Sources */,
 				46C9AEC01F417BD700B83CCB /* LWPacketClientKeys.m in Sources */,
 				46C9AF301F417BD800B83CCB /* LWPacketRegistrationGet.m in Sources */,
+				C5C28D342163BE1C00AF9E93 /* LWRxAuthManagerPhoneCodeVerify.swift in Sources */,
 				46C08DB91F98C6290059BDD3 /* LWPacketRequestTransfer.swift in Sources */,
 				46C9AF321F417BD800B83CCB /* LWPacketResetDemoMarginAccount.m in Sources */,
 				F5007E94200E2B6000956CF5 /* CashOutToAddressViewModel.swift in Sources */,
