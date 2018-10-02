@@ -35,8 +35,7 @@ public class LWRxAuthManagerPhoneCodeSend: NSObject {
 }
 
 extension LWRxAuthManagerPhoneCodeSend: AuthManagerProtocol {
-    
-    public func createPacket(withObserver observer: Any) -> LWPacketRequestVerificationCode {
+    public func createPacket(withObserver observer: Any, params: Void) -> LWPacketRequestVerificationCode {
         return Packet(observer: observer)
     }
 }
