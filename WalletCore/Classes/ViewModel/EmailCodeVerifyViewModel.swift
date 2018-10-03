@@ -43,10 +43,17 @@ public class EmailCodeVerifyViewModel {
             .shareReplay(1)
         
         let encodedPrivateKeyRequest = emailCodeSuccess
+            .filter { $0.isPassed }
             .flatMapLatest { _ in authManager.getEncodedPrivateKey.request(withParams: accessToken) }
             .shareReplay(1)
+
+        let emailCodeFailed = emailCodeSuccess
+            .filter { !$0.isPassed }
+            .flatMapLatest { _ in Observable<[AnyHashable : Any]>.just(["Message": "Wrong email code."]) }
+            .shareReplay(1)
         
-        encodedPrivateKeySuccess = encodedPrivateKeyRequest.filterSuccess()
+        encodedPrivateKeySuccess = encodedPrivateKeyRequest
+            .filterSuccess()
             .map { _ in () }
         
         self.loadingViewModel = LoadingViewModel([
@@ -55,6 +62,7 @@ public class EmailCodeVerifyViewModel {
         ])
         
         self.errors = Observable.merge([
+            emailCodeFailed,
             verifyEmailCodeRequest.filterError(),
             encodedPrivateKeyRequest.filterError()
         ])

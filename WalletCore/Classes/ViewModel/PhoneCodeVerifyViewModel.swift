@@ -20,11 +20,8 @@ public class PhoneCodeVerifyViewModel {
     public let codeInputSubject = PublishSubject<String>()
     
     // OUT:
-    /// Called when sms code request is complete
-    public let correctSmsCodeObservable: Observable<Void>
-    
-    /// Loading view model
-    public let loadingViewModel: LoadingViewModel
+    /// Received access token
+    public let accessTokenObservable: Observable<String?>
     
     /// Errors occured
     public let errors: Observable<[AnyHashable: Any]>
@@ -38,13 +35,9 @@ public class PhoneCodeVerifyViewModel {
             .flatMapLatest { authManager.phoneCodeVerify.request(withParams: $0) }
             .shareReplay(1)
         
-        self.correctSmsCodeObservable = verifySmsCodeRequest
+        self.accessTokenObservable = verifySmsCodeRequest
             .filterSuccess()
-            .map {_ in ()}
-        
-        self.loadingViewModel = LoadingViewModel([
-            verifySmsCodeRequest.isLoading()
-        ])
+            .map { $0.accessToken }
         
         self.errors = Observable.merge([
             verifySmsCodeRequest.filterError()
