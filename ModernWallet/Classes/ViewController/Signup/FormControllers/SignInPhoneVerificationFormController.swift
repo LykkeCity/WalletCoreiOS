@@ -1,5 +1,5 @@
 //
-//  SignInConfirmPhoneFormController.swift
+//  SignInPhoneVerificationFormController.swift
 //  ModernMoney
 //
 //  Created by Nacho Nachev on 29.11.17.
@@ -26,7 +26,7 @@ class SignInPhoneVerificationFormController: FormController {
     
     lazy var formViews: [UIView] = {
         return [
-            self.titleLabel(title: "Awedeebawe"),
+            self.titleLabel(title: Localize("register.phone.confirm.subtitle")),
             self.smsCodeTextField,
             self.resendSmsView
         ]

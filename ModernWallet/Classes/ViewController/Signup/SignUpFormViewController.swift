@@ -344,7 +344,7 @@ fileprivate extension ObservableType where Self.E == ApiResult<SignUpStep.Contro
                 if let formController = controllerResult.formController {
                     vc?.push(formController: formController, animated: true)
                     
-                    if controllerResult.showPin, let confirmPhoneFormController = formController as? SignInConfirmPhoneFormController {
+                    if controllerResult.showPin, let confirmPhoneFormController = formController as? SignUpPhoneVerificationFormController {
                         confirmPhoneFormController.forceShowPin.onNext(())
                     }
                 }

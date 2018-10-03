@@ -42,7 +42,7 @@ class SignUpFillPhoneFormController: FormController {
     }
     
     var next: FormController? {
-        return SignInConfirmPhoneFormController(signIn: false, phone: phoneNumberTextField.text!, email: self.email)
+        return SignUpPhoneVerificationFormController(phone: phoneNumberTextField.text!, email: self.email)
     }
     
     var segueIdentifier: String? {

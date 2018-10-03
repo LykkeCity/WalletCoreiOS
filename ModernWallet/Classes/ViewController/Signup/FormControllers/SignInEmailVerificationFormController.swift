@@ -1,5 +1,5 @@
 //
-//  SignInConfirmPhoneFormController.swift
+//  SignInEmailVerificationFormController.swift
 //  ModernMoney
 //
 //  Created by Nacho Nachev on 29.11.17.
@@ -25,7 +25,7 @@ class SignInEmailVerificationFormController: FormController {
     
     lazy var formViews: [UIView] = {
         return [
-            self.titleLabel(title: "kfo staa brat?"),
+            self.titleLabel(title: Localize("register.email.confirm.subtitle")),
             self.emailCodeTextField,
             self.resendEmailView
         ]
@@ -96,7 +96,7 @@ class SignInEmailVerificationFormController: FormController {
         
         sendViewModel
             .sendEmailCodeComplete
-            .map{ Localize("register.email.code.sent") }
+            .map{ Localize("auth.newDesign.weHaveSentCodeToEmail") }
             .bind(to: toast)
             .disposed(by: disposeBag)
         
