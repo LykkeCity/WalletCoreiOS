@@ -64,7 +64,7 @@ class SignInPasswordFormController: RecoveryController {
     }
     
     var next: FormController? {
-        return SignInConfirmPhoneFormController(signIn: true, phone: LWKeychainManager.instance()?.personalData()?.phone ?? "", email: self.email)
+        return SignInPhoneVerificationFormController(phone: LWKeychainManager.instance()?.personalData()?.phone ?? "", email: self.email)
     }
     
     var recoveryStep: RecoveryController? {

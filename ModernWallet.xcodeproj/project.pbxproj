@@ -176,6 +176,8 @@
 		C506BD562018866800070E13 /* AssetPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506BD552018866800070E13 /* AssetPickerTableViewController.swift */; };
 		C510B0E52031CDC20084C98E /* AssetPickTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C510B0E42031CDC20084C98E /* AssetPickTableViewCell.swift */; };
 		C527C41420235F86003A390F /* TransactionPickDateRangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527C41320235F86003A390F /* TransactionPickDateRangeViewController.swift */; };
+		C52B5CFD216417B700A6F4AA /* SignInPhoneVerificationFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B5CFC216417B700A6F4AA /* SignInPhoneVerificationFormController.swift */; };
+		C52B5CFF2164209A00A6F4AA /* SignInEmailVerificationFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52B5CFE2164209A00A6F4AA /* SignInEmailVerificationFormController.swift */; };
 		C54A01922028B4640030CCE4 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54A01912028B4640030CCE4 /* UIScreen+Extensions.swift */; };
 		C554C6F521109A7F005F0DD3 /* KYCFinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C554C6F421109A7F005F0DD3 /* KYCFinishedViewController.swift */; };
 		C56FD0D42023DDEF00596709 /* TransactionCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56FD0D32023DDEF00596709 /* TransactionCalendarViewController.swift */; };
@@ -385,6 +387,8 @@
 		C506BD552018866800070E13 /* AssetPickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPickerTableViewController.swift; sourceTree = "<group>"; };
 		C510B0E42031CDC20084C98E /* AssetPickTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetPickTableViewCell.swift; sourceTree = "<group>"; };
 		C527C41320235F86003A390F /* TransactionPickDateRangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPickDateRangeViewController.swift; sourceTree = "<group>"; };
+		C52B5CFC216417B700A6F4AA /* SignInPhoneVerificationFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInPhoneVerificationFormController.swift; sourceTree = "<group>"; };
+		C52B5CFE2164209A00A6F4AA /* SignInEmailVerificationFormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInEmailVerificationFormController.swift; sourceTree = "<group>"; };
 		C54A01912028B4640030CCE4 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		C554C6F421109A7F005F0DD3 /* KYCFinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KYCFinishedViewController.swift; sourceTree = "<group>"; };
 		C56FD0D32023DDEF00596709 /* TransactionCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCalendarViewController.swift; sourceTree = "<group>"; };
@@ -828,6 +832,8 @@
 				669B6A551FCD84B5003227AF /* SingInEmailFormController.swift */,
 				668E68021FCD9AFD004552BD /* SignInPasswordFormController.swift */,
 				66448AFC1FCEB59200978535 /* SignInConfirmPhoneFormController.swift */,
+				C52B5CFC216417B700A6F4AA /* SignInPhoneVerificationFormController.swift */,
+				C52B5CFE2164209A00A6F4AA /* SignInEmailVerificationFormController.swift */,
 				C5A8F4E9212087170012CE11 /* RecoverySeedWordsFormController.swift */,
 				C5A8F4EB2120934C0012CE11 /* RecoverySetPasswordFormController.swift */,
 				C5DBA5A1212327890069B43E /* RecoverySetHintFormController.swift */,
@@ -1347,6 +1353,7 @@
 				668E68031FCD9AFD004552BD /* SignInPasswordFormController.swift in Sources */,
 				468679731FBDD04100C10397 /* BankInfoViewController.swift in Sources */,
 				C506BD562018866800070E13 /* AssetPickerTableViewController.swift in Sources */,
+				C52B5CFD216417B700A6F4AA /* SignInPhoneVerificationFormController.swift in Sources */,
 				4671C9C51F7D17B3002C2F25 /* KYCDocumentType+Extensions.swift in Sources */,
 				669B6A511FCD6AE5003227AF /* SignUpFormViewController.swift in Sources */,
 				6100D8D81F1F327200EB40A5 /* LineChartDataSet+Setup.swift in Sources */,
@@ -1366,6 +1373,7 @@
 				4671C9BF1F7CE818002C2F25 /* UIBarButtonItem+Rx.swift in Sources */,
 				87C6CDFA1FA5BA950069CC38 /* CashOutAssetDetailsTableViewCell.swift in Sources */,
 				F74D288C2112DE6B007B6E65 /* String+Extensions.swift in Sources */,
+				C52B5CFF2164209A00A6F4AA /* SignInEmailVerificationFormController.swift in Sources */,
 				469DA71F1F6C14C5000B904C /* KYCTabCollectionViewCell.swift in Sources */,
 				C527C41420235F86003A390F /* TransactionPickDateRangeViewController.swift in Sources */,
 				66F6A2CB1FA0B98500303E3B /* CashOurBankAccountDetailsViewController.swift in Sources */,
