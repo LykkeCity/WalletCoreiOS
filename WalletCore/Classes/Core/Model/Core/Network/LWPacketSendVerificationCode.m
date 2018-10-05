@@ -7,6 +7,7 @@
 //
 
 #import "LWPacketSendVerificationCode.h"
+#import "WalletCoreConfig.h"
 
 @implementation LWPacketSendVerificationCode
 
