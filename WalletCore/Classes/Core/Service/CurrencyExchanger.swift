@@ -66,15 +66,14 @@ public class CurrencyExchanger: CurrencyExchangerProtocol {
         
         return Observable.combineLatest(pairRates.asObservable(),pairObserver)
             .map{ rates, pair in
-                return (pairModel: rates.find(byPair: pair?.identity ?? ""), reversed: pair?.quotingAsset == from)
+                return (pairModel: rates.find(byPair: pair?.identity ?? ""), reversed: pair?.quotingAssetId == from.identity)
             }
-            .map{
-                guard let rate = (bid ? $0.pairModel?.bid : $0.pairModel?.ask)?.decimalValue else { return nil }
-                if !$0.reversed { return amount * rate}
+            .map{ data in
+                guard let rate = (bid ? data.pairModel?.bid : data.pairModel?.ask)?.decimalValue else { return nil }
+                if !data.reversed { return amount * rate}
                 
-                guard let reversedRate = (bid ? $0.pairModel?.ask : $0.pairModel?.bid)?.decimalValue else { return nil }
-                if reversedRate == 0.0 {return 0.0} //make sure to not divide by zero
-                return amount / reversedRate //if the pair is reversed divide by rate instead of multiply
+                if rate == 0.0 {return 0.0} //make sure to not divide by zero
+                return amount / rate //if the pair is reversed divide by rate instead of multiply
             }
             .shareReplay(1)
     }
