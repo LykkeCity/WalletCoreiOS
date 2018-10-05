@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Configure tracker from GoogleService-Info.plist.
         
-//        WalletCoreConfig.configurePartnerId("LykkeModernMoney", testingServer: .test)
-        WalletCoreConfig.configurePartnerId(nil, testingServer: .test) // comment this when partnerID is required!!
+        WalletCoreConfig.configurePartnerId("LykkeModernMoney", testingServer: .test)
+//        WalletCoreConfig.configurePartnerId(nil, testingServer: .test) // comment this when partnerID is required!!
         
         AFNetworkReachabilityManager.shared().startMonitoring()
         subsctibeForNotAuthorized()
