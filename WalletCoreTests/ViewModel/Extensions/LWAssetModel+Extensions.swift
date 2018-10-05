@@ -17,4 +17,13 @@ extension LWAssetModel {
             "Name": assetId
         ])
     }
+    
+    convenience init(assetId: String, accuracy: NSNumber) {
+        self.init(json: [
+            "Id": assetId,
+            "DisplayId": assetId,
+            "Name": assetId,
+            "Accuracy": accuracy
+            ])
+    }
 }

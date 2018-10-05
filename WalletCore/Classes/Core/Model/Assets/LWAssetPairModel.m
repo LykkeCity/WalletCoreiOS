@@ -63,30 +63,30 @@
 	self.inverted = [json[@"Inverted"] boolValue];
 }
 
-- (void)setRate:(LWAssetPairRateModel *)rate {
-    if (_rate == nil) {
-        self.inverted = rate.inverted;
-    }
-    else {
-        if(rate.inverted != isInverted) {
-            [rate invert];
-        }
-    }
-    _rate = rate;
-}
-
-- (void)setInverted:(BOOL)inverted {
-    if (isInverted != inverted) {
-        isInverted = inverted;
-        id tmpID = _baseAssetId;
-        _baseAssetId = _quotingAssetId;
-        _quotingAssetId = tmpID;
-		_accuracy = isInverted ? _invertedAccuracy : _normalAccuracy;
-        if (_rate.inverted != inverted) {
-            [_rate invert];
-        }
-    }
-}
+//- (void)setRate:(LWAssetPairRateModel *)rate {
+//    if (_rate == nil) {
+//        self.inverted = rate.inverted;
+//    }
+//    else {
+//        if(rate.inverted != isInverted) {
+//            [rate invert];
+//        }
+//    }
+//    _rate = rate;
+//}
+//
+//- (void)setInverted:(BOOL)inverted {
+//    if (isInverted != inverted) {
+//        isInverted = inverted;
+//        id tmpID = _baseAssetId;
+//        _baseAssetId = _quotingAssetId;
+//        _quotingAssetId = tmpID;
+//        _accuracy = isInverted ? _invertedAccuracy : _normalAccuracy;
+//        if (_rate.inverted != inverted) {
+//            [_rate invert];
+//        }
+//    }
+//}
 
 - (NSString *)name {
 	return [NSString stringWithFormat:@"%@/%@", [LWUtils baseAssetTitle:self], [LWUtils quotedAssetTitle:self]];

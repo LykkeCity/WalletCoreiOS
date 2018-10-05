@@ -40,6 +40,207 @@ class CurrencyExchangerTests: XCTestCase {
         expectedResult: Decimal
     )
     
+    func testExchangeBTCUSDAskToUSD() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "BTCUSD", "Bid": 6492.006, "Ask": 6526.1])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"BTCUSD","BaseAssetId":"BTC","QuotingAssetId":"USD"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "BTC"),
+                    to: LWAssetModel(assetId: "USD", accuracy: 2),
+                    bid: false
+                ),
+                expectedResult: Decimal(6526.1)
+            ))
+        }
+    }
+    
+    func testExchangeBTCUSDAskToBTC() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "BTCUSD", "Bid": 6492.006, "Ask": 6526.1])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"BTCUSD","BaseAssetId":"BTC","QuotingAssetId":"USD"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "USD"),
+                    to: LWAssetModel(assetId: "BTC", accuracy: 8),
+                    bid: false
+                ),
+                expectedResult: Decimal(0.00015323)
+            ))
+        }
+    }
+    
+    func testExchangeUSDBTCAskToUSD() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "USDBTC", "Bid": 0.00015403, "Ask": 0.00015323])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"USDBTC","BaseAssetId":"USD","QuotingAssetId":"BTC"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "BTC"),
+                    to: LWAssetModel(assetId: "USD", accuracy: 2),
+                    bid: false
+                ),
+                expectedResult: Decimal(6526.14)
+            ))
+        }
+    }
+    
+    func testExchangeUSDBTCAskToBTC() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "USDBTC", "Bid": 0.00015403, "Ask": 0.00015323])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"USDBTC","BaseAssetId":"USD","QuotingAssetId":"BTC"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "USD"),
+                    to: LWAssetModel(assetId: "BTC", accuracy: 8),
+                    bid: false
+                ),
+                expectedResult: Decimal(0.00015323)
+            ))
+        }
+    }
+    
+    
+    func testExchangeBTCUSDBidToUSD() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "BTCUSD", "Bid": 6492.006, "Ask": 6526.1])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"BTCUSD","BaseAssetId":"BTC","QuotingAssetId":"USD"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "BTC"),
+                    to: LWAssetModel(assetId: "USD", accuracy: 2),
+                    bid: true
+                ),
+                expectedResult: Decimal(6492.006)
+            ))
+        }
+    }
+    
+    func testExchangeBTCUSDBidToBTC() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "BTCUSD", "Bid": 6492.006, "Ask": 6526.1])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"BTCUSD","BaseAssetId":"BTC","QuotingAssetId":"USD"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "USD"),
+                    to: LWAssetModel(assetId: "BTC", accuracy: 8),
+                    bid: true
+                ),
+                expectedResult: Decimal(0.00015404)
+            ))
+        }
+    }
+    
+    func testExchangeUSDBTCBidToUSD() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "USDBTC", "Bid": 0.00015403, "Ask": 0.00015323])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"USDBTC","BaseAssetId":"USD","QuotingAssetId":"BTC"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "BTC"),
+                    to: LWAssetModel(assetId: "USD", accuracy: 2),
+                    bid: true
+                ),
+                expectedResult: Decimal(6492.24)
+            ))
+        }
+    }
+    
+    func testExchangeUSDBTCBidToBTC() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Id": "USDBTC", "Bid": 0.00015403, "Ask": 0.00015323])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"USDBTC","BaseAssetId":"USD","QuotingAssetId":"BTC"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "USD"),
+                    to: LWAssetModel(assetId: "BTC", accuracy: 8),
+                    bid: true
+                ),
+                expectedResult: Decimal(0.00015403)
+            ))
+        }
+    }
+    
+    func testExchangeBTCEURAsk() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Inverted": true, "Id": "BTCEUR", "Bid": 5553.037, "Ask": 5558.593])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"BTCEUR","BaseAssetId":"BTC","QuotingAssetId":"EUR"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "BTC"),
+                    to: LWAssetModel(assetId: "EUR", accuracy: 2),
+                    bid: false
+                ),
+                expectedResult: Decimal(5558.593)
+            ))
+        }
+    }
+    
+    func testExchangeBTCEURBid() {
+        driveOnScheduler(scheduler) { [weak self] in
+            self?.exchangeAssert(withData: (
+                rates: [
+                    LWAssetPairRateModel(json: ["Inverted": true, "Id": "EURBTC", "Bid": 5553.037, "Ask": 5558.593])
+                ],
+                assetPairs: [
+                    LWAssetPairModel.assetPair(withDict: ["Id":"EURBTC","BaseAssetId":"EUR","QuotingAssetId":"BTC"])
+                ],
+                input: (
+                    amaunt: Decimal(1.0),
+                    from: LWAssetModel(assetId: "EUR"),
+                    to: LWAssetModel(assetId: "BTC", accuracy: 8),
+                    bid: true
+                ),
+                expectedResult: Decimal(5553.037)
+            ))
+        }
+    }
+    
     func testExchangeUSDEURAsk() {
         driveOnScheduler(scheduler) { [weak self] in
             self?.exchangeAssert(withData: (
@@ -52,7 +253,7 @@ class CurrencyExchangerTests: XCTestCase {
                 input: (
                     amaunt: Decimal(10.0),
                     from: LWAssetModel(assetId: "USD"),
-                    to: LWAssetModel(assetId: "EUR"),
+                    to: LWAssetModel(assetId: "EUR", accuracy: 2),
                     bid: false
                 ),
                 expectedResult: Decimal(13.5)
@@ -72,7 +273,7 @@ class CurrencyExchangerTests: XCTestCase {
                 input: (
                     amaunt: Decimal(10.0),
                     from: LWAssetModel(assetId: "USD"),
-                    to: LWAssetModel(assetId: "EUR"),
+                    to: LWAssetModel(assetId: "EUR", accuracy: 2),
                     bid: true
                 ),
                 expectedResult: Decimal(14.5)
@@ -95,11 +296,11 @@ class CurrencyExchangerTests: XCTestCase {
                     to: LWAssetModel(assetId: "EUR"),
                     bid: true
                 ),
-                expectedResult: Decimal(string: "7.4074074074074074074074074074074074")!
+                expectedResult: Decimal(string: "6.89655172413793103448275862068965517")!
             ))
         }
     }
-    
+
     func testExchangeReversedPairEURBTC() {
         driveOnScheduler(scheduler) { [weak self] in
             self?.exchangeAssert(withData: (
@@ -120,7 +321,7 @@ class CurrencyExchangerTests: XCTestCase {
                     to: LWAssetModel(assetId: "BTC"),
                     bid: true
                 ),
-                expectedResult: Decimal(string: "0.0001740131540023373446845593952138")!
+                expectedResult: Decimal(string: "0.00017418725966512847703898380546209")!
             ))
         }
     }
@@ -150,7 +351,18 @@ class CurrencyExchangerTests: XCTestCase {
         scheduler.scheduleAt(3000) { subscription.dispose() }
         scheduler.start()
         
+        let finalResult: String
+        let expectedResult: String
+        
+        if let accuracy = data.input.to.accuracy {
+            finalResult = (results.events[0].value.element!?.convertAsCurrency(code: "", symbol: "", accuracy: Int(accuracy)))!
+            expectedResult = data.expectedResult.convertAsCurrency(code: "", symbol: "", accuracy: Int(accuracy))
+        } else {
+            finalResult = (results.events[0].value.element!?.description)!
+            expectedResult = data.expectedResult.description
+        }
+        
         //3. assert
-        XCTAssertEqual(results.events[0].value.element!, data.expectedResult)
+        XCTAssertEqual(finalResult, expectedResult)
     }
 }
