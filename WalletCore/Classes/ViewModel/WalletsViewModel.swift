@@ -79,10 +79,16 @@ open class WalletsViewModel {
         self.wallets = infoObservable.mapToAssets()
         
          self.totalBalance = infoObservable
+            .flatMap { info in
+                authManager.allAssets.request(byId: info.asset.identity)
+                .filterSuccess()
+                .filterNil()
+                .map {(asset: $0, info: info )}
+            }
             .map { value -> String in
                 let accuracy = value.asset.accuracy?.intValue ?? 2
-                let symbol = value.asset.symbol ?? ""
-                return value.totalBalance.convertAsCurrency(code: "", symbol: symbol, accuracy: accuracy)
+                let symbol = value.info.asset.symbol ?? ""
+                return value.info.totalBalance.convertAsCurrency(code: "", symbol: symbol, accuracy: accuracy)
             }
             .asDriver(onErrorJustReturn: "")
         
