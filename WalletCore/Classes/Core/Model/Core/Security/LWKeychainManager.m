@@ -267,7 +267,8 @@ SINGLETON_INIT {
     NSString *result = [valet stringForKey:kKeychainManagerAddress];
     // validate for nil, empty or non-existing addresses
     if (!result || [result isEqualToString:@""] ||
-        (![result isEqualToString:kTestingTestServer] &&
+        (![result isEqualToString:kProductionServer] &&
+         ![result isEqualToString:kTestingTestServer] &&
          ![result isEqualToString:kDevelopTestServer] &&
          ![result isEqualToString:kStagingTestServer])) {
         NSString *testingServer = WalletCoreConfig.testingServer;
