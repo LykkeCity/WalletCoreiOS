@@ -1155,7 +1155,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ModernMoney/Pods-ModernMoney-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
@@ -1234,7 +1234,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ModernMoney/Pods-ModernMoney-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ModernMoney/Pods-ModernMoney-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C918EDD15CF50635C50F8104 /* [CP] Check Pods Manifest.lock */ = {
