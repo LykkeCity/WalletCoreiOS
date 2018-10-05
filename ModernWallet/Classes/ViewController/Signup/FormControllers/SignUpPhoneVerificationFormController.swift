@@ -1,5 +1,5 @@
 //
-//  SignInConfirmPhoneFormController.swift
+//  SignUpConfirmPhoneFormController.swift
 //  ModernMoney
 //
 //  Created by Nacho Nachev on 29.11.17.
@@ -11,16 +11,13 @@ import RxSwift
 import RxCocoa
 import WalletCore
 
-class SignInConfirmPhoneFormController: FormController {
-    
-    let signIn: Bool
-    
+class SignUpPhoneVerificationFormController: FormController {
+
     let phone: String
     
     let email: String
     
-    init(signIn: Bool, phone: String, email: String) {
-        self.signIn = signIn
+    init(phone: String, email: String) {
         self.phone = phone
         self.email = email
         UserDefaults.standard.tempPhone = phone
@@ -29,7 +26,7 @@ class SignInConfirmPhoneFormController: FormController {
     
     lazy var formViews: [UIView] = {
         return [
-            self.titleLabel(title: Localize(self.signIn ? "auth.newDesign.signInConfirmPhone" : "auth.newDesign.signUpConfirmPhone")),
+            self.titleLabel(title: Localize("auth.newDesign.signUpConfirmPhone")),
             self.smsCodeTextField,
             self.resendSmsView
         ]
@@ -63,7 +60,7 @@ class SignInConfirmPhoneFormController: FormController {
     }()
     
     var canGoBack: Bool {
-        return !signIn
+        return true
     }
     
     var buttonTitle: String? {
@@ -75,7 +72,7 @@ class SignInConfirmPhoneFormController: FormController {
     }
     
     var segueIdentifier: String? {
-        return signIn ? nil : "CreateKey"
+        return "CreateKey"
     }
     
     private var checkPinTrigger = PublishSubject<Void>()
@@ -123,68 +120,6 @@ class SignInConfirmPhoneFormController: FormController {
             .asDriver(onErrorJustReturn: false)
             .drive(button.rx.isEnabled)
             .disposed(by: disposeBag)
-        
-        if signIn {
-            bindSignIn(button: button,
-                       nextTrigger: nextTrigger,
-                       pinTrigger: pinTrigger,
-                       loading: loading,
-                       error: error,
-                       toast: toast)
-        } else {
-            bindSignUp(button: button,
-                       nextTrigger: nextTrigger,
-                       pinTrigger: pinTrigger,
-                       loading: loading,
-                       error: error)
-        }
-    }
-    
-    private func bindSignIn<T>(button: UIButton,
-                               nextTrigger: PublishSubject<Void>,
-                               pinTrigger: PublishSubject<PinViewController?>,
-                               loading: UIBindingObserver<T, Bool>,
-                               error: UIBindingObserver<T, [AnyHashable : Any]>,
-                               toast: UIBindingObserver<T, String>) where T : UIViewController {
-        button.rx.tap.asObservable()
-            .map{ [smsCodeTextField] in smsCodeTextField.text }
-            .replaceNilWith("")
-            .bind(to: smsCodeForRetrieveKey)
-            .disposed(by: disposeBag)
-        
-        clientCodesViewModel.loadingViewModel.isLoading
-            .observeOn(MainScheduler.instance)
-            .bind(to: loading)
-            .disposed(by: disposeBag)
-        
-        clientCodesViewModel.errors
-            .bind(to: error)
-            .disposed(by: disposeBag)
-        
-        clientCodesViewModel.encodeMainKeyObservable
-            .observeOn(MainScheduler.instance)
-            .map{ _ in
-                SignUpStep.resetInstance()
-                UserDefaults.standard.isLoggedIn = true
-                UserDefaults.standard.synchronize()
-                NotificationCenter.default.post(name: .loggedIn, object: nil)
-                return ()
-            }
-            .bind(to: nextTrigger)
-            .disposed(by: disposeBag)
-        
-        clientCodesViewModel.sentSMSCode
-            .map{ Localize("register.phone.sms.sent") }
-            .drive(toast)
-            .disposed(by: disposeBag)
-    }
-    
-    
-    private func bindSignUp<T>(button: UIButton,
-                               nextTrigger: PublishSubject<Void>,
-                               pinTrigger: PublishSubject<PinViewController?>,
-                               loading: UIBindingObserver<T, Bool>,
-                               error: UIBindingObserver<T, [AnyHashable : Any]>) where T : UIViewController {
         
         smsCodeTextField.rx.text
             .filterNil()

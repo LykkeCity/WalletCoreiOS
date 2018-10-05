@@ -20,6 +20,7 @@ enum SignUpStep: Int {
     case confirmPhone = 7
     case setPin = 8
     case generateWallet = 9
+    case twoSideAuth = 10
 }
 
 // MARK: - Singleton
@@ -107,15 +108,19 @@ extension SignUpStep {
                 return (formController: SignUpFillPhoneFormController(email: email), viewController: nil, showPin: false)
             }
             
-            return (formController: SignInConfirmPhoneFormController(signIn: false, phone: phone, email: email), viewController: nil, showPin: false)
+            return (formController: SignUpPhoneVerificationFormController(phone: phone, email: email), viewController: nil, showPin: false)
             
         case .setPin:
-            return (formController: SignInConfirmPhoneFormController(signIn: false, phone: phone ?? "", email: email), viewController: nil, showPin: true)
+            return (formController: SignUpPhoneVerificationFormController(phone: phone ?? "", email: email), viewController: nil, showPin: true)
             
         case .generateWallet:
             let shakeViewController = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "signUpShake")
             return (formController: nil, viewController: shakeViewController, showPin: false)
+
+        case .twoSideAuth:
+            return (formController: SignInPhoneVerificationFormController(phone: phone ?? "", email: email), viewController: nil, showPin: false)
         }
+        
     }
     
     static func initFrom(formController: FormController?) -> SignUpStep? {
@@ -148,8 +153,12 @@ extension SignUpStep {
             return SignUpStep.setPhone
         }
         
-        if let confirmPhoneformController = formController as? SignInConfirmPhoneFormController, !confirmPhoneformController.signIn {
+        if formController is SignUpPhoneVerificationFormController {
             return SignUpStep.confirmPhone
+        }
+        
+        if formController is SignInPhoneVerificationFormController || formController is SignInEmailVerificationFormController {
+            return SignUpStep.twoSideAuth
         }
         
         return nil

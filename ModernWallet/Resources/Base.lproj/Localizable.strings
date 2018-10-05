@@ -69,6 +69,7 @@
 "register.phone.confirm.subtitle" = "Confirm your phone number";
 "register.phone.sms.sent" = "SMS sent";
 "register.phone.requestCall" = "Request voice call";
+"register.email.confirm.subtitle" = "Confirm your email";
 
 "register.USA.question" = "Are you a citizen or resident of the USA?";
 "register.USA.answer.yes" = "YES";
