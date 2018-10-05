@@ -20,7 +20,10 @@
 }
 
 -(NSDictionary *) params {
-    return @{@"Code":_code};
+    return @{
+             @"Code":_code,
+             @"PartnerId": WalletCoreConfig.partnerId
+             };
 }
 
 - (NSString *)urlRelative {

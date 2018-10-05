@@ -18,4 +18,10 @@
     return @"Client/codes";
 }
 
+- (NSDictionary *)params {
+    return @{
+             @"PartnerId": WalletCoreConfig.partnerId
+             };
+}
+
 @end
