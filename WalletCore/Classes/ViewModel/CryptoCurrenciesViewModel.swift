@@ -12,26 +12,45 @@ import RxCocoa
 open class CryptoCurrenciesViewModel {
     public var walletsData : Observable<[Variable<LWAddMoneyCryptoCurrencyModel>]>
     public var isLoading: Observable<Bool>
-    public init(
-        authManager:LWRxAuthManager = LWRxAuthManager.instance
-        ) {
+    
+    public init(authManager:LWRxAuthManager = LWRxAuthManager.instance) {
         
         let allWallets = authManager.lykkeWallets.request()
         
         isLoading = allWallets.isLoading()
         
-        self.walletsData = allWallets.filterSuccess().map{$0.lykkeData.wallets.filter {
-            return ($0 as! LWSpotWallet).asset.blockchainDeposit && (($0 as! LWSpotWallet).asset.blockchainDepositAddress != nil)
-            }.map({ (wallet) -> Variable<LWAddMoneyCryptoCurrencyModel> in
-                let w: LWSpotWallet = wallet as! LWSpotWallet
-                let model = LWAddMoneyCryptoCurrencyModel(name:w.name,
-                                                          address:w.asset.blockchainDepositAddress,
-                                                          imageUrl:w.asset.iconUrl)
-                return Variable(model)
-            })
-            
-        }
+        walletsData = allWallets
+            .filterSuccess()
+            .map{ $0.lykkeData.wallets.castToWallets().mapToCCModels() }
+    }
+}
 
+private extension Array where Element == Any {
+    
+    /// Cast Any To Wallets
+    ///
+    /// - Returns: An array of LWSpotWallet
+    func castToWallets() -> [LWSpotWallet] {
+        return map{ $0 as? LWSpotWallet }.flatMap{ $0 }
+    }
+}
+
+private extension Array where Element == LWSpotWallet {
+    
+    /// Filter wallets with blockchainDeposit and blockchainDepositAddress and map them to LWAddMoneyCryptoCurrencyModel
+    ///
+    /// - Returns: An array with filtered and transformed LWSpotWallets
+    func mapToCCModels() -> [Variable<LWAddMoneyCryptoCurrencyModel>] {
+        return
+            filter {
+                $0.asset.blockchainDeposit && $0.asset.blockchainDepositAddress != nil
+            }
+            .map{ wallet -> Variable<LWAddMoneyCryptoCurrencyModel> in
+                let model = LWAddMoneyCryptoCurrencyModel(name:wallet.name,
+                                                          address:wallet.asset.blockchainDepositAddress,
+                                                          imageUrl:wallet.asset.iconUrl)
+                return Variable(model)
+        }
     }
 }
 
