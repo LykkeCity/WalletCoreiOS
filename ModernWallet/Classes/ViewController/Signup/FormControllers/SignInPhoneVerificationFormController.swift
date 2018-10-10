@@ -103,6 +103,11 @@ class SignInPhoneVerificationFormController: FormController {
             .bind(to: toast)
             .disposed(by: disposeBag)
         
+        verifyViewModel.loadingViewModel.isLoading
+            .observeOn(MainScheduler.instance)
+            .bind(to: loading)
+            .disposed(by: disposeBag)
+        
         let smsCode = smsCodeTextField.rx.text.orEmpty
             .shareReplay(1)
             
