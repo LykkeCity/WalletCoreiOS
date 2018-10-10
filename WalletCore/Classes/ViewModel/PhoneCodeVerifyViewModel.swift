@@ -23,6 +23,9 @@ public class PhoneCodeVerifyViewModel {
     /// Received access token
     public let accessTokenObservable: Observable<String?>
     
+    /// Loading view model
+    public let loadingViewModel: LoadingViewModel
+    
     /// Errors occured
     public let errors: Observable<[AnyHashable: Any]>
     
@@ -36,8 +39,12 @@ public class PhoneCodeVerifyViewModel {
             .shareReplay(1)
         
         self.accessTokenObservable = verifySmsCodeRequest
+            .delay(0.1, scheduler: MainScheduler.instance) // dirty hack:  delay with more than loading view model delays
             .filterSuccess()
             .map { $0.accessToken }
+        
+        self.loadingViewModel = LoadingViewModel([
+            verifySmsCodeRequest.isLoading()])
         
         self.errors = Observable.merge([
             verifySmsCodeRequest.filterError()
