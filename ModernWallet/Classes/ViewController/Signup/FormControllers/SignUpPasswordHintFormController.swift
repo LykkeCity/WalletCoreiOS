@@ -139,6 +139,7 @@ class SignUpPasswordHintFormController: FormController {
             
             viewModel.result.asObservable()
                 .filterSuccess()
+                .delay(0.1, scheduler: MainScheduler.instance) // dirty hack:  delay with more than loading view model delays
                 .map { _ in return () }
                 .bind(to: nextTrigger)
                 .disposed(by: disposeBag)
