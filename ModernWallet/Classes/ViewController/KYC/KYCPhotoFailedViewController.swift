@@ -13,13 +13,17 @@ import WalletCore
 
 class KYCPhotoFailedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backButton: UIButton!
     
     var documentsModel: LWKYCDocumentsModel?
     
-    typealias TableCellModel = (type: KYCDocumentType, message: String?)
+    typealias TableCellModel = (title: String?, message: String?)
     
     var statuses: [TableCellModel] {
-        guard let documentsModel = self.documentsModel else {return []}
+        guard let documentsModel = self.documentsModel else {return [(
+                title: Localize("kyc.invalidDocuments.errorTitle"),
+                message: Localize("kyc.invalidDocuments.errorMessage")
+            )]}
         
         return [
             KYCDocumentType.selfie,
@@ -28,7 +32,7 @@ class KYCPhotoFailedViewController: UIViewController {
         ]
         .filter{documentsModel.status(for: $0).isRejected}
         .map{(
-            type: $0,
+            title: $0.failedPhotoTitle,
             message: documentsModel.comment(for: $0)
         )}
     }
@@ -40,9 +44,14 @@ class KYCPhotoFailedViewController: UIViewController {
         super.viewDidLoad()
         
         Observable.just(statuses)
-            .bind(to: tableView.rx.items(cellIdentifier: "KYCPhotoFailedTableViewCell", cellType: KYCPhotoFailedTableViewCell.self)) { (row, element, cell) in
-                cell.title.text = element.type.failedPhotoTitle
+            .bind(to: tableView.rx.items(cellIdentifier: "KYCPhotoFailedTableViewCell", cellType: KYCPhotoFailedTableViewCell.self)) { [weak self] (row, element, cell) in
+                cell.title.text = element.title
                 cell.message.text = element.message
+                
+                //change the button label in case some error occured
+                if element.title == Localize("kyc.invalidDocuments.errorTitle") {
+                    self?.backButton.setTitle(Localize("kyc.invalidDocuments.backButton"), for: .normal)
+                }
             }
             .disposed(by: disposeBag)
         // Do any additional setup after loading the view.

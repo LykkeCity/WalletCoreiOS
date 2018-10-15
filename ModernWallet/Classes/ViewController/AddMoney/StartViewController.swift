@@ -163,7 +163,7 @@ fileprivate extension KycNeededViewModel {
                 .map{ UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycTabNVC") }
                 .subscribe(onNext: {[weak vc] controller in
                     vc?.navigationController?.present(controller, animated: true, completion: nil)
-                }),
+            }),
             
             ok.subscribe(onNext: {[weak vc] in
                 if let addMoneyVC = vc?.addMoneyViaActionVC {
@@ -175,7 +175,13 @@ fileprivate extension KycNeededViewModel {
                 .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPendingVC")}
                 .subscribe(onNext: {[weak vc] controller in
                     vc?.navigationController?.present(controller, animated: true)
-                }),
+            }),
+            
+            rejected
+                .map{ UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPhotoFailedVC") }
+                .subscribe(onNext: {[weak vc] controller in
+                    vc?.navigationController?.present(controller, animated: true, completion: nil)
+            }),
         ]
     }
 }
