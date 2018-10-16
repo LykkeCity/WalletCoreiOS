@@ -21,6 +21,8 @@ public class KycNeededViewModel {
     
     public let needToFillData: Observable<Void>
     
+    public let rejected: Observable<Void>
+    
     public init(forAsset asset: Observable<ApiResult<LWAssetModel>>, authManager: LWRxAuthManager = LWRxAuthManager.instance) {
         let kycForAsset = asset
             .filterSuccess()
@@ -51,6 +53,15 @@ public class KycNeededViewModel {
             .filterSuccess()
             .filter{kycForAsset in
                 kycForAsset.userKYCStatus == "NeedToFillData" // && kycForAsset.kycNeeded
+            }
+            .map{_ in Void()}
+            .observeOn(MainScheduler.asyncInstance)
+            .shareReplay(1)
+        
+        self.rejected = kycForAsset
+            .filterSuccess()
+            .filter{kycForAsset in
+                kycForAsset.userKYCStatus == "Rejected"
             }
             .map{_ in Void()}
             .observeOn(MainScheduler.asyncInstance)
