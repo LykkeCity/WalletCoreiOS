@@ -203,6 +203,9 @@
 "kyc.invalidDocuments.passport" = "Photo of your passport or another ID";
 "kyc.invalidDocuments.address" = "Photo of your proof of address";
 "kyc.invalidDocuments.button" = "GO BACK AND RESHOOT";
+"kyc.invalidDocuments.errorTitle" = "ERROR";
+"kyc.invalidDocuments.errorMessage" = "Please contact our support team.";
+"kyc.invalidDocuments.backButton" = "GO BACK";
 
 "kyc.restricted.header" = "OOPS!";
 "kyc.restricted" = "Dear %@, we're terribly sorry, but Modern money can't be created based on the KYC information that you have provided.";
