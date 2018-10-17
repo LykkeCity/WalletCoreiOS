@@ -81,14 +81,6 @@ class TransactionsViewController: UIViewController {
         // Do any additional setup after loading the view.
         
     }
-
-    @IBAction func onBackTap(_ sender: UIButton) {
-        if let drawerController = self.drawerController {
-            let mainStory = UIStoryboard.init(name: "Main", bundle: nil)
-            let portfolioVC = mainStory.instantiateViewController(withIdentifier: "Portfolio")
-            (drawerController.mainViewController as? RootViewController)?.embed(viewController: portfolioVC, animated: true)
-        }
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         

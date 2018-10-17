@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0f2-8i-tq3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0f2-8i-tq3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -50,7 +47,7 @@
                                             <segue destination="ZWH-O4-0hz" kind="embed" id="PiS-Xj-6iM"/>
                                         </connections>
                                     </containerView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOC-iq-wq0">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOC-iq-wq0">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="kOC-iq-wq0" secondAttribute="height" multiplier="1:0.8" id="9iQ-zY-JIn"/>
@@ -58,9 +55,6 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" image="backArrow"/>
-                                        <connections>
-                                            <action selector="onBackTap:" destination="0f2-8i-tq3" eventType="touchUpInside" id="FnT-Gx-CPM"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -205,7 +199,7 @@
                                                 <rect key="frame" x="125" y="0.0" width="125" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUe-Qo-hx4">
-                                                        <rect key="frame" x="62" y="17" width="48" height="10"/>
+                                                        <rect key="frame" x="62" y="17.5" width="48" height="9.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="9.5" id="KWt-dG-dUl"/>
                                                             <constraint firstAttribute="width" constant="48" id="kmd-jN-ZUy"/>
@@ -279,7 +273,7 @@
                                                 <rect key="frame" x="250" y="0.0" width="125" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download CSV" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFH-hv-yFg">
-                                                        <rect key="frame" x="56" y="8.5" width="48" height="27"/>
+                                                        <rect key="frame" x="55.5" y="8.5" width="48" height="27"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="27" id="0Yq-zl-eHG"/>
                                                             <constraint firstAttribute="width" constant="48" id="Oob-Qf-9nJ"/>
@@ -289,7 +283,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downloadIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7jj-wT-glK">
-                                                        <rect key="frame" x="38" y="14" width="10" height="16"/>
+                                                        <rect key="frame" x="37.5" y="14" width="10" height="16"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="BtO-Tk-6Yh"/>
                                                             <constraint firstAttribute="width" constant="10" id="gtj-IV-aoF"/>
