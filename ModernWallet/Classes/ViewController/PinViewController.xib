@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -65,13 +64,16 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fp1-kG-UZZ">
-                            <rect key="frame" x="32" y="52" width="312" height="21"/>
+                            <rect key="frame" x="32" y="52" width="311" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="K8N-fJ-cNN"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="IkV-7f-Jfy">
-                            <rect key="frame" x="109" y="194" width="158" height="17"/>
+                            <rect key="frame" x="108.5" y="197" width="158" height="17"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" image="dotPinUnSelected" highlightedImage="dotPinSelected" translatesAutoresizingMaskIntoConstraints="NO" id="SK2-LM-QRC">
                                     <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
@@ -88,7 +90,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ge5-M4-EBx">
-                            <rect key="frame" x="50" y="219" width="275" height="370"/>
+                            <rect key="frame" x="50" y="222" width="275" height="370"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Q6N-5M-Gwf">
                                     <rect key="frame" x="0.0" y="0.0" width="275" height="85"/>
@@ -210,7 +212,7 @@
                             </subviews>
                         </stackView>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMv-iw-B3w">
-                            <rect key="frame" x="147" y="609" width="81" height="30"/>
+                            <rect key="frame" x="150" y="612" width="75" height="27"/>
                             <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                             <state key="normal" title="Forgot PIN?"/>
                             <connections>
@@ -223,16 +225,15 @@
                     <constraints>
                         <constraint firstItem="NYd-jc-qbw" firstAttribute="top" secondItem="UXP-kQ-nwC" secondAttribute="top" constant="8" id="0D3-Wr-fOg"/>
                         <constraint firstItem="iMv-iw-B3w" firstAttribute="centerX" secondItem="UXP-kQ-nwC" secondAttribute="centerX" id="6PI-54-TQL"/>
-                        <constraint firstItem="IkV-7f-Jfy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Fp1-kG-UZZ" secondAttribute="bottom" constant="20" id="6yd-1l-r90"/>
                         <constraint firstItem="Ge5-M4-EBx" firstAttribute="top" secondItem="IkV-7f-Jfy" secondAttribute="bottom" constant="8" id="BpS-7U-cc0"/>
                         <constraint firstItem="ae8-qt-5mG" firstAttribute="centerX" secondItem="UXP-kQ-nwC" secondAttribute="centerX" id="CBs-XD-HDI"/>
                         <constraint firstItem="ae8-qt-5mG" firstAttribute="top" secondItem="UXP-kQ-nwC" secondAttribute="top" constant="8" id="CQf-RB-Dfu"/>
-                        <constraint firstItem="Fp1-kG-UZZ" firstAttribute="leading" secondItem="UXP-kQ-nwC" secondAttribute="leading" constant="32" id="G7b-K5-ZJL"/>
                         <constraint firstItem="iMv-iw-B3w" firstAttribute="top" secondItem="Ge5-M4-EBx" secondAttribute="bottom" constant="20" id="LZh-J5-zuF"/>
                         <constraint firstAttribute="trailing" secondItem="NYd-jc-qbw" secondAttribute="trailing" constant="8" id="TA0-Mf-ubw"/>
-                        <constraint firstItem="Fp1-kG-UZZ" firstAttribute="top" secondItem="ae8-qt-5mG" secondAttribute="bottom" constant="20" id="bTS-kj-3Rm"/>
                         <constraint firstItem="IkV-7f-Jfy" firstAttribute="centerX" secondItem="UXP-kQ-nwC" secondAttribute="centerX" id="boD-3w-mkM"/>
-                        <constraint firstItem="Fp1-kG-UZZ" firstAttribute="centerX" secondItem="UXP-kQ-nwC" secondAttribute="centerX" id="qCY-Ck-eEs"/>
+                        <constraint firstItem="Fp1-kG-UZZ" firstAttribute="centerX" secondItem="ae8-qt-5mG" secondAttribute="centerX" id="jiH-bq-iPP"/>
+                        <constraint firstItem="Fp1-kG-UZZ" firstAttribute="leading" secondItem="UXP-kQ-nwC" secondAttribute="leading" constant="32" id="oUZ-4e-G4o"/>
+                        <constraint firstItem="IkV-7f-Jfy" firstAttribute="top" secondItem="Fp1-kG-UZZ" secondAttribute="bottom" constant="45" id="s4q-O0-AqK"/>
                         <constraint firstItem="Ge5-M4-EBx" firstAttribute="leading" secondItem="UXP-kQ-nwC" secondAttribute="leading" constant="50" id="v6f-7Q-17e"/>
                         <constraint firstItem="Ge5-M4-EBx" firstAttribute="centerX" secondItem="UXP-kQ-nwC" secondAttribute="centerX" id="yEG-fn-q63"/>
                     </constraints>
