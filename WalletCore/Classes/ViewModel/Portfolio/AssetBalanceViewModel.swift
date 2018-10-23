@@ -33,12 +33,14 @@ public class AssetBalanceViewModel {
             .shareReplay(1)
         
         depositableAssetObservable
+            .distinctUntilChanged()
             .filterEtheriumBlockchainAsset()
             .mapToEthereumDepositAddress()
             .bind(to: blockchainAddress)
             .disposed(by: disposeBag)
 
         depositableAssetObservable
+            .distinctUntilChanged()
             .filterBitcoinBlockchainAsset()
             .mapToBitcoinDepositAddress()
             .bind(to: blockchainAddress)
