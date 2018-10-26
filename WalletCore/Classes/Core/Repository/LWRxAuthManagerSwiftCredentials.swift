@@ -41,7 +41,7 @@ extension LWRxAuthManagerSwiftCredentials: AuthManagerProtocol{
     
     public func getSuccessResult(fromPacket packet: Packet) -> Result {
         
-        guard let model = LWCache.instance().swiftCredentialsDict[packet.identity]
+        guard let model = LWCache.instance().swiftCredentialsDict?.first(where: {credential -> Bool in (credential.key as? String ?? "") == packet.identity})?.value
             as? LWSwiftCredentialsModel else {
                 return Result.error(withData: ["Message": "Credentials not found."])
         }
