@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 open class CryptoCurrenciesViewModel {
+    
     public var walletsData : Observable<[Variable<LWAddMoneyCryptoCurrencyModel>]>
     public var isLoading: Observable<Bool>
     
@@ -22,6 +23,7 @@ open class CryptoCurrenciesViewModel {
         walletsData = allWallets
             .filterSuccess()
             .map{ $0.lykkeData.wallets.castToWallets().mapToCCModels() }
+        
     }
 }
 
@@ -42,11 +44,10 @@ private extension Array where Element == LWSpotWallet {
     /// - Returns: An array with filtered and transformed LWSpotWallets
     func mapToCCModels() -> [Variable<LWAddMoneyCryptoCurrencyModel>] {
         return
-            filter {
-                $0.asset.blockchainDeposit && $0.asset.blockchainDepositAddress != nil
-            }
+            filter { $0.asset.blockchainDeposit }
             .map{ wallet -> Variable<LWAddMoneyCryptoCurrencyModel> in
-                let model = LWAddMoneyCryptoCurrencyModel(name:wallet.name,
+                let model = LWAddMoneyCryptoCurrencyModel(asset:wallet.asset,
+                                                          name:wallet.name,
                                                           address:wallet.asset.blockchainDepositAddress,
                                                           imageUrl:wallet.asset.iconUrl)
                 return Variable(model)
