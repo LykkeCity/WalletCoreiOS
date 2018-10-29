@@ -13,6 +13,27 @@ import RxSwift
 import RxCocoa
 import SwiftSpinner
 
+extension UIViewController: AlertPresenter {
+    
+    public func presentAlert() -> Observable<Bool> {
+        
+        return Observable.create({ [weak self] subscriber in
+            
+            let alertController = UIAlertController(title: Localize("utils.attention"), message: Localize("alert.no.bcn.address"), preferredStyle: UIAlertControllerStyle.alert)
+            
+            let cancelAction = UIAlertAction(title: Localize("utils.cancel"), style: UIAlertActionStyle.cancel, handler: { _ in subscriber.onNext(false) })
+            alertController.addAction(cancelAction)
+            
+            let okAction = UIAlertAction(title: Localize("utils.ok"), style: UIAlertActionStyle.default, handler: { _ in subscriber.onNext(true) })
+            alertController.addAction(okAction)
+            
+            self?.present(alertController, animated: true)
+            
+            return Disposables.create()
+        })
+    }
+}
+
 extension UIViewController {
     
     @IBAction func swipeToNavigateBack(_ sender: UISwipeGestureRecognizer) {

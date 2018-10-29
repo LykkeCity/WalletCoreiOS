@@ -38,6 +38,18 @@ class AssetDetailViewController: UIViewController {
         return CurrencyExchanger()
     }()
     
+    fileprivate lazy var blockchainAddressViewModel: BlockchainAddressViewModel = {
+        let astModel = self.asset.asObservable().map { asset -> LWAssetModel in
+            if let assetModel = asset.wallet?.asset {
+                return assetModel
+            } else {
+                return LWAssetModel.init()
+            }
+        }
+        
+        return BlockchainAddressViewModel(asset: astModel , alertPresenter: self)
+    }()
+    
     fileprivate lazy var transactionsViewModel: TransactionsViewModel = {
         return TransactionsViewModel(
             downloadCsv: self.messageButton.rx.tap.asObservable(),
@@ -77,6 +89,18 @@ class AssetDetailViewController: UIViewController {
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
 
+        receiveButton.rx.tap.asObservable()
+            .bind(to: blockchainAddressViewModel.trigger)
+            .disposed(by: disposeBag)
+        
+        blockchainAddressViewModel.isAvailable.asDriver(onErrorJustReturn: false)
+            .drive(receiveButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        blockchainAddressViewModel
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
+
         assetBalanceViewModel
             .bind(toAsset: assetAmount, baseAsset: baseAssetAmount)
             .disposed(by: disposeBag)
@@ -94,11 +118,6 @@ class AssetDetailViewController: UIViewController {
             .map{$0.wallet?.asset.blockchainWithdraw ?? false}
             .asDriver(onErrorJustReturn: false)
             .drive(sendButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        assetBalanceViewModel.blockchainAddress.asDriver()
-            .map{ $0.isNotEmpty }
-            .drive(receiveButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         assetAmount.configure(fontSize: 30)
@@ -150,9 +169,10 @@ class AssetDetailViewController: UIViewController {
             sellVC.tradeAssetIdentifier = assetModel.cryptoCurrency.identity
             sellVC.currencyExchanger = currencyExchanger
         case "ReceiveAddress":
-            guard let receiveVC = segue.destination as? ReceiveWalletViewController else { return }
-            receiveVC.asset = Variable(assetModel)
-            receiveVC.address = assetBalanceViewModel.blockchainAddress.value
+            guard let receiveVC = segue.destination as? ReceiveWalletViewController,
+                let walletAddress = sender as? String else { return }
+                receiveVC.asset = Variable(assetModel)
+                receiveVC.address = walletAddress
         case "SendAsset":
             guard let sendVC = segue.destination as? SendToWalletViewController else { return }
             sendVC.asset = Variable(assetModel)
@@ -209,6 +229,7 @@ fileprivate extension TransactionsViewModel {
         ]
     }
 }
+
 extension AssetDetailViewController: UIPopoverPresentationControllerDelegate {
     public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
             return .none
@@ -224,6 +245,17 @@ extension ObservableType where Self.E == [TransactionViewModel] {
                     transaction.transaction.asset == data.asset.wallet?.asset.identity
                 }
             }
+    }
+}
+
+extension BlockchainAddressViewModel {
+    func bind(toViewController vc: AssetDetailViewController) -> [Disposable] {
+        return [
+            blockchainAddress
+                .subscribe(onNext: { [weak vc] address in
+                    vc?.performSegue(withIdentifier: "ReceiveAddress", sender: address)
+                }),
+        ]
     }
 }
 

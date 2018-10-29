@@ -22,7 +22,14 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
     fileprivate lazy var cryptoCurrenciesViewModel: CryptoCurrenciesViewModel = {
         return CryptoCurrenciesViewModel()
     }()
-
+    
+    fileprivate lazy var blockchainAddressViewModel: BlockchainAddressViewModel = {
+        let selectedAsset = self.currenciesTableView.rx
+            .modelSelected(Variable<LWAddMoneyCryptoCurrencyModel>.self)
+            .map { $0.value.asset }
+        return BlockchainAddressViewModel(asset: selectedAsset, alertPresenter: self)
+    }()
+    
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
             self.cryptoCurrenciesViewModel.isLoading
@@ -45,10 +52,9 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
                             }
                             .disposed(by: disposeBag)
         
-        currenciesTableView.rx
-            .modelSelected(Variable<LWAddMoneyCryptoCurrencyModel>.self)
+        blockchainAddressViewModel.assetModel
             .subscribe(onNext: { [weak self] model in
-                self?.performSegue(withIdentifier: "cc2Segue", sender: model)
+                    self?.performSegue(withIdentifier: "cc2Segue", sender: model)
             })
             .disposed(by: disposeBag)
         
@@ -67,11 +73,12 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
             guard let vc = segue.destination as? AddMoneyCryptocurrencyStep2ViewController else {
                 return
             }
-            let m: Variable<LWAddMoneyCryptoCurrencyModel> = sender as! Variable<LWAddMoneyCryptoCurrencyModel>
+            
+            let m: LWAssetModel = sender as! LWAssetModel
             let model = LWPrivateWalletModel()
-            model.name = m.value.name
-            model.address = m.value.address
-            model.iconURL = m.value.imgUrl?.absoluteString
+            model.name = m.name
+            model.address = m.blockchainDepositAddress
+            model.iconURL = m.iconUrl?.absoluteString
             
             vc.wallet = Variable(model)
         }
