@@ -70,5 +70,14 @@ class CashOutSummaryViewController: UIViewController {
         accountHolderZipCodeLabel.text = result.accountHolderZipCode
         accountHolderCityLabel.text = result.accountHolderCity
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OpenPortfolio" {
+            // don't show the pin screen after login or signup
+            if let portfolioViewController = segue.destination as? PortfolioViewController {
+                portfolioViewController.showPinConfirmation = false
+            }
+        }
+    }
 
 }
