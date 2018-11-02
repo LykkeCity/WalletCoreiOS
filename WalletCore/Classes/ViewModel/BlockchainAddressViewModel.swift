@@ -13,60 +13,62 @@ import RxCocoa
 public class BlockchainAddressViewModel {
     
     //IN
-    public let trigger = PublishSubject<Void>()
+    public let asset = PublishSubject<LWAssetModel>()
     
     //OUT
     public let blockchainAddress: Observable<String>
     
     public let assetModel: Observable<LWAssetModel>
     
-    public let isAvailable: Observable<Bool>
+    public let errors: Observable<[AnyHashable: Any]>
     
-    public init(asset: Observable<LWAssetModel>,
-                alertPresenter: AlertPresenter,
+    public let loadingViewModel: LoadingViewModel
+    
+    public init(alertPresenter: AlertPresenter,
                 ethTransactionManager: LWEthereumTransactionsManager = LWEthereumTransactionsManager.shared(),
                 authManager: LWRxAuthManager = LWRxAuthManager.instance) {
-        
-        let alertObservable = trigger
-            .withLatestFrom(asset.asObservable())
-            .flatMap { asset -> Observable<(confirmation: Bool, asset: LWAssetModel)> in
-                if let _ = asset.blockchainDepositAddress {
+                
+        let alertObservable = asset.asObservable()
+            .flatMapLatest { asset -> Observable<(confirmation: Bool, asset: LWAssetModel)> in
+                if let depositAddress = asset.blockchainDepositAddress, depositAddress.isNotEmpty {
                     return Observable.just( (confirmation: true, asset: asset) )
-                } else {
-                   return  alertPresenter.presentAlert().map { (confirmation: $0, asset: asset) }
                 }
+                
+                return  alertPresenter.presentAlert().map { (confirmation: $0, asset: asset) }
             }
             .filter { $0.confirmation }
             .map { $0.asset }
             .shareReplay(1)
         
         let depositableAssetObservable = alertObservable
-            .withLatestFrom(asset.asObservable())
             .filter { $0.blockchainDeposit }
             .shareReplay(1)
         
-        let ethAddress = depositableAssetObservable
-            .distinctUntilChanged()
+        let ethereumAddressRequest = depositableAssetObservable
             .filterEtheriumBlockchainAsset()
-            .mapToEthereumDepositAddress(ethTransactionManager: ethTransactionManager)
+            .getEthereumDepositAddress(ethTransactionManager: ethTransactionManager)
             .shareReplay(1)
-
         
-        let btcAddress = depositableAssetObservable
-            .distinctUntilChanged()
+        let ethAddress = ethereumAddressRequest.asObservable()
+            .filterSuccess()
+            .mapToEthereumDepositAddress()
+        
+        let bitcoinAddressRequest = depositableAssetObservable
             .filterBitcoinBlockchainAsset()
-            .mapToBitcoinDepositAddress(authManager: authManager)
+            .getBitcoinDepositAddress(authManager: authManager)
             .shareReplay(1)
-
-        blockchainAddress = Observable.merge([ethAddress, btcAddress])
-
-        assetModel = Observable.combineLatest(asset.asObservable(), self.blockchainAddress.asObservable())
-            .map { $0.blockchainDepositAddress = $1
-                return $0
-            }
         
-        isAvailable = asset
-            .map { $0.blockchainDeposit }
+        let btcAddress = bitcoinAddressRequest
+            .filterSuccess()
+            .mapToBitcoinDepositAddress()
+        
+        blockchainAddress = Observable.merge([ethAddress, btcAddress])
+        
+        assetModel = asset.asObserver()
+        
+        errors = Observable.merge(ethereumAddressRequest.filterError(), bitcoinAddressRequest.filterError())
+        
+        loadingViewModel = LoadingViewModel([ethereumAddressRequest.isLoading(), bitcoinAddressRequest.isLoading()])
     }
 }
 
@@ -80,31 +82,30 @@ extension Observable where Element == LWAssetModel {
         return filter { $0.blockchainType == .bitcoint }
     }
     
-    func mapToEthereumDepositAddress(ethTransactionManager: LWEthereumTransactionsManager) -> Observable<String> {
+    func getEthereumDepositAddress(ethTransactionManager: LWEthereumTransactionsManager) -> Observable<ApiResult<LWAssetModel>> {
         return
-            flatMap { (asset) -> Observable<(Bool, LWAssetModel)> in
-                guard asset.blockchainType == .ethereum else {
-                    return Observable<(Bool, LWAssetModel)>.empty()
-                }
+            flatMap { (asset) -> Observable<ApiResult<LWAssetModel>> in
                 return ethTransactionManager.rx.createEthereumSign(forAsset: asset)
-                }
-                .map { (success, asset) in return success ? asset.blockchainDepositAddress : "" }
+            }
     }
     
-    func mapToBitcoinDepositAddress(authManager: LWRxAuthManager) -> Observable<String> {
+    func mapToEthereumDepositAddress() -> Observable<String> {
+        return
+            map { $0.blockchainDepositAddress ?? ""}
+    }
+    
+    func getBitcoinDepositAddress(authManager: LWRxAuthManager) -> Observable<ApiResult<LWPacketGetBlockchainAddress>> {
         return
             flatMap { asset -> Observable<ApiResult<LWPacketGetBlockchainAddress>> in
-                guard asset.blockchainType == .bitcoint else {
-                    return Observable<ApiResult<LWPacketGetBlockchainAddress>>.empty()
-                }
                 return authManager.getBlockchainAddress.request(withParams: asset.identity)
-                }
-                .filterSuccess()
-                .map { packet in
-                    //Cache should be inside the repository layer of the application
-                    (LWCache.instance().allAssets as? [LWAssetModel] ?? []).filter { $0.identity == packet.assetId }.first?.blockchainDepositAddress = packet.address
-                    return packet.address
-        }
+            }
     }
     
+}
+
+extension Observable where Element == LWPacketGetBlockchainAddress {
+    func mapToBitcoinDepositAddress() -> Observable<String> {
+        return
+            map { $0.address }
+    }
 }

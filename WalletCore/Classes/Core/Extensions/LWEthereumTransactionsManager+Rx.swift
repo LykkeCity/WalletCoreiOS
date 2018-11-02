@@ -23,13 +23,23 @@ extension Reactive where Base : LWEthereumTransactionsManager {
         .shareReplay(1)
     }
     
-    func createEthereumSign(forAsset asset: LWAssetModel) -> Observable<(Bool, LWAssetModel)> {
+    func createEthereumSign(forAsset asset: LWAssetModel) -> Observable<ApiResult<LWAssetModel>> {
         return Observable.create { observer in
             LWEthereumTransactionsManager.shared().createEthereumSign(forAsset: asset, completion: { (success) in
-                observer.onNext((success, asset))
+                observer.onNext(success ? ApiResult.success(withData: asset) : ApiResult.error(withData: [:]))
                 observer.onCompleted()
             })
             return Disposables.create()
         }
+        .do(onNext: { asset in
+            //check if the asset exist and set the blockchainDepositAddress
+            guard let assetsFromCache = (LWCache.instance()?.allAssets as? [LWAssetModel]),
+                let receivedAsset = asset.getSuccess() else { return }
+            assetsFromCache.first(where: { $0.identity == receivedAsset.identity })?.blockchainDepositAddress = receivedAsset.blockchainDepositAddress // set the address
+        })
+        .do(onNext: { _ in
+            NotificationCenter.default.post(name: .blockchainAddressReceived, object: nil)
+        })
+        .startWith(.loading)
     }
 }

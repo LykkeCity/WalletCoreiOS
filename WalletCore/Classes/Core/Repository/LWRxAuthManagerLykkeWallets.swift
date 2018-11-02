@@ -15,14 +15,22 @@ public class LWRxAuthManagerLykkeWallets: NSObject{
     public typealias Result = ApiResult<LWLykkeWalletsData>
     public typealias ResultType = LWLykkeWalletsData
     public typealias RequestParams = Void
+    fileprivate let addressReceivedTrigger = PublishSubject<Void>()
     
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onAddressCreated(_:)), name: .blockchainAddressReceived, object: nil)
     }
     
     deinit {
         unsubscribe(observer: self)
+        NotificationCenter.default.removeObserver(self, name: .blockchainAddressReceived, object: nil)
+    }
+    
+    @objc func onAddressCreated(_ notification: NSNotification) {
+        addressReceivedTrigger.onNext(())
     }
     
     @objc func successSelector(_ notification: NSNotification) {
@@ -51,6 +59,20 @@ extension LWRxAuthManagerLykkeWallets: AuthManagerProtocol {
     //requestLykkeWallets()
     public func createPacket(withObserver observer: Any, params: Void) -> LWPacketWallets {
         return Packet(observer: observer)
+    }
+    
+    public func request() -> Observable<Result> {
+        return self.request(withParams: ())
+    }
+    
+    public func request(withParams params: RequestParams) -> Observable<Result> {
+        
+        let receivedData = self.addressReceivedTrigger.asObservable()
+            .flatMapLatest { [weak self] _ in
+                self?.defaultRequestImplementation(with: params) ?? Observable.never()
+            }
+        
+        return Observable.merge(self.defaultRequestImplementation(with: params), receivedData)
     }
     
     public func getSuccessResult(fromPacket packet: LWPacketWallets) -> ApiResult<LWLykkeWalletsData> {
