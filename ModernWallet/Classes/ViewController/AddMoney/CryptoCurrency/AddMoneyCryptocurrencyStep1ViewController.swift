@@ -24,10 +24,7 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
     }()
     
     fileprivate lazy var blockchainAddressViewModel: BlockchainAddressViewModel = {
-        let selectedAsset = self.currenciesTableView.rx
-            .modelSelected(Variable<LWAddMoneyCryptoCurrencyModel>.self)
-            .map { $0.value.asset }
-        return BlockchainAddressViewModel(asset: selectedAsset, alertPresenter: self)
+        return BlockchainAddressViewModel(alertPresenter: self)
     }()
     
     fileprivate lazy var loadingViewModel: LoadingViewModel = {
@@ -47,15 +44,23 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
         
         cryptoCurrenciesViewModel.walletsData
             .bind(to: currenciesTableView.rx.items(cellIdentifier: "AddMoneyCryptoCurrencyTableViewCell",
-                                                                    cellType: AddMoneyCryptoCurrencyTableViewCell.self)) { (row, element, cell) in
-                                                                        cell.bind(toCurrency: AddMoneyCryptoCurrencyCellViewModel(element))
-                            }
-                            .disposed(by: disposeBag)
+            cellType: AddMoneyCryptoCurrencyTableViewCell.self)) { (row, element, cell) in
+                cell.bind(toCurrency: AddMoneyCryptoCurrencyCellViewModel(element))
+        }
+        .disposed(by: disposeBag)
         
-        blockchainAddressViewModel.assetModel
-            .subscribe(onNext: { [weak self] model in
-                    self?.performSegue(withIdentifier: "cc2Segue", sender: model)
-            })
+        currenciesTableView.rx
+            .modelSelected(Variable<LWAddMoneyCryptoCurrencyModel>.self)
+            .map { $0.value.asset }
+            .do(onNext: { [weak self] _ in
+                guard let strongSelf = self,
+                    let selectedRow = strongSelf.currenciesTableView.indexPathForSelectedRow else { return }
+                strongSelf.currenciesTableView.deselectRow(at: selectedRow, animated: false) })
+            .bind(to: blockchainAddressViewModel.asset)
+            .disposed(by: disposeBag)
+        
+        blockchainAddressViewModel
+            .bind(to: self)
             .disposed(by: disposeBag)
         
     }
@@ -82,6 +87,22 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
             
             vc.wallet = Variable(model)
         }
+    }
+}
+
+extension BlockchainAddressViewModel {
+    func bind (to vc: AddMoneyCryptocurrencyStep1ViewController) -> [Disposable] {
+        return [
+            assetModel
+                .subscribe(onNext: { [weak vc] model in
+                    vc?.performSegue(withIdentifier: "cc2Segue", sender: model)
+                }),
+            errors
+                .bind(to: vc.rx.error),
+            loadingViewModel.isLoading
+                .asDriver(onErrorJustReturn: false)
+                .drive(vc.rx.loading)
+        ]
     }
 }
 

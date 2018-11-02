@@ -39,15 +39,7 @@ class AssetDetailViewController: UIViewController {
     }()
     
     fileprivate lazy var blockchainAddressViewModel: BlockchainAddressViewModel = {
-        let astModel = self.asset.asObservable().map { asset -> LWAssetModel in
-            if let assetModel = asset.wallet?.asset {
-                return assetModel
-            } else {
-                return LWAssetModel.init()
-            }
-        }
-        
-        return BlockchainAddressViewModel(asset: astModel , alertPresenter: self)
+        return BlockchainAddressViewModel(alertPresenter: self)
     }()
     
     fileprivate lazy var transactionsViewModel: TransactionsViewModel = {
@@ -79,7 +71,8 @@ class AssetDetailViewController: UIViewController {
                                         .transactions
                                         .asObservable()
                                         .filter(byAsset: asset))
-
+        
+        //TODO : clean the code and move as much as possible to extensions
         
         transactionsViewModel
             .bind(toViewController: self)
@@ -88,19 +81,22 @@ class AssetDetailViewController: UIViewController {
         transactionsViewModel.loading.isLoading
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
-
+        
         receiveButton.rx.tap.asObservable()
-            .bind(to: blockchainAddressViewModel.trigger)
+            .withLatestFrom(self.asset.getAssetModel())
+            .bind(to: blockchainAddressViewModel.asset)
             .disposed(by: disposeBag)
         
-        blockchainAddressViewModel.isAvailable.asDriver(onErrorJustReturn: false)
+        asset.getAssetModel()
+            .map { $0.blockchainDeposit }
+            .asDriver(onErrorJustReturn: false)
             .drive(receiveButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         blockchainAddressViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
-
+        
         assetBalanceViewModel
             .bind(toAsset: assetAmount, baseAsset: baseAssetAmount)
             .disposed(by: disposeBag)
@@ -144,6 +140,8 @@ class AssetDetailViewController: UIViewController {
         transactionsViewModel.isDownloadButtonEnabled
             .drive(messageButton.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        
     }
     
     // MARK: - Navigation
@@ -230,6 +228,17 @@ fileprivate extension TransactionsViewModel {
     }
 }
 
+extension ObservableType where Self.E == Asset {
+    func getAssetModel() -> Observable<LWAssetModel> {
+        return flatMap { asset -> Observable<LWAssetModel> in
+            guard let assetModel = asset.wallet?.asset else {
+                return .empty()
+            }
+            return Observable.just(assetModel)
+        }
+    }
+}
+
 extension AssetDetailViewController: UIPopoverPresentationControllerDelegate {
     public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
             return .none
@@ -255,6 +264,11 @@ extension BlockchainAddressViewModel {
                 .subscribe(onNext: { [weak vc] address in
                     vc?.performSegue(withIdentifier: "ReceiveAddress", sender: address)
                 }),
+            errors
+                .bind(to: vc.rx.error),
+            loadingViewModel.isLoading
+                .asDriver(onErrorJustReturn: false)
+                .drive(vc.rx.loading)
         ]
     }
 }
