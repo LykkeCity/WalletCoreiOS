@@ -15,6 +15,10 @@ public class LWRxAuthManagerGetBlockchainAddress: NSObject {
     public typealias ResultType = LWPacketGetBlockchainAddress
     public typealias RequestParams = String
     
+    var cache: LWCache {
+        get { return LWCache.instance() }
+    }
+    
     override init() {
         super.init()
         subscribe(observer: self, succcess: #selector(self.successSelector(_:)), error: #selector(self.errorSelector(_:)))
@@ -42,30 +46,19 @@ extension LWRxAuthManagerGetBlockchainAddress: AuthManagerProtocol {
     
     public func request(withParams params: RequestParams) -> Observable<Result> {
         //try to get the address value from the cache
-        guard let blockchainAddress = ((LWCache.instance()?.allAssets as? [LWAssetModel])?
-                .first{ $0.identity == params })?
-                .blockchainDepositAddress
-            else {
-                return self.defaultRequestImplementation(with: params)
-                .do(onNext: { result in
-                    guard let assetsFromCache = LWCache.instance()?.allAssets as? [LWAssetModel],
-                        let receivedAsset = result.getSuccess() else { return }
-                    //Add the address to the existing cache
-                    assetsFromCache
-                        .first(where: { $0.identity == receivedAsset.assetId })?
-                        .blockchainDepositAddress = receivedAsset.address //set the address
-                })
-                .do(onNext: { _ in
-                    NotificationCenter.default.post(name: .blockchainAddressReceived, object: nil)
-                })
+        if let blockchainAddress = cache.getAsset(byId: params)?.blockchainDepositAddress {
+            return Observable
+                .just(.success(withData:
+                    LWPacketGetBlockchainAddress(assetId: params, address: blockchainAddress)
+                ))
+                .startWith(.loading)
         }
-
-        return Observable
-            .just(ApiResult.success(withData: LWPacketGetBlockchainAddress(assetId: params, address: blockchainAddress)))
-            .startWith(.loading)
+        
+        return defaultRequestImplementation(with: params)
+            .updateDepositAddress(inCache: cache)
+            .postWhenSuccess(notification: .blockchainAddressReceived)
     }
 }
-
 
 extension LWPacketGetBlockchainAddress {
     convenience init(observer: Any, assetId: LWRxAuthManagerGetBlockchainAddress.RequestParams) {
@@ -78,5 +71,24 @@ extension LWPacketGetBlockchainAddress {
         self.init()
         self.assetId = assetId
         self.address = address
+    }
+}
+
+fileprivate extension ObservableType where Self.E == ApiResult<LWPacketGetBlockchainAddress> {
+    
+    /// Update the cache when receive new deposit address
+    ///
+    /// - Parameter cache: Cache to update
+    /// - Returns: Observable
+    func updateDepositAddress(inCache cache: LWCache) -> Observable<ApiResult<LWPacketGetBlockchainAddress>> {
+        return `do`(onNext: { result in
+            guard
+                let receivedAsset = result.getSuccess(),
+                let cachedAsset = cache.getAsset(byId: receivedAsset.assetId)
+                else { return }
+            //Add the address to the existing cache
+
+            cachedAsset.blockchainDepositAddress = receivedAsset.address
+        })
     }
 }

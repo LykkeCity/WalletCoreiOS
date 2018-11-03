@@ -10,6 +10,11 @@ import Foundation
 import RxSwift
 
 extension Reactive where Base : LWEthereumTransactionsManager {
+    
+    private var cache: LWCache {
+        get { return LWCache.instance() }
+    }
+    
     func requestTrade(forBaseAsset: LWAssetModel, pair: LWAssetPairModel, addressTo: String, volume: Decimal) -> Observable<ApiResult<[AnyHashable: Any]>> {
         let manager = self.base
         return Observable.create{[weak manager] observer in
@@ -24,6 +29,15 @@ extension Reactive where Base : LWEthereumTransactionsManager {
     }
     
     func createEthereumSign(forAsset asset: LWAssetModel) -> Observable<ApiResult<LWAssetModel>> {
+        
+        if let blockchainDepositAddress = cache.getAsset(byId: asset.identity)?.blockchainDepositAddress {
+            asset.blockchainDepositAddress = blockchainDepositAddress
+            return Observable
+                .just(ApiResult.success(withData: asset))
+                .startWith(ApiResult.loading)
+        }
+        
+        // createEthereumSign will create wallet address and will refresh all assets in the cache
         return Observable.create { observer in
             LWEthereumTransactionsManager.shared().createEthereumSign(forAsset: asset, completion: { (success) in
                 observer.onNext(success ? ApiResult.success(withData: asset) : ApiResult.error(withData: [:]))
@@ -31,15 +45,7 @@ extension Reactive where Base : LWEthereumTransactionsManager {
             })
             return Disposables.create()
         }
-        .do(onNext: { asset in
-            //check if the asset exist and set the blockchainDepositAddress
-            guard let assetsFromCache = (LWCache.instance()?.allAssets as? [LWAssetModel]),
-                let receivedAsset = asset.getSuccess() else { return }
-            assetsFromCache.first(where: { $0.identity == receivedAsset.identity })?.blockchainDepositAddress = receivedAsset.blockchainDepositAddress // set the address
-        })
-        .do(onNext: { _ in
-            NotificationCenter.default.post(name: .blockchainAddressReceived, object: nil)
-        })
+        .postWhenSuccess(notification: .blockchainAddressReceived)
         .startWith(.loading)
     }
 }

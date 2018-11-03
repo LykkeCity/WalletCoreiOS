@@ -548,6 +548,8 @@
 		46C9B0841F42D80900B83CCB /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0831F42D80900B83CCB /* DateFormatter+Extensions.swift */; };
 		46C9B0861F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0851F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift */; };
 		46C9B0881F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0871F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift */; };
+		46E142F1218D214200FAD2CB /* LWCache+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E142F0218D214200FAD2CB /* LWCache+Extensions.swift */; };
+		46E142F3218E602500FAD2CB /* NotificationCenter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E142F2218E602500FAD2CB /* NotificationCenter+Rx.swift */; };
 		46E3FF301FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */; };
 		46E3FF321FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */; };
 		46E5D0C91F5DD77F00D78692 /* LoadingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5D0C81F5DD77F00D78692 /* LoadingViewModelTests.swift */; };
@@ -1281,6 +1283,8 @@
 		46C9B0831F42D80900B83CCB /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		46C9B0851F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWBaseHistoryItemType+Extensions.swift"; sourceTree = "<group>"; };
 		46C9B0871F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWPacketGetMainScreenInfo+Extension.swift"; sourceTree = "<group>"; };
+		46E142F0218D214200FAD2CB /* LWCache+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWCache+Extensions.swift"; sourceTree = "<group>"; };
+		46E142F2218E602500FAD2CB /* NotificationCenter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Rx.swift"; sourceTree = "<group>"; };
 		46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCheckPendingActions.swift; sourceTree = "<group>"; };
 		46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainRequestTransfer.swift; sourceTree = "<group>"; };
 		46E5D0C81F5DD77F00D78692 /* LoadingViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewModelTests.swift; sourceTree = "<group>"; };
@@ -1756,6 +1760,7 @@
 				46C9AC911F417BD700B83CCB /* LWImageDownloader.h */,
 				46C9AC921F417BD700B83CCB /* LWImageDownloader.m */,
 				61A1934F206BD94C00100CE8 /* LWCache+MarketCap.swift */,
+				46E142F0218D214200FAD2CB /* LWCache+Extensions.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -2567,6 +2572,7 @@
 				F556C7572023527300144A58 /* ObservableType+Filters.swift */,
 				C5999A9721287DB600CB5B8B /* LWRecoveryPasswordModel+Rx.swift */,
 				E77CA0B5218C7C970060FF87 /* Notification+Extensions.swift */,
+				46E142F2218E602500FAD2CB /* NotificationCenter+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3563,6 +3569,7 @@
 				61A19352206BD9F700100CE8 /* NSDate+CalculateDifference.swift in Sources */,
 				6656BB321FEAA29B006CAD5D /* LWLimitHistoryItemType.m in Sources */,
 				6656BB2A1FEAA07B006CAD5D /* LWPacketSendVerificationCode.m in Sources */,
+				46E142F3218E602500FAD2CB /* NotificationCenter+Rx.swift in Sources */,
 				46C9B0011F417BD800B83CCB /* GDXNetAdapter.m in Sources */,
 				AB1D63631FEB01DE000495E7 /* LWOperationModel.swift in Sources */,
 				6656BAEC1FEA95DC006CAD5D /* HotWalletNetworkClient.swift in Sources */,
@@ -3658,6 +3665,7 @@
 				CC0DFB001F545B5E00EBB96E /* AccountExistViewModel.swift in Sources */,
 				46C9AFE91F417BD800B83CCB /* LWEthereumSignManager.m in Sources */,
 				C5E67BBC20172D2C00686006 /* BaseAssetsViewModel.swift in Sources */,
+				46E142F1218D214200FAD2CB /* LWCache+Extensions.swift in Sources */,
 				46E5D0DC1F5DD7ED00D78692 /* LWRxAuthManagerPhoneVerificationPin.swift in Sources */,
 				460843C21FBF1C2400F14A5A /* CurrencyDepositViewModel.swift in Sources */,
 				46C9B0661F42C91B00B83CCB /* LWRxAuthManagerSwiftCredentials.swift in Sources */,
