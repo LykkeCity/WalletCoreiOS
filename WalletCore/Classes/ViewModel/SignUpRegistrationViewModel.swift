@@ -35,7 +35,7 @@ open class SignUpRegistrationViewModel {
         return Observable.combineLatest( self.password.asObservable(), self.reenterPassword.asObservable(), resultSelector:
             {(password, reenterpass) -> Bool in
                 return password.characters.count > 5
-                    && reenterpass.characters.count > 5 && self.password.value == self.reenterPassword.value
+                    && reenterpass.characters.count > 5 && password == reenterpass
         })
     }()
     
