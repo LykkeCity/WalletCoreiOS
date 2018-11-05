@@ -548,6 +548,8 @@
 		46C9B0841F42D80900B83CCB /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0831F42D80900B83CCB /* DateFormatter+Extensions.swift */; };
 		46C9B0861F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0851F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift */; };
 		46C9B0881F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9B0871F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift */; };
+		46E142F1218D214200FAD2CB /* LWCache+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E142F0218D214200FAD2CB /* LWCache+Extensions.swift */; };
+		46E142F3218E602500FAD2CB /* NotificationCenter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E142F2218E602500FAD2CB /* NotificationCenter+Rx.swift */; };
 		46E3FF301FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */; };
 		46E3FF321FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */; };
 		46E5D0C91F5DD77F00D78692 /* LoadingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E5D0C81F5DD77F00D78692 /* LoadingViewModelTests.swift */; };
@@ -715,6 +717,9 @@
 		CCEAA9611F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEAA9601F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift */; };
 		E704F76720ECF8D200D121B1 /* CreditCardInputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E704F76520ECF7A800D121B1 /* CreditCardInputValidator.swift */; };
 		E74CC706215BC882002DDB6D /* LWRxAuthManagerBaseAssetsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74CC705215BC882002DDB6D /* LWRxAuthManagerBaseAssetsMock.swift */; };
+		E77CA0B6218C7C970060FF87 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77CA0B5218C7C970060FF87 /* Notification+Extensions.swift */; };
+		E7DED42121804B44005C344A /* BlockchainAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DED42021804B44005C344A /* BlockchainAddressViewModel.swift */; };
+		E7DED4242181E514005C344A /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DED4232181E514005C344A /* AlertPresenter.swift */; };
 		F5007E94200E2B6000956CF5 /* CashOutToAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */; };
 		F5007E96200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */; };
 		F556C7582023527300144A58 /* ObservableType+Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F556C7572023527300144A58 /* ObservableType+Filters.swift */; };
@@ -1278,6 +1283,8 @@
 		46C9B0831F42D80900B83CCB /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		46C9B0851F42D88500B83CCB /* LWBaseHistoryItemType+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWBaseHistoryItemType+Extensions.swift"; sourceTree = "<group>"; };
 		46C9B0871F42D90400B83CCB /* LWPacketGetMainScreenInfo+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LWPacketGetMainScreenInfo+Extension.swift"; sourceTree = "<group>"; };
+		46E142F0218D214200FAD2CB /* LWCache+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWCache+Extensions.swift"; sourceTree = "<group>"; };
+		46E142F2218E602500FAD2CB /* NotificationCenter+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Rx.swift"; sourceTree = "<group>"; };
 		46E3FF2F1FA07230002D13B4 /* LWRxAuthManagerCheckPendingActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCheckPendingActions.swift; sourceTree = "<group>"; };
 		46E3FF311FA088D0002D13B4 /* LWRxAuthManagerOffchainRequestTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerOffchainRequestTransfer.swift; sourceTree = "<group>"; };
 		46E5D0C81F5DD77F00D78692 /* LoadingViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewModelTests.swift; sourceTree = "<group>"; };
@@ -1453,6 +1460,9 @@
 		CCEAA9601F5FE1EC00B7923E /* ClientFullNameSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientFullNameSetViewModel.swift; sourceTree = "<group>"; };
 		E704F76520ECF7A800D121B1 /* CreditCardInputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardInputValidator.swift; sourceTree = "<group>"; };
 		E74CC705215BC882002DDB6D /* LWRxAuthManagerBaseAssetsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerBaseAssetsMock.swift; sourceTree = "<group>"; };
+		E77CA0B5218C7C970060FF87 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
+		E7DED42021804B44005C344A /* BlockchainAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockchainAddressViewModel.swift; sourceTree = "<group>"; };
+		E7DED4232181E514005C344A /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		F5007E93200E2B5F00956CF5 /* CashOutToAddressViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CashOutToAddressViewModel.swift; sourceTree = "<group>"; };
 		F5007E95200E2B9200956CF5 /* LWRxAuthManagerCashOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LWRxAuthManagerCashOut.swift; sourceTree = "<group>"; };
 		F556C7572023527300144A58 /* ObservableType+Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Filters.swift"; sourceTree = "<group>"; };
@@ -1588,6 +1598,7 @@
 		46C9A8D31F417B7500B83CCB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E7DED4222181E4B3005C344A /* Protocols */,
 				6656BB031FEA9DD8006CAD5D /* Helpers */,
 				6656BAEA1FEA95BF006CAD5D /* NetworkClients */,
 				6656BAE71FEA94D1006CAD5D /* Managers */,
@@ -1749,6 +1760,7 @@
 				46C9AC911F417BD700B83CCB /* LWImageDownloader.h */,
 				46C9AC921F417BD700B83CCB /* LWImageDownloader.m */,
 				61A1934F206BD94C00100CE8 /* LWCache+MarketCap.swift */,
+				46E142F0218D214200FAD2CB /* LWCache+Extensions.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -2412,6 +2424,7 @@
 				AB6752DC2007746E008A44F2 /* SelectCountryViewModel.swift */,
 				25C0A34C201A5CAD00D0067C /* ApplicationInfoViewModel.swift */,
 				61968D9620A57E0000445ABF /* AssetDisclaimerViewModel.swift */,
+				E7DED42021804B44005C344A /* BlockchainAddressViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2558,6 +2571,8 @@
 				4649C6331FACB8AC00765579 /* Array+Extensions.swift */,
 				F556C7572023527300144A58 /* ObservableType+Filters.swift */,
 				C5999A9721287DB600CB5B8B /* LWRecoveryPasswordModel+Rx.swift */,
+				E77CA0B5218C7C970060FF87 /* Notification+Extensions.swift */,
+				46E142F2218E602500FAD2CB /* NotificationCenter+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2747,6 +2762,14 @@
 				E704F76520ECF7A800D121B1 /* CreditCardInputValidator.swift */,
 			);
 			path = Validator;
+			sourceTree = "<group>";
+		};
+		E7DED4222181E4B3005C344A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E7DED4232181E514005C344A /* AlertPresenter.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		ECA69C86C6588D589E30713C /* Pods */ = {
@@ -3323,6 +3346,7 @@
 				665960581FA354CA00DB3D62 /* CashOutBankAccountViewModel.swift in Sources */,
 				66BD6AD61F90D6FA00B165F1 /* AssetCollectionCellViewModel.swift in Sources */,
 				46C9B0441F42C7F700B83CCB /* ApiResult.swift in Sources */,
+				E7DED42121804B44005C344A /* BlockchainAddressViewModel.swift in Sources */,
 				46C9AFEE1F417BD800B83CCB /* ABPadLockScreenAbstractViewController.m in Sources */,
 				46C9AF5E1F417BD800B83CCB /* LWAuthorizePacket.m in Sources */,
 				C123A775204FE87D00F8A0D3 /* LWRxAuthManagerMarketCap.swift in Sources */,
@@ -3382,6 +3406,7 @@
 				467C20671FB452F7002A90AE /* SignUpRegistrationViewModel.swift in Sources */,
 				46C9AEE41F417BD700B83CCB /* LWPacketGetMainScreenInfo.m in Sources */,
 				F556C7582023527300144A58 /* ObservableType+Filters.swift in Sources */,
+				E77CA0B6218C7C970060FF87 /* Notification+Extensions.swift in Sources */,
 				614214171F727E4200E2F524 /* KycNeededViewModel.swift in Sources */,
 				46C9B0291F417C1B00B83CCB /* BuyStep1ViewModel.swift in Sources */,
 				46E5D0E21F5DD7ED00D78692 /* LWRxAuthManagerEmailVerificationPin.swift in Sources */,
@@ -3544,6 +3569,7 @@
 				61A19352206BD9F700100CE8 /* NSDate+CalculateDifference.swift in Sources */,
 				6656BB321FEAA29B006CAD5D /* LWLimitHistoryItemType.m in Sources */,
 				6656BB2A1FEAA07B006CAD5D /* LWPacketSendVerificationCode.m in Sources */,
+				46E142F3218E602500FAD2CB /* NotificationCenter+Rx.swift in Sources */,
 				46C9B0011F417BD800B83CCB /* GDXNetAdapter.m in Sources */,
 				AB1D63631FEB01DE000495E7 /* LWOperationModel.swift in Sources */,
 				6656BAEC1FEA95DC006CAD5D /* HotWalletNetworkClient.swift in Sources */,
@@ -3558,6 +3584,7 @@
 				46C9AF1C1F417BD800B83CCB /* LWPacketPersonalData.m in Sources */,
 				614214131F7262C000E2F524 /* LWRxAuthManagerKYCForAsset.swift in Sources */,
 				46C9AF921F417BD800B83CCB /* LWActionsElementsGroupModel.m in Sources */,
+				E7DED4242181E514005C344A /* AlertPresenter.swift in Sources */,
 				46C9AEBA1F417BD700B83CCB /* LWPacketCheckIsUSAUser.m in Sources */,
 				6656BB1C1FEA9FFC006CAD5D /* LWPacketSendDialog.m in Sources */,
 				46C9B00B1F417BD800B83CCB /* NSObject+GDXObserver.m in Sources */,
@@ -3638,6 +3665,7 @@
 				CC0DFB001F545B5E00EBB96E /* AccountExistViewModel.swift in Sources */,
 				46C9AFE91F417BD800B83CCB /* LWEthereumSignManager.m in Sources */,
 				C5E67BBC20172D2C00686006 /* BaseAssetsViewModel.swift in Sources */,
+				46E142F1218D214200FAD2CB /* LWCache+Extensions.swift in Sources */,
 				46E5D0DC1F5DD7ED00D78692 /* LWRxAuthManagerPhoneVerificationPin.swift in Sources */,
 				460843C21FBF1C2400F14A5A /* CurrencyDepositViewModel.swift in Sources */,
 				46C9B0661F42C91B00B83CCB /* LWRxAuthManagerSwiftCredentials.swift in Sources */,

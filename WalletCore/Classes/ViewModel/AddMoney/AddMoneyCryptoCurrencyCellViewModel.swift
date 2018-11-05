@@ -13,6 +13,7 @@ open class AddMoneyCryptoCurrencyCellViewModel {
     public let name: Driver<String>
     public let address: Driver<String?>
     public var imgUrl: Driver<URL?>
+    public let asset: Driver<LWAssetModel>
     
     public init(_ currency: Variable<LWAddMoneyCryptoCurrencyModel>) {
         let currencyObservable = currency.asObservable()
@@ -29,10 +30,18 @@ open class AddMoneyCryptoCurrencyCellViewModel {
         imgUrl = currencyObservable
             .mapToImage()
             .asDriver(onErrorJustReturn: nil)
+        
+        asset = currencyObservable
+            .mapToAsset()
+            .asDriver(onErrorJustReturn: LWAssetModel.init())
     }
 }
 
 fileprivate extension ObservableType where Self.E == LWAddMoneyCryptoCurrencyModel {
+    
+    func mapToAsset() -> Observable<LWAssetModel> {
+        return map {$0.asset}
+    }
     
     func mapToImage() -> Observable<URL?> {
         return map{$0.imgUrl}
