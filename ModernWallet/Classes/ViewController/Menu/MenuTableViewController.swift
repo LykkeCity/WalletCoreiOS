@@ -286,6 +286,14 @@ class MenuTableViewController: UITableViewController {
         LWEthereumTransactionsManager.shared().logout()
         LWMarginalWalletsDataManager.stop()
         
+        if let _ = LWCache.instance()?.allAssetPairs {
+            LWCache.instance()?.allAssetPairs.removeAll()
+        }
+
+        if let _ = LWCache.instance()?.allAssets {
+            LWCache.instance()?.allAssets.removeAll()
+        }
+        
         viewController.presentLoginController()
 //        LWPrivateWalletsManager.shared().logout()
     }

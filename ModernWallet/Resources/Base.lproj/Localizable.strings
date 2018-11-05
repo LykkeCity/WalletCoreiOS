@@ -584,9 +584,12 @@
 "buysell.pair.notexist" = "Trade %@ for %@ is not available. Asset pair %@/%@ is not found";
 
 "utils.tip" = "WHAT I SHOULD KNOW";
+"utils.attention" = "Attention !";
 "utils.ok" = "OK";
+"utils.cancel" = "CANCEL";
 "utils.error" = "Error";
 
+"alert.no.bcn.address" = "Currently there is no blockchain address. You may need to back up your private key.";
 
 "general.yes"="Yes";
 "general.no"="No";
@@ -869,6 +872,8 @@
 "menu.newDesign.logout" = "LOGOUT";
 "menu.newDesign.marketCap" = "MARKET CAP";
 
+
+"blockchainAddress.reveived" = "Blockchain address received";
 
 "addMoney.newDesign.wireMoneyFromBank" = "WIRE MONEY FROM BANK ACCOUNT";
 "addMoney.newDesign.lykkeBankDetails" = "LYKKE BANK ACCOUNT DETAILS";

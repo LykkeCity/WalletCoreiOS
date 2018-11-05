@@ -1612,6 +1612,7 @@
 				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
 				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1796,6 +1797,7 @@
 				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
 				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
