@@ -28,7 +28,8 @@ public class BlockchainAddressViewModel {
     
     public init(alertPresenter: AlertPresenter,
                 ethTransactionManager: LWEthereumTransactionsManager = LWEthereumTransactionsManager.shared(),
-                authManager: LWRxAuthManager = LWRxAuthManager.instance) {
+                authManager: LWRxAuthManager = LWRxAuthManager.instance,
+                notificationCenter: NotificationCenter = NotificationCenter.default) {
                 
         let alertObservable = asset.asObservable()
             .flatMapLatest { asset -> Observable<(confirmation: Bool, asset: LWAssetModel)> in
@@ -68,7 +69,7 @@ public class BlockchainAddressViewModel {
         
         assetModel = asset.asObserver()
         
-        blockchainAddressReceived = NotificationCenter.default.rx
+        blockchainAddressReceived = notificationCenter.rx
             .notification(.blockchainAddressReceived)
             .map { _ in () }
             .asDriver(onErrorJustReturn: ())
