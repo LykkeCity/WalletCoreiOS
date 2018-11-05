@@ -18,6 +18,8 @@ public class BlockchainAddressViewModel {
     //OUT
     public let blockchainAddress: Observable<String>
     
+    public let blockchainAddressReceived: Driver<Void>
+    
     public let assetModel: Observable<LWAssetModel>
     
     public let errors: Observable<[AnyHashable: Any]>
@@ -65,6 +67,11 @@ public class BlockchainAddressViewModel {
         blockchainAddress = Observable.merge([ethAddress, btcAddress])
         
         assetModel = asset.asObserver()
+        
+        blockchainAddressReceived = NotificationCenter.default.rx
+            .notification(.blockchainAddressReceived)
+            .map { _ in () }
+            .asDriver(onErrorJustReturn: ())
         
         errors = Observable.merge(ethereumAddressRequest.filterError(), bitcoinAddressRequest.filterError())
         
