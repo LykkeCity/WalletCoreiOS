@@ -873,6 +873,8 @@
 "menu.newDesign.marketCap" = "MARKET CAP";
 
 
+"blockchainAddress.reveived" = "Blockchain address received";
+
 "addMoney.newDesign.wireMoneyFromBank" = "WIRE MONEY FROM BANK ACCOUNT";
 "addMoney.newDesign.lykkeBankDetails" = "LYKKE BANK ACCOUNT DETAILS";
 "addMoney.newDesign.bankAccount" = "BANK ACCOUNT";

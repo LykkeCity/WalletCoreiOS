@@ -97,6 +97,9 @@ extension BlockchainAddressViewModel {
                 .subscribe(onNext: { [weak vc] model in
                     vc?.performSegue(withIdentifier: "cc2Segue", sender: model)
                 }),
+            blockchainAddressReceived
+                .map { Localize("blockchainAddress.reveived") }
+                .drive(vc.rx.messageBottom),
             errors
                 .bind(to: vc.rx.error),
             loadingViewModel.isLoading
