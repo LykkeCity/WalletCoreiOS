@@ -9,6 +9,7 @@
 import Foundation
 
 extension Notification.Name {
+    static let applicationOpened = Notification.Name("applicationOpened")
     static let loggedIn = Notification.Name("loggedIn")
     static let kycDocumentsUploadedOrApproved = Notification.Name("kycDocumentsUploadedOrApproved")
 }

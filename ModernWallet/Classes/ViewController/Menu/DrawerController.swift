@@ -27,6 +27,9 @@ class DrawerController: KYDrawerController {
     }
     
     func showPortfolio() {
+        //unubscribe from notifications about application oppening events (Dev note : LMW-581)
+        NotificationCenter.default.removeObserver(self, name: .applicationOpened, object: nil)
+        
         SignUpStep.instance = nil
         let portfolioVC = storyboard!.instantiateViewController(withIdentifier: "Portfolio")
         

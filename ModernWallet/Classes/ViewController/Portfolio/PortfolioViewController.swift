@@ -76,12 +76,8 @@ class PortfolioViewController: UIViewController {
             return
         }
         
-        if showPinConfirmation {
-            let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
-            self.present(pinViewController, animated: false)
-            showPinConfirmation = false
-        }
-        
+        //notify that the application is oppened (Dev note : LMW-581)
+        NotificationCenter.default.post(name: .applicationOpened, object: nil)
         
         tableView.register(UINib(nibName: "AssetInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "AssetInfoTableViewCell")
         

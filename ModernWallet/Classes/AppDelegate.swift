@@ -90,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
             .disposed(by: disposeBag)
 
+        subscribeForPortfolioController()
+        
         return true
     }
     
@@ -124,9 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let coverView = self.window?.viewWithTag(blurViewTag) {
             coverView.removeFromSuperview()
         }
-        
-        askForPinIfLoggedIn()
-        
+                
         Siren.shared.checkVersion(checkType: .immediately)
     }
     
