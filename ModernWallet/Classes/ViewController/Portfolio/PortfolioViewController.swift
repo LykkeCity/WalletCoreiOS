@@ -29,9 +29,7 @@ class PortfolioViewController: UIViewController {
     
     fileprivate let disposeBag = DisposeBag()
     fileprivate let pieChartValueFormatter = PieValueFormatter()
-    
-    var showPinConfirmation: Bool = true
-    
+        
     var filterButtonsMap: [AssetsFilterViewModel.FilterType: IconOverTextButton] {
         return [
             AssetsFilterViewModel.FilterType.all: self.allFilterButton,
