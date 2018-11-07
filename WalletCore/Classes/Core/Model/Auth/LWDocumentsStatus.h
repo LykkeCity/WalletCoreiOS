@@ -12,7 +12,8 @@
 typedef NS_ENUM(NSInteger, KYCDocumentType) {
     KYCDocumentTypeSelfie,
     KYCDocumentTypeIdCard,
-    KYCDocumentTypeProofOfAddress
+    KYCDocumentTypeProofOfAddress,
+    KYCDocumentTypeNone
 };
 
 

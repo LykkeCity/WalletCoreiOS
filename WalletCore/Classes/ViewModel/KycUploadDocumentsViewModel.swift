@@ -37,7 +37,7 @@ public class KycUploadDocumentsViewModel {
     ) {
         let uploadImageObservable = image
             .filterNil()
-            .flatMap{image -> Observable<(result: LWRxKYCManager.Result, image: UIImage)> in
+            .flatMapLatest { image -> Observable<(result: LWRxKYCManager.Result, image: UIImage)> in
                 guard let type = type.value else{return Observable.never()}
                 return kycManager
                     .saveWithResult(image: image, for: type)
