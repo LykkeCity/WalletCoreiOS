@@ -26,14 +26,9 @@ public class LWRxKYCManager: LWKYCDocumentsModel {
         return imageResult.asObservable().filterNil()
     }
     
-    public override func sendImageManagerSentImage(_ manager: LWSendImageManager) {
-        imageResult.value = .success(withData: [:])
-        super.sendImageManagerSentImage(manager)
-    }
-    
     public override func sendImageManager(_ manager: LWSendImageManager!, didSucceedWithData data: [AnyHashable : Any]!) {
         imageResult.value = .success(withData: data)
-        super.sendImageManagerSentImage(manager)
+        super.sendImageManager(manager, didSucceedWithData: data)
     }
     
     public override func sendImageManager(_ manager: LWSendImageManager!, didFailWithErrorMessage message: String!) {
