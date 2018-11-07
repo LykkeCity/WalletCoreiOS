@@ -20,9 +20,6 @@ public class ConfirmSmsViewModel {
     /// Recovery data AFTER sms confirmation
     public let outputRecoveryModel: Observable<LWRecoveryPasswordModel>
     
-    /// Loading view model
-    public let loadingViewModel: LoadingViewModel
-    
     /// Errors occured
     public let errors: Observable<[AnyHashable: Any]>
     
@@ -41,10 +38,6 @@ public class ConfirmSmsViewModel {
                 
                 return value.model
         }
-        
-        self.loadingViewModel = LoadingViewModel([
-            recoverySmsRequest.isLoading()
-        ])
         
         self.errors = Observable.merge([
             recoverySmsRequest.filterError()

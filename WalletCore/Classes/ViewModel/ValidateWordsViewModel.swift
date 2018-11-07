@@ -52,7 +52,7 @@ public class ValidateWordsViewModel {
             .map { LWPrivateKeyManager.shared().signatureForMessage(withLykkeKey: $0.ownershipMessage) }
             .withLatestFrom(email.asObservable()) { (email: $1, signature: $0) }
             .flatMapLatest { authManager.ownershipMessage.request(withParams: $0) }
-            .shareReplay(1)
+            .share()
         
         self.isOwnershipConfirmed = ownershipMessageWithSignatureRequest.filterSuccess()
             .map { $0.confirmedOwnership }
