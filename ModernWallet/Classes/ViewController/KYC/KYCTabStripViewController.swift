@@ -28,16 +28,29 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
             trigger: self.documentsUploadViewModel.image.asObservable()
                 .filterNil()
                 .map{_ in Void()}
-                .startWith(Void()),
+                .startWith(Void())
+                .debug("JORO: lazy KYCDocumentsViewModel"),
             forAsset: LWRxAuthManager.instance.baseAsset.request()
+                .debug("JORO: lazy LWRxAuthManager base")
         )
     }()
     
     lazy var documentsUploadViewModel: KycUploadDocumentsViewModel = {
         return KycUploadDocumentsViewModel(
-            forImage: self.pickedImage.asObservable(),
+            forImage: self.pickedImage.asObservable()
+            .debug("JORO: lazy LWRxAuthManager base"),
             withType: self.documentType
         )
+    }()
+    
+    
+    lazy var loadingViewModel: LoadingViewModel = {
+        return LoadingViewModel([
+            self.documentsUploadViewModel.loadingViewModel.isLoading
+                .debug("JORO: LoadingViewModel: documentsUploadViewModel"),
+            self.documentsViewModel.loadingViewModel.isLoading
+            .debug("JORO: LoadingViewModel: documentsViewModel")
+        ])
     }()
     
     let documentType = Variable<KYCDocumentType?>(nil)
@@ -76,31 +89,11 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
     
     override func viewDidLoad() {
         // change selected bar color
-        guard let font = UIFont(name: "Geomanist-Book", size: 14) else {return}
-        settings.style.buttonBarBackgroundColor = .clear
-        settings.style.buttonBarItemBackgroundColor = .clear
-        settings.style.selectedBarBackgroundColor = .white
-        settings.style.buttonBarItemFont = font
-        settings.style.selectedBarHeight = 2.0
-        settings.style.buttonBarMinimumLineSpacing = 0
-        settings.style.buttonBarItemTitleColor = .white
-        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
-        settings.style.buttonBarLeftContentInset = 0
-        settings.style.buttonBarRightContentInset = 0
-        changeCurrentIndexProgressive = { (oldCell: KYCTabCollectionViewCell?, newCell: KYCTabCollectionViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
-            guard changeCurrentIndex == true else { return }
-            oldCell?.label.alpha = 0.5
-            newCell?.label.alpha = 1.0
-        }
+        setup()
         
         nextStepButton.rx.tap.asObservable()
             .withLatestFrom(documentsViewModel.documents)
             .subscribeToMoveNext(withVC: self)
-            .disposed(by: disposeBag)
-        
-        documentsUploadViewModel.image
-            .filterNil()
-            .driveToReplacePlaceHolder(inVC: self)
             .disposed(by: disposeBag)
         
         Driver.merge(
@@ -113,44 +106,23 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
         })
         .disposed(by: disposeBag)
         
-        documentsViewModel.documents
-            .subscribeToFillIcon(forType: .selfie, inButtonBar: self.buttonBarView)
+        documentsUploadViewModel
+            .bind(toViewController: self)
             .disposed(by: disposeBag)
         
-        documentsViewModel.documents
-            .subscribeToFillIcon(forType: .idCard, inButtonBar: self.buttonBarView)
-            .disposed(by: disposeBag)
-        
-        documentsViewModel.documents
-            .subscribeToFillIcon(forType: .proofOfAddress,  inButtonBar: self.buttonBarView)
+        documentsViewModel
+            .bind(toViewController: self)
             .disposed(by: disposeBag)
         
         documentType.asObservable()
             .bindToDisable(button: self.nextStepButton)
             .disposed(by: disposeBag)
         
-        documentsViewModel.documents
-            .filterAnyRejected()
-            .mapToFailedViewController(withStoryBoard: self.storyboard)
-            .subscribe(onNext: {[weak self] controller in
-                self?.present(controller, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
-        
-        documentsViewModel.documents
-            .filterAllUploadedOrApproved()
-            .subscribe(onNext: {[weak self] _ in
-                self?.dismiss(animated: true) {
-                    NotificationCenter.default.post(name: .kycDocumentsUploadedOrApproved, object: nil)
-                }
-            })
-            .disposed(by: disposeBag)
-        
         let documentsAndType = Observable
             .combineLatest(documentsViewModel.documents, documentType.asObservable().filterNil())
             
         documentsAndType
-            .bindToChangeText(ofButton: self.cameraButton)
+            .bindToChangeText(ofButton: cameraButton)
             .disposed(by: disposeBag)
         
         documentsAndType
@@ -165,20 +137,17 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
             .bind(to: cameraButton.rx.isHiddenAnimated)
             .disposed(by: disposeBag)
         
-        let imagePicker = UIImagePickerController()
+        let imagePicker = factoryImagePickerController()
         
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePicker.sourceType = .camera
-            imagePicker.allowsEditing = false
-        } else {
-            imagePicker.sourceType = .photoLibrary
-        }
+        cameraButton.rx.tap
+            .bind{ [weak self] in
+                self?.present(imagePicker, animated: true, completion: nil)
+            }
+            .disposed(by: disposeBag)
         
-        imagePicker.delegate = self
-        
-        cameraButton.rx.tap.bind{ [weak self] in
-            self?.present(imagePicker, animated: true, completion: nil)
-        }.disposed(by: disposeBag)
+        loadingViewModel.isLoading
+            .bind(to: rx.loading)
+            .disposed(by: disposeBag)
         
         super.viewDidLoad()
     }
@@ -220,6 +189,24 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
         cell.image.isHidden = indicatorInfo.image == nil
     }
     
+    private func setup() {
+        guard let font = UIFont(name: "Geomanist-Book", size: 14) else {return}
+        settings.style.buttonBarBackgroundColor = .clear
+        settings.style.buttonBarItemBackgroundColor = .clear
+        settings.style.selectedBarBackgroundColor = .white
+        settings.style.buttonBarItemFont = font
+        settings.style.selectedBarHeight = 2.0
+        settings.style.buttonBarMinimumLineSpacing = 0
+        settings.style.buttonBarItemTitleColor = .white
+        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
+        settings.style.buttonBarLeftContentInset = 0
+        settings.style.buttonBarRightContentInset = 0
+        changeCurrentIndexProgressive = { (oldCell: KYCTabCollectionViewCell?, newCell: KYCTabCollectionViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+            guard changeCurrentIndex == true else { return }
+            oldCell?.label.alpha = 0.5
+            newCell?.label.alpha = 1.0
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -229,6 +216,40 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+// MARK:- View Model extensions
+fileprivate extension KYCDocumentsViewModel {
+    func bind(toViewController vc: KYCTabStripViewController) -> [Disposable] {
+        return [
+            documents.subscribeToFillIcon(forType: .selfie, inButtonBar: vc.buttonBarView),
+            documents.subscribeToFillIcon(forType: .idCard, inButtonBar: vc.buttonBarView),
+            documents.subscribeToFillIcon(forType: .proofOfAddress,  inButtonBar: vc.buttonBarView),
+            documents
+                .filterAnyRejected()
+                .mapToFailedViewController(withStoryBoard: vc.storyboard)
+                .subscribe(onNext: {[weak vc] controller in
+                    vc?.present(controller, animated: true, completion: nil)
+                }),
+            
+            documents
+                .filterAllUploadedOrApproved()
+                .subscribe(onNext: {[weak vc] _ in
+                    vc?.dismiss(animated: true) {
+                        NotificationCenter.default.post(name: .kycDocumentsUploadedOrApproved, object: nil)
+                    }
+                }
+            )
+        ]
+    }
+}
+
+fileprivate extension KycUploadDocumentsViewModel {
+    func bind(toViewController vc: KYCTabStripViewController) -> [Disposable] {
+        return [
+            image.filterNil().driveToReplacePlaceHolder(inVC: vc)
+        ]
+    }
 }
 
 // MARK:- Computed properties
@@ -355,5 +376,24 @@ fileprivate extension SharedSequenceConvertibleType where SharingStrategy == Dri
             photoHolder.photoPlaceholder.photoImage.isHidden = false
             photoHolder.photoPlaceholder.photoImage.image = image
         })
+    }
+}
+
+
+//MARK: Factories
+fileprivate extension KYCTabStripViewController {
+    func factoryImagePickerController() -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = false
+        } else {
+            imagePicker.sourceType = .photoLibrary
+        }
+        
+        imagePicker.delegate = self
+        
+        return imagePicker
     }
 }

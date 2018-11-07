@@ -19,8 +19,6 @@ class KYCStep2ViewController: UIViewController, KYCStepBinder {
     var documentsViewModel: KYCDocumentsViewModel!
     var documentsUploadViewModel: KycUploadDocumentsViewModel!
     
-    lazy var loadingViewModel: LoadingViewModel = self.loadingViewModelFactory()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         photoPlaceholder.hintLabel.text = Localize("kyc.process.titles.passport")
