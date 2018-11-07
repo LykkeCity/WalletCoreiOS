@@ -123,9 +123,11 @@ class SignUpFormViewController: UIViewController {
                                                     message: Localize("restore.success.text"),
                                                     preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: Localize("restore.success.button"), style: .default) { _ in
-                //don't animate the dismiss, otherwise the portfolio screen may appear for a second
-                self.navigationController?.dismiss(animated: false, completion: nil)
+            let okAction = UIAlertAction(title: Localize("restore.success.button"), style: .default) { [weak self] _ in
+                
+                SignUpStep.instance = nil
+                self?.forms.removeAll()
+                self?.push(formController: SingInEmailFormController(), animated: true)
             }
             alertController.addAction(okAction)
             

@@ -149,15 +149,19 @@ class RecoverySMSFormController: RecoveryController {
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
         
-        Observable.merge([
-            self.sendSmsViewModel.loadingViewModel.isLoading,
-            self.confirmSmsViewModel.loadingViewModel.isLoading,
-            self.changePinViewModel.loadingViewModel.isLoading
-        ])
-        .bind(to: loading)
-        .disposed(by: disposeBag)
+        changePinViewModel.loadingViewModel
+            .isLoading
+            .bind(to: loading)
+            .disposed(by: disposeBag)
         
-        changePinViewModel.errors
+        sendSmsViewModel.sendSmsCodeComplete
+            .map{ Localize("register.phone.sms.sent") }
+            .bind(to: toast)
+            .disposed(by: disposeBag)
+        
+        Observable.merge([self.sendSmsViewModel.errors,
+                          self.confirmSmsViewModel.errors,
+                          self.changePinViewModel.errors, ])
             .bind(to: error)
             .disposed(by: disposeBag)
     }
