@@ -21,9 +21,19 @@ public class LWRxKYCManager: LWKYCDocumentsModel {
     }()
     
     public func saveWithResult(image: UIImage, for type: KYCDocumentType) -> Observable<Result> {
-        imageResult.value = .loading
         super.save(image, for: type)
-        return imageResult.asObservable().filterNil()
+        
+        //Nulify imageResult so that the consumers gets loading event immediately and the last uploaded image
+        imageResult.value = nil
+        return imageResult.asObservable()
+            .filterNil()
+            .take(1) // take just one result (if this line is ommited there is a chance to emit more than one result, which brakes loading view models)
+            .startWith(.loading)
+    }
+    
+    public override func sendImageManagerSentImage(_ manager: LWSendImageManager!) {
+        imageResult.value = .success(withData: [:])
+        super.sendImageManagerSentImage(manager)
     }
     
     public override func sendImageManager(_ manager: LWSendImageManager!, didSucceedWithData data: [AnyHashable : Any]!) {
