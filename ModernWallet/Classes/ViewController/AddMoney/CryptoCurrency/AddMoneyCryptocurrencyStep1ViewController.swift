@@ -75,18 +75,23 @@ class AddMoneyCryptocurrencyStep1ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "cc2Segue" {
-            guard let vc = segue.destination as? AddMoneyCryptocurrencyStep2ViewController else {
-                return
-            }
+            guard let vc = segue.destination as? AddMoneyCryptocurrencyStep2ViewController,
+            let selectedAssetModel = sender as? LWAssetModel else { return }
             
-            let m: LWAssetModel = sender as! LWAssetModel
             let model = LWPrivateWalletModel()
-            model.name = m.name
-            model.address = m.blockchainDepositAddress
-            model.iconURL = m.iconUrl?.absoluteString
+            model.name = selectedAssetModel.name
+            model.address = selectedAssetModel.blockchainDepositAddress
+            model.iconURL = selectedAssetModel.iconUrl?.absoluteString
             
             vc.wallet = Variable(model)
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        //prevent performing segue with wrong data
+        guard identifier == "cc2Segue", let _ = sender as? LWAssetModel else { return false }
+        
+        return true
     }
 }
 
