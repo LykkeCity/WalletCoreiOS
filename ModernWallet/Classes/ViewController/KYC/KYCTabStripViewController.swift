@@ -29,7 +29,6 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
                 .filterNil()
                 .map{_ in Void()}
                 .startWith(Void())
-                .debug("JORO: lazy KYCDocumentsViewModel"),
             forAsset: LWRxAuthManager.instance.baseAsset.request()
                 .debug("JORO: lazy LWRxAuthManager base")
         )
@@ -37,8 +36,7 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
     
     lazy var documentsUploadViewModel: KycUploadDocumentsViewModel = {
         return KycUploadDocumentsViewModel(
-            forImage: self.pickedImage.asObservable()
-            .debug("JORO: lazy LWRxAuthManager base"),
+            forImage: self.pickedImage.asObservable(),
             withType: self.documentType
         )
     }()
@@ -46,10 +44,8 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
     
     lazy var loadingViewModel: LoadingViewModel = {
         return LoadingViewModel([
-            self.documentsUploadViewModel.loadingViewModel.isLoading
-                .debug("JORO: LoadingViewModel: documentsUploadViewModel"),
+            self.documentsUploadViewModel.loadingViewModel.isLoading,
             self.documentsViewModel.loadingViewModel.isLoading
-            .debug("JORO: LoadingViewModel: documentsViewModel")
         ])
     }()
     
@@ -91,21 +87,11 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
         // change selected bar color
         setup()
         
-        nextStepButton.rx.tap.asObservable()
-            .withLatestFrom(documentsViewModel.documents)
-            .subscribeToMoveNext(withVC: self)
-            .disposed(by: disposeBag)
+        super.viewDidLoad()
         
-        Driver.merge(
-            documentsViewModel.error,
-            documentsUploadViewModel.error
-        )
-        .drive(onNext: {[weak self] error in
-            guard let `self` = self else {return}
-            self.show(error: error)
-        })
-        .disposed(by: disposeBag)
         
+        
+        // bind view models
         documentsUploadViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
@@ -115,28 +101,16 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
             .disposed(by: disposeBag)
         
         documentType.asObservable()
-            .bindToDisable(button: self.nextStepButton)
+            .bindToDisable(button: nextStepButton)
             .disposed(by: disposeBag)
         
-        let documentsAndType = Observable
+        // bind documents and doc type
+        Observable
             .combineLatest(documentsViewModel.documents, documentType.asObservable().filterNil())
-            
-        documentsAndType
-            .bindToChangeText(ofButton: cameraButton)
+            .bind(toViewController: self)
             .disposed(by: disposeBag)
         
-        documentsAndType
-            .mapToStatus()
-            .map{!$0.isUploaded}
-            .bind(to: pendingApprovalContainer.rx.isHiddenAnimated)
-            .disposed(by: disposeBag)
-        
-        documentsAndType
-            .mapToStatus()
-            .map{$0.isUploaded}
-            .bind(to: cameraButton.rx.isHiddenAnimated)
-            .disposed(by: disposeBag)
-        
+        // bind image picker presenter
         let imagePicker = factoryImagePickerController()
         
         cameraButton.rx.tap
@@ -145,11 +119,20 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
             }
             .disposed(by: disposeBag)
         
+        //bind errors
+        Driver.merge(
+            documentsViewModel.error,
+            documentsUploadViewModel.error
+        )
+        .drive(onNext: {[weak self] error in
+            self?.show(error: error)
+        })
+        .disposed(by: disposeBag)
+        
+        // bind loading
         loadingViewModel.isLoading
             .bind(to: rx.loading)
             .disposed(by: disposeBag)
-        
-        super.viewDidLoad()
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -228,6 +211,7 @@ fileprivate extension KYCDocumentsViewModel {
             documents
                 .filterAnyRejected()
                 .mapToFailedViewController(withStoryBoard: vc.storyboard)
+                .take(1) // show photo failed just once
                 .subscribe(onNext: {[weak vc] controller in
                     vc?.present(controller, animated: true, completion: nil)
                 }),
@@ -239,7 +223,11 @@ fileprivate extension KYCDocumentsViewModel {
                         NotificationCenter.default.post(name: .kycDocumentsUploadedOrApproved, object: nil)
                     }
                 }
-            )
+            ),
+            
+            vc.nextStepButton.rx.tap.asObservable()
+                .withLatestFrom(documents)
+                .subscribeToMoveNext(withVC: vc)
         ]
     }
 }
@@ -266,6 +254,21 @@ fileprivate extension KYCTabStripViewController {
 }
 
 // MARK:- RX Exensions
+fileprivate extension ObservableType where Self.E == (LWKYCDocumentsModel, KYCDocumentType) {
+    func bind(toViewController vc: KYCTabStripViewController) -> [Disposable] {
+        return [
+            bindToChangeText(ofButton: vc.cameraButton),
+            mapToStatus()
+                .map{!$0.isUploaded}
+                .bind(to: vc.pendingApprovalContainer.rx.isHiddenAnimated),
+            
+            mapToStatus()
+                .map{$0.isUploaded}
+                .bind(to: vc.cameraButton.rx.isHiddenAnimated)
+        ]
+    }
+}
+
 fileprivate extension ObservableType where Self.E == LWKYCDocumentsModel {
     func filterAnyRejected() -> Observable<LWKYCDocumentsModel> {
         return filter{kycModel in
@@ -316,11 +319,11 @@ extension ObservableType where Self.E == LWKYCDocumentsModel {
         where ViewController: KYCDocumentTypeAware & KYCPhotoPlaceholder
     {
         return subscribe(onNext: {[weak vc] kycModel in
-            guard let vc = vc else {return}
+            guard let vc = vc else { return }
             
             if let imageUrlStr = kycModel.imageUrl(for: vc.kYCDocumentType), let imageUrl = URL(string: imageUrlStr)  {
                 vc.photoPlaceholder.photoImage.isHidden = false
-                vc.photoPlaceholder.photoImage.af_setImage(withURL: imageUrl, useToken: true, loaderHolder: vc)
+                vc.photoPlaceholder.photoImage.af_setImage(withURL: imageUrl, useToken: true, showLoadingInContainer: vc.photoPlaceholder.view)
                 return
             }
             
