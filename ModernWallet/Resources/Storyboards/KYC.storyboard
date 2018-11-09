@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -169,16 +169,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7cq-vZ-EeM" userLabel="Pending Approval">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7cq-vZ-EeM" userLabel="Picture Status">
                                 <rect key="frame" x="0.0" y="546" width="375" height="51"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Pending approval" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akF-ke-tnD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Pending approval" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akF-ke-tnD" userLabel="Title">
                                         <rect key="frame" x="109" y="0.0" width="157" height="36"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your photo is currently being reviewed. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jzw-t8-n7F">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your photo is currently being reviewed. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jzw-t8-n7F" userLabel="Description">
                                         <rect key="frame" x="57.5" y="36" width="260.5" height="15"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -222,7 +222,9 @@
                         <outlet property="cameraButton" destination="UY3-lS-RE9" id="SJO-m9-3xW"/>
                         <outlet property="containerView" destination="whJ-lf-lMk" id="1SV-cE-68J"/>
                         <outlet property="nextStepButton" destination="ZiJ-ec-59U" id="cEc-HV-lxm"/>
-                        <outlet property="pendingApprovalContainer" destination="7cq-vZ-EeM" id="thM-8F-cHZ"/>
+                        <outlet property="picStatusContainer" destination="7cq-vZ-EeM" id="93Z-4K-WMF"/>
+                        <outlet property="picStatusDescr" destination="Jzw-t8-n7F" id="mkF-Of-Kdr"/>
+                        <outlet property="picStatusTitle" destination="akF-ke-tnD" id="Swl-ul-Zd0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sQh-wv-hkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -559,11 +561,11 @@ Image should be well lit and in focus.</string>
         </scene>
     </scenes>
     <resources>
-        <image name="CloseCross" width="17" height="17"/>
+        <image name="CloseCross" width="17.5" height="17.5"/>
         <image name="kycFinished" width="143" height="171"/>
         <image name="kycIconDeclined" width="17" height="17"/>
         <image name="kycPending" width="120" height="121"/>
-        <image name="kycPhotoFailed" width="65" height="100"/>
+        <image name="kycPhotoFailed" width="65" height="100.5"/>
         <image name="nextArrow" width="11" height="21"/>
     </resources>
 </document>

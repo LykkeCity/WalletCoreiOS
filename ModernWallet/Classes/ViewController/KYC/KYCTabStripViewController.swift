@@ -17,7 +17,9 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
 
     @IBOutlet weak var nextStepButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIButton!
-    @IBOutlet weak var pendingApprovalContainer: UIStackView!
+    @IBOutlet weak var picStatusContainer: UIStackView!
+    @IBOutlet weak var picStatusTitle: UILabel!
+    @IBOutlet weak var picStatusDescr: UILabel!
     
     private var pickedImage = Variable<UIImage?>(nil)
     
@@ -28,7 +30,7 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
             trigger: self.documentsUploadViewModel.image.asObservable()
                 .filterNil()
                 .map{_ in Void()}
-                .startWith(Void())
+                .startWith(Void()),
             forAsset: LWRxAuthManager.instance.baseAsset.request()
                 .debug("JORO: lazy LWRxAuthManager base")
         )
@@ -257,13 +259,24 @@ fileprivate extension KYCTabStripViewController {
 fileprivate extension ObservableType where Self.E == (LWKYCDocumentsModel, KYCDocumentType) {
     func bind(toViewController vc: KYCTabStripViewController) -> [Disposable] {
         return [
-            bindToChangeText(ofButton: vc.cameraButton),
             mapToStatus()
-                .map{!$0.isUploaded}
-                .bind(to: vc.pendingApprovalContainer.rx.isHiddenAnimated),
+                .map{ $0.buttonText }
+                .bind(to: vc.cameraButton.rx.title),
             
             mapToStatus()
-                .map{$0.isUploaded}
+                .map{ !$0.isUploadedOrApproved }
+                .bind(to: vc.picStatusContainer.rx.isHiddenAnimated),
+            
+            mapToStatus()
+                .map{ $0.title }
+                .bind(to: vc.picStatusTitle.rx.text),
+            
+            mapToStatus()
+                .map{ $0.description }
+                .bind(to: vc.picStatusDescr.rx.text),
+            
+            mapToStatus()
+                .map{ $0.isUploadedOrApproved }
                 .bind(to: vc.cameraButton.rx.isHiddenAnimated)
         ]
     }
@@ -361,11 +374,6 @@ fileprivate extension ObservableType where Self.E == KYCDocumentType? {
 }
 
 fileprivate extension ObservableType where Self.E == (LWKYCDocumentsModel, KYCDocumentType) {
-    func bindToChangeText(ofButton button: UIButton) -> Disposable {
-        return mapToStatus()
-            .map{$0.buttonText}
-            .bind(to: button.rx.title)
-    }
     
     func mapToStatus() -> Observable<KYCDocumentStatus> {
         return map{$0.0.status(for: $0.1)}
