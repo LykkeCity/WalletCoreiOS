@@ -27,7 +27,15 @@ class BackupPrivateKeyStartViewController: UIViewController {
         startButton.setTitle(Localize("backup.newDesign.readyToWrite"), for: .normal)
         
         startButton.rx.tap
-            .flatMap { return PinViewController.presentPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: false) }
+            .flatMapLatest { [weak self] _ -> Observable<Void> in
+                guard let strongSelf = self else { return Observable.just(()) }
+                
+                return PinViewController.presentPinViewController(
+                    from: strongSelf,
+                    title: Localize("newDesign.enterPin"),
+                    isTouchIdEnabled: false
+                )
+            }
             .bind(onNext: { [weak self] _ in
                 self?.performSegue(withIdentifier: "StartBackup", sender: nil)
             })
