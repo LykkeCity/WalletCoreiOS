@@ -19,8 +19,8 @@ public class SendSmsViewModel {
     /// Ownership message and private signature for that message
     public let outputRecoveryModel: Observable<LWRecoveryPasswordModel>
     
-    /// Loading view model
-    public let loadingViewModel: LoadingViewModel
+    /// Called when sms code request is complete
+    public let sendSmsCodeComplete: Observable<Void>
     
     /// Errors occured
     public let errors: Observable<[AnyHashable: Any]>
@@ -47,9 +47,9 @@ public class SendSmsViewModel {
                 return value.model
             }
         
-        self.loadingViewModel = LoadingViewModel([
-            privateKeyRequest.isLoading()
-        ])
+        self.sendSmsCodeComplete = privateKeyRequest
+            .filterSuccess()
+            .map {_ in ()}
         
         self.errors = Observable.merge([
             privateKeyRequest.filterError()
