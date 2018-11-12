@@ -32,7 +32,6 @@ class KYCTabStripViewController: BaseButtonBarPagerTabStripViewController<KYCTab
                 .map{_ in Void()}
                 .startWith(Void()),
             forAsset: LWRxAuthManager.instance.baseAsset.request()
-                .debug("JORO: lazy LWRxAuthManager base")
         )
     }()
     
