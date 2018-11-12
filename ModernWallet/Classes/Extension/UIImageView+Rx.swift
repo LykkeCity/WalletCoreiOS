@@ -71,6 +71,30 @@ extension UIImageView {
             }
         }
     }
+    
+    func af_setImage(withURL url: URL, useToken: Bool, showLoadingInContainer container: UIView) {
+        
+        var urlRequest = URLRequest(url: url)
+        
+        if useToken, let token = LWKeychainManager.instance()?.token {
+            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        let activityIndicator = UIActivityIndicatorView(frame: container.frame)
+        activityIndicator.hidesWhenStopped = true
+        container.addSubview(activityIndicator)
+        container.layoutIfNeeded()
+        activityIndicator.startAnimating()
+        
+        
+        Alamofire.request(urlRequest).responseImage { [weak self] response in
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            if let image = response.result.value {
+                self?.image = image
+            }
+        }
+    }
 
     func af_setTemplateImage(withURL url: URL, useToken: Bool, loaderHolder: UIViewController? = nil) {
         

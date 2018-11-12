@@ -19,7 +19,6 @@ class KYCStep1ViewController: UIViewController, KYCStepBinder {
     let disposeBag = DisposeBag()
     var documentsViewModel: KYCDocumentsViewModel!
     var documentsUploadViewModel: KycUploadDocumentsViewModel!
-    lazy var loadingViewModel: LoadingViewModel = self.loadingViewModelFactory()
     
     override func viewDidLoad() {
         super.viewDidLoad()

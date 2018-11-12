@@ -180,6 +180,10 @@
 "kyc.later.title" = "YOUR UPLOADED PHOTOS\nHAVE BEEN SAVED";
 "kyc.later.text" = "You can continue KYC whenever you’re ready.";
 "kyc.later.button" = "GREAT!";
+"kyc.documentStatus.uploaded.title" = "Pending approval";
+"kyc.documentStatus.uploaded.descr" = "Your photo is currently being reviewed.";
+"kyc.documentStatus.approved.title" = "Photo approved";
+"kyc.documentStatus.approved.descr" = "Your photo is approved.";
 
 "camera.message1.title" = "CAMERA DISCONNECTED";
 "camera.message1.text" = "Modern money requests access to your camera. Do the following:";
