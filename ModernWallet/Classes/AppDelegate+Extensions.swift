@@ -171,7 +171,7 @@ extension AppDelegate {
     func showPinController() {
         if userDefaults.isLoggedIn && !(visibleViewController is PinViewController) {
             //unubscribe from notifications about application oppening events (Dev note : LMW-581)
-            NotificationCenter.default.removeObserver(self, name: .applicationOpened, object: nil)
+            clearObserver()
             
             let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
             
@@ -184,5 +184,9 @@ extension AppDelegate {
             
             visibleViewController.present(pinViewController, animated: false)
         }
+    }
+    
+    func clearObserver() {
+        NotificationCenter.default.removeObserver(self, name: .applicationOpened, object: nil)
     }
 }
