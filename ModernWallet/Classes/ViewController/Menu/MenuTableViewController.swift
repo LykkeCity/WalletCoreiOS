@@ -127,11 +127,6 @@ class MenuTableViewController: UITableViewController {
             return
         }
         
-        // don't show the pin screen in porftolio screen by switching screens
-        if let portfolioViewController = viewController as? PortfolioViewController {
-            portfolioViewController.showPinConfirmation = false
-        }
-        
         item.onSelect?(viewController)
         
         rootViewController.embed(viewController: viewController, animated: true)

@@ -27,13 +27,13 @@ class DrawerController: KYDrawerController {
     }
     
     func showPortfolio() {
+        //unubscribe from notifications about application oppening events (Dev note : LMW-581)
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.clearObserver()
+        }
+        
         SignUpStep.instance = nil
         let portfolioVC = storyboard!.instantiateViewController(withIdentifier: "Portfolio")
-        
-        // don't show the pin screen after login or signup
-        if let portfolioViewController = portfolioVC as? PortfolioViewController {
-            portfolioViewController.showPinConfirmation = false
-        }
         
         (mainViewController as? RootViewController)?.embed(viewController: portfolioVC, animated: false)
         self.setDrawerState(.closed, animated: false)

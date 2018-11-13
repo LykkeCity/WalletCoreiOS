@@ -21,6 +21,16 @@ extension AppDelegate {
         )
     }
     
+    // (Dev note : LMW-581)
+    func subscribeForPortfolioController(){
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.showPinController),
+            name: .applicationOpened,
+            object: nil)
+
+    }
+    
     func processRequestFailure(_ notification: NSNotification) {
         guard let ctx = notification.userInfo?[kNotificationKeyGDXNetContext] as? GDXRESTContext else { return }
 
@@ -158,8 +168,11 @@ extension AppDelegate {
             })
     }
     
-    func askForPinIfLoggedIn() {
+    func showPinController() {
         if userDefaults.isLoggedIn && !(visibleViewController is PinViewController) {
+            //unubscribe from notifications about application oppening events (Dev note : LMW-581)
+            clearObserver()
+            
             let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
             
             guard let visibleViewController = self.visibleViewController else {
@@ -171,5 +184,9 @@ extension AppDelegate {
             
             visibleViewController.present(pinViewController, animated: false)
         }
+    }
+    
+    func clearObserver() {
+        NotificationCenter.default.removeObserver(self, name: .applicationOpened, object: nil)
     }
 }

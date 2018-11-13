@@ -29,9 +29,7 @@ class PortfolioViewController: UIViewController {
     
     fileprivate let disposeBag = DisposeBag()
     fileprivate let pieChartValueFormatter = PieValueFormatter()
-    
-    var showPinConfirmation: Bool = true
-    
+        
     var filterButtonsMap: [AssetsFilterViewModel.FilterType: IconOverTextButton] {
         return [
             AssetsFilterViewModel.FilterType.all: self.allFilterButton,
@@ -76,12 +74,8 @@ class PortfolioViewController: UIViewController {
             return
         }
         
-        if showPinConfirmation {
-            let pinViewController = PinViewController.inactivePinViewController(withTitle: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
-            self.present(pinViewController, animated: false)
-            showPinConfirmation = false
-        }
-        
+        //notify that the application is oppened (Dev note : LMW-581)
+        NotificationCenter.default.post(name: .applicationOpened, object: nil)
         
         tableView.register(UINib(nibName: "AssetInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "AssetInfoTableViewCell")
         
