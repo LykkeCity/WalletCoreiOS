@@ -51,7 +51,7 @@ open class LoadingViewModel {
             .disposed(by: disposeBag)
         
         isLoadingObservable
-            .delay(0.01, scheduler: mainScheduler)
+            .delay(0.005, scheduler: mainScheduler)
             .bind(toCount: isNotLoadingCount, isLoading: false)
             .disposed(by: disposeBag)
         
@@ -78,5 +78,24 @@ fileprivate extension ObservableType where Self.E == Bool {
             filter{$0 == isLoading}
             .map{_ in countVariable.value + 1}
             .bind(to: countVariable)
+    }
+}
+
+public extension ObservableType {
+    
+    /// Filter stream using loading observable
+    ///
+    /// - Parameters:
+    ///   - loading: flag used to determine the loading sequence life cycle
+    /// - Returns: The same observable
+    public func waitFor<T>(_ loading: Observable<Bool>) -> Observable<T> where E == T {
+        return Observable.combineLatest(self, loading.startWith(false)) { (value: $0, loading: $1) }
+            .flatMapLatest { result -> Observable<T> in
+                guard !result.loading else {
+                    return .never()
+                }
+                
+                return Observable<T>.just(result.value)
+        }
     }
 }
