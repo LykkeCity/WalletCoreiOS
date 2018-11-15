@@ -342,7 +342,9 @@ fileprivate extension ObservableType where Self.E == ApiResult<SignUpStep.Contro
     func bind(toViewController vc: SignUpFormViewController) -> [Disposable] {
         return [
             isLoading().bind(to: vc.rx.loading),
-            filterSuccess().filterNil().subscribe(onNext: { [weak vc] controllerResult in
+            filterSuccess().filterNil()
+                .waitFor(isLoading())
+                .subscribe(onNext: { [weak vc] controllerResult in
                 if let formController = controllerResult.formController {
                     vc?.push(formController: formController, animated: true)
                     

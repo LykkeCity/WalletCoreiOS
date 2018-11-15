@@ -32,7 +32,9 @@ class AddMoneyCCStep1ViewController: AddMoneyBaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
         
     private lazy var creditCardViewModel:CreditCardBaseInfoViewModel = {
-        return CreditCardBaseInfoViewModel(submit: self.submitButton.rx.tap.confirm(vc: self),
+        return CreditCardBaseInfoViewModel(submit: self.submitButton.rx.tap
+            .waitFor(self.creditCardViewModel.loadingViewModel.isLoading)
+            .confirm(vc: self),
                                            assetToAdd: self.аssetObservable())
     }()
     

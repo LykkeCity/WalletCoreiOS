@@ -151,7 +151,9 @@ fileprivate extension CashOutToAddressViewModel {
             
             errors.drive(vc.rx.error),
             
-            success.drive(onNext: { [weak vc] message in
+            success
+                .waitFor(loadingViewModel.isLoading)
+                .drive(onNext: { [weak vc] message in
                 vc?.navigationController?.parent?.view.makeToast(message)
                 vc?.navigationController?.popViewController(animated: true)
             })

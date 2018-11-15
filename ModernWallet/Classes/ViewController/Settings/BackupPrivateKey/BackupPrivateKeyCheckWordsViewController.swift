@@ -79,6 +79,7 @@ class BackupPrivateKeyCheckWordsViewController: UIViewController {
         
         viewModel.success
             .asDriver(onErrorJustReturn: ())
+            .waitFor(viewModel.loadingViewModel.isLoading)
             .drive(onNext: { [weak self] _ in
                 self?.performSegue(withIdentifier: "ShowComplete", sender: nil)
             })

@@ -92,6 +92,7 @@ class ReceiveWalletViewController: UIViewController {
         sendEmailObservable.filterSuccess()
             .map { _ in return Localize("receive.newDesign.emailToast") }
             .asDriver(onErrorJustReturn: nil)
+            .waitFor(sendEmailObservable.isLoading())
             .drive(onNext: { [weak containerView] message in containerView?.makeToast(message) })
             .disposed(by: disposeBag)
         

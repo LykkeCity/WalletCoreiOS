@@ -99,6 +99,7 @@ extension BlockchainAddressViewModel {
     func bind (to vc: AddMoneyCryptocurrencyStep1ViewController) -> [Disposable] {
         return [
             assetModel
+                .waitFor(loadingViewModel.isLoading)
                 .subscribe(onNext: { [weak vc] model in
                     vc?.performSegue(withIdentifier: "cc2Segue", sender: model)
                 }),

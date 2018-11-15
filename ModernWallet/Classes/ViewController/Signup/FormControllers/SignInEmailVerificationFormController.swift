@@ -123,6 +123,7 @@ class SignInEmailVerificationFormController: FormController {
                 NotificationCenter.default.post(name: .loggedIn, object: nil)
                 return ()
             }
+            .waitFor(verifyViewModel.loadingViewModel.isLoading)
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
         

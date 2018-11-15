@@ -161,11 +161,14 @@ fileprivate extension KycNeededViewModel {
             loadingViewModel.isLoading.bind(to: vc.rx.loading),
             needToFillData
                 .map{ UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycTabNVC") }
+                .waitFor(loadingViewModel.isLoading)
                 .subscribe(onNext: {[weak vc] controller in
                     vc?.navigationController?.present(controller, animated: true, completion: nil)
             }),
             
-            ok.subscribe(onNext: {[weak vc] in
+            ok
+                .waitFor(loadingViewModel.isLoading)
+                .subscribe(onNext: {[weak vc] in
                 if let addMoneyVC = vc?.addMoneyViaActionVC {
                     vc?.navigationController?.pushViewController(addMoneyVC, animated: true)
                 }
@@ -173,12 +176,14 @@ fileprivate extension KycNeededViewModel {
             
             pending
                 .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPendingVC")}
+                .waitFor(loadingViewModel.isLoading)
                 .subscribe(onNext: {[weak vc] controller in
                     vc?.navigationController?.present(controller, animated: true)
             }),
             
             rejected
                 .map{ UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPhotoFailedVC") }
+                .waitFor(loadingViewModel.isLoading)
                 .subscribe(onNext: {[weak vc] controller in
                     vc?.navigationController?.present(controller, animated: true, completion: nil)
             }),

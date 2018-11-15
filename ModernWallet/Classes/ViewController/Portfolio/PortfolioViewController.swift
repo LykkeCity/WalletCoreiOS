@@ -86,6 +86,7 @@ class PortfolioViewController: UIViewController {
                 assetsFilterViewModel.filteredAssets.asObservable()
                     .map(toAsset: selectedAsset)
             }
+            .waitFor(loadingViewModel.isLoading)
             .subscribe(onNext: { [weak self] model in
                 self?.performSegue(withIdentifier: "assetDetail", sender: model)
             })
@@ -97,18 +98,11 @@ class PortfolioViewController: UIViewController {
                 emptyPortfolioView.addMoneyButton.rx.tap.asObservable(),
                 pieChartCenterView.addMoneyButton.rx.tap.asObservable()
             )
+            .waitFor(loadingViewModel.isLoading)
             .subscribe(onNext: {[weak self] _ in
                 self?.performSegue(withIdentifier: "AddMoney", sender: nil)
             })
             .disposed(by: disposeBag)
-        
-        // TODO: Lyubomir Tsekov, please remove the following binding in case it's a workaround for a problem that currently does not exist.
-        // LMW-546
-        // Bind the walletsViewModel loading to the table's `isHidden` property
-//        self.walletsViewModel.loadingViewModel.isLoading.asObservable()
-//            .startWith(true)
-//            .bind(to: tableView.rx.isHidden)
-//            .disposed(by: disposeBag)
         
         bindViewModels()
     }

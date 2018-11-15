@@ -52,6 +52,7 @@ class CashOutConfirmationViewController: UIViewController {
         confirmButton.setTitle(Localize("newDesign.confirm"), for: .normal)
         
         confirmButton.rx.tap
+            .waitFor(cashOutViewModel.loadingViewModel.isLoading)
             .flatMap { return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
             .bind(to: cashOutViewModel.trigger)
             .disposed(by: disposeBag)
@@ -61,6 +62,7 @@ class CashOutConfirmationViewController: UIViewController {
             .disposed(by: disposeBag)
         
         cashOutViewModel.success
+            .waitFor(cashOutViewModel.loadingViewModel.isLoading)
             .drive(onNext: { [weak self] result in
                 FinalizePendingRequestsTrigger.instance.finalizeNow()
                 self?.performSegue(withIdentifier: "ShowSummary", sender: result)

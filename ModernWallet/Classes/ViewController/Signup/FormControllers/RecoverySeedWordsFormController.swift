@@ -105,6 +105,7 @@ class RecoverySeedWordsFormController: RecoveryController {
         seedWordsViewModel.isOwnershipConfirmed
             .filter { $0 }
             .map { _ in return () }
+            .waitFor(isLoading.asObservable())
             .bind(to: recoveryTrigger)
             .disposed(by: disposeBag)
 

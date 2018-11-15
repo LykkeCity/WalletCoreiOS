@@ -112,6 +112,7 @@ fileprivate extension SendEmailWithAddressViewModel {
                 .bind(to: vc.rx.loading),
             
             emailSent.asObservable().filterSuccess()
+                .waitFor(emailSent.asObservable().isLoading())
                 .bind(onNext: { [weak vc] in
                     vc?.view.makeToast(Localize("wallets.bitcoin.sendemail"))
                 })

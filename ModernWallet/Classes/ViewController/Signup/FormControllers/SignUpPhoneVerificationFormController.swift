@@ -169,6 +169,7 @@ class SignUpPhoneVerificationFormController: FormController {
             .disposed(by: disposeBag)
         
         pinViewControllerObservable
+            .waitFor(signUpConfirmPhoneViewModel.loadingViewModel.isLoading)
             .bind(to: pinTrigger)
             .disposed(by: disposeBag)
         

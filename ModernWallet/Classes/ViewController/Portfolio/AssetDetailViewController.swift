@@ -221,6 +221,7 @@ fileprivate extension TransactionsViewModel {
             transactionsAsCsv
                 .asObservable()
                 .filterSuccess()
+                .waitFor(loading.isLoading)
                 .bind(onNext: {[weak vc] path in vc?.creatCSV(path)}),
             
             errors.drive(vc.rx.error)
@@ -261,6 +262,7 @@ extension BlockchainAddressViewModel {
     func bind(toViewController vc: AssetDetailViewController) -> [Disposable] {
         return [
             blockchainAddress
+                .waitFor(loadingViewModel.isLoading)
                 .subscribe(onNext: { [weak vc] address in
                     vc?.performSegue(withIdentifier: "ReceiveAddress", sender: address)
                 }),

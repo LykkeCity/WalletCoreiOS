@@ -62,7 +62,7 @@ fileprivate extension CurrencyDepositViewModel {
     func bind(toViewController vc: BankInfoViewController) -> [Disposable] {
         return [
             loadingViewModel.isLoading.bind(to: vc.rx.loading),
-            result.drive(onNext: { [weak vc] _ in
+            result.waitFor(loadingViewModel.isLoading).drive(onNext: { [weak vc] _ in
                 vc?.performSegue(withIdentifier: "showWireBankEmailSent", sender: nil)
             }),
             errors.bind(to: vc.rx.error)
