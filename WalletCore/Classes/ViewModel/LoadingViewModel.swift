@@ -99,3 +99,17 @@ public extension ObservableType {
         }
     }
 }
+
+public extension SharedSequenceConvertibleType {
+    
+    /// Filter SharedSequence stream using loading observable
+    ///
+    /// - Parameters:
+    ///   - loading: flag used to determine the loading sequence life cycle
+    /// - Returns: The same SharedSequence
+    public func waitFor<T>(_ loading: Observable<Bool>) -> Driver<T> where E == T {
+        return self.asObservable()
+            .waitFor(loading)
+            .asDriver(onErrorDriveWith: .never())
+    }
+}
