@@ -149,12 +149,12 @@ class LoadingViewModelTests: XCTestCase {
             let isLoading1 = scheduler.createHotObservable([
                 next(100, true),
                 next(200, false)
-            ]).asObservable()
+                ]).asObservable()
             
             let isLoading2 = scheduler.createHotObservable([
                 next(200, true),
                 next(300, false)
-            ]).asObservable()
+                ]).asObservable()
             
             let viewModel = LoadingViewModel([isLoading1, isLoading2], mainScheduler: scheduler)
             
@@ -173,6 +173,233 @@ class LoadingViewModelTests: XCTestCase {
             XCTAssertFalse(results.events[1].value.element!)
             
             XCTAssertEqual(results.events.count, 2)
+        }
+    }
+    
+    /**
+     Turns
+     Input `Observable`:
+     |------------------T----------->
+     
+     Loading:
+     |---------true----------false-->
+     
+     into output `Observable`:
+     |-------------------------T---->
+     
+     (Type `String` is for testing purposes)
+     */
+    func testWaitFor_whileLoading() {
+        driveOnScheduler(scheduler) {
+            //1. arrange
+            
+            let input = scheduler.createHotObservable([next(1000, "Input")])
+            
+            let isLoading = scheduler.createHotObservable([
+                next(500, true),
+                next(2000, false)
+                ]).asObservable()
+            
+            let viewModel = LoadingViewModel([isLoading], mainScheduler: scheduler)
+            
+            //2. execute
+            let results = scheduler.createObserver(String.self)
+            let subscription = input.waitFor(viewModel.isLoading).bind(to: results)
+            
+            scheduler.scheduleAt(3000) { subscription.dispose() }
+            scheduler.start()
+            
+            //3. assert
+            XCTAssertEqual(results.events[0].time, 2002)
+            XCTAssertEqual(results.events[0].value.element!, "Input")
+        }
+    }
+    
+    /**
+     Turns
+     Input `Observable`:
+     |-------------------------T---->
+     
+     Loading:
+     |--true----------false--------->
+     
+     into output `Observable`
+     |-------------------------T---->
+     
+     (Type `String` is for testing purposes)
+     */
+    func testWaitFor_afterLoading() {
+        driveOnScheduler(scheduler) {
+            //1. arrange
+            
+            let input = scheduler.createHotObservable([next(1500, "Input")])
+            
+            let isLoading = scheduler.createHotObservable([
+                next(500, true),
+                next(900, false)
+                ]).asObservable()
+            
+            let viewModel = LoadingViewModel([isLoading], mainScheduler: scheduler)
+            
+            //2. execute
+            let results = scheduler.createObserver(String.self)
+            let subscription = input.waitFor(viewModel.isLoading).bind(to: results)
+            
+            scheduler.scheduleAt(3000) { subscription.dispose() }
+            scheduler.start()
+            
+            //3. assert
+            XCTAssertEqual(results.events[0].time, 1500)
+            XCTAssertEqual(results.events[0].value.element!, "Input")
+        }
+    }
+    
+    /**
+     Turns
+     Input `Observable`:
+     |--------------------T--------->
+     
+     Loading:
+     |------------------------------>
+     
+     into output `Observable`
+     |--------------------T--------->
+     
+     (Type `String` is for testing purposes)
+     */
+    func testWaitFor_ghostLoading() {
+        driveOnScheduler(scheduler) {
+            //1. arrange
+            
+            let input = scheduler.createHotObservable([next(1500, "Input")])
+            
+            let viewModel = LoadingViewModel([], mainScheduler: scheduler)
+            
+            //2. execute
+            let results = scheduler.createObserver(String.self)
+            let subscription = input.waitFor(viewModel.isLoading).bind(to: results)
+            
+            scheduler.scheduleAt(3000) { subscription.dispose() }
+            scheduler.start()
+            
+            //3. assert
+            XCTAssertEqual(results.events[0].time, 1500)
+            XCTAssertEqual(results.events[0].value.element!, "Input")
+        }
+    }
+    
+    /**
+     Turns
+     Input `SharedSequence`:
+     |------------------T----------->
+     
+     Loading:
+     |---------true----------false-->
+     
+     into output `SharedSequence`:
+     |-------------------------T---->
+     
+     (Type `String` is for testing purposes)
+     */
+    func testDriverWaitFor_whileLoading() {
+        driveOnScheduler(scheduler) {
+            //1. arrange
+            
+            let input = scheduler.createHotObservable([next(1000, "Input")])
+                .asDriver(onErrorDriveWith: .never())
+            
+            let isLoading = scheduler.createHotObservable([
+                next(500, true),
+                next(2000, false)
+                ]).asObservable()
+            
+            let viewModel = LoadingViewModel([isLoading], mainScheduler: scheduler)
+            
+            //2. execute
+            let results = scheduler.createObserver(String.self)
+            let subscription = input.waitFor(viewModel.isLoading).drive(results)
+            
+            scheduler.scheduleAt(3000) { subscription.dispose() }
+            scheduler.start()
+            
+            //3. assert
+            XCTAssertEqual(results.events[0].time, 2003)
+            XCTAssertEqual(results.events[0].value.element!, "Input")
+        }
+    }
+    
+    /**
+     Turns
+     Input `SharedSequence`:
+     |-------------------------T---->
+     
+     Loading:
+     |--true----------false--------->
+     
+     into output `SharedSequence`:
+     |-------------------------T---->
+     
+     (Type `String` is for testing purposes)
+     */
+    func testDriverWaitFor_afterLoading() {
+        driveOnScheduler(scheduler) {
+            //1. arrange
+            
+            let input = scheduler.createHotObservable([next(1500, "Input")])
+                .asDriver(onErrorDriveWith: .never())
+            
+            let isLoading = scheduler.createHotObservable([
+                next(500, true),
+                next(900, false)
+                ]).asObservable()
+            
+            let viewModel = LoadingViewModel([isLoading], mainScheduler: scheduler)
+            
+            //2. execute
+            let results = scheduler.createObserver(String.self)
+            let subscription = input.waitFor(viewModel.isLoading).drive(results)
+            
+            scheduler.scheduleAt(3000) { subscription.dispose() }
+            scheduler.start()
+            
+            //3. assert
+            XCTAssertEqual(results.events[0].time, 1502)
+            XCTAssertEqual(results.events[0].value.element!, "Input")
+        }
+    }
+    
+    /**
+     Turns
+     Input `SharedSequence`:
+     |--------------------T--------->
+     
+     Loading:
+     |------------------------------>
+     
+     into output `SharedSequence`:
+     |--------------------T--------->
+     
+     (Type `String` is for testing purposes)
+     */
+    func testDriverWaitFor_ghostLoading() {
+        driveOnScheduler(scheduler) {
+            //1. arrange
+            
+            let input = scheduler.createHotObservable([next(1500, "Input")])
+                .asDriver(onErrorDriveWith: .never())
+            
+            let viewModel = LoadingViewModel([], mainScheduler: scheduler)
+            
+            //2. execute
+            let results = scheduler.createObserver(String.self)
+            let subscription = input.waitFor(viewModel.isLoading).drive(results)
+            
+            scheduler.scheduleAt(3000) { subscription.dispose() }
+            scheduler.start()
+            
+            //3. assert
+            XCTAssertEqual(results.events[0].time, 1502)
+            XCTAssertEqual(results.events[0].value.element!, "Input")
         }
     }
     
