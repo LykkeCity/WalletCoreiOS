@@ -61,6 +61,7 @@ class CashOutSelectAssetViewController: UIViewController {
             .disposed(by: disposeBag)
         
         walletsViewModel.isEmpty
+            .waitFor(loadingViewModel.isLoading)
             .drive(onNext: { [weak self] isEmpty in
                 guard isEmpty, let `self` = self else { return }
                 self.presentEmptyWallet(withMessage: Localize("emptyWallet.newDesign.cashOutMessage"))
@@ -86,6 +87,7 @@ class CashOutSelectAssetViewController: UIViewController {
             .disposed(by: disposeBag)
         
         kycNeededViewModel.needToFillData
+            .waitFor(loadingViewModel.isLoading)
             .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycTabNVC")}
             .subscribe(onNext: {[weak self] controller in
                 self?.navigationController?.present(controller, animated: true, completion: nil)
@@ -93,6 +95,7 @@ class CashOutSelectAssetViewController: UIViewController {
             .disposed(by: disposeBag)
         
         kycNeededViewModel.pending
+            .waitFor(loadingViewModel.isLoading)
             .map{UIStoryboard(name: "KYC", bundle: nil).instantiateViewController(withIdentifier: "kycPendingVC")}
             .subscribe(onNext: {[weak self] controller in
                 self?.navigationController?.present(controller, animated: true)
@@ -100,6 +103,7 @@ class CashOutSelectAssetViewController: UIViewController {
             .disposed(by: disposeBag)
         
         kycNeededViewModel.ok
+            .waitFor(loadingViewModel.isLoading)
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self,
                     let indexPath = self.collectionView.indexPathsForSelectedItems?.first else { return }

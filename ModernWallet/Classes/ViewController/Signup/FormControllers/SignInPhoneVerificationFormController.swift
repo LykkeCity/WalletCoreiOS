@@ -133,6 +133,7 @@ class SignInPhoneVerificationFormController: FormController {
         accessToken
             .filterNil()
             .map { _ in () }
+            .waitFor(verifyViewModel.loadingViewModel.isLoading)
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
 

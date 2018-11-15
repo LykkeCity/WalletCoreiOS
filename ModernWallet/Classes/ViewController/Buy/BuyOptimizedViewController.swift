@@ -206,6 +206,7 @@ class BuyOptimizedViewController: UIViewController {
             .disposed(by: disposeBag)
         
         walletsViewModel.isEmpty
+            .waitFor(loadingViewModel.isLoading)
             .drive(onNext: { [weak self] isEmpty in
                 guard isEmpty, let `self` = self else { return }
                 let messageKey = self.tradeType == .buy ? "emptyWallet.newDesign.buyMessage" : "emptyWallet.newDesign.sellMessage"

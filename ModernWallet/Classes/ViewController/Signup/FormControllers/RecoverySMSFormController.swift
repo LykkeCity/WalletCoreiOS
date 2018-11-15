@@ -155,6 +155,7 @@ class RecoverySMSFormController: RecoveryController {
             .disposed(by: disposeBag)
         
         sendSmsViewModel.sendSmsCodeComplete
+            .waitFor(changePinViewModel.loadingViewModel.isLoading)
             .map{ Localize("register.phone.sms.sent") }
             .bind(to: toast)
             .disposed(by: disposeBag)

@@ -128,12 +128,19 @@ class SignUpPasswordHintFormController: FormController {
                 .disposed(by: disposeBag)
 
             // use zip in order to wait till loading for all above three calls has finished before going to next screen.
+            let isLoading = Observable.zip(
+                testLoadingViewModel!.isLoading,
+                setBaseAssetRequest.map { $0.isLoading }
+            ) { $0 && $1 }
+            .shareReplay(1)
+        
             Observable.zip(
                 testLoadingViewModel!.isLoading.filter{ !$0 },
                 setBaseAssetRequest.filter{ !$0.isLoading }
             ) { _,_ in Void() }
-            .bind(to: nextTrigger)
-            .disposed(by: disposeBag)
+                .waitFor(isLoading)
+                .bind(to: nextTrigger)
+                .disposed(by: disposeBag)
             
         #else
             
@@ -141,6 +148,7 @@ class SignUpPasswordHintFormController: FormController {
                 .filterSuccess()
                 .delay(0.1, scheduler: MainScheduler.instance) // dirty hack:  delay with more than loading view model delays
                 .map { _ in return () }
+                .waitFor(viewModel.loading)
                 .bind(to: nextTrigger)
                 .disposed(by: disposeBag)
 

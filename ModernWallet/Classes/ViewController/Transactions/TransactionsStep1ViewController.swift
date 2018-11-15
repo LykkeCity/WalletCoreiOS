@@ -152,6 +152,7 @@ fileprivate extension TransactionsViewModel {
             transactionsAsCsv
                 .asObservable()
                 .filterSuccess()
+                .waitFor(loading.isLoading)
                 .bind(onNext: {[weak vc] path in vc?.creatCSV(path)}),
             
             sortBy.asDriver()

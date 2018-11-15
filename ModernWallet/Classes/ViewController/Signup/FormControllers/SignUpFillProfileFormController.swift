@@ -118,6 +118,7 @@ class SignUpFillProfileFormController: FormController {
                 loading.onNext(false)
                 return ()
             }
+            .waitFor(viewModel.loadingViewModel.isLoading)
             .bind(to: nextTrigger)
             .disposed(by: disposeBag)
     }

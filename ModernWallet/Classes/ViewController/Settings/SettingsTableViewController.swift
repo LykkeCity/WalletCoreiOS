@@ -71,10 +71,12 @@ class SettingsTableViewController: UITableViewController {
         let modelSelected = tableView.rx.modelSelected(RowInfo.self).observeOn(MainScheduler.asyncInstance)
         
         modelSelected
+            .waitFor(viewModel.loadingViewModel.isLoading)
             .bindToSignOrder(toViewModel: viewModel, context: self)
             .disposed(by: disposeBag)
         
         modelSelected
+            .waitFor(viewModel.loadingViewModel.isLoading)
             .bindToPerformSeque(context: self)
             .disposed(by: disposeBag)
         

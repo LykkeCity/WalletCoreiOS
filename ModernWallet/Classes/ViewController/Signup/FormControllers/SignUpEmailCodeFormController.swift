@@ -139,6 +139,7 @@ class SignUpEmailCodeFormController: FormController {
             .disposed(by: disposeBag)
         
         emailCodePassed
+            .waitFor(viewModel.loading)
             .filterTrueAndBind(toTrigger: nextTrigger)
             .disposed(by: disposeBag)
     }
