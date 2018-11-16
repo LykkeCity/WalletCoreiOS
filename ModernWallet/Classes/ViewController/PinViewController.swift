@@ -120,31 +120,8 @@ class PinViewController: UIViewController {
     
     private var pins = [String]()
     
-    private let checkPinTrigger = PublishSubject<Void>()
-    
-    lazy var checkPinViewModel : PinGetViewModel={
-        let result = PinGetViewModel(submit: self.checkPinTrigger.asObservable() )
-        result.loading.asDriver(onErrorJustReturn: false)
-            .drive(self.rx.loading)
-            .disposed(by: self.disposeBag)
-        result.result.asObservable().filterError()
-            .map { [weak self] error in
-                self?.shakeAndReset()
-
-                return error
-            }
-            .subscribe(self.rx.error)
-            .disposed(by: self.disposeBag)
-        result.result.asObservable().filterSuccess()
-            .subscribe(onNext: { [weak self] result in
-                guard result.isPassed else {
-                    self?.shakeAndReset()
-                    return
-                }
-                self?.dismiss(success: true, animated: true)
-            })
-            .disposed(by: self.disposeBag)
-        return result
+    lazy var checkPinViewModel : PinGetViewModel = {
+        return PinGetViewModel()
     }()
     
     private let setPinTrigger = PublishSubject<Void>()
@@ -207,6 +184,9 @@ class PinViewController: UIViewController {
             closeButton.isHidden = true
         }
         
+        checkPinViewModel
+            .bind(toViewController: self)
+            .disposed(by: disposeBag)
     }
     
     // MARK: - IBActions
@@ -262,8 +242,8 @@ class PinViewController: UIViewController {
         }
         let pin = pins[0]
         guard let storedPin = LWKeychainManager.instance()?.pin() else {
-            checkPinViewModel.pin.value = pin
-            checkPinTrigger.onNext(Void())
+            checkPinViewModel.pinTrigger.onNext(pin)
+            
             return
         }
         if storedPin == pin {
@@ -293,7 +273,7 @@ class PinViewController: UIViewController {
         }
     }
     
-    private func shakeAndReset() {
+    func shakeAndReset() {
         shakeKeyboard()
         triesLeftCount -= 1
         if triesLeftCount == 0 && !isPresentedForInactivity {
@@ -318,7 +298,7 @@ class PinViewController: UIViewController {
         pins = []
     }
     
-    private func dismiss(success: Bool, animated: Bool) {
+    func dismiss(success: Bool, animated: Bool) {
         complete.onNext(success)
         dismiss(animated: animated)
     }
@@ -335,6 +315,32 @@ extension PinViewController: UIViewControllerTransitioningDelegate {
         return PinAnimatedTransitioning(presenting: false)
     }
     
+}
+
+extension PinGetViewModel {
+    
+    func bind(toViewController vc: PinViewController) -> [Disposable] {
+        return [
+            result
+                .subscribe(onNext: { [weak vc] result in
+                    guard result.isPassed else {
+                        vc?.shakeAndReset()
+                        return
+                    }
+                    vc?.dismiss(success: true, animated: true)
+                }),
+            error
+                .map { [weak vc] error in
+                    vc?.shakeAndReset()
+                    
+                    return error
+                }
+                .subscribe(vc.rx.error),
+            loadingViewModel.isLoading
+                .asDriver(onErrorJustReturn: false)
+                .drive(vc.rx.loading),
+        ]
+    }
 }
 
 class PinAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {

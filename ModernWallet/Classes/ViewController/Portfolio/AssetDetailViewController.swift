@@ -62,7 +62,6 @@ class AssetDetailViewController: UIViewController {
         super.viewDidLoad()
         
         transactionsTable.contentInset = UIEdgeInsetsMake(0, 0, 44, 0)
-
         transactionsTable.register(UINib(nibName: "AssetInfoTableViewCell", bundle: nil), forCellReuseIdentifier: "AssetInfoTableViewCell")
         
         transactionsViewModel.transactionsAsCsv = self.messageButton.rx.tap
@@ -72,25 +71,8 @@ class AssetDetailViewController: UIViewController {
                                         .asObservable()
                                         .filter(byAsset: asset))
         
-        //TODO : clean the code and move as much as possible to extensions
-        
         transactionsViewModel
             .bind(toViewController: self)
-            .disposed(by: disposeBag)
-
-        transactionsViewModel.loading.isLoading
-            .bind(to: rx.loading)
-            .disposed(by: disposeBag)
-        
-        receiveButton.rx.tap.asObservable()
-            .withLatestFrom(self.asset.getAssetModel())
-            .bind(to: blockchainAddressViewModel.asset)
-            .disposed(by: disposeBag)
-        
-        asset.getAssetModel()
-            .map { $0.blockchainDeposit }
-            .asDriver(onErrorJustReturn: false)
-            .drive(receiveButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         blockchainAddressViewModel
@@ -102,46 +84,11 @@ class AssetDetailViewController: UIViewController {
             .disposed(by: disposeBag)
 
         asset
-            .bind{ [weak self] in self?.assetModel = $0 }
-            .disposed(by: disposeBag)
-        
-        asset.mapToCryptoName()
-            .asDriver(onErrorJustReturn: "")
-            .drive(rx.title)
-            .disposed(by: disposeBag)
-        
-        asset
-            .map{$0.wallet?.asset.blockchainWithdraw ?? false}
-            .asDriver(onErrorJustReturn: false)
-            .drive(sendButton.rx.isEnabled)
+            .bind(toViewController: self)
             .disposed(by: disposeBag)
         
         assetAmount.configure(fontSize: 30)
         baseAssetAmount.configure(fontSize: 12)
-
-        // Table header and filter content bindings
-        transactionsViewModel.filterViewModel.filterDescription
-            .drive(filterDescriptionLabel.rx.attributedText)
-            .disposed(by: disposeBag)
-        
-        transactionsViewModel.filterViewModel.filterDatePair.asObservable()
-            .map { return $0.start == nil && $0.end == nil }
-            .startWith(true)
-            .asDriver(onErrorJustReturn: true)
-            .drive(filterDescriptionView.rx.isHidden)
-            .disposed(by: disposeBag)
-
-        filterDescriptionClearButton.rx.tap.asObservable()
-            .throttle(1.0, scheduler: MainScheduler.instance)
-            .map({ return (start: nil, end: nil) })
-            .bind(to: transactionsViewModel.filterViewModel.filterDatePair)
-            .disposed(by: disposeBag)
-        
-        transactionsViewModel.isDownloadButtonEnabled
-            .drive(messageButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        
     }
     
     // MARK: - Navigation
@@ -205,9 +152,17 @@ class AssetDetailViewController: UIViewController {
     }
 }
 
+//MARK: - Bindings
 fileprivate extension TransactionsViewModel {
     func bind(toViewController vc: AssetDetailViewController) -> [Disposable] {
         return [
+            vc.filterDescriptionClearButton.rx.tap.asObservable()
+                .throttle(1.0, scheduler: MainScheduler.instance)
+                .map({ return (start: nil, end: nil) })
+                .bind(to: filterViewModel.filterDatePair),
+            
+            isDownloadButtonEnabled.drive(vc.messageButton.rx.isEnabled),
+            
             transactions.asObservable()
                 .filter(byAsset: vc.asset)
                 .bind(
@@ -216,15 +171,24 @@ fileprivate extension TransactionsViewModel {
                 ){ (row, element, cell) in
                     cell.bind(toTransaction: element)
                 },
-            loading.isLoading
-                .bind(to: vc.rx.loading),
+            
+            loading.isLoading.bind(to: vc.rx.loading),
+            
             transactionsAsCsv
                 .asObservable()
                 .filterSuccess()
                 .waitFor(loading.isLoading)
                 .bind(onNext: {[weak vc] path in vc?.creatCSV(path)}),
             
-            errors.drive(vc.rx.error)
+            errors.drive(vc.rx.error),
+            
+            filterViewModel.filterDescription.drive(vc.filterDescriptionLabel.rx.attributedText),
+            
+            filterViewModel.filterDatePair.asObservable()
+                .map { return $0.start == nil && $0.end == nil }
+                .startWith(true)
+                .asDriver(onErrorJustReturn: true)
+                .drive(vc.filterDescriptionView.rx.isHidden)
         ]
     }
 }
@@ -238,11 +202,24 @@ extension ObservableType where Self.E == Asset {
             return Observable.just(assetModel)
         }
     }
-}
-
-extension AssetDetailViewController: UIPopoverPresentationControllerDelegate {
-    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-            return .none
+    
+    func bind(toViewController vc: AssetDetailViewController) -> [Disposable] {
+        return [
+            getAssetModel()
+                .map { $0.blockchainDeposit }
+                .asDriver(onErrorJustReturn: false)
+                .drive(vc.receiveButton.rx.isEnabled),
+            
+            bind{ [weak vc] in vc?.assetModel = $0 },
+            
+            mapToCryptoName()
+                .asDriver(onErrorJustReturn: "")
+                .drive(vc.rx.title),
+            
+            map{ $0.wallet?.asset.blockchainWithdraw ?? false }
+                .asDriver(onErrorJustReturn: false)
+                .drive(vc.sendButton.rx.isEnabled),
+        ]
     }
 }
 
@@ -261,13 +238,16 @@ extension ObservableType where Self.E == [TransactionViewModel] {
 extension BlockchainAddressViewModel {
     func bind(toViewController vc: AssetDetailViewController) -> [Disposable] {
         return [
+            vc.receiveButton.rx.tap.asObservable()
+                .withLatestFrom(vc.asset.getAssetModel())
+                .bind(to: asset),
+            
             blockchainAddress
                 .waitFor(loadingViewModel.isLoading)
                 .subscribe(onNext: { [weak vc] address in
                     vc?.performSegue(withIdentifier: "ReceiveAddress", sender: address)
                 }),
-            errors
-                .bind(to: vc.rx.error),
+            errors.bind(to: vc.rx.error),
             loadingViewModel.isLoading
                 .asDriver(onErrorJustReturn: false)
                 .drive(vc.rx.loading)
@@ -290,5 +270,11 @@ fileprivate extension AssetAmountView {
     func configure(fontSize: CGFloat) {
         codeFont = UIFont(name: "Geomanist-Light", size: fontSize)
         amountFont = UIFont(name: "Geomanist-Light", size: fontSize)
+    }
+}
+
+extension AssetDetailViewController: UIPopoverPresentationControllerDelegate {
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
 }
