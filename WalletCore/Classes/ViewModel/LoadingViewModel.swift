@@ -89,14 +89,20 @@ public extension ObservableType {
     ///   - loading: flag used to determine the loading sequence life cycle
     /// - Returns: The same observable
     public func waitFor<T>(_ loading: Observable<Bool>) -> Observable<T> where E == T {
-        return Observable.combineLatest(self, loading.startWith(false)) { (value: $0, loading: $1) }
-            .flatMapLatest { result -> Observable<T> in
-                guard !result.loading else {
-                    return .never()
-                }
-                
-                return Observable<T>.just(result.value)
-        }
+        let loading = loading.startWith(false).distinctUntilChanged()
+        let source = self.shareReplay(1)
+        
+        /// delay result event until the loading activity is being finished
+        let delayedResult = source
+            .sample(loading.filter{ !$0 })
+        
+        /// pass result event immediatelly if there is no lodaing activity
+        let immediateResult = source
+            .withLatestFrom(loading){($0, $1)}
+            .filter{ !$0.1 }
+            .map{ $0.0 }
+        
+        return Observable.merge(delayedResult, immediateResult)
     }
 }
 

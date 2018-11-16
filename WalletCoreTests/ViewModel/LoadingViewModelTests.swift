@@ -36,28 +36,26 @@ class LoadingViewModelTests: XCTestCase {
      |--true-----false----------->
      */
     func testSingleObservable() {
-        driveOnScheduler(scheduler) {
-            //1. arrange
-            let isLoadingObservable = scheduler.createHotObservable([
-                next(100, true),
-                next(200, false)
-            ]).asObservable()
-            
-            let viewModel = LoadingViewModel([isLoadingObservable], mainScheduler: scheduler)
-            
-            //2. execute
-            let results = scheduler.createObserver(Bool.self)
-            let subscription = viewModel.isLoading.subscribeOn(scheduler).bind(to: results)
-            
-            scheduler.scheduleAt(3000) { subscription.dispose() }
-            scheduler.start()
-            
-            XCTAssertEqual(results.events[0].time, 100)
-            XCTAssertTrue(results.events[0].value.element!)
-            
-            XCTAssertEqual(results.events[1].time, 201)
-            XCTAssertFalse(results.events[1].value.element!)
-        }
+        //1. arrange
+        let isLoadingObservable = scheduler.createHotObservable([
+            next(100, true),
+            next(200, false)
+        ]).asObservable()
+        
+        let viewModel = LoadingViewModel([isLoadingObservable], mainScheduler: scheduler)
+        
+        //2. execute
+        let results = scheduler.createObserver(Bool.self)
+        let subscription = viewModel.isLoading.subscribeOn(scheduler).bind(to: results)
+        
+        scheduler.scheduleAt(3000) { subscription.dispose() }
+        scheduler.start()
+        
+        XCTAssertEqual(results.events[0].time, 101)
+        XCTAssertTrue(results.events[0].value.element!)
+        
+        XCTAssertEqual(results.events[1].time, 202)
+        XCTAssertFalse(results.events[1].value.element!)
     }
     
     /**
@@ -119,16 +117,16 @@ class LoadingViewModelTests: XCTestCase {
             scheduler.scheduleAt(3000) { subscription.dispose() }
             scheduler.start()
             
-            XCTAssertEqual(results.events[0].time, 100)
+            XCTAssertEqual(results.events[0].time, 101)
             XCTAssertTrue(results.events[0].value.element!)
             
-            XCTAssertEqual(results.events[1].time, 241)
+            XCTAssertEqual(results.events[1].time, 242)
             XCTAssertFalse(results.events[1].value.element!)
             
-            XCTAssertEqual(results.events[2].time, 280)
+            XCTAssertEqual(results.events[2].time, 281)
             XCTAssertTrue(results.events[2].value.element!)
             
-            XCTAssertEqual(results.events[3].time, 291)
+            XCTAssertEqual(results.events[3].time, 292)
             XCTAssertFalse(results.events[3].value.element!)
         }
     }
@@ -143,37 +141,35 @@ class LoadingViewModelTests: XCTestCase {
      |--true-------------------false---->
      */
     func testOverLap() {
-        driveOnScheduler(scheduler) {
             //1. arrange
             
-            let isLoading1 = scheduler.createHotObservable([
-                next(100, true),
-                next(200, false)
-                ]).asObservable()
-            
-            let isLoading2 = scheduler.createHotObservable([
-                next(200, true),
-                next(300, false)
-                ]).asObservable()
-            
-            let viewModel = LoadingViewModel([isLoading1, isLoading2], mainScheduler: scheduler)
-            
-            //2. execute
-            let results = scheduler.createObserver(Bool.self)
-            let subscription = viewModel.isLoading.subscribeOn(scheduler).bind(to: results)
-            
-            scheduler.scheduleAt(3000) { subscription.dispose() }
-            scheduler.start()
-            
-            //3. assert
-            XCTAssertEqual(results.events[0].time, 100)
-            XCTAssertTrue(results.events[0].value.element!)
-            
-            XCTAssertEqual(results.events[1].time, 301)
-            XCTAssertFalse(results.events[1].value.element!)
-            
-            XCTAssertEqual(results.events.count, 2)
-        }
+        let isLoading1 = scheduler.createHotObservable([
+            next(100, true),
+            next(200, false)
+            ]).asObservable()
+        
+        let isLoading2 = scheduler.createHotObservable([
+            next(200, true),
+            next(300, false)
+            ]).asObservable()
+        
+        let viewModel = LoadingViewModel([isLoading1, isLoading2], mainScheduler: scheduler)
+        
+        //2. execute
+        let results = scheduler.createObserver(Bool.self)
+        let subscription = viewModel.isLoading.subscribeOn(scheduler).bind(to: results)
+        
+        scheduler.scheduleAt(3000) { subscription.dispose() }
+        scheduler.start()
+        
+        //3. assert
+        XCTAssertEqual(results.events[0].time, 101)
+        XCTAssertTrue(results.events[0].value.element!)
+        
+        XCTAssertEqual(results.events[1].time, 302)
+        XCTAssertFalse(results.events[1].value.element!)
+        
+        XCTAssertEqual(results.events.count, 2)
     }
     
     /**
@@ -258,13 +254,13 @@ class LoadingViewModelTests: XCTestCase {
     /**
      Turns
      Input `Observable`:
-     |----------T---------------------------------------------T----------------T----------------->
+     |------------------------------T---------------------------------------------T-----Т------------T-------------------------------->
      
      Loading:
-     |--true----------false---------true-false----true-false--------------true------false--------->
+     |--true---false---------true---------false---------true-false----true-false--------------true------false-------true---false------------->
      
      into output `Observable`
-     |------------------T-------------------------------------T-----------------------T------->
+     |--------------------------------------T-------------------------------------T-----Т-----------------T-------------------------->
      
      (Type `String` is for testing purposes)
      */
@@ -274,18 +270,28 @@ class LoadingViewModelTests: XCTestCase {
         let input = scheduler.createHotObservable([
             next(800, "Input"),
             next(2400, "Input 2"),
-            next(2600, "Input 3"),
+            next(2450, "Input 3"),
+            next(2600, "Input 4"),
             ])
         
         let isLoading = scheduler.createHotObservable([
+            next(100, true),
+            next(150, false),
+            
             next(500, true),
             next(900, false),
+            
             next(2000, true),
             next(2050, false),
+            
             next(2100, true),
             next(2150, false),
+            
             next(2500, true),
             next(2700, false),
+            
+            next(2900, true),
+            next(3000, false),
             ]).asObservable()
         
         let viewModel = LoadingViewModel([isLoading], mainScheduler: scheduler)
@@ -294,11 +300,11 @@ class LoadingViewModelTests: XCTestCase {
         let results = scheduler.createObserver(String.self)
         let subscription = input.waitFor(viewModel.isLoading).bind(to: results)
         
-        scheduler.scheduleAt(3000) { subscription.dispose() }
+        scheduler.scheduleAt(4000) { subscription.dispose() }
         scheduler.start()
         
         //3. assert
-        XCTAssertEqual(results.events.count, 3)
+        XCTAssertEqual(results.events.count, 4)
         
         XCTAssertEqual(results.events[0].time, 902)
         XCTAssertEqual(results.events[0].value.element!, "Input")
@@ -306,8 +312,11 @@ class LoadingViewModelTests: XCTestCase {
         XCTAssertEqual(results.events[1].time, 2400)
         XCTAssertEqual(results.events[1].value.element!, "Input 2")
         
-        XCTAssertEqual(results.events[2].time, 2702)
+        XCTAssertEqual(results.events[2].time, 2450)
         XCTAssertEqual(results.events[2].value.element!, "Input 3")
+        
+        XCTAssertEqual(results.events[3].time, 2702)
+        XCTAssertEqual(results.events[3].value.element!, "Input 4")
     }
     
     /**
@@ -342,6 +351,48 @@ class LoadingViewModelTests: XCTestCase {
             XCTAssertEqual(results.events[0].time, 1500)
             XCTAssertEqual(results.events[0].value.element!, "Input")
         }
+    }
+    
+    
+    /**
+     Turns
+     Input `Observable`:
+     |--------------------T--------->
+     
+     Loading:
+     |----true---false----------------------->
+     
+     into output `Observable`
+     |--------------------T--------->
+     
+     (Type `String` is for testing purposes)
+     */
+    func testWaitFor_imediateEventWithPreviousLoading() {
+        //1. arrange
+        
+        let input = scheduler.createHotObservable([
+            next(800, "Input"),
+        ])
+        
+        let isLoading = scheduler.createHotObservable([
+            next(500, true),
+            next(600, false)
+        ]).asObservable()
+        
+        let viewModel = LoadingViewModel([isLoading], mainScheduler: scheduler)
+        
+        //2. execute
+        let results = scheduler.createObserver(String.self)
+        let subscription = input.waitFor(viewModel.isLoading).bind(to: results)
+        
+        scheduler.scheduleAt(3000) { subscription.dispose() }
+        scheduler.start()
+        
+        //3. assert
+        XCTAssertEqual(results.events.count, 1)
+        
+        XCTAssertEqual(results.events[0].time, 800)
+        XCTAssertEqual(results.events[0].value.element!, "Input")
     }
     
     /**
