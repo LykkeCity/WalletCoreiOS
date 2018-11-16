@@ -254,6 +254,62 @@ class LoadingViewModelTests: XCTestCase {
         }
     }
     
+    
+    /**
+     Turns
+     Input `Observable`:
+     |----------T---------------------------------------------T----------------T----------------->
+     
+     Loading:
+     |--true----------false---------true-false----true-false--------------true------false--------->
+     
+     into output `Observable`
+     |------------------T-------------------------------------T-----------------------T------->
+     
+     (Type `String` is for testing purposes)
+     */
+    func testWaitFor_multipleEmmisions() {
+        //1. arrange
+        
+        let input = scheduler.createHotObservable([
+            next(800, "Input"),
+            next(2400, "Input 2"),
+            next(2600, "Input 3"),
+            ])
+        
+        let isLoading = scheduler.createHotObservable([
+            next(500, true),
+            next(900, false),
+            next(2000, true),
+            next(2050, false),
+            next(2100, true),
+            next(2150, false),
+            next(2500, true),
+            next(2700, false),
+            ]).asObservable()
+        
+        let viewModel = LoadingViewModel([isLoading], mainScheduler: scheduler)
+        
+        //2. execute
+        let results = scheduler.createObserver(String.self)
+        let subscription = input.waitFor(viewModel.isLoading).bind(to: results)
+        
+        scheduler.scheduleAt(3000) { subscription.dispose() }
+        scheduler.start()
+        
+        //3. assert
+        XCTAssertEqual(results.events.count, 3)
+        
+        XCTAssertEqual(results.events[0].time, 902)
+        XCTAssertEqual(results.events[0].value.element!, "Input")
+        
+        XCTAssertEqual(results.events[1].time, 2400)
+        XCTAssertEqual(results.events[1].value.element!, "Input 2")
+        
+        XCTAssertEqual(results.events[2].time, 2702)
+        XCTAssertEqual(results.events[2].value.element!, "Input 3")
+    }
+    
     /**
      Turns
      Input `Observable`:
