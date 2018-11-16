@@ -42,8 +42,9 @@
         }
         
         double balance=[LWUtils fairVolume:_balance.doubleValue accuracy:self.accuracy.intValue roundToHigher:NO];
-        _balance=[NSNumber numberWithDouble:balance];
-
+        
+        if(balance > 0.0)
+            _balance=[NSNumber numberWithDouble:balance];
         
         
 //        _name        = [json objectForKey:@"Name"];

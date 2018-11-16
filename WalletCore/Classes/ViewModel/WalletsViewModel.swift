@@ -79,7 +79,7 @@ open class WalletsViewModel {
         self.wallets = infoObservable.mapToAssets()
         
          self.totalBalance = infoObservable
-            .flatMap { info in
+            .flatMapLatest { info in
                 authManager.allAssets.request(byId: info.asset.identity)
                 .filterSuccess()
                 .filterNil()
