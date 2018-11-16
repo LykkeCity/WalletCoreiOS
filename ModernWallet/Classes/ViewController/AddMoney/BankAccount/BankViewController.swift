@@ -10,6 +10,17 @@ import UIKit
 import WalletCore
 import RxSwift
 import RxCocoa
+import Toast
+
+/// Define the localization strings in an Enum
+private enum BankData: String {
+    case bic = "deposit.swift.titles.bic"
+    case accountNumber = "deposit.swift.titles.account.number"
+    case accountName = "deposit.swift.titles.account.name"
+    case bankAddress = "deposit.swift.titles.bank.address"
+    case companyAddress = "deposit.swift.titles.company.address"
+    case paymentPurpose = "deposit.swift.titles.purpose"
+}
 
 class BankViewController: AddMoneyBaseViewController {
     
@@ -74,22 +85,42 @@ class BankViewController: AddMoneyBaseViewController {
 //        parentVC.nextAction(sender)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func copyBIC() {
+        UIPasteboard.general.string = bicLabel.text
+        makeToast(.bic)
+    }
+
+    @IBAction func copyAccountNumber() {
+        UIPasteboard.general.string = accountNumberLabel.text
+        makeToast(.accountNumber)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func copyAccountName() {
+        UIPasteboard.general.string = accountNameLabel.text
+        makeToast(.accountName)
     }
-    */
-
+    
+    @IBAction func copyBankAddress() {
+        UIPasteboard.general.string = bankAddressLabel.text
+        makeToast(.bankAddress)
+    }
+    
+    @IBAction func copyCompanyAddress() {
+        UIPasteboard.general.string = companyAddressLabel.text
+        makeToast(.companyAddress)
+    }
+    
+    @IBAction func copyPaymentPurpose() {
+        UIPasteboard.general.string = purposeOfPaymentLabel.text
+        makeToast(.paymentPurpose)
+    }
+    
+    private func makeToast(_ bankData: BankData) {
+        let toastMessage = String(format: "%@ %@.",
+                                  Localize(bankData.rawValue),
+                                  Localize("receive.newDesign.copyToast")?.lowercased() ?? "")
+        self.view.makeToast(toastMessage)
+    }
 }
 
 fileprivate extension SwiftCredentialsViewModel {
