@@ -68,15 +68,16 @@ class SettingsTableViewController: UITableViewController {
             }
             .disposed(by: disposeBag)
         
-        let modelSelected = tableView.rx.modelSelected(RowInfo.self).observeOn(MainScheduler.asyncInstance)
+        let modelSelected = tableView.rx.modelSelected(RowInfo.self)
+            .observeOn(MainScheduler.asyncInstance)
+            //.waitFor(viewModel.loadingViewModel.isLoading) LMW-597 TODO: check why ObservableType:waitFor:delayedResult observable emits an event when the base asset is being saved
+            .shareReplay(1)
         
         modelSelected
-            .waitFor(viewModel.loadingViewModel.isLoading)
             .bindToSignOrder(toViewModel: viewModel, context: self)
             .disposed(by: disposeBag)
         
         modelSelected
-            .waitFor(viewModel.loadingViewModel.isLoading)
             .bindToPerformSeque(context: self)
             .disposed(by: disposeBag)
         
@@ -107,6 +108,7 @@ extension SettingsTableViewController {
     
     func bindAssetPickerForBaseCurrencyChange(_ vc: AssetPickerTableViewController) {
         
+        
         vc.displayBaseAssetAsSelected = true
         
         let setBaseAsset = vc.assetPicked.flatMap { picked in
@@ -119,6 +121,7 @@ extension SettingsTableViewController {
         
         setBaseAsset.filterSuccess()
         .observeOn(MainScheduler.instance)
+        .waitFor(setBaseAsset.isLoading())
         .subscribe(onNext: { [weak self, weak vc] _ in
             self?.viewModel.performRefreshSettings()
             vc?.dismissViewController()

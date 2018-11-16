@@ -38,7 +38,6 @@ class SettingsTermsOfUseViewController: UIViewController {
         
         applicationInfoViewModel.termsOfUse
             .asObservable()
-            .waitFor(loadingViewModel.isLoading)
             .subscribe(onNext: {[weak self] url in
                 self?.webView.loadRequest(URLRequest(url:URL(string:url)!))
             })
