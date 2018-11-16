@@ -195,9 +195,6 @@ class PinViewController: UIViewController {
             titleLabel.text = title
             isTouchIdEnabled = isTouchIdEnabled && LWFingerprintHelper.isFingerprintAvailable()
             touchIdButton.alpha = isTouchIdEnabled ? 1.0 : 0.0
-            if isTouchIdEnabled {
-                touchIdTapped()
-            }
         }
         
         // Hide the close button action if the view controller is presented due to inactivity
