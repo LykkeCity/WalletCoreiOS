@@ -32,8 +32,13 @@ public class BlockchainAddressViewModel {
                 notificationCenter: NotificationCenter = NotificationCenter.default) {
                 
         let alertObservable = asset.asObservable()
-            .flatMapLatest { asset -> Observable<(confirmation: Bool, asset: LWAssetModel)> in
+            .flatMapLatest { [weak alertPresenter] asset -> Observable<(confirmation: Bool, asset: LWAssetModel)> in
+                
                 if let depositAddress = asset.blockchainDepositAddress, depositAddress.isNotEmpty {
+                    return Observable.just( (confirmation: true, asset: asset) )
+                }
+                
+                guard let alertPresenter = alertPresenter else {
                     return Observable.just( (confirmation: true, asset: asset) )
                 }
                 

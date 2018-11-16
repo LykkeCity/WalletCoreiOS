@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public protocol AlertPresenter {
+public protocol AlertPresenter: class {
     func presentAlert() -> Observable<Bool>
 }
