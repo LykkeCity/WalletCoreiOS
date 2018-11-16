@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JNW-9u-JrF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JNW-9u-JrF">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -68,7 +65,7 @@
                                 <state key="selected" image="ovalActive"/>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="em3-dq-0PP">
-                                <rect key="frame" x="222.66666666666666" y="257.33333333333331" width="15" height="15"/>
+                                <rect key="frame" x="223" y="257.33333333333331" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="MB2-JW-UHp"/>
                                     <constraint firstAttribute="width" constant="15" id="w3y-DQ-vDq"/>
@@ -77,7 +74,7 @@
                                 <state key="selected" image="ovalActive"/>
                             </button>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaY-8G-jPl">
-                                <rect key="frame" x="175.66666666666666" y="257.33333333333331" width="15" height="15"/>
+                                <rect key="frame" x="176" y="257.33333333333331" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="8X4-0g-XqL"/>
                                     <constraint firstAttribute="height" constant="15" id="Sy3-iZ-0EW"/>
@@ -175,10 +172,10 @@
                                                                 <rect key="frame" x="139.33333333333334" y="0.0" width="63.666666666666657" height="66"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkIcon" translatesAutoresizingMaskIntoConstraints="NO" id="enP-NW-86i">
-                                                                        <rect key="frame" x="0.33333333333333925" y="0.0" width="63.666666666666657" height="38"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="63.666666666666664" height="38"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="SUCCESS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HI-kC-8ly" userLabel="SUCCESS">
-                                                                        <rect key="frame" x="0.33333333333333925" y="50" width="63.666666666666657" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="50" width="63.666666666666664" height="16"/>
                                                                         <fontDescription key="fontDescription" name="Geomanist-Light" family="Geomanist" pointSize="16"/>
                                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -234,7 +231,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mki-Vn-mCv">
-                                                <rect key="frame" x="122.33333333333331" y="21.666666666666629" width="170" height="26"/>
+                                                <rect key="frame" x="122" y="21.666666666666629" width="170" height="26"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PORTFOLIO" translatesAutoresizingMaskIntoConstraints="NO" id="sgE-LK-spX">
                                                         <rect key="frame" x="0.0" y="3" width="20" height="20"/>
@@ -244,7 +241,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFb-EL-sFI">
-                                                        <rect key="frame" x="32.000000000000014" y="0.0" width="138" height="26"/>
+                                                        <rect key="frame" x="32" y="0.0" width="138" height="26"/>
                                                         <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="12"/>
                                                         <state key="normal" title="RETURN TO PORTFOLIO"/>
                                                         <connections>
@@ -369,7 +366,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJZ-QT-U2k">
-                                                <rect key="frame" x="94.666666666666686" y="256" width="225" height="30"/>
+                                                <rect key="frame" x="93.666666666666686" y="256" width="227" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sV0-vB-roI"/>
                                                 </constraints>
@@ -468,7 +465,7 @@
                                         </constraints>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmZ-j4-El9">
-                                        <rect key="frame" x="20" y="10" width="374" height="649.33333333333337"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="649"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="WrC-bZ-Lxd">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="229"/>
@@ -497,6 +494,9 @@
                                                                 <state key="normal" image="infoIcon"/>
                                                             </button>
                                                         </subviews>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="Aq3-ez-Vj2" appends="YES" id="2Lg-pd-Hbx"/>
+                                                        </connections>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LZV-pt-feg">
                                                         <rect key="frame" x="0.0" y="34" width="374" height="22"/>
@@ -522,6 +522,9 @@
                                                                 <state key="normal" image="infoIcon"/>
                                                             </button>
                                                         </subviews>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="zoh-N4-px1" appends="YES" id="Jhy-j1-3hJ"/>
+                                                        </connections>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YNy-Bs-lfA">
                                                         <rect key="frame" x="0.0" y="68" width="374" height="22"/>
@@ -547,6 +550,9 @@
                                                                 <state key="normal" image="infoIcon"/>
                                                             </button>
                                                         </subviews>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="4FU-9X-BLc" appends="YES" id="Enp-sJ-Cd5"/>
+                                                        </connections>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="PCp-7h-Wgm">
                                                         <rect key="frame" x="0.0" y="102" width="374" height="38.666666666666657"/>
@@ -572,6 +578,9 @@
                                                                 <state key="normal" image="infoIcon"/>
                                                             </button>
                                                         </subviews>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="rI0-N7-HxP" appends="YES" id="XfL-7K-NbE"/>
+                                                        </connections>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9RY-Ex-5Ox">
                                                         <rect key="frame" x="0.0" y="152.66666666666666" width="374" height="38.666666666666657"/>
@@ -597,6 +606,9 @@
                                                                 <state key="normal" image="infoIcon"/>
                                                             </button>
                                                         </subviews>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="LVa-7f-4TV" appends="YES" id="FvG-Yf-0ll"/>
+                                                        </connections>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="BgS-mW-8cq">
                                                         <rect key="frame" x="0.0" y="203.33333333333334" width="374" height="25.666666666666657"/>
@@ -622,6 +634,9 @@
                                                                 <state key="normal" image="infoIcon"/>
                                                             </button>
                                                         </subviews>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="Apa-BS-AXq" appends="YES" id="FNj-fb-NsF"/>
+                                                        </connections>
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
@@ -642,7 +657,7 @@
                                         </constraints>
                                     </scrollView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jr6-iD-Du2" userLabel="Footer">
-                                        <rect key="frame" x="0.0" y="667.33333333333337" width="414" height="69"/>
+                                        <rect key="frame" x="0.0" y="667" width="414" height="69"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="had-n7-hdl" customClass="SeparatorView" customModule="ModernMoney" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="0.0" width="374" height="2"/>
@@ -652,7 +667,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AOF-5q-lXp">
-                                                <rect key="frame" x="184.33333333333334" y="25" width="46.666666666666657" height="20"/>
+                                                <rect key="frame" x="183.66666666666666" y="24.666666666666629" width="46.666666666666657" height="20"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backArrow" translatesAutoresizingMaskIntoConstraints="NO" id="iEd-Ae-0TS">
                                                         <rect key="frame" x="0.0" y="0.0" width="10" height="20"/>
@@ -724,6 +739,36 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9LZ-Gl-jsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Aq3-ez-Vj2" userLabel="Copy BIC">
+                    <connections>
+                        <action selector="copyBIC" destination="hUz-FU-4Rj" id="nBR-nP-cVc"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="zoh-N4-px1" userLabel="Copy Account Number">
+                    <connections>
+                        <action selector="copyAccountNumber" destination="hUz-FU-4Rj" id="hg3-gQ-NlB"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="4FU-9X-BLc" userLabel="Copy Account Name">
+                    <connections>
+                        <action selector="copyAccountName" destination="hUz-FU-4Rj" id="ycY-s0-NP6"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="rI0-N7-HxP" userLabel="Copy Bank Address">
+                    <connections>
+                        <action selector="copyBankAddress" destination="hUz-FU-4Rj" id="Zb9-MU-Vh6"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="LVa-7f-4TV" userLabel="Copy Company Address">
+                    <connections>
+                        <action selector="copyCompanyAddress" destination="hUz-FU-4Rj" id="GKo-yT-nUk"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Apa-BS-AXq" userLabel="Copy Payment Purpose">
+                    <connections>
+                        <action selector="copyPaymentPurpose" destination="hUz-FU-4Rj" id="LgF-Ko-VXb"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="right" id="6FZ-dl-PA8" userLabel="BANK 2 Navigate Back">
                     <connections>
                         <action selector="swipeToNavigateBack:" destination="hUz-FU-4Rj" id="Xmr-nM-Njf"/>
@@ -774,16 +819,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgQ-uf-nqh">
-                                        <rect key="frame" x="107.33333333333331" y="7" width="200" height="133.33333333333334"/>
+                                        <rect key="frame" x="107" y="7" width="200" height="133.33333333333334"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BANK ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zL-p7-k4f">
-                                                <rect key="frame" x="88.000000000000014" y="60.333333333333329" width="78.999999999999986" height="12"/>
+                                                <rect key="frame" x="88" y="60.666666666666671" width="79" height="12"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="10"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bankIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xCV-Ev-UgV">
-                                                <rect key="frame" x="38.000000000000014" y="49.666666666666657" width="34" height="34"/>
+                                                <rect key="frame" x="38" y="49.666666666666657" width="34" height="34"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPa-2E-Bac">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="133.33333333333334"/>
@@ -806,7 +851,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MxZ-Rz-qkc">
-                                        <rect key="frame" x="107.33333333333331" y="152.33333333333334" width="200" height="135.00000000000003"/>
+                                        <rect key="frame" x="107" y="152.33333333333334" width="200" height="135.00000000000003"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREDIT CARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIe-Ge-MPi">
                                                 <rect key="frame" x="95" y="61.666666666666657" width="66" height="12"/>
@@ -815,7 +860,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardIcon" translatesAutoresizingMaskIntoConstraints="NO" id="f4F-kP-Wwi">
-                                                <rect key="frame" x="45.000000000000014" y="57" width="36" height="22"/>
+                                                <rect key="frame" x="45" y="56.666666666666657" width="36" height="22"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mf2-4W-veb">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="135"/>
@@ -838,10 +883,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTn-le-1Og">
-                                        <rect key="frame" x="107.33333333333331" y="299.33333333333331" width="200" height="137.33333333333331"/>
+                                        <rect key="frame" x="107" y="299.33333333333331" width="200" height="137.33333333333331"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECEIVE CRYPTOCURRENCY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBq-Kg-VXt">
-                                                <rect key="frame" x="64.000000000000014" y="63" width="139.33333333333337" height="12"/>
+                                                <rect key="frame" x="64.000000000000014" y="62.666666666666686" width="139.33333333333337" height="12"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="10"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -939,14 +984,14 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER AMOUNT TO ADD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNI-FW-YSE">
-                                        <rect key="frame" x="139.33333333333331" y="22" width="137.33333333333331" height="13.666666666666664"/>
+                                        <rect key="frame" x="138.33333333333331" y="22" width="137.33333333333331" height="13.666666666666664"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11.699999809265137"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="Y2E-MQ-HAc">
-                                        <rect key="frame" x="150.33333333333334" y="42.666666666666671" width="114.00000000000003" height="35.666666666666671"/>
+                                        <rect key="frame" x="150" y="42.666666666666671" width="114" height="35.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="2nE-OK-083">
                                                 <rect key="frame" x="0.0" y="0.0" width="17" height="35.333333333333336"/>
@@ -971,7 +1016,7 @@
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iu1-sm-SAs">
-                                                <rect key="frame" x="96.333333333333314" y="20.666666666666671" width="17.666666666666671" height="10"/>
+                                                <rect key="frame" x="96.333333333333343" y="20.666666666666671" width="17.666666666666671" height="10"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="8.3999996185302734"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1082,7 +1127,7 @@
                                                         <rect key="frame" x="0.0" y="101.66666666666667" width="314" height="42.666666666666671"/>
                                                         <subviews>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CITY" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="x3i-Jj-aRz" userLabel="City" customClass="LimitedHoshiTextField" customModule="ModernMoney" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="149.66666666666666" height="42.666666666666664"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="149" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1110,7 +1155,7 @@
                                                                 </connections>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ZIP" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="G3h-X6-3Cb" userLabel="Zip" customClass="LimitedHoshiTextField" customModule="ModernMoney" customModuleProvider="target">
-                                                                <rect key="frame" x="153.66666666666666" y="0.0" width="78.333333333333343" height="42.666666666666664"/>
+                                                                <rect key="frame" x="153" y="0.0" width="78.666666666666686" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1138,7 +1183,7 @@
                                                                 </connections>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="COUNTRY" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="3bv-Xf-ikR" userLabel="Country" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                                                <rect key="frame" x="236" y="0.0" width="78" height="42.666666666666664"/>
+                                                                <rect key="frame" x="235.66666666666671" y="0.0" width="78.333333333333343" height="42.666666666666664"/>
                                                                 <color key="backgroundColor" red="0.94798050280000001" green="1" blue="0.94993412860000004" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <gestureRecognizers/>
@@ -1446,23 +1491,23 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pTs-Ke-3sJ">
-                                        <rect key="frame" x="24" y="36" width="165.33333333333334" height="166"/>
+                                        <rect key="frame" x="24" y="36" width="165.33333333333334" height="165.66666666666666"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="pTs-Ke-3sJ" secondAttribute="height" multiplier="1:1" id="AmR-3W-Th7"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="G7W-yY-gmt">
-                                        <rect key="frame" x="0.0" y="218" width="213.33333333333334" height="128.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="217.66666666666663" width="213.33333333333334" height="129"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Copy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVQ-bi-xfd">
-                                                <rect key="frame" x="88.666666666666671" y="0.0" width="36" height="95"/>
+                                                <rect key="frame" x="88.666666666666671" y="0.0" width="36" height="95.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpt-8F-lwH">
-                                                <rect key="frame" x="0.0" y="103" width="213.33333333333334" height="25.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="103.33333333333334" width="213.33333333333334" height="25.666666666666657"/>
                                                 <string key="text">Trading wallet balance will be updated after
 transaction is confirmed in the blockchain</string>
                                                 <fontDescription key="fontDescription" name="Geomanist-Regular" family="Geomanist" pointSize="11"/>
@@ -1667,15 +1712,15 @@ transaction is confirmed in the blockchain</string>
         </scene>
     </scenes>
     <resources>
-        <image name="CloseCross" width="17" height="17"/>
-        <image name="PORTFOLIO" width="44" height="44"/>
-        <image name="backArrow" width="10" height="20"/>
-        <image name="bankIcon" width="34" height="34"/>
-        <image name="cardIcon" width="36" height="22"/>
-        <image name="checkIcon" width="38" height="38"/>
-        <image name="infoIcon" width="12" height="14"/>
+        <image name="CloseCross" width="17.666666030883789" height="17.666666030883789"/>
+        <image name="PORTFOLIO" width="44.666667938232422" height="44.666667938232422"/>
+        <image name="backArrow" width="10.333333015441895" height="20"/>
+        <image name="bankIcon" width="34.666667938232422" height="34.333332061767578"/>
+        <image name="cardIcon" width="36.666667938232422" height="22.666666030883789"/>
+        <image name="checkIcon" width="38.333332061767578" height="38.333332061767578"/>
+        <image name="infoIcon" width="12.333333015441895" height="14"/>
         <image name="ovalActive" width="16" height="16"/>
         <image name="ovalInActive" width="15" height="15"/>
-        <image name="receiveIcon" width="34" height="34"/>
+        <image name="receiveIcon" width="34.666667938232422" height="34.333332061767578"/>
     </resources>
 </document>
