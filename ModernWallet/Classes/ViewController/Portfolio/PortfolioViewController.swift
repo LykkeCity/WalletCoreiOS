@@ -86,7 +86,6 @@ class PortfolioViewController: UIViewController {
                 assetsFilterViewModel.filteredAssets.asObservable()
                     .map(toAsset: selectedAsset)
             }
-            .waitFor(loadingViewModel.isLoading)
             .subscribe(onNext: { [weak self] model in
                 self?.performSegue(withIdentifier: "assetDetail", sender: model)
             })
@@ -98,7 +97,6 @@ class PortfolioViewController: UIViewController {
                 emptyPortfolioView.addMoneyButton.rx.tap.asObservable(),
                 pieChartCenterView.addMoneyButton.rx.tap.asObservable()
             )
-            .waitFor(loadingViewModel.isLoading)
             .subscribe(onNext: {[weak self] _ in
                 self?.performSegue(withIdentifier: "AddMoney", sender: nil)
             })
