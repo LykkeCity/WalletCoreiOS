@@ -99,7 +99,7 @@ fileprivate extension AssetDisclaimerViewModel {
             dismissViewController.drive(onNext: { [weak vc] in vc?.dismiss(animated: true, completion: nil) }),
             loadingViewModel.isLoading.bind(to: vc.rx.loading),
             disclaimer.drive(vc.currentDisclaimer),
-            vc.currentDisclaimer.asDriver().filterNil().waitFor(loadingViewModel.isLoading).drive(onNext: { [weak vc] disclaimer in
+            vc.currentDisclaimer.asDriver().filterNil().drive(onNext: { [weak vc] disclaimer in
                 var openHtml = String()
                 openHtml.addDiscaimerStyle(html: disclaimer.text)
                 vc?.disclaimerWebView.loadHTMLString(openHtml, baseURL: URL(string: "https://"))
