@@ -102,55 +102,28 @@ class BuyOptimizedViewController: UIViewController {
         buyOptimizedViewModel.bid.value = tradeType.isSell
         
         buyOptimizedViewModel
-            .bindBuy(toView: assetListView, disposedBy: disposeBag)
+            .bindBuy(toView: assetListView)
+            .disposed(by: disposeBag)
         
         buyOptimizedViewModel
-            .bindPayWith(toView: walletListView, disposedBy: disposeBag)
+            .bindPayWith(toView: walletListView)
+            .disposed(by: disposeBag)
         
         buyOptimizedViewModel
             .bind(toViewController: self)
             .disposed(by: disposeBag)
         
-        walletListView.itemPicker.picker.rx.itemSelected
-            .withLatestFrom(walletList) { selected, wallets in
-                wallets.enumerated().first{$0.offset == selected.row}?.element
-            }
-            .filterNil()
-            .map{(autoUpdated: false, wallet: $0)}
-            .bind(to: buyOptimizedViewModel.payWithWallet)
-            .disposed(by: disposeBag)
-        
+        // Picker bindings
         walletList
-            .map{$0.first}
-            .filterNil()
-            .map{(autoUpdated: true, wallet: $0)}
-            .bind(to: buyOptimizedViewModel.payWithWallet)
-            .disposed(by: disposeBag)
-        
-        walletList
-            .bind(to: walletListView.itemPicker.picker.rx.itemAttributedTitles) { (_, wallet) in return NSAttributedString(string: wallet.asset.displayId, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)]) }
-            .disposed(by: disposeBag)
-        
-        assetListView.itemPicker.picker.rx.itemSelected
-            .withLatestFrom(assetList) { selected, assets in
-                assets.enumerated().first{$0.offset == selected.row}?.element
-            }
-            .filterNil()
-            .map{(autoUpdated: false, asset: $0)}
-            .bind(to: buyOptimizedViewModel.buyAsset)
+            .map{ $0.map{ $0.asset } }
+            .bind(toPickerView: walletListView.itemPicker.picker, assetIdentifierToSelect: tradeAssetIdentifier)
             .disposed(by: disposeBag)
         
         assetList
-            .map{$0.first}
-            .filterNil()
-            .map{(autoUpdated: true, asset: $0)}
-            .bind(to: buyOptimizedViewModel.buyAsset)
+            .bind(toPickerView: assetListView.itemPicker.picker, assetIdentifierToSelect: tradeAssetIdentifier)
             .disposed(by: disposeBag)
         
-        assetList
-            .bind(to: assetListView.itemPicker.picker.rx.itemAttributedTitles) { (_, asset) in return NSAttributedString(string: asset.displayId, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)]) }
-            .disposed(by: disposeBag)
-        
+        //Trading
         let assetPairObservable = buyOptimizedViewModel.confirm.asObservable()
             .filter { $0 }
             .map { [buyOptimizedViewModel] _ -> (baseAsset: LWAssetModel, quotingAsset: LWAssetModel)? in
@@ -199,7 +172,7 @@ class BuyOptimizedViewController: UIViewController {
             payWithAssetListViewModel.loadingViewModel.isLoading,
             assetPairObservable.isLoading(),
             tradingObservable.isLoading()
-            ])
+        ])
         
         loadingViewModel.isLoading
             .bind(to: rx.loading)
@@ -213,27 +186,6 @@ class BuyOptimizedViewController: UIViewController {
                 self.presentEmptyWallet(withMessage: Localize(messageKey))
             })
             .disposed(by: disposeBag)
-        
-        if let assetIdentifier = tradeAssetIdentifier {
-            if tradeType.isBuy {
-                assetList
-                    .take(1)
-                    .map { $0.filter { asset in return asset.identity == assetIdentifier }.first }
-                    .filterNil()
-                    .map{(autoUpdated: true, asset: $0)}
-                    .bind(to: buyOptimizedViewModel.buyAsset)
-                    .disposed(by: disposeBag)
-            }
-            else {
-                walletList
-                    .take(1)
-                    .map { $0.filter { wallet in return wallet.asset.identity == assetIdentifier }.first }
-                    .filterNil()
-                    .map { (autoUpdated: true, wallet: $0) }
-                    .bind(to: buyOptimizedViewModel.payWithWallet)
-                    .disposed(by: disposeBag)
-            }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -297,6 +249,28 @@ extension Observable where Element == ApiResult<LWAssetDealModel?> {
 }
 
 //MARK:- Binding
+
+fileprivate extension ObservableType where Self.E == [LWAssetModel] {
+    func bind(toPickerView pickerView: UIPickerView, assetIdentifierToSelect: String?) -> [Disposable] {
+        return[
+            //populate picker options
+            bind(to: pickerView.rx.itemAttributedTitles) {
+                    (_, asset) in return NSAttributedString(string: asset.displayId, attributes: [NSForegroundColorAttributeName: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)])
+            },
+            
+            // set tradeAssetIdentifier as default
+            map{[assetIdentifierToSelect] assets in
+                assets.enumerated().first{ $1.identity == assetIdentifierToSelect }?.offset
+            }
+            .filterNil()
+            .map{ (row: $0, component: 0) }
+            .bind { [pickerView] data in
+                pickerView.selectRow(data.row, inComponent: data.component, animated: false)
+            }
+        ]
+    }
+}
+
 fileprivate extension ObservableType where Self.E == Void {
     
     func mapToTradeParams(withViewModel viewModel: BuyOptimizedViewModel) -> Observable<OffchainTradeViewModel.TradeParams> {
@@ -332,7 +306,11 @@ fileprivate extension OffchainTradeViewModel {
 fileprivate extension BuyOptimizedViewModel {
     
     func bind(toViewController viewController: BuyOptimizedViewController) -> [Disposable] {
+        let assetIdentifier = viewController.tradeAssetIdentifier
+        let tradeType = viewController.tradeType!
+        
         return [
+            //output
             isValidPayWithAmount
                 .filterError()
                 .map{ $0["Message"] as? String }
@@ -345,60 +323,63 @@ fileprivate extension BuyOptimizedViewModel {
             spreadAmount.drive(viewController.spreadAmount.rx.text),
             bid.asDriver().filterNil().map{ $0 ? "SELL" : "PAY WITH" }.drive(viewController.walletListView.label.rx.text),
             bid.asDriver().filterNil().map{ $0 ? "RECEIVE" : "BUY" }.drive(viewController.assetListView.label.rx.text),
-            bid.asDriver().filterNil().map{ $0 ? "SELL" : "BUY" }.drive(viewController.submitButton.rx.title(for: .normal))
+            bid.asDriver().filterNil().map{ $0 ? "SELL" : "BUY" }.drive(viewController.submitButton.rx.title(for: .normal)),
+            
+            //input
+            viewController.walletListView.itemPicker.picker.rx.itemSelected
+                .withLatestFrom(viewController.walletList) { selected, wallets in
+                    wallets.enumerated().first{$0.offset == selected.row}?.element
+                }
+                .filterNil()
+                .map{(autoUpdated: false, wallet: $0)}
+                .bind(to: payWithWallet),
+            
+            viewController.walletList
+                .map{ wallets -> LWSpotWallet? in
+                    tradeType.isSell ? wallets.first { wallet in wallet.asset.identity == assetIdentifier } : wallets.first
+                }
+                .filterNil()
+                .map{(autoUpdated: true, wallet: $0)}
+                .bind(to: payWithWallet),
+            
+            viewController.assetListView.itemPicker.picker.rx.itemSelected
+                .withLatestFrom(viewController.assetList) { selected, assets in
+                    assets.enumerated().first{$0.offset == selected.row}?.element
+                }
+                .filterNil()
+                .map{(autoUpdated: false, asset: $0)}
+                .bind(to: buyAsset),
+            
+            viewController.assetList
+                .map{ assets -> LWAssetModel? in
+                    tradeType.isBuy ? assets.first { asset in asset.identity == assetIdentifier } : assets.first
+                }
+                .filterNil()
+                .map{(autoUpdated: true, asset: $0)}
+                .bind(to: buyAsset)
         ]
     }
     
-    func bindBuy(toView view: BuyAssetListView, disposedBy disposeBag: DisposeBag) {
-        
-        baseAssetCode
-            .drive(view.baseAssetCode.rx.text)
-            .disposed(by: disposeBag)
-        
-        buyAssetIconURL
-            .drive(view.assetIcon.rx.afImage)
-            .disposed(by: disposeBag)
-        
-        buyAmountInBase
-            .drive(view.amontInBase.rx.text)
-            .disposed(by: disposeBag)
-        
-        buyAssetCode
-            .drive(view.assetCode.rx.text)
-            .disposed(by: disposeBag)
-        
-        (view.amount.rx.textInput <-> buyAmount)
-            .disposed(by: disposeBag)
-        
-        buyAssetName
-            .drive(view.assetName.rx.text)
-            .disposed(by: disposeBag)
+    func bindBuy(toView view: BuyAssetListView) -> [Disposable] {
+        return [
+            baseAssetCode.drive(view.baseAssetCode.rx.text),
+            buyAssetIconURL.drive(view.assetIcon.rx.afImage),
+            buyAmountInBase.drive(view.amontInBase.rx.text),
+            buyAssetCode.drive(view.assetCode.rx.text),
+            (view.amount.rx.textInput <-> buyAmount),
+            buyAssetName.drive(view.assetName.rx.text)
+        ]
     }
     
-    func bindPayWith(toView view: BuyAssetListView, disposedBy disposeBag: DisposeBag) {
-        
-        baseAssetCode
-            .drive(view.baseAssetCode.rx.text)
-            .disposed(by: disposeBag)
-        
-        payWithAssetIconURL
-            .drive(view.assetIcon.rx.afImage)
-            .disposed(by: disposeBag)
-        
-        payWithAmountInBase
-            .drive(view.amontInBase.rx.text)
-            .disposed(by: disposeBag)
-        
-        payWithAssetCode
-            .drive(view.assetCode.rx.text)
-            .disposed(by: disposeBag)
-        
-        (view.amount.rx.textInput <-> payWithAmount)
-            .disposed(by: disposeBag)
-        
-        payWithAssetName
-            .drive(view.assetName.rx.text)
-            .disposed(by: disposeBag)
+    func bindPayWith(toView view: BuyAssetListView) -> [Disposable] {
+        return [
+            baseAssetCode.drive(view.baseAssetCode.rx.text),
+            payWithAssetIconURL.debug("joro: test").drive(view.assetIcon.rx.afImage),
+            payWithAmountInBase.drive(view.amontInBase.rx.text),
+            payWithAssetCode.drive(view.assetCode.rx.text),
+            (view.amount.rx.textInput <-> payWithAmount),
+            payWithAssetName.drive(view.assetName.rx.text)
+        ]
     }
     
 }
