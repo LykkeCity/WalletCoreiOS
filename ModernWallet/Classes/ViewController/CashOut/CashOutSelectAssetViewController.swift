@@ -23,11 +23,11 @@ class CashOutSelectAssetViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private let refreshWallets = Variable<Void>(Void())
+    private let refreshWallets = ReloadTrigger.instance.trigger(interval: 10).shareReplay(1)
     
     private lazy var walletsViewModel: WalletsViewModel = {
         return WalletsViewModel(
-            refreshWallets: self.refreshWallets.asObservable()
+            refreshWallets: self.refreshWallets
         )
     }()
     
