@@ -39,7 +39,6 @@ public class PhoneCodeVerifyViewModel {
             .shareReplay(1)
         
         self.accessTokenObservable = verifySmsCodeRequest
-            .delay(0.1, scheduler: MainScheduler.instance) // dirty hack:  delay with more than loading view model delays
             .filterSuccess()
             .map { $0.accessToken }
         
