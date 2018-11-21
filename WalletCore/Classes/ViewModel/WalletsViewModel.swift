@@ -64,7 +64,7 @@ open class WalletsViewModel {
             .combineLatest(baseAssetResult, nonEmptyWallets, allAssetsRequest.filterSuccess())
             {
                 (
-                    asset: $0,
+                    asset: $1.findBaseAsset() ?? $0,
                     wallets: $1,
                     assets: $2,
                     totalBalance: $1.calculateBalanceInBase()
@@ -72,7 +72,9 @@ open class WalletsViewModel {
             }
             .shareReplay(1)
         
-        self.currencyName = baseAssetRequest
+        self.currencyName = nonEmptyWallets
+            .map{ $0.findBaseAsset() }
+            .filterNil()
             .mapToName()
             .asDriver(onErrorJustReturn: "")
         
@@ -106,10 +108,9 @@ open class WalletsViewModel {
     }
 }
 
-fileprivate extension ObservableType where Self.E == ApiResult<LWAssetModel> {
+fileprivate extension ObservableType where Self.E == LWAssetModel {
     func mapToName() -> Observable<String> {
-        return filterSuccess()
-            .map{$0.name ?? ""}
+        return map{$0.displayId ?? ""}
             .startWith("")
     }
 }
@@ -139,3 +140,5 @@ public extension ObservableType where Self.E == [LWSpotWallet] {
         }
     }
 }
+
+
