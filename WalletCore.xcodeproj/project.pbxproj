@@ -585,6 +585,7 @@
 		614214201F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */; };
 		6148359220089FC600099057 /* TransactionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6148359120089FC600099057 /* TransactionFormatter.swift */; };
 		6163A9441FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */; };
+		61915F8E21A599B1004BB79C /* SpotWallet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61915F8D21A599B1004BB79C /* SpotWallet+Extensions.swift */; };
 		61968D8520A492F700445ABF /* LWPacketAssetDisclaimersGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D8420A492F700445ABF /* LWPacketAssetDisclaimersGet.swift */; };
 		61968D8720A4936600445ABF /* LWModelAssetDisclaimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D8620A4936600445ABF /* LWModelAssetDisclaimer.swift */; };
 		61968D8920A495D800445ABF /* LWPacketAssetDisclaimersApprove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61968D8820A495D800445ABF /* LWPacketAssetDisclaimersApprove.swift */; };
@@ -1321,6 +1322,7 @@
 		6142141F1F7A33BC00E2F524 /* KycUploadDocumentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KycUploadDocumentsViewModel.swift; sourceTree = "<group>"; };
 		6148359120089FC600099057 /* TransactionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFormatter.swift; sourceTree = "<group>"; };
 		6163A9431FFE8DDA007F1F8D /* LWSpotWallet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LWSpotWallet+Extensions.swift"; sourceTree = "<group>"; };
+		61915F8D21A599B1004BB79C /* SpotWallet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpotWallet+Extensions.swift"; sourceTree = "<group>"; };
 		61968D8420A492F700445ABF /* LWPacketAssetDisclaimersGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketAssetDisclaimersGet.swift; sourceTree = "<group>"; };
 		61968D8620A4936600445ABF /* LWModelAssetDisclaimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWModelAssetDisclaimer.swift; sourceTree = "<group>"; };
 		61968D8820A495D800445ABF /* LWPacketAssetDisclaimersApprove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LWPacketAssetDisclaimersApprove.swift; sourceTree = "<group>"; };
@@ -2573,6 +2575,7 @@
 				C5999A9721287DB600CB5B8B /* LWRecoveryPasswordModel+Rx.swift */,
 				E77CA0B5218C7C970060FF87 /* Notification+Extensions.swift */,
 				46E142F2218E602500FAD2CB /* NotificationCenter+Rx.swift */,
+				61915F8D21A599B1004BB79C /* SpotWallet+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3571,6 +3574,7 @@
 				6656BB2A1FEAA07B006CAD5D /* LWPacketSendVerificationCode.m in Sources */,
 				46E142F3218E602500FAD2CB /* NotificationCenter+Rx.swift in Sources */,
 				46C9B0011F417BD800B83CCB /* GDXNetAdapter.m in Sources */,
+				61915F8E21A599B1004BB79C /* SpotWallet+Extensions.swift in Sources */,
 				AB1D63631FEB01DE000495E7 /* LWOperationModel.swift in Sources */,
 				6656BAEC1FEA95DC006CAD5D /* HotWalletNetworkClient.swift in Sources */,
 				61A19350206BD94C00100CE8 /* LWCache+MarketCap.swift in Sources */,
