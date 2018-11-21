@@ -13,6 +13,10 @@ extension LWCache {
         return getAllAssets().first{ $0.identity == id }
     }
     
+    public func getAsset(byDisplayId id: String) -> LWAssetModel? {
+        return getAllAssets().first{ $0.displayId == id }
+    }
+    
     public func getAllAssets() -> [LWAssetModel] {
         return (allAssets as? [LWAssetModel]) ?? []
     }

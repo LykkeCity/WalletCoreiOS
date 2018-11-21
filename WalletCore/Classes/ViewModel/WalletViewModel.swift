@@ -33,9 +33,6 @@ public class WalletViewModel {
             authManager: LWRxAuthManager
         )
     ) {
-        let baseAssetResponseObservable = dependency.authManager.baseAsset.request()
-            .shareReplay(1)
-        
         let nonEmptyWallets = refresh
             .flatMapLatest { _ in dependency.authManager.lykkeWallets.requestNonEmptyWallets() }
             .filterSuccess()
@@ -48,7 +45,9 @@ public class WalletViewModel {
             .map{return $0.assetPairId == nil}
             .asDriver(onErrorJustReturn: false)
         
-        baseAssetObservable = baseAssetResponseObservable.filterSuccess()
+        baseAssetObservable = wallet
+            .map{ $0.findBaseAsset() }
+            .filterNil()
         
         assetIconUrl = assetObservable
             .mapToAsset()
