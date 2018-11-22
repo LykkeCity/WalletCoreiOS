@@ -123,7 +123,7 @@ class BuyOptimizedViewController: UIViewController {
             .bind(toPickerView: assetListView.itemPicker.picker, assetIdentifierToSelect: tradeAssetIdentifier)
             .disposed(by: disposeBag)
         
-        //Trading
+        //Trading TODO: Move below code to a dedicated view model
         let assetPairObservable = buyOptimizedViewModel.confirm.asObservable()
             .filter { $0 }
             .map { [buyOptimizedViewModel] _ -> (baseAsset: LWAssetModel, quotingAsset: LWAssetModel)? in
@@ -134,12 +134,6 @@ class BuyOptimizedViewController: UIViewController {
             .filterNil()
             .flatMap { LWRxAuthManager.instance.assetPairs.request(baseAsset: $0.baseAsset, quotingAsset: $0.quotingAsset) }
             .shareReplay(1)
-        
-        assetPairObservable
-            .filterError()
-            .asDriver(onErrorJustReturn: [:])
-            .drive(rx.error)
-            .disposed(by: disposeBag)
         
         let tradingObservable = assetPairObservable.filterSuccess()
             .filterNil()
@@ -164,6 +158,15 @@ class BuyOptimizedViewController: UIViewController {
                 viewController.buyOptimizedViewModel.payWithAmount.value = BuyOptimizedViewModel.Amount(autoUpdated: true, value: "", showErrorMsg: false)
                 viewController.view.makeToast(Localize("buy.newDesign.success"))
             })
+            .disposed(by: disposeBag)
+        
+        Observable
+            .merge(
+                assetPairObservable.filterError(),
+                tradingObservable.filterError()
+            )
+            .asDriver(onErrorJustReturn: [:])
+            .drive(rx.error)
             .disposed(by: disposeBag)
         
         loadingViewModel = LoadingViewModel([
@@ -378,7 +381,7 @@ fileprivate extension BuyOptimizedViewModel {
     func bindPayWith(toView view: BuyAssetListView) -> [Disposable] {
         return [
             baseAssetCode.drive(view.baseAssetCode.rx.text),
-            payWithAssetIconURL.debug("joro: test").drive(view.assetIcon.rx.afImage),
+            payWithAssetIconURL.drive(view.assetIcon.rx.afImage),
             payWithAmountInBase.drive(view.amontInBase.rx.text),
             payWithAssetCode.drive(view.assetCode.rx.text),
             (view.amount.rx.textInput <-> payWithAmount),
