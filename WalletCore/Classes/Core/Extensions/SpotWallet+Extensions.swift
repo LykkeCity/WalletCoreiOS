@@ -28,7 +28,10 @@ extension LWSpotWallet {
             return nil
         }
         
-        let assetId = assetPairId.replacingOccurrences(of: asset.displayId, with: "")
+        guard let assetId = assetPairId?.replacingOccurrences(of: asset.displayId, with: "") else {
+            return nil
+        }
+        
         return LWCache.instance()?.getAsset(byDisplayId: assetId)
     }
 }
