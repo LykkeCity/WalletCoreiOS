@@ -16,17 +16,21 @@ open class ClientKeysViewModel {
     public let pubKey = Variable<String>("")
     public let encodedPrivateKey = Variable<String>("")
 
-    public let loading: Observable<Bool>
+    public let loadingViewModel: LoadingViewModel
     public let result: Driver<ApiResult<LWPacketClientKeys>>
     
     public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
-        result = submit
+        let result = submit
             .throttle(1, scheduler: MainScheduler.instance)
             .mapClientKeys(pubKey: pubKey, encodedPrivateKey: encodedPrivateKey,  authManager: authManager)
-            .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
-        loading = result.asObservable().isLoading()
+        
+        self.result = result.asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
+        
+        loadingViewModel = LoadingViewModel([
+            result.isLoading()
+        ])
     }
     
 
