@@ -492,6 +492,9 @@
                                                                     <constraint firstAttribute="height" constant="22" id="DQS-c9-PcC"/>
                                                                 </constraints>
                                                                 <state key="normal" image="infoIcon"/>
+                                                                <connections>
+                                                                    <action selector="copyBIC" destination="hUz-FU-4Rj" eventType="touchUpInside" id="Fhv-YR-is9"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <connections>
@@ -520,6 +523,9 @@
                                                                     <constraint firstAttribute="width" constant="30" id="XLz-hH-MJJ"/>
                                                                 </constraints>
                                                                 <state key="normal" image="infoIcon"/>
+                                                                <connections>
+                                                                    <action selector="copyAccountNumber" destination="hUz-FU-4Rj" eventType="touchUpInside" id="IjG-cG-4ul"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <connections>
@@ -548,6 +554,9 @@
                                                                     <constraint firstAttribute="height" constant="22" id="bLL-Ys-p4b"/>
                                                                 </constraints>
                                                                 <state key="normal" image="infoIcon"/>
+                                                                <connections>
+                                                                    <action selector="copyAccountName" destination="hUz-FU-4Rj" eventType="touchUpInside" id="9kI-q5-y1V"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <connections>
@@ -576,6 +585,9 @@
                                                                     <constraint firstAttribute="height" constant="22" id="vTi-Uf-UDF"/>
                                                                 </constraints>
                                                                 <state key="normal" image="infoIcon"/>
+                                                                <connections>
+                                                                    <action selector="copyBankAddress" destination="hUz-FU-4Rj" eventType="touchUpInside" id="0HD-bQ-nrg"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <connections>
@@ -604,6 +616,9 @@
                                                                     <constraint firstAttribute="height" constant="22" id="6IF-Qr-dsz"/>
                                                                 </constraints>
                                                                 <state key="normal" image="infoIcon"/>
+                                                                <connections>
+                                                                    <action selector="copyCompanyAddress" destination="hUz-FU-4Rj" eventType="touchUpInside" id="J1z-w4-xnO"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <connections>
@@ -632,6 +647,9 @@
                                                                     <constraint firstAttribute="height" constant="22" id="eld-Kp-At4"/>
                                                                 </constraints>
                                                                 <state key="normal" image="infoIcon"/>
+                                                                <connections>
+                                                                    <action selector="copyPaymentPurpose" destination="hUz-FU-4Rj" eventType="touchUpInside" id="a84-dZ-hGl"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <connections>
