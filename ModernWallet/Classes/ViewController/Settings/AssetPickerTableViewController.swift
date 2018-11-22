@@ -31,6 +31,8 @@ class AssetPickerTableViewController: UITableViewController {
     
     let disposeBag = DisposeBag()
     
+    var loadingViewModel: LoadingViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

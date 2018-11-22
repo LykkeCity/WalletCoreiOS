@@ -111,22 +111,31 @@ extension SettingsTableViewController {
         
         vc.displayBaseAssetAsSelected = true
         
-        let setBaseAsset = vc.assetPicked.flatMap { picked in
-            LWRxAuthManager.instance.baseAssetSet.request(withParams: picked.identity)
-        }.shareReplay(1)
+        let setBaseAsset = vc.assetPicked
+            .flatMapLatest { picked in
+                LWRxAuthManager.instance.baseAssetSet.request(withParams: picked.identity)
+            }
+            .observeOn(MainScheduler.instance)
+            .shareReplay(1)
+        
+        vc.loadingViewModel = LoadingViewModel([setBaseAsset.isLoading()])
         
         setBaseAsset.filterError()
-        .bind(to: rx.error)
-        .disposed(by: disposeBag)
+            .bind(to: vc.rx.error)
+            .disposed(by: vc.disposeBag)
         
         setBaseAsset.filterSuccess()
-        .observeOn(MainScheduler.instance)
-        .waitFor(setBaseAsset.isLoading())
-        .subscribe(onNext: { [weak self, weak vc] _ in
-            self?.viewModel.performRefreshSettings()
-            vc?.dismissViewController()
-        })
-        .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self, weak vc] _ in
+                self?.viewModel.performRefreshSettings()
+                vc?.dismissViewController(false)
+            })
+            .disposed(by: vc.disposeBag)
+        
+        //DevNote: the last false event will not be executed since dismissing of the view controller will dispose loading observer,
+        //doing so the app does not blink
+        vc.loadingViewModel?.isLoading
+            .bind(to: vc.rx.loading)
+            .disposed(by: vc.disposeBag)
     }
 }
 
