@@ -68,15 +68,17 @@ extension LWNetworkTemplate: LWAuthManagerDelegate {
     }
     
     func showKycView() {
-        guard
-            let visibleVC = (UIApplication.shared.delegate as? AppDelegate)?.visibleViewController,
-            let authManager = LWAuthManager.instance()
-        else {
-            return
+        DispatchQueue.main.async {
+            guard
+                let visibleVC = (UIApplication.shared.delegate as? AppDelegate)?.visibleViewController,
+                let authManager = LWAuthManager.instance()
+                else {
+                    return
+            }
+            visibleVC.rx.loading.onNext(true)
+            authManager.delegate = self
+            authManager.requestKYCStatusGet()
         }
-        visibleVC.rx.loading.onNext(true)
-        authManager.delegate = self
-        authManager.requestKYCStatusGet()
     }
     
     public func authManager(_ manager: LWAuthManager!, didGetKYCStatus status: String!, personalData: LWPersonalDataModel!) {
