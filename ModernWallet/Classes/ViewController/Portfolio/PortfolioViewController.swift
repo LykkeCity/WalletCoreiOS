@@ -257,8 +257,7 @@ fileprivate extension PortfolioViewController {
 
         loadingViewModel.isLoading
             .startWith(true)
-            .asDriver(onErrorJustReturn: false)
-            .drive(rx.loading)
+            .bind(to: rx.loading)
             .disposed(by: disposeBag)
     }
 }
