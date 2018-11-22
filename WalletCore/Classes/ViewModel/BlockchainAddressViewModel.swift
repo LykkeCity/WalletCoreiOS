@@ -42,7 +42,9 @@ public class BlockchainAddressViewModel {
                     return Observable.just( (confirmation: true, asset: asset) )
                 }
                 
-                return  alertPresenter.presentAlert().map { (confirmation: $0, asset: asset) }
+                return  alertPresenter
+                    .presentAlert(title: Localize("utils.attention"), message: Localize("alert.no.bcn.address"))
+                    .map { (confirmation: $0, asset: asset) }
             }
             .filter { $0.confirmation }
             .map { $0.asset }

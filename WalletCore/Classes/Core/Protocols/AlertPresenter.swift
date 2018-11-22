@@ -11,5 +11,5 @@ import RxSwift
 import RxCocoa
 
 public protocol AlertPresenter: class {
-    func presentAlert() -> Observable<Bool>
+    func presentAlert(title: String, message: String) -> Observable<Bool>
 }
