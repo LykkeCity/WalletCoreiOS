@@ -108,9 +108,9 @@ public class BuyOptimizedViewModel {
         
         let buyAssetAmountObservable = Observable
             .combineLatest(
-                buyAsset.asObservable().mapToAsset().debug(),
-                buyAmount.asObservable().mapToValue().mapToDecimal().debug(),
-                bid.asObservable().filterNil().debug()
+                buyAsset.asObservable().mapToAsset(),
+                buyAmount.asObservable().mapToValue().mapToDecimal(),
+                bid.asObservable().filterNil()
             )
             .map{(asset: $0, units: $1, bid: $2)}
             .shareReplay(1)
@@ -139,9 +139,9 @@ public class BuyOptimizedViewModel {
         
         let payWithAssetAmountObservable = Observable
             .combineLatest(
-                payWithWallet.asObservable().mapToAsset().debug("GG: 12"),
-                payWithAmount.asObservable().mapToValue().mapToDecimal().debug("GG: 13"),
-                bid.asObservable().filterNil().debug("GG: 14")
+                payWithWallet.asObservable().mapToAsset(),
+                payWithAmount.asObservable().mapToValue().mapToDecimal(),
+                bid.asObservable().filterNil()
             )
             .map{(asset: $0, units: $1, bid: $2)}
             .shareReplay(1)
