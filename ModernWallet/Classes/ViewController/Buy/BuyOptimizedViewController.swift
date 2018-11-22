@@ -336,7 +336,9 @@ fileprivate extension BuyOptimizedViewModel {
             
             viewController.walletList
                 .map{ wallets -> LWSpotWallet? in
-                    tradeType.isSell && assetIdentifier != nil ? wallets.first { wallet in wallet.asset.identity == assetIdentifier } : wallets.first
+                    tradeType.isSell && assetIdentifier != nil ?
+                        (wallets.first { wallet in wallet.asset.identity == assetIdentifier } ?? wallets.first) :
+                            wallets.first
                 }
                 .filterNil()
                 .map{(autoUpdated: true, wallet: $0)}
@@ -352,7 +354,9 @@ fileprivate extension BuyOptimizedViewModel {
             
             viewController.assetList
                 .map{ assets -> LWAssetModel? in
-                    tradeType.isBuy && assetIdentifier != nil ? assets.first { asset in asset.identity == assetIdentifier } : assets.first
+                    tradeType.isBuy && assetIdentifier != nil ?
+                        (assets.first { asset in asset.identity == assetIdentifier } ?? assets.first) :
+                            assets.first
                 }
                 .filterNil()
                 .map{(autoUpdated: true, asset: $0)}
