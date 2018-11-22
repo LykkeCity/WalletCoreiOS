@@ -45,14 +45,10 @@ class SignUpShakeViewController: UIViewController {
         instructionsLabel.text = Localize("auth.newDesign.generateKeysInstructions")
         descriptionLabel.text = Localize("auth.newDesign.generateKeysDetails")
 
-        viewModel.loading
+        viewModel.loadingViewModel.isLoading
             .bind(to: isLoading)
             .disposed(by: disposeBag)
 
-        viewModel.loading
-            .bind(to: rx.loading)
-            .disposed(by: disposeBag)
-        
         let resultObservable = viewModel.result.asObservable()
         
         resultObservable
@@ -70,15 +66,19 @@ class SignUpShakeViewController: UIViewController {
                 resultObservable.filterError().filter{ $0.isCodeOne }.map{ _ in Void() },
                 resultObservable.filterSuccess().map{ _ in () }
             )
-            .delay(0.011, scheduler: MainScheduler.instance) // dirty hack:  delay with more than loading view model delays
+            .observeOn(MainScheduler.instance)
             .subscribe { [weak self] _ in
                 SignUpStep.resetInstance()
                 UserDefaults.standard.isLoggedIn = true
                 UserDefaults.standard.synchronize()
                 NotificationCenter.default.post(name: .loggedIn, object: nil)
                 
-                self?.navigationController?.dismiss(animated: true)
+                self?.navigationController?.dismiss(animated: false)
             }
+            .disposed(by: disposeBag)
+        
+        viewModel.loadingViewModel.isLoading
+            .bind(to: rx.loading)
             .disposed(by: disposeBag)
     }
 

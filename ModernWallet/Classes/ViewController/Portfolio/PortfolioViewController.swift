@@ -199,13 +199,16 @@ fileprivate extension WalletsViewModel {
         
         return [
             isEmpty.asDriver()
+                .startWith(true)
                 .map{ !$0 }
                 .drive(viewController.emptyPortfolioView.rx.isHidden),
             
             isEmpty.asDriver()
+                .startWith(true)
                 .drive(viewController.pieChartCenterView.addMoneyButton.rx.isHidden),
             
             isEmpty.asDriver()
+                .startWith(true)
                 .drive(viewController.filterContainer.rx.isHidden),
  
             baseAsset
@@ -253,8 +256,8 @@ fileprivate extension PortfolioViewController {
             .disposed(by: disposeBag)
 
         loadingViewModel.isLoading
-            .asDriver(onErrorJustReturn: false)
-            .drive(rx.loading)
+            .startWith(true)
+            .bind(to: rx.loading)
             .disposed(by: disposeBag)
     }
 }
