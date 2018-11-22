@@ -52,7 +52,10 @@ class CashOutConfirmationViewController: UIViewController {
         confirmButton.setTitle(Localize("newDesign.confirm"), for: .normal)
         
         confirmButton.rx.tap
-            .flatMap { return PinViewController.presentOrderPinViewController(from: self, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true) }
+            .flatMap { [weak self] _ -> Observable<Void> in
+                guard let strongSelf = self else { return Observable<Void>.never() }
+                return PinViewController.presentOrderPinViewController(from: strongSelf, title: Localize("newDesign.enterPin"), isTouchIdEnabled: true)
+            }
             .bind(to: cashOutViewModel.trigger)
             .disposed(by: disposeBag)
         
