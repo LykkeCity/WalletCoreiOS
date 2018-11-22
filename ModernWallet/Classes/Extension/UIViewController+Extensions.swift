@@ -15,11 +15,11 @@ import SwiftSpinner
 
 extension UIViewController: AlertPresenter {
     
-    public func presentAlert() -> Observable<Bool> {
+    public func presentAlert(title: String, message: String) -> Observable<Bool> {
         
         return Observable.create({ [weak self] subscriber in
             
-            let alertController = UIAlertController(title: Localize("utils.attention"), message: Localize("alert.no.bcn.address"), preferredStyle: UIAlertControllerStyle.alert)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
             
             let cancelAction = UIAlertAction(title: Localize("utils.cancel"), style: UIAlertActionStyle.cancel, handler: { _ in subscriber.onNext(false) })
             alertController.addAction(cancelAction)

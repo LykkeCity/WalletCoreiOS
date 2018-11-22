@@ -112,6 +112,18 @@ extension SettingsTableViewController {
         vc.displayBaseAssetAsSelected = true
         
         let setBaseAsset = vc.assetPicked
+            .flatMapLatest{ [weak vc] picked -> Observable<(confirmation: Bool, picked: LWAssetModel)> in
+                
+                guard let alertPresenter = vc else {
+                    return Observable.just( (confirmation: true, picked: picked) )
+                }
+                
+                return alertPresenter
+                    .presentAlert(title: Localize("utils.attention"), message: Localize("settings.cell.baseAssetChange"))
+                    .map { (confirmation: $0, picked: picked) }
+            }
+            .filter{ $0.confirmation }
+            .map{ $0.picked }
             .flatMapLatest { picked in
                 LWRxAuthManager.instance.baseAssetSet.request(withParams: picked.identity)
             }

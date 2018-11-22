@@ -273,6 +273,7 @@
 
 "marginal.empty.title" = "Take next trade after selecting the desired\nasset from the list";
 
+"settings.cell.baseAssetChange" = "Changing of base asset will be applied shortly";
 "settings.cell.personal" = "View personal data";
 "settings.cell.baseAsset" = "Base asset";
 "settings.cell.refundAddress" = "Refund Address";
