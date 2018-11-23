@@ -116,11 +116,17 @@ class BuyOptimizedViewController: UIViewController {
         // Picker bindings
         walletList
             .map{ $0.map{ $0.asset } }
-            .bind(toPickerView: walletListView.itemPicker.picker, assetIdentifierToSelect: tradeAssetIdentifier)
+            .bind(
+                toPickerView: walletListView.itemPicker.picker,
+                withAssetToSelect: buyOptimizedViewModel.payWithWallet.asObservable().mapToAsset()
+            )
             .disposed(by: disposeBag)
         
         assetList
-            .bind(toPickerView: assetListView.itemPicker.picker, assetIdentifierToSelect: tradeAssetIdentifier)
+            .bind(
+                toPickerView: assetListView.itemPicker.picker,
+                withAssetToSelect: buyOptimizedViewModel.buyAsset.asObservable().mapToAsset()
+            )
             .disposed(by: disposeBag)
         
         //Trading TODO: Move below code to a dedicated view model
@@ -254,7 +260,10 @@ extension Observable where Element == ApiResult<LWAssetDealModel?> {
 //MARK:- Binding
 
 fileprivate extension ObservableType where Self.E == [LWAssetModel] {
-    func bind(toPickerView pickerView: UIPickerView, assetIdentifierToSelect: String?) -> [Disposable] {
+    func bind(
+        toPickerView pickerView: UIPickerView,
+        withAssetToSelect assetToSelect: Observable<LWAssetModel>
+    ) -> [Disposable] {
         return[
             //populate picker options
             bind(to: pickerView.rx.itemAttributedTitles) {
@@ -262,14 +271,15 @@ fileprivate extension ObservableType where Self.E == [LWAssetModel] {
             },
             
             // set tradeAssetIdentifier as default
-            map{[assetIdentifierToSelect] assets in
-                assets.enumerated().first{ $1.identity == assetIdentifierToSelect }?.offset
-            }
-            .filterNil()
-            .map{ (row: $0, component: 0) }
-            .bind { [pickerView] data in
-                pickerView.selectRow(data.row, inComponent: data.component, animated: false)
-            }
+            withLatestFrom(assetToSelect) {($0, $1)}
+                .map{data in
+                    data.0.enumerated().first{ $1.identity == data.1.identity }?.offset
+                }
+                .filterNil()
+                .map{ (row: $0, component: 0) }
+                .bind { [pickerView] data in
+                    pickerView.selectRow(data.row, inComponent: data.component, animated: false)
+                }
         ]
     }
 }
