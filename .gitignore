@@ -8,3 +8,5 @@ ModernWallet/.DS_Store
 ModernWallet/Classes/.DS_Store
 ModernWallet/Resources/.DS_Store
 ModernWallet/Resources/Images/.DS_Store
+build/
+fastlane/report.xml
