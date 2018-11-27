@@ -10,3 +10,6 @@ ModernWallet/Resources/.DS_Store
 ModernWallet/Resources/Images/.DS_Store
 build/
 fastlane/report.xml
+fastlane/README.md
+ModernMoney.ipa
+ModernMoney.app.dSYM.zip

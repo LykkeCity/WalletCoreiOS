@@ -18,34 +18,23 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    increment_build_version
-    push_git_tag
-    get_certificates           # invokes cert
-    get_provisioning_profile   # invokes sigh
-    build_app(workspace: "ModernWallet.xcworkspace", scheme: "ModernMoney.Test")
-    increment_build_number(
-      build_number: latest_testflight_build_number + 1,
-      xcodeproj: "Example.xcodeproj"
-    )
-    upload_to_testflight
-  end
+    
+    # Ensure that your git status is not dirty
+    ensure_git_status_clean
 
-  desc "Increment build version"
-  lane :increment_build_version do
     increment_build_number(
       build_number: latest_testflight_build_number + 1,
       xcodeproj: "ModernWallet.xcodeproj"
     )
-  end
+    
+    #build_app(workspace: "ModernWallet.xcworkspace", scheme: "ModernMoney.Test")
+    
+    #upload_to_testflight(
+    #  skip_waiting_for_build_processing: true,
+    #  ipa: "build"
+    #)
 
-  desc "Push git tag"
-  lane :push_git_tag do
-    # Ensure that your git status is not dirty
-    ensure_git_status_clean
-
-    increment_build_version
-
-    # Commit the version bump
+     # Commit the version bump
     commit_version_bump(xcodeproj: "ModernWallet.xcodeproj")
 
     # Add a git tag for this build. This will automatically
@@ -53,6 +42,13 @@ platform :ios do
     add_git_tag
 
     # Push the new commit and tag back to your git remote
-    #push_to_git_remote
+    push_to_git_remote
   end
+
+  desc "Get certificate and provisioning profile"
+  lane :obtain_signing_entities do
+    get_certificates           # invokes cert
+    get_provisioning_profile   # invokes sigh
+  end
+
 end
