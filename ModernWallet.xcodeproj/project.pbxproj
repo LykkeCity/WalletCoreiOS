@@ -1056,7 +1056,7 @@
 				TargetAttributes = {
 					CF21DC7A1C17590E00D2399E = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = SPFVYM4YAV;
+						DevelopmentTeam = ZNE622G954;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -1064,7 +1064,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1267,7 +1267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" f64e7b9a868533d9c0aae6e7587a65d18eaf811e f958c3668866bdbeb2d6a31a33f99733aadb5553994cea914f4bcc0e46b03240";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" f64e7b9a868533d9c0aae6e7587a65d18eaf811e f958c3668866bdbeb2d6a31a33f99733aadb5553994cea914f4bcc0e46b03240\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1539,14 +1539,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ModernWallet/ModernWallet.Test.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SPFVYM4YAV;
+				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1555,7 +1555,7 @@
 					"$(inherited)",
 					"COCOAPODS=1",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/ModernWallet/Resources/Info.plist";
+				INFOPLIST_FILE = ModernWallet/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1564,15 +1564,16 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.primeholding.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
-				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
+				PROVISIONING_PROFILE_SPECIFIER = "com.primeholding.modernmoney - Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -1582,13 +1583,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ModernWallet/ModernWallet.Test.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SPFVYM4YAV;
+				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1597,7 +1598,7 @@
 					"$(inherited)",
 					"COCOAPODS=1",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/ModernWallet/Resources/Info.plist";
+				INFOPLIST_FILE = ModernWallet/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1606,15 +1607,16 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/Security",
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.primeholding.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
-				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
+				PROVISIONING_PROFILE_SPECIFIER = "com.primeholding.modernmoney AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -1677,14 +1679,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ModernWallet/ModernWallet.Test.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SPFVYM4YAV;
+				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1693,7 +1695,7 @@
 					"$(inherited)",
 					"COCOAPODS=1",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/ModernWallet/Resources/Info.plist";
+				INFOPLIST_FILE = ModernWallet/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1703,15 +1705,16 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"TEST\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.primeholding.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
-				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
+				PROVISIONING_PROFILE_SPECIFIER = "com.primeholding.modernmoney - Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug.Test;
 		};
@@ -1766,13 +1769,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${ICON_SUFFIX}";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ModernWallet/ModernWallet.Test.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SPFVYM4YAV;
+				DEVELOPMENT_TEAM = ZNE622G954;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1781,7 +1784,7 @@
 					"$(inherited)",
 					"COCOAPODS=1",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/ModernWallet/Resources/Info.plist";
+				INFOPLIST_FILE = ModernWallet/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1791,15 +1794,16 @@
 					"$(PROJECT_DIR)/ModernWallet/Classes/Model/Core/CoreBitcoin",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"TEST\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lykkex.modernmoney;
+				PRODUCT_BUNDLE_IDENTIFIER = com.primeholding.modernmoney;
 				PRODUCT_MODULE_NAME = ModernMoney;
 				PRODUCT_NAME = "$(TARGET_NAME).Test";
 				PROVISIONING_PROFILE = "610b3fc9-8085-4dd4-85ec-590b643ab024";
-				PROVISIONING_PROFILE_SPECIFIER = "modern-development";
+				PROVISIONING_PROFILE_SPECIFIER = "com.primeholding.modernmoney AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "ModernWallet/Classes/ModernWallet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release.Test;
 		};
