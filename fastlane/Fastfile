@@ -19,23 +19,32 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     
+    # ensure there are new commits after the last version bump
+    if last_git_commit[:message]["Commit the version bump"]
+      next
+    end
+
+    xcodeproj = "ModernWallet.xcodeproj"
+    workspace = "ModernWallet.xcworkspace"
+    scheme = "ModernMoney.Test"
+
     # Ensure that your git status is not dirty
     ensure_git_status_clean
 
     increment_build_number(
       build_number: latest_testflight_build_number + 1,
-      xcodeproj: "ModernWallet.xcodeproj"
+      xcodeproj: xcodeproj
     )
     
-    #build_app(workspace: "ModernWallet.xcworkspace", scheme: "ModernMoney.Test")
+    build_app(workspace: workspace, scheme: scheme)
     
-    #upload_to_testflight(
-    #  skip_waiting_for_build_processing: true,
-    #  ipa: "build"
-    #)
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      ipa: "build"
+    )
 
      # Commit the version bump
-    commit_version_bump(xcodeproj: "ModernWallet.xcodeproj")
+    commit_version_bump(xcodeproj: xcodeproj)
 
     # Add a git tag for this build. This will automatically
     # use an appropriate git tag name
