@@ -20,7 +20,7 @@ platform :ios do
   lane :beta do
     
     # ensure there are new commits after the last version bump
-    if last_git_commit[:message]["Commit the version bump"]
+    if last_git_commit[:message]["Version Bump"]
       next
     end
 
