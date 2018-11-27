@@ -36,11 +36,16 @@ platform :ios do
       xcodeproj: xcodeproj
     )
     
-    build_app(workspace: workspace, scheme: scheme)
+    build_app(
+      workspace: workspace, 
+      scheme: scheme,
+      output_directory: "build",
+      output_name: "ModernMoney.ipa"
+    )
     
     upload_to_testflight(
       skip_waiting_for_build_processing: true,
-      ipa: "build"
+      ipa: "build/ModernMoney.ipa"
     )
 
      # Commit the version bump
