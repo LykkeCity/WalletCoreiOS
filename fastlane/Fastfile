@@ -26,7 +26,7 @@ platform :ios do
 
     xcodeproj = "ModernWallet.xcodeproj"
     workspace = "ModernWallet.xcworkspace"
-    scheme = "ModernMoney.Test"
+    scheme = "ModernMoney"
 
     # Ensure that your git status is not dirty
     ensure_git_status_clean
