@@ -33,7 +33,11 @@ open class PinGetViewModel{
         
         result = request.filterSuccess()
         
-        error = request.filterError()
+        error = Observable.merge([
+            request.filterForbidden()
+                .map{["Message": "The requested action is forbidden.Please contact the support team."]},
+            request.filterError()
+        ])
         
         loadingViewModel = LoadingViewModel([request.asObservable().isLoading()])
     }
