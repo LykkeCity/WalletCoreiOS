@@ -21,7 +21,7 @@ public class Asset {
         self.cryptoCurrency = Currency(
             identity: wallet.asset.identity ?? "",
             name: wallet.asset.displayFullName,
-            shortName: wallet.asset.displayName,
+            shortName: wallet.asset.displayId,
             value: (wallet.balance ?? 0.0).decimalValue,
             accuracy: Int(wallet.asset.accuracy)
         )
@@ -29,7 +29,7 @@ public class Asset {
         self.realCurrency = Currency(
             identity: baseAsset.identity ?? "",
             name: baseAsset.displayFullName,
-            shortName: baseAsset.displayName,
+            shortName: baseAsset.displayId,
             value: wallet.amountInBase.decimalValue,
             accuracy: Int(baseAsset.accuracy),
             sign: baseAsset.symbol ?? ""

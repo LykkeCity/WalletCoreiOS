@@ -15,7 +15,7 @@ public extension LWAssetModel {
     
     /// Proxy to iconUrlString
     public var iconUrl: URL? {
-        guard let iconName = self.name ?? self.displayId else { return nil }
+        guard let iconName = self.displayId ?? self.name else { return nil }
         return URL(string: "https://lkefiles.blob.core.windows.net/images/modern_wallet_icons/\(iconName).png")
     }
     
