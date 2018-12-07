@@ -18,7 +18,7 @@ open class SignUpRegistrationViewModel {
     public let hint = Variable<String>("")
     let fake = Variable<String>("")
     
-    public let loading: Observable<Bool>
+    public let loadingViewModel: LoadingViewModel
     public let result: Driver<ApiResult<LWPacketRegistration>>
     
     public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
@@ -28,7 +28,9 @@ open class SignUpRegistrationViewModel {
             .mapToPack(email: email, password: password, clientInfo: clientInfo, hint: hint, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
-        loading = result.asObservable().isLoading().shareReplay(1)
+        loadingViewModel = LoadingViewModel([
+            result.asObservable().isLoading()
+        ])
     }
     
     public lazy var isValid : Observable<Bool> = {
