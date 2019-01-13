@@ -18,6 +18,9 @@ open class LogInViewModel {
     public let clientInfo = Variable<String>("")
     public let loading: Observable<Bool>
     public let result: Driver<ApiResult<LWPacketAuthentication>>
+    public let showPinViewController: Driver<Void>
+    public let needToFillPhone: Driver<Void>
+    public let needToFillPin: Driver<Void>
     
     public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
@@ -26,6 +29,9 @@ open class LogInViewModel {
             .mapToPack(email: email, password: password, clientInfo: clientInfo, authManager: authManager)
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
+        showPinViewController = result.showPin()
+        needToFillPhone = result.needToFillPhone()
+        needToFillPin = result.needToFillPin()
         loading = result.asObservable().isLoading()
     }
     
@@ -35,6 +41,34 @@ open class LogInViewModel {
                 return email.characters.count > 0
                     && password.characters.count > 0 && LWValidator.validateEmail(self.email.value)
         })
+    }
+}
+
+fileprivate extension SharedSequenceConvertibleType
+    where SharingStrategy == DriverSharingStrategy, E == ApiResult<LWPacketAuthentication> {
+    
+    func showPin() -> Driver<Void> {
+        return asObservable()
+            .filterSuccess()
+            .filter{ $0.isPinEntered }
+            .map{ _ in () }
+            .asDriver(onErrorJustReturn: ())
+    }
+    
+    func needToFillPhone() -> Driver<Void> {
+        return asObservable()
+            .filterSuccess()
+            .filter{ $0.personalData?.phone?.isEmpty ?? false }
+            .map{ _ in () }
+            .asDriver(onErrorJustReturn: ())
+    }
+    
+    func needToFillPin() -> Driver<Void> {
+        return asObservable()
+            .filterSuccess()
+            .filter{ !$0.isPinEntered }
+            .map{ _ in () }
+            .asDriver(onErrorJustReturn: ())
     }
 }
 
