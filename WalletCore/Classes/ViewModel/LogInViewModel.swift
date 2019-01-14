@@ -13,14 +13,19 @@ import RxCocoa
 
 open class LogInViewModel {
     
+    public enum NeedToFill {
+        case phone
+        case pin
+        case fullName
+    }
+    
     public let email = Variable<String>("")
     public let password = Variable<String>("")
     public let clientInfo = Variable<String>("")
     public let loading: Observable<Bool>
     public let result: Driver<ApiResult<LWPacketAuthentication>>
     public let showPinViewController: Driver<Void>
-    public let needToFillPhone: Driver<Void>
-    public let needToFillPin: Driver<Void>
+    public let needToFill: Driver<NeedToFill>
     
     public init(submit: Observable<Void>, authManager: LWRxAuthManager = LWRxAuthManager.instance)
     {
@@ -30,8 +35,7 @@ open class LogInViewModel {
             .asDriver(onErrorJustReturn: ApiResult.error(withData: [:]))
         
         showPinViewController = result.showPin()
-        needToFillPhone = result.needToFillPhone()
-        needToFillPin = result.needToFillPin()
+        needToFill = result.needToFill()
         loading = result.asObservable().isLoading()
     }
     
@@ -56,21 +60,14 @@ fileprivate extension SharedSequenceConvertibleType
             .asDriver(onErrorJustReturn: ())
     }
     
-    func needToFillPhone() -> Driver<Void> {
+    func needToFill() -> Driver<LogInViewModel.NeedToFill> {
         return asObservable()
             .filterSuccess()
-            .filter{ $0.isPhoneEmpty }
-            .map{ _ in () }
-            .asDriver(onErrorJustReturn: ())
-    }
-    
-    func needToFillPin() -> Driver<Void> {
-        return asObservable()
-            .filterSuccess()
-            .filter{ !$0.isPhoneEmpty }
-            .filter{ !$0.isPinEntered }
-            .map{ _ in () }
-            .asDriver(onErrorJustReturn: ())
+            .debug("joro: before")
+            .map{ $0.needToFill }
+            .debug("joro: after")
+            .asDriver(onErrorJustReturn: nil)
+            .filterNil()
     }
 }
 
@@ -97,6 +94,23 @@ fileprivate extension ObservableType where Self.E == Void {
     }
 }
 
+public extension LogInViewModel.NeedToFill {
+    func isPhone() -> Bool {
+        guard case .phone = self else { return false }
+        return true
+    }
+    
+    func isPin() -> Bool {
+        guard case .pin = self else { return false }
+        return true
+    }
+    
+    func isFullName() -> Bool {
+        guard case .fullName = self else { return false }
+        return true
+    }
+}
+
 fileprivate extension LWPacketAuthentication {
     var isPhoneEmpty: Bool {
         guard let phone = personalData?.phone else {
@@ -104,5 +118,29 @@ fileprivate extension LWPacketAuthentication {
         }
         
         return phone.isEmpty
+    }
+    
+    var isFullNameEmpty: Bool {
+        guard let firstName = personalData?.firstName, let lastName = personalData?.lastName else {
+            return true
+        }
+        
+        return firstName.isEmpty || lastName.isEmpty
+    }
+    
+    var needToFill: LogInViewModel.NeedToFill? {
+        if isFullNameEmpty {
+            return .fullName
+        }
+        
+        if isPhoneEmpty {
+            return .phone
+        }
+        
+        if !isPinEntered {
+            return .pin
+        }
+        
+        return nil
     }
 }
