@@ -50,6 +50,7 @@ fileprivate extension SharedSequenceConvertibleType
     func showPin() -> Driver<Void> {
         return asObservable()
             .filterSuccess()
+            .filter{ !$0.isPhoneEmpty }
             .filter{ $0.isPinEntered }
             .map{ _ in () }
             .asDriver(onErrorJustReturn: ())
@@ -58,7 +59,7 @@ fileprivate extension SharedSequenceConvertibleType
     func needToFillPhone() -> Driver<Void> {
         return asObservable()
             .filterSuccess()
-            .filter{ $0.personalData?.phone?.isEmpty ?? false }
+            .filter{ $0.isPhoneEmpty }
             .map{ _ in () }
             .asDriver(onErrorJustReturn: ())
     }
@@ -66,6 +67,7 @@ fileprivate extension SharedSequenceConvertibleType
     func needToFillPin() -> Driver<Void> {
         return asObservable()
             .filterSuccess()
+            .filter{ !$0.isPhoneEmpty }
             .filter{ !$0.isPinEntered }
             .map{ _ in () }
             .asDriver(onErrorJustReturn: ())
@@ -92,5 +94,15 @@ fileprivate extension ObservableType where Self.E == Void {
             authManager.auth.request(withParams: authData)
         }
         .shareReplay(1)
+    }
+}
+
+fileprivate extension LWPacketAuthentication {
+    var isPhoneEmpty: Bool {
+        guard let phone = personalData?.phone else {
+            return true
+        }
+        
+        return phone.isEmpty
     }
 }
